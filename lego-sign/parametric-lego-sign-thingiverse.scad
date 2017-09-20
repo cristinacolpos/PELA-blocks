@@ -19,31 +19,49 @@ Creative Commons Attribution ShareAlike NonCommercial License
 https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Import this into other design files:
-    use <anker-usb-lego-enclosure.scad>
+    use <parametric-lego-sign.scad>
 */
 
 /* [LEGO Options plus Plastic and Printer Variance Adjustments] */
 
-// How many Lego units wide the enclosure is
-blocks_x = 23;
+// The top line of text. Set to "" to not have any top line
+text_line_1 = "LEGO Robotics";
 
-// How many Lego units long the enclosure is
-blocks_y = 10;
+// The second line of text
+text_line_2 = "Rapid Prototyping";
 
-// How many Lego units long is the enclosure holder which caps around each end of an object? If this equals blocks_x/2, then the object will be completely enclosed
-blocks_x_end_cap = 4;
+// The font to use for text on the top line
+font_line_1 = "Liberation Sans:style=Bold Italic";
 
-// How many Lego units high the enclosure is
-blocks_z = 4;
+// The font to use for text on the bottom line
+font_line_2 = "Arial";
 
-// Length of the object to be enclosed
-enclosed_length = 173;
+// The font size (points) of the top line
+font_size_line_1 = 5.8;
 
-// Width of the object to be enclosed
-enclosed_width = 68;
+// The font size (points) of the top line
+font_size_line_2 = 5;
 
-// Height of the object to be enclosed
-enclosed_height = 28;
+// How deeply into the LEGO block to etch/extrude the text
+text_extrusion_height = 0.7;
+
+// Text is pushing out from the LEGO block. Set false to etch the text into the block
+extrude = false;
+
+// How many LEGO units wide the enclosure is
+blocks_x = 8;
+
+// How many LEGO units long the enclosure is
+blocks_y = 1;
+
+// How many LEGO units high the enclosure is
+blocks_z = 2;
+
+// Left corner horizontal position of the text
+text_x_inset = 3;
+
+// Bottom / top corner vertical position of the text
+text_z_inset = 3;
 
 // Top connector size tweak => + = more tight fit, 0 for ABS, 0.04 for PLA, 0.08 for NGEN
 top_connector_tweak = 0;
@@ -52,69 +70,43 @@ top_connector_tweak = 0;
 bottom_connector_tweak = 0;
 
 // Number of facets to form a circle (big numbers are more round which affects fit, but may take a long time to render)
-rounding = 64;
-
-// The size of the step in each corner which supports the enclosed part while providing ventilation holes to remove heat
-support_shoulder = 3;
+rounding=64;
 
 /////////////////////////////////////
 
 // Test display
-rotate([0,-90,0])
-    lego_enclosure();
+lego_sign();
 
 ///////////////////////////////////
 
-
-// A Lego brick with a hole inside to contain something of the specified dimensions
-module lego_enclosure(l=enclosed_length, w=enclosed_width, h=enclosed_height, x=blocks_x, x_cap=blocks_x_end_cap, y=blocks_y, z=blocks_z, shoulder=support_shoulder, bottom_size_tweak=bottom_connector_tweak, top_size_tweak=bottom_connector_tweak, fn=rounding) {
-    
-    // Add some margin to give space to fit the part
-    skinned_l = l + 2*lego_skin_width();
-    skinned_w = w + 2*lego_skin_width();
-    skinned_h = h + 2*lego_skin_width();
-    
-    // Inner box dimensions
-    dl=(lego_width(x)-skinned_l)/2;
-    dw=(lego_width(y)-skinned_w)/2;
-    dh=(lego_height(z)-skinned_h+lego_socket_height()/2)/2;
-    
-    difference() {
-        lego(x_cap, y, z, bottom_size_tweak, top_size_tweak, fn);
-        translate([dl, dw, dh])
-            enclosure_negative_space(skinned_l, skinned_w, skinned_h, shoulder);
+// A LEGO brick with text on the side
+module lego_sign(line_1=text_line_1, line_2=text_line_2, e=extrude,  extrusion_height=text_extrusion_height, f1=font_line_1, f2=font_line_2, fs1=font_size_line_1, fs2=font_size_line_2, tx=text_x_inset, tz=text_z_inset, xb=blocks_x, yb=blocks_y, zb=blocks_z, bottom_size_tweak=bottom_connector_tweak, top_size_tweak=bottom_connector_tweak, fn=rounding) {
+    if (e) {
+        lego(xb, yb, zb, bottom_size_tweak, top_size_tweak, fn);
+        translate([tx, 0, lego_height(zb)-tz])
+            lego_text(line_1, e, font=f1, font_size=fs1, vertical_alignment="top");
+        translate([tx, 0, tz])
+            lego_text(line_2, e, font=f2, font_size=fs2, vertical_alignment="bottom");
+    } else {
+        translate([0,extrusion_height,0])
+            difference() {
+                lego(xb, yb, zb, bottom_size_tweak, top_size_tweak, fn);
+                union() {
+                    translate([tx, text_extrusion_height, lego_height(zb)-tz])
+                        lego_text(line_1, e, extrusion_height, font=f1, font_size=fs1, vertical_alignment="top");
+                    translate([tx, text_extrusion_height, tz])
+                        lego_text(line_2, e, extrusion_height, font=f2, font_size=fs2, vertical_alignment="baseline");
+                }
+            }
     }
 }
 
-// Where to remove material to privide access for attachments and air ventilation
-module enclosure_negative_space(l=enclosed_length, w=enclosed_width, h=enclosed_height, shoulder=support_shoulder) {
-    ls = l - 2*shoulder;
-    ws = w - 2*shoulder;
-    hs = h - 2*shoulder;
-    ls2 = ls+l;
-    ws2 = ws+w;
-    hs2 = hs+h;
-    
-    // Primary enclosure hole
-    cube([l, w, h]);
-    // Right air hole
-    translate([l, shoulder, shoulder])
-        cube([ls2, ws, hs]);
-    // Left air hole
-    translate([-ls2, shoulder, shoulder])
-        cube([ls2, ws, hs]);
-    // Back air hole
-    translate([shoulder, w, shoulder])
-        cube([ls, ws2, hs]);
-    // Front air hole
-    translate([shoulder, -ws2, shoulder])
-        cube([ls, ws2, hs]);
-    // Top air hole
-    translate([shoulder, shoulder, h])
-        cube([ls, ws, hs2]);
-    // Bottom air hole
-    translate([shoulder, shoulder, -hs2])
-        cube([ls, ws, hs2]);
+
+// Text for the side of calibration block prints
+module lego_text(txt=text_line_1, e=extrude,  extrusion_height=text_extrusion_height, font=font_line_1, font_size=font_size_line_1, vertical_alignment="bottom") {
+    rotate([90,0,0])
+        linear_extrude(height=extrusion_height)
+            text(text=txt, font=font, size=font_size, halign="left", valign=vertical_alignment);
 }
 
 
@@ -256,7 +248,7 @@ module lego(x=blocks_x, y=blocks_y, z=blocks_z, bottom_size_tweak=bottom_connect
 function lego_width(x=1) = x*block_width;
 
 // Function for access to vertical size from other modules
-function lego_height(z=1) = z*block_height + knob_height;
+function lego_height(z=1) = z*block_height;
 
 // Function for access to outside shell size from other modules
 function lego_shell_width() = block_shell;
@@ -265,5 +257,7 @@ function lego_shell_width() = block_shell;
 function lego_skin_width() = skin;
 
 function lego_socket_height() = socket_height;
+
+
 
 

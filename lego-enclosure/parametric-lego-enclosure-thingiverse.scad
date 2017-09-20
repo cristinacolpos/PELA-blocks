@@ -1,8 +1,12 @@
 /*
-Parametric LEGO Block
+Parametric LEGO End Cap Enclosure Generator
+
+Create 2 symmetric end pieces which can support a solid object with LEGO-compatible attachment points on top and bottom. By printing only the end pieces instead of a complele enclosure, the print is minimized
 
 Published at
-    http://www.thingiverse.com/thing:2303714
+    https://www.thingiverse.com/thing:2544197
+Based on
+    https://www.thingiverse.com/thing:2303714
 Maintained at
     https://github.com/paulirotta/parametric_lego
 
@@ -15,19 +19,31 @@ Creative Commons Attribution ShareAlike NonCommercial License
 https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Import this into other design files:
-    use <lego.scad>
+    use <anker-usb-lego-enclosure.scad>
 */
 
 /* [LEGO Options plus Plastic and Printer Variance Adjustments] */
 
-// How many Lego units wide the brick is
-blocks_x = 2;
+// How many Lego units wide the enclosure is
+blocks_x = 23;
 
-// How many Lego units long the brick is
-blocks_y = 4;
+// How many Lego units long the enclosure is
+blocks_y = 10;
 
-// How many Lego units high the brick is
-blocks_z = 1;
+// How many Lego units long is the enclosure holder which caps around each end of an object? If this equals blocks_x/2, then the object will be completely enclosed
+blocks_x_end_cap = 4;
+
+// How many Lego units high the enclosure is
+blocks_z = 4;
+
+// Length of the object to be enclosed
+enclosed_length = 173;
+
+// Width of the object to be enclosed
+enclosed_width = 68;
+
+// Height of the object to be enclosed
+enclosed_height = 28;
 
 // Top connector size tweak => + = more tight fit, 0 for ABS, 0.04 for PLA, 0.08 for NGEN
 top_connector_tweak = 0;
@@ -36,7 +52,73 @@ top_connector_tweak = 0;
 bottom_connector_tweak = 0;
 
 // Number of facets to form a circle (big numbers are more round which affects fit, but may take a long time to render)
-rounding=64;
+rounding = 64;
+
+// The size of the step in each corner which supports the enclosed part while providing ventilation holes to remove heat
+support_shoulder = 3;
+
+/////////////////////////////////////
+
+// Test display
+rotate([0,-90,0])
+    lego_enclosure();
+
+///////////////////////////////////
+
+
+// A Lego brick with a hole inside to contain something of the specified dimensions
+module lego_enclosure(l=enclosed_length, w=enclosed_width, h=enclosed_height, x=blocks_x, x_cap=blocks_x_end_cap, y=blocks_y, z=blocks_z, shoulder=support_shoulder, bottom_size_tweak=bottom_connector_tweak, top_size_tweak=bottom_connector_tweak, fn=rounding) {
+    
+    // Add some margin to give space to fit the part
+    skinned_l = l + 2*lego_skin_width();
+    skinned_w = w + 2*lego_skin_width();
+    skinned_h = h + 2*lego_skin_width();
+    
+    // Inner box dimensions
+    dl=(lego_width(x)-skinned_l)/2;
+    dw=(lego_width(y)-skinned_w)/2;
+    dh=(lego_height(z)-skinned_h+lego_socket_height()/2)/2;
+    
+    difference() {
+        lego(x_cap, y, z, bottom_size_tweak, top_size_tweak, fn);
+        translate([dl, dw, dh])
+            enclosure_negative_space(skinned_l, skinned_w, skinned_h, shoulder);
+    }
+}
+
+// Where to remove material to privide access for attachments and air ventilation
+module enclosure_negative_space(l=enclosed_length, w=enclosed_width, h=enclosed_height, shoulder=support_shoulder) {
+    ls = l - 2*shoulder;
+    ws = w - 2*shoulder;
+    hs = h - 2*shoulder;
+    ls2 = ls+l;
+    ws2 = ws+w;
+    hs2 = hs+h;
+    
+    // Primary enclosure hole
+    cube([l, w, h]);
+    // Right air hole
+    translate([l, shoulder, shoulder])
+        cube([ls2, ws, hs]);
+    // Left air hole
+    translate([-ls2, shoulder, shoulder])
+        cube([ls2, ws, hs]);
+    // Back air hole
+    translate([shoulder, w, shoulder])
+        cube([ls, ws2, hs]);
+    // Front air hole
+    translate([shoulder, -ws2, shoulder])
+        cube([ls, ws2, hs]);
+    // Top air hole
+    translate([shoulder, shoulder, h])
+        cube([ls, ws, hs2]);
+    // Bottom air hole
+    translate([shoulder, shoulder, -hs2])
+        cube([ls, ws, hs2]);
+}
+
+
+////// Partial copy of file lego.scad to make this a single file for use in thingiverse.com online generator
 
 // Clearance space on the outer surface of bricks
 skin = 0.1;
@@ -68,115 +150,8 @@ block_height=9.6;
 // Thickness of the solid outside surface of LEGO
 block_shell=1.3; // thickness
 
-// Lego panel height (flat back panel with screw holes in corners
-cut_line_height=7.6;
-
-// Font for calibration block text labels
-font = "Arial";
-
-// Text size on calibration blocks
-font_size = 4;
-
-// Depth of text labels on calibration blocks
-text_extrusion_height = 0.7;
-
-// Inset from block edge for text (vertical and horizontal)
-text_margin = 1;
-
-// Size between calibration block tweak test steps
-increment = 0.02;
 
 /////////////////////////////////////
-
-// Test display, uncomment only one of the following lines at a time
-lego(); // A single block
-
-//lego_calibration_set(); // A set of blocks for testing which tweak parameters to use on your printer and plastic
-
-//lego_panel();
-
-/////////////////////////////////////
-
-module lego_panel(x=blocks_x, y=blocks_y, top_size_tweak=top_connector_tweak, cut_line=cut_line_height, fn=rounding) {
-    difference() {
-        intersection() {
-            lego(x, y, 1, 0, top_size_tweak, fn);
-            translate([0, 0, cut_line])
-                cube([10000, 10000, 10000]);
-        }
-        union() {
-            screw_hole(1, 1, top_size_tweak, fn);
-            screw_hole(1, y, top_size_tweak, fn);
-            screw_hole(x, 1, top_size_tweak, fn);
-            screw_hole(x, y, top_size_tweak, fn);
-        }
-    }
-}
-
-// A set of blocks with different tweak parameters written on the side
-module lego_calibration_set(x=blocks_x, y=blocks_y, fn=rounding) {
-    lego_calibration_block(x, y, 0, 0, fn);
-    
-    translate([lego_width(3), 0, 0])
-        lego_calibration_block(x,y,-increment,increment, fn);
-    
-    translate([lego_width(6), 0, 0])
-        lego_calibration_block(x,y,-2*increment,2*increment, fn);
-    
-    translate([lego_width(9), 0, 0])
-        lego_calibration_block(x,y,-3*increment,3*increment, fn);
-    
-    translate([lego_width(12), 0, 0])
-        lego_calibration_block(x,y,-4*increment,4*increment, fn);
-    
-    translate([lego_width(15), 0, 0])
-        lego_calibration_block(x,y,-5*increment,5*increment, fn);
-    
-    translate([lego_width(3), lego_width(5), 0])
-        lego_calibration_block(x,y,increment,-increment, fn);
-    
-    translate([lego_width(6), lego_width(5), 0])
-        lego_calibration_block(x,y,2*increment,-2*increment, fn);
-}
-
-// A block with the tweak parameters written on the side
-module lego_calibration_block(x=2, y=4, bottom_size_tweak=0, top_size_tweak=0, fn=rounding) {
-    $fn = fn;
-    difference() {
-        lego(x, y, 1, bottom_size_tweak, top_size_tweak, fn);
-
-        union() {
-            translate([text_extrusion_height, y*block_width-text_margin, block_height-text_margin])
-                lego_calibration_label_top_text(str("^", top_size_tweak));
-            
-            translate([text_extrusion_height,text_margin,text_margin])
-                lego_calibration_label_bottom_text(str("v", bottom_size_tweak));
-        }
-    }
-}
-
-// Text for the side of calibration block prints
-module lego_calibration_label_top_text(txt="Text") {
-    rotate([90,0,-90]) 
-        linear_extrude(height=text_extrusion_height) {
-       text(text=txt, font=font, size=font_size, halign="left", valign="top");
-     }
-}
-
-// Text for the side of calibration block prints
-module lego_calibration_label_bottom_text(txt="Text") {
-    rotate([90,0,-90]) 
-        linear_extrude(height=text_extrusion_height) {
-       text(text=txt, font=font, size=font_size, halign="right");
-     }
-}
-
-module screw_hole(x=1, y=1, top_size_tweak=top_connector_tweak, fn=rounding) {
-    $fn = fn;
-    translate([x*block_width - block_width/2,y*block_width - block_width/2, 0])
-        cylinder(r=knob_radius+top_size_tweak,h=10000);
-}
-
 
 // The round bit on top of a lego block
 module knob(top_size_tweak=0, fn=rounding) {
@@ -290,4 +265,5 @@ function lego_shell_width() = block_shell;
 function lego_skin_width() = skin;
 
 function lego_socket_height() = socket_height;
+
 
