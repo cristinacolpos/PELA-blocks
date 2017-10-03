@@ -50,7 +50,7 @@ bottom_tweak = 0;
 fn=64;
 
 // Clearance space on the outer surface of bricks
-skin = 0.1;
+skin = 0.1; 
 
 // Size of the connectors
 knob_radius=2.4;
