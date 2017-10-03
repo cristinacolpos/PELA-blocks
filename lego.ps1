@@ -3,9 +3,9 @@
 # Part of https://github.com/paulirotta/parametric_lego
 
 param (
-	[Float]$x = 1,
-	[Float]$y = 1,
-	[Float]$z = 1,
+	[Int]$l = 1,
+	[Int]$w = 1,
+	[Int]$h = 1,
 	[Float]$top_tweak = 0.0,
 	[Float]$bottom_tweak = 0.0,
 	[Float]$knob_height = 2.4,
@@ -53,11 +53,11 @@ If ($mode -eq 2) {
     $filename = $filename+"-calibration"
 }
 
-$filename = $filename+$x+"x"+$y+"x"+$z+"t"+$top_tweak+"b"+$bottom_tweak+".stl"
+$filename = $filename+$l+"x"+$w+"x"+$h+"t"+$top_tweak+"b"+$bottom_tweak+".stl"
 
 $start = Get-Date
 
-$param = "`"x=$x; y=$y; z=$z; top_tweak=$top_tweak; bottom_tweak=$bottom_tweak; knob_height=$knob_height; knob_cutout_height=$knob_cutout_height; knob_cutout_radius=$knob_cutout_radius; knob_cutout_airhole_radius=$knob_cutout_airhole_radius; fn=$fn; airhole_fn=$airhole_fn; panel_thickness=$panel_thickness; skin=$skin; bolt_holes=$bolt_holes; mode=$mode;`""
+$param = "`"l=$l; w=$w; h=$h; top_tweak=$top_tweak; bottom_tweak=$bottom_tweak; knob_height=$knob_height; knob_cutout_height=$knob_cutout_height; knob_cutout_radius=$knob_cutout_radius; knob_cutout_airhole_radius=$knob_cutout_airhole_radius; fn=$fn; airhole_fn=$airhole_fn; panel_thickness=$panel_thickness; skin=$skin; bolt_holes=$bolt_holes; mode=$mode;`""
 
 echo "Render $filename $param"
 
@@ -65,3 +65,4 @@ openscad -o $filename -D $param lego.scad
 
 $elapsed=FormatElapsedTime ((Get-Date) - $start)
 echo "Render time: $elapsed"
+echo ""

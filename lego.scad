@@ -30,13 +30,13 @@ Import this into other design files:
 // What type of object to generate: 1=>block, 2=>panel (thin, knobs only), 3=>calibration
 mode=1;
 
-// How many Lego units wide the brick is
+// Length of the box (LEGO knob count)
 l = 1; 
 
-// How many Lego units long the brick is
+// Width of the box (LEGO knob count)
 w = 1;
 
-// How many Lego units high the brick is
+// Height of the box (LEGO brick layers)
 h = 1;
 
 
