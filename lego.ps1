@@ -1,17 +1,67 @@
-# LEGO .stl model batch render
+# Generate a 3D-printable LEGO using command line parameters
+# Windows Powershell
+# Part of https://github.com/paulirotta/parametric_lego
+
 param (
-	[Int]$x = 1,
-	[Int]$y = 1,
-	[Int]$z = 1,
-	[Float]$top = 1,
-	[Float]$bottom = 0.0,
+	[Float]$x = 1,
+	[Float]$y = 1,
+	[Float]$z = 1,
+	[Float]$top_tweak = 0.0,
+	[Float]$bottom_tweak = 0.0,
+	[Float]$knob_height = 2.4,
+	[Float]$knob_cutout_height = 4.55,
+	[Float]$knob_cutout_radius = 1.25,
+	[Float]$knob_cutout_airhole_radius = 0.01,
+    [Float]$panel_thickness = 3.2,
+    [Float]$skin = 0.1,
+    [Int]$mode = 1,
+    [Int]$bolt_holes = 0,
 	[Int]$fn = 64,
-	[Int]$airhole_fn = 6,
-    	[String]$filename = "lego"
- )
-#----------------- Logo
+	[Int]$airhole_fn = 16,
+    [String]$filename = "lego"
+)
 
-Get-Date
-echo "Render " $filename
+Function FormatElapsedTime($ts) 
+{
+    $elapsedTime = ""
 
-openscad -o $filename".stl" -D 'mode="""block"""; x=$x; y=$y; z=$z; top_tweak=$top; bottom_tweak=$bottom; fn=$fn; airhole_fn=$airhole_fn' command-line-parametric-lego.scad
+    if ( $ts.Minutes -gt 0 )
+    {
+        $elapsedTime = [string]::Format( "{0:00}m {1:00}.{2:00}s", $ts.Minutes, $ts.Seconds, $ts.Milliseconds / 10 );
+    }
+    else
+    {
+        $elapsedTime = [string]::Format( "{0:00}.{1:00}s", $ts.Seconds, $ts.Milliseconds / 10 );
+    }
+
+    if ($ts.Hours -eq 0 -and $ts.Minutes -eq 0 -and $ts.Seconds -eq 0)
+    {
+        $elapsedTime = [string]::Format("{0:00}ms", $ts.Milliseconds);
+    }
+
+    if ($ts.Milliseconds -eq 0)
+    {
+        $elapsedTime = [string]::Format("{0}ms", $ts.TotalMilliseconds);
+    }
+
+    return $elapsedTime
+}
+
+If ($mode -eq 2) {
+    $filename = $filename+"-panel"
+} ElseIf ($mode -eq 3) {
+    $filename = $filename+"-calibration"
+}
+
+$filename = $filename+$x+"x"+$y+"x"+$z+"t"+$top_tweak+"b"+$bottom_tweak+".stl"
+
+$start = Get-Date
+
+$param = "`"x=$x; y=$y; z=$z; top_tweak=$top_tweak; bottom_tweak=$bottom_tweak; knob_height=$knob_height; knob_cutout_height=$knob_cutout_height; knob_cutout_radius=$knob_cutout_radius; knob_cutout_airhole_radius=$knob_cutout_airhole_radius; fn=$fn; airhole_fn=$airhole_fn; panel_thickness=$panel_thickness; skin=$skin; bolt_holes=$bolt_holes; mode=$mode;`""
+
+echo "Render $filename $param"
+
+openscad -o $filename -D $param lego.scad
+
+$elapsed=FormatElapsedTime ((Get-Date) - $start)
+echo "Render time: $elapsed"
