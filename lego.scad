@@ -158,8 +158,7 @@ function is_true(t) = t != 0;
 
 // A complete LEGO block, standard size, specify number of layers in X Y and Z
 module lego(x=x, y=y, z=z, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
-    lego_no_holes(x=x, y=y, z=z, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, fn=fn, airhole_fn=airhole_fn);    
-
+    
     difference() {
         union() {
             block_shell(x=x, y=y, z=z, fn=fn);
@@ -179,22 +178,9 @@ module lego(x=x, y=y, z=z, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
 }
 
 
-// Mounting holes
-module corner_bolt_holes(x=x, y=y, z=z, top_tweak=top_tweak, fn=fn) {
-    bolt_hole(x=1, y=1, z=z, top_tweak=top_tweak, fn=fn);
-    bolt_hole(x=1, y=y, z=z, top_tweak=top_tweak, fn=fn);
-    bolt_hole(x=x, y=1, z=z, top_tweak=top_tweak, fn=fn);
-    bolt_hole(x=x, y=y, z=z, top_tweak=top_tweak, fn=fn);
-}
-
-
-// A complete LEGO block, standard size, specify number of layers in X Y and Z
-module lego_no_holes(x=x, y=y, z=z, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, fn=fn, airhole_fn=airhole_fn) {
-    
-}
-
 // Several blocks in a grid, one knob per block
 module block_set(x=x, y=y, z=z, top_tweak=top_tweak, fn=fn) {
+
     for (i = [0:1:x-1]) {
         for (j = [0:1:y-1]) {
             translate([lego_width(i), lego_width(j), 0])
@@ -206,6 +192,7 @@ module block_set(x=x, y=y, z=z, top_tweak=top_tweak, fn=fn) {
 
 // The rectangular part of the the lego plus the knob
 module block(z=bocks_z, top_tweak=top_tweak, knob_height=knob_height, fn=fn) {
+
     cube([lego_width(), lego_width(), lego_height(z)]);
     translate([lego_width(0.5), lego_width(0.5), lego_height(z)])
         knob(top_tweak=top_tweak, knob_bevel=knob_bevel, fn=fn);
@@ -214,6 +201,7 @@ module block(z=bocks_z, top_tweak=top_tweak, knob_height=knob_height, fn=fn) {
 
 // The cylinder on top of a lego block
 module knob(top_tweak=top_tweak, knob_bevel=knob_bevel, fn=fn) {
+
     cylinder(r=knob_radius+top_tweak, h=knob_height-knob_bevel, $fn=fn);
     if (knob_bevel > 0) {
         // This path is a bit slower, but does the same thing as the bath below for the most common case of knob_bevel==0
@@ -227,6 +215,7 @@ module knob(top_tweak=top_tweak, knob_bevel=knob_bevel, fn=fn) {
 
 // An array of empty cylinders to fit inside a knob_set()
 module knob_cutout_set(x=x, y=y, z=z, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, fn=fn, airhole_fn=airhole_fn) {
+
     airhole = z>1;
     for (i = [0:1:x-1]) {
         for (j = [0:1:y-1]) {
@@ -239,6 +228,7 @@ module knob_cutout_set(x=x, y=y, z=z, knob_height=knob_height, knob_cutout_heigh
 
 // The empty cylinder inside a knob
 module knob_cutout(airhole=false, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, fn=fn, airhole_fn=airhole_fn) {
+
     translate([0, 0, knob_height-knob_top_thickness-knob_cutout_height])
         cylinder(r=knob_cutout_radius, h=knob_cutout_height, $fn=airhole_fn);
     if (airhole) {
@@ -249,6 +239,7 @@ module knob_cutout(airhole=false, knob_height=knob_height, knob_cutout_height=kn
 
 // That solid outer skin of a block set
 module block_shell(x=x, y=y, z=z) {
+
     cube([block_shell, lego_width(y), lego_height(z)]);
     translate([lego_width(x)-block_shell, 0, 0]) 
         cube([block_shell, lego_width(y), lego_height(z)]);
@@ -261,47 +252,59 @@ module block_shell(x=x, y=y, z=z) {
         cube([lego_width(x), lego_width(y), block_shell]);
 }
 
-// Bottom connector- negative space for one block
-module socket(bottom_tweak=bottom_tweak, fn=fn) {
-    difference() {
-        cube([lego_width(), lego_width(), socket_height]);
-        union() {
-            socket_ring(bottom_tweak, fn);
-            translate([lego_width(), 0, 0])
-                socket_ring(bottom_tweak, fn);
-            translate([0, lego_width(), 0]) 
-                socket_ring(bottom_tweak, fn);
-            translate([lego_width(), lego_width(), 0])
-                socket_ring(bottom_tweak, fn);
-        }
-    }
-}
-
-// The circular bottom insert for attaching knobs
-module socket_ring(bottom_tweak=bottom_tweak, fn=fn) {
-    difference() {
-        cylinder(r=ring_radius+bottom_tweak, h=socket_height, $fn=fn);
-        cylinder(r=ring_radius+bottom_tweak-ring_thickness, h=socket_height, $fn=fn);
-    }
-}
 
 // Bottom connector- negative space for multiple blocks
 module socket_set(x=x, y=y, bottom_tweak=bottom_tweak, fn=fn) {
-    for (i = [0:1:x-1]) {
-        for (j = [0:1:y-1]) {
-            translate([lego_width(i), lego_width(j), 0])
-                socket(bottom_tweak, fn);
+
+    difference() {
+        cube([lego_width(x), lego_width(y), socket_height]);
+        union() {
+            for (i = [0:1:x]) {
+                for (j = [0:1:y]) {
+                    translate([lego_width(i), lego_width(j), 0])
+                    socket_ring(bottom_tweak, fn);
+                }
+            }
         }
     }
 }
 
+
+// The circular bottom insert for attaching knobs
+module socket_ring(bottom_tweak=bottom_tweak, fn=fn) {
+
+    difference() {
+        cylinder(r=ring_radius+bottom_tweak, h=socket_height, $fn=fn);
+        socket_ring_inner_cylinder(bottom_tweak=bottom_tweak, fn=fn);
+    }
+}
+
+
+// The negative space inside the circular bottom insert for attaching knobs
+module socket_ring_inner_cylinder(bottom_tweak=bottom_tweak, fn=fn) {
+
+    cylinder(r=ring_radius+bottom_tweak-ring_thickness, h=socket_height, $fn=fn);
+}
+
+
 // The thin negative space surrounding a LEGO block so that two blocks can fit next to each other easily in a tight grid
 module skin(x=x, y=y, z=z, skin=skin) {
+
     difference() {
         cube([lego_width(x), lego_width(y), lego_height(z)]);
         translate([lego_skin_width(), lego_skin_width(), 0])
             cube([lego_width(x)-lego_skin_width(i=2, skin=skin), lego_width(y)-lego_skin_width(i=2, skin=skin), lego_height(z)]);
     }
+}
+
+
+// Mounting holes
+module corner_bolt_holes(x=x, y=y, z=z, top_tweak=top_tweak, fn=fn) {
+
+    bolt_hole(x=1, y=1, z=z, top_tweak=top_tweak, fn=fn);
+    bolt_hole(x=1, y=y, z=z, top_tweak=top_tweak, fn=fn);
+    bolt_hole(x=x, y=1, z=z, top_tweak=top_tweak, fn=fn);
+    bolt_hole(x=x, y=y, z=z, top_tweak=top_tweak, fn=fn);
 }
 
 
@@ -315,6 +318,7 @@ module skin(x=x, y=y, z=z, skin=skin) {
 
 // A set of blocks with different tweak parameters written on the side
 module lego_calibration_set(x=x, y=y, skin=skin, fn=fn) {
+
     for (i = [0:5]) {
         translate([i*lego_width(x+0.5), 0, 0])
             lego_calibration_block(x=x, y=y, top_tweak=i*calibration_block_increment, bottom_tweak=-i*calibration_block_increment, skin=skin, fn=fn);
@@ -333,6 +337,7 @@ module lego_calibration_set(x=x, y=y, skin=skin, fn=fn) {
 
 // A block with the tweak parameters written on the side
 module lego_calibration_block(x=x, y=y, top_tweak=top_tweak, bottom_tweak=bottom_tweak, skin=skin, fn=fn) {
+
     difference() {
         lego(x=x, y=y, z=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn);
 
@@ -350,6 +355,7 @@ module lego_calibration_block(x=x, y=y, top_tweak=top_tweak, bottom_tweak=bottom
 
 // Text for the left side of calibration block prints
 module lego_calibration_top_text(txt="Text") {
+
     linear_extrude(height=text_extrusion_height) {
     text(text=txt, font=font, size=font_size, halign="left", valign="top");
      }
@@ -357,6 +363,7 @@ module lego_calibration_top_text(txt="Text") {
 
 // Text for the back side of calibration block prints
 module lego_calibration_bottom_text(txt="Text") {
+
     linear_extrude(height=text_extrusion_height) {
        text(text=txt, font=font, size=font_size, halign="right");
      }
@@ -371,8 +378,8 @@ module lego_calibration_bottom_text(txt="Text") {
 /////////////////////////////////////
 
 module lego_panel(x=x, y=y, top_tweak=top_tweak, panel_thickness=panel_thickness, bolt_holes=bolt_holes, skin=skin, fn=fn) {
-    cut_line=lego_height()-panel_thickness;
 
+    cut_line=lego_height()-panel_thickness;
     if (is_true(bolt_holes)) {
         difference() {
             lego_panel_no_holes(x=x, y=y, top_tweak=top_tweak, cut_line=cut_line, skin=skin, fn=fn);
@@ -385,6 +392,7 @@ module lego_panel(x=x, y=y, top_tweak=top_tweak, panel_thickness=panel_thickness
 }
 
 module lego_panel_no_holes(x=x, y=y, top_tweak=top_tweak, cut_line=cut_line, skin=skin, fn=fn) {
+
     intersection() {
         lego(x=x, y=y, z=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, skin=skin, fn=fn);
         translate([0, 0, cut_line])
@@ -394,6 +402,7 @@ module lego_panel_no_holes(x=x, y=y, top_tweak=top_tweak, cut_line=cut_line, ski
 
 // A hole for a mounting bolt in the corners of a panel or block
 module bolt_hole(x=x, y=y, z=z, top_tweak=top_tweak, fn=fn) {
+
     translate([lego_width(x-0.5), lego_width(y-0.5), 0])
         cylinder(r=knob_radius+top_tweak+0.001, h=lego_height(z+1), $fn=fn);
 }

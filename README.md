@@ -1,6 +1,6 @@
 # Parametric LEGO #
 
-### 3D Printable LEGO shapes with fine-tuning parameters for a tight fit with different materials ###
+### 3D Printable LEGO shapes with fine-tuning parameters for a perfect fit with different materials, printers and nozzle sizes ###
 
 Print out snap-together cases and objects by starting from a proper LEGO part. Making LEGO-compatibible boxes and enclosures is one of the motivations for this project. See for example https://github.com/paulirotta/lego_grove
 
