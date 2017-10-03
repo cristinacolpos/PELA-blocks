@@ -31,10 +31,10 @@ Import this into other design files:
 mode=1;
 
 // How many Lego units wide the brick is
-l = 4;
+l = 1; 
 
 // How many Lego units long the brick is
-w = 4;
+w = 1;
 
 // How many Lego units high the brick is
 h = 1;
