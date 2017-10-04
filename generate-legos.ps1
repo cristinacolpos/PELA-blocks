@@ -8,30 +8,12 @@
 $filename="lego-abs"
 $top_tweak=0.0;
 $bottom_tweak=-0.0;
-$l=1;
-$w=1;
-$h=1;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
 
 $l=4;
 $w=2;
 $h=1;
 
 Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
-
-$l=4;
-$w=4;
-$h=2;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
-
-#Panel
-$l=8;
-$w=8;
-$h=1;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename -mode 2 -bolt_holes 1"
 
 
 ##################################
@@ -39,30 +21,11 @@ Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tw
 $filename="lego-pla"
 $top_tweak=-0.04;
 $bottom_tweak=0.04;
-$l=1;
-$w=1;
-$h=1;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
-
 $l=4;
 $w=2;
 $h=1;
 
 Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
-
-$l=4;
-$w=4;
-$h=2;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
-
-#Panel
-$l=8;
-$w=8;
-$h=1;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename -mode 2 -bolt_holes 1"
 
 
 ##################################

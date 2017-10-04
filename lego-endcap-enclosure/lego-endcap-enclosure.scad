@@ -29,38 +29,101 @@ use <../lego.scad>
 
 /* [LEGO Options plus Plastic and Printer Variance Adjustments] */
 
-// How many Lego units wide the enclosure is
-blocks_x = 23;
+// Length of the enclosure (LEGO knob count)
+l = 23;
 
-// How many Lego units long the enclosure is
-blocks_y = 10;
+// Length of the left side of the enclosure (LEGO knob count, for example l/2 or less)
+l_cap = 4;
 
-// How many Lego units long is the enclosure holder
-blocks_x_end_cap = 4;
+// Length of the right side of the enclosure (LEGO knob count, for example l/2 or less)
+r_cap = 4;
 
-// How many Lego units high the enclosure is
-blocks_z = 4;
+// Width of the enclosure (LEGO knob count)
+w = 10;
 
-// Length of the object to be enclosed
-enclosed_length = 173;
+// Height of the enclosure (LEGO brick layer count)
+h = 4;
 
-// Width of the object to be enclosed
-enclosed_width = 68;
+// Length of the object to be enclosed (mm)
+el = 173;
 
-// Height of the object to be enclosed
-enclosed_height = 28;
+// Width of the object to be enclosed (mm)
+ew = 68;
+
+// Height of the object to be enclosed (mm)
+eh = 28;
 
 // Top connector size tweak => + = more tight fit, -0.04 for PLA, 0 for ABS, 0.07 for NGEN
 top_tweak = 0;
 
-// Bottom connector size tweak => + = more tight fit, 0.02 for PLA, 0 for ABS, -0.01 NGEN
+// Bottom connector size tweak => + = more tight fit, 0.04 for PLA, 0 for ABS, -0.01 NGEN
 bottom_tweak = 0;
 
-// Number of facets to form a circle (big numbers are more round which affects fit, but may take a long time to render)
-fn = 64;
-
-// The size of the step in each corner which supports the enclosed part while providing ventilation holes to remove heat
+// The size of the step in each corner which supports the enclosed part while providing ventilation holes to remove heat (mm)
 shoulder = 3;
+
+// Number of facets to form a circle (big numbers are more round which affects fit, but may take a long time to render)
+fn=64;
+
+// Clearance space on the outer surface of bricks
+skin = 0.1; 
+
+// Size of the connectors
+knob_radius=2.4;
+
+// Height of the connectors including any bevel (1.8 is Lego standard, longer gives a stronger hold which helps since 3D prints are less precise)
+knob_height=2.4;
+
+// Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.3 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
+knob_bevel=0;
+
+// Size of the small cavity inside the connectors
+knob_cutout_radius=1.25;
+
+// Distance below knob top surface and the internal cutout
+knob_top_thickness=1.2;
+
+// Height of the hole beneath each knob
+knob_cutout_height=4.55;
+
+// Size of the top hole in each knob to keep the cutout as part of the outside surface for slicer-friendliness. Use a larger number if you need to drain resin from the cutout. If h height of the block is 1, no airhole is added to the model since the cutout is open from below.
+knob_cutout_airhole_radius=0.01;
+
+// Number of side to simulate a circle in the air hole and (smaller numbers render faster and are usually sufficient)
+airhole_fn=16;
+
+// Depth which connectors may press into part bottom
+socket_height=6.4;
+
+// Bottom connector assistance ring size
+ring_radius=3.25;
+
+// Bottom connector assistance ring thickness
+ring_thickness=0.8;
+
+// Width of horizontal surface strengthening slats (usually between the bottom rings)
+stiffener_width=0.8;
+
+// Height of horizontal surface strengthening slats (usually between the bottom rings)
+stiffener_height=2.4;
+
+// Basic unit horizonal size of LEGO
+block_width=8;
+
+// Basic unit vertial size of LEGO
+block_height=9.6;
+
+// Thickness of the solid outside surface of LEGO
+block_shell=1.3; // thickness
+
+// LEGO panel thickness (flat back panel with screw holes in corners)
+panel_thickness=3.2;
+
+// Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
+bolt_holes=0;
+
+
+
 
 /////////////////////////////////////
 
@@ -72,22 +135,22 @@ rotate([0,-90,0])
 
 
 // A Lego brick with a hole inside to contain something of the specified dimensions
-module lego_enclosure(l=enclosed_length, w=enclosed_width, h=enclosed_height, x=blocks_x, x_cap=blocks_x_end_cap, y=blocks_y, z=blocks_z, shoulder=shoulder, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn) {
+module lego_enclosure(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
     
-    // Add some margin to give space to fit the part
-    skinned_l = l + lego_skin_width(2);
-    skinned_w = w + lego_skin_width(2);
-    skinned_h = h + lego_skin_width(2);
+    // Add some margin around the enclosed space to give space to fit the part
+    ml = l + lego_skin_width(2);
+    mw = w + lego_skin_width(2);
+    mh = h + lego_skin_width(2);
     
-    // Inner box dimensions
-    dl=(lego_width(x)-skinned_l)/2;
-    dw=(lego_width(y)-skinned_w)/2;
-    dh=(lego_height(z)-skinned_h)/2;
+    // Inner box origin corner
+    dl=(lego_width(el)-ml)/2;
+    dw=(lego_width(ew)-mw)/2;
+    dh=(lego_height(eh)-mh)/2;
     
     difference() {
-        lego(x=x_cap, y=y, z=z, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn);
+        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
         translate([dl, dw, dh])
-            enclosure_negative_space(skinned_l, skinned_w, skinned_h, shoulder);
+            enclosure_negative_space(ml, mw, mh, shoulder);
     }
 }
 
