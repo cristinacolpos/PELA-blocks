@@ -25,10 +25,10 @@ Import this into other design files:
     use <lego.scad>
 */
 
-/* [LEGO Options plus Plastic and Printer Variance Adjustments] */
+/* [LEGO Options] */
 
 // What type of object to generate: 1=>block, 2=>panel (thin, knobs only), 3=>calibration
-mode=1;
+mode=3;
 
 // Length of the box (LEGO knob count)
 l = 1; 
@@ -36,9 +36,8 @@ l = 1;
 // Width of the box (LEGO knob count)
 w = 1;
 
-// Height of the box (LEGO brick layers)
+// Height of the box (LEGO brick layer count)
 h = 1;
-
 
 // Top connector size tweak => + = more tight fit, -0.04 for PLA, 0 for ABS, 0.07 for NGEN
 top_tweak = 0;
@@ -110,10 +109,10 @@ bolt_holes=0;
 font = "Arial";
 
 // Text size on calibration blocks
-font_size = 3.8;
+font_size = 4.5;
 
 // Depth of text labels on calibration blocks
-text_extrusion_height = 0.5;
+text_extrusion_height = 0.6;
 
 // Inset from block edge for text (vertical and horizontal)
 text_margin = 1;
@@ -342,24 +341,27 @@ module corner_bolt_holes(l=l, w=w, h=h, top_tweak=top_tweak, fn=fn) {
 /////////////////////////////////////
 
 // A set of blocks with different tweak parameters written on the side
-module lego_calibration_set(l=l, w=w, skin=skin, fn=fn) {
+module lego_calibration_set(l=l, w=w, skin=skin, calibration_block_increment=calibration_block_increment, fn=fn) {
+    // Tighter top, looser bottom
     for (i = [0:5]) {
         translate([i*lego_width(l+0.5), 0, 0])
             lego_calibration_block(l=l, w=w, top_tweak=i*calibration_block_increment, bottom_tweak=-i*calibration_block_increment, skin=skin, fn=fn);
     }
     
+    // Tightest top, loosest bottom
     for (i = [6:10]) {
         translate([(i-5)*lego_width(l+0.5), -lego_width(w+0.5), 0])
             lego_calibration_block(l=l, w=w, top_tweak=i*calibration_block_increment, bottom_tweak=-i*calibration_block_increment, skin=skin, fn=fn);
     }
     
+    // Looser top, tighter bottom
     for (i = [1:5]) {
         translate([i*lego_width(l+0.5), lego_width(w+0.5), 0])
             lego_calibration_block(l=l, w=w, top_tweak=-i*calibration_block_increment, bottom_tweak=i*calibration_block_increment, skin=skin, fn=fn);
     }
 }
 
-// A block with the tweak parameters written on the side
+// A block with the top and bottom connector tweak parameters etched on the side
 module lego_calibration_block(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, skin=skin, fn=fn) {
     difference() {
         lego(l=l, w=w, h=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn);
@@ -367,11 +369,11 @@ module lego_calibration_block(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom
         union() {
             translate([text_extrusion_height, lego_skin_width()+lego_width(w)-text_margin, lego_skin_width()+lego_height()-text_margin])
                 rotate([90,0,-90]) 
-                    lego_calibration_top_text(str("^", top_tweak));
+                    lego_calibration_top_text(str(top_tweak));
             
             translate([lego_skin_width()+text_margin, lego_width(w)-text_extrusion_height, lego_skin_width()+text_margin])
                 rotate([90, 0, 180])
-                    lego_calibration_bottom_text(str(bottom_tweak, "v"));
+                    lego_calibration_bottom_text(str(bottom_tweak));
         }
     }
 }
