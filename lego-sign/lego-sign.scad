@@ -147,31 +147,34 @@ bolt_holes=0;
 /////////////////////////////////////
 // Sign Display
 
-lego_sign();
+lego_sign(skin=3.2);
 
 ///////////////////////////////////
 
 // A LEGO brick with text on the side
-module lego_sign(line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
+module lego_sign(line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
+    
     if (is_true(extrude)) {
-        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
-        translate([lego_skin_width(), lego_skin_width(), lego_skin_width()])
+        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
+        
+        translate([lego_skin_width(skin=skin), lego_skin_width(skin=skin), 0])
             lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn);
 
         if (is_true(copy_to_back)) {
-            translate([lego_skin_width()+lego_width(l), lego_width(w), lego_skin_width()])
+            translate([lego_width(l), lego_width(w)-lego_skin_width(skin=skin), 0])
                 rotate([0, 0, 180])
                     lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn);
         }
     } else {
         difference() {
-            lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
+            lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
+            
             union() {
-                translate([lego_skin_width(), 0, lego_skin_width()])
+                translate([lego_skin_width(skin=skin), 0, 0])
                     lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+lego_skin_width(), f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn);
 
                 if (is_true(copy_to_back)) {
-                    translate([lego_skin_width()+lego_width(l), lego_skin_width()+lego_width(w), lego_skin_width()])
+                    translate([lego_width(l)-lego_skin_width(skin=skin), lego_width(w)-lego_skin_width(skin=skin), 0])
                         rotate([0, 0, 180])
                             lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+lego_skin_width(), f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn);
                 }
@@ -183,6 +186,7 @@ module lego_sign(line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extr
 
 // Two lines of text extruded out from the surface
 module lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn) {
+    
     translate([left_margin, 0, lego_height(h)-vertical_margin])
         lego_text(text=line_1, lang=lang, font=f1, font_size=fs1, vertical_alignment="top");
     translate([left_margin, 0, vertical_margin])
@@ -192,8 +196,10 @@ module lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusio
 
 // Two lines of text etched into the surface
 module lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, fn=fn) {
+    
     translate([left_margin, extrusion_height, lego_height(h)-vertical_margin])
         lego_text(text=line_1, lang=lang, extrusion_height=extrusion_height, font=f1, font_size=fs1, vertical_alignment="top");
+    
     translate([left_margin, extrusion_height, vertical_margin])
         lego_text(text=line_2, lang=lang, extrusion_height=extrusion_height, font=f2, font_size=fs2, vertical_alignment="baseline");
 }
