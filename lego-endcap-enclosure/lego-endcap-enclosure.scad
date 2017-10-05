@@ -30,28 +30,34 @@ use <../lego.scad>
 /* [LEGO Options plus Plastic and Printer Variance Adjustments] */
 
 // Length of the enclosure (LEGO knob count)
-l = 23;
+//l = 23;
+l = 6;
 
 // Length of the left side of the enclosure (LEGO knob count, for example l/2 or less)
 l_cap = 4;
 
 // Length of the right side of the enclosure (LEGO knob count, for example l/2 or less)
-r_cap = 4;
+r_cap = 2;
 
 // Width of the enclosure (LEGO knob count)
-w = 10;
+//w = 10;
+w = 3;
 
 // Height of the enclosure (LEGO brick layer count)
-h = 4;
+//h = 4;
+h = 3;
 
 // Length of the object to be enclosed (mm)
-el = 173;
+//el = 173;
+el = 8*4;
 
 // Width of the object to be enclosed (mm)
-ew = 68;
+//ew = 68;
+ew = 8*1;
 
 // Height of the object to be enclosed (mm)
-eh = 28;
+//eh = 28;
+eh = 8;
 
 // Top connector size tweak => + = more tight fit, -0.04 for PLA, 0 for ABS, 0.07 for NGEN
 top_tweak = 0;
@@ -59,11 +65,12 @@ top_tweak = 0;
 // Bottom connector size tweak => + = more tight fit, 0.04 for PLA, 0 for ABS, -0.01 NGEN
 bottom_tweak = 0;
 
-// The size of the step in each corner which supports the enclosed part while providing ventilation holes to remove heat (mm)
+// The size of the step which supports the enclosed part at the edges and corners in case ventilation openings would allow the enclosed part to slip out of place (mm)
 shoulder = 3;
 
 // Number of facets to form a circle (big numbers are more round which affects fit, but may take a long time to render)
-fn=64;
+//fn=64;
+fn=16;
 
 // Clearance space on the outer surface of bricks
 skin = 0.1; 
@@ -93,7 +100,7 @@ knob_cutout_airhole_radius=0.01;
 airhole_fn=16;
 
 // Depth which connectors may press into part bottom
-socket_height=6.4;
+socket_height=8.2;
 
 // Bottom connector assistance ring size
 ring_radius=3.25;
@@ -126,16 +133,36 @@ bolt_holes=0;
 
 
 /////////////////////////////////////
-
 // Test display
-rotate([0,-90,0])
-    lego_enclosure(top_tweak=top_tweak, bottom_tweak=bottom_tweak);
+left_cap();
+
 
 ///////////////////////////////////
 
+module left_cap(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
+    
+    difference() {
+        lego_enclosure(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
+        
+        translate([lego_width(l_cap), 0, 0])
+            cube([lego_width(l-l_cap), lego_width(w), lego_height(h+1)]);
+    }
+}
+
+
+module right_cap(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
+    
+    intersection() {
+        lego_enclosure(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
+        
+        translate([lego_width(r_cap), 0, 0])
+            cube([lego_width(l-r_cap), lego_width(w), lego_height(h+1)]);
+    }
+}
+
 
 // A Lego brick with a hole inside to contain something of the specified dimensions
-module lego_enclosure(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
+module lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
     
     // Add some margin around the enclosed space to give space to fit the part
     ml = l + lego_skin_width(2);
@@ -148,37 +175,38 @@ module lego_enclosure(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=sh
     dh=(lego_height(eh)-mh)/2;
     
     difference() {
-        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
+        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
+        
         translate([dl, dw, dh])
-            enclosure_negative_space(ml, mw, mh, shoulder);
+            enclosure_negative_space(ml=ml, mw=mw, mh=mh, shoulder=shoulder);
     }
 }
 
 // Where to remove material to privide access for attachments and air ventilation
-module enclosure_negative_space(l=enclosed_length, w=enclosed_width, h=enclosed_height, shoulder=shoulder) {
-    ls = l - 2*shoulder;
-    ws = w - 2*shoulder;
-    hs = h - 2*shoulder;
-    ls2 = ls+l;
-    ws2 = ws+w;
-    hs2 = hs+h;
+module enclosure_negative_space(ml, mw, mh, shoulder=shoulder) {
+    ls = ml - 2*shoulder;
+    ws = mw - 2*shoulder;
+    hs = mh - 2*shoulder;
+    ls2 = ls+ml;
+    ws2 = ws+mw;
+    hs2 = hs+mh;
     
     // Primary enclosure hole
-    cube([l, w, h]);
+    cube([ml, mw, mh]);
     
-    // Right air hole
-    translate([l, shoulder, shoulder])
+    // Right end air hole
+    translate([ml, shoulder, shoulder])
         cube([ls2, ws, hs]);
     
-    // Left air hole
+    // Left end air hole
     translate([-ls2, shoulder, shoulder])
         cube([ls2, ws, hs]);
     
-    // Back air hole
+    // Back side air hole
     translate([shoulder, w, shoulder])
         cube([ls, ws2, hs]);
         
-    // Front air hole
+    // Front side air hole
     translate([shoulder, -ws2, shoulder])
         cube([ls, ws2, hs]);
         
