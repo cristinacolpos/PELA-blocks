@@ -140,7 +140,7 @@ if (mode==2) {
     // Block without bottom sockets
     lego(socket_height=0);
 } else if (mode==7) {
-    // Lego without bottom socket sides (increases airflow)
+    // Block without bottom socket sides (increased airflow for cooling)
     lego(block_shell=0);
 } else {
     // A single block
@@ -174,14 +174,14 @@ function is_true(t) = t != 0;
 /////////////////////////////////////
 
 // A complete LEGO block, standard size, specify number of layers in L W and H
-module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, socket_height=socket_height, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
+module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
     
     difference() {
         union() {
             block_shell(l=l, w=w, h=h, fn=fn, block_shell=block_shell);
             difference() {
                 block_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_height=knob_height, knob_bevel=knob_bevel, fn=fn);
-                socket_set(l=l, w=w, bottom_tweak=bottom_tweak, socket_height=socket_height, stiffener_width=stiffener_width, stiffener_height=stiffener_height, fn=fn);
+                socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin, fn=fn);
             }
         }
         union() {
@@ -268,24 +268,29 @@ module block_shell(l=l, w=w, h=h, block_shell=block_shell) {
 
 
 // Bottom connector- negative space for multiple blocks
-module socket_set(l=l, w=w, bottom_tweak=bottom_tweak, stiffener_width=stiffener_width, stiffener_height=stiffener_height, fn=fn) {
+module socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin, fn=fn) {
     difference() {
         cube([lego_width(l), lego_width(w), socket_height]);
         difference() {
             union() {
-                bottom_stiffener_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height);
-                for (i = [0:1:l]) {
-                    for (j = [0:1:w]) {
+                bottom_stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin);
+                for (i = [0:l]) {
+                    for (j = [0:w]) {
                         translate([lego_width(i), lego_width(j), 0])
-                            socket_ring(bottom_tweak, fn);
+                            socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak, fn=fn);
                     }
                 }
             }
+            
             union() {
-                for (i = [0:1:l]) {
-                    for (j = [0:1:w]) {
-                        translate([lego_width(i), lego_width(j), 0])
-                            socket_ring_inner_cylinder(bottom_tweak=bottom_tweak, fn=fn);
+                for (i = [0:l]) {
+                    for (j = [0:w]) {
+                        ci = i==0 ? false : i!=l;
+                        cj = j==0 ? false : j!=w;
+                        if (ci || cj) {
+                            translate([lego_width(i), lego_width(j), 0])
+                                socket_ring_inner_cylinder(ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, fn=fn);
+                        }
                     }
                 }
             }
@@ -295,34 +300,34 @@ module socket_set(l=l, w=w, bottom_tweak=bottom_tweak, stiffener_width=stiffener
 
 
 // The circular bottom insert for attaching knobs
-module socket_ring(bottom_tweak=bottom_tweak, fn=fn) {
+module socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak, fn=fn) {
     cylinder(r=ring_radius+bottom_tweak, h=socket_height, $fn=fn);
 }
 
 
 // The negative space inside the circular bottom insert for attaching knobs
-module socket_ring_inner_cylinder(bottom_tweak=bottom_tweak, fn=fn) {
+module socket_ring_inner_cylinder(ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, fn=fn) {
     cylinder(r=ring_radius+bottom_tweak-ring_thickness, h=socket_height, $fn=fn);
 }
 
 
 // Bars layed below (or above) a horizontal surface to make it stronger
-module bottom_stiffener_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height) {
+module bottom_stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin) {
     translate([0, 0, socket_height-stiffener_height])
-        stiffener_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height);
+        stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin);
 }
 
 
 // Bars layed below (or above) a horizontal surface to make it stronger. Usually these are on the bottom, between the connecting rings
-module stiffener_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height) {
+module stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin) {
     for (i = [0:l]) {
-        offset = i==0 ? stiffener_width/2 : (i==l ? -stiffener_width/2 : 0);
+        offset = i==0 ? stiffener_width/2+lego_skin_width(skin=skin) : (i==l ? -stiffener_width/2-lego_skin_width(skin=skin) : 0);
         translate([lego_width(i)+offset-stiffener_width/2, 0, 0])
             cube([stiffener_width, lego_width(w), stiffener_height]);
     }
     for (j = [0:w]) {
-        offset = j==0 ? stiffener_width/2 : (j==w ? -stiffener_width/2 : 0);
-        translate([0, lego_width(j)+offset-stiffener_width/2, 0])
+        offset = j==0 ? stiffener_width/2+lego_skin_width(skin=skin) : (j==w ? -stiffener_width/2-lego_skin_width(skin=skin) : 0);
+translate([0, lego_width(j)+offset-stiffener_width/2, 0])
             cube([lego_width(l), stiffener_width, stiffener_height]);
     }    
 }
