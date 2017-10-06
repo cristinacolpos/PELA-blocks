@@ -27,23 +27,23 @@ Import this into other design files:
 
 /* [LEGO Options] */
 
-// What type of object to generate: 1=>block, 2=>panel (thin, knobs only), 3=>calibration, 4=>skin only, 5=>block without top knobs, 6=>block without bottom connector, 7=> block without socket sides (increases bottom airflow)
+// What type of object to generate: 1=>block, 2=>panel (thin, knobs only), 3=>calibration, 4=>skin only, 5=>block without top knobs, 6=>block without bottom connector, 7=> block with increased bottom airflow
 mode=7;
 
 // Length of the box (LEGO knob count)
-l = 3; 
+l = 4; 
 
 // Width of the box (LEGO knob count)
-w = 3;
+w = 4;
 
 // Height of the box (LEGO brick layer count)
 h = 1;
 
 // Top connector size tweak => + = more tight fit, -0.04 for PLA, 0 for ABS, 0.07 for NGEN
-top_tweak = 0;
+top_tweak = 0.07;
 
 // Bottom connector size tweak => + = more tight fit, 0.04 for PLA, 0 for ABS, -0.01 NGEN
-bottom_tweak = 0;
+bottom_tweak = -0.01;
 
 // Number of facets to form a circle (big numbers are more round which affects fit, but may take a long time to render)
 fn=64;
@@ -140,8 +140,43 @@ if (mode==2) {
     // Block without bottom sockets
     lego(socket_height=0);
 } else if (mode==7) {
-    // Block without bottom socket sides (increased airflow for cooling)
-    lego(block_shell=0);
+    // Block with increased airflow
+    difference() {
+        lego(knob_cutout_airhole_radius=1.1, airhole_fn=64, stiffener_height=1);
+        union() {
+            translate([8,8,8]) socket_ring_inner_cylinder();
+            translate([8,16,8]) socket_ring_inner_cylinder();
+            translate([16,8,8]) socket_ring_inner_cylinder();
+            translate([24,8,8]) socket_ring_inner_cylinder();
+            translate([16,16,8]) socket_ring_inner_cylinder();
+            translate([24,16,8]) socket_ring_inner_cylinder();
+            translate([8,24,8]) socket_ring_inner_cylinder();
+            translate([16,24,8]) socket_ring_inner_cylinder();
+            translate([24,24,8]) socket_ring_inner_cylinder();
+
+            width=8-2*ring_radius;
+            height=block_height-panel_thickness-0.4;
+            vert=1.2;
+            translate([4-width/2,0,vert]) cube([width,8*4,height]);
+            translate([8-width/2,0,vert]) cube([width,8*4,height]);
+            translate([12-width/2,0,vert]) cube([width,8*4,height]);
+            translate([16-width/2,0,vert]) cube([width,8*4,height]);
+            translate([20-width/2,0,vert]) cube([width,8*4,height]);
+            translate([24-width/2,0,vert]) cube([width,8*4,height]);
+            translate([28-width/2,0,vert]) cube([width,8*4,height]);
+
+            translate([0, 4-width/2,vert]) cube([8*4, width, height]);
+            translate([0, 8-width/2,vert]) cube([8*4, width, height]);
+            translate([0, 12-width/2,vert]) cube([8*4, width, height]);
+            translate([0, 16-width/2,vert]) cube([8*4, width, height]);
+            translate([0, 20-width/2,vert]) cube([8*4, width, height]);
+            translate([0, 24-width/2,vert]) cube([8*4, width, height]);
+            translate([0, 28-width/2,vert]) cube([8*4, width, height]);
+        }
+    }
+} else if (mode==8) {
+    // A single calibration block
+    lego_calibration_block(l=2, w=2, h=1, top_tweak=0.07, bottom_tweak=-0.01);
 } else {
     // A single block
     lego();
