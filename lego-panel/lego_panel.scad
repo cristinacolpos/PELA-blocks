@@ -30,23 +30,28 @@ use <../lego.scad>
 
 /* [LEGO Panel Options] */
 
-// LEGO panel thickness (flat back panel with screw holes in corners)
+// LEGO panel thickness (flat panel with optional screw holes in corners for permanent mounting)
 panel_thickness=3.2;
 
+// Set 1 for flat bottom, 0 for socket connectors on the bottom
+flat_bottom = 0;
 
 /////////////////////////////////////
 // LEGO panel display
 /////////////////////////////////////
 
-// A thin panel of knobs with a flat back and mounting screw holes in the corners, suitable for organizing projects
-lego_knob_panel(); 
+if (flat_bottom == 1) {
+    lego_knob_panel(socket_height=0);
+} else {
+    lego_knob_panel(); 
+}
 
 /////////////////////////////////////
 // LEGO PANEL modules
 /////////////////////////////////////
 
-//
-module lego_knob_panel(l=l, w=w, top_tweak=top_tweak, panel_thickness=panel_thickness, bolt_holes=bolt_holes, skin=skin, fn=fn) {
+// A panel of knobs
+module lego_knob_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height, panel_thickness=panel_thickness, bolt_holes=bolt_holes, skin=skin, fn=fn) {
     
     cut_line=lego_height()-panel_thickness;
     if (is_true(bolt_holes)) {
@@ -56,13 +61,13 @@ module lego_knob_panel(l=l, w=w, top_tweak=top_tweak, panel_thickness=panel_thic
                 corner_bolt_holes(l=l, w=w, top_tweak=top_tweak, fn=fn);
         }
     } else {
-        lego_knob_panel_no_holes(l=l, w=w, top_tweak=top_tweak, cut_line=cut_line, fn=fn);    
+        lego_knob_panel_no_holes(flat_bottom=flat_bottom, l=l, w=w, top_tweak=top_tweak, cut_line=cut_line, fn=fn);    
     }
 }
 
-module lego_knob_panel_no_holes(l=l, w=w, top_tweak=top_tweak, cut_line=cut_line, skin=skin, fn=fn) {
+module lego_knob_panel_no_holes(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height, cut_line=cut_line, skin=skin, fn=fn) {
     intersection() {
-        lego(l=l, w=w, h=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, skin=skin, fn=fn);
+        lego(l=l, w=w, h=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height, skin=skin, fn=fn);
         translate([0, 0, cut_line])
             cube([lego_width(l), lego_width(w), 2*lego_height()]);
     }    
