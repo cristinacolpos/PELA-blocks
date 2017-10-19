@@ -220,27 +220,30 @@ module block_shell(l=l, w=w, h=h, block_shell=block_shell) {
 
 // Bottom connector- negative space for multiple blocks
 module socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin, fn=fn) {
-    difference() {
-        cube([lego_width(l), lego_width(w), socket_height]);
+    
+    if (socket_height > 0) {
         difference() {
-            union() {
-                bottom_stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin);
-                for (i = [0:l]) {
-                    for (j = [0:w]) {
-                        translate([lego_width(i), lego_width(j), 0])
-                            socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak, fn=fn);
+            cube([lego_width(l), lego_width(w), socket_height]);
+            difference() {
+                union() {
+                    bottom_stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin);
+                    for (i = [0:l]) {
+                        for (j = [0:w]) {
+                            translate([lego_width(i), lego_width(j), 0])
+                                socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak, fn=fn);
+                        }
                     }
                 }
-            }
             
-            union() {
-                for (i = [0:l]) {
-                    for (j = [0:w]) {
-                        ci = i==0 ? false : i!=l;
-                        cj = j==0 ? false : j!=w;
-                        if (ci || cj) {
-                            translate([lego_width(i), lego_width(j), 0])
-                                socket_ring_inner_cylinder(ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, fn=fn);
+                union() {
+                    for (i = [0:l]) {
+                        for (j = [0:w]) {
+                            ci = i==0 ? false : i!=l;
+                            cj = j==0 ? false : j!=w;
+                            if (ci || cj) {
+                                translate([lego_width(i), lego_width(j), 0])
+                                    socket_ring_inner_cylinder(ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, fn=fn);
+                            }
                         }
                     }
                 }
