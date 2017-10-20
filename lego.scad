@@ -115,7 +115,7 @@ function is_true(t) = t != 0;
 /////////////////////////////////////
 
 // A complete LEGO block, standard size, specify number of layers in L W and H
-module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
+module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, bolt_holes=bolt_holes, layer_ridge=layer_ridge, layer_ridge_depth=layer_ridge_depth, fn=fn, airhole_fn=airhole_fn) {
     
     difference() {
         union() {
@@ -126,7 +126,7 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
             }
         }
         union() {
-            skin(l=l, w=w, h=h, skin=skin);
+            skin(l=l, w=w, h=h, skin=skin, layer_ridge=layer_ridge, layer_ridge_depth=layer_ridge_depth);
             knob_cutout_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, fn=fn, airhole_fn=airhole_fn);
             if (is_true(bolt_holes)) {
                 corner_bolt_holes(l=l, w=w, h=h, top_tweak=top_tweak, fn=fn);
@@ -194,10 +194,10 @@ module knob_cutout(top_tweak=top_tweak, knob_radius=knob_radius, knob_height=kno
     if (knob_slice_count > 0) {
         angle_delta=360/knob_slice_count;
         for (i = [1:knob_slice_count]) {
-            angle = (i-1)*angle_delta;
+            angle = (i-1)*angle_delta + 360/(2*knob_slice_count);
             rotate([0,0,angle])
                 translate([0, -knob_slice_width/2, 0])
-                    cube([knob_radius+top_tweak, knob_slice_width, knob_height+0.01]);
+                    cube([knob_radius+top_tweak, knob_slice_width, knob_height-knob_top_thickness]);
         }
     }
 }
@@ -288,7 +288,7 @@ translate([0, lego_width(j)+offset-stiffener_width/2, 0])
 
 
 // The thin negative space surrounding a LEGO block so that two blocks can fit next to each other easily in a tight grid
-module skin(l=l, w=w, h=h, skin=skin) {
+module skin(l=l, w=w, h=h, skin=skin, layer_ridge=layer_ridge, layer_ridge_depth=layer_ridge_depth) {
     // Front skin
     cube([lego_width(l), lego_skin_width(skin=skin), lego_height(h)]);
 
@@ -302,6 +302,27 @@ module skin(l=l, w=w, h=h, skin=skin) {
     // Right skin
     translate([lego_width(l)-lego_skin_width(skin=skin), 0, 0])
         cube([lego_skin_width(skin=skin), lego_width(w), lego_height(h)]);
+    
+    if (layer_ridge>0) {
+        for (i = [0:h-1]) {
+            // Front ridge
+            translate([0, 0, lego_height(i)])
+                cube([lego_width(l), layer_ridge_depth, layer_ridge]);
+                
+            // Back ridge
+            translate([0, lego_width(w) - lego_skin_width(skin=skin) - layer_ridge_depth, lego_height(i)])
+                cube([lego_width(l), layer_ridge_depth, layer_ridge]);
+
+
+            // Left ridge
+            translate([lego_skin_width(skin=skin), 0, lego_height(i)])
+                cube([layer_ridge_depth, lego_width(w), layer_ridge]);
+
+            // Right ridge
+            translate([lego_width(l) - lego_skin_width(skin=skin) - layer_ridge_depth, 0, lego_height(i)])
+                cube([layer_ridge_depth, lego_width(w), layer_ridge]);
+        }
+    }
 }
 
 
@@ -355,7 +376,7 @@ module lego_calibration_set(l=l, w=w, h=h, knob_height=knob_height, knob_cutout_
 module lego_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
     
     difference() {
-        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
+        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, layer_ridge=layer_ridge, fn=fn, airhole_fn=airhole_fn);
 
         union() {
             translate([text_extrusion_height, lego_skin_width()+lego_width(w)-text_margin, lego_skin_width()+lego_height()-text_margin])
