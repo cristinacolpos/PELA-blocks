@@ -34,19 +34,13 @@ include <lego_parameters.scad>
 if (mode==1) {
     // A single block
     lego();
-} else if (mode==3) {
-    // A set of blocks for testing which tweak parameters to use on your printer and plastic
-    lego_calibration_set(l=2, w=2, h=1);
-} else if (mode==4) {
-    // A thin skin around the object (usually for use as a negative space object)
-    skin();
-} else if (mode==5) {
+} else if (mode==2) {
     // Bock without top knobs
     lego(knob_height=0, knob_bevel=0, knob_cutout_radius=0, knob_cutout_airhole_radius=0);
-} else if (mode==6) {
+} else if (mode==3) {
     // Block without bottom sockets
     lego(socket_height=0);
-} else if (mode==7) {
+} else if (mode==4) {
     // Block with increased airflow
     difference() {
         lego(stiffener_height=1);
@@ -81,11 +75,8 @@ if (mode==1) {
             translate([0, 28-width/2,vert]) cube([8*4, width, height]);
         }
     }
-} else if (mode==8) {
-    // A single calibration block
-    lego_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak);
 } else {
-    echo("<b>Unsupported: please check <i>mode</i> variable is 1-8</b>");
+    echo("<b>Unsupported: please check <i>mode</i> variable is 1-4</b>");
 }
 
 /////////////////////////////////////
@@ -340,67 +331,3 @@ module bolt_hole(l=l, w=w, h=h, top_tweak=top_tweak, fn=fn) {
     translate([lego_width(l-0.5), lego_width(w-0.5), 0])
         cylinder(r=knob_radius+top_tweak+0.001, h=lego_height(h+1), $fn=fn);
 }
-
-/////////////////////////////////////
-// LEGO CALIBRATION BLOCKS
-//
-// An array of LEGO blocks with different tweak parameters. Use these to find the ideal fit with real LEGO bricks
-// for a given printer, settings and plastic combination. Pre-generated examples and numbers are as a guide only
-// based on tests with a Lulzbot Taz 6 printer and give example results but may not be suitable for your setup.
-/////////////////////////////////////
-
-// A set of blocks with different tweak parameters written on the side
-module lego_calibration_set(l=l, w=w, h=h, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn, calibration_block_increment=calibration_block_increment) {
-    
-    // Tighter top, looser bottom
-    for (i = [0:5]) {
-        translate([i*lego_width(l+0.5), 0, 0])
-            lego_calibration_block(l=l, w=w, h=h, top_tweak=i*calibration_block_increment, bottom_tweak=-i*calibration_block_increment, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
-    }
-    
-    // Tightest top, loosest bottom
-    for (i = [6:10]) {
-        translate([(i-5)*lego_width(l+0.5), -lego_width(w+0.5), 0])
-            lego_calibration_block(l=l, w=w, h=h, top_tweak=i*calibration_block_increment, bottom_tweak=-i*calibration_block_increment, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
-    }
-    
-    // Looser top, tighter bottom
-    for (i = [1:5]) {
-        translate([i*lego_width(l+0.5), lego_width(w+0.5), 0])
-            lego_calibration_block(l=l, w=w, h=h, top_tweak=-i*calibration_block_increment, bottom_tweak=i*calibration_block_increment, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn);
-            lego_calibration_block(l=l, w=w, top_tweak=-i*calibration_block_increment, bottom_tweak=i*calibration_block_increment, skin=skin, fn=fn);
-    }
-}
-
-// A block with the top and bottom connector tweak parameters etched on the side
-module lego_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, fn=fn, airhole_fn=airhole_fn) {
-    
-    difference() {
-        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, bolt_holes=bolt_holes, layer_ridge=layer_ridge, fn=fn, airhole_fn=airhole_fn);
-
-        union() {
-            translate([text_extrusion_height, lego_skin_width()+lego_width(w)-text_margin, lego_skin_width()+lego_height()-text_margin])
-                rotate([90,0,-90]) 
-                    lego_calibration_top_text(str(top_tweak));
-            
-            translate([lego_skin_width()+text_margin, lego_width(w)-text_extrusion_height, lego_skin_width()+text_margin])
-                rotate([90, 0, 180])
-                    lego_calibration_bottom_text(str(bottom_tweak));
-        }
-    }
-}
-
-// Text for the left side of calibration block prints
-module lego_calibration_top_text(txt="Text") {
-    linear_extrude(height=text_extrusion_height) {
-    text(text=txt, font=font, size=font_size, halign="left", valign="top");
-     }
-}
-
-// Text for the back side of calibration block prints
-module lego_calibration_bottom_text(txt="Text") {
-    linear_extrude(height=text_extrusion_height) {
-       text(text=txt, font=font, size=font_size, halign="right");
-     }
-}
-
