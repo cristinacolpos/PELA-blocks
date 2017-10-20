@@ -30,6 +30,15 @@ use <../lego.scad>
 
 /* [LEGO Sign Options] */
 
+// Length of the sign (LEGO knob count)
+l = 8; 
+
+// Width of the sign (LEGO knob count)
+w = 1;
+
+// Height of the sign (LEGO brick layers)
+h = 2;
+
 // The top line of text. Set to "" to not have any top line
 line_1 = "LEGO Robotics";
 
@@ -65,15 +74,6 @@ left_margin = 3;
 
 // Top and bottom text margin (mm)
 vertical_margin = 3;
-
-// Length of the sign (LEGO knob count)
-l = 8; 
-
-// Width of the sign (LEGO knob count)
-w = 1;
-
-// Height of the sign (LEGO brick layers)
-h = 2;
 
 
 

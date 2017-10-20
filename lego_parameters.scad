@@ -27,16 +27,16 @@ Import this into other design files to set baseline constants:
 
 /* [LEGO Options] */
 
-// What type of object to generate: 1=>block, 3=>calibration, 4=>skin only, 5=>block without top knobs, 6=>block without bottom connector, 7=> block with increased bottom airflow
+// What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=> block with increased bottom airflow
 mode=1;
 
-// Length of the box (LEGO knob count)
+// Length of the block (LEGO knob count)
 l = 4; 
 
-// Width of the box (LEGO knob count)
+// Width of the block (LEGO knob count)
 w = 2;
 
-// Height of the box (LEGO brick layer count)
+// Height of the block (LEGO brick layer count)
 h = 3;
 
 // Top connector size tweak => + = more tight fit, -0.04 for PLA, 0 for ABS, 0.07 for NGEN
@@ -113,18 +113,3 @@ block_height=9.6;
 
 // Thickness of the solid outside surface of LEGO
 block_shell=1.3; // thickness
-
-// Font for calibration block text labels
-font = "Arial";
-
-// Text size on calibration blocks
-font_size = 4.5;
-
-// Depth of text labels on calibration blocks
-text_extrusion_height = 0.6;
-
-// Inset from block edge for text (vertical and horizontal)
-text_margin = 1;
-
-// Size between calibration block tweak test steps
-calibration_block_increment = 0.01;
