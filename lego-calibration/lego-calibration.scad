@@ -30,7 +30,7 @@ use <../lego.scad>
 
 /* [LEGO Calibration Block Options] */
 
-mode=2;
+mode=4;
 
 // Length of the block (LEGO knob count)
 l = 2; 
@@ -138,7 +138,7 @@ module tighter_lego_calibration_bar(l=l, w=w, calibration_block_increment=calibr
     difference() {
         union() {
             for (i = [6:10]) {
-                translate([lego_width(i-6), 0, 0])
+                translate([(i-6)*lego_width(l), 0, 0])
                     lego_calibration_block(l=l, w=w, top_tweak=i*calibration_block_increment, bottom_tweak=-i*calibration_block_increment, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=0, fn=fn, airhole_fn=airhole_fn);
             }
         }
@@ -153,7 +153,7 @@ module loose_lego_calibration_bar(l=l, w=w, calibration_block_increment=calibrat
     difference() {
         union() {
             for (i = [1:5]) {
-                translate([lego_width(i-1), lego_width(w+0.5), 0])
+                translate([(i-1)*lego_width(l), lego_width(w+0.5), 0])
                     lego_calibration_block(l=l, w=w, top_tweak=-i*calibration_block_increment, bottom_tweak=i*calibration_block_increment, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=0, fn=fn, airhole_fn=airhole_fn);
             }
         }
@@ -169,11 +169,11 @@ module lego_calibration_block(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom
         lego(l=l, w=w, h=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, fn=fn, airhole_fn=airhole_fn);
 
         union() {
-            translate([lego_skin_width(skin=skin)+text_margin, 0.1+lego_skin_width(skin=skin), lego_skin_width(skin=skin)+lego_height()-text_margin])
+            translate([lego_skin_width(skin=skin)+text_margin, text_extrusion_height+lego_skin_width(skin=skin)-0.01, lego_skin_width(skin=skin)+lego_height()-text_margin])
                 rotate([90,0,0]) 
                     lego_calibration_top_text(str(top_tweak));
             
-            translate([lego_skin_width(skin=skin)+text_margin, lego_width(w)-text_extrusion_height-lego_skin_width(skin=skin)+0.1, lego_skin_width(skin=skin)+text_margin])
+            translate([lego_skin_width(skin=skin)+text_margin, lego_width(w)-text_extrusion_height-lego_skin_width(skin=skin)+0.01, lego_skin_width(skin=skin)+text_margin])
                 rotate([90, 0, 180])
                     lego_calibration_bottom_text(str(bottom_tweak));
         }
@@ -215,10 +215,15 @@ module etch_calibration_bar_divider(i=l) {
 
     // Top
     translate([x, 0, lego_height()-layer_ridge_depth])
-        cube([layer_ridge, lego_width(), layer_ridge_depth]);
+        cube([layer_ridge, lego_width(w), layer_ridge_depth]);
 
     // Bottom
     translate([x, 0, 0])
-        cube([layer_ridge, lego_width(), layer_ridge_depth]);
+        cube([layer_ridge, lego_width(w), layer_ridge_depth]);
+    
+    // Block Separator
+    inset=lego_width(0.5)-knob_radius;
+    translate([x, inset, 0])
+        cube([layer_ridge, lego_width(w)-2*inset, lego_height()]);    
 }
 

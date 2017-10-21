@@ -79,7 +79,7 @@ knob_top_thickness=1;
 knob_cutout_height=4.55;
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
-knob_cutout_airhole_radius=0;
+knob_cutout_airhole_radius=0.01;
 
 // Number of side to simulate a circle in the air hole and (smaller numbers render faster and are usually sufficient)
 airhole_fn=16;
@@ -89,6 +89,9 @@ knob_slice_count=4;
 
 // Width of flexture cuts accross the top of the knob
 knob_slice_width=0.15;
+
+// Length of the slice the knob from inside towards the edge
+knob_slice_length_ratio=0.8;
 
 // Depth which connectors may press into part bottom
 socket_height=8.2;
