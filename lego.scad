@@ -106,14 +106,14 @@ function is_true(t) = t != 0;
 /////////////////////////////////////
 
 // A complete LEGO block, standard size, specify number of layers in L W and H
-module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, bolt_holes=bolt_holes, layer_ridge=layer_ridge, layer_ridge_depth=layer_ridge_depth, fn=fn, airhole_fn=airhole_fn) {
+module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, layer_ridge=layer_ridge, layer_ridge_depth=layer_ridge_depth, fn=fn, airhole_fn=airhole_fn) {
     
     difference() {
         union() {
             block_shell(l=l, w=w, h=h, fn=fn, block_shell=block_shell);
             difference() {
                 block_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, fn=fn);
-                socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin, fn=fn);
+                socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, stiffener_width=stiffener_width, stiffener_height=stiffener_height, side_stiffener_thickness=side_stiffener_thickness, skin=skin, fn=fn);
             }
         }
         union() {
@@ -218,6 +218,9 @@ module socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickne
             difference() {
                 union() {
                     bottom_stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin);
+                    
+                  side_stiffener_bar_set(l=l, w=w, bock_shell=block_shell, stiffener_width=stiffener_width, side_stiffener_thickness=side_stiffener_thickness);
+                    
                     for (i = [1:l-1]) {
                         for (j = [1:w-1]) {
                             translate([lego_width(i), lego_width(j), 0])
@@ -261,15 +264,45 @@ module bottom_stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiff
 
 // Bars layed below (or above) a horizontal surface to make it stronger. Usually these are on the bottom, between the connecting rings
 module stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin) {
+    
     for (i = [0:l]) {
         offset = i==0 ? stiffener_width/2+lego_skin_width(skin=skin) : (i==l ? -stiffener_width/2-lego_skin_width(skin=skin) : 0);
         translate([lego_width(i)+offset-stiffener_width/2, 0, 0])
             cube([stiffener_width, lego_width(w), stiffener_height]);
     }
+    
     for (j = [0:w]) {
         offset = j==0 ? stiffener_width/2+lego_skin_width(skin=skin) : (j==w ? -stiffener_width/2-lego_skin_width(skin=skin) : 0);
 translate([0, lego_width(j)+offset-stiffener_width/2, 0])
             cube([lego_width(l), stiffener_width, stiffener_height]);
+    }    
+}
+
+
+// Bars layed below (or above) a horizontal surface to make it stronger. Usually these are on the bottom, between the connecting rings
+module side_stiffener_bar_set(l=l, w=w, bock_shell=block_shell, stiffener_width=stiffener_width, side_stiffener_thickness=side_stiffener_thickness) {
+    
+    if (l>1) {
+        for (i = [1:l]) {
+            // Front vertical stiffeners
+            translate([lego_width(i-0.5)-stiffener_width/2, 0, 0])
+                cube([stiffener_width, block_shell+side_stiffener_thickness, lego_height(h)]);
+
+            // Back vertical stiffeners
+            translate([lego_width(i-0.5)-stiffener_width/2, lego_width(w)-side_stiffener_thickness-block_shell, 0])
+                cube([stiffener_width, block_shell+side_stiffener_thickness, lego_height(h)]);
+        }
+    }
+    if (w>1) {
+        for (j = [1:w]) {
+            // Left vertical stiffeners
+            translate([0, lego_width(j-0.5)-stiffener_width/2, 0])
+                cube([block_shell+side_stiffener_thickness, stiffener_width, lego_height(h)]);
+            
+            // Right vertical stiffeners
+            translate([lego_width(l)-side_stiffener_thickness-block_shell, lego_width(j-0.5)-stiffener_width/2, 0])
+                cube([block_shell+side_stiffener_thickness, stiffener_width, lego_height(h)]);
+        }
     }    
 }
 
@@ -290,22 +323,21 @@ module skin(l=l, w=w, h=h, skin=skin, layer_ridge=layer_ridge, layer_ridge_depth
     translate([lego_width(l)-lego_skin_width(skin=skin), 0, 0])
         cube([lego_skin_width(skin=skin), lego_width(w), lego_height(h)]);
     
-    if (layer_ridge>0) {
-        for (i = [0:h-1]) {
-            // Front ridge
+    if (layer_ridge>0 && h>1) {
+        for (i = [1:h-1]) {
+            // Front layer ridge
             translate([0, 0, lego_height(i)])
                 cube([lego_width(l), layer_ridge_depth, layer_ridge]);
                 
-            // Back ridge
+            // Back layer ridge
             translate([0, lego_width(w) - lego_skin_width(skin=skin) - layer_ridge_depth, lego_height(i)])
                 cube([lego_width(l), layer_ridge_depth, layer_ridge]);
 
-
-            // Left ridge
+            // Left layer ridge
             translate([lego_skin_width(skin=skin), 0, lego_height(i)])
                 cube([layer_ridge_depth, lego_width(w), layer_ridge]);
 
-            // Right ridge
+            // Right layer ridge
             translate([lego_width(l) - lego_skin_width(skin=skin) - layer_ridge_depth, 0, lego_height(i)])
                 cube([layer_ridge_depth, lego_width(w), layer_ridge]);
         }

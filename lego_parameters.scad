@@ -31,10 +31,10 @@ Import this into other design files to set baseline constants:
 mode=1;
 
 // Length of the block (LEGO knob count)
-l = 4; 
+l = 3; 
 
 // Width of the block (LEGO knob count)
-w = 4;
+w = 3;
 
 // Height of the block (LEGO brick layer count)
 h = 1;
@@ -104,6 +104,9 @@ stiffener_width=0.6;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings and usually half of socket_height)
 stiffener_height=2.4;
+
+// Distance from inside walls which small stiffeners protrude inwards
+side_stiffener_thickness=0.2;
 
 // Basic unit horizonal size of LEGO
 block_width=8;
