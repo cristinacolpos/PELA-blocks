@@ -30,7 +30,7 @@ use <../lego.scad>
 
 /* [LEGO Calibration Block Options] */
 
-mode=3;
+mode=2;
 
 // Length of the block (LEGO knob count)
 l = 2; 
@@ -169,11 +169,11 @@ module lego_calibration_block(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom
         lego(l=l, w=w, h=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, skin=skin, fn=fn, airhole_fn=airhole_fn);
 
         union() {
-            translate([text_extrusion_height+lego_skin_width(skin=skin)+text_margin, text_extrusion_height+lego_skin_width(skin=skin)-0.01, lego_skin_width(skin=skin)+lego_height()-text_margin])
+            translate([lego_skin_width(skin=skin)+text_margin, 0.1+lego_skin_width(skin=skin), lego_skin_width(skin=skin)+lego_height()-text_margin])
                 rotate([90,0,0]) 
                     lego_calibration_top_text(str(top_tweak));
             
-            translate([lego_skin_width(skin=skin)+text_margin, lego_width(w)-text_extrusion_height-lego_skin_width(skin=skin)+0.01, lego_skin_width(skin=skin)+text_margin])
+            translate([lego_skin_width(skin=skin)+text_margin, lego_width(w)-text_extrusion_height-lego_skin_width(skin=skin)+0.1, lego_skin_width(skin=skin)+text_margin])
                 rotate([90, 0, 180])
                     lego_calibration_bottom_text(str(bottom_tweak));
         }
@@ -182,14 +182,14 @@ module lego_calibration_block(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom
 
 // Text for the front side of calibration block prints
 module lego_calibration_top_text(txt="Text") {
-    linear_extrude(height=text_extrusion_height+0.01) {
+    linear_extrude(height=text_extrusion_height) {
     text(text=txt, font=font, size=font_size, halign="left", valign="top");
      }
 }
 
 // Text for the back side of calibration block prints
 module lego_calibration_bottom_text(txt="Text") {
-    linear_extrude(height=text_extrusion_height+0.01) {
+    linear_extrude(height=text_extrusion_height) {
        text(text=txt, font=font, size=font_size, halign="right");
      }
 }
