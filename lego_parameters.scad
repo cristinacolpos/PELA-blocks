@@ -34,10 +34,10 @@ mode=1;
 l = 4; 
 
 // Width of the block (LEGO knob count)
-w = 2;
+w = 4;
 
 // Height of the block (LEGO brick layer count)
-h = 3;
+h = 1;
 
 // Top connector size tweak => + = more tight fit, -0.04 for PLA, 0 for ABS, 0.07 for NGEN
 top_tweak = 0.06;
@@ -52,7 +52,7 @@ fn=64;
 bolt_holes=0;
 
 // Clearance space on the outer surface of bricks
-skin = 0.1; 
+skin = 0; 
 
 // Height and depth of a line etched in the side of multi-layer block sets (0 to disable)
 layer_ridge = 0.1;
@@ -73,7 +73,7 @@ knob_bevel=0.4;
 knob_cutout_radius=1.25;
 
 // Distance below knob top surface and the internal cutout
-knob_top_thickness=0.8;
+knob_top_thickness=1;
 
 // Height of the hole beneath each knob
 knob_cutout_height=4.55;
@@ -97,10 +97,10 @@ socket_height=8.2;
 ring_radius=3.25;
 
 // Bottom connector assistance ring thickness
-ring_thickness=0.8;
+ring_thickness=0.6;
 
 // Width of horizontal surface strengthening slats (usually between the bottom rings)
-stiffener_width=0.8;
+stiffener_width=0.6;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings and usually half of socket_height)
 stiffener_height=2.4;

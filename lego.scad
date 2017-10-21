@@ -218,8 +218,8 @@ module socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickne
             difference() {
                 union() {
                     bottom_stiffener_bar_set(l=l, w=w, stiffener_width=stiffener_width, stiffener_height=stiffener_height, skin=skin);
-                    for (i = [0:l]) {
-                        for (j = [0:w]) {
+                    for (i = [1:l-1]) {
+                        for (j = [1:w-1]) {
                             translate([lego_width(i), lego_width(j), 0])
                                 socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak, fn=fn);
                         }
@@ -227,14 +227,10 @@ module socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickne
                 }
             
                 union() {
-                    for (i = [0:l]) {
-                        for (j = [0:w]) {
-                            ci = i==0 ? false : i!=l;
-                            cj = j==0 ? false : j!=w;
-                            if (ci || cj) {
-                                translate([lego_width(i), lego_width(j), 0])
-                                    socket_ring_inner_cylinder(ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, fn=fn);
-                            }
+                    for (i = [1:l-1]) {
+                        for (j = [1:w-1]) {
+                            translate([lego_width(i), lego_width(j), 0])
+                                socket_ring_inner_cylinder(ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, fn=fn);
                         }
                     }
                 }
