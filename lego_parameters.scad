@@ -37,12 +37,12 @@ l = 3;
 w = 3;
 
 // Height of the block (LEGO brick layer count)
-h = 1;
+h = 2;
 
-// Top connector size tweak => + = more tight fit, -0.04 for PLA, 0 for ABS, 0.07 for NGEN
+// Top connector size tweak => + = more tight fit, 0.06 for PLA, 0 for ABS, 0.07 for NGEN
 top_tweak = 0.06;
 
-// Bottom connector size tweak => + = more tight fit, 0.04 for PLA, 0 for ABS, -0.01 NGEN
+// Bottom connector size tweak => + = more tight fit, -0.03 for PLA, 0 for ABS, -0.01 NGEN
 bottom_tweak = -0.03;
 
 // Number of facets to form a circle (big numbers are more round which affects fit, but may take a long time to render)
@@ -55,7 +55,7 @@ bolt_holes=0;
 skin = 0; 
 
 // Height and depth of a line etched in the side of multi-layer block sets (0 to disable)
-layer_ridge = 0.1;
+layer_ridge = 0.15;
 
 // Depth of a line etched in the side of multi-layer block sets
 layer_ridge_depth = 0.3;
@@ -79,7 +79,7 @@ knob_top_thickness=1;
 knob_cutout_height=4.55;
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
-knob_cutout_airhole_radius=0.01;
+knob_cutout_airhole_radius=0;
 
 // Number of side to simulate a circle in the air hole and (smaller numbers render faster and are usually sufficient)
 airhole_fn=16;
@@ -91,7 +91,7 @@ knob_slice_count=4;
 knob_slice_width=0.15;
 
 // Length of the slice the knob from inside towards the edge
-knob_slice_length_ratio=0.8;
+knob_slice_length_ratio=0.7;
 
 // Depth which connectors may press into part bottom
 socket_height=8.2;

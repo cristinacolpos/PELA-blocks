@@ -166,18 +166,18 @@ module knob_cutout_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radi
     for (i = [0:l-1]) {
         for (j = [0:w-1]) {
             translate([lego_width(i+0.5), lego_width(j+0.5), lego_height(h)])
-                knob_cutout(top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, fn=fn, airhole_fn=airhole_fn);
+                knob_cutout(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, fn=fn, airhole_fn=airhole_fn);
         }
     }
 }
 
 
 // The empty cylinder inside a knob
-module knob_cutout(top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, fn=fn, airhole_fn=airhole_fn) {
+module knob_cutout(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_cutout_height=knob_cutout_height, knob_cutout_radius=knob_cutout_radius, knob_cutout_airhole_radius=knob_cutout_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, fn=fn, airhole_fn=airhole_fn) {
 
     translate([0, 0, knob_height-knob_top_thickness-knob_cutout_height])
         cylinder(r=knob_cutout_radius, h=knob_cutout_height, $fn=airhole_fn);
-    if (knob_cutout_airhole_radius>0) {
+    if (knob_cutout_airhole_radius>0.01 || (knob_cutout_airhole_radius>0 && h>1)) {
         translate([0, 0, knob_height-knob_top_thickness])
             cylinder(r=knob_cutout_airhole_radius, h=knob_height+0.1, $fn=airhole_fn);
     }
