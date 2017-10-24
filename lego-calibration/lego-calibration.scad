@@ -28,9 +28,10 @@ Import this into other design files:
 include <../lego_parameters.scad>
 use <../lego.scad>
 
-/* [LEGO Calibration Block Options] */
+/* [LEGO Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real LEGO first, then 3D printed to 3D printed using a calibration block with your selected top_tweak and bottom_tweak adjustments] */
 
-mode=4;
+// Generator mode: 1=>Full set of calibration bocks (more flexible than clibration bars but takes longer to print), 2=>Tight knob calibration bar, 3=>Tighter knob calibration bar, 4=>Loose knob calibration bar (usually not needed), 5=>A single calibration block with top_tweak and bottom_tweak as specified below
+mode=3;
 
 // Length of the block (LEGO knob count)
 l = 2; 
@@ -39,10 +40,10 @@ l = 2;
 w = 2;
 
 // Top connector size tweak => + = more tight fit, -0.04 for PLA, 0 for ABS, 0.07 for NGEN (NOTE: used only if mode=1, single block)
-top_tweak = 0.06;
+top_tweak = 0.04;
 
 // Bottom connector size tweak => + = more tight fit, 0.04 for PLA, 0 for ABS, -0.01 NGEN (NOTE: used only if mode=1, single block)
-bottom_tweak = -0.03;
+bottom_tweak = -0.04;
 
 // Font for calibration block text labels
 font = "Arial";
