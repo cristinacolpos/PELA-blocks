@@ -221,19 +221,23 @@ module socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickne
                     
                   side_stiffener_bar_set(l=l, w=w, bock_shell=block_shell, stiffener_width=stiffener_width, side_stiffener_thickness=side_stiffener_thickness);
                     
-                    for (i = [1:l-1]) {
-                        for (j = [1:w-1]) {
-                            translate([lego_width(i), lego_width(j), 0])
-                                socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak, fn=fn);
+                    if (l>1 && w>1) {
+                        for (i = [1:l-1]) {
+                            for (j = [1:w-1]) {
+                                translate([lego_width(i), lego_width(j), 0])
+                                    socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak, fn=fn);
+                            }
                         }
                     }
                 }
             
                 union() {
-                    for (i = [1:l-1]) {
-                        for (j = [1:w-1]) {
-                            translate([lego_width(i), lego_width(j), 0])
-                                socket_ring_inner_cylinder(ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, fn=fn);
+                    if (l>1 && w>1) {
+                        for (i = [1:l-1]) {
+                            for (j = [1:w-1]) {
+                                translate([lego_width(i), lego_width(j), 0])
+                                    socket_ring_inner_cylinder(ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, fn=fn);
+                            }
                         }
                     }
                 }
