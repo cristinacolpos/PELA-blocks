@@ -31,10 +31,10 @@ Import this into other design files to set baseline constants:
 mode=1;
 
 // Length of the block (LEGO knob count)
-l = 2; 
+l = 1; 
 
 // Width of the block (LEGO knob count)
-w = 2;
+w = 1;
 
 // Height of the block (LEGO brick layer count)
 h = 1;
