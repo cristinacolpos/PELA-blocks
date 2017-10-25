@@ -31,10 +31,10 @@ Import this into other design files to set baseline constants:
 mode=1;
 
 // Length of the block (LEGO knob count)
-l = 1; 
+l = 3; 
 
 // Width of the block (LEGO knob count)
-w = 1;
+w = 2;
 
 // Height of the block (LEGO brick layer count)
 h = 1;
@@ -60,17 +60,23 @@ ridge_width = 0.15;
 // Depth of a line etched in the side of multi-layer block sets
 ridge_depth = 0.3;
 
+// Vent top surface for extra cooling and lower weight (0=no, 1=vent between knobs, 2=also vent knob tops)
+top_vents = 2;
+
+// Vent first layer edges for extra cooling and lower weight (0=no, 1=yes)
+side_vents = 1;
+
 // Size of the connectors
 knob_radius=2.4;
 
-// Height of the connectors including any bevel (1.8 is Lego standard, longer gives a stronger hold which helps since 3D prints are less precise)
-knob_height=2.4;
+// Height of the connectors including any bevel (1.8 is Lego standard, longer valie like 2.4 gives a stronger hold while still maintaining compatibility)
+knob_height=1.8;
 
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.3 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
 knob_bevel=0.4;
 
 // Size of the small flexture cavity inside each connector
-knob_flexture_radius=1.25;
+knob_flexture_radius=1.5;
 
 // Distance below knob top surface and the internal cutout
 knob_top_thickness=1;

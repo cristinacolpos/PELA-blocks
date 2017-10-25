@@ -31,9 +31,9 @@ use <../lego.scad>
 /* [LEGO Panel Options] */
 
 // LEGO panel thickness (flat panel with optional screw holes in corners for permanent mounting)
-panel_thickness=3.2;
+panel_thickness=lego_height()/3;
 
-// Set 1 for flat bottom, 0 for socket connectors on the bottom
+// Set 1 for flat bottom, 0 for normal socket connectors on the bottom
 flat_bottom = 0;
 
 /////////////////////////////////////

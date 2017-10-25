@@ -33,7 +33,7 @@ include <lego_parameters.scad>
 
 if (mode==1) {
     // A single block
-    lego();
+    vented_lego();
 } else if (mode==2) {
     // Bock without top knobs
     lego(knob_height=0, knob_bevel=0, knob_flexture_radius=0, knob_flexture_airhole_radius=0);
@@ -105,7 +105,50 @@ function is_true(t) = t != 0;
 // MODULES
 /////////////////////////////////////
 
-// A complete LEGO block, standard size, specify number of layers in L W and H
+// A LEGO block with optional side and top vent holes
+module vented_lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, side_vents=side_vents, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn);
+
+    difference() {
+        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn);
+        
+        union() {
+            if (side_vents>0) {
+                side_vent_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn);
+            }
+            
+            if (top_vents>0) {
+                top_vent_set(l=l, w=w, h=h, top_tweak=top_tweak, top_vents=top_vents, fn=fn);
+            }
+        }
+}
+
+// A row of knob-size holes around the sides of row 1
+module side_vent_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn) {
+    
+    if (l==1) {
+        translate([lego_width(0.5), 0, lego_height(1)-lego_width(0.5)])
+            rotate([-90, 0, 0])
+                side_vent(length=lego_width(l), top_tweak=top_tweak, knob_radius=knob_radius);        
+    } else {
+        for (i = [1:l-1]) {
+            translate([lego_width(i), 0, lego_height(1)-lego_width(0.5)])
+                rotate([-90, 0, 0])
+                    side_vent(length=lego_width(l), top_tweak=top_tweak, knob_radius=knob_radius);
+        }
+    }
+}
+
+
+module side_vent(length=block_width, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn) {
+    
+    cylinder(r=knob_radius+top_tweak, h=length, $fn=fn);
+}
+
+// Additional holes in the top surface and opiontally also in top knobs
+module top_vent_set(lw=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, top_vents=top_vents, fn=fn) {
+    
+}
+// A LEGO block
 module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn) {
     
     difference() {
