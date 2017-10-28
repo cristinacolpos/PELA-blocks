@@ -122,6 +122,7 @@ module vented_lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak
         }
 }
 
+
 // A row of knob-size holes around the sides of row 1
 module side_vent_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn) {
     
@@ -134,6 +135,24 @@ module side_vent_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, blo
             translate([lego_width(i), 0, lego_height(1)-lego_width(0.5)])
                 rotate([-90, 0, 0])
                     side_vent(length=lego_width(l), top_tweak=top_tweak, knob_radius=knob_radius);
+        }
+    }
+    
+    if (w==1) {
+        if (l>1) {
+            translate([0, lego_width(0.5), lego_height(1)-lego_width(0.5)])
+                rotate([0, 90, 0])
+                    side_vent(length=block_shell, top_tweak=top_tweak, knob_radius=knob_radius);
+        }
+    } else {
+        for (i = [1:w-1]) {
+            translate([0, lego_width(i), lego_height(1)-lego_width(0.5)]) {
+                rotate([0, 90, 0])
+ #                   side_vent(length=lego_width(0.5), top_tweak=top_tweak, knob_radius=knob_radius);
+                translate([lego_width(l), 0, 0])
+                    rotate([0, -90, 0])
+                        side_vent(length=lego_width(0.5), top_tweak=top_tweak, knob_radius=knob_radius);
+            }
         }
     }
 }
@@ -404,5 +423,5 @@ module corner_bolt_holes(l=l, w=w, h=h, top_tweak=top_tweak, fn=fn) {
 // A hole for a mounting bolt in the corners of a panel or block
 module bolt_hole(l=l, w=w, h=h, top_tweak=top_tweak, fn=fn) {
     translate([lego_width(l-0.5), lego_width(w-0.5), 0])
-        cylinder(r=knob_radius+top_tweak+0.001, h=lego_height(h+1), $fn=fn);
+        cylinder(r=bearing_hole_radius, h=lego_height(h+1), $fn=fn);
 }

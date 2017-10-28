@@ -31,7 +31,7 @@ Import this into other design files to set baseline constants:
 mode=1;
 
 // Length of the block (LEGO knob count)
-l = 3; 
+l = 4; 
 
 // Width of the block (LEGO knob count)
 w = 2;
@@ -40,7 +40,7 @@ w = 2;
 h = 1;
 
 // Top connector size tweak => + = more tight fit, 0.06 for PLA, 0 for ABS, 0.07 for NGEN
-top_tweak = 0.09;
+top_tweak = 0.05;
 
 // Bottom connector size tweak => + = more tight fit, -0.03 for PLA, 0 for ABS, -0.01 NGEN
 bottom_tweak = -0.05;
@@ -69,11 +69,11 @@ side_vents = 1;
 // Size of the connectors
 knob_radius=2.4;
 
-// Height of the connectors including any bevel (1.8 is Lego standard, longer valie like 2.4 gives a stronger hold while still maintaining compatibility)
-knob_height=1.8;
+// Height of the connectors (1.8 is Lego standard, longer valie like 2.4 gives a stronger hold while still maintaining compatibility)
+knob_height=2.4;
 
-// Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.3 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
-knob_bevel=0.4;
+// Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
+knob_bevel=0;
 
 // Size of the small flexture cavity inside each connector
 knob_flexture_radius=1.5;
@@ -99,15 +99,6 @@ knob_slice_width=0.15;
 // Length of the slice the knob from inside towards the edge
 knob_slice_length_ratio=0.7;
 
-// Depth which connectors may press into part bottom
-socket_height=8.2;
-
-// Bottom connector assistance ring size
-ring_radius=3.25;
-
-// Bottom connector assistance ring thickness
-ring_thickness=0.6;
-
 // Width of horizontal surface strengthening slats (usually between the bottom rings)
 stiffener_width=0.6;
 
@@ -125,3 +116,17 @@ block_height=9.6;
 
 // Thickness of the solid outside surface of LEGO
 block_shell=1.3; // thickness
+
+// Depth which connectors may press into part bottom
+socket_height= 8.2; //block_height/3 - 1; //8.2;
+
+// Bottom connector assistance ring size
+ring_radius=3.25;
+
+// Bottom connector assistance ring thickness
+ring_thickness=0.6;
+
+// Side bearing rotation hole
+bearing_hole_radius = 2.45;
+
+bearing_axle_radius = 2.4;
