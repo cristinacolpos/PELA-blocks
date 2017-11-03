@@ -33,48 +33,13 @@ include <lego_parameters.scad>
 
 if (mode==1) {
     // A single block
-    vented_lego();
+    lego_technic();
 } else if (mode==2) {
     // Bock without top knobs
     lego(knob_height=0, knob_bevel=0, knob_flexture_radius=0, knob_flexture_airhole_radius=0);
 } else if (mode==3) {
     // Block without bottom sockets
     lego(socket_height=0);
-} else if (mode==4) {
-    // Block with increased airflow
-    difference() {
-        lego(stiffener_height=1);
-        union() {
-            translate([8,8,8]) socket_ring_inner_cylinder();
-            translate([8,16,8]) socket_ring_inner_cylinder();
-            translate([16,8,8]) socket_ring_inner_cylinder();
-            translate([24,8,8]) socket_ring_inner_cylinder();
-            translate([16,16,8]) socket_ring_inner_cylinder();
-            translate([24,16,8]) socket_ring_inner_cylinder();
-            translate([8,24,8]) socket_ring_inner_cylinder();
-            translate([16,24,8]) socket_ring_inner_cylinder();
-            translate([24,24,8]) socket_ring_inner_cylinder();
-
-            width=8-2*ring_radius;
-            height=block_height-panel_thickness-0.4;
-            vert=1.2;
-            translate([4-width/2,0,vert]) cube([width,8*4,height]);
-            translate([8-width/2,0,vert]) cube([width,8*4,height]);
-            translate([12-width/2,0,vert]) cube([width,8*4,height]);
-            translate([16-width/2,0,vert]) cube([width,8*4,height]);
-            translate([20-width/2,0,vert]) cube([width,8*4,height]);
-            translate([24-width/2,0,vert]) cube([width,8*4,height]);
-            translate([28-width/2,0,vert]) cube([width,8*4,height]);
-
-            translate([0, 4-width/2,vert]) cube([8*4, width, height]);
-            translate([0, 8-width/2,vert]) cube([8*4, width, height]);
-            translate([0, 12-width/2,vert]) cube([8*4, width, height]);
-            translate([0, 16-width/2,vert]) cube([8*4, width, height]);
-            translate([0, 20-width/2,vert]) cube([8*4, width, height]);
-            translate([0, 24-width/2,vert]) cube([8*4, width, height]);
-            translate([0, 28-width/2,vert]) cube([8*4, width, height]);
-        }
-    }
 } else {
     echo("<b>Unsupported: please check <i>mode</i> variable is 1-4</b>");
 }
@@ -106,14 +71,18 @@ function is_true(t) = t != 0;
 /////////////////////////////////////
 
 // A LEGO block with optional side and top vent holes
-module vented_lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, side_vents=side_vents, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn);
+module lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, technic_hole_radius=technic_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn);
 
     difference() {
         lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn);
         
         union() {
-            if (side_vents>0) {
-                side_vent_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn);
+            if (side_holes>0) {
+                side_connector_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn);
+            }
+            
+            if (end_holes>0) {
+                end_connector_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn);
             }
             
             if (top_vents>0) {
@@ -124,48 +93,58 @@ module vented_lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak
 
 
 // A row of knob-size holes around the sides of row 1
-module side_vent_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn) {
+module side_connector_set(l=l, w=w, top_tweak=top_tweak, technic_hole_radius=technic_hole_radius, block_width=block_width, fn=fn) {
     
     if (l==1) {
         translate([lego_width(0.5), 0, lego_height(1)-lego_width(0.5)])
             rotate([-90, 0, 0])
-                side_vent(length=lego_width(l), top_tweak=top_tweak, knob_radius=knob_radius);        
+                technic_hole(length=lego_width(l), technic_hole_tweak=technic_hole_tweak, technic_hole_radius=technic_hole_radius);        
     } else {
         for (i = [1:l-1]) {
             translate([lego_width(i), 0, lego_height(1)-lego_width(0.5)])
                 rotate([-90, 0, 0])
-                    side_vent(length=lego_width(l), top_tweak=top_tweak, knob_radius=knob_radius);
+                    technic_hole(length=lego_width(l), technic_hole_tweak=technic_hole_tweak, technic_hole_radius=technic_hole_radius);
         }
     }
+}
+
+// A row of knob-size holes around the sides of row 1
+module end_connector_set(l=l, w=w, technic_hole_tweak=technic_hole_tweak, technic_hole_radius=technic_hole_radius, block_width=block_width, fn=fn) {
     
     if (w==1) {
         if (l>1) {
             translate([0, lego_width(0.5), lego_height(1)-lego_width(0.5)])
                 rotate([0, 90, 0])
-                    side_vent(length=block_shell, top_tweak=top_tweak, knob_radius=knob_radius);
+                    technic_hole(length=block_shell, technic_hole_tweak=technic_hole_tweak, technic_hole_radius=technic_hole_radius);
         }
     } else {
         for (i = [1:w-1]) {
             translate([0, lego_width(i), lego_height(1)-lego_width(0.5)]) {
                 rotate([0, 90, 0])
- #                   side_vent(length=lego_width(0.5), top_tweak=top_tweak, knob_radius=knob_radius);
+                    technic_hole(length=lego_width(0.5), technic_hole_tweak=technic_hole_tweak, technic_hole_radius=technic_hole_radius);
                 translate([lego_width(l), 0, 0])
                     rotate([0, -90, 0])
-                        side_vent(length=lego_width(0.5), top_tweak=top_tweak, knob_radius=knob_radius);
+                        technic_hole(length=lego_width(0.5), technic_hole_tweak=technic_hole_tweak, technic_hole_radius=technic_hole_radius);
             }
         }
     }
 }
 
-
-module side_vent(length=block_width, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn) {
+// The primary hole for a Technic side connector
+module technic_hole(length=block_width, technic_hole_tweak=technic_hole_tweak, technic_hole_radius=technic_hole_radius, fn=fn) {
     
-    cylinder(r=knob_radius+top_tweak, h=length, $fn=fn);
+    cylinder(r=technic_hole_radius+technic_hole_tweak, h=length, $fn=fn);
+}
+
+// The connector inset for a Technic side connector
+module technic_inset(technic_inset_depth=technic_inset_depth, technic_hole_tweak=technic_hole_tweak, technic_hole_radius=technic_hole_radius, fn=fn) {
+    
+    cylinder(r=technic_hole_radius+technic_hole_tweak, h=technic_inset_depth, $fn=fn);
 }
 
 // Additional holes in the top surface and opiontally also in top knobs
 module top_vent_set(lw=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, top_vents=top_vents, fn=fn) {
-    
+    //TODO XXXXXXXXXXXXXXXXXXXXXX
 }
 // A LEGO block
 module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, stiffener_width=stiffener_width, stiffener_height=stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn) {
