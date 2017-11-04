@@ -27,9 +27,8 @@ Import this into other design files to set baseline constants:
 
 /* [LEGO Basic Options] */
 
-// What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector
-
-mode=1; // [1:1, 2:2, 3:3]
+// What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
+mode=2; // [1:1, 2:2, 3:3, 4:4]
 
 // Length of the block (LEGO knob count)
 l = 4; 
@@ -65,13 +64,16 @@ knob_slice_length_ratio=0.7;
 
 /* [LEGO Technics] */
 
-// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
-side_holes = 1;  // [0:0, 1:1]
+// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>single ended technic connector, 3=>dual ended technic connector)
+side_holes = 3;  // [0:0, 1:1, 2:2, 3:3]
 
-// Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>holes)
-end_holes = 1;  // [0:0, 1:1]
+// Add a sheath around side holes (turn off for extra ventilation if side holes are used for cooling or rotating shafts)
+side_hole_sheaths = 1; // [0:0, 1:1]
 
-// Technic connector hole size tweak => - = more tight fit
+// Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
+end_holes = 1;  // [0:0, 1:1, 2:2]
+
+// Technic connector hole size tweak => + = more loose fit
 technic_hole_tweak = 0;
 
 // Top connector size tweak => + = more tight fit, 0.06 for PLA, 0 for ABS, 0.07 for NGEN
@@ -157,3 +159,9 @@ technic_inset_depth = 0.8;
 
 // An axle which fits loosely in a technic bearing hole
 technic_axle_radius = 2.4;
+
+// How deep into a brick should a hole go before flaring out to grip
+technic_bearing_length = 6.2;
+
+// Size of an cylinder wrapped around the entrance to bearing holes
+technic_sheath_thickness = 0.8;
