@@ -28,13 +28,13 @@ Import this into other design files to set baseline constants:
 /* [LEGO Basic Options] */
 
 // What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
-mode=2; // [1:1, 2:2, 3:3, 4:4]
+mode=1; // [1:1, 2:2, 3:3, 4:4]
 
 // Length of the block (LEGO knob count)
 l = 4; 
 
 // Width of the block (LEGO knob count)
-w = 2;
+w = 3;
 
 // Height of the block (LEGO brick layer count)
 h = 1;
@@ -53,10 +53,10 @@ bottom_tweak = 0;
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
 knob_bevel=0;
 
-// Number of flexture cuts across the inside of each knob
+// Number of flexure cuts across the inside of each knob
 knob_slice_count=0;
 
-// Width of flexture cuts accross the top of the knob
+// Width of flexure cuts across the top of the knob
 knob_slice_width=0.15;
 
 // Length of the slice the knob from inside towards the edge
@@ -65,13 +65,13 @@ knob_slice_length_ratio=0.7;
 /* [LEGO Technics] */
 
 // Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>single ended Technic connector, 3=>dual ended Technic connector)
-side_holes = 3;  // [0:0, 1:1, 2:2, 3:3]
+side_holes = 1;  // [0:0, 1:1, 2:2, 3:3]
 
 // Add a sheath around side holes (turn off for extra ventilation or rotating shafts)
-side_hole_sheaths = 1; // [0:0, 1:1]
+side_hole_sheaths = 0; // [0:0, 1:1]
 
 // Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
-end_holes = 0;  // [0:0, 1:1, 2:2]
+end_holes = 2;  // [0:0, 1:1, 2:2]
 
 // Add a sheath around end holes (turn off for extra ventilation or rotating shafts)
 end_hole_sheaths = 1; // [0:0, 1:1]
@@ -79,8 +79,6 @@ end_hole_sheaths = 1; // [0:0, 1:1]
 // Technic connector hole size tweak => + = more loose fit
 bearing_hole_tweak = 0;
 
-// Top connector size tweak => + = more tight fit, 0.06 for PLA, 0 for ABS, 0.07 for NGEN
-technic_tweak = 0;
 
 /* [Heat Ventilation] */
 
@@ -126,10 +124,10 @@ airhole_fn=16;
 bottom_stiffener_width=3.8;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
-bottom_stiffener_height=4.1;
+bottom_stiffener_height=4.5;
 
 // Width of horizontal surface strengthening slats (usually between the bottom rings)
-side_stiffener_width=1.6;
+side_stiffener_width=0.8;
 
 // Distance from inside walls which small stiffeners protrude inwards
 side_stiffener_thickness=0.2;
@@ -144,13 +142,13 @@ block_height=9.6;
 block_shell=1.6; // thickness
 
 // Depth which connectors may press into part bottom
-socket_height= 8.2; //block_height/3 - 1; //8.2;
+socket_height= 8.6;
+
+// Depth which the inside of connectors are hollowed out
+socket_flexture_height= 7.4;
 
 // Bottom connector assistance ring size
 ring_radius=3.25;
-
-// Bottom connector assistance ring thickness
-ring_thickness=0.8;
 
 /* [Advanced LEGO Technic Options] */
 
