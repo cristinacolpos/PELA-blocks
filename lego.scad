@@ -61,23 +61,17 @@ if (mode==1) {
 // FUNCTIONS
 /////////////////////////////////////
 
-// Function for access to horizontal size from other modules
+// Horizontal size
 function lego_width(i=1, block_width=block_width) = i*block_width;
 
-// Function for access to vertical size from other modules
+// Vertical size
 function lego_height(h=1, block_height=block_height) = h*block_height;
 
-// Function for access to outside shell size from other modules
-function lego_shell_width() = block_shell;
-
-// Function for access to clearance space from other modules
-function lego_skin_width(i=1, skin=skin) = i*skin;
-
-// Function for access to socket height from other modules
-function lego_socket_height() = socket_height;
-
-// Function to convert online Customizer-and-command-line-friendly integers into booleans
+// Convert online Customizer-and-command-line-friendly integers into booleans
 function is_true(t) = t != 0;
+
+// Test if this is a corner block
+function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 
 /////////////////////////////////////
 // MODULES
@@ -86,7 +80,7 @@ function is_true(t) = t != 0;
 
 
 // A LEGO block
-module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn) {
+module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn) {
     
     difference() {
         union() {
@@ -97,6 +91,10 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
             bar_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, skin=skin, fn=fn);
                 
             socket_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, skin=skin, fn=fn);
+            
+            if (is_true(bolt_holes)) {
+                corner_bolt_hole_supports(l=l, w=w, h=h);
+            }
         }
 
         union() {
@@ -105,10 +103,9 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
             knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, fn=fn, airhole_fn=airhole_fn);
                 
             socket_hole_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, skin=skin, fn=fn);
-
             
             if (is_true(bolt_holes)) {
-                corner_bolt_holes(l=l, w=w, h=h, top_tweak=top_tweak, fn=fn);
+                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, fn=fn);
             }
         }
     }
@@ -130,8 +127,10 @@ module top_knob_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius,
     
     for (i = [0:1:l-1]) {
         for (j = [0:1:w-1]) {
-            translate([lego_width(i), lego_width(j), 0])
-                top_knob(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, fn=fn);
+            if (!is_corner(x=i, y=j, l=l, w=w)) {
+                translate([lego_width(i), lego_width(j), 0])
+                    top_knob(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, fn=fn);
+            }
         }
     }
 }
@@ -165,8 +164,10 @@ module knob_flexture_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_ra
 
     for (i = [0:l-1]) {
         for (j = [0:w-1]) {
-            translate([lego_width(i+0.5), lego_width(j+0.5), lego_height(h)])
-                knob_flexture(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, fn=fn, airhole_fn=airhole_fn);
+            if (!is_corner(x=i, y=j, l=l, w=w)) {
+                translate([lego_width(i+0.5), lego_width(j+0.5), lego_height(h)])
+                    knob_flexture(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, fn=fn, airhole_fn=airhole_fn);
+            }
         }
     }
 }
@@ -177,6 +178,7 @@ module knob_flexture(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_hei
 
     translate([0, 0, knob_height-knob_top_thickness-knob_flexture_height])
         cylinder(r=knob_flexture_radius, h=knob_flexture_height, $fn=airhole_fn);
+    
     if (knob_flexture_airhole_radius>0.01 || (knob_flexture_airhole_radius>0 && h>1)) {
         translate([0, 0, knob_height-knob_top_thickness])
             cylinder(r=knob_flexture_airhole_radius, h=knob_height+0.1, $fn=airhole_fn);
@@ -275,7 +277,7 @@ module bottom_stiffener_bar_set(start_l=1, end_l=l-1, start_w=1, end_w=w-1, bott
 module stiffener_bar_set(start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, skin=skin) {
     
     for (i = [start_l:end_l]) {
-        offset = i==0 ? bottom_stiffener_width/2+lego_skin_width(skin=skin) : (i==l ? -bottom_stiffener_width/2-lego_skin_width(skin=skin) : 0);
+        offset = i==0 ? bottom_stiffener_width/2+skin : (i==l ? -bottom_stiffener_width/2-skin : 0);
         
         cut_width = (i==0 || i==l) ? 0 : bottom_stiffener_width/2;
         
@@ -289,7 +291,7 @@ module stiffener_bar_set(start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stif
     }
     
     for (j = [start_w:end_w]) {
-        offset = j==0 ? bottom_stiffener_width/2+lego_skin_width(skin=skin) : (j==w ? -bottom_stiffener_width/2-lego_skin_width(skin=skin) : 0);
+        offset = j==0 ? bottom_stiffener_width/2+skin : (j==w ? -bottom_stiffener_width/2-skin : 0);
 
         cut_width = (j==0 || j==w) ? 0 : bottom_stiffener_width/2;
 
@@ -336,18 +338,18 @@ module side_stiffener_bar_set(l=l, w=w, bock_shell=block_shell, side_stiffener_w
 // The thin negative space surrounding a LEGO block so that two blocks can fit next to each other easily in a tight grid
 module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth) {
     // Front skin
-    cube([lego_width(l), lego_skin_width(skin=skin), lego_height(h)]);
+    cube([lego_width(l), skin, lego_height(h)]);
 
     // Back skin
-    translate([0, lego_width(w) - lego_skin_width(skin=skin), 0])
-        cube([lego_width(l), lego_skin_width(skin=skin), lego_height(h)]);
+    translate([0, lego_width(w)-skin, 0])
+        cube([lego_width(l), skin, lego_height(h)]);
 
     // Left skin
-    cube([lego_skin_width(skin=skin), lego_width(w), lego_height(h)]);
+    cube([skin, lego_width(w), lego_height(h)]);
     
     // Right skin
-    translate([lego_width(l)-lego_skin_width(skin=skin), 0, 0])
-        cube([lego_skin_width(skin=skin), lego_width(w), lego_height(h)]);
+    translate([lego_width(l)-skin, 0, 0])
+        cube([skin, lego_width(w), lego_height(h)]);
     
     if (ridge_width>0 && h>1) {
         for (i = [1:h-1]) {
@@ -356,39 +358,56 @@ module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge
                 cube([lego_width(l), ridge_depth, ridge_width]);
                 
             // Back layer ridge
-            translate([0, lego_width(w) - lego_skin_width(skin=skin) - ridge_depth, lego_height(i)])
+            translate([0, lego_width(w)-skin-ridge_depth, lego_height(i)])
                 cube([lego_width(l), ridge_depth, ridge_width]);
 
             // Left layer ridge
-            translate([lego_skin_width(skin=skin), 0, lego_height(i)])
+            translate([skin, 0, lego_height(i)])
                 cube([ridge_depth, lego_width(w), ridge_width]);
 
             // Right layer ridge
-            translate([lego_width(l) - lego_skin_width(skin=skin) - ridge_depth, 0, lego_height(i)])
+            translate([lego_width(l) - skin - ridge_depth, 0, lego_height(i)])
                 cube([ridge_depth, lego_width(w), ridge_width]);
         }
     }
 }
 
 
-// The primary hole for a Technic connector
+// Hole for a bearing
 module rotation_hole(length=block_width, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, fn=fn) {
     
     cylinder(r=bearing_hole_radius+bearing_hole_tweak, h=length, $fn=fn);
 }
 
 
-// Mounting holes
-module corner_bolt_holes(l=l, w=w, h=h, top_tweak=top_tweak, fn=fn) {
-    bolt_hole(l=1, w=1, h=h, top_tweak=top_tweak, fn=fn);
-    bolt_hole(l=1, w=w, h=h, top_tweak=top_tweak, fn=fn);
-    bolt_hole(l=l, w=1, h=h, top_tweak=top_tweak, fn=fn);
-    bolt_hole(l=l, w=w, h=h, top_tweak=top_tweak, fn=fn);
+// Mounting hole support blocks
+module corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, fn=fn) {
+    bolt_hole(x=1, y=1, r=bolt_hole_radius, h=h, fn=fn);
+    bolt_hole(x=1, y=w, r=bolt_hole_radius, h=h, fn=fn);
+    bolt_hole(x=l, y=1, r=bolt_hole_radius, h=h, fn=fn);
+    bolt_hole(x=l, y=w, r=bolt_hole_radius, h=h, fn=fn);
 }
 
 
 // A hole for a mounting bolt in the corners of a panel or block
-module bolt_hole(l=l, w=w, h=h, top_tweak=top_tweak, fn=fn) {
-    translate([lego_width(l-0.5), lego_width(w-0.5), 0])
-        cylinder(r=bearing_hole_radius, h=lego_height(h+1), $fn=fn);
+module bolt_hole(x=1, y=1, r=bolt_hole_radius, h=h, fn=fn) {
+    translate([lego_width(x-0.5), lego_width(y-0.5), 0])
+        cylinder(r=r, h=lego_height(h), $fn=fn);
+}
+
+
+// Mounting hole support blocks
+module corner_bolt_hole_supports(l=l, w=w, h=h) {
+    bolt_hole_support(x=1, y=1, h=h);
+    bolt_hole_support(x=1, y=w, h=h);
+    bolt_hole_support(x=l, y=1, h=h);
+    bolt_hole_support(x=l, y=w, h=h);
+}
+
+
+module bolt_hole_support(x=1, y=1, h=h) {
+    depth = block_shell+bottom_stiffener_height;
+    
+    translate([lego_width(x-1), lego_width(y-1), lego_height(h)-depth])
+        cube([lego_width(), lego_width(), depth]);
 }

@@ -40,7 +40,10 @@ w = 3;
 h = 1;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=0; // [0:0, 1:1]
+bolt_holes=1; // [0:0, 1:1]
+
+// Size of corner holes for mountings screws
+bolt_hole_radius=1.5;
 
 /* [3D Printing Adjustments] */
 

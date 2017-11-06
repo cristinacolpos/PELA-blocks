@@ -91,6 +91,10 @@ module lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_twea
             if (top_vents>0) {
                 top_vent_set(l=l, w=w, h=h, top_tweak=top_tweak, top_vents=top_vents, fn=fn);
             }
+            
+            if (bolt_holes) {
+                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, fn=fn);
+            }
         }
 }
 
@@ -168,6 +172,7 @@ module side_connector_hole_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius
         }
     }
 }
+
 
 // A row of knob-size holes around the sides of row 1
 module end_connector_hole_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, block_width=block_width, fn=fn) {
