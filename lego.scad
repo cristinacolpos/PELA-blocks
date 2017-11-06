@@ -85,6 +85,8 @@ module lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_twea
             }
         }
             
+            //TODO end_hole_sheath_set
+        
         union() {
             if (side_holes>0 || end_holes>0) {
                 
@@ -230,7 +232,7 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
         union() {
             block_shell(l=l, w=w, h=h, fn=fn, block_shell=block_shell);
 
-            block_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, fn=fn);
+            top_knob_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, fn=fn);
                 
             socket_set(l=l, w=w, ring_radius=ring_radius, ring_thickness=ring_thickness, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, skin=skin, fn=fn);
         }
@@ -252,7 +254,8 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
 
 
 // Several blocks in a grid, one knob per block
-module block_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, fn=fn) {
+module top_knob_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, fn=fn) {
+    
     for (i = [0:1:l-1]) {
         for (j = [0:1:w-1]) {
             translate([lego_width(i), lego_width(j), 0])
@@ -396,14 +399,30 @@ module stiffener_bar_set(start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stif
     
     for (i = [start_l:end_l]) {
         offset = i==0 ? bottom_stiffener_width/2+lego_skin_width(skin=skin) : (i==l ? -bottom_stiffener_width/2-lego_skin_width(skin=skin) : 0);
+        
+        cut_width = (i==0 || i==l) ? 0 : bottom_stiffener_width/2;
+        
         translate([lego_width(i)+offset-bottom_stiffener_width/2, 0, 0])
-            cube([bottom_stiffener_width, lego_width(w), bottom_stiffener_height]);
+            difference() {
+                cube([bottom_stiffener_width, lego_width(w), bottom_stiffener_height]);
+                
+                translate([bottom_stiffener_width/4, 0, 0])
+                    cube([bottom_stiffener_width/2, lego_width(w), bottom_stiffener_height]);
+            }
     }
     
     for (j = [start_w:end_w]) {
         offset = j==0 ? bottom_stiffener_width/2+lego_skin_width(skin=skin) : (j==w ? -bottom_stiffener_width/2-lego_skin_width(skin=skin) : 0);
-translate([0, lego_width(j)+offset-bottom_stiffener_width/2, 0])
-            cube([lego_width(l), bottom_stiffener_width, bottom_stiffener_height]);
+
+        cut_width = (j==0 || j==w) ? 0 : bottom_stiffener_width/2;
+
+        translate([0, lego_width(j)+offset-bottom_stiffener_width/2, 0])
+            difference() {
+                cube([lego_width(l), bottom_stiffener_width, bottom_stiffener_height]);
+                
+                translate([0, bottom_stiffener_width/4, 0])
+                    cube([lego_width(l), bottom_stiffener_width/2, bottom_stiffener_height]);
+            }
     }    
 }
 
