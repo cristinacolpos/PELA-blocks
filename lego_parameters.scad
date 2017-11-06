@@ -67,11 +67,14 @@ knob_slice_length_ratio=0.7;
 // Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>single ended Technic connector, 3=>dual ended Technic connector)
 side_holes = 3;  // [0:0, 1:1, 2:2, 3:3]
 
-// Add a sheath around side holes (turn off for extra ventilation if side holes are used for cooling or rotating shafts)
+// Add a sheath around side holes (turn off for extra ventilation or rotating shafts)
 side_hole_sheaths = 1; // [0:0, 1:1]
 
 // Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
 end_holes = 0;  // [0:0, 1:1, 2:2]
+
+// Add a sheath around end holes (turn off for extra ventilation or rotating shafts)
+end_hole_sheaths = 1; // [0:0, 1:1]
 
 // Technic connector hole size tweak => + = more loose fit
 bearing_hole_tweak = 0;
