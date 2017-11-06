@@ -64,17 +64,17 @@ knob_slice_length_ratio=0.7;
 
 /* [LEGO Technics] */
 
-// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>single ended technic connector, 3=>dual ended technic connector)
+// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>single ended Technic connector, 3=>dual ended Technic connector)
 side_holes = 3;  // [0:0, 1:1, 2:2, 3:3]
 
 // Add a sheath around side holes (turn off for extra ventilation if side holes are used for cooling or rotating shafts)
 side_hole_sheaths = 1; // [0:0, 1:1]
 
 // Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
-end_holes = 1;  // [0:0, 1:1, 2:2]
+end_holes = 0;  // [0:0, 1:1, 2:2]
 
 // Technic connector hole size tweak => + = more loose fit
-technic_hole_tweak = 0;
+bearing_hole_tweak = 0;
 
 // Top connector size tweak => + = more tight fit, 0.06 for PLA, 0 for ABS, 0.07 for NGEN
 technic_tweak = 0;
@@ -120,10 +120,13 @@ knob_flexture_height=4.55;
 airhole_fn=16;
 
 // Width of horizontal surface strengthening slats (usually between the bottom rings)
-stiffener_width=0.6;
+bottom_stiffener_width=3.8;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
-stiffener_height=2.4;
+bottom_stiffener_height=4.1;
+
+// Width of horizontal surface strengthening slats (usually between the bottom rings)
+side_stiffener_width=1.6;
 
 // Distance from inside walls which small stiffeners protrude inwards
 side_stiffener_thickness=0.2;
@@ -149,13 +152,16 @@ ring_thickness=0.8;
 /* [Advanced LEGO Technic Options] */
 
 // Technic connector hole
-technic_hole_radius = 2.45;
+bearing_hole_radius = 2.45;
 
 // Technic connector inset radius
-technic_inset_radius = 3.1;
+bearing_inset_radius = 3.1;
 
 // Technic connector inset depth
-technic_inset_depth = 0.8;
+bearing_inset_depth = 0.8;
+
+// Technic connector additional depth when cut into a solid surface
+bearing_inset_depth_clearance = 1;
 
 // An axle which fits loosely in a technic bearing hole
 technic_axle_radius = 2.4;
@@ -164,4 +170,4 @@ technic_axle_radius = 2.4;
 technic_bearing_length = 6.2;
 
 // Size of an cylinder wrapped around the entrance to bearing holes
-technic_sheath_thickness = 0.8;
+technic_sheath_thickness = 0.6;
