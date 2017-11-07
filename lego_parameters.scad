@@ -93,8 +93,11 @@ knob_flexture_airhole_radius=0;
 
 /* [Advanced] */
 
-// Number of facets to form a circle (big numbers are more round which affects fit, but may take a long time to render)
-fn=64;
+// Minimum angle to approximate a circle
+$fa=6;
+
+// Minimum segment length to approximate a circle
+$fs=0.5;
 
 // Clearance space on the outer surface of bricks
 skin = 0.1; 
