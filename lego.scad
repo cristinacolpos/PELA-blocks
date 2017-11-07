@@ -35,7 +35,7 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <lego_parameters.scad>
+include <lego-parameters.scad>
 
 /////////////////////////////////////
 // LEGO display
@@ -130,16 +130,16 @@ module top_knob_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius,
             if (!is_corner(x=i, y=j, l=l, w=w)) {
                 translate([lego_width(i), lego_width(j), 0])
                     top_knob(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel);
+                ;
             }
         }
     }
 }
 
 
-// The rectangular part of the the lego plus the knob
+// The connector cylinder
 module top_knob(h=h, top_tweak=top_tweak, knob_height=knob_height, knob_bevel=knob_bevel, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width) {
     
-    //cube([lego_width(), lego_width(), lego_height(h)]);
     translate([lego_width(0.5), lego_width(0.5), lego_height(h)])
         knob(top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel);
 }
@@ -149,8 +149,8 @@ module top_knob(h=h, top_tweak=top_tweak, knob_height=knob_height, knob_bevel=kn
 module knob(top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel) {
     
     cylinder(r=knob_radius+top_tweak, h=knob_height-knob_bevel);
+
     if (knob_bevel > 0) {
-        // This path is a bit slower, but does the same thing as the path below for the most common case of knob_bevel==0
         translate([0, 0, knob_height-knob_bevel])
             intersection() {
                 cylinder(r=knob_radius+top_tweak,h=knob_bevel);
@@ -173,13 +173,13 @@ module knob_flexture_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_ra
 }
 
 
-// The empty cylinder inside a knob
+// The negative space flexture inside a knob
 module knob_flexture(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio) {
 
-    translate([0, 0, knob_height-knob_top_thickness-knob_flexture_height])
+   translate([0, 0, knob_height-knob_top_thickness-knob_flexture_height])
         cylinder(r=knob_flexture_radius, h=knob_flexture_height);
     
-    if (knob_flexture_airhole_radius>0.01 || (knob_flexture_airhole_radius>0 && h>1)) {
+    if (knob_flexture_airhole_radius>0) {
         translate([0, 0, knob_height-knob_top_thickness])
             cylinder(r=knob_flexture_airhole_radius, h=knob_height+0.1);
     }
@@ -188,6 +188,7 @@ module knob_flexture(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_hei
         angle_delta=360/knob_slice_count;
         for (i = [1:knob_slice_count]) {
             angle = (i-1)*angle_delta + 360/(2*knob_slice_count);
+            
             rotate([0,0,angle])
                 translate([0, -knob_slice_width/2, 0])
                     cube([(knob_radius+top_tweak)*knob_slice_length_ratio, knob_slice_width, knob_height-knob_top_thickness]);

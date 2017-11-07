@@ -57,21 +57,21 @@ bottom_tweak = 0;
 knob_bevel=0;
 
 // Number of flexure cuts across the inside of each knob
-knob_slice_count=0;
+knob_slice_count=4;
 
 // Width of flexure cuts across the top of the knob
-knob_slice_width=0.15;
+knob_slice_width=0.2;
 
 // Length of the slice the knob from inside towards the edge
-knob_slice_length_ratio=0.7;
+knob_slice_length_ratio=0.8;
 
 /* [LEGO Technics] */
 
 // Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>single ended Technic connector, 3=>dual ended Technic connector)
-side_holes = 1;  // [0:0, 1:1, 2:2, 3:3]
+side_holes = 0;  // [0:0, 1:1, 2:2, 3:3]
 
 // Add a sheath around side holes (turn off for extra ventilation or rotating shafts)
-side_hole_sheaths = 0; // [0:0, 1:1]
+side_hole_sheaths = 1; // [0:0, 1:1]
 
 // Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
 end_holes = 2;  // [0:0, 1:1, 2:2]
@@ -94,10 +94,10 @@ knob_flexture_airhole_radius=0;
 /* [Advanced] */
 
 // Minimum angle to approximate a circle
-$fa=6;
+$fa=10;
 
 // Minimum segment length to approximate a circle
-$fs=0.5;
+$fs=0.3;
 
 // Clearance space on the outer surface of bricks
 skin = 0.1; 
@@ -109,7 +109,7 @@ ridge_width = 0.15;
 ridge_depth = 0.3;
 
 // Distance below knob top surface and the internal cutout
-knob_top_thickness=1;
+knob_top_thickness=0.8;
 
 // Size of the connectors
 knob_radius=2.4;
@@ -122,9 +122,6 @@ knob_flexture_radius=1.5;
 
 // Height of the hole beneath each knob
 knob_flexture_height=4.55;
-
-// Number of side to simulate a circle in the air hole and (smaller numbers render faster and are usually sufficient)
-airhole_fn=16;
 
 // Width of horizontal surface strengthening slats (usually between the bottom rings)
 bottom_stiffener_width=3.8;
