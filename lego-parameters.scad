@@ -40,10 +40,13 @@ w = 3;
 h = 2;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=1; // [0:0, 1:1]
+bolt_holes=1; // [0:no holes, 1:holes]
 
 // Size of corner holes for mountings screws
 bolt_hole_radius=1.5;
+
+// Interior fill for layers above the bottom
+solid_upper_layers = 0; // [0:empty, 1:solid]
 
 /* [3D Printing Adjustments] */
 

@@ -23,7 +23,7 @@ Design work kindly sponsored by
 */
 
 include <../lego-parameters.scad>
-use <../lego.scad>
+use <../lego-technic.scad>
 
 /* [LEGO Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real LEGO first, then 3D printed to 3D printed using a calibration block with your selected top_tweak and bottom_tweak adjustments] */
 
@@ -37,7 +37,7 @@ l = 3;
 w = 3;
 
 // Height of the block (LEGO unit count)
-h = 1; 
+h = 2; 
 
 // Top connector size tweak => + = more tight fit, -0.04 for PLA, 0 for ABS, 0.07 for NGEN (NOTE: used only if mode=1, single block)
 top_tweak = 0.04;
