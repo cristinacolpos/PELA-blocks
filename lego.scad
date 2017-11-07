@@ -22,8 +22,9 @@ Design work kindly sponsored by
     http://futurice.com
 
 Import this into other design files:
+    include <lego-parameters.scad>
     use <lego.scad>
-    
+
 All modules have sensible defaults derived from <lego_parameters.scad>. 
 You can ignore values you are not tampering with and only need to pass a
 parameter if you are overriding.

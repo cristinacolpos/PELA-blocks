@@ -25,7 +25,7 @@ Import this into other design files:
     use <lego-sign.scad>
 */
 
-include <../lego_parameters.scad>
+include <../lego-parameters.scad>
 use <../lego.scad>
 
 /* [LEGO Sign Options] */
@@ -90,11 +90,11 @@ module lego_sign(line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extr
     if (is_true(extrude)) {
         lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, layer_ridge=0);
         
-        translate([lego_skin_width(skin=skin), lego_skin_width(skin=skin), 0])
+        translate([skin, skin, 0])
             lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak);
 
         if (is_true(copy_to_back)) {
-            translate([lego_width(l), lego_width(w)-lego_skin_width(skin=skin), 0])
+            translate([lego_width(l), lego_width(w)-skin, 0])
                 rotate([0, 0, 180])
                     lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h);
         }
@@ -103,13 +103,13 @@ module lego_sign(line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extr
             lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, layer_ridge=0);
             
             union() {
-                translate([lego_skin_width(skin=skin), 0, 0])
-                    lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+lego_skin_width(), f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h);
+                translate([skin, 0, 0])
+                    lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h);
 
                 if (is_true(copy_to_back)) {
-                    translate([lego_width(l)-lego_skin_width(skin=skin), lego_width(w)-lego_skin_width(skin=skin), 0])
+                    translate([lego_width(l)-skin, lego_width(w)-skin, 0])
                         rotate([0, 0, 180])
-                            lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+lego_skin_width(), f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h);
+                            lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h);
                 }
             }
         }

@@ -37,7 +37,7 @@ l = 4;
 w = 3;
 
 // Height of the block (LEGO unit count)
-h = 2;
+h = 1;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=1; // [0:no holes, 1:holes]
@@ -70,17 +70,17 @@ knob_slice_length_ratio=0.8;
 
 /* [LEGO Technics] */
 
-// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>single ended Technic connector, 3=>dual ended Technic connector)
-side_holes = 0;  // [0:0, 1:1, 2:2, 3:3]
+// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>single ended Technic connector, 3=>dual ended Technic connector, 4=>full width dual ended Technic connector)
+side_holes = 4;  // [0:0, 1:1, 2:2, 3:3, 4:4]
 
 // Add a sheath around side holes (turn off for extra ventilation or rotating shafts)
 side_hole_sheaths = 1; // [0:0, 1:1]
 
 // Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
-end_holes = 2;  // [0:0, 1:1, 2:2]
+end_holes = 0;  // [0:0, 1:1, 2:2]
 
 // Add a sheath around end holes (turn off for extra ventilation or rotating shafts)
-end_hole_sheaths = 1; // [0:0, 1:1]
+end_hole_sheaths = 0; // [0:0, 1:1]
 
 // Technic connector hole size tweak => + = more loose fit
 bearing_hole_tweak = 0;
