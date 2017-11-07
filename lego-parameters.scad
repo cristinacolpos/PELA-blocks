@@ -30,14 +30,14 @@ Import this into other design files to set baseline constants:
 // What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
 mode=1; // [1:1, 2:2, 3:3, 4:4]
 
-// Length of the block (LEGO knob count)
+// Length of the block (LEGO unit count)
 l = 4; 
 
-// Width of the block (LEGO knob count)
+// Width of the block (LEGO unit count)
 w = 3;
 
-// Height of the block (LEGO brick layer count)
-h = 1;
+// Height of the block (LEGO unit count)
+h = 2;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=1; // [0:0, 1:1]
