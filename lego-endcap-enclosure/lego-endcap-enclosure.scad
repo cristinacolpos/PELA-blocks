@@ -25,8 +25,8 @@ Import this into other design files:
     use <anker-usb-lego-enclosure.scad>
 */
 
-include <../lego_parameters.scad>
-use <../lego.scad>
+include <../lego-parameters.scad>
+use <../lego-technic.scad>
 
 
 /* [LEGO Options plus Plastic and Printer Variance Adjustments] */
@@ -79,6 +79,12 @@ corner_radius=3.25;
 // Number of lines to approximate a circle in corner rounding
 corner_fn=64;
 
+// Solid interior is assumed for this model before carving away from that block
+solid_upper_layers=1;
+
+// There is usually no need or room for corner mounting M3 bolt holes
+bolt_holes=0;
+
 /////////////////////////////////////
 // LEGO End Cap Enclosure Display
 
@@ -123,7 +129,7 @@ module right_cap(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulde
 module lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius) {
     
     difference() {
-        vented_lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height);
+        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height);
         
         enclosure_negative_space(l=l, w=w, h=h, el=el, ew=ew, eh=eh, shoulder=shoulder, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius);
     }
@@ -133,9 +139,9 @@ module lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top
 module enclosure_negative_space(l=l, w=w, h=h, el=el, ew=ew, eh=eh, shoulder=shoulder, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius) {
 
     // Add some margin around the enclosed space to give space to fit the part
-    ml = el + lego_skin_width(2);
-    mw = ew + lego_skin_width(2);
-    mh = eh + lego_skin_width(2);    
+    ml = el + 2*skin;
+    mw = ew + 2*skin;
+    mh = eh + 2*skin;    
     
     ls = ml - 2*shoulder;
     ws = mw - 2*shoulder;
@@ -151,25 +157,25 @@ module enclosure_negative_space(l=l, w=w, h=h, el=el, ew=ew, eh=eh, shoulder=sho
     
     // Left end air hole
     translate([-corner_radius, dw+shoulder, dh+shoulder+side_opening_vertical_offset])
-        rounded_cube(x=ls, y=ws, z=hs, corner_radius=corner_radius, fn=fn);
+        rounded_cube(x=ls, y=ws, z=hs, corner_radius=corner_radius);
     
     // Right end air hole
     translate([corner_radius+lego_width(l)-ls, dw+shoulder, dh+shoulder+side_opening_vertical_offset])
-        rounded_cube(x=ls, y=ws, z=hs, corner_radius=corner_radius, fn=fn);
+        rounded_cube(x=ls, y=ws, z=hs, corner_radius=corner_radius);
     
     // Back side air hole
     translate([dl+shoulder, -corner_radius+dw+mw, dh+shoulder+side_opening_vertical_offset])
-        rounded_cube(x=ls, y=ws, z=hs, corner_radius=corner_radius, fn=fn);
+        rounded_cube(x=ls, y=ws, z=hs, corner_radius=corner_radius);
         
     // Front side air hole
     translate([dl+shoulder, -corner_radius, dh+shoulder+side_opening_vertical_offset])
-        rounded_cube(x=ls, y=ws, z=hs, corner_radius=corner_radius, fn=fn);
+        rounded_cube(x=ls, y=ws, z=hs, corner_radius=corner_radius);
 }
 
 module rounded_cube(x=5, y=5, z=5, corner_radius=corner_radius, corner_fn=corner_fn) {
     translate([corner_radius, corner_radius, corner_radius])
         minkowski() {
             cube([x-2*corner_radius, y-2*corner_radius, z-2*corner_radius]);
-            sphere(r=corner_radius, $fn=fn);
+            sphere(r=corner_radius, $fn=corner_fn);
         }
 }
