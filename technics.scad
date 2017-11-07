@@ -60,104 +60,104 @@ if (mode==1) {
 /////////////////////////////////////
 
 // A LEGO block with optional side and top vent holes
-module lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, bearing_hole_radius=bearing_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn);
+module lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, bearing_hole_radius=bearing_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth);
 
     difference() {
         union() {
-            lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth, fn=fn, airhole_fn=airhole_fn);
+            lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, block_shell=block_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth);
             
             if (side_hole_sheaths>0 && side_holes>0) {
-                side_connector_sheath_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_bearing_length=technic_bearing_length, block_width=block_width, skin=skin, fn=fn);
+                side_connector_sheath_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_bearing_length=technic_bearing_length, block_width=block_width, skin=skin);
             }
             
             if (end_hole_sheaths>0 && end_holes>0) {
-                end_connector_sheath_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_bearing_length=technic_bearing_length, block_width=block_width, skin=skin, fn=fn);
+                end_connector_sheath_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_bearing_length=technic_bearing_length, block_width=block_width, skin=skin);
             }
         }
         
         union() {
             if (side_holes>0 || end_holes>0) {
-                socket_hole_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, skin=skin, fn=fn);
+                socket_hole_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, skin=skin);
             }
             
             if (side_holes>0) {
-                side_connector_hole_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, block_width=block_width, fn=fn);
+                side_connector_hole_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, block_width=block_width);
             }
             
             if (end_holes>0) {
-                end_connector_hole_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, fn=fn);
+                end_connector_hole_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width);
             }
             
             if (top_vents>0) {
-                top_vent_set(l=l, w=w, h=h, top_tweak=top_tweak, top_vents=top_vents, fn=fn);
+                top_vent_set(l=l, w=w, h=h, top_tweak=top_tweak, top_vents=top_vents);
             }
             
             if (bolt_holes) {
-                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, fn=fn);
+                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
             }
         }
 }
 
 
 // A row of sheaths surrounding holes along the length
-module side_connector_sheath_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_bearing_length=technic_bearing_length, technic_sheath_thickness=technic_sheath_thickness, block_width=block_width, skin=skin, fn=fn) {
+module side_connector_sheath_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_bearing_length=technic_bearing_length, technic_sheath_thickness=technic_sheath_thickness, block_width=block_width, skin=skin) {
     
     if (l==1) {
         translate([lego_width(0.5), skin, lego_height(1)-lego_width(0.5)])
             rotate([-90, 0, 0])
-                technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness, fn=fn);        
+                technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness);        
 
         translate([lego_width(0.5), lego_width(1)-skin, lego_height(1)-lego_width(0.5)])
             rotate([90, 0, 0])
-                technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness, fn=fn);        
+                technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness);        
     } else {
         for (i = [1:l-1]) {
             translate([lego_width(i), skin, lego_height(1)-lego_width(0.5)])
                 rotate([-90, 0, 0])
-                    technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness, fn=fn);
+                    technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness);
 
             translate([lego_width(i), lego_width(w)-skin, lego_height(1)-lego_width(0.5)])
                 rotate([90, 0, 0])
-                    technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness, fn=fn);
+                    technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness);
         }
     }
 }
 
 
 // A row of sheaths surrounding holes along the width
-module end_connector_sheath_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_bearing_length=technic_bearing_length, technic_sheath_thickness=technic_sheath_thickness, block_width=block_width, skin=skin, fn=fn) {
+module end_connector_sheath_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_bearing_length=technic_bearing_length, technic_sheath_thickness=technic_sheath_thickness, block_width=block_width, skin=skin) {
     
     if (l==1) {
         translate([skin, lego_width(0.5), lego_height(1)-lego_width(0.5)])
             rotate([-90, 0, 0])
-                technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness, fn=fn);
+                technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness);
         
         translate([lego_width(l)-skin, lego_width(0.5), lego_height(1)-lego_width(0.5)])
             rotate([90, 0, 0])
-                technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness, fn=fn);        
+                technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness);        
     } else {
         for (j = [1:w-1]) {
             translate([skin, lego_width(j), lego_height(1)-lego_width(0.5)])
                 rotate([0, 90, 0])
-                    technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness, fn=fn);
+                    technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness);
 
             translate([lego_width(l)-skin, lego_width(j), lego_height(1)-lego_width(0.5)])
                 rotate([0, -90, 0])
-                    technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness, fn=fn);
+                    technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness);
         }
     }
 }
 
 
 // The solid shell around a bearing hole
-module technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness, fn=fn) {
+module technic_bearing_sheath(length=technic_bearing_length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, technic_sheath_thickness=technic_sheath_thickness) {
     
-    cylinder(r=technic_sheath_thickness+bearing_hole_radius+bearing_hole_tweak, h=length, $fn=fn);
+    cylinder(r=technic_sheath_thickness+bearing_hole_radius+bearing_hole_tweak, h=length);
 }
 
 
 // A row of knob-size holes around the sides of row 1
-module side_connector_hole_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, block_width=block_width, fn=fn) {
+module side_connector_hole_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, block_width=block_width) {
     
     if (l==1) {
         translate([lego_width(0.5), 0, lego_height(1)-lego_width(0.5)])
@@ -175,7 +175,7 @@ module side_connector_hole_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius
 
 
 // A row of knob-size holes around the sides of row 1
-module end_connector_hole_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, block_width=block_width, fn=fn) {
+module end_connector_hole_set(l=l, w=w, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, block_width=block_width) {
     
     hole_depth=end_holes==1 ? block_shell : lego_width(1);
     
@@ -218,29 +218,29 @@ module end_hole_interior_ventilation_set(l=l, w=w) {
 
 
 // The primary hole for a Technic side connector
-module bearing_hole(hole_type=side_holes, length=block_width, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, fn=fn) {
+module bearing_hole(hole_type=side_holes, length=block_width, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak) {
     
-    rotation_hole(length=length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak, fn=fn);
+    rotation_hole(length=length, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak);
 
     if (hole_type>1) {
-        bearing_inset(bearing_inset_depth=bearing_inset_depth, bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak, fn=fn);
+        bearing_inset(bearing_inset_depth=bearing_inset_depth, bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak);
         
         translate([0, 0, length-bearing_inset_depth])
-            bearing_inset(bearing_inset_depth=bearing_inset_depth, bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak, fn=fn);
+            bearing_inset(bearing_inset_depth=bearing_inset_depth, bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak);
     
         if (hole_type>2) {
             translate([0, 0, technic_bearing_length])
-                bearing_inset(bearing_inset_depth=bearing_inset_depth+bearing_inset_depth_clearance, bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak, fn=fn);
+                bearing_inset(bearing_inset_depth=bearing_inset_depth+bearing_inset_depth_clearance, bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak);
 
             translate([0, 0, length-bearing_inset_depth-bearing_inset_depth_clearance-technic_bearing_length])
-                bearing_inset(bearing_inset_depth=bearing_inset_depth+bearing_inset_depth_clearance, bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak, fn=fn);
+                bearing_inset(bearing_inset_depth=bearing_inset_depth+bearing_inset_depth_clearance, bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak);
         }
     }
 }
 
 
 // The connector inset for a Technic side connector
-module bearing_inset(bearing_inset_depth=bearing_inset_depth,bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak, fn=fn) {
+module bearing_inset(bearing_inset_depth=bearing_inset_depth,bearing_inset_radius=bearing_inset_radius, bearing_hole_tweak=bearing_hole_tweak) {
     
-    cylinder(r=bearing_inset_radius+bearing_hole_tweak, h=bearing_inset_depth, $fn=fn);
+    cylinder(r=bearing_inset_radius+bearing_hole_tweak, h=bearing_inset_depth);
 }
