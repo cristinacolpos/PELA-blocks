@@ -33,7 +33,6 @@ that may be hidden by the sensible default values. This is an evolving art.
 */
 
 include <lego-parameters.scad>
-use <lego.scad>
 
 /////////////////////////////////////
 // LEGO display
@@ -244,3 +243,5 @@ module bearing_inset(bearing_inset_depth=bearing_inset_depth,bearing_inset_radiu
     
     cylinder(r=bearing_inset_radius+bearing_hole_tweak, h=bearing_inset_depth);
 }
+
+include <lego.scad>
