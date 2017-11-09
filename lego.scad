@@ -44,7 +44,7 @@ include <lego-parameters.scad>
 
 if (mode==1) {
     // A single block
-    lego(bolt_holes=1);
+    lego();
 } else if (mode==2) {
     // Bock without top knobs
     lego(knob_height=0, knob_bevel=0, knob_flexture_radius=0, knob_flexture_airhole_radius=0);
