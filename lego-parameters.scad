@@ -31,16 +31,16 @@ Import this into other design files to set baseline constants:
 mode=1; // [1:1, 2:2, 3:3, 4:4]
 
 // Length of the block (LEGO unit count)
-l = 4; 
+l = 2; 
 
 // Width of the block (LEGO unit count)
-w = 3;
+w = 2;
 
 // Height of the block (LEGO unit count)
 h = 1;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=1; // [0:no holes, 1:holes]
+bolt_holes=0; // [0:no holes, 1:holes]
 
 // Size of corner holes for mountings screws
 bolt_hole_radius=1.5;
@@ -51,10 +51,10 @@ solid_upper_layers = 0; // [0:empty, 1:solid]
 /* [3D Printing Adjustments] */
 
 // Top connector size tweak => + = more tight fit, 0.06 for PLA, 0 for ABS, 0.07 for NGEN
-top_tweak = 0;
+top_tweak = 0.07;
 
 // Bottom connector size tweak => + = more tight fit, -0.03 for PLA, 0 for ABS, -0.01 NGEN
-bottom_tweak = 0;
+bottom_tweak = -0.3;
 
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
 knob_bevel=0;
