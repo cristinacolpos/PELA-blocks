@@ -73,14 +73,14 @@ knob_slice_length_ratio=0.8;
 
 /* [LEGO Technics] */
 
-// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>counterbore connector, 3=>counterbore connector with flexture notch, 4=>full width counterbore connector with flexture notch)
-side_holes = 3;  // [0:0, 1:1, 2:2, 3:3, 4:4]
+// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>full width counterbore connector with flexture notch, 3=>short counterbore connector with flexture notch)
+side_holes = 3;  // [0:0, 1:1, 2:2, 3:3]
 
 // Add a sheath around side holes (turn off for extra ventilation or rotating shafts)
 side_hole_sheaths = 1; // [0:0, 1:1]
 
 // Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
-end_holes = 0;  // [0:0, 1:1, 2:2, 3:3]
+end_holes = 0;  // [0:0, 1:1, 2:2]
 
 // Add a sheath around end holes (turn off for extra ventilation or rotating shafts)
 end_hole_sheaths = 1; // [0:0, 1:1]
@@ -110,6 +110,9 @@ block_height=9.6;
 
 // Minimum vertial size of standard LEGO
 panel_height=block_height/3;
+
+// Thickness of the solid outside surface of LEGO
+shell=1.6; // thickness
 
 // Clearance space around the outer surface of bricks
 skin = 0.1; 
@@ -147,9 +150,6 @@ side_stiffener_width=0.8;
 // Distance from inside walls which small stiffeners protrude inwards
 side_stiffener_thickness=0.2;
 
-// Thickness of the solid outside surface of LEGO
-shell=1.6; // thickness
-
 // Depth which connectors may press into part bottom
 socket_height= 8.6;
 
@@ -171,7 +171,7 @@ counterbore_inset_radius = 3.1;
 counterbore_inset_depth = 0.8;
 
 // Contact length of axle to brick (not including inset length and end snap fit flexture in pin connectors)
-peg_length = 6.2;
+peg_length = 6.15;
 
 // Size of an cylinder wrapped around the entrance to bearing holes
 bearing_sheath_thickness = 0.6;

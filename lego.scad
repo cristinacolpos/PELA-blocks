@@ -74,6 +74,10 @@ function is_true(t) = t != 0;
 // Test if this is a corner block
 function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 
+function is_side_hole_sheaths(side_hole_sheaths=side_hole_sheaths, side_holes=side_holes) = is_true(side_hole_sheaths) && is_true(side_holes);
+
+function is_end_hole_sheaths(end_hole_sheaths=end_hole_sheaths, end_holes=end_holes) = end_holes>1 && is_true(end_hole_sheaths);
+
 /////////////////////////////////////
 // MODULES
 /////////////////////////////////////
@@ -107,7 +111,8 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
             
             knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, bolt_holes=bolt_holes);
                 
-            socket_hole_set(l=l, w=w, radius=axle_hole_radius+axle_hole_tweak, length=lego_height(h)-shell);
+            length = is_true(end_holes) || is_true(side_holes) ? lego_height(h)-lego_width(0.5) : lego_height(h)-shell;
+            socket_hole_set(l=l, w=w, radius=axle_hole_radius+axle_hole_tweak, length=length);
             
             if (is_true(bolt_holes)) {
                 corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
@@ -233,25 +238,29 @@ module bottom_stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w
 module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, skin=skin) {
     
     for (i = [start_l:end_l]) {
-        offset = i==0 ? bottom_stiffener_width/2+skin : (i==l ? -bottom_stiffener_width/2-skin : 0);
+        if (side_holes!=1) {
+            offset = i==0 ? (bottom_stiffener_width/2+skin) : (i==l ? -bottom_stiffener_width/2-skin : 0);
+
+            y = (side_holes==1 || side_holes==2) ? lego_width() : 0;
         
-        cut_width = (i==0 || i==l) ? 0 : bottom_stiffener_width/2;
+            cut_width = (i==0 || i==l) ? 0 : bottom_stiffener_width/2;
         
-        translate([lego_width(i)+offset-bottom_stiffener_width/2, 0, 0])
-            difference() {
-                cube([bottom_stiffener_width, lego_width(w), bottom_stiffener_height]);
+            translate([lego_width(i)+offset-bottom_stiffener_width/2, y, 0])
+                difference() {
+                    cube([bottom_stiffener_width, lego_width(w) - 2*y, bottom_stiffener_height]);
                 
-                if (side_holes==0) {
-                    translate([bottom_stiffener_width/4, 0, 0])
-                        cube([bottom_stiffener_width/2, lego_width(w), bottom_stiffener_height]);
+//                    if (side_holes==0) {
+                        translate([bottom_stiffener_width/4, 0, 0])
+                            cube([cut_width, lego_width(w) - 2*y, bottom_stiffener_height]);
+//                    }
                 }
-            }
+        }
     }
     
     for (j = [start_w:end_w]) {
         offset = j==0 ? bottom_stiffener_width/2+skin : (j==w ? -bottom_stiffener_width/2-skin : 0);
 
-        x = (end_holes>0 && end_hole_sheaths==0) ? lego_width() : 0;
+        x = is_true(end_holes) ? lego_width() : 0;
     
         cut_width = (j==0 || j==w) ? 0 : bottom_stiffener_width/2;
 
@@ -260,7 +269,7 @@ module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, b
                 cube([lego_width(l) - 2*x, bottom_stiffener_width, bottom_stiffener_height]);
                 
                 translate([0, bottom_stiffener_width/4, 0])
-                    cube([lego_width(l) - 2*x, bottom_stiffener_width/2, bottom_stiffener_height]);
+                    cube([lego_width(l) - 2*x, cut_width, bottom_stiffener_height]);
             }
     }    
 }
