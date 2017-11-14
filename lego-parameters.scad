@@ -73,7 +73,7 @@ knob_slice_length_ratio=0.8;
 
 /* [LEGO Technics] */
 
-// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>single ended Technic connector, 3=>dual ended Technic connector, 4=>full width dual ended Technic connector)
+// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>counterbore connector, 3=>counterbore connector with flexture notch, 4=>full width counterbore connector with flexture notch)
 side_holes = 4;  // [0:0, 1:1, 2:2, 3:3, 4:4]
 
 // Add a sheath around side holes (turn off for extra ventilation or rotating shafts)
@@ -101,6 +101,15 @@ $fa=10;
 
 // Minimum segment length to approximate a circle
 $fs=0.3;
+
+// Basic unit horizonal size of LEGO
+block_width=8;
+
+// Basic unit vertial size of LEGO
+block_height=9.6;
+
+// Minimum vertial size of standard LEGO
+panel_height=block_height/3;
 
 // Clearance space around the outer surface of bricks
 skin = 0.1; 
@@ -138,12 +147,6 @@ side_stiffener_width=0.8;
 // Distance from inside walls which small stiffeners protrude inwards
 side_stiffener_thickness=0.2;
 
-// Basic unit horizonal size of LEGO
-block_width=8;
-
-// Basic unit vertial size of LEGO
-block_height=9.6;
-
 // Thickness of the solid outside surface of LEGO
 shell=1.6; // thickness
 
@@ -167,10 +170,7 @@ counterbore_inset_radius = 3.1;
 // Technic connector inset depth
 counterbore_inset_depth = 0.8;
 
-// Technic connector additional depth when cut into a solid surface
-counterbore_inset_depth_clearance = 1;
-
-// How deep into a brick should a hole go before flaring out to grip
+// Contact length of axle to brick (not including inset length and end snap fit flexture in pin connectors)
 peg_length = 6.2;
 
 // Size of an cylinder wrapped around the entrance to bearing holes
