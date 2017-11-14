@@ -272,7 +272,7 @@ module socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak) {
 // The negative space inside the circular bottom insert for attaching knobs
 module socket_ring_inner_cylinder(ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak) {
 
-    rotation_hole(hole_type=1, length=socket_flexture_height, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak);
+    rotation_hole(hole_type=1, length=socket_flexture_height, axle_hole_radius=axle_hole_radius, bearing_hole_tweak=bearing_hole_tweak);
 }
 
 
@@ -385,9 +385,9 @@ module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge
 
 
 // Hole for a bearing
-module rotation_hole(length=block_width, bearing_hole_radius=bearing_hole_radius, bearing_hole_tweak=bearing_hole_tweak) {
+module rotation_hole(length=block_width, axle_hole_radius=axle_hole_radius, bearing_hole_tweak=bearing_hole_tweak) {
     
-    cylinder(r=bearing_hole_radius+bearing_hole_tweak, h=length);
+    cylinder(r=axle_hole_radius+bearing_hole_tweak, h=length);
 }
 
 
