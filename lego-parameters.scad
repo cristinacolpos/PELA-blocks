@@ -165,16 +165,18 @@ axle_hole_radius = 2.45;
 counterbore_inset_radius = 3.1;
 
 // Technic connector inset depth
-bearing_inset_depth = 0.8;
+counterbore_inset_depth = 0.8;
 
 // Technic connector additional depth when cut into a solid surface
-bearing_inset_depth_clearance = 1;
-
-// An axle which fits loosely in a technic bearing hole
-technic_axle_radius = 2.4;
+counterbore_inset_depth_clearance = 1;
 
 // How deep into a brick should a hole go before flaring out to grip
-technic_bearing_length = 6.2;
+peg_length = 6.2;
 
 // Size of an cylinder wrapped around the entrance to bearing holes
-technic_sheath_thickness = 0.6;
+bearing_sheath_thickness = 0.6;
+
+/* [Advanced Reference] */
+
+// An axle which fits loosely in a technic bearing hole
+axle_radius = 2.4;
