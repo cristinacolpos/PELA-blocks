@@ -86,7 +86,7 @@ end_holes = 1;  // [0:0, 1:1, 2:2]
 end_hole_sheaths = 0; // [0:0, 1:1]
 
 
-/* [Heat Ventilation] */
+/* [Top Ventilation] */
 
 // Add holes in the top deck to improve airflow and reduce weight (0=>no holes, 1=>holes)
 top_vents = 1;
@@ -102,7 +102,7 @@ $fa=10;
 // Minimum segment length to approximate a circle
 $fs=0.3;
 
-// Clearance space on the outer surface of bricks
+// Clearance space around the outer surface of bricks
 skin = 0.1; 
 
 // Width of a line etched in the side of multi-layer block sets (0 to disable)
@@ -117,16 +117,16 @@ knob_top_thickness=0.8;
 // Size of the connectors
 knob_radius=2.4;
 
-// Height of the connectors (1.8 is Lego standard, longer valie like 2.4 gives a stronger hold while still maintaining compatibility)
+// Height of the connectors (1.8 is Lego standard, 2.4 gives a stronger hold while still maintaining compatibility)
 knob_height=2.4;
 
-// Size of the small flexture cavity inside each connector
+// Size of the small flexture cavity inside each knob
 knob_flexture_radius=1.5;
 
 // Height of the hole beneath each knob
 knob_flexture_height=4.55;
 
-// Width of horizontal surface strengthening slats (usually between the bottom rings)
+// Width of horizontal surface strengthening slats between the bottom rings
 bottom_stiffener_width=3.8;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
@@ -159,10 +159,10 @@ ring_radius=3.25;
 /* [Advanced LEGO Technic Options] */
 
 // Technic connector hole
-bearing_hole_radius = 2.45;
+axle_hole_radius = 2.45;
 
 // Technic connector inset radius
-bearing_inset_radius = 3.1;
+counterbore_inset_radius = 3.1;
 
 // Technic connector inset depth
 bearing_inset_depth = 0.8;
