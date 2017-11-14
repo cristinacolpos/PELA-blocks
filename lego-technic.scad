@@ -212,28 +212,10 @@ module end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, beari
             }
         }
     }
-    
-    if (end_holes>0 && end_hole_sheaths==0) {
-        end_hole_interior_ventilation_set(l=l, w=w);
-    }
 }
 
 
-// Additional cutouts from the top bars to give more ventlation near end holes
-module end_hole_interior_ventilation_set(l=l, w=w, axle_hole_radius=axle_hole_radius, socket_height=socket_height, shell=shell) {
-    if (l>1) {
-        for (i = [0:l-1]) {
-            translate([shell, lego_width()-axle_hole_radius, 0])
-                cube([lego_width()-ring_radius-shell, 2*axle_hole_radius, lego_height()-shell]);
-            
-            translate([lego_width(l-1)+ring_radius, lego_width()-axle_hole_radius, 0])
-                cube([lego_width()-ring_radius-shell, 2*axle_hole_radius, lego_height()-shell]);            
-        }
-    }
-}
-
-
-// The primary rotation and connector hole for a Technic connector
+// The rotation and connector hole for a Technic connector
 module axle_hole(hole_type=side_holes, length=block_width, axle_hole_radius=axle_hole_radius, bearing_hole_tweak=bearing_hole_tweak) {
     
     rotation_hole(length=length, axle_hole_radius=axle_hole_radius, bearing_hole_tweak=bearing_hole_tweak);
