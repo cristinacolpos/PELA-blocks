@@ -107,7 +107,7 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
             
             knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, bolt_holes=bolt_holes);
                 
-            socket_hole_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, skin=skin);
+            socket_hole_set(l=l, w=w, radius=axle_hole_radius+axle_hole_tweak, length=lego_height(h)-shell);
             
             if (is_true(bolt_holes)) {
                 corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
@@ -116,21 +116,13 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
     }
 }
 
+
+// Make layers above the bottom layer be solid filled instead of mostly open space
 module fill_upper_layers(l=l, w=w, h=h) {
     translate([0, 0, lego_height()])
         cube([lego_width(l), lego_width(w), lego_height(h-1)]);
 }
 
-// Additional holes in the top surface and opiontally also in top knobs
-module top_vent_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, top_vents=top_vents) {
-    //TODO XXXXXXXXXXXXXXXXXXXXXX
-    
-    
-}
-
-module top_vent() {
-    // TODO XXXXXXXXXXXXXXXX
-}
 
 // Several blocks in a grid, one knob per block
 module top_knob_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, bolt_holes=bolt_holes) {
@@ -208,17 +200,13 @@ module knob_flexture(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_hei
 
 
 // That solid outer skin of a block set
-module shell(l=l, w=w, h=h, shell=shell) {
-    cube([shell, lego_width(w), lego_height(h)]);
-    translate([lego_width(l)-shell, 0, 0]) 
-        cube([shell, lego_width(w), lego_height(h)]);
-    
-    cube([lego_width(l), shell, lego_height(h)]);
-    translate([0, lego_width(w)-shell, 0])
-        cube([lego_width(l), shell, lego_height(h)]);
-    
-    translate([0, 0, lego_height(h)-shell])
-        cube([lego_width(l), lego_width(w), shell]);
+module shell(l=l, w=w, h=h, shell=shell, top_shell=shell) {
+    difference() {
+        cube([lego_width(l), lego_width(w), lego_height(h)]);
+        
+        translate([shell, shell, -top_shell])
+            cube([lego_width(l)-2*shell, lego_width(w)-2*shell, lego_height(h)]);
+    }
 }
 
 
@@ -321,15 +309,22 @@ module socket_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height
 }
 
 
+// The circular bottom insert for attaching knobs
+module socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak) {
+    
+    cylinder(r=ring_radius+bottom_tweak, h=socket_height);
+}
+
+
 // Bottom connector- negative flexture space inside bottom rings for multiple blocks
-module socket_hole_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, skin=skin) {
+module socket_hole_set(l=l, w=w, radius=axle_hole_radius+axle_hole_tweak, length=block_height) {
     
     if (socket_height > 0) {
         if (l>1 && w>1) {
             for (i = [1:l-1]) {
                 for (j = [1:w-1]) {
                     translate([lego_width(i), lego_width(j), 0])
-                        socket_ring_inner_cylinder(ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak);
+                        rotation_hole(radius=radius, length=length);
                 }
             }
         }
@@ -337,16 +332,10 @@ module socket_hole_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_h
 }
 
 
-// The circular bottom insert for attaching knobs
-module socket_ring(ring_radius=ring_radius, bottom_tweak=bottom_tweak) {
-    cylinder(r=ring_radius+bottom_tweak, h=socket_height);
-}
-
-
-// The negative space inside the circular bottom insert for attaching knobs
-module socket_ring_inner_cylinder(ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak) {
-
-    rotation_hole(hole_type=1, length=socket_flexture_height, axle_hole_radius=axle_hole_radius, bearing_hole_tweak=bearing_hole_tweak);
+// Hole for an axle
+module rotation_hole(radius=axle_hole_radius+axle_hole_tweak, length=block_width) {
+    
+    cylinder(r=radius, h=length);
 }
 
 
@@ -385,13 +374,6 @@ module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge
                 cube([ridge_depth, lego_width(w), ridge_width]);
         }
     }
-}
-
-
-// Hole for a bearing
-module rotation_hole(length=block_width, axle_hole_radius=axle_hole_radius, bearing_hole_tweak=bearing_hole_tweak) {
-    
-    cylinder(r=axle_hole_radius+bearing_hole_tweak, h=length);
 }
 
 

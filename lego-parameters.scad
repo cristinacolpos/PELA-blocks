@@ -57,7 +57,7 @@ top_tweak = 0.08;
 bottom_tweak = -0.08;
 
 // Technic connector hole size tweak => + = more loose fit, +0.02 for PLA 0.6 nozzle
-bearing_hole_tweak = 0.08;
+axle_hole_tweak = 0.08;
 
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
 knob_bevel=0;
@@ -74,7 +74,7 @@ knob_slice_length_ratio=0.8;
 /* [LEGO Technics] */
 
 // Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>counterbore connector, 3=>counterbore connector with flexture notch, 4=>full width counterbore connector with flexture notch)
-side_holes = 0;  // [0:0, 1:1, 2:2, 3:3, 4:4]
+side_holes = 3;  // [0:0, 1:1, 2:2, 3:3, 4:4]
 
 // Add a sheath around side holes (turn off for extra ventilation or rotating shafts)
 side_hole_sheaths = 1; // [0:0, 1:1]
@@ -83,13 +83,13 @@ side_hole_sheaths = 1; // [0:0, 1:1]
 end_holes = 0;  // [0:0, 1:1, 2:2, 3:3]
 
 // Add a sheath around end holes (turn off for extra ventilation or rotating shafts)
-end_hole_sheaths = 0; // [0:0, 1:1]
+end_hole_sheaths = 1; // [0:0, 1:1]
 
 
 /* [Top Ventilation] */
 
 // Add holes in the top deck to improve airflow and reduce weight (0=>no holes, 1=>holes)
-top_vents = 1;
+top_vents = 0;
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_flexture_airhole_radius=0;
@@ -102,10 +102,10 @@ $fa=10;
 // Minimum segment length to approximate a circle
 $fs=0.3;
 
-// Basic unit horizonal size of LEGO
+// Basic unit horizontal size of LEGO
 block_width=8;
 
-// Basic unit vertial size of LEGO
+// Basic unit vertical size of LEGO
 block_height=9.6;
 
 // Minimum vertial size of standard LEGO
