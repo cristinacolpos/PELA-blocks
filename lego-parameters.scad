@@ -31,10 +31,10 @@ Import this into other design files to set baseline constants:
 mode=1; // [1:1, 2:2, 3:3, 4:4]
 
 // Length of the block (LEGO unit count)
-l = 4; 
+l = 2; 
 
 // Width of the block (LEGO unit count)
-w = 4;
+w = 2;
 
 // Height of the block (LEGO unit count)
 h = 1;
@@ -80,10 +80,10 @@ side_holes = 3;  // [0:0, 1:1, 2:2, 3:3]
 side_hole_sheaths = 1; // [0:0, 1:1]
 
 // Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
-end_holes = 0;  // [0:0, 1:1, 2:2]
+end_holes = 1;  // [0:0, 1:1, 2:2]
 
 // Add a sheath around end holes (turn off for extra ventilation or rotating shafts)
-end_hole_sheaths = 1; // [0:0, 1:1]
+end_hole_sheaths = 0; // [0:0, 1:1]
 
 
 /* [Top Ventilation] */

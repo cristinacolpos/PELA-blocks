@@ -221,7 +221,7 @@ module bar_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, b
     if (socket_height > 0) {
         bottom_stiffener_bar_set(start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, skin=skin);
                     
-        side_stiffener_bar_set(l=l, w=w, h=h, bock_shell=shell, side_stiffener_width=side_stiffener_width, side_stiffener_thickness=side_stiffener_thickness);
+        side_stiffener_bar_set(l=l, w=w, h=h, bottom_tweak=bottom_tweak, bock_shell=shell, side_stiffener_width=side_stiffener_width, side_stiffener_thickness=side_stiffener_thickness);
     }
 }
 
@@ -276,13 +276,13 @@ module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, b
 
 
 // Bars layed below (or above) a horizontal surface to make it stronger. Usually these are on the bottom, between the connecting rings
-module side_stiffener_bar_set(l=l, w=w, h=h, bock_shell=shell, side_stiffener_width=side_stiffener_width, side_stiffener_thickness=side_stiffener_thickness) {
+module side_stiffener_bar_set(l=l, w=w, h=h, bottom_tweak=bottom_tweak, bock_shell=shell, side_stiffener_width=side_stiffener_width, side_stiffener_thickness=side_stiffener_thickness) {
     
     if (l>1) {
         for (i = [1:l]) {
             // Front vertical stiffeners
             translate([lego_width(i-0.5)-side_stiffener_width/2, 0, 0])
-                cube([side_stiffener_width, shell+side_stiffener_thickness, lego_height(h)]);
+                cube([side_stiffener_width, shell+side_stiffener_thickness+bottom_tweak, lego_height(h)]);
 
             // Back vertical stiffeners
             translate([lego_width(i-0.5)-side_stiffener_width/2, lego_width(w)-side_stiffener_thickness-shell, 0])
