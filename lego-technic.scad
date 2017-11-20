@@ -65,11 +65,11 @@ if (mode==1) {
 /////////////////////////////////////
 
 // A LEGO block with optional side and top vent holes
-module lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth) {
+module lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, single_shell=single_shell, panel_shell=panel_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, axle_hole_tweak=axle_hole_tweak, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius) {
 
     difference() {
         union() {
-            lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, ridge_width=ridge_width, ridge_depth=ridge_depth);
+            lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, single_shell=single_shell, panel_shell=panel_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers);
             
             if (is_side_hole_sheaths(side_hole_sheaths=side_hole_sheaths, side_holes=side_holes)) {
                 side_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, peg_length=peg_length, block_width=block_width);
@@ -166,7 +166,7 @@ module end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axl
 }
 
 
-// The solid shell around a bearing hole
+// The solid cylinder around a bearing hole
 module technic_bearing_sheath(sheath_radius=bearing_sheath_thickness+axle_hole_radius+axle_hole_tweak, sheath_length=lego_width(0.5)) {
     
     cylinder(r=sheath_radius, h=sheath_length);
@@ -194,9 +194,10 @@ module side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle
 
 
 // A row of knob-size holes around the sides of row 1
-module end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width) {
+module end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, shell=shell, single_shell=single_shell) {
     
-    length= end_holes==1 ? shell : lego_width();
+    s = shell(l=l, w=w, shell=shell, single_shell=single_shell);
+    length= end_holes==1 ? s : lego_width();
     
     if (w==1) {
         if (l>1) {
