@@ -71,6 +71,9 @@ knob_slice_width=0.2;
 // Length of the slice the knob from inside towards the edge
 knob_slice_length_ratio=0.8;
 
+// Presence of bottom connector sockets
+sockets= 1; // [0:no sockets, 1:sockets]
+
 /* [LEGO Technics] */
 
 // Add full width through holes spaced along the length for LEGO Techics connectors
@@ -150,14 +153,11 @@ bottom_stiffener_width=3.1;
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=4.5;
 
-// Width of horizontal surface strengthening slats (usually between the bottom rings)
-side_stiffener_width=0.8;
+// Width of bottom knob connector flexture lock
+side_lock_width=1.2; //TODO Eliminate
 
 // Distance from inside walls which small stiffeners protrude inwards
-side_stiffener_thickness=0.25;
-
-// Depth which connectors may press into part bottom
-socket_height= 8.6;
+side_lock_thickness=0.1;
 
 // Depth which the inside of connectors are hollowed out
 socket_flexture_height= 7.4;
