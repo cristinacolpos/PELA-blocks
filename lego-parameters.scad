@@ -42,7 +42,7 @@ h = 1;
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:no holes, 1:holes]
 
-// Size of corner holes for mountings screws
+// Size of corner holes for M3 mountings bolts
 bolt_hole_radius=1.5;
 
 // Interior fill for layers above the bottom
@@ -51,13 +51,13 @@ solid_upper_layers = 0; // [0:empty, 1:solid]
 /* [3D Printing Adjustments] */
 
 // Top connector size tweak => + = more tight fit, 0.06 for PLA 0.4nozzle, 0.04 for PLA 0.6nozzle, 0 for ABS, 0.07 for NGEN
-top_tweak = 0.08;
+top_tweak = 0.03;
 
 // Bottom connector size tweak => + = more tight fit, -0.02 for PLA 0.4nozzle, -0.04 for PLA 0.06nozzle, 0 for ABS, -0.01 NGEN
-bottom_tweak = -0.08;
+bottom_tweak = 0;
 
 // Technic connector hole size tweak => + = more loose fit, +0.02 for PLA 0.6 nozzle
-axle_hole_tweak = 0.08;
+axle_hole_tweak = 0;
 
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
 knob_bevel=0;
@@ -73,23 +73,23 @@ knob_slice_length_ratio=0.8;
 
 /* [LEGO Technics] */
 
-// Add full width through holes spaced along the length for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>full width counterbore connector with flexture notch, 3=>short counterbore connector with flexture notch)
-side_holes = 3;  // [0:0, 1:1, 2:2, 3:3]
+// Add full width through holes spaced along the length for LEGO Techics connectors
+side_holes = 3;  // [0:no holes, 1:simple air vents, 2:full width connector, 3:short connector]
 
-// Add a sheath around side holes (turn off for extra ventilation or rotating shafts)
-side_hole_sheaths = 1; // [0:0, 1:1]
+// Add a sheath around side holes (disable for extra ventilation or rotating shafts, enable for connectors)
+side_hole_sheaths = 1; // [0:disabled, 1:enabled]
 
-// Add short end holes spaced along the width for LEGO Techics connectors (0=>no holes, 1=>simple air vents, 2=>technics connector)
-end_holes = 0;  // [0:0, 1:1, 2:2]
+// Add short end holes spaced along the width for LEGO Techics connectors
+end_holes = 0;  // [0:no, 1:simple air vents, 2:short connector]
 
-// Add a sheath around end holes (turn off for extra ventilation or rotating shafts)
-end_hole_sheaths = 0; // [0:0, 1:1]
+// Add a sheath around end holes (turn off for extra ventilation)
+end_hole_sheaths = 0; // [0:disabled, 1:enabled]
 
 
 /* [Top Ventilation] */
 
-// Add holes in the top deck to improve airflow and reduce weight (0=>no holes, 1=>holes)
-top_vents = 0;
+// Add holes in the top deck to improve airflow and reduce weight
+top_vents = 0; // [0:disabled, 1:enabled]
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_flexture_airhole_radius=0;
@@ -108,11 +108,17 @@ block_width=8;
 // Basic unit vertical size of LEGO
 block_height=9.6;
 
-// Minimum vertial size of standard LEGO
-panel_height=block_height/3;
-
 // Thickness of the solid outside surface of LEGO
-shell=1.6; // thickness
+shell=1.2;
+
+// Thickness of the solid outside surface of LEGO when width or length is 1
+single_shell=1.5;
+
+// Thickness of the solid outside surface of LEGO when height is 1/3 normal block height
+panel_shell=1.55;
+
+// Thickness of the solid top surface of LEGO
+top_shell=1.2;
 
 // Clearance space around the outer surface of bricks
 skin = 0.1; 
@@ -127,19 +133,19 @@ ridge_depth = 0.3;
 knob_top_thickness=0.8;
 
 // Size of the connectors
-knob_radius=2.4;
+knob_radius=2.45;
 
-// Height of the connectors (1.8 is Lego standard, 2.4 gives a stronger hold while still maintaining compatibility)
-knob_height=2.4;
+// Height of the connectors (1.8 is Lego standard, 2.2 gives a stronger hold while still maintaining most compatibility)
+knob_height=1.8;
 
 // Size of the small flexture cavity inside each knob
 knob_flexture_radius=1.5;
 
 // Height of the hole beneath each knob
-knob_flexture_height=4.55;
+knob_flexture_height=4.5;
 
 // Width of horizontal surface strengthening slats between the bottom rings
-bottom_stiffener_width=3.8;
+bottom_stiffener_width=3.1;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=4.5;
@@ -148,7 +154,7 @@ bottom_stiffener_height=4.5;
 side_stiffener_width=0.8;
 
 // Distance from inside walls which small stiffeners protrude inwards
-side_stiffener_thickness=0.2;
+side_stiffener_thickness=0.25;
 
 // Depth which connectors may press into part bottom
 socket_height= 8.6;

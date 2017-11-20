@@ -68,15 +68,23 @@ function lego_width(i=1, block_width=block_width) = i*block_width;
 // Vertical size
 function lego_height(h=1, block_height=block_height) = h*block_height;
 
+// Outside shell thicness
+function shell(l=l, w=w, panel=false, shell=shell, single_shell=single_shell, panel_shell=panel_shell) = is_true(panel) ? panel_shell : (l==1 || w==1) ? single_shell : shell;
+
 // Convert online Customizer-and-command-line-friendly integers into booleans
 function is_true(t) = t != 0;
 
 // Test if this is a corner block
 function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 
+// Indicates a solid cylinder around side hole connectors
 function is_side_hole_sheaths(side_hole_sheaths=side_hole_sheaths, side_holes=side_holes) = is_true(side_hole_sheaths) && is_true(side_holes);
 
+// Indicates a solid cylinder around end hole connectors
 function is_end_hole_sheaths(end_hole_sheaths=end_hole_sheaths, end_holes=end_holes) = end_holes>1 && is_true(end_hole_sheaths);
+
+// Thickness of a flat panel
+function panel_height(block_height=block_height) = block_height/3;
 
 /////////////////////////////////////
 // MODULES
@@ -85,11 +93,11 @@ function is_end_hole_sheaths(end_hole_sheaths=end_hole_sheaths, end_holes=end_ho
 
 
 // A LEGO block
-module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers) {
+module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, socket_height=socket_height, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, single_shell=single_shell, panel_shell=panel_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers) {
     
     difference() {
         union() {
-            shell(l=l, w=w, h=h, shell=shell);
+            outer_shell(l=l, w=w, h=h, shell=shell, single_shell=single_shell, panel_shell=panel_shell, top_shell=top_shell, panel=panel);
 
             top_knob_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, bolt_holes=bolt_holes);
                 
@@ -98,7 +106,7 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
             socket_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_stiffener_thickness=side_stiffener_thickness, skin=skin);
             
             if (is_true(bolt_holes)) {
-                corner_bolt_hole_supports(l=l, w=w, h=h);
+                corner_bolt_hole_supports(l=l, w=w, h=h, top_shell=top_shell);
             }
             
             if (h>1 && is_true(solid_upper_layers)) {
@@ -111,7 +119,8 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
             
             knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, bolt_holes=bolt_holes);
                 
-            length = is_true(end_holes) || is_true(side_holes) ? lego_height(h)-lego_width(0.5) : lego_height(h)-shell;
+            length = is_true(end_holes) || is_true(side_holes) ? lego_height(h)-lego_width(0.5) : lego_height(h)-top_shell;
+            
             socket_hole_set(l=l, w=w, radius=axle_hole_radius+axle_hole_tweak, length=length);
             
             if (is_true(bolt_holes)) {
@@ -119,6 +128,9 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, knob_
             }
         }
     }
+    
+    %translate([0, 0, -block_height])
+        top_knob_set(l=l, w=w, h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, bolt_holes=bolt_holes);
 }
 
 
@@ -205,23 +217,28 @@ module knob_flexture(h=h, top_tweak=top_tweak, knob_radius=knob_radius, knob_hei
 
 
 // That solid outer skin of a block set
-module shell(l=l, w=w, h=h, shell=shell, top_shell=shell) {
+module outer_shell(l=l, w=w, h=h, shell=shell, single_shell=single_shell, panel_shell=panel_shell, top_shell=shell, panel=false) {
+    
+    s = shell(l=l, w=w, panel=false, shell=shell, single_shell=single_shell, panel_shell=panel_shell);
+    
     difference() {
         cube([lego_width(l), lego_width(w), lego_height(h)]);
         
-        translate([shell, shell, -top_shell])
-            cube([lego_width(l)-2*shell, lego_width(w)-2*shell, lego_height(h)]);
+        translate([s, s, -top_shell])
+            cube([lego_width(l)-2*s, lego_width(w)-2*s, lego_height(h)]);
     }
 }
 
 
 // Bottom connector rings positive space for multiple blocks
-module bar_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, skin=skin) {
+module bar_set(l=l, w=w, ring_radius=ring_radius, socket_height=socket_height, bottom_tweak=bottom_tweak, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, shell=shell, single_shell=single_shell, panel_shell=panel_shell, top_shell=top_shell, panel=false, skin=skin) {
     
     if (socket_height > 0) {
         bottom_stiffener_bar_set(start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, skin=skin);
                     
-        side_stiffener_bar_set(l=l, w=w, h=h, bottom_tweak=bottom_tweak, bock_shell=shell, side_stiffener_width=side_stiffener_width, side_stiffener_thickness=side_stiffener_thickness);
+        if (!panel) {
+            side_stiffener_bar_set(l=l, w=w, h=h, bottom_tweak=bottom_tweak, shell=shell, single_shell=single_shell, side_stiffener_width=side_stiffener_width, side_stiffener_thickness=side_stiffener_thickness);
+        }
     }
 }
 
@@ -276,17 +293,19 @@ module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, b
 
 
 // Bars layed below (or above) a horizontal surface to make it stronger. Usually these are on the bottom, between the connecting rings
-module side_stiffener_bar_set(l=l, w=w, h=h, bottom_tweak=bottom_tweak, bock_shell=shell, side_stiffener_width=side_stiffener_width, side_stiffener_thickness=side_stiffener_thickness) {
+module side_stiffener_bar_set(l=l, w=w, h=h, bottom_tweak=bottom_tweak, shell=shell, single_shell=single_shell, side_stiffener_width=side_stiffener_width, side_stiffener_thickness=side_stiffener_thickness) {
+    
+    s = shell(l=l, w=w, shell=shell, single_shell=single_shell);
     
     if (l>1) {
         for (i = [1:l]) {
             // Front vertical stiffeners
             translate([lego_width(i-0.5)-side_stiffener_width/2, 0, 0])
-                cube([side_stiffener_width, shell+side_stiffener_thickness+bottom_tweak, lego_height(h)]);
+                cube([side_stiffener_width, s+side_stiffener_thickness+bottom_tweak, lego_height(h)]);
 
             // Back vertical stiffeners
-            translate([lego_width(i-0.5)-side_stiffener_width/2, lego_width(w)-side_stiffener_thickness-shell, 0])
-                cube([side_stiffener_width, shell+side_stiffener_thickness, lego_height(h)]);
+            translate([lego_width(i-0.5)-side_stiffener_width/2, lego_width(w)-side_stiffener_thickness-s, 0])
+                cube([side_stiffener_width, s+side_stiffener_thickness, lego_height(h)]);
         }
     }
 
@@ -294,11 +313,11 @@ module side_stiffener_bar_set(l=l, w=w, h=h, bottom_tweak=bottom_tweak, bock_she
         for (j = [1:w]) {
             // Left vertical stiffeners
             translate([0, lego_width(j-0.5)-side_stiffener_width/2, 0])
-                cube([shell+side_stiffener_thickness, side_stiffener_width, lego_height(h)]);
+                cube([s+side_stiffener_thickness, side_stiffener_width, lego_height(h)]);
             
             // Right vertical stiffeners
-            translate([lego_width(l)-side_stiffener_thickness-shell, lego_width(j-0.5)-side_stiffener_width/2, 0])
-                cube([shell+side_stiffener_thickness, side_stiffener_width, lego_height(h)]);
+            translate([lego_width(l)-side_stiffener_thickness-s, lego_width(j-0.5)-side_stiffener_width/2, 0])
+                cube([s+side_stiffener_thickness, side_stiffener_width, lego_height(h)]);
         }
     }    
 }
@@ -403,16 +422,17 @@ module bolt_hole(x=1, y=1, r=bolt_hole_radius, h=h) {
 
 
 // Mounting hole support blocks
-module corner_bolt_hole_supports(l=l, w=w, h=h) {
-    bolt_hole_support(x=1, y=1, h=h);
-    bolt_hole_support(x=1, y=w, h=h);
-    bolt_hole_support(x=l, y=1, h=h);
-    bolt_hole_support(x=l, y=w, h=h);
+module corner_bolt_hole_supports(l=l, w=w, h=h, top_shell=top_shell) {
+    bolt_hole_support(x=1, y=1, h=h, top_shell=top_shell);
+    bolt_hole_support(x=1, y=w, h=h, top_shell=top_shell);
+    bolt_hole_support(x=l, y=1, h=h, top_shell=top_shell);
+    bolt_hole_support(x=l, y=w, h=h, top_shell=top_shell);
 }
 
 
-module bolt_hole_support(x=1, y=1, h=h) {
-    depth = shell+bottom_stiffener_height;
+module bolt_hole_support(x=1, y=1, h=h, top_shell=top_shell) {
+    
+    depth = top_shell+bottom_stiffener_height;
     
     translate([lego_width(x-1), lego_width(y-1), lego_height(h)-depth])
         cube([lego_width(), lego_width(), depth]);
