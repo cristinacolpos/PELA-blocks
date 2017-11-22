@@ -92,7 +92,7 @@ end_hole_sheaths = 0; // [0:disabled, 1:enabled]
 /* [Top Ventilation] */
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = 0; // [0:disabled, 1:enabled]
+top_vents = 1; // [0:disabled, 1:enabled]
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_flexture_airhole_radius=0;
