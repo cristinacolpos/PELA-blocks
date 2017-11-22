@@ -31,13 +31,13 @@ Import this into other design files to set baseline constants:
 mode=1; // [1:1, 2:2, 3:3, 4:4]
 
 // Length of the block (LEGO unit count)
-l = 2; 
+l = 4; 
 
 // Width of the block (LEGO unit count)
 w = 2;
 
 // Height of the block (LEGO unit count)
-h = 1;
+h = 2;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:no holes, 1:holes]
@@ -50,13 +50,13 @@ solid_upper_layers = 0; // [0:empty, 1:solid]
 
 /* [3D Printing Adjustments] */
 
-// Top connector size tweak => + = more tight fit, 0.06 for PLA 0.4nozzle, 0.04 for PLA 0.6nozzle, 0 for ABS, 0.07 for NGEN
-top_tweak = 0.03;
+// Top connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
+top_tweak = 0;
 
-// Bottom connector size tweak => + = more tight fit, -0.02 for PLA 0.4nozzle, -0.04 for PLA 0.06nozzle, 0 for ABS, -0.01 NGEN
+// Bottom connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
 bottom_tweak = 0;
 
-// Technic connector hole size tweak => + = more loose fit, +0.02 for PLA 0.6 nozzle
+// Technic connector hole size tweak => + = more loose fit, 0 for PLA with 0.6mm nozzle
 axle_hole_tweak = 0;
 
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
@@ -114,14 +114,11 @@ block_height=9.6;
 // Thickness of the solid outside surface of LEGO
 shell=1.2;
 
-// Thickness of the solid outside surface of LEGO when width or length is 1
-single_shell=1.5;
-
 // Thickness of the solid outside surface of LEGO when height is 1/3 normal block height
 panel_shell=1.55;
 
 // Thickness of the solid top surface of LEGO
-top_shell=1.2;
+top_shell=1.4;
 
 // Clearance space around the outer surface of bricks
 skin = 0.1; 
@@ -135,8 +132,8 @@ ridge_depth = 0.3;
 // Distance below knob top surface and the internal cutout
 knob_top_thickness=0.8;
 
-// Size of the connectors
-knob_radius=2.45;
+// Size of the connectors (calibrated for PLA, change 'top_tweak' to adjust)
+knob_radius=2.45+0.06;
 
 // Height of the connectors (1.8 is Lego standard, 2.2 gives a stronger hold while still maintaining most compatibility)
 knob_height=1.8;
@@ -153,11 +150,11 @@ bottom_stiffener_width=3.1;
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=4.5;
 
-// Width of bottom knob connector flexture lock
-side_lock_width=1.2; //TODO Eliminate
+// Distance from outside edge and rings which small stiffeners protrude inwards
+side_lock_thickness=0.05;
 
-// Distance from inside walls which small stiffeners protrude inwards
-side_lock_thickness=0.1;
+// Additional distance from outside edge which small stiffeners protrude inwards
+outside_lock_thickness=1.6;
 
 // Depth which the inside of connectors are hollowed out
 socket_flexture_height= 7.4;
