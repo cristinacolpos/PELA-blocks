@@ -194,10 +194,9 @@ module side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle
 
 
 // A row of knob-size holes around the sides of row 1
-module end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, shell=shell, single_shell=single_shell) {
+module end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, shell=shell) {
     
-    s = shell(l=l, w=w, shell=shell, single_shell=single_shell);
-    length= end_holes==1 ? s : lego_width();
+    length= end_holes==1 ? shell : lego_width();
     
     if (w==1) {
         if (l>1) {
