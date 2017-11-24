@@ -34,10 +34,10 @@ mode=1; // [1:1, 2:2, 3:3, 4:4]
 l = 4; 
 
 // Width of the block (LEGO unit count)
-w = 2;
+w = 4;
 
 // Height of the block (LEGO unit count)
-h = 2;
+h = 1;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:no holes, 1:holes]
@@ -83,16 +83,16 @@ side_holes = 3;  // [0:no holes, 1:simple air vents, 2:full width connector, 3:s
 side_hole_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for LEGO Techics connectors
-end_holes = 0;  // [0:no, 1:simple air vents, 2:short connector]
+end_holes = 2;  // [0:no, 1:simple air vents, 2:short connector]
 
 // Add a sheath around end holes (turn off for extra ventilation)
-end_hole_sheaths = 0; // [0:disabled, 1:enabled]
+end_hole_sheaths = 1; // [0:disabled, 1:enabled]
 
 
 /* [Top Ventilation] */
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = 0; // [0:disabled, 1:enabled]
+top_vents = 1; // [0:disabled, 1:enabled]
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_flexture_airhole_radius=0;
@@ -147,11 +147,11 @@ bottom_stiffener_width=3.1;
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=4;
 
-// Distance from outside edge and rings which small stiffeners protrude inwards
-side_lock_thickness=0.05;
-
-// Additional distance from outside edge which small stiffeners protrude inwards
+// Base distance which small stiffeners protrude inwards from outside edge
 outside_lock_thickness=1.6;
+
+// Distance from outside lock and connector rings which small flexture-fit rims protrude inwards
+side_lock_thickness=0.07;
 
 // Depth which the inside of connectors are hollowed out
 socket_flexture_height= 7.4;
@@ -162,7 +162,7 @@ ring_radius=3.25;
 /* [Advanced LEGO Technic Options] */
 
 // Technic connector hole
-axle_hole_radius = 2.45;
+axle_hole_radius = 2.47;
 
 // Technic connector inset radius
 counterbore_inset_radius = 3.1;
