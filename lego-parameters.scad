@@ -34,7 +34,7 @@ mode=1; // [1:1, 2:2, 3:3, 4:4]
 l = 4; 
 
 // Width of the block (LEGO unit count)
-w = 2;
+w = 4;
 
 // Height of the block (LEGO unit count)
 h = 1;
