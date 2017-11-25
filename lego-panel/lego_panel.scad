@@ -25,10 +25,12 @@ Import this into other design files:
     use <lego.scad>
 */
 
-include <../lego_parameters.scad>
+include <../lego-parameters.scad>
 use <../lego.scad>
+use <../lego-technic.scad>
 
 /* [LEGO Panel Options] */
+top_vents = 1;
 
 // LEGO panel thickness (flat panel with optional screw holes in corners for permanent mounting)
 panel_thickness=lego_height()/3;
@@ -40,11 +42,17 @@ flat_bottom = 0;
 // LEGO panel display
 /////////////////////////////////////
 
-if (flat_bottom == 1) {
-    lego_knob_panel(socket_height=0);
-} else {
-    lego_knob_panel(); 
+difference() {
+    lego_technic(l,w,1);
+    
+    cube([lego_width(l), lego_width(w), lego_height(0.6666666667)]);
 }
+
+//if (flat_bottom == 1) {
+//    lego_knob_panel(socket_height=0);
+//} else {
+//    lego_knob_panel(); 
+//}
 
 /////////////////////////////////////
 // LEGO PANEL modules

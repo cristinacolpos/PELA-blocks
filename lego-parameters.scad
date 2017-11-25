@@ -31,10 +31,10 @@ Import this into other design files to set baseline constants:
 mode=1; // [1:1, 2:2, 3:3, 4:4]
 
 // Length of the block (LEGO unit count)
-l = 4; 
+l = 8; 
 
 // Width of the block (LEGO unit count)
-w = 4;
+w = 2;
 
 // Height of the block (LEGO unit count)
 h = 1;
@@ -54,7 +54,7 @@ solid_upper_layers = 0; // [0:empty, 1:solid]
 top_tweak = 0;
 
 // Bottom connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
-bottom_tweak = 0;
+bottom_tweak = -0.02;
 
 // Technic connector hole size tweak => + = more loose fit, 0 for PLA with 0.6mm nozzle
 axle_hole_tweak = 0;
@@ -77,13 +77,13 @@ sockets= 1; // [0:no sockets, 1:sockets]
 /* [LEGO Technics] */
 
 // Add full width through holes spaced along the length for LEGO Techics connectors
-side_holes = 3;  // [0:no holes, 1:simple air vents, 2:full width connector, 3:short connector]
+side_holes = 0;  // [0:no holes, 1:simple air vents, 2:full width connector, 3:short connector]
 
 // Add a sheath around side holes (disable for extra ventilation or rotating shafts, enable for connectors)
-side_hole_sheaths = 1; // [0:disabled, 1:enabled]
+side_hole_sheaths = 0; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for LEGO Techics connectors
-end_holes = 2;  // [0:no, 1:simple air vents, 2:short connector]
+end_holes = 0;  // [0:no, 1:simple air vents, 2:short connector]
 
 // Add a sheath around end holes (turn off for extra ventilation)
 end_hole_sheaths = 1; // [0:disabled, 1:enabled]
@@ -151,7 +151,7 @@ bottom_stiffener_height=4;
 outside_lock_thickness=1.6;
 
 // Distance from outside lock and connector rings which small flexture-fit rims protrude inwards
-side_lock_thickness=0.07;
+side_lock_thickness=0; // 0.07
 
 // Depth which the inside of connectors are hollowed out
 socket_flexture_height= 7.4;
