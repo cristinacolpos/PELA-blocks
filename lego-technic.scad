@@ -259,10 +259,6 @@ module end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_
             translate([0, lego_width(i), lego_height(1)-lego_width(0.5)]) {
                 rotate([0, 90, 0])
                     axle_hole(hole_type=end_holes, radius=axle_hole_radius+axle_hole_tweak, length=length);
-                
-//                translate([lego_width(l), 0, 0])
-//                    rotate([0, -90, 0])
-//                        axle_hole(hole_type=end_holes, radius=axle_hole_radius+axle_hole_tweak, length=length);
             }
         }
     }
@@ -277,24 +273,18 @@ module axle_hole(hole_type=side_holes, radius=axle_hole_radius+axle_hole_tweak, 
     if (hole_type>1) {
         counterbore_inset(counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius, axle_hole_tweak=axle_hole_tweak);
 
-        if (hole_type==2) {
-            translate([0, 0, length-counterbore_inset_depth])
-                counterbore_inset(counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius, axle_hole_tweak=axle_hole_tweak);
-        }
+//        if (hole_type==2) {
+//            translate([0, 0, length-counterbore_inset_depth])
+//                counterbore_inset(counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius, axle_hole_tweak=axle_hole_tweak);
+//        }
     
-        if (hole_type>1) {
+//        if (hole_type>1) {
             depth=2*(lego_width()-peg_length-counterbore_inset_depth);
             inset_radius=counterbore_inset_radius-bearing_sheath_thickness/2;
             
             translate([0, 0, counterbore_inset_depth+peg_length])
                 counterbore_inset(counterbore_inset_depth=depth, counterbore_inset_radius=inset_radius, axle_hole_tweak=axle_hole_tweak);
-
-//            if (hole_type==2) {
-//                translate([0, 0, length-counterbore_inset_depth-peg_length])
-//                    rotate([180, 0, 0])
-//                        counterbore_inset(counterbore_inset_depth=depth, counterbore_inset_radius=inset_radius, axle_hole_tweak=axle_hole_tweak);
-//            }
-        }
+//        }
     }
 }
 
@@ -302,6 +292,8 @@ module axle_hole(hole_type=side_holes, radius=axle_hole_radius+axle_hole_tweak, 
 // The connector inset for a Technic side connector
 module counterbore_inset(counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius, axle_hole_tweak=axle_hole_tweak) {
     
-    cylinder(r=counterbore_inset_radius+axle_hole_tweak, h=counterbore_inset_depth);
+    tweak=0.01;
+    translate([0, 0, -tweak])
+        cylinder(r=counterbore_inset_radius+axle_hole_tweak, h=counterbore_inset_depth+tweak);
 }
 
