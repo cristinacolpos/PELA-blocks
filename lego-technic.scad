@@ -83,6 +83,7 @@ module lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_twea
         union() {
             if (is_true(side_holes) || is_true(end_holes)) {
                 length = is_true(top_vents) ? lego_height(h+1) : lego_height(h)-lego_width(0.5);
+                
                 socket_hole_set(l=l, w=w, radius=axle_hole_radius+axle_hole_tweak, length=length);
             }
             
