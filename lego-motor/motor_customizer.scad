@@ -23,11 +23,13 @@ top_vents(0);
 
 /* [Motor Options] */
 motor_radius=6.1;
-motor_round_length=17;
+motor_round_length=15.5;
 motor_square_length=9.5;
-motor_shaft_radius=2;
+motor_shaft_radius=1.9;
 motor_shaft_length=9.4;
-motor_width=10.2;
+motor_width=10+2*skin;
+electric_radius=4.5;
+electric_length=20;
 
 l=4;
 w=2;
@@ -38,17 +40,43 @@ top_snap=0.2;
 
 solid_upper_layers=1;
 
-lego_with_top_slot();
+lego_motor_bottom();
 
-module lego_with_top_slot() {
+lego_motor_top();
+
+module lego_motor_bottom() {
     difference() {
-        lego_technic(l, w, h);
+        lego_technic(l, w, h, knob_flexture_radius=0);
         
-        translate([(lego_width(l)-motor_round_length-motor_square_length)/2, (lego_width(w)-motor_width)/2, lego_height(h)-2*motor_radius])
-        motor_slot();
+#        union() {
+        translate([(lego_width(l)-motor_round_length-motor_square_length)/2, (lego_width(w)-motor_width)/2, lego_height(h)-motor_radius-lego_width(0.5)]) {
+            motor_slot();
+            shaft_slot();
+            electric_slot();
+        }
+        
+        translate([0, 0, lego_height(h-1)])
+            side_connector_hole_set();
+        }
     }
 }
 
+
+module lego_motor_top() {
+    translate([0, lego_width(2.5), lego_height(-0.666667)]) {
+        difference() {
+            lego_technic(l,w,1,side_holes=0);
+    
+    #        union() {
+                cube([lego_width(l), lego_width(w), lego_height(0.6666666667)]);
+            
+                translate([(lego_width(l)-motor_round_length-motor_square_length)/2, (lego_width(w)-motor_radius*2)/2, lego_height(0.6666666667)-motor_radius-lego_width(0.5)]) {
+                    motor();
+                }
+            }
+        }
+    }
+}
 
 module motor() {
     intersection() {
@@ -63,12 +91,22 @@ module motor() {
         
         translate([0, (2*motor_radius-motor_width)/2], 0)
             cube([motor_round_length+motor_square_length, motor_width, motor_radius*2]);
-    }
+    }    
     
-    
+    motor_shaft();
+}
+
+
+module motor_shaft() {
     translate([0, motor_radius, motor_radius])
         rotate([0, 90, 0])
             cylinder(r=motor_shaft_radius, h=motor_round_length+motor_square_length+motor_shaft_length);
+}
+
+module electric_cutout() {
+    translate([0, motor_radius, motor_radius])
+        rotate([0, -90, 0])
+            cylinder(r=electric_radius, h=electric_length);    
 }
 
 module motor_slot() {
@@ -77,7 +115,24 @@ module motor_slot() {
 
     translate([0, 0, motor_radius])
         cube([motor_square_length+motor_round_length, motor_width, motor_radius]);    
+}
 
-    translate([top_snap, top_snap, 2*motor_radius])
-        cube([motor_square_length+motor_round_length-2*top_snap, motor_width-2*top_snap, motor_radius]);    
+module shaft_slot() {
+    hull() {
+        translate([0, -(2*motor_radius-motor_width)/2, 0])
+            motor_shaft();
+
+        translate([0, -(2*motor_radius-motor_width)/2, lego_height()])
+            motor_shaft();
+    }    
+}
+
+module electric_slot() {
+    hull() {
+        translate([0, -(2*motor_radius-motor_width)/2, 0])
+            electric_cutout();
+
+        translate([0, -(2*motor_radius-motor_width)/2, lego_height()])
+            electric_cutout();
+    }    
 }
