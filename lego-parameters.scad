@@ -34,7 +34,7 @@ mode=1; // [1:1, 2:2, 3:3, 4:4]
 l = 4; 
 
 // Width of the block (LEGO unit count)
-w = 4;
+w = 5;
 
 // Height of the block (LEGO unit count)
 h = 1;
@@ -60,7 +60,7 @@ bottom_tweak = -0.02;
 axle_hole_tweak = 0;
 
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
-knob_bevel=0;
+knob_bevel=0.15;
 
 // Number of flexure cuts across the inside of each knob
 knob_slice_count=0;
@@ -77,13 +77,13 @@ sockets= 1; // [0:no sockets, 1:sockets]
 /* [LEGO Technics] */
 
 // Add full width through holes spaced along the length for LEGO Techics connectors
-side_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for LEGO Techics connectors
-end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]
@@ -168,7 +168,7 @@ counterbore_inset_radius = 3.1;
 counterbore_inset_depth = 0.8;
 
 // Contact length of axle to brick (not including inset length and end snap fit flexture in pin connectors)
-peg_length = 6.15;
+peg_length = 6.5;
 
 // Size of an cylinder wrapped around the entrance to bearing holes
 bearing_sheath_thickness = 0.6;

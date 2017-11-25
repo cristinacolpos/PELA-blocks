@@ -96,17 +96,11 @@ module lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_twea
             }
             
             if (is_true(side_holes)) {
-                double_side_connector_hole_set(l=l, w=w, side_holes=side_holes, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width);
-                
-//                if (side_holes==3) {
-//                    translate([lego_width(l), lego_width(w), 0])
-//                        rotate([0, 0, 180])
-//                            side_connector_hole_set(l=l, w=w, side_holes=side_holes, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width);
-//                }
+                double_side_connector_hole_set(l=l, w=w, side_holes=side_holes, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, hole_type=side_holes);
             }
             
             if (is_true(end_holes)) {
-                double_end_connector_hole_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width);
+                double_end_connector_hole_set(l=l, w=w, top_tweak=top_tweak, knob_radius=knob_radius, block_width=block_width, hole_type=end_holes);
             }
             
             if (is_true(bolt_holes)) {
@@ -138,21 +132,11 @@ module side_connector_sheath_set(l=l, w=w, side_holes=side_holes, axle_hole_radi
     if (l==1) {
         translate([lego_width(0.5), 0, lego_height(1)-lego_width(0.5)])
             rotate([-90, 0, 0])
-                sheath(sheath_radius=sheath_radius, sheath_length=sheath_length);        
-
-//        translate([lego_width(0.5), lego_width(1), lego_height(1)-lego_width(0.5)])
-//            rotate([90, 0, 0])
-//                sheath(sheath_radius=sheath_radius, sheath_length=sheath_length);
-        
-    } else {
+                sheath(sheath_radius=sheath_radius, sheath_length=sheath_length);    } else {
         for (i = [1:l-1]) {
             translate([lego_width(i), 0, lego_height(1)-lego_width(0.5)])
                 rotate([-90, 0, 0])
                     sheath(sheath_radius=sheath_radius, sheath_length=sheath_length);
-
-//            translate([lego_width(i), lego_width(w), lego_height(1)-lego_width(0.5)])
-//                rotate([90, 0, 0])
-//                    sheath(sheath_radius=sheath_radius, sheath_length=sheath_length);
         }
     }
 }
@@ -178,21 +162,11 @@ module end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axl
         translate([0, lego_width(0.5), lego_height(1)-lego_width(0.5)])
             rotate([-90, 0, 0])
                 sheath(sheath_radius=sheath_radius, sheath_length=peg_length);
-        
-//        translate([lego_width(l), lego_width(0.5), lego_height(1)-lego_width(0.5)])
-//            rotate([90, 0, 0])
-//                sheath(sheath_radius=sheath_radius, sheath_length=sheath_length);
-
     } else {
         for (j = [1:w-1]) {
             translate([0, lego_width(j), lego_height(1)-lego_width(0.5)])
                 rotate([0, 90, 0])
                     sheath(sheath_radius=sheath_radius, sheath_length=sheath_length);
-
-//            translate([lego_width(l), lego_width(j), lego_height(1)-lego_width(0.5)])
-//                rotate([0, -90, 0])
-//                    sheath(sheath_radius=sheath_radius, sheath_length=sheath_length);
-
         }
     }
 }
@@ -204,36 +178,43 @@ module sheath(sheath_radius=bearing_sheath_thickness+axle_hole_radius+axle_hole_
     cylinder(r=sheath_radius, h=sheath_length);
 }
 
+module double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, hole_type=end_holes) {
+ 
+    translate([lego_width(l), 0, 0])
+        rotate([0, 0, 90])
+            double_side_connector_hole_set(l=w, w=l, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, hole_type=hole_type);
+}
 
-module double_side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width) {
+module double_side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, hole_type=side_holes) {
     
-    side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width);
+    side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, hole_type=hole_type);
     
     translate([lego_width(l), lego_width(w)])
         rotate([0, 0, 180])
-            side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width);
+            side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, hole_type=hole_type);
 }
 
 
 // A row of knob-size holes around the sides of row 1
-module side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width) {
+module side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, hole_type=side_holes) {
     
     length = side_holes==3 ? lego_width() : lego_width(w);
 
     if (l==1) {
         translate([lego_width(0.5), 0, lego_height()-lego_width(0.5)])
             rotate([-90, 0, 0])
-                axle_hole(hole_type=side_holes, length=length, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak);
+                axle_hole(hole_type=hole_type, length=length, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak);
         
     } else {
         for (i = [1:l-1]) {
             translate([lego_width(i), 0, lego_height()-lego_width(0.5)])
                 rotate([-90, 0, 0])
-                    axle_hole(hole_type=side_holes, length=length,  axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak);
+                    axle_hole(hole_type=hole_type, length=length,  axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak);
         }
     }
 }
 
+/*
 module double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, shell=shell) {
 
     end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_hole_tweak=axle_hole_tweak, block_width=block_width, shell=shell);
@@ -263,7 +244,7 @@ module end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, axle_
         }
     }
 }
-
+*/
 
 // The rotation and connector hole for a Technic connector
 module axle_hole(hole_type=side_holes, radius=axle_hole_radius+axle_hole_tweak, length=block_width) {
@@ -273,18 +254,11 @@ module axle_hole(hole_type=side_holes, radius=axle_hole_radius+axle_hole_tweak, 
     if (hole_type>1) {
         counterbore_inset(counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius, axle_hole_tweak=axle_hole_tweak);
 
-//        if (hole_type==2) {
-//            translate([0, 0, length-counterbore_inset_depth])
-//                counterbore_inset(counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius, axle_hole_tweak=axle_hole_tweak);
-//        }
-    
-//        if (hole_type>1) {
-            depth=2*(lego_width()-peg_length-counterbore_inset_depth);
-            inset_radius=counterbore_inset_radius-bearing_sheath_thickness/2;
+        depth=2*(lego_width()-peg_length-counterbore_inset_depth);
+        inset_radius=counterbore_inset_radius-bearing_sheath_thickness/2;
             
-            translate([0, 0, counterbore_inset_depth+peg_length])
-                counterbore_inset(counterbore_inset_depth=depth, counterbore_inset_radius=inset_radius, axle_hole_tweak=axle_hole_tweak);
-//        }
+        translate([0, 0, counterbore_inset_depth+peg_length])
+            counterbore_inset(counterbore_inset_depth=depth, counterbore_inset_radius=inset_radius, axle_hole_tweak=axle_hole_tweak);
     }
 }
 
