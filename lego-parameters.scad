@@ -31,7 +31,7 @@ Import this into other design files to set baseline constants:
 mode=1; // [1:1, 2:2, 3:3, 4:4]
 
 // Length of the block (LEGO unit count)
-l = 8; 
+l = 4; 
 
 // Width of the block (LEGO unit count)
 w = 2;
@@ -77,25 +77,22 @@ sockets= 1; // [0:no sockets, 1:sockets]
 /* [LEGO Technics] */
 
 // Add full width through holes spaced along the length for LEGO Techics connectors
-side_holes = 0;  // [0:no holes, 1:simple air vents, 2:full width connector, 3:short connector]
+side_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a sheath around side holes (disable for extra ventilation or rotating shafts, enable for connectors)
-side_hole_sheaths = 0; // [0:disabled, 1:enabled]
+// Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
+side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for LEGO Techics connectors
-end_holes = 0;  // [0:no, 1:simple air vents, 2:short connector]
+end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a sheath around end holes (turn off for extra ventilation)
-end_hole_sheaths = 1; // [0:disabled, 1:enabled]
-
-
-/* [Top Ventilation] */
+// Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
+end_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = 1; // [0:disabled, 1:enabled]
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
-knob_flexture_airhole_radius=0;
+knob_flexture_vent_radius = 0;
 
 /* [Advanced] */
 
