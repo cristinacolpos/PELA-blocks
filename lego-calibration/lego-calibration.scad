@@ -31,8 +31,25 @@ use <../lego.scad>
 // Generator mode: ususally start with the calibration bar, then use others if needed
 mode=1; // [1:Calibration bar, 2:Set of calibration blocks, 3:One calibration block]
 
+// Length of each calibration block (LEGO unit count)
+l = 2; 
+
+// Width of each calibration block (LEGO unit count)
+w = 2;
+
+// Height of the block (LEGO unit count)
+h = 1;
+
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:0, 1:1]
+
+end_holes=0;
+
+side_holes=4;
+
+side_hole_sheaths=1;
+
+top_vents = 0;
 
 // Font for calibration block text labels
 font = "Arial";

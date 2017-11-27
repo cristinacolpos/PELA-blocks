@@ -48,13 +48,16 @@ bolt_hole_radius=1.5;
 // Interior fill for layers above the bottom
 solid_upper_layers = 0; // [0:empty, 1:solid]
 
+// Interior fill for layers above the bottom
+solid_bottom_layer = 0; // [0:empty, 1:solid]
+
 /* [3D Printing Adjustments] */
 
 // Top connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
 top_tweak = 0;
 
 // Bottom connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
-bottom_tweak = -0.02;
+bottom_tweak = -0.04;
 
 // Technic connector hole size tweak => + = more loose fit, 0 for PLA with 0.6mm nozzle
 axle_hole_tweak = 0;
@@ -71,8 +74,14 @@ knob_slice_width=0.2;
 // Length of the slice the knob from inside towards the edge
 knob_slice_length_ratio=0.8;
 
+// Add an outside rim to assist with printing the LEGO upside down
+inverted_print_rim=0; // [0:disabled, 1:enabled]
+
 // Presence of bottom connector sockets
 sockets= 1; // [0:no sockets, 1:sockets]
+
+// Presence of top connector knobs
+knobs=1; // [0:noknobs, 1:knobs]
 
 /* [LEGO Technics] */
 
@@ -92,7 +101,7 @@ end_sheaths = 1; // [0:disabled, 1:enabled]
 top_vents = 1; // [0:disabled, 1:enabled]
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
-knob_flexture_vent_radius = 0;
+knob_vent_radius = 0;
 
 /* [Advanced] */
 
@@ -127,7 +136,7 @@ ridge_depth = 0.3;
 knob_top_thickness=0.8;
 
 // Size of the connectors (calibrated for PLA, change 'top_tweak' to adjust)
-knob_radius=2.45+0.06;
+knob_radius=2.45+0.07;
 
 // Height of the connectors (1.8 is Lego standard, 2.2 gives a stronger hold while still maintaining most compatibility)
 knob_height=1.8;
