@@ -6,7 +6,7 @@ Print out snap-together cases and objects by starting from a proper LEGO part. M
 
 ### Calibration ###
 
-Printer, print settings and plastic effect the precise fit of LEGO. Thus it is usually necessary to slightly adjust knob and bottom ring size to achieve a good fit. Other settings are availble but usually do not need adjustment.
+Printer, slider parameters and plastic effect the precise fit of LEGO. Thus it is usually necessary to slightly adjust knob and bottom ring size to achieve a good fit. Other settings are availble but usually do not need adjustment.
 
 1. First print the two calibration bars or (slower to print but more flexible to test with) a set of 2x2 calibration blocks
 2. Test fit top and bottom against real LEGO, write down the top_tweak and bottom_tweak values (knob and ring size adjustments, respectively). Keep in mind that too tight may be a problem for print lifetime or mating and separating large surfaces.

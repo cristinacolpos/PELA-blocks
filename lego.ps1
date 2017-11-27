@@ -8,7 +8,7 @@ param (
 	[Int]$h = 1,
 	[Float]$top_tweak = 0.0,
 	[Float]$bottom_tweak = 0.0,
-	[Float]$knob_height = 2.4,
+	[Float]$knob_height = 1.8,
 	[Float]$knob_cutout_height = 4.55,
 	[Float]$knob_cutout_radius = 1.25,
 	[Float]$knob_cutout_airhole_radius = 0.01,
