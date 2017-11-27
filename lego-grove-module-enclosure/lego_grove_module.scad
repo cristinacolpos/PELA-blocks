@@ -65,9 +65,11 @@ edge_inset = 0.6;
 
 connector_width=9;
 
-connector_height=7.2;
+connector_height=5;
 
 connector_length=50;
+
+
 
 // Additional space around the module for easly slotting the module into a surrounding case (make this bigger if the board fits too tightly)
 mink = 0.25;
@@ -80,11 +82,13 @@ offset_x=3.5;
 
 // Distance from the outside edge of the Technics connector linking the top to the bottom
 offset_y=3.7;
-            
+
+inverted_print_rim=1;            
 
 ///////////////////////////////
 
-//bottom_piece();
+bottom_piece();
+
 top_piece();
 
 function vertical_offset()=(lego_height(2*h)-grove_width)/2;
@@ -97,7 +101,7 @@ function vertical_offset()=(lego_height(2*h)-grove_width)/2;
 module bottom_piece() {
     difference() {
         union() {
-            lego_technic(knobs=0);
+            lego_technic(knob_flexture_height=0, inverted_print_rim=0);
             
             height=lego_height(0.33333333);
             translate([0, 0, height])
@@ -108,7 +112,8 @@ module bottom_piece() {
             translate([(lego_width(4)-grove_width)/2, shell, vertical_offset()])
                 rotate([0,-90,270])
                     grove();
-            
+
+/*            
 #            translate([offset_x, lego_width(2)-offset_y, lego_height(h)])
                 rotate([180, 0, 0])
                     axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
@@ -116,7 +121,7 @@ module bottom_piece() {
 #            translate([lego_width(l)-offset_x, lego_width(2)-offset_y, lego_height(h)])
                 rotate([180, 0, 0])
                     axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
-            
+*/            
             skin();
         }
     }
@@ -125,10 +130,11 @@ module bottom_piece() {
 
 // Top piece
 module top_piece() {
-translate([0, lego_width(2.5), 0])
+
+rotate([180]) translate([0, lego_width(0.5), -(lego_height(h)+knob_height)])
     difference() {
         union() {
-            lego_technic(sockets=0, solid_bottom_layer=1);
+            lego_technic(socket_height=1.8, inverted_print_rim=inverted_print_rim);
         
             translate([0, 0, lego_height(0.5)])
                 double_end_connector_sheath_set();
@@ -142,13 +148,13 @@ translate([0, lego_width(2.5), 0])
             translate([0, 0, lego_height(0.5)])
                 double_end_connector_hole_set(hole_type=2);
             
-                        
+/*                        
 #            translate([offset_x, lego_width(2)-offset_y, 0])
                 axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
             
 #            translate([lego_width(l)-offset_x, lego_width(2)-offset_y, 0])
                 axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
-
+*/
             skin();
         }
 };
@@ -159,13 +165,14 @@ translate([0, lego_width(2.5), 0])
     
 // A complete Grove module negative space assembly. These are all the areas where you do _not_ want material in order to be able to place a real Grove module embedded within another part
 module grove() {
+    translate([0, 0, 0.25]) //TODO HACK
     minkowski() {
         union() {
             board();
             negative_space();            
         }
         
-        sphere(r=mink);
+        sphere(r=mink, $fn=8);
     }
 }
 
@@ -177,10 +184,14 @@ module board() {
     translate([0, grove_width/2,bottom_space])
         eye();
     
-    translate([grove_width, grove_width/2,bottom_space])
+//    translate([grove_width/2, 0, bottom_space]) eye();
+    
+    translate([grove_width, grove_width/2, bottom_space])
         eye();
     
-    translate([(grove_width-connector_width)/2, -(connector_length-grove_width)/2, 0])
+//    translate([grove_width/2, grove_width, bottom_space]) eye();
+    
+    translate([(grove_width-connector_width)/2, -(connector_length-grove_width)/2, bottom_space+thickness])
         cube([connector_width, connector_length, connector_height]);
 }
 
@@ -202,8 +213,8 @@ module negative_space() {
 module lego_grove() {
     difference() {
         lego(4,2,1.5);
-        translate([grove_width + (lego_width(4)-grove_width)/2,lego_width(2)-2*shell,(lego_height(3)-grove_width)/2])
-            rotate([90,0,0]) rotate([0,0,90]) 
+        translate([grove_width + (lego_width(4)-grove_width)/2, lego_width(2)-2*shell, (lego_height(3)-grove_width)/2])
+            rotate([90,0,90])
             grove();       
     }
 }

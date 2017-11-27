@@ -425,6 +425,7 @@ module corner_bolt_hole_supports(l=l, w=w, h=h, top_shell=top_shell, bottom_stif
 }
 
 
+// A solid block under the bolt hole to give extra support to the bolt head
 module bolt_hole_support(x=1, y=1, h=h, top_shell=top_shell, bottom_stiffener_height=bottom_stiffener_height) {
     
     depth = top_shell+bottom_stiffener_height;
@@ -434,8 +435,9 @@ module bolt_hole_support(x=1, y=1, h=h, top_shell=top_shell, bottom_stiffener_he
 }
 
 
+// A rectangle which can be broken or cut away; used to help keep edges tidy if printing upside down
 module upside_down_print_rim(l=l, w=w, h=h, knob_height=knob_height, skin=skin) {
-    rim_width=0.5;
+    rim_width=0.8;
     defeather=0.01;
     
     length=lego_width(l)+2*rim_width-2*skin;

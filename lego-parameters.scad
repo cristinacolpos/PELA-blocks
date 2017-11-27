@@ -81,7 +81,8 @@ inverted_print_rim=0; // [0:disabled, 1:enabled]
 sockets= 1; // [0:no sockets, 1:sockets]
 
 // Presence of top connector knobs
-knobs=1; // [0:noknobs, 1:knobs]
+knobs=1; // [0:disabled, 1:enabled]
+
 
 /* [LEGO Technics] */
 
@@ -103,8 +104,8 @@ top_vents = 1; // [0:disabled, 1:enabled]
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_vent_radius = 0;
 
-/* [Advanced] */
 
+/* [Advanced] */
 // Minimum angle to approximate a circle
 $fa=10;
 
@@ -142,7 +143,7 @@ knob_radius=2.45+0.07;
 knob_height=1.8;
 
 // Size of the small flexture cavity inside each knob
-knob_flexture_radius=1.5;
+knob_flexture_radius=1.4;
 
 // Height of the hole beneath each knob
 knob_flexture_height=4.5;
@@ -151,7 +152,7 @@ knob_flexture_height=4.5;
 bottom_stiffener_width=3.1;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
-bottom_stiffener_height=4;
+bottom_stiffener_height=block_height/3;
 
 // Base distance which small stiffeners protrude inwards from outside edge
 outside_lock_thickness=1.6;
