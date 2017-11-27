@@ -11,15 +11,16 @@ solid_upper_layers = 1; // [0:empty, 1:solid]
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:no holes, 1:holes]
 
-side_holes=1;
-
-end_holes=0;
-
-end_hole_sheaths = 1;
-
 bottom_stiffener_height=9.6;
 
-top_vents(0);
+
+/* [Motor Enclosure Size] */
+l=4;
+
+w=2;
+
+h=1.66666666667;
+
 
 /* [Motor Options] */
 motor_radius=6.1;
@@ -31,22 +32,16 @@ motor_width=10+2*skin;
 electric_radius=4.5;
 electric_length=20;
 
-l=4;
-w=2;
-h=1.66666666667;
-top_snap=0.2;
 
 ////////////////////
 
-solid_upper_layers=1;
 
 lego_motor_bottom();
-
 lego_motor_top();
 
 module lego_motor_bottom() {
     difference() {
-        lego_technic(l, w, h, knob_flexture_radius=0);
+        lego_technic(l, w, h, knob_flexture_radius=0, side_holes=1, side_sheaths=0, end_holes=0, solid_upper_layers=1, inverted_print_rim=0);
         
 #        union() {
         translate([(lego_width(l)-motor_round_length-motor_square_length)/2, (lego_width(w)-motor_width)/2, lego_height(h)-motor_radius-lego_width(0.5)]) {
@@ -63,9 +58,10 @@ module lego_motor_bottom() {
 
 
 module lego_motor_top() {
-    translate([0, lego_width(2.5), lego_height(-0.666667)]) {
+    rotate([180, 0, 0])
+    translate([0, lego_width(0.5), -(lego_height()+knob_height)]) {
         difference() {
-            lego_technic(l,w,1,side_holes=0);
+            lego_technic(l, w, 1 , side_holes=0, end_holes=0, top_vents=1, knob_vent_radius=1.5);
     
     #        union() {
                 cube([lego_width(l), lego_width(w), lego_height(0.6666666667)]);

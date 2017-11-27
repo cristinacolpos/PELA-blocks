@@ -19,7 +19,16 @@ include <../lego-parameters.scad>
 use <../lego.scad>
 use <../lego-technic.scad>
 
-/* [LEGO Connector Fit Options] */
+/* [Grove Enclosure Options] */
+// Length of the enclosure (LEGO unit count)
+l = 4; 
+
+// Width of the enclosure (LEGO unit count)
+w = 2;
+
+// Height of HALF the enclosure (LEGO unit count)
+h = 1.5;
+
 
 // Interior fill for layers above the bottom
 solid_upper_layers = 1; // [0:empty, 1:solid]
@@ -35,7 +44,7 @@ end_hole_sheaths = 1;
 
 bottom_stiffener_height=9.6;
 
-top_vents(1);
+top_vents = 0;
 
 /* [Grove Module Options] */
 
@@ -66,34 +75,82 @@ mink = 0.25;
 // Length of the negative space exclusion zone in front of the module
 negative_space_height=100;
 
+// Distance from the outside edge of the Technics connector linking the top to the bottom
+offset_x=3.5;
 
+// Distance from the outside edge of the Technics connector linking the top to the bottom
+offset_y=3.7;
+            
 
 ///////////////////////////////
 
-bottom_piece();
+//bottom_piece();
 top_piece();
+
+function vertical_offset()=(lego_height(2*h)-grove_width)/2;
+
+/////////////////////////////////////
+// MODULES
+/////////////////////////////////////
 
 // Bottom piece
 module bottom_piece() {
-difference() {
-    lego_technic(4,2,1.5);
+    difference() {
+        union() {
+            lego_technic(knobs=0);
+            
+            height=lego_height(0.33333333);
+            translate([0, 0, height])
+                cube([lego_width(l), lego_width(w), lego_height(h)-height]);
+        }
     
-    translate([(lego_width(4)-grove_width)/2, shell, (lego_height(3)-grove_width)/2])
-        rotate([0,-90,270])
-            grove();
-};
+        union() {
+            translate([(lego_width(4)-grove_width)/2, shell, vertical_offset()])
+                rotate([0,-90,270])
+                    grove();
+            
+#            translate([offset_x, lego_width(2)-offset_y, lego_height(h)])
+                rotate([180, 0, 0])
+                    axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
+            
+#            translate([lego_width(l)-offset_x, lego_width(2)-offset_y, lego_height(h)])
+                rotate([180, 0, 0])
+                    axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
+            
+            skin();
+        }
+    }
 }
 
 
-// Optional top piece
+// Top piece
 module top_piece() {
 translate([0, lego_width(2.5), 0])
     difference() {
-        lego_technic(4,2,1.5);
+        union() {
+            lego_technic(sockets=0, solid_bottom_layer=1);
         
-        translate([(lego_width(4)-grove_width)/2,1.2,-lego_height(1.5)+(lego_height(3)-grove_width)/2])
-            rotate([0,-90,270])
-                grove();
+            translate([0, 0, lego_height(0.5)])
+                double_end_connector_sheath_set();
+        }
+        
+        union() {
+            translate([(lego_width(l)-grove_width)/2, 1.2, lego_height(-h)+vertical_offset()])
+                rotate([0,-90,270])
+                    grove();
+            
+            translate([0, 0, lego_height(0.5)])
+                double_end_connector_hole_set(hole_type=2);
+            
+                        
+#            translate([offset_x, lego_width(2)-offset_y, 0])
+                axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
+            
+#            translate([lego_width(l)-offset_x, lego_width(2)-offset_y, 0])
+                axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
+
+            skin();
+        }
 };
 }    
     
