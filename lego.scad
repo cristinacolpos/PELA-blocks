@@ -84,7 +84,7 @@ function panel_height(block_height=block_height) = block_height/3;
 
 
 // A LEGO block
-module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer, inverted_print_rim=inverted_print_rim) {
+module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer, inverted_print_rim=inverted_print_rim, ring_bars=ring_bars) {
     
     difference() {
         union() {
@@ -95,7 +95,11 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_
             }
 
             bottom_stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height);
-            
+
+            if (is_true(ring_bars)) {
+                stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height);
+            }
+
             if (is_true(sockets)) {
                side_lock_set(l=l, w=w, bottom_tweak=bottom_tweak, outside_lock_thickness=outside_lock_thickness, side_lock_thickness=side_lock_thickness);
 
@@ -254,21 +258,21 @@ module bottom_stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w
 module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height) {
     
     if (end_l >= start_l) {
-    for (i = [start_l:end_l]) {
-        if (side_holes!=1) {
-            y = (side_holes==1 || side_holes==2) ? lego_width() : 0;
+        for (i = [start_l:end_l]) {
+            if (side_holes!=1) {
+                y = (side_holes==1 || side_holes==2) ? lego_width() : 0;
         
-            cut_width = (i==0 || i==l) ? 0 : bottom_stiffener_width/2;
+                cut_width = (i==0 || i==l) ? 0 : bottom_stiffener_width/2;
         
-            translate([lego_width(i)-bottom_stiffener_width/2, y, 0])
-                difference() {
-                    cube([bottom_stiffener_width, lego_width(w) - 2*y, bottom_stiffener_height]);
+                translate([lego_width(i)-bottom_stiffener_width/2, y, 0])
+                    difference() {
+                        cube([bottom_stiffener_width, lego_width(w) - 2*y, bottom_stiffener_height]);
                 
-                    translate([bottom_stiffener_width/4, 0, 0])
-                        cube([cut_width, lego_width(w) - 2*y, bottom_stiffener_height]);
-                }
+                        translate([bottom_stiffener_width/4, 0, 0])
+                            cube([cut_width, lego_width(w) - 2*y, bottom_stiffener_height]);
+                    }
+            }
         }
-    }
     }
     
     if (end_w >= start_w) {
