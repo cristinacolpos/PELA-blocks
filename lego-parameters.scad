@@ -95,6 +95,8 @@ top_vents = 1; // [0:disabled, 1:enabled]
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_vent_radius = 0;
 
+// Add bars to hold the rings in position during printing and when upper structures are modified
+ring_bars = 1;// [0:disabled, 1:bars between bottom rings]
 
 /* [Advanced] */
 // Minimum angle to approximate a circle
@@ -140,7 +142,7 @@ knob_flexture_radius=1.4;
 knob_flexture_height=4.5;
 
 // Width of horizontal surface strengthening slats between the bottom rings
-bottom_stiffener_width=3.1;
+bottom_stiffener_width=3;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=block_height/3;
@@ -149,7 +151,7 @@ bottom_stiffener_height=block_height/3;
 outside_lock_thickness=1.6;
 
 // Distance from outside lock and connector rings which small flexture-fit rims protrude inwards
-side_lock_thickness=0; // 0.07
+side_lock_thickness=0.05; // 0.07
 
 // Depth which the inside of connectors are hollowed out
 socket_flexture_height= 7.4;
