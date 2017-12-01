@@ -34,7 +34,7 @@ mode=1; // [1:1, 2:2, 3:3, 4:4]
 l = 4; 
 
 // Width of the block (LEGO unit count)
-w = 5;
+w = 1;
 
 // Height of the block (LEGO unit count)
 h = 1;
@@ -65,15 +65,6 @@ axle_hole_tweak = 0;
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
 knob_bevel=0.15;
 
-// Number of flexure cuts across the inside of each knob
-knob_slice_count=0;
-
-// Width of flexure cuts across the top of the knob
-knob_slice_width=0.2;
-
-// Length of the slice the knob from inside towards the edge
-knob_slice_length_ratio=0.8;
-
 // Add an outside rim to assist with printing the LEGO upside down
 inverted_print_rim=0; // [0:disabled, 1:enabled]
 
@@ -93,7 +84,7 @@ side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full w
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for LEGO Techics connectors
-end_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]

@@ -27,6 +27,7 @@ Import this into other design files:
 
 include <../lego-parameters.scad>
 use <../lego.scad>
+use <../lego-technic.scad>
 
 /* [LEGO Sign Options] */
 
@@ -88,7 +89,7 @@ lego_sign();
 module lego_sign(line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak) {
     
     if (is_true(extrude)) {
-        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, layer_ridge=0);
+        lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, layer_ridge=0);
         
         translate([skin, skin, 0])
             lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak);
