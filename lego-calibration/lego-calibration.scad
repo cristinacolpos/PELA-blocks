@@ -49,7 +49,11 @@ side_holes=0;
 
 side_hole_sheaths=1;
 
-top_vents = 0;
+top_vents = 1;
+
+knobs = 0;
+
+top_shell = 0;
 
 // Font for calibration block text labels
 font = "Arial";
@@ -97,7 +101,7 @@ if (mode==1) {
 
 
 // A set of calibration blocks in a row with reduced inter-block spacing to print faster
-module lego_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, bolt_holes=bolt_holes, block_height=block_height) {
+module lego_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, bolt_holes=bolt_holes, block_height=block_height, side_lock_thickness=side_lock_thickness) {
     
     from=-4;
     to=4;
@@ -119,7 +123,7 @@ module lego_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibrati
 
 
 // A set of blocks with different tweak parameters written on the side
-module lego_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, bolt_holes=bolt_holes, block_height=block_height) {
+module lego_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, bolt_holes=bolt_holes, block_height=block_height, side_lock_thickness=side_lock_thickness) {
     
     // Tighter top, looser bottom
     for (i = [0:5]) {
@@ -150,7 +154,7 @@ module lego_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibrat
 // A block with the top and bottom connector tweak parameters etched on the side
 module lego_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height) {
     
-    difference() {
+    difference() { 
         lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height);
 
         union() {
@@ -167,16 +171,22 @@ module lego_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=b
 
 // Text for the front side of calibration block prints
 module lego_calibration_top_text(txt="Text") {
-    linear_extrude(height=text_extrusion_height) {
-    text(text=txt, font=font, size=font_size, halign="left", valign="top");
-     }
+    
+    linear_extrude(height=text_extrusion_height) {        
+        if (is_true(knobs)) {    
+            text(text=txt, font=font, size=font_size, halign="left", valign="top");
+        }
+    }
 }
 
 // Text for the back side of calibration block prints
 module lego_calibration_bottom_text(txt="Text") {
-    linear_extrude(height=text_extrusion_height) {
-       text(text=txt, font=font, size=font_size, halign="right");
-     }
+    
+    if (is_true(sockets)) {
+        linear_extrude(height=text_extrusion_height) {
+            text(text=txt, font=font, size=font_size, halign="right");
+        }
+    }
 }
 
 // Mark lines between each clibration bar section
