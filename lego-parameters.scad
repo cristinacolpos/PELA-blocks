@@ -31,15 +31,15 @@ Import this into other design files to set baseline constants:
 mode=1; // [1:1, 2:2, 3:3, 4:4]
 
 // Length of the block (LEGO unit count)
-l = 4; 
+l = 3; 
 
 // Width of the block (LEGO unit count)
-w = 1;
+w = 3;
 
 // Height of the block (LEGO unit count)
 h = 1;
 
-// Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
+// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:no holes, 1:holes]
 
 // Size of corner holes for M3 mountings bolts
@@ -115,7 +115,7 @@ block_height=9.6;
 shell=1.2;
 
 // Thickness of the solid top surface of LEGO
-top_shell=1.4;
+top_shell=1.2;
 
 // Clearance space around the outer surface of bricks
 skin = 0.1; 
@@ -142,19 +142,16 @@ knob_flexture_radius=1.4;
 knob_flexture_height=4.5;
 
 // Width of horizontal surface strengthening slats between the bottom rings
-bottom_stiffener_width=3;
+bottom_stiffener_width=2.5;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=block_height/3;
 
-// Base distance which small stiffeners protrude inwards from outside edge
-outside_lock_thickness=1.6;
+// Base distance which small stiffeners protrude inwards from outside edges of a block to hold the knobs of the block below
+outside_lock_thickness=1.55;
 
-// Distance from outside lock and connector rings which small flexture-fit rims protrude inwards
-side_lock_thickness=0.05; // 0.07
-
-// Depth which the inside of connectors are hollowed out
-socket_flexture_height= 7.4;
+// Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards for asymmetric side pressure to induce a snap fit
+side_lock_thickness=0.05;
 
 // Bottom connector assistance ring size
 ring_radius=3.25;
@@ -175,8 +172,3 @@ peg_length = 6.5;
 
 // Size of an cylinder wrapped around the entrance to bearing holes
 bearing_sheath_thickness = 0.6;
-
-/* [Advanced Reference] */
-
-// An axle which fits loosely in a technic bearing hole
-axle_radius = 2.4;
