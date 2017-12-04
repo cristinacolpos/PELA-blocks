@@ -137,8 +137,6 @@ module lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_
                 knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes);
             }
                 
-//            length = is_true(end_holes) || is_true(side_holes) ? lego_height(h)-lego_width(0.5) : lego_height(h)-top_shell;
-            
             length = lego_height(h)-top_shell;
 
             if (is_true(sockets)) {
@@ -264,34 +262,28 @@ module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, b
     
     if (end_l >= start_l) {
         for (i = [start_l:end_l]) {
-//            if (side_holes!=1) {
-                y = 0; //(side_holes==1 || side_holes==2) ? lego_width() : 0;
+            cut_width = bottom_stiffener_width/2;
         
-                cut_width = bottom_stiffener_width/2; // (i==0 || i==l) ? 0 : bottom_stiffener_width/2;
-        
-                translate([lego_width(i)-bottom_stiffener_width/2, y, 0])
-                    difference() {
-                        cube([bottom_stiffener_width, lego_width(w) - 2*y, bottom_stiffener_height]);
+            translate([lego_width(i)-bottom_stiffener_width/2, 0, 0])
+                difference() {
+                    cube([bottom_stiffener_width, lego_width(w), bottom_stiffener_height]);
                 
-                        translate([bottom_stiffener_width/4, 0, 0])
-                            cube([cut_width, lego_width(w) - 2*y, bottom_stiffener_height]);
-                    }
-//            }
+                    translate([bottom_stiffener_width/4, 0, 0])
+                        cube([cut_width, lego_width(w), bottom_stiffener_height]);
+                }
         }
     }
     
     if (end_w >= start_w) {
         for (j = [start_w:end_w]) {
-            x = 0; //is_true(end_holes) ? lego_width() : 0;
-    
-            cut_width = bottom_stiffener_width/2; //(j==0 || j==w) ? 0 : bottom_stiffener_width/2;
+            cut_width = bottom_stiffener_width/2;
 
-            translate([x, lego_width(j)-bottom_stiffener_width/2, 0])
+            translate([0, lego_width(j)-bottom_stiffener_width/2, 0])
                 difference() {
-                    cube([lego_width(l) - 2*x, bottom_stiffener_width, bottom_stiffener_height]);
+                    cube([lego_width(l), bottom_stiffener_width, bottom_stiffener_height]);
                 
                     translate([0, bottom_stiffener_width/4, 0])
-                        cube([lego_width(l) - 2*x, cut_width, bottom_stiffener_height]);
+                        cube([lego_width(l), cut_width, bottom_stiffener_height]);
                 }
         }
     }
@@ -300,14 +292,24 @@ module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, b
 
 // Asymmetric pressure edges added to increase the snap fit flexture of the outer shell on the knobs of any block below
 module side_lock_set(l=l, w=w, bottom_tweak=bottom_tweak, outside_lock_thickness=outside_lock_thickness, side_lock_thickness=side_lock_thickness) {
-    
+
+    defeather = 0.01;
     height=knob_height-knob_top_thickness;
     s = bottom_tweak+outside_lock_thickness+side_lock_thickness;
 
-    difference() {
+    color("red") difference() {
         cube([lego_width(l), lego_width(w), height]);
-        translate([s, s, -0.1])
-            cube([lego_width(l)-2*s, lego_width(w)-2*s, height+0.2]);
+        translate([s, s, -defeather])
+            cube([lego_width(l)-2*s, lego_width(w)-2*s, height+2*defeather]);
+    }
+    
+    h2=knob_height;
+    s2 = bottom_tweak+outside_lock_thickness;
+
+    color("blue") difference() {
+        cube([lego_width(l), lego_width(w), h2]);
+        translate([s2, s2, -defeather])
+            cube([lego_width(l)-2*s2, lego_width(w)-2*s2, h2+2*defeather]);
     }
 }
 

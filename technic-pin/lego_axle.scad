@@ -29,10 +29,13 @@ use <../lego.scad>
 /* [LEGO Technic-compatible Pin Options] */
 
 // What type of Pin or similar object to generate
-mode=2; // [1:pin, 2:axle]
+mode=1; // [1:pin, 2:axle, 3:cross axle]
 
 // An axle which fits loosely in a technic bearing hole
 axle_radius = 2.35;
+
+// Cross axle inside rounding
+axle_rounding=0.65;
 
 // Size of the hollow inside of an axle
 axle_center_radius=2*axle_radius/3;
@@ -54,17 +57,21 @@ counterbore_holder_height = counterbore_inset_depth * 2;
 
 ///////////////
 
+rotate([90])
 if (mode == 1) {
-    axle();
-} else if (mode == 2) {
     pin();
+} else if (mode == 2) {
+    axle();
+} else if (mode == 3) {
+    cross_axle();
 } else {
-    echo("<b>Unsupported mode: please check <i>mode</i> variable is 1-2</b>");
+    echo("<b>Unsupported mode: please check <i>mode</i> variable is 1-3</b>");
 }
     
 //////////////////
 
 
+// A round rotation axle
 module axle(axle_radius=axle_radius, axle_center_radius=axle_center_radius, length=15) {
 
     difference() {
@@ -75,12 +82,46 @@ module axle(axle_radius=axle_radius, axle_center_radius=axle_center_radius, leng
 }
 
 
+// A rotation axle with a "+" cross section
+module cross_axle(axle_rounding=axle_rounding, axle_radius=axle_radius, length=15) {
+
+    rotate([0, 0, 45])
+    difference() {
+        axle(axle_radius=axle_radius, axle_center_radius=0, length=length);        
+        axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length);
+    }
+}
+
+
+// That which is cut away four times from a solid to create a cross axle
+module axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length) {
+    
+    defeather = 0.01;
+    
+    for (rot=[0:90:270]) {
+        rotate([0, 0, rot])
+            hull() {
+                translate([axle_rounding*2, axle_rounding*2, -defeather]) {
+                    cylinder(r=axle_rounding, h=length+2*defeather);
+
+                    translate([axle_radius, 0, 0])
+                        cylinder(r=axle_rounding, h=length+2*defeather);
+
+                    translate([0, axle_radius, 0])
+                        cylinder(r=axle_rounding, h=length+2*defeather);
+                }
+            }
+    }
+}
+
+// A connector pin between two sockets
 module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
 
     length=(peg_length+pin_tip_length)*2 + counterbore_holder_height;
 
     slot_length=length/2;
 
+    rotate([0, 0, 90])
     difference() {
         union() {
             cylinder(r=axle_radius, h=length);

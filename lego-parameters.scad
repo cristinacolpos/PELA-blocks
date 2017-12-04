@@ -57,7 +57,7 @@ solid_bottom_layer = 0; // [0:empty, 1:solid]
 top_tweak = 0;
 
 // Bottom connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
-bottom_tweak = -0.04;
+bottom_tweak = 0;
 
 // Technic connector hole size tweak => + = more loose fit, 0 for PLA with 0.6mm nozzle
 axle_hole_tweak = 0;
@@ -142,13 +142,13 @@ knob_flexture_radius=1.4;
 knob_flexture_height=4.5;
 
 // Width of horizontal surface strengthening slats between the bottom rings
-bottom_stiffener_width=2.5;
+bottom_stiffener_width=2.8;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=block_height/3;
 
 // Base distance which small stiffeners protrude inwards from outside edges of a block to hold the knobs of the block below
-outside_lock_thickness=1.55;
+outside_lock_thickness=1.5;
 
 // Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards for asymmetric side pressure to induce a snap fit
 side_lock_thickness=0.05;
