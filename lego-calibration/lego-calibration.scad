@@ -1,5 +1,5 @@
 /*
-Parametric LEGO Calibration Block
+Parametric LEGO-compatible 3D Print Calibration Block
 
 Published at
     http://www.thingiverse.com/thing:2303714
@@ -37,15 +37,15 @@ l = 2;
 // Width of each calibration block (LEGO unit count)
 w = 2;
 
-// Height of the block (LEGO unit count)
-h = 1;
+// Height of the block (LEGO unit count, use 1/3 for short calibration panel)
+h = 1/3;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=0; // [0:0, 1:1]
+bolt_holes=0; // [0:disable, 1:enabled]
 
 end_holes=0;
 
-side_holes=4;
+side_holes=0;
 
 side_hole_sheaths=1;
 
@@ -55,13 +55,16 @@ top_vents = 0;
 font = "Arial";
 
 // Text size on calibration blocks
-font_size = 4.5;
+font_size = 4;
 
 // Depth of text labels on calibration blocks
 text_extrusion_height = 0.6;
 
 // Inset from block edge for text (vertical and horizontal)
-text_margin = 1;
+vertical_text_margin = 0.2;
+
+// Inset from block edge for text (vertical and horizontal)
+horizontal_text_margin = 1;
 
 // Size between calibration block tweak test steps
 calibration_block_increment = 0.01;
@@ -94,33 +97,36 @@ if (mode==1) {
 
 
 // A set of calibration blocks in a row with reduced inter-block spacing to print faster
-module lego_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, bolt_holes=bolt_holes) {
+module lego_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, bolt_holes=bolt_holes, block_height=block_height) {
+    
+    from=-4;
+    to=4;
     
     // Tighter top, looser bottom
     difference() {
         union() {
-            for (i = [-4:4]) {
+            for (i = [from:to]) {
                 cal = i*calibration_block_increment;
                 
                 translate([i*lego_width(l)-i*shell, 0, 0])
-                    lego_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=0, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes);
+                    lego_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=0, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height);
             }
         }
 
-        etch_all_calibration_bar_dividers(length=12);
+        etch_all_calibration_bar_dividers(from=from, to=to, w=w);
     }
 }
 
 
 // A set of blocks with different tweak parameters written on the side
-module lego_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, bolt_holes=bolt_holes) {
+module lego_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, bolt_holes=bolt_holes, block_height=block_height) {
     
     // Tighter top, looser bottom
     for (i = [0:5]) {
         cal = i*calibration_block_increment;
         
         translate([i*lego_width(l+0.5), 0, 0])
-            lego_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes);
+            lego_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height);
     }
     
     // Tightest top, loosest bottom
@@ -128,7 +134,7 @@ module lego_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibrat
         cal = i*calibration_block_increment;
         
         translate([(i-5)*lego_width(l+0.5), -lego_width(w+0.5), 0])
-            lego_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes);
+            lego_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height);
     }
     
     // Looser top, tighter bottom
@@ -136,23 +142,23 @@ module lego_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibrat
         cal = -i*calibration_block_increment;
         
         translate([i*lego_width(l+0.5), lego_width(w+0.5), 0])
-            lego_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes);
+            lego_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height);
     }
 }
 
 
 // A block with the top and bottom connector tweak parameters etched on the side
-module lego_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes) {
+module lego_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height) {
     
     difference() {
-        lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_slice_count=knob_slice_count, knob_slice_width=knob_slice_width, knob_slice_length_ratio=knob_slice_length_ratio, ring_radius=ring_radius, knob_flexture_airhole_radius=knob_flexture_airhole_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes);
+        lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height);
 
         union() {
-            translate([skin+text_margin, text_extrusion_height+skin-0.01, skin+lego_height(h)-text_margin])
+            translate([skin+horizontal_text_margin, text_extrusion_height+skin-0.01, skin+lego_height(h)-vertical_text_margin])
                 rotate([90,0,0]) 
                     lego_calibration_top_text(str(top_tweak));
             
-            translate([skin+text_margin, lego_width(w)-text_extrusion_height-skin+0.01, skin+text_margin])
+            translate([skin+horizontal_text_margin, lego_width(w)-text_extrusion_height-skin+0.01, skin+vertical_text_margin])
                 rotate([90, 0, 180])
                     lego_calibration_bottom_text(str(bottom_tweak));
         }
@@ -174,8 +180,8 @@ module lego_calibration_bottom_text(txt="Text") {
 }
 
 // Mark lines between each clibration bar section
-module etch_all_calibration_bar_dividers(length=4) {
-    for (i = [l:l:length-1]) {
+module etch_all_calibration_bar_dividers(from=1, to=4, w=w) {
+    for (i = [from-w:w:to+2*w]) {
         etch_calibration_bar_divider(i=i);
     }
 }

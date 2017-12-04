@@ -30,53 +30,43 @@ use <../lego.scad>
 use <../lego-technic.scad>
 
 /* [LEGO Panel Options] */
-top_vents = 1;
 
-// LEGO panel thickness (flat panel with optional screw holes in corners for permanent mounting)
-panel_thickness=lego_height()/3;
+// Length of the block (LEGO unit count)
+l = 4; 
 
-// Set 1 for flat bottom, 0 for normal socket connectors on the bottom
-flat_bottom = 0;
+// Width of the block (LEGO unit count)
+w = 4;
+
+top_vents = 0;
+
+// Interior fill for layers above the bottom
+solid_bottom_layer = 0; // [0:empty, 1:solid]
+
+// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
+bolt_holes=0; // [0:no holes, 1:holes]
+
+// Size of corner holes for M3 mountings bolts
+bolt_hole_radius=1.5;
+
+// Presence of top connector knobs
+knobs=1; // [0:disabled, 1:enabled]
+
 
 /////////////////////////////////////
 // LEGO panel display
 /////////////////////////////////////
 
-difference() {
-    lego_technic(l,w,1);
-    
-    cube([lego_width(l), lego_width(w), lego_height(0.6666666667)]);
-}
-
-//if (flat_bottom == 1) {
-//    lego_knob_panel(socket_height=0);
-//} else {
-//    lego_knob_panel(); 
-//}
+lego_panel();
 
 /////////////////////////////////////
 // LEGO PANEL modules
 /////////////////////////////////////
 
-// A panel of knobs
-module lego_knob_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height, panel_thickness=panel_thickness, bolt_holes=bolt_holes, skin=skin, fn=fn) {
+module lego_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
+    difference() {
+        lego_technic(l=l, w=w, h=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0);
     
-    cut_line=lego_height()-panel_thickness;
-    if (is_true(bolt_holes)) {
-        difference() {
-            lego_knob_panel_no_holes(l=l, w=w, top_tweak=top_tweak, cut_line=cut_line, skin=skin, fn=fn);
-            translate([0, 0, cut_line-0.1])
-                corner_bolt_holes(l=l, w=w, top_tweak=top_tweak, fn=fn);
-        }
-    } else {
-        lego_knob_panel_no_holes(flat_bottom=flat_bottom, l=l, w=w, top_tweak=top_tweak, cut_line=cut_line, fn=fn);    
+        cube([lego_width(l), lego_width(w), panel_height(2)]);
     }
 }
 
-module lego_knob_panel_no_holes(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height, cut_line=cut_line, skin=skin, fn=fn) {
-    intersection() {
-        lego(l=l, w=w, h=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height, skin=skin, fn=fn);
-        translate([0, 0, cut_line])
-            cube([lego_width(l), lego_width(w), 2*lego_height()]);
-    }    
-}
