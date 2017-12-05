@@ -22,20 +22,20 @@ Design work kindly sponsored by
     http://futurice.com
 */
 
-include <../lego-parameters.scad>
-use <../lego-technic.scad>
-use <../lego.scad>
+include <lego-parameters.scad>
+use <lego.scad>
+use <technic.scad>
 
 /* [LEGO Technic-compatible Pin Options] */
 
 // What type of Pin or similar object to generate
-mode=1; // [1:pin, 2:axle, 3:cross axle]
+mode=3; // [1:pin, 2:axle, 3:cross axle]
 
 // An axle which fits loosely in a technic bearing hole
-axle_radius = 2.35;
+axle_radius = 2.23;
 
-// Cross axle inside rounding
-axle_rounding=0.65;
+// Cross axle inside rounding radius
+axle_rounding=0.63;
 
 // Size of the hollow inside of an axle
 axle_center_radius=2*axle_radius/3;
@@ -44,10 +44,10 @@ axle_center_radius=2*axle_radius/3;
 pin_center_radius=3*axle_radius/4;
 
 // Size of the connector lock-in bump at the ends of a Pin
-pin_tip_length = 0.8;
+pin_tip_length = 0.4;
 
-// Width of the flexture slots in a pin
-slot_thickness = 0.85;
+// Width of the long vertical flexture slots in the side of a pin
+slot_thickness = 0.9;
 
 defeather=0.01;
 
@@ -57,7 +57,6 @@ counterbore_holder_height = counterbore_inset_depth * 2;
 
 ///////////////
 
-rotate([90])
 if (mode == 1) {
     pin();
 } else if (mode == 2) {
@@ -85,7 +84,7 @@ module axle(axle_radius=axle_radius, axle_center_radius=axle_center_radius, leng
 // A rotation axle with a "+" cross section
 module cross_axle(axle_rounding=axle_rounding, axle_radius=axle_radius, length=15) {
 
-    rotate([0, 0, 45])
+    rotate([90, 45, 0])
     difference() {
         axle(axle_radius=axle_radius, axle_center_radius=0, length=length);        
         axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length);
@@ -121,7 +120,6 @@ module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_len
 
     slot_length=length/2;
 
-    rotate([0, 0, 90])
     difference() {
         union() {
             cylinder(r=axle_radius, h=length);

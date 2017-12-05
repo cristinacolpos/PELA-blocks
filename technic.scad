@@ -36,6 +36,11 @@ that may be hidden by the sensible default values. This is an evolving art.
 include <lego-parameters.scad>
 use <lego.scad>
 
+/* [LEGO-compatible Options] */
+
+// What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
+mode=1; // [1:1, 2:2, 3:3, 4:4]
+
 /////////////////////////////////////
 // LEGO display
 /////////////////////////////////////

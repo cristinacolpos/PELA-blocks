@@ -1,7 +1,7 @@
 
 include <../lego-parameters.scad>
 use <../lego.scad>
-use <../lego-technic.scad>
+use <../technic.scad>
 
 /* [LEGO Connector Fit Options] */
 
@@ -53,9 +53,6 @@ electric_vertical_displacement=-3;
 // Distance the electrical connector cutout extends from the body
 electric_length=20;
 
-// Add a rim to assist the top half in upside down printing
-inverted_print_rim=1;
-
 side_holes=0;
 
 side_sheaths=0;
@@ -74,7 +71,7 @@ lego_motor_top();
 
 module lego_motor_bottom() {
     difference() {
-        lego_technic(l, w, h, knob_flexture_radius=0, solid_upper_layers=1, top_vents=0, knob_vent_radius=0, inverted_print_rim=0);
+        lego_technic(l, w, h, knob_flexture_radius=0, solid_upper_layers=1, top_vents=0, knob_vent_radius=0);
         
         union() {
             translate([(lego_width(l)-motor_round_length-motor_square_length)/2, (lego_width(w)-motor_width)/2, lego_height(h)-motor_radius-lego_width(0.5)]) {
@@ -93,8 +90,7 @@ module lego_motor_bottom() {
 
 
 module lego_motor_top() {
-    rotate([180, 0, 0])
-        translate([0, lego_width(0.5), -(lego_height()+knob_height)])
+        translate([0, lego_width(w + 0.5), lego_height(-0.666666667)])
             difference() {
                 lego_technic(l=l, w=w, h=1);
     

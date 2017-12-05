@@ -25,19 +25,45 @@ Import this into other design files to set baseline constants:
     include <lego_parameters.scad>
 */
 
-/* [LEGO Basic Options] */
-
-// What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
-mode=1; // [1:1, 2:2, 3:3, 4:4]
+/* [LEGO-compatible Options] */
 
 // Length of the block (LEGO unit count)
-l = 3; 
+l = 4; 
 
 // Width of the block (LEGO unit count)
-w = 3;
+w = 4;
 
 // Height of the block (LEGO unit count)
-h = 1;
+h = 2;
+
+
+/* [3D Printing Adjustments] */
+
+// Top connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
+top_tweak = 0;
+
+// Bottom connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
+bottom_tweak = 0;
+
+// Technic connector hole size tweak => + = more loose fit, 0 for PLA with 0.6mm nozzle
+axle_hole_tweak = 0;
+
+// Base distance which small stiffeners protrude inwards from outside edges of a block to hold the knobs of the block below
+outside_lock_thickness=1.3;
+
+// Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards for asymmetric side pressure to induce a snap fit
+side_lock_thickness=0.01;
+
+// Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
+knob_bevel=0.15;
+
+/* [Features] */
+
+// Presence of bottom connector sockets
+sockets= 1; // [0:no sockets, 1:sockets]
+
+// Presence of top connector knobs
+knobs=1; // [0:disabled, 1:enabled]
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:no holes, 1:holes]
@@ -51,31 +77,11 @@ solid_upper_layers = 0; // [0:empty, 1:solid]
 // Interior fill for layers above the bottom
 solid_bottom_layer = 0; // [0:empty, 1:solid]
 
-/* [3D Printing Adjustments] */
-
-// Top connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
-top_tweak = 0;
-
-// Bottom connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
-bottom_tweak = 0;
-
-// Technic connector hole size tweak => + = more loose fit, 0 for PLA with 0.6mm nozzle
-axle_hole_tweak = 0;
-
-// Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
-knob_bevel=0.15;
-
 // Add an outside rim to assist with printing the LEGO upside down
 inverted_print_rim=0; // [0:disabled, 1:enabled]
 
-// Presence of bottom connector sockets
-sockets= 1; // [0:no sockets, 1:sockets]
 
-// Presence of top connector knobs
-knobs=1; // [0:disabled, 1:enabled]
-
-
-/* [LEGO Technics] */
+/* [Technic-compatible options] */
 
 // Add full width through holes spaced along the length for LEGO Techics connectors
 side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
@@ -145,18 +151,13 @@ knob_flexture_height=4.5;
 bottom_stiffener_width=2.8;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
-bottom_stiffener_height=block_height/3;
-
-// Base distance which small stiffeners protrude inwards from outside edges of a block to hold the knobs of the block below
-outside_lock_thickness=1.5;
-
-// Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards for asymmetric side pressure to induce a snap fit
-side_lock_thickness=0.05;
+bottom_stiffener_height=block_height/4;
 
 // Bottom connector assistance ring size
-ring_radius=3.25;
+ring_radius=3.25 - 0.12;
 
-/* [Advanced LEGO Technic Options] */
+
+/* [Advanced Technic-compatible Options] */
 
 // Technic connector hole
 axle_hole_radius = 2.47;

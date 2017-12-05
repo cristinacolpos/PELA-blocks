@@ -38,6 +38,11 @@ that may be hidden by the sensible default values. This is an evolving art.
 
 include <lego-parameters.scad>
 
+/* [LEGO-compatible Options] */
+
+// What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
+mode=1; // [1:1, 2:2, 3:3, 4:4]
+
 /////////////////////////////////////
 // LEGO display
 /////////////////////////////////////
@@ -47,13 +52,13 @@ if (mode==1) {
     lego();
 } else if (mode==2) {
     // Bock without top knobs
-    lego(knob_height=0, knob_bevel=0, knob_flexture_radius=0, knob_vent_radius=0);
+    lego(knobs=0);
 } else if (mode==3) {
     // Block without bottom sockets
     lego(sockets=0);
 } else if (mode==4) {
     // Block without top knobs or bottom sockets
-    lego(sockets=0, knob_height=0, knob_bevel=0, knob_flexture_radius=0, knob_vent_radius=0);
+    lego(sockets=0, knobs=0);
 } else {
     echo("<b>Unsupported mode: please check <i>mode</i> variable is 1-4</b>");
 }
@@ -290,6 +295,7 @@ module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, b
 }
 
 
+// DEPRECATED, not in use
 // Asymmetric pressure edges added to increase the snap fit flexture of the outer shell on the knobs of any block below
 module side_lock_set(l=l, w=w, bottom_tweak=bottom_tweak, outside_lock_thickness=outside_lock_thickness, side_lock_thickness=side_lock_thickness) {
 
@@ -297,7 +303,7 @@ module side_lock_set(l=l, w=w, bottom_tweak=bottom_tweak, outside_lock_thickness
     height=knob_height-knob_top_thickness;
     s = bottom_tweak+outside_lock_thickness+side_lock_thickness;
 
-    color("red") difference() {
+    difference() {
         cube([lego_width(l), lego_width(w), height]);
         translate([s, s, -defeather])
             cube([lego_width(l)-2*s, lego_width(w)-2*s, height+2*defeather]);
@@ -306,7 +312,7 @@ module side_lock_set(l=l, w=w, bottom_tweak=bottom_tweak, outside_lock_thickness
     h2=knob_height;
     s2 = bottom_tweak+outside_lock_thickness;
 
-    color("blue") difference() {
+    difference() {
         cube([lego_width(l), lego_width(w), h2]);
         translate([s2, s2, -defeather])
             cube([lego_width(l)-2*s2, lego_width(w)-2*s2, h2+2*defeather]);
