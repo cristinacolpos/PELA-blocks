@@ -27,7 +27,7 @@ Import this into other design files:
 
 include <../lego-parameters.scad>
 use <../lego.scad>
-use <../lego-technic.scad>
+use <../technic.scad>
 
 /* [LEGO Sign Options] */
 

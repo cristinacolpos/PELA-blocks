@@ -23,19 +23,19 @@ Design work kindly sponsored by
 */
 
 include <../lego-parameters.scad>
-use <../lego-technic.scad>
+use <../technic.scad>
 use <../lego.scad>
 
 /* [LEGO Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real LEGO first, then 3D printed to 3D printed using a calibration block with your selected top_tweak and bottom_tweak adjustments] */
 
 // Generator mode: ususally start with the calibration bar, then use others if needed
-mode=1; // [1:Calibration bar, 2:Set of calibration blocks, 3:One calibration block]
+mode=3; // [1:Calibration bar, 2:Set of calibration blocks, 3:One calibration block]
 
 // Length of each calibration block (LEGO unit count)
-l = 2; 
+l = 4; 
 
 // Width of each calibration block (LEGO unit count)
-w = 2;
+w = 4;
 
 // Height of the block (LEGO unit count, use 1/3 for short calibration panel)
 h = 1/3;

@@ -17,7 +17,7 @@ Although this file is parametric and designed for use with an online customizer,
 
 include <../lego-parameters.scad>
 use <../lego.scad>
-use <../lego-technic.scad>
+use <../technic.scad>
 
 /* [Grove Enclosure Options] */
 // Length of the enclosure (LEGO unit count)
@@ -34,7 +34,7 @@ h = 1.5;
 solid_upper_layers = 1; // [0:empty, 1:solid]
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=0; // [0:no holes, 1:holes]
+bolt_holes=1; // [0:no holes, 1:holes]
 
 side_holes=0;
 
@@ -83,7 +83,8 @@ offset_x=3.5;
 // Distance from the outside edge of the Technics connector linking the top to the bottom
 offset_y=3.7;
 
-inverted_print_rim=1;            
+// Distance to slide the grove module forward
+grove_y_shift = 0.25;
 
 ///////////////////////////////
 
@@ -101,7 +102,7 @@ function vertical_offset()=(lego_height(2*h)-grove_width)/2;
 module bottom_piece() {
     difference() {
         union() {
-            lego_technic(knob_flexture_height=0, inverted_print_rim=0);
+            lego_technic(knob_flexture_height=0);
             
             height=lego_height(0.33333333);
             translate([0, 0, height])
@@ -122,6 +123,10 @@ module bottom_piece() {
                 rotate([180, 0, 0])
                     axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
 */            
+            if (is_true(bolt_holes)) {
+                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
+            }
+            
             skin();
         }
     }
@@ -131,10 +136,10 @@ module bottom_piece() {
 // Top piece
 module top_piece() {
 
-rotate([180]) translate([0, lego_width(0.5), -(lego_height(h)+knob_height)])
+translate([0, lego_width(w + 0.5), 0])
     difference() {
         union() {
-            lego_technic(socket_height=1.8, inverted_print_rim=inverted_print_rim);
+            lego_technic(socket_height=1.8);
         
             translate([0, 0, lego_height(0.5)])
                 double_end_connector_sheath_set();
@@ -155,6 +160,10 @@ rotate([180]) translate([0, lego_width(0.5), -(lego_height(h)+knob_height)])
 #            translate([lego_width(l)-offset_x, lego_width(2)-offset_y, 0])
                 axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
 */
+            if (is_true(bolt_holes)) {
+                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
+            }
+            
             skin();
         }
 };
@@ -165,7 +174,7 @@ rotate([180]) translate([0, lego_width(0.5), -(lego_height(h)+knob_height)])
     
 // A complete Grove module negative space assembly. These are all the areas where you do _not_ want material in order to be able to place a real Grove module embedded within another part
 module grove() {
-    translate([0, 0, 0.25]) //TODO HACK
+    translate([0, 0, grove_y_shift])
     minkowski() {
         union() {
             board();
@@ -184,12 +193,8 @@ module board() {
     translate([0, grove_width/2,bottom_space])
         eye();
     
-//    translate([grove_width/2, 0, bottom_space]) eye();
-    
     translate([grove_width, grove_width/2, bottom_space])
         eye();
-    
-//    translate([grove_width/2, grove_width, bottom_space]) eye();
     
     translate([(grove_width-connector_width)/2, -(connector_length-grove_width)/2, bottom_space+thickness])
         cube([connector_width, connector_length, connector_height]);

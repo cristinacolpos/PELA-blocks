@@ -26,7 +26,8 @@ Import this into other design files:
 */
 
 include <../lego-parameters.scad>
-use <../lego-technic.scad>
+use <../lego.scad>
+use <../technic.scad>
 
 
 /* [LEGO Options plus Plastic and Printer Variance Adjustments] */
@@ -39,7 +40,7 @@ mode=1;
 l = 6;
 
 // Length of the left side of the enclosure (LEGO knob count, for example l/2 or less)
-l_cap = 4;
+l_cap = 2;
 
 // Length of the right side of the enclosure (LEGO knob count, for example l/2 or less)
 r_cap = 2;
@@ -64,6 +65,9 @@ ew = 8*2.5;
 //eh = 28;
 eh = 15;
 
+// Distance up from baselane for the hollowed space
+vertical_offset = 0;
+
 // The size of the step which supports the enclosed part at the edges and corners in case ventilation openings would allow the enclosed part to slip out of place (mm)
 shoulder = 2;
 
@@ -81,6 +85,27 @@ corner_fn=64;
 
 // Solid interior is assumed for this model before carving away from that block
 solid_upper_layers=1;
+
+// Add full width through holes spaced along the length for LEGO Techics connectors
+side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+
+// Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
+side_sheaths = 1; // [0:disabled, 1:enabled]
+
+// Add short end holes spaced along the width for LEGO Techics connectors
+end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+
+// Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
+end_sheaths = 1; // [0:disabled, 1:enabled]
+
+// Add holes in the top deck to improve airflow and reduce weight
+top_vents = 1; // [0:disabled, 1:enabled]
+
+// Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
+knob_vent_radius = 0;
+
+// Add bars to hold the rings in position during printing and when upper structures are modified
+ring_bars = 1;// [0:disabled, 1:bars between bottom rings]
 
 // There is usually no need or room for corner mounting M3 bolt holes
 bolt_holes=0;
@@ -103,35 +128,36 @@ if (mode==1) {
 // LEGO Enclosure Modules
 ///////////////////////////////////
 
-module left_cap(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height, corner_radius=corner_radius) {
+module left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset) {
     
-    difference() {
-        lego_enclosure(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius);
+    intersection() {
+        lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset);
         
-        translate([lego_width(l_cap), 0, 0])
-            cube([lego_width(l-l_cap), lego_width(w), lego_height(h+1)]);
+        cube([lego_width(l_cap), lego_width(w), lego_height(h+1)]);
     }
 }
 
 
-module right_cap(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, corner_radius=corner_radius) {
+module right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, corner_radius=corner_radius, vertical_offset=vertical_offset) {
     
     intersection() {
-        lego_enclosure(l_cap=l_cap, r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius);
+        lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset);
         
-        translate([lego_width(r_cap), 0, 0])
-            cube([lego_width(l-r_cap), lego_width(w), lego_height(h+1)]);
+        translate([lego_width(l-r_cap), 0, 0])
+            cube([lego_width(r_cap), lego_width(w), lego_height(h+1)]);
     }
 }
 
 
 // A Lego brick with a hole inside to contain something of the specified dimensions
-module lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius) {
+module lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset) {
     
     difference() {
-        lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height);
         
-        enclosure_negative_space(l=l, w=w, h=h, el=el, ew=ew, eh=eh, shoulder=shoulder, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius);
+        lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height);
+        
+        translate([0, 0, vertical_offset])
+            enclosure_negative_space(l=l, w=w, h=h, el=el, ew=ew, eh=eh, shoulder=shoulder, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius);
     }
 }
 
