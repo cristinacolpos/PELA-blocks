@@ -29,31 +29,31 @@ use <../lego.scad>
 /* [LEGO Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real LEGO first, then 3D printed to 3D printed using a calibration block with your selected top_tweak and bottom_tweak adjustments] */
 
 // Generator mode: ususally start with the calibration bar, then use others if needed
-mode=3; // [1:Calibration bar, 2:Set of calibration blocks, 3:One calibration block]
+mode=1; // [1:Calibration bar, 2:Set of calibration blocks, 3:One calibration block]
 
 // Length of each calibration block (LEGO unit count)
-l = 4; 
+l = 2; 
 
 // Width of each calibration block (LEGO unit count)
-w = 4;
+w = 2;
 
 // Height of the block (LEGO unit count, use 1/3 for short calibration panel)
-h = 1/3;
+h = 1;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:disable, 1:enabled]
 
 end_holes=0;
 
-side_holes=0;
+side_holes=3;
 
 side_hole_sheaths=1;
 
 top_vents = 1;
 
-knobs = 0;
+knobs = 1;
 
-top_shell = 0;
+top_shell = 1;
 
 // Font for calibration block text labels
 font = "Arial";
