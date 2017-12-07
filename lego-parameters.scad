@@ -52,7 +52,7 @@ axle_hole_tweak = 0;
 outside_lock_thickness=1.3;
 
 // Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards for asymmetric side pressure to induce a snap fit
-side_lock_thickness=0.01;
+side_lock_thickness=0.02;
 
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
 knob_bevel=0.15;
@@ -154,7 +154,7 @@ bottom_stiffener_width=2.8;
 bottom_stiffener_height=block_height/4;
 
 // Bottom connector assistance ring size
-ring_radius=3.25 - 0.12;
+ring_radius=3.25 - 0.19;
 
 
 /* [Advanced Technic-compatible Options] */

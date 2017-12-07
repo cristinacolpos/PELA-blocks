@@ -32,7 +32,7 @@ use <technic.scad>
 mode=3; // [1:pin, 2:axle, 3:cross axle]
 
 // An axle which fits loosely in a technic bearing hole
-axle_radius = 2.23;
+axle_radius = 2.2;
 
 // Cross axle inside rounding radius
 axle_rounding=0.63;
