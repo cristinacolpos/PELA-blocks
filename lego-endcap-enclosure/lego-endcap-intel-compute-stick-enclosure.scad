@@ -34,16 +34,16 @@ use <lego-endcap-enclosure.scad>
 /* [LEGO Options plus Plastic and Printer Variance Adjustments] */
 
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>preview a single object that can not be opened, 4>both caps
-mode=3;
+mode=4;
 
 // Length of the enclosure (LEGO knob count)
 l = 15;
 
 // Length of the left side of the enclosure (LEGO knob count, for example l/2 or less)
-l_cap = 4;
+l_cap = 6;
 
 // Length of the right side of the enclosure (LEGO knob count, for example l/2 or less)
-r_cap = 4;
+r_cap = 6;
 
 // Width of the enclosure (LEGO knob count)
 w = 6;
