@@ -67,7 +67,25 @@ h3 = 0.5;
 d4 = 0.95;
 h4 = 2.75;
 pin_height=h1+h1_2+h2+h2_3+h3+h4;
-pin_vertical_offset=h1+h1_2+h2+h2_3;
+pin_vertical_offset=h1+h1_2+h2+h2_3+h3;
+pin_holder_height=h1+h1_2+h2+h2_3;
+
+// Vive cutout dimensions
+cd1 = 3.2;
+ch1 = 0.5;
+ch1_2 = 0.5;
+cd2 = 1.75;
+ch2 = 1.35;
+cd3 = 2.55;
+ch2_3 = 0.5;
+ch3 = 0.5;
+cd4 = 0.95;
+ch4 = 2.75;
+cd2b = 2.4;
+cd2c = cd2b+1.5;
+cd2d = cd2c-0.75;
+slice_width = 0.5;
+
 
 // Vive connector dimensions
 channel_d = 7;
@@ -131,16 +149,24 @@ module vive_connector_right() {
 module vive_connector() {
     difference() {
         channel();
-        vive_pin_array();
+        vive_cutout_array();
     }
 }
 
 
 module vive_pin_array(count=6) {
-    for (i=[0:pin_spacing:pin_spacing*count]) {
-        translate([0, pin_spacing/2 + i - (channel_l+channel_d-count*pin_spacing)/2, pin_vertical_offset])
+    for (i=[0:pin_spacing:pin_spacing*(count-1)]) {
+        translate([0, i + (channel_l-(count-1)*pin_spacing)/2, pin_vertical_offset])
             rotate([180, 0, 0])
                 vive_pin();
+    }
+}
+
+module vive_cutout_array(count=6) {
+    for (i=[0:pin_spacing:pin_spacing*(count-1)]) {
+        translate([0, i + (channel_l-(count-1)*pin_spacing)/2, pin_vertical_offset])
+            rotate([180, 0, 0])
+                vive_cutout();
     }
 }
 
@@ -148,7 +174,7 @@ module vive_pin_array(count=6) {
 module vive_pin() {
     $fn=32;
     
-    cylinder(d=d1, h = h1);
+    cylinder(d=d1, h=h1);
     translate([0, 0, h1]) {
         cylinder(d1=d1, d2=d2, h=h1_2);
         translate([0, 0, h1_2]) {
@@ -166,6 +192,44 @@ module vive_pin() {
      }
 }
 
+// A pin to connect to a Vive, slightly over actual size to create an associated negative space
+module vive_cutout() {
+    $fn=32;
+    
+    cylinder(d=cd1, h=ch1);
+    translate([0, 0, ch1]) {
+        cylinder(d1=cd1, d2=cd2, h=ch1_2);
+        cylinder(d=cd2b, h=pin_height);
+        
+        translate([0, 0, ch1_2]) {
+            cylinder(d=cd2, h=ch2);
+
+            difference() {
+                cylinder(d=cd2c, h=pin_height);
+                cylinder(d=cd2d, h=pin_height);
+            }
+            slice();
+            rotate([0, 0, 90])
+                slice();
+
+            translate([0, 0, ch2]) {
+                cylinder(d1=cd2, d2=cd3, h=ch2_3);
+                translate([0, 0, ch2_3]) {
+                    cylinder(d=cd3, h=ch3);
+                    translate([0, 0, ch3]) {
+                        cylinder(d=cd4, h=ch4);
+                    } 
+                } 
+            } 
+        } 
+     }
+}
+
+module slice() {
+    translate([-cd2d/2, -slice_width/2])
+        cube([cd2d, slice_width, pin_height]);
+}
+
 module channel() {
     intersection() {
         hull() {
@@ -176,6 +240,6 @@ module channel() {
         }
             
         translate([-channel_d/2, -channel_d/2, 0])
-            cube([channel_d, channel_l+channel_d, pin_vertical_offset]);
+            cube([channel_d, channel_l+channel_d, pin_holder_height]);
         }
 }

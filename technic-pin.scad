@@ -29,7 +29,7 @@ use <technic.scad>
 /* [LEGO Technic-compatible Pin Options] */
 
 // What type of Pin or similar object to generate
-mode=3; // [1:pin, 2:axle, 3:cross axle]
+mode=1; // [1:pin, 2:axle, 3:cross axle]
 
 // An axle which fits loosely in a technic bearing hole
 axle_radius = 2.2;
@@ -41,7 +41,7 @@ axle_rounding=0.63;
 axle_center_radius=2*axle_radius/3;
 
 // Size of the hollow inside of an axle
-pin_center_radius=3*axle_radius/4;
+pin_center_radius=2*axle_radius/3;
 
 // Size of the connector lock-in bump at the ends of a Pin
 pin_tip_length = 0.4;
@@ -118,7 +118,7 @@ module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_len
 
     length=(peg_length+pin_tip_length)*2 + counterbore_holder_height;
 
-    slot_length=length/2;
+    slot_length=length/1.2;
 
     difference() {
         union() {

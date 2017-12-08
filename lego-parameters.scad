@@ -105,6 +105,13 @@ knob_vent_radius = 0;
 ring_bars = 1;// [0:disabled, 1:bars between bottom rings]
 
 /* [Advanced] */
+
+// Size of the connectors (calibrated for PLA 0.5mm nozzle, change 'top_tweak' to adjust for your printer and plastic)
+knob_radius=2.45+0.07;
+
+// Bottom connector assistance ring size (calibrated for PLA 0.5mm nozzle, change 'buttom_tweak' to adjust for your printer and plastic)
+ring_radius=3.25 - 0.21;
+
 // Minimum angle to approximate a circle
 $fa=10;
 
@@ -135,9 +142,6 @@ ridge_depth = 0.3;
 // Distance below knob top surface and the internal cutout
 knob_top_thickness=0.8;
 
-// Size of the connectors (calibrated for PLA, change 'top_tweak' to adjust)
-knob_radius=2.45+0.07;
-
 // Height of the connectors (1.8 is Lego standard, 2.2 gives a stronger hold while still maintaining most compatibility)
 knob_height=1.8;
 
@@ -152,9 +156,6 @@ bottom_stiffener_width=2.8;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=block_height/4;
-
-// Bottom connector assistance ring size
-ring_radius=3.25 - 0.19;
 
 
 /* [Advanced Technic-compatible Options] */
