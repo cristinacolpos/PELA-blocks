@@ -50,7 +50,7 @@ bolt_holes=0; // [0:no holes, 1:holes]
 bolt_hole_radius=1.5;
 
 // Presence of top connector knobs
-knobs=1; // [0:disabled, 1:enabled]
+knobs=0; // [0:disabled, 1:enabled]
 
 // Distance between Vive connector pins
 pin_spacing = 3.5;
@@ -82,8 +82,8 @@ ch3 = 0.5;
 cd4 = 0.95;
 ch4 = 2.75;
 cd2b = 2.4;
-cd2c = cd2b+1.5;
-cd2d = cd2c-0.75;
+cd2c = cd2b+2;
+cd2d = cd2c-1;
 slice_width = 0.5;
 
 
@@ -96,6 +96,9 @@ channel_l = 19;
 /////////////////////////////////////
 
 vive_connector();
+
+knob_grid();
+
 //vive_connector_left();
 //vive_connector_right();
 //lego_vive_tracker_mount();
@@ -103,6 +106,26 @@ vive_connector();
 /////////////////////////////////////
 // LEGO VIVE TRACKER modules
 /////////////////////////////////////
+
+module knob_grid() {
+    knob_offset = -1.6;
+    
+    for (i=[-2:0]) {
+        rotate([180, 0]) {
+            translate([lego_width(0.5), lego_width(i)+knob_offset, 0])
+                flexed_knob();
+            translate([lego_width(-0.5), lego_width(i)+knob_offset, 0])
+                flexed_knob();
+        }
+    }
+}
+
+module flexed_knob() {
+    difference() {
+        knob();
+        knob_flexture();
+    }
+}
 
 module lego_vive_tracker_mount() {
     difference() {
