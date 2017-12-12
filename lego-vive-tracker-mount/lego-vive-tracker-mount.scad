@@ -71,83 +71,98 @@ pin_vertical_offset=h1+h1_2+h2+h2_3+h3;
 pin_holder_height=h1+h1_2+h2+h2_3;
 
 // Vive cutout dimensions
-cd1 = 3.2;
+pin_skin=0.12;
+cd1 = 3.2+pin_skin;
 ch1 = 0.5;
 ch1_2 = 0.5;
-cd2 = 1.75;
+cd2 = 1.75+pin_skin;
 ch2 = 1.35;
-cd3 = 2.55;
+cd3 = 2.55+pin_skin;
 ch2_3 = 0.5;
 ch3 = 0.5;
-cd4 = 0.95;
+cd4 = 0.95+pin_skin;
 ch4 = 2.75;
-cd2b = 2.4;
-cd2c = cd2b+2;
-cd2d = cd2c-1;
-slice_width = 0.5;
+cd2b = 2.4+pin_skin;
+cd2c = cd2b+2.3+pin_skin;
+cd2d = cd2c-0.5+pin_skin;
+slice_width = 0.25;
 
 
 // Vive connector dimensions
 channel_d = 7;
 channel_l = 19;
 
+// Knob disconnect from center region
+knob_lift = 0.2;
+
+// Screwhole and alignment pin
+thumscrew_offset_from_edge = lego_width()+17.4;
+thumbscrew_hole_d=6.5;
+thumbscrew_border_d=11;
+alignment_pin_h = 5.5;
+alignment_pin_d = 4.8;
+alignment_pin_offset_from_screwhole = 13.9;
+
+
 /////////////////////////////////////
 // LEGO panel display
 /////////////////////////////////////
 
-vive_connector();
+lego_vive_tracker_mount();
 
-knob_grid();
-
+//vive_connector();
 //vive_connector_left();
 //vive_connector_right();
-//lego_vive_tracker_mount();
+
 
 /////////////////////////////////////
 // LEGO VIVE TRACKER modules
 /////////////////////////////////////
 
-module knob_grid() {
-    knob_offset = -1.6;
-    
-    for (i=[-2:0]) {
-        rotate([180, 0]) {
-            translate([lego_width(0.5), lego_width(i)+knob_offset, 0])
-                flexed_knob();
-            translate([lego_width(-0.5), lego_width(i)+knob_offset, 0])
-                flexed_knob();
-        }
-    }
+
+module thumbscrew_hole() {
+    translate([thumscrew_offset_from_edge, lego_width(w/2)])
+        cylinder(d=thumbscrew_hole_d, h=panel_height()+0.1);
 }
 
-module flexed_knob() {
-    difference() {
-        knob();
-        knob_flexture();
-    }
+
+module thumbscrew_hole_border() {
+    translate([thumscrew_offset_from_edge, lego_width(w/2)])
+        cylinder(d=thumbscrew_border_d, h=panel_height());
 }
+
+
+module alignment_pin() {
+    translate([thumscrew_offset_from_edge+alignment_pin_offset_from_screwhole, lego_width(w/2), panel_height(0.5)])
+        cylinder(d=alignment_pin_d, h=panel_height(0.5)+alignment_pin_h);
+}
+
 
 module lego_vive_tracker_mount() {
     difference() {
         union() {
             lego_socket_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius);
 
-            translate([13, 9, 0])
-                rotate([0, 0, 90])
-                    connector();
+            translate([lego_width(), 2.4+lego_width(1.5), panel_height()])
+                vive_connector();
+            
+            thumbscrew_hole_border();
+            
+            alignment_pin();
         }
         
-#        translate([lego_width(0.5), lego_width(1.5)])
-            cube([lego_width(1), lego_width(3), panel_height()]);
+        union() {
+            translate([lego_width(0.75), lego_width(1.75)])
+                cube([lego_width(0.5), lego_width(2.5), panel_height()]);
+            
+            thumbscrew_hole();
+        }
     }
     
 }
 
-module connector() {
-    translate([14.5, -17.5, panel_height()])
-        import("ViveTrackerConnector.stl", convexity=3);
-}
 
+// For display of interenal function and pin position
 module vive_connector_left() {
     intersection() {
         vive_connector();
@@ -158,6 +173,7 @@ module vive_connector_left() {
 %    vive_pin_array();    
 }
 
+// For display of interenal function and pin position
 module vive_connector_right() {
     difference() {
         vive_connector();
@@ -172,7 +188,16 @@ module vive_connector_right() {
 module vive_connector() {
     difference() {
         channel();
-        vive_cutout_array();
+        union () {
+            vive_cutout_array();
+            
+            translate([0, (channel_l-5*pin_spacing)/2, 0])
+                hull() {
+                    cylinder(d=cd2c, h=2*knob_lift);
+                    translate([0, channel_l-pin_spacing/2, 0])
+                        cylinder(d=cd2c, h=2*knob_lift);
+                }
+        }
     }
 }
 
@@ -227,10 +252,10 @@ module vive_cutout() {
         translate([0, 0, ch1_2]) {
             cylinder(d=cd2, h=ch2);
 
-            difference() {
-                cylinder(d=cd2c, h=pin_height);
-                cylinder(d=cd2d, h=pin_height);
-            }
+//            difference() {
+//                cylinder(d=cd2c, h=pin_height);
+//                cylinder(d=cd2d, h=pin_height);
+//            }
             slice();
             rotate([0, 0, 90])
                 slice();
@@ -248,11 +273,13 @@ module vive_cutout() {
      }
 }
 
+// A flexture cut through the ring around a pin to facilitate pin insertion
 module slice() {
     translate([-cd2d/2, -slice_width/2])
         cube([cd2d, slice_width, pin_height]);
 }
 
+// The himisphical body into which pins are intserted
 module channel() {
     intersection() {
         hull() {
