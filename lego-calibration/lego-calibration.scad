@@ -45,11 +45,11 @@ bolt_holes=0; // [0:disable, 1:enabled]
 
 end_holes=0;
 
-side_holes=3;
+side_holes=0;
 
 side_hole_sheaths=1;
 
-top_vents = 1;
+top_vents = 0;
 
 knobs = 1;
 

@@ -43,7 +43,7 @@ h = 2;
 top_tweak = 0;
 
 // Bottom connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
-bottom_tweak = 0;
+bottom_tweak = -0.08;
 
 // Technic connector hole size tweak => + = more loose fit, 0 for PLA with 0.6mm nozzle
 axle_hole_tweak = 0;
