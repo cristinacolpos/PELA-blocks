@@ -43,19 +43,19 @@ h = 2;
 top_tweak = 0;
 
 // Bottom connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
-bottom_tweak = -0.08;
+bottom_tweak = 0;
 
 // Technic connector hole size tweak => + = more loose fit, 0 for PLA with 0.6mm nozzle
 axle_hole_tweak = 0;
 
 // Base distance which small stiffeners protrude inwards from outside edges of a block to hold the knobs of the block below
-outside_lock_thickness=1.3;
+outside_lock_thickness=1.44;
 
 // Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards for asymmetric side pressure to induce a snap fit
 side_lock_thickness=0.02;
 
 // Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
-knob_bevel=0.15;
+knob_bevel=0.1;
 
 /* [Features] */
 
@@ -107,10 +107,10 @@ ring_bars = 1;// [0:disabled, 1:bars between bottom rings]
 /* [Advanced] */
 
 // Size of the connectors (calibrated for PLA 0.5mm nozzle, change 'top_tweak' to adjust for your printer and plastic)
-knob_radius=2.45+0.07;
+knob_radius=2.45 + 0.12;
 
 // Bottom connector assistance ring size (calibrated for PLA 0.5mm nozzle, change 'buttom_tweak' to adjust for your printer and plastic)
-ring_radius=3.25 - 0.21;
+ring_radius=3.25 - 0.1;
 
 // Minimum angle to approximate a circle
 $fa=10;
@@ -152,7 +152,7 @@ knob_flexture_radius=1.4;
 knob_flexture_height=4.5;
 
 // Width of horizontal surface strengthening slats between the bottom rings
-bottom_stiffener_width=2.8;
+bottom_stiffener_width=2.7;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=block_height/4;
