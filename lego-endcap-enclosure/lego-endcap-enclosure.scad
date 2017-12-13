@@ -37,7 +37,7 @@ mode=1;
 
 // Length of the enclosure (LEGO knob count)
 //l = 23;
-l = 6;
+l = 7;
 
 // Length of the left side of the enclosure (LEGO knob count, for example l/2 or less)
 l_cap = 2;

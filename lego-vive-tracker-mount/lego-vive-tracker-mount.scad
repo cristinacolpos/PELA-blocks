@@ -29,6 +29,7 @@ include <../lego-parameters.scad>
 use <../lego.scad>
 use <../technic.scad>
 use <../lego-socket-panel/lego-socket-panel.scad>
+use <../threads/threads.scad>
 
 /* [LEGO Panel Options] */
 
@@ -71,7 +72,7 @@ pin_vertical_offset=h1+h1_2+h2+h2_3+h3;
 pin_holder_height=h1+h1_2+h2+h2_3;
 
 // Vive cutout dimensions
-pin_skin=0.12;
+pin_skin=0.15;
 cd1 = 3.2+pin_skin;
 ch1 = 0.5;
 ch1_2 = 0.5;
@@ -85,7 +86,7 @@ ch4 = 2.75;
 cd2b = 2.4+pin_skin;
 cd2c = cd2b+2.3+pin_skin;
 cd2d = cd2c-0.5+pin_skin;
-slice_width = 0.25;
+slice_width = 0.6;
 
 
 // Vive connector dimensions
@@ -93,11 +94,11 @@ channel_d = 7;
 channel_l = 19;
 
 // Knob disconnect from center region
-knob_lift = 0.2;
+connector_holder_center_lift = 0.15;
 
 // Screwhole and alignment pin
 thumscrew_offset_from_edge = lego_width()+17.4;
-thumbscrew_hole_d=6.5;
+thumbscrew_hole_d=7;
 thumbscrew_border_d=11;
 alignment_pin_h = 5.5;
 alignment_pin_d = 4.8;
@@ -108,7 +109,9 @@ alignment_pin_offset_from_screwhole = 13.9;
 // LEGO panel display
 /////////////////////////////////////
 
-lego_vive_tracker_mount();
+//lego_vive_tracker_mount();
+
+translate([-5, -5]) thumbscrew();
 
 //vive_connector();
 //vive_connector_left();
@@ -120,9 +123,47 @@ lego_vive_tracker_mount();
 /////////////////////////////////////
 
 
+module thumbscrew() {
+    height=panel_height(0.5)-skin;
+    
+    translate([0, 0, height])
+        us_bolt_thread(dInch=0.25*.81, hInch=1/4, tpi=20);
+//TODO fixme, magic .81 to correct for thread library diameter
+
+
+    thumbscrew_head(height=height);
+}
+
+
+module thumbscrew_head(height=undef) {
+    cylinder(d=thumbscrew_border_d/2, h=height);
+    
+    difference() {
+        cylinder(d=thumbscrew_border_d-0.2, h=height);
+        
+        cut = 0.7;
+        
+        union() {
+            for (i = [0:20:340]) {
+                rotate([0, 0, i])
+                    translate([-cut/2, 0])
+                        cube([cut, thumbscrew_border_d, cut]);
+            }
+        }
+    }
+}
+
+
 module thumbscrew_hole() {
     translate([thumscrew_offset_from_edge, lego_width(w/2)])
         cylinder(d=thumbscrew_hole_d, h=panel_height()+0.1);
+}
+
+
+// The negative space to remove to make room for the thumbscrew head to flush mount inside the panel
+module thumbscrew_head_hole() {
+    translate([thumscrew_offset_from_edge, lego_width(w/2), -panel_height(0.5)+skin])
+        cylinder(d=thumbscrew_border_d, h=panel_height());
 }
 
 
@@ -149,13 +190,27 @@ module lego_vive_tracker_mount() {
             thumbscrew_hole_border();
             
             alignment_pin();
+
+            hull() {
+                translate([lego_width(1), lego_width(1.81)])
+                    cylinder(d=channel_d, h=panel_height());
+
+                translate([lego_width(1), lego_width(4.19)])
+                    cylinder(d=channel_d, h=panel_height());
+            }
         }
         
         union() {
-            translate([lego_width(0.75), lego_width(1.75)])
-                cube([lego_width(0.5), lego_width(2.5), panel_height()]);
+            hull() {
+                translate([lego_width(1), lego_width(2)])
+                    cylinder(d=lego_width(0.6), h=panel_height());
+
+                translate([lego_width(1), lego_width(4)])
+                    cylinder(d=lego_width(0.6), h=panel_height());
+            }
             
             thumbscrew_hole();
+            thumbscrew_head_hole();
         }
     }
     
@@ -185,6 +240,7 @@ module vive_connector_right() {
 }
 
 
+// 
 module vive_connector() {
     difference() {
         channel();
@@ -193,15 +249,16 @@ module vive_connector() {
             
             translate([0, (channel_l-5*pin_spacing)/2, 0])
                 hull() {
-                    cylinder(d=cd2c, h=2*knob_lift);
+                    cylinder(d=cd2c, h=2*connector_holder_center_lift);
                     translate([0, channel_l-pin_spacing/2, 0])
-                        cylinder(d=cd2c, h=2*knob_lift);
+                        cylinder(d=cd2c, h=2*connector_holder_center_lift);
                 }
         }
     }
 }
 
 
+// A set of pins
 module vive_pin_array(count=6) {
     for (i=[0:pin_spacing:pin_spacing*(count-1)]) {
         translate([0, i + (channel_l-(count-1)*pin_spacing)/2, pin_vertical_offset])
@@ -210,6 +267,8 @@ module vive_pin_array(count=6) {
     }
 }
 
+
+// A set of negative space for pins
 module vive_cutout_array(count=6) {
     for (i=[0:pin_spacing:pin_spacing*(count-1)]) {
         translate([0, i + (channel_l-(count-1)*pin_spacing)/2, pin_vertical_offset])
@@ -245,20 +304,13 @@ module vive_cutout() {
     $fn=32;
     
     cylinder(d=cd1, h=ch1);
+            slice();
     translate([0, 0, ch1]) {
         cylinder(d1=cd1, d2=cd2, h=ch1_2);
         cylinder(d=cd2b, h=pin_height);
         
         translate([0, 0, ch1_2]) {
             cylinder(d=cd2, h=ch2);
-
-//            difference() {
-//                cylinder(d=cd2c, h=pin_height);
-//                cylinder(d=cd2d, h=pin_height);
-//            }
-            slice();
-            rotate([0, 0, 90])
-                slice();
 
             translate([0, 0, ch2]) {
                 cylinder(d1=cd2, d2=cd3, h=ch2_3);
@@ -279,7 +331,7 @@ module slice() {
         cube([cd2d, slice_width, pin_height]);
 }
 
-// The himisphical body into which pins are intserted
+// The himisphical body into which pins are inserted
 module channel() {
     intersection() {
         hull() {
