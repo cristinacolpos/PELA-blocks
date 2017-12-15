@@ -31,14 +31,17 @@ extrusionNudge = 0.001;
 
 us_bolt_thread();
 
+translate([10, 0]) 
+    us_nut_thread();
+
 
 // The thread of a bolt (no head)
 module us_bolt_thread(dInch=0.25, hInch=1, tpi=20) {
-    isoThread(dInch=dInch, hInch=hInch, tpi=tpi, internal=false, $fn=60);
+    isoThread(dInch=dInch, hInch=hInch, tpi=tpi, internal=false);
 }
 
 
 // Negative space, the part to cutout to make a nut
-module internal_thread() {
-    isoThread(d=42,h=30+2*extrusionNudge,pitch=3,angle=40,internal=true,$fn=60);
+module us_nut_thread() {
+    isoThread(dInch=dInch, hInch=hInch, tpi=20, internal=true);
 }

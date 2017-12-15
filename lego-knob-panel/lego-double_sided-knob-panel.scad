@@ -33,14 +33,14 @@ use <lego-knob-panel.scad>
 /* [LEGO Panel Options] */
 
 // Length of the block (LEGO unit count)
-l = 4; 
+l = 8; 
 
 // Width of the block (LEGO unit count)
 w = 4;
 
 top_vents = 0;
 
-// Interior fill for layers above the bottom
+// Interior fill for the bottom
 solid_bottom_layer = 0; // [0:empty, 1:solid]
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
