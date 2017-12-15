@@ -32,10 +32,10 @@ use <../lego.scad>
 mode=1; // [1:Calibration bar, 2:Set of calibration blocks, 3:One calibration block]
 
 // Length of each calibration block (LEGO unit count)
-l = 2; 
+l = 3; 
 
 // Width of each calibration block (LEGO unit count)
-w = 2;
+w = 4;
 
 // Height of the block (LEGO unit count, use 1/3 for short calibration panel)
 h = 1/3;

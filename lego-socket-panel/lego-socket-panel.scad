@@ -32,10 +32,10 @@ use <../technic.scad>
 /* [LEGO Panel Options] */
 
 // Length of the block (LEGO unit count)
-l = 6; 
+l = 8; 
 
 // Width of the block (LEGO unit count)
-w = 6;
+w = 8;
 
 top_vents = 1;
 

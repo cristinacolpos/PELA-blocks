@@ -37,17 +37,17 @@ axle_radius = 2.2;
 // Cross axle inside rounding radius
 axle_rounding=0.63;
 
-// Size of the hollow inside of an axle
+// Size of the hollow inside an axle
 axle_center_radius=2*axle_radius/3;
 
-// Size of the hollow inside of an axle
-pin_center_radius=2*axle_radius/3;
+// Size of the hollow inside a pin
+pin_center_radius=3*axle_radius/4;
 
 // Size of the connector lock-in bump at the ends of a Pin
 pin_tip_length = 0.4;
 
 // Width of the long vertical flexture slots in the side of a pin
-slot_thickness = 0.9;
+slot_thickness = 0.7;
 
 defeather=0.01;
 
@@ -85,17 +85,15 @@ module axle(axle_radius=axle_radius, axle_center_radius=axle_center_radius, leng
 module cross_axle(axle_rounding=axle_rounding, axle_radius=axle_radius, length=15) {
 
     rotate([90, 45, 0])
-    difference() {
-        axle(axle_radius=axle_radius, axle_center_radius=0, length=length);        
-        axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length);
-    }
+        difference() {
+            axle(axle_radius=axle_radius, axle_center_radius=0, length=length);        
+            axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length);
+        }
 }
 
 
 // That which is cut away four times from a solid to create a cross axle
 module axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length) {
-    
-    defeather = 0.01;
     
     for (rot=[0:90:270]) {
         rotate([0, 0, rot])
@@ -118,7 +116,7 @@ module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_len
 
     length=(peg_length+pin_tip_length)*2 + counterbore_holder_height;
 
-    slot_length=length/1.2;
+    slot_length=length/2;
 
     difference() {
         union() {
@@ -157,7 +155,7 @@ module tip(axle_radius=axle_radius, pin_tip_length=pin_tip_length) {
 }
 
 
-// A disc with rounded outer edge
+// A disc with rounded outer edge for pin tips
 module rounded_disc(radius=10, thickness=1) {
     translate([0, 0, thickness/2])
         minkowski() {
@@ -167,6 +165,7 @@ module rounded_disc(radius=10, thickness=1) {
         }
 }
 
+// Side flexture slot with easement holes at each end
 module rounded_slot(thickness=2, slot_length=10) {
     width = 20;
     
@@ -179,4 +178,15 @@ module rounded_slot(thickness=2, slot_length=10) {
             rotate([0, 90, 0])
                 cylinder(r=thickness/2, h=width, $fn=16);
     }
+    
+    circle_to_slot_ratio = 1.2;
+    
+    translate([-width/2, 0, slot_length/2 - thickness])
+        rotate([0, 90, 0])
+            cylinder(r=thickness/circle_to_slot_ratio, h=width, $fn=16);
+            
+    translate([-width/2, 0, -slot_length/2 + thickness])
+        rotate([0, 90, 0])
+            cylinder(r=thickness/circle_to_slot_ratio, h=width, $fn=16);
+
 }
