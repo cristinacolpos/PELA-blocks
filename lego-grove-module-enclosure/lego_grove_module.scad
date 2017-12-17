@@ -102,7 +102,7 @@ function vertical_offset()=(lego_height(2*h)-grove_width)/2;
 module bottom_piece() {
     difference() {
         union() {
-            lego_technic(knob_flexture_height=0);
+            lego_technic(l=l, w=w, knob_flexture_height=0);
             
             height=lego_height(0.33333333);
             translate([0, 0, height])
@@ -139,7 +139,7 @@ module top_piece() {
 translate([0, lego_width(w + 0.5), 0])
     difference() {
         union() {
-            lego_technic(socket_height=1.8);
+            lego_technic(l=l, w=w, socket_height=1.8);
         
             translate([0, 0, lego_height(0.5)])
                 double_end_connector_sheath_set();

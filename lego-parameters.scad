@@ -142,8 +142,8 @@ ridge_depth = 0.3;
 // Distance below knob top surface and the internal cutout
 knob_top_thickness=0.8;
 
-// Height of the connectors (1.8 is Lego standard, 2.2 gives a stronger hold while still maintaining most compatibility)
-knob_height=1.8;
+// Height of the connectors (1.8 is Lego standard, 2 gives a stronger hold while still maintaining compatibility)
+knob_height=2;
 
 // Size of the small flexture cavity inside each knob
 knob_flexture_radius=1.4;
@@ -173,4 +173,4 @@ counterbore_inset_depth = 0.8;
 peg_length = 6.5;
 
 // Size of an cylinder wrapped around the entrance to bearing holes
-bearing_sheath_thickness = 0.6;
+bearing_sheath_thickness = 0.8;
