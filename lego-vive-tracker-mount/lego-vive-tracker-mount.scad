@@ -88,6 +88,11 @@ cd2c = cd2b+2.3+pin_skin;
 cd2d = cd2c-0.5+pin_skin;
 slice_width = 0.6;
 
+// Winchester Ranger Model 120
+winchester_rail_w = 9.55;
+winchester_rail_h = 3.15;
+winchester_rail_clearance = 7; // top to barrel
+
 
 // Vive connector dimensions
 channel_d = 7;
@@ -103,15 +108,37 @@ thumbscrew_border_d=11;
 alignment_pin_h = 5.5;
 alignment_pin_d = 4.8;
 alignment_pin_offset_from_screwhole = 13.9;
+cut = 0.8;
+
+/* [LEGO-compatible Options] */
+
+// What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
+mode=1; // [1:1, 2:2, 3:3, 4:4]
+
+/////////////////////////////////////
+// LEGO vive mount and screw display
+/////////////////////////////////////
+
+if (mode==1) {
+    lego_vive_tracker_mount();
+} else if (mode==2) {
+    thumbscrew();
+} else if (mode==3) {
+    lego_vive_tracker_mount();
+    translate([-5, -5])
+        thumbscrew();
+} else {
+    echo("<b>Unsupported mode: please check <i>mode</i> variable is 1-3</b>");
+}
 
 
 /////////////////////////////////////
 // LEGO panel display
 /////////////////////////////////////
 
-//lego_vive_tracker_mount();
+lego_vive_tracker_mount();
 
-translate([-5, -5]) thumbscrew();
+//translate([-5, -5]) thumbscrew();
 
 //vive_connector();
 //vive_connector_left();
@@ -127,9 +154,7 @@ module thumbscrew() {
     height=panel_height(0.5)-skin;
     
     translate([0, 0, height])
-        us_bolt_thread(dInch=0.25*.81, hInch=1/4, tpi=20);
-//TODO fixme, magic .81 to correct for thread library diameter
-
+        us_bolt_thread(dInch=0.25, hInch=1/4, tpi=20);
 
     thumbscrew_head(height=height);
 }
@@ -137,14 +162,16 @@ module thumbscrew() {
 
 module thumbscrew_head(height=undef) {
     cylinder(d=thumbscrew_border_d/2, h=height);
-    
+
     difference() {
-        cylinder(d=thumbscrew_border_d-0.2, h=height);
-        
-        cut = 0.7;
-        
+        difference() {
+            cylinder(d=thumbscrew_border_d-0.2, h=height);
+            translate([-cut/2, 0])
+                cube([cut, thumbscrew_border_d, cut]);
+            
+        }
         union() {
-            for (i = [0:20:340]) {
+            for (i = [30:30:360]) {
                 rotate([0, 0, i])
                     translate([-cut/2, 0])
                         cube([cut, thumbscrew_border_d, cut]);
@@ -176,6 +203,9 @@ module thumbscrew_hole_border() {
 module alignment_pin() {
     translate([thumscrew_offset_from_edge+alignment_pin_offset_from_screwhole, lego_width(w/2), panel_height(0.5)])
         cylinder(d=alignment_pin_d, h=panel_height(0.5)+alignment_pin_h);
+
+    translate([lego_width(5), lego_width(3), panel_height(0.5)])
+        cylinder(r=ring_radius, h=panel_height(0.5));
 }
 
 
