@@ -6,7 +6,7 @@ param (
 	[Int]$l = 4,
 	[Int]$w = 2,
 	[Int]$h = 1,
-    [String]$filename = "lego"
+    [String]$filename = "technic"
 )
 
 Function FormatElapsedTime($ts) 
@@ -43,7 +43,7 @@ $param = "`"l=$l; w=$w; h=$h;`""
 
 Write-Output "Render $filename"
 
-openscad -o $filename -D $param lego.scad
+openscad -o $filename -D $param technic.scad
 
 $elapsed=FormatElapsedTime ((Get-Date) - $start)
 Write-Output "Render time: $elapsed"

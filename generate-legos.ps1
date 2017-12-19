@@ -3,70 +3,45 @@
 # Part of https://github.com/paulirotta/parametric_lego
 
 
-##################################
-# ABS sample, calibrated on a Taz 6 printer, standard extruder
-$filename="lego-abs"
-$top_tweak=0.0;
-$bottom_tweak=-0.0;
+Function FormatElapsedTime($ts) 
+{
+    $elapsedTime = ""
 
-$l=4;
-$w=2;
-$h=1;
+    if ( $ts.Minutes -gt 0 )
+    {
+        $elapsedTime = [string]::Format( "{0:00}m {1:00}.{2:00}s", $ts.Minutes, $ts.Seconds, $ts.Milliseconds / 10 );
+    }
+    else
+    {
+        $elapsedTime = [string]::Format( "{0:00}.{1:00}s", $ts.Seconds, $ts.Milliseconds / 10 );
+    }
 
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
+    if ($ts.Hours -eq 0 -and $ts.Minutes -eq 0 -and $ts.Seconds -eq 0)
+    {
+        $elapsedTime = [string]::Format("{0:00}ms", $ts.Milliseconds);
+    }
 
+    if ($ts.Milliseconds -eq 0)
+    {
+        $elapsedTime = [string]::Format("{0}ms", $ts.TotalMilliseconds);
+    }
 
-##################################
-# PLA, calibrated on a Taz 6 printer, standard extruder
-$filename="lego-pla"
-$top_tweak=-0.04;
-$bottom_tweak=0.04;
-$l=4;
-$w=2;
-$h=1;
+    return $elapsedTime
+}
 
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
+Write-Output "Removing old .stl files"
+Remove-Item "*.stl"
+Remove-Item ".\lego-sign\*.stl"
 
+Invoke-Expression ".\lego.ps1 4 2 1"
+Invoke-Expression ".\lego.ps1 2 2 1"
+Invoke-Expression ".\lego.ps1 2 2 1"
+Invoke-Expression ".\lego.ps1 1 1 1"
+Invoke-Expression ".\technic.ps1 4 4 2"
 
-##################################
-# NGEN, calibrated on a Taz 6 printer, standard extruder
-$filename="lego-ngen"
-$top_tweak=0.07;
-$bottom_tweak=-0.01;
-$l=1;
-$w=1;
-$h=1;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
-
-$l=4;
-$w=2;
-$h=1;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
-
-$l=4;
-$w=4;
-$h=2;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename"
-
-#Panel
-$l=8;
-$w=8;
-$h=1;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename -mode 2 -bolt_holes 1"
-
-
-###################################
-# CALIBRATION
-# Any material: test the fit with real LEGO bricks to find optimal fit top_tweak and bottom_tweak calibration numbers for your printer and material
-$filename="lego"
-$top_tweak=0;
-$bottom_tweak=-0;
-$l=2;
-$w=2;
-$h=1;
-
-Invoke-Expression ".\lego.ps1 -l $l -w $w -h $h -top_tweak $top_tweak -bottom_tweak $bottom_tweak -filename $filename -mode 3"
+Write-Output "Render lego-sign.stl"
+$start = Get-Date
+openscad -o ".\lego-sign\lego-sign.stl" ".\lego-sign\lego-sign.scad"
+$elapsed=FormatElapsedTime ((Get-Date) - $start)
+Write-Output "Render time: $elapsed"
+Write-Output ""

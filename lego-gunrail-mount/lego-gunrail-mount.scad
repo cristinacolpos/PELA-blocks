@@ -52,28 +52,53 @@ bolt_hole_radius=1.5;
 // Presence of top connector knobs
 knobs=1; // [0:disabled, 1:enabled]
 
-/* [Gunrail Mount Options] */
-body_width = 21.2 + skin;
+mount_type = 1; //[0:Picatinny/NATO, 1:Shotgun Rib]
 
-body_height = 9;
-
-body_length = 40;
-
-top_height = 2.74;
+// Picatinny/NATO Rail Mount Dimensions
+body_width = 21.2 - skin;
 
 top_width = 19;
 
+body_height = 9;
+
+body_length = lego_width(l-1);
+
+top_height = 2.74;
+
 top_vertical_offset = 4.17;
 
-base_width = 15.6 + skin;
+base_width = 15.67 + skin;
 
 holder_width = lego_width(w-2.5);
 
+
+// Shotgun Square Rib Mount Dimensions (these are not standardized and may taper down towards the tip, measure the gun)
+rib_width = 15;
+
+rib_thickness = 25.4/4;
+
+rib_holder_height = 25.4;
+
+rib_body_width = 20;
+
+rib_body_thickness = 8;
+
+rib_base_width = rib_width - 1;
+
 defeather = 0.01;
+
+
 
 // Display
 top_panel();
-rail_mount();
+
+if (mount_type == 1) {
+    rail_mount();
+} else if (mount_type == 2) {
+    rib_mount();
+} else {
+    echo("<b>Unsupported mount type: please check <i>mode</i> variable is 1-4</b>");
+}
 
 
 module top_panel() {
@@ -82,7 +107,7 @@ module top_panel() {
 
     translate([lego_width(-l/2), lego_width(-w/2)])
         difference() {
-            lego_knob_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
+            lego_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
 
             union() {
                 translate([lego_width(l/2-1), lego_width(w/2-1), panel_height()])
@@ -136,3 +161,24 @@ module top_cut() {
                 cube([body_length+2*defeather, top_width, body_height]);
     }
 }
+
+module rib_mount() {
+    difference() {
+        rib_body();
+        rib();
+    }
+}
+
+module rib() {
+    translate([-body_length/2, -rib_width/2, -rib_thickness])
+        cube([body_length, rib_width, rib_thickness]);
+
+    translate([-body_length/2, -rib_base_width/2, -rib_body_thickness])
+        cube([body_length, rib_base_width, rib_body_thickness]);
+}
+
+module rib_body() {
+    translate([-body_length/2, -rib_body_width/2, -rib_body_thickness])
+        cube([body_length, rib_body_width, rib_body_thickness]);
+}
+

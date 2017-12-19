@@ -51,6 +51,9 @@ bolt_hole_radius=1.5;
 // Presence of top connector knobs
 knobs=1; // [0:disabled, 1:enabled]
 
+// Height of horizontal surface strengthening slats (appears between the bottom rings)
+bottom_stiffener_height=block_height/3;
+
 
 /////////////////////////////////////
 // LEGO panel display
@@ -62,13 +65,16 @@ lego_knob_panel();
 // LEGO PANEL modules
 /////////////////////////////////////
 
-module lego_knob_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
+module lego_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
     
-    translate([0, 0, lego_height(-0.6666666667)])
+    defeather=0.01;
+    
+    translate([0, 0, lego_height(-2/3)])
         difference() {
-            lego_technic(l=l, w=w, h=1, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=    solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0);
+            lego_technic(l=l, w=w, h=1, top_vents=top_vents, solid_bottom_layer=    solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height);
     
-            cube([lego_width(l), lego_width(w), panel_height(2)]);
+            translate([-defeather, -defeather])
+            cube([lego_width(l+1), lego_width(w+1), panel_height(2)]);
         }
 }
 

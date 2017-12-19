@@ -212,7 +212,7 @@ module alignment_pin() {
 module lego_vive_tracker_mount() {
     difference() {
         union() {
-            lego_socket_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius);
+            lego_socket_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius);
 
             translate([lego_width(), 2.4+lego_width(1.5), panel_height()])
                 vive_connector();
