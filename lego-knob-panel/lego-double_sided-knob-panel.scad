@@ -41,20 +41,13 @@ w = 4;
 top_vents = 0;
 
 // Interior fill for the bottom
-solid_bottom_layer = 0; // [0:empty, 1:solid]
+solid_bottom_layer = 1; // [0:empty, 1:solid]
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:no holes, 1:holes]
 
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius=1.5;
-
-solid_bottom_layer = 1;
-
-sockets = 0;
-
-// Presence of top connector knobs
-knobs=1; // [0:disabled, 1:enabled]
 
 
 /////////////////////////////////////
@@ -67,12 +60,12 @@ lego_double_sided_knob_panel();
 // LEGO PANEL modules
 /////////////////////////////////////
 
-module lego_double_sided_knob_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
+module lego_double_sided_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
 
-    lego_knob_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, sockets=sockets, knobs=knobs);
+    lego_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, sockets=sockets, knobs=knobs);
     
     translate([0, lego_width(w), panel_height()])
         rotate([180, 0, 0])
-            lego_knob_panel(l=l, w=w, top_tweak=top_tweak, bottom_tweak=bottom_tweak, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, sockets=sockets, knobs=knobs);
+            lego_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, sockets=sockets, knobs=knobs);
 }
 

@@ -76,6 +76,12 @@ left_margin = 3;
 // Top and bottom text margin (mm)
 vertical_margin = 3;
 
+// Width of a line etched in the side of multi-layer block sets (0 to disable, 0.15 on other types of blocks)
+ridge_width = 0;
+
+// Depth of a line etched in the side of multi-layer block sets (unused if ridge_width=0)
+ridge_depth = 0.3;
+
 
 
 /////////////////////////////////////
@@ -86,31 +92,31 @@ lego_sign();
 ///////////////////////////////////
 
 // A LEGO brick with text on the side
-module lego_sign(line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak) {
+module lego_sign(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
     if (is_true(extrude)) {
-        lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, layer_ridge=0);
+        lego_technic(l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth);
         
         translate([skin, skin, 0])
-            lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak);
+            lego_sign_extruded_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
 
         if (is_true(copy_to_back)) {
             translate([lego_width(l), lego_width(w)-skin, 0])
                 rotate([0, 0, 180])
-                    lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h);
+                    lego_sign_extruded_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
         }
     } else {
         difference() {
-            lego(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, layer_ridge=0);
+            lego_technic(l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth);
             
             union() {
                 translate([skin, 0, 0])
-                    lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h);
+                    lego_sign_etched_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
 
                 if (is_true(copy_to_back)) {
                     translate([lego_width(l)-skin, lego_width(w)-skin, 0])
                         rotate([0, 0, 180])
-                            lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h);
+                            lego_sign_etched_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
                 }
             }
         }
@@ -119,7 +125,7 @@ module lego_sign(line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extr
 
 
 // Two lines of text extruded out from the surface
-module lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h) {
+module lego_sign_extruded_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
     translate([left_margin, 0, lego_height(h)-vertical_margin])
         lego_text(text=line_1, lang=lang, font=f1, font_size=fs1, vertical_alignment="top");
@@ -129,7 +135,7 @@ module lego_sign_extruded_text(line_1=line_1, line_2=line_2, lang=lang, extrusio
 
 
 // Two lines of text etched into the surface
-module lego_sign_etched_text(line_1=line_1, line_2=line_2, lang=lang,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, l=l, w=w, h=h) {
+module lego_sign_etched_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
     translate([left_margin, extrusion_height, lego_height(h)-vertical_margin])
         lego_text(text=line_1, lang=lang, extrusion_height=extrusion_height, font=f1, font_size=fs1, vertical_alignment="top");

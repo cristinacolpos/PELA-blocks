@@ -37,27 +37,7 @@ w = 4;
 h = 2;
 
 
-/* [3D Printing Adjustments] */
-
-// Top connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
-top_tweak = 0;
-
-// Bottom connector size tweak => + = more tight fit, 0 for PLA with 0.6mm nozzle
-bottom_tweak = 0;
-
-// Technic connector hole size tweak => + = more loose fit, 0 for PLA with 0.6mm nozzle
-axle_hole_tweak = 0;
-
-// Base distance which small stiffeners protrude inwards from outside edges of a block to hold the knobs of the block below
-outside_lock_thickness=1.44;
-
-// Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards for asymmetric side pressure to induce a snap fit
-side_lock_thickness=0.02;
-
-// Height of the easy connect slope near connector top (0 to disable is standard a slightly faster to generate the model, a bigger value such as 0.4 may help if you adjust a tight fit but most printers' slicers will simplify away most usable bevels)
-knob_bevel=0.1;
-
-/* [Features] */
+/* [Basic Block Features] */
 
 // Presence of bottom connector sockets
 sockets= 1; // [0:no sockets, 1:sockets]
@@ -77,11 +57,8 @@ solid_upper_layers = 0; // [0:empty, 1:solid]
 // Interior fill for layers above the bottom
 solid_bottom_layer = 0; // [0:empty, 1:solid]
 
-// Add an outside rim to assist with printing the LEGO upside down
-inverted_print_rim=0; // [0:disabled, 1:enabled]
 
-
-/* [Technic-compatible options] */
+/* [Technic-compatible Block Features] */
 
 // Add full width through holes spaced along the length for LEGO Techics connectors
 side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
@@ -104,13 +81,23 @@ knob_vent_radius = 0;
 // Add bars to hold the rings in position during printing and when upper structures are modified
 ring_bars = 1;// [0:disabled, 1:bars between bottom rings]
 
-/* [Advanced] */
 
-// Size of the connectors (calibrated for PLA 0.5mm nozzle, change 'top_tweak' to adjust for your printer and plastic)
-knob_radius=2.45 + 0.12;
+/* [Aesthetic Options for Basic Blocks] */
 
-// Bottom connector assistance ring size (calibrated for PLA 0.5mm nozzle, change 'buttom_tweak' to adjust for your printer and plastic)
-ring_radius=3.25 - 0.1;
+// Width of a line etched in the side of multi-layer block sets (0 to disable)
+ridge_width = 0.15;
+
+// Depth of a line etched in the side of multi-layer block sets
+ridge_depth = 0.3;
+
+
+
+include <print-parameters.scad>
+
+function dummy(x)=x; // This first function will block all uncommon parameters below from appearing in the online customizer
+
+
+/* [Advanced Options for Basic Blocks] */
 
 // Minimum angle to approximate a circle
 $fa=10;
@@ -133,17 +120,11 @@ top_shell=1.2;
 // Clearance space around the outer surface of bricks
 skin = 0.1; 
 
-// Width of a line etched in the side of multi-layer block sets (0 to disable)
-ridge_width = 0.15;
-
-// Depth of a line etched in the side of multi-layer block sets
-ridge_depth = 0.3;
-
 // Distance below knob top surface and the internal cutout
 knob_top_thickness=0.8;
 
-// Height of the connectors (1.8 is Lego standard, 2 gives a stronger hold while still maintaining compatibility)
-knob_height=2;
+// Height of the connectors (1.8 is Lego standard, 2 may give a stronger hold while still maintaining compatibility)
+knob_height=1.8;
 
 // Size of the small flexture cavity inside each knob
 knob_flexture_radius=1.4;
@@ -158,10 +139,7 @@ bottom_stiffener_width=2.7;
 bottom_stiffener_height=block_height/4;
 
 
-/* [Advanced Technic-compatible Options] */
-
-// Technic connector hole
-axle_hole_radius = 2.47;
+/* [Advanced Options for Technic-compatible Blocks] */
 
 // Technic connector inset radius
 counterbore_inset_radius = 3.1;
@@ -172,5 +150,5 @@ counterbore_inset_depth = 0.8;
 // Contact length of axle to brick (not including inset length and end snap fit flexture in pin connectors)
 peg_length = 6.5;
 
-// Size of an cylinder wrapped around the entrance to bearing holes
-bearing_sheath_thickness = 0.8;
+// Size of an optional cylinder wrapped around the bearing holes
+bearing_sheath_thickness = 0.9;
