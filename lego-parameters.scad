@@ -34,7 +34,7 @@ l = 4;
 w = 4;
 
 // Height of the block (LEGO unit count)
-h = 2;
+h = 1;
 
 
 /* [Basic Block Features] */
@@ -63,7 +63,7 @@ solid_bottom_layer = 0; // [0:empty, 1:solid]
 // Add full width through holes spaced along the length for LEGO Techics connectors
 side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
+// Add a sheath around Technic side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for LEGO Techics connectors
@@ -75,10 +75,10 @@ end_sheaths = 1; // [0:disabled, 1:enabled]
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = 1; // [0:disabled, 1:enabled]
 
-// Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
+// Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly manifold shape). 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
 knob_vent_radius = 0;
 
-// Add bars to hold the rings in position during printing and when upper structures are modified
+// Add bars on the bottom surface between rings (recommended, holds the rings in position during printing, material flex and if upper structures are cut away)
 ring_bars = 1;// [0:disabled, 1:bars between bottom rings]
 
 
@@ -124,10 +124,7 @@ skin = 0.1;
 knob_top_thickness=0.8;
 
 // Height of the connectors (1.8 is Lego standard, 2 may give a stronger hold while still maintaining compatibility)
-knob_height=1.8;
-
-// Size of the small flexture cavity inside each knob
-knob_flexture_radius=1.4;
+knob_height=2;
 
 // Height of the hole beneath each knob
 knob_flexture_height=4.5;

@@ -38,7 +38,7 @@ l = 3;
 w = 4;
 
 // Height of the block (LEGO unit count, use 1/3 for short calibration panel)
-h = 1/3;
+h = 1/2;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:disable, 1:enabled]
