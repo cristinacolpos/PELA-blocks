@@ -22,7 +22,7 @@ l = 4;
 w = 2;
 
 // Height of the bottom part of the motor enclosure (LEGO unit count, the top part is always 1/3)
-h=1.66666666667;
+h = 4/3;
 
 
 /* [Motor Options] */
@@ -61,7 +61,7 @@ end_holes=0;
 
 top_vents=1;
 
-knob_vent_radius=1.5;
+//knob_vent_radius=1.5;
 
 ////////////////////
 
@@ -90,14 +90,14 @@ module lego_motor_bottom() {
 
 
 module lego_motor_top() {
-        translate([0, lego_width(w + 0.5), lego_height(-0.666666667)])
+        translate([0, lego_width(w + 0.5), lego_height(-1/3)])
             difference() {
                 lego_technic(l=l, w=w, h=1);
     
                 union() {
-                    cube([lego_width(l), lego_width(w), lego_height(0.6666666667)]);
+                    cube([lego_width(l), lego_width(w), lego_height(1/3)]);
             
-                    translate([(lego_width(l)-motor_round_length-motor_square_length)/2, (lego_width(w)-motor_radius*2)/2, lego_height(0.6666666667)-motor_radius-lego_width(0.5)])
+                    translate([(lego_width(l)-motor_round_length-motor_square_length)/2, (lego_width(w)-motor_radius*2)/2, lego_height(2/3)-motor_radius-lego_width(0.5)])
                         motor();
                 }
             }
