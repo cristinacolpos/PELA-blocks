@@ -43,8 +43,12 @@ side_lock_thickness=0.02;
 // Size of the top connectors (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 knob_radius=2.45 + 0.12;
 
-// Height of the easy connect slope near connector top (0 to disable, a bigger value such as 0.1 may help ease a tightly tuned fit or compensate for overextrusion)
-knob_bevel=0.1;
+
+// Size of the small flexture cavity inside each knob (default is 1.4, set to 0 for flexible materials)
+knob_flexture_radius=0;
+
+// Height of the easy connect slope near connector top (0 to disable, a bigger value such as 0.1 may help ease a tightly tuned fit or compensate for overextrusion, 0 for flexible filaments)
+knob_bevel=0;
 
 
 
