@@ -1,5 +1,5 @@
 /*
-Parametric LEGO Technic-compatible Pin
+Parametric LEGO Technic-compatible connector Pin
 
 Published at
     http://www.thingiverse.com/thing:XXXX
@@ -24,21 +24,11 @@ Design work kindly sponsored by
 
 include <lego-parameters.scad>
 use <lego.scad>
-use <technic.scad>
 
 /* [LEGO Technic-compatible Pin Options] */
 
-// What type of Pin or similar object to generate
-mode=1; // [1:pin, 2:axle, 3:cross axle]
-
 // An axle which fits loosely in a technic bearing hole
 axle_radius = 2.2;
-
-// Cross axle inside rounding radius
-axle_rounding=0.63;
-
-// Size of the hollow inside an axle
-axle_center_radius=2*axle_radius/3;
 
 // Size of the hollow inside a pin
 pin_center_radius=3*axle_radius/4;
@@ -57,39 +47,9 @@ counterbore_holder_height = counterbore_inset_depth * 2;
 
 ///////////////
 
-if (mode == 1) {
-    pin();
-} else if (mode == 2) {
-    axle();
-} else if (mode == 3) {
-    cross_axle();
-} else {
-    echo("<b>Unsupported mode: please check <i>mode</i> variable is 1-3</b>");
-}
+pin();
     
 //////////////////
-
-
-// A round rotation axle
-module axle(axle_radius=axle_radius, axle_center_radius=axle_center_radius, length=15) {
-
-    difference() {
-        cylinder(r=axle_radius, h=length);
-        translate([0, 0, -defeather])
-            cylinder(r=axle_center_radius, h=length+2*defeather);
-    }
-}
-
-
-// A rotation axle with a "+" cross section
-module cross_axle(axle_rounding=axle_rounding, axle_radius=axle_radius, length=15) {
-
-    rotate([90, 45, 0])
-        difference() {
-            axle(axle_radius=axle_radius, axle_center_radius=0, length=length);        
-            axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length);
-        }
-}
 
 
 // That which is cut away four times from a solid to create a cross axle
@@ -110,6 +70,7 @@ module axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_r
             }
     }
 }
+
 
 // A connector pin between two sockets
 module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
@@ -188,5 +149,4 @@ module rounded_slot(thickness=2, slot_length=10) {
     translate([-width/2, 0, -slot_length/2 + thickness])
         rotate([0, 90, 0])
             cylinder(r=thickness/circle_to_slot_ratio, h=width, $fn=16);
-
 }
