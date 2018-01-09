@@ -33,7 +33,7 @@ use <../technic.scad>
 /* [LEGO Options plus Plastic and Printer Variance Adjustments] */
 
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>both caps, 4=>preview a single object that can not be opened
-mode=1;
+mode=3;
 
 // Length of the enclosure (LEGO knob count)
 //l = 23;
@@ -118,6 +118,10 @@ if (mode==1) {
 } else if (mode==2) {
     right_cap();
 } else if (mode==3) {
+    left_cap();
+    translate([0, lego_width(w+0.5)])
+        right_cap();
+} else if (mode==4) {
     lego_enclosure();
 } else {
     echo("<b>Unsupported: please check <i>mode</i> variable is 1-3</b>");
@@ -128,20 +132,20 @@ if (mode==1) {
 // LEGO Enclosure Modules
 ///////////////////////////////////
 
-module left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset) {
+module left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset) {
     
     intersection() {
-        lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset);
+        lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset);
         
         cube([lego_width(l_cap), lego_width(w), lego_height(h+1)]);
     }
 }
 
 
-module right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, corner_radius=corner_radius, vertical_offset=vertical_offset) {
+module right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, corner_radius=corner_radius, vertical_offset=vertical_offset) {
     
     intersection() {
-        lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset);
+        lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset);
         
         translate([lego_width(l-r_cap), 0, 0])
             cube([lego_width(r_cap), lego_width(w), lego_height(h+1)]);
@@ -150,11 +154,11 @@ module right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, 
 
 
 // A Lego brick with a hole inside to contain something of the specified dimensions
-module lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset) {
+module lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset) {
     
     difference() {
         
-        lego_technic(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, socket_height=socket_height);
+        lego_technic(l=l, w=w, h=h, socket_height=socket_height);
         
         translate([0, 0, vertical_offset])
             enclosure_negative_space(l=l, w=w, h=h, el=el, ew=ew, eh=eh, shoulder=shoulder, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius);

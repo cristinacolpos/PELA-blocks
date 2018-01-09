@@ -26,19 +26,19 @@ include <../lego-parameters.scad>
 use <../technic.scad>
 use <../lego.scad>
 
-/* [LEGO Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real LEGO first, then 3D printed to 3D printed using a calibration block with your selected top_tweak and bottom_tweak adjustments] */
+/* [LEGO Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real LEGO first, then 3D printed to 3D printed using a calibration block with your selected paramters] */
 
 // Generator mode: ususally start with the calibration bar, then use others if needed
 mode=1; // [1:Calibration bar, 2:Set of calibration blocks, 3:One calibration block]
 
 // Length of each calibration block (LEGO unit count)
-l = 3; 
+l = 2; 
 
 // Width of each calibration block (LEGO unit count)
-w = 4;
+w = 2;
 
 // Height of the block (LEGO unit count, use 1/3 for short calibration panel)
-h = 1/2;
+h = 2/3;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:disable, 1:enabled]
@@ -55,6 +55,12 @@ knobs = 1;
 
 top_shell = 1;
 
+top_tweak = 0;
+
+bottom_tweak = 0;
+
+axle_hole_tweak = 0;
+
 // Font for calibration block text labels
 font = "Arial";
 
@@ -70,7 +76,7 @@ vertical_text_margin = 0.2;
 // Inset from block edge for text (vertical and horizontal)
 horizontal_text_margin = 1;
 
-// Size between calibration block tweak test steps
+// Size between calibration block  test steps
 calibration_block_increment = 0.01;
 
 
@@ -93,7 +99,7 @@ if (mode==1) {
 /////////////////////////////////////
 // LEGO CALIBRATION BLOCK MODULES
 //
-// A single block or array of LEGO blocks with different tweak parameters.
+// A single block or array of LEGO blocks with different parameters.
 // Use these to find the ideal fit with real LEGO bricks
 // for a given printer, settings and plastic combination. Pre-generated examples and numbers are as a guide only
 // based on tests with a Lulzbot Taz 6 printer and give example results but may not be suitable for your setup.
@@ -190,15 +196,15 @@ module lego_calibration_bottom_text(txt="Text") {
 }
 
 // Mark lines between each clibration bar section
-module etch_all_calibration_bar_dividers(from=1, to=4, w=w) {
-    for (i = [from-w:w:to+2*w]) {
+module etch_all_calibration_bar_dividers(from=1, to=4) {
+    for (i = [from:1:to]) {
         etch_calibration_bar_divider(i=i);
     }
 }
 
 // Mark a line between each calibration section of a calibration bar
 module etch_calibration_bar_divider(i=l) {
-    x = lego_width(i)-ridge_width/2-(i/2-0.5)*shell;
+    x = 0.5*shell + i*(lego_width(l)-shell) - ridge_width/2;
 
     // Front
     translate([x, 0, 0])

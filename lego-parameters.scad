@@ -123,9 +123,6 @@ skin = 0.1;
 // Distance below knob top surface and the internal cutout
 knob_top_thickness=0.8;
 
-// Height of the connectors (1.8 is Lego standard, 2 may give a stronger hold while still maintaining compatibility)
-knob_height=2;
-
 // Height of the hole beneath each knob
 knob_flexture_height=4.5;
 
