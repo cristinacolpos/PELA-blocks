@@ -31,7 +31,7 @@ Import this into other design files to set baseline constants:
 l = 4; 
 
 // Width of the block (LEGO unit count)
-w = 4;
+w = 2;
 
 // Height of the block (LEGO unit count)
 h = 1;
@@ -63,13 +63,13 @@ solid_bottom_layer = 0; // [0:empty, 1:solid]
 // Add full width through holes spaced along the length for LEGO Techics connectors
 side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a sheath around Technic side holes (disable for extra ventilation, enable for connector lock notches)
+// Add a sheath around Technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for LEGO Techics connectors
 end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
+// Add a sheath around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -105,20 +105,20 @@ $fa=10;
 // Minimum segment length to approximate a circle
 $fs=0.3;
 
-// Basic unit horizontal size of LEGO
+// Basic unit horizontal size of each block
 block_width=8;
 
-// Basic unit vertical size of LEGO
+// Basic unit vertical size of each block
 block_height=9.6;
 
-// Thickness of the solid outside surface of LEGO
+// Thickness of the solid outside surface of the block
 shell=1.2;
 
-// Thickness of the solid top surface of LEGO
-top_shell=1.2;
+// Thickness of the solid top surface of the block
+top_shell=1.4;
 
-// Clearance space around the outer surface of bricks
-skin = 0.1; 
+// Horizontal clearance space around the outer surface of the set of blocks to allow two parts to be placed next to one another
+skin = 0.1;
 
 // Distance below knob top surface and the internal cutout
 knob_top_thickness=0.8;

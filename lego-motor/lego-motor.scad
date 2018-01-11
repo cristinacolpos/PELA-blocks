@@ -53,7 +53,7 @@ electric_vertical_displacement=-3;
 // Distance the electrical connector cutout extends from the body
 electric_length=20;
 
-side_holes=0;
+side_holes=1;
 
 side_sheaths=0;
 
@@ -92,7 +92,7 @@ module lego_motor_bottom() {
 module lego_motor_top() {
         translate([0, lego_width(w + 0.5), lego_height(-1/3)])
             difference() {
-                lego_technic(l=l, w=w, h=1);
+                lego_technic(l=l, w=w, h=1, side_holes=0);
     
                 union() {
                     cube([lego_width(l), lego_width(w), lego_height(1/3)]);

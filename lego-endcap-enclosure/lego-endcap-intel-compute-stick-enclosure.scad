@@ -82,13 +82,13 @@ corner_fn=64;
 solid_upper_layers=1;
 
 // Add full width through holes spaced along the length for LEGO Techics connectors
-side_holes = 1;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 0; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for LEGO Techics connectors
-end_holes = 1;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 0; // [0:disabled, 1:enabled]
@@ -110,13 +110,13 @@ bolt_holes=0;
 // LEGO End Cap Enclosure Display
 
 if (mode==1) {
-    left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset);
+    left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, end_holes=end_holes);
 } else if (mode==2) {
     right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, corner_radius=corner_radius, vertical_offset=vertical_offset);
 } else if (mode==3) {
-    lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset);
+    lego_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, end_holes=end_holes);
 } else if (mode==4) {
-    left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset);
+    left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, end_holes=end_holes);
 
     translate([0, lego_width(w + 0.5), 0])
         right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, corner_radius=corner_radius, vertical_offset=vertical_offset);

@@ -110,7 +110,7 @@ if (mode==1) {
 module lego_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, bolt_holes=bolt_holes, block_height=block_height, side_lock_thickness=side_lock_thickness, knobs=knobs) {
     
     from=-4;
-    to=4;
+    to=3;
     
     // Tighter top, looser bottom
     difference() {
