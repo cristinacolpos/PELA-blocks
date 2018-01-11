@@ -105,6 +105,9 @@ $fa=10;
 // Minimum segment length to approximate a circle
 $fs=0.3;
 
+// Roundness of bottom connector rings
+ring_fn=8;
+
 // Basic unit horizontal size of each block
 block_width=8;
 

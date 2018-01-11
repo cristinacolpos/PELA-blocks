@@ -93,7 +93,10 @@ knob_bevel=flexible_material ? 0.3 : 0.0;
 bottom_tweak = 0;
 
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-ring_radius=3.25 - 0.1 + bottom_tweak;
+ring_radius=3.35 + bottom_tweak;
+
+// Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
+ring_thickness=0.6;
 
 // Base distance which small stiffeners protrude inwards from outside shell edges of a block to hold the knobs of any block below
 outside_lock_thickness=1.44 + bottom_tweak;
