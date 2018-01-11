@@ -10,8 +10,6 @@ These designs are not by the LEGO corporation. They are compatible with LEGO and
 
 **IMPORTANT:** First calibrate the designs for your printer.
 
-Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/parametric-lego
-
 ## Calibration ##
 
 *TL;DR: Print a [Calibration Bar](https://github.com/LEGO-Prototypes/parametric-lego/blob/master/lego-calibration/lego-calibration.stl) and update your connector fit adjustments in [`print-parameters.scad`](https://github.com/LEGO-Prototypes/parametric-lego/blob/master/print-parameters.scad)*
@@ -57,6 +55,7 @@ Printer, slider parameters and plastic effect the precise fit of press fit conne
 
 [LEGO Intel Compute Stick Enclosure](https://github.com/LEGO-Prototypes/parametric-lego/blob/master/lego-endcap-enclosure/lego-endcap-intel-compute-stick-enclosure.stl) (a computer inside your robot)
 
+Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/parametric-lego
 
 ## FFF Printing Tips ##
 
