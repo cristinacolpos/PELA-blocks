@@ -90,7 +90,7 @@ function panel_height(i=1) = lego_height(i)/3;
 
 
 // A LEGO block
-module lego(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer, ring_bars=ring_bars) {
+module lego(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, ring_thickness=ring_thickness, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer, ring_bars=ring_bars) {
     
     difference() {
         union() {
@@ -143,7 +143,7 @@ module lego(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_r
 
             if (is_true(sockets)) {
                 translate([0, 0, -0.01])
-                    socket_hole_set(l=l, w=w, radius=axle_hole_radius, length=length);
+                    socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=length);
             }
             
             if (is_true(bolt_holes)) {
@@ -152,13 +152,25 @@ module lego(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_r
         }
     }
     
-    // Show a shadow representing the knobs of a block below
-    %translate([0, 0, -lego_height(h)])
+    
+    %shadow_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes);
+    
+    if (l>1 && w >1) {
+        %translate([lego_width(0.5), lego_width(0.5)])
+            shadow_knob_set(l=l-1, w=w-1, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes);
+    }
+}
+
+
+// Show a shadow representing the knobs of a block below
+module shadow_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes) {
+    translate([0, 0, -lego_height(h)]) {
         difference() {
             top_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, bolt_holes=bolt_holes);
             
             knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes);
         }
+    }
 }
 
 
@@ -292,7 +304,6 @@ module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, b
 }
 
 
-// DEPRECATED, not in use
 // Asymmetric pressure edges added to increase the snap fit flexture of the outer shell on the knobs of any block below
 module side_lock_set(l=l, w=w, outside_lock_thickness=outside_lock_thickness, side_lock_thickness=side_lock_thickness) {
 
@@ -334,27 +345,37 @@ module socket_set(l=l, w=w, ring_radius=ring_radius, length=lego_height(), socke
 // The circular bottom insert for attaching knobs
 module socket_ring(ring_radius=ring_radius, length=lego_height(), sockets=sockets) {
     
-    cylinder(r=ring_radius, h=length);
+    rotate([0, 0, 180/ring_fn])
+        cylinder(r=ring_radius, h=length, $fn=ring_fn);
     
     if (side_lock_thickness>0) {
-        cylinder(r=ring_radius+side_lock_thickness, h=knob_height-knob_top_thickness);
+        rotate([0, 0, 180/ring_fn])
+            cylinder(r=ring_radius+side_lock_thickness, h=knob_height-knob_top_thickness, $fn=ring_fn);
     }
 }
 
 
 // Bottom connector- negative flexture space inside bottom rings for multiple blocks
-module socket_hole_set(l=l, w=w, radius=axle_hole_radius, length=lego_height()) {
+module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=lego_height()) {
     
     if (is_true(sockets)) {
         if (l>1 && w>1) {
             for (i = [1:l-1]) {
                 for (j = [1:w-1]) {
                     translate([lego_width(i), lego_width(j), 0])
-                        rotation_hole(radius=radius, length=length);
+                        knob_attachment_hole(radius=radius, length=length);
                 }
             }
         }
     }
+}
+
+
+// Hole to grab any knob on a block below this block
+module knob_attachment_hole(radius=ring_radius-ring_thickness, length=lego_height()) {
+    
+    rotate([0, 0, 180/ring_fn])
+        cylinder(r=radius, h=length, $fn=ring_fn);
 }
 
 
