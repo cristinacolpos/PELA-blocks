@@ -67,7 +67,7 @@ SUGGESTIONS
 /* [3D Printing Filament Adjustments] */
 
 // Switch between flexible and rigid material geometry
-flexible_material = false;
+flexible_material = true;
 
 /* [3D Printing Top Connector Adjustments] */
 
@@ -75,16 +75,16 @@ flexible_material = false;
 top_tweak = 0;
 
 // Size of the top connectors (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-knob_radius=2.45 + 0.12 + top_tweak;
+knob_radius=2.45 + 0.11 + top_tweak;
 
 // Height of the connectors (1.8 is Lego standard, 2 may give a stronger hold while still maintaining compatibility)
-knob_height=flexible_material ? 2.0 : 1.8;
+knob_height=flexible_material ? 9.6/3 : 1.8;
 
 // Size of the small flexture cavity inside each knob (default is 1.4, set to 0 for flexible materials)
 knob_flexture_radius=flexible_material ? 0.0 : 1.4;
 
 // Height of the easy connect slope near connector top (0 to disable such as for flexible materials, a bigger value such as 0.1 may help ease a tightly tuned fit or compensate for overextrusion)
-knob_bevel=flexible_material ? 0.0 : 0.1;
+knob_bevel=flexible_material ? 0.3 : 0.0;
 
 
 /* [3D Printing Bottom Connector Adjustments] */
