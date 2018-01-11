@@ -32,7 +32,7 @@ use <../technic.scad>
 /* [LEGO Sign Options] */
 
 // Length of the sign (LEGO knob count)
-l = 8; 
+l = 9; 
 
 // Width of the sign (LEGO knob count)
 w = 1;
@@ -41,7 +41,7 @@ w = 1;
 h = 2;
 
 // The top line of text. Set to "" to not have any top line
-line_1 = "LEGO Robotics";
+line_1 = "Parametric LEGO";
 
 // The second line of text
 line_2 = "Rapid Prototyping";
