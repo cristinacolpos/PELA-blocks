@@ -64,6 +64,11 @@ SUGGESTIONS
 */
 
 
+/* [3D Printing Filament Adjustments] */
+
+// Switch between flexible and rigid material geometry
+flexible_material = false;
+
 /* [3D Printing Top Connector Adjustments] */
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
@@ -73,13 +78,13 @@ top_tweak = 0;
 knob_radius=2.45 + 0.12 + top_tweak;
 
 // Height of the connectors (1.8 is Lego standard, 2 may give a stronger hold while still maintaining compatibility)
-knob_height=1.8;
+knob_height=flexible_material ? 2.0 : 1.8;
 
 // Size of the small flexture cavity inside each knob (default is 1.4, set to 0 for flexible materials)
-knob_flexture_radius=1.4;
+knob_flexture_radius=flexible_material ? 0.0 : 1.4;
 
 // Height of the easy connect slope near connector top (0 to disable such as for flexible materials, a bigger value such as 0.1 may help ease a tightly tuned fit or compensate for overextrusion)
-knob_bevel=0.1;
+knob_bevel=flexible_material ? 0.0 : 0.1;
 
 
 /* [3D Printing Bottom Connector Adjustments] */

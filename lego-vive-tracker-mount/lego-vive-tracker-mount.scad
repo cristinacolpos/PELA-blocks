@@ -113,7 +113,7 @@ cut = 0.8;
 /* [LEGO-compatible Options] */
 
 // What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
-mode=1; // [1:1, 2:2, 3:3, 4:4]
+mode=3; // [1:1, 2:2, 3:3, 4:4]
 
 /////////////////////////////////////
 // LEGO vive mount and screw display

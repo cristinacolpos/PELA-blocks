@@ -35,8 +35,10 @@ Function render($name) {
 
 Write-Output "Generating LEGOs"
 Write-Output "================"
+Get-Date
 Write-Output "Removing old .stl files"
 Get-ChildItem * -Include *.stl -Recurse | Remove-Item
+Write-Output ""
 
 Invoke-Expression ".\lego.ps1 1 1 1"
 Invoke-Expression ".\lego.ps1 2 2 1"
@@ -54,8 +56,11 @@ render(".\lego-knob-panel\lego-knob-panel")
 render(".\lego-knob-panel\lego-double_sided-knob-panel")
 render(".\lego-socket-panel\lego-socket-panel")
 render(".\lego-gunrail-mount\lego-gunrail-mount")
+render(".\lego-gunrail-mount\lego-gunrib-mount")
 render(".\lego-endcap-enclosure\lego-endcap-enclosure")
 render(".\lego-endcap-enclosure\lego-endcap-intel-compute-stick-enclosure")
 render(".\lego-vive-tracker-mount\lego-vive-tracker-mount")
 render(".\lego-vive-tracker-mount\lego-vive-tracker-screw")
 render(".\lego-grove-module-enclosure\lego-grove-module-enclosure")
+
+Get-Date
