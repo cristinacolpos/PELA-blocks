@@ -40,6 +40,8 @@ Write-Output "Removing old .stl files"
 Get-ChildItem * -Include *.stl -Recurse | Remove-Item
 Write-Output ""
 
+render(".\lego-hand\lego-hand")
+
 Invoke-Expression ".\lego.ps1 1 1 1"
 Invoke-Expression ".\lego.ps1 2 2 1"
 Invoke-Expression ".\lego.ps1 2 2 2"
