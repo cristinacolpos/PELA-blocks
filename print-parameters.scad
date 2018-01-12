@@ -67,7 +67,7 @@ SUGGESTIONS
 /* [3D Printing Filament Adjustments] */
 
 // Switch between flexible and rigid material geometry
-flexible_material = true;
+flexible_material = false;
 
 /* [3D Printing Top Connector Adjustments] */
 
