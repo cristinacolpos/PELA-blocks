@@ -115,7 +115,7 @@ block_width=8;
 block_height=9.6;
 
 // Thickness of the solid outside surface of the block
-shell=1.2;
+shell=1.0;
 
 // Thickness of the solid top surface of the block
 top_shell=1.4;
@@ -132,8 +132,8 @@ knob_flexture_height=4.5;
 // Width of horizontal surface strengthening slats between the bottom rings
 bottom_stiffener_width=2.7;
 
-// Height of horizontal surface strengthening slats (appears between the bottom rings)
-bottom_stiffener_height=block_height/4;
+// Height of horizontal surface strengthening slats (appears between the bottom rings, default is print-parameters.scad:knob_height)
+bottom_stiffener_height=knob_height;
 
 
 /* [Advanced Options for Technic-compatible Blocks] */
@@ -149,3 +149,6 @@ peg_length = 6.5;
 
 // Size of an optional cylinder wrapped around the bearing holes
 bearing_sheath_thickness = 0.9;
+
+// Slight visual offset to work around prevent goldfeather rendering bugs in OpenSCAD (visual, not affecting final print geometry)
+defeather = 0.01;
