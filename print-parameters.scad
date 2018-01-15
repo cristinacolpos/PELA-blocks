@@ -67,7 +67,17 @@ SUGGESTIONS
 /* [3D Printing Filament Adjustments] */
 
 // Switch between flexible and rigid material geometry
-flexible_material = false;
+flexible_material = true;
+
+// Adjust gemoetry to aid the slicer with details when nozzle is 0.6mm
+large_nozzle = true;
+
+// Thickness of the solid outside surface of the block
+shell=large_nozzle ? 1.2 : 1.0;
+
+// Thickness of the solid top surface of the block
+top_shell=1.4;
+
 
 /* [3D Printing Top Connector Adjustments] */
 

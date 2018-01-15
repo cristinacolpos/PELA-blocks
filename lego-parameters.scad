@@ -114,12 +114,6 @@ block_width=8;
 // Basic unit vertical size of each block
 block_height=9.6;
 
-// Thickness of the solid outside surface of the block
-shell=1.0;
-
-// Thickness of the solid top surface of the block
-top_shell=1.4;
-
 // Horizontal clearance space around the outer surface of the set of blocks to allow two parts to be placed next to one another
 skin = 0.1;
 
