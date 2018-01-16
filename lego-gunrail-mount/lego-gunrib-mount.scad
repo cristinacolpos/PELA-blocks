@@ -93,8 +93,6 @@ rib_body_thickness = 8;
 
 rib_base_width = rib_width - 1;
 
-defeather = 0.01;
-
 
 
 // Display
