@@ -67,28 +67,28 @@ SUGGESTIONS
 /* [3D Printing Filament Adjustments] */
 
 // Switch between flexible and rigid material geometry
-flexible_material = false;
+flexible_material = true;
 
-// Adjust gemoetry to aid the slicer when the minimum trace with is a problem (nozzle is > 0.5mm). Without this, some trace lines may too thin to reproduce reliably, for example in high speed or flexible material processing.
-large_nozzle = true;
+// [0: disable, 1:Adjust gemoetry to aid the slicer when the minimum trace width is a problem (nozzle is > 0.5mm)]  This adjustments prevents geometry too thin to reproduce reliably in high speed or flexible material processing. Some features such as the ability to insert knobs into 1/2 unit sockets will be lost to accomodate thicker parts.
+large_nozzle = 1;
 
 // Thickness of the solid outside surface of the block
-shell=large_nozzle ? 1.2 : 1.0;
+shell=is_true(large_nozzle) ? 1.2 : 1.0;
 
 // Thickness of the solid top surface of the block
 top_shell=1.4;
-
-// Distance below knob top surface and the internal flexture
-knob_top_thickness=0.8;
 
 
 /* [3D Printing Top Connector Adjustments] */
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-top_tweak = 0;
+top_tweak = 0.0;
 
 // Size of the top connectors (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 knob_radius=2.45 + 0.11 + top_tweak;
+
+// Distance below knob top surface and the internal flexture
+knob_top_thickness=0.8;
 
 // Height of the connectors (1.8 is Lego standard, 2 may give a stronger hold while still maintaining compatibility)
 knob_height=flexible_material ? 9.6/3 : 1.8;
@@ -106,10 +106,10 @@ knob_bevel=flexible_material ? 0.3 : 0.0;
 bottom_tweak = 0;
 
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-ring_radius=3.35 + bottom_tweak;
+ring_thickness=is_true(large_nozzle) ? 1.2 : 0.8;
 
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-ring_thickness=0.6;
+ring_radius=2.75 + ring_thickness + bottom_tweak;
 
 // Base distance which small stiffeners protrude inwards from outside shell edges of a block to hold the knobs of any block below
 outside_lock_thickness=1.44 + bottom_tweak;
@@ -121,7 +121,7 @@ side_lock_thickness=0.02;
 /* [3D Printing Side Connector Adjustments] */
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0;
+axle_hole_tweak = 0.0;
 
 // Technic connector hole
 axle_hole_radius = 2.45 + 0.02 + axle_hole_tweak;

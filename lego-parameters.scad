@@ -28,7 +28,7 @@ Import this into other design files to set baseline constants:
 /* [LEGO-compatible Options] */
 
 // Length of the block (LEGO unit count)
-l = 4; 
+l = 2; 
 
 // Width of the block (LEGO unit count)
 w = 2;
@@ -103,7 +103,7 @@ $fa=10;
 $fs=0.3;
 
 // [0:hidden, 1:display where knobs of a block below would be ]
-show_shadow_knobs = 0;
+show_shadow_knobs = 1;
 
 // Basic unit horizontal size of each block
 block_width=8;
