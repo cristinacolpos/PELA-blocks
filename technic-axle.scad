@@ -36,8 +36,6 @@ axle_radius = 2.2;
 // Size of the hollow inside an axle
 axle_center_radius=2*axle_radius/3;
 
-defeather=0.01;
-
 ///////////////
 
 axle();

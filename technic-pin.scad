@@ -39,8 +39,6 @@ pin_tip_length = 0.4;
 // Width of the long vertical flexture slots in the side of a pin
 slot_thickness = 0.7;
 
-defeather=0.01;
-
 counterbore_holder_radius = counterbore_inset_radius - skin;
 
 counterbore_holder_height = counterbore_inset_depth * 2;
