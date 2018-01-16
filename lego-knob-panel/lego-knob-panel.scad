@@ -67,8 +67,6 @@ lego_knob_panel();
 
 module lego_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
     
-    defeather=0.01;
-    
     translate([0, 0, lego_height(-2/3)])
         difference() {
             lego_technic(l=l, w=w, h=1, top_vents=top_vents, solid_bottom_layer=    solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height);

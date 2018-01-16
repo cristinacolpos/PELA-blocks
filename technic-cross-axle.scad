@@ -40,8 +40,6 @@ axle_rounding=0.63;
 // Size of the hollow inside an axle
 axle_center_radius=2*axle_radius/3;
 
-defeather=0.01;
-
 ///////////////
 
 cross_axle();
