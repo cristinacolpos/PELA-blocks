@@ -4,10 +4,10 @@ Thread library convenience wrapper for
 Published at
     http://www.thingiverse.com/thing:2303714
 Maintained at
-    https://github.com/paulirotta/parametric_lego
+    https://github.com/paulirotta/parametric_PELA
 See also the related files
-    LEGO Sign Generator - https://www.thingiverse.com/thing:2546028
-    LEGO Enclosure Generator - https://www.thingiverse.com/thing:2544197
+    PELA Sign Generator - https://www.thingiverse.com/thing:2546028
+    PELA Enclosure Generator - https://www.thingiverse.com/thing:2544197
 
 
 By Paul Houghton

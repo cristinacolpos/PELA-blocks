@@ -1,9 +1,9 @@
-Copyright Paul Houghton, 2017
+Copyright Paul Houghton, 2018
 All rights reserved
 paulirotta@gmail.com
 
 Creative Commons Attribution ShareAlike NonCommercial License
 https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
-These designs are not endorsed by the LEGO corporation. Associated patents on basic LEGO and Technic
-components have expired and are available from multiple sources.
+These designs LEGO and LEGO-Technics compatible. They are not endorsed by the LEGO corporation. Associated patents on
+basic LEGO and Technic components have expired. Similar compatible blocks are available from multiple sources.
