@@ -97,7 +97,13 @@ module lego_technic(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radiu
             if (is_true(side_holes) || is_true(end_holes) || is_true(top_vents)) {
                 length = is_true(top_vents) ? lego_height(h+1) : lego_height(h)-lego_width(0.5);
                 
-                socket_hole_set(l=l, w=w, radius=axle_hole_radius, length=length);
+                offset_from_bottom = is_true(large_nozzle) ? knob_height : 0;
+                translate([0, 0, offset_from_bottom]) {
+                    socket_hole_set(l=l, w=w, radius=axle_hole_radius, length=length);
+                }
+                if (is_true(large_nozzle)) {
+                      socket_hole_set(l=l, w=w, radius=axle_hole_radius*2/3, length=length);
+                }
             }
             
             if (is_true(side_holes)) {
@@ -248,7 +254,6 @@ module axle_hole(hole_type=side_holes, radius=axle_hole_radius, length=counterbo
 // The connector inset for a Technic side connector
 module counterbore_inset(counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius) {
     
-    defeather=0.01;
     translate([0, 0, -defeather])
         cylinder(r=counterbore_inset_radius, h=counterbore_inset_depth+2*defeather);
 }
