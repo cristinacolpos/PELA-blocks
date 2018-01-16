@@ -276,7 +276,7 @@ module bottom_stiffener_bar_set(l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, 
     translate([0, 0, lego_height(h)-bottom_stiffener_height]) {
         if (end_l >= start_l) {
             for (i = [start_l:end_l]) {            
-                translate([lego_width(i)-(bottom_stiffener_width-cut_width)/2, 0, 0])
+                translate([lego_width(i)-(bottom_stiffener_width)/2, 0, 0])
                     difference() {
                         cube([bottom_stiffener_width, lego_width(w), bottom_stiffener_height]);
                     
@@ -288,7 +288,7 @@ module bottom_stiffener_bar_set(l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, 
         
         if (end_w >= start_w) {
             for (j = [start_w:end_w]) {
-                translate([0, lego_width(j)-(bottom_stiffener_width-cut_width)/2, 0])
+                translate([0, lego_width(j)-(bottom_stiffener_width)/2, 0])
                     difference() {
                         cube([lego_width(l), bottom_stiffener_width, bottom_stiffener_height]);
                     
