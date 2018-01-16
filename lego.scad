@@ -270,76 +270,37 @@ module outer_shell(l=l, w=w, h=h, shell=shell, top_shell=top_shell) {
 }
 
 
-// DEPRECATED
 // Bars layed below a horizontal surface to make it stronger
 module bottom_stiffener_bar_set(l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height) {
     
-    translate([0, 0, lego_height(h)-bottom_stiffener_height])
-        stiffener_bar_set(l=l, w=w, start_l=start_l, end_l=end_l, start_w=start_w, end_w=end_w, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height);
-}
-
-
-// DEPRECATED
-module bottom_stiffener(l=l, w=w, bottom_stiffener_height=bottom_stiffener_height) {
-
-    cube([lego_width(l), lego_width(w), bottom_stiffener_height]);
-}
-
-
-
-// Bars layed horizontally to make a stronger surface or hold other components such as bottom rings in place
-module stiffener_bar_set(l=l, w=w, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height) {
-    
-    if (end_l >= start_l) {
-        for (i = [start_l:end_l]) {
-            cut_width = bottom_stiffener_width/2;
+    translate([0, 0, lego_height(h)-bottom_stiffener_height]) {
+        if (end_l >= start_l) {
+            for (i = [start_l:end_l]) {
+                cut_width = bottom_stiffener_width/2;
+            
+                translate([lego_width(i)-bottom_stiffener_width/2, 0, 0])
+                    difference() {
+                        cube([bottom_stiffener_width, lego_width(w), bottom_stiffener_height]);
+                    
+                        translate([bottom_stiffener_width/4, 0, 0])
+                            cube([cut_width, lego_width(w), bottom_stiffener_height]);
+                    }
+            }
+        }
         
-            translate([lego_width(i)-bottom_stiffener_width/2, 0, 0])
-                difference() {
-                    cube([bottom_stiffener_width, lego_width(w), bottom_stiffener_height]);
-                
-                    translate([bottom_stiffener_width/4, 0, 0])
-                        cube([cut_width, lego_width(w), bottom_stiffener_height]);
-                }
+        if (end_w >= start_w) {
+            for (j = [start_w:end_w]) {
+                cut_width = bottom_stiffener_width/2;
+
+                translate([0, lego_width(j)-bottom_stiffener_width/2, 0])
+                    difference() {
+                        cube([lego_width(l), bottom_stiffener_width, bottom_stiffener_height]);
+                    
+                        translate([0, bottom_stiffener_width/4, 0])
+                            cube([lego_width(l), cut_width, bottom_stiffener_height]);
+                    }
+            }
         }
-    }
-    
-    if (end_w >= start_w) {
-        for (j = [start_w:end_w]) {
-            cut_width = bottom_stiffener_width/2;
-
-            translate([0, lego_width(j)-bottom_stiffener_width/2, 0])
-                difference() {
-                    cube([lego_width(l), bottom_stiffener_width, bottom_stiffener_height]);
-                
-                    translate([0, bottom_stiffener_width/4, 0])
-                        cube([lego_width(l), cut_width, bottom_stiffener_height]);
-                }
-        }
-    }
-}
-
-
-// DEPRECATED- REMOVE
-// Asymmetric pressure edges added to increase the snap fit flexture of the outer shell on the knobs of any block below
-module side_lock_set(l=l, w=w, outside_lock_thickness=outside_lock_thickness, side_lock_thickness=side_lock_thickness) {
-
-    height=knob_height-knob_top_thickness;
-    s = outside_lock_thickness+side_lock_thickness;
-
-    difference() {
-        cube([lego_width(l), lego_width(w), height]);
-        translate([s, s, -defeather])
-            cube([lego_width(l)-2*s, lego_width(w)-2*s, height+2*defeather]);
-    }
-    
-    h2=knob_height;
-    s2 = outside_lock_thickness;
-
-    difference() {
-        cube([lego_width(l), lego_width(w), h2]);
-        translate([s2, s2, -defeather])
-            cube([lego_width(l)-2*s2, lego_width(w)-2*s2, h2+2*defeather]);
     }
 }
 
@@ -363,11 +324,6 @@ module socket_ring(ring_radius=ring_radius, length=lego_height(), sockets=socket
     
     rotate([0, 0, 180/ring_fn])
         cylinder(r=ring_radius, h=length, $fn=ring_fn);
-    
-//    if (side_lock_thickness>0) {
-//        rotate([0, 0, 180/ring_fn])
-//            cylinder(r=ring_radius+side_lock_thickness, h=knob_height-knob_top_thickness, $fn=ring_fn);
-//    }
 }
 
 
@@ -396,14 +352,6 @@ module knob_attachment_hole(radius=ring_radius-ring_thickness, length=lego_heigh
         translate([0, 0, h2])    
             cylinder(r=radius, h=length-h2, $fn=ring_fn);
         }
-}
-
-
-// TODO MOVE to Technic model
-// Hole for an axle
-module rotation_hole(radius=axle_hole_radius, length=lego_height()) {
-    
-    cylinder(r=radius, h=length);
 }
 
 

@@ -221,7 +221,13 @@ module side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, bloc
 }
 
 
-//TODO Pass all variables in as arguments
+// Hole for an axle
+module rotation_hole(radius=axle_hole_radius, length=lego_height()) {
+    
+    cylinder(r=radius, h=length);
+}
+
+
 // The rotation and connector hole for a Technic connector
 module axle_hole(hole_type=side_holes, radius=axle_hole_radius, length=counterbore_inset_depth+peg_length) {
     
