@@ -102,17 +102,18 @@ module lego(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_r
 
             bar_h = h > 1 ? 1 : h;
 
-            bottom_stiffener_bar_set(l=l, w=w, h=bar_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height);
+            translate([0, 0, lego_height(h-1)])
+                bottom_stiffener_bar_set(l=l, w=w, h=bar_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height);
 
             if (is_true(sockets)) {
-               socket_set(l=l, w=w, ring_radius=ring_radius, length=lego_height(h), sockets=sockets, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, skin=skin);
+               socket_set(l=l, w=w, ring_radius=ring_radius, length=lego_height(1), sockets=sockets, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, skin=skin);
             }
     
             if (is_true(sockets)) {
                 translate([lego_width(-0.5), lego_width(-0.5)])
                     intersection() {
                         cube([lego_width(l+1), lego_width(w+1), knob_height]);
-                        socket_set(l=l+1, w=w+1, ring_radius=ring_radius, length=lego_height(h), sockets=sockets, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, skin=skin);
+                        socket_set(l=l+1, w=w+1, ring_radius=ring_radius, length=lego_height(1), sockets=sockets, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, skin=skin);
                     }
             }
 
@@ -122,15 +123,12 @@ module lego(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_r
 
             if (is_true(solid_bottom_layer)) {
                 fill_bottom_layer(l=l, w=w);
+            } else if (h>1) {
+                bottom_stiffener_bar_set(l=l, w=w, h=bar_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height);
             }
             
-            if (h>1) {
-                if (is_true(solid_upper_layers)) {
+            if (h>1 && is_true(solid_upper_layers)) {
                     fill_upper_layers(l=l, w=w, h=h);
-                } else {
-                    translate([0, 0, lego_height(h-1)])
-                        bottom_stiffener_bar_set(l=l, w=w, h=1, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height);
-                }
             }
         }
 
@@ -144,7 +142,7 @@ module lego(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_r
             length = lego_height(h)-top_shell;
 
             if (is_true(sockets) && l>1 && w>1) {
-                alternating_radius = is_true(large_nozzle) ? (2/3)*(ring_radius-ring_thickness) : ring_radius-ring_thickness;
+                alternating_radius = is_true(large_nozzle) ? 2/3*(ring_radius-ring_thickness) : ring_radius-ring_thickness;
                 translate([0, 0, -defeather])
                     socket_hole_set(l=l, w=w, radius=alternating_radius, length=length+defeather);
                 translate([lego_width(-0.5), lego_width(-0.5), -defeather])
@@ -180,13 +178,13 @@ module shadow_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_
 }
 
 
-// Make the bottom layer be solid filled instead of mostly open space
+// Make the bottom layer be solid instead of mostly open space
 module fill_bottom_layer(l=l, w=w) {
     cube([lego_width(l), lego_width(w), lego_height()]);
 }
 
 
-// Make layers above the bottom layer be solid filled instead of mostly open space
+// Make layers above the bottom layer be solid instead of mostly open space
 module fill_upper_layers(l=l, w=w, h=h) {
     translate([0, 0, lego_height()])
         cube([lego_width(l), lego_width(w), lego_height(h-1)]);
