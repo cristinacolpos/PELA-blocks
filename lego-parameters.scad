@@ -114,14 +114,11 @@ block_height=9.6;
 // Horizontal clearance space around the outer surface of the set of blocks to allow two parts to be placed next to one another
 skin = 0.1;
 
-// Distance below knob top surface and the internal cutout
-knob_top_thickness=0.8;
-
 // Height of the hole beneath each knob which facilitates click lock in low-flex materials by variable side pressure on any block above
 knob_flexture_height=4.5;
 
 // Width of horizontal surface strengthening slats between the bottom rings
-bottom_stiffener_width=2.7;
+bottom_stiffener_width=2.6;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings, default is print-parameters.scad:knob_height)
 bottom_stiffener_height=knob_height;

@@ -69,7 +69,7 @@ SUGGESTIONS
 // Switch between flexible and rigid material geometry
 flexible_material = false;
 
-// Adjust gemoetry to aid the slicer with details when nozzle is 0.6mm
+// Adjust gemoetry to aid the slicer when the minimum trace with is a problem (nozzle is > 0.5mm). Without this, some trace lines may too thin to reproduce reliably, for example in high speed or flexible material processing.
 large_nozzle = true;
 
 // Thickness of the solid outside surface of the block
@@ -77,6 +77,9 @@ shell=large_nozzle ? 1.2 : 1.0;
 
 // Thickness of the solid top surface of the block
 top_shell=1.4;
+
+// Distance below knob top surface and the internal flexture
+knob_top_thickness=0.8;
 
 
 /* [3D Printing Top Connector Adjustments] */

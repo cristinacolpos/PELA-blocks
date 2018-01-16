@@ -144,12 +144,11 @@ module lego(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_r
             length = lego_height(h)-top_shell;
 
             if (is_true(sockets) && l>1 && w>1) {
+                alternating_radius = is_true(large_nozzle) ? (2/3)*(ring_radius-ring_thickness) : ring_radius-ring_thickness;
                 translate([0, 0, -defeather])
-                if (!is_true(large_nozzle)) {
-                    socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=length);
-                }   
-                translate([lego_width(-0.5), lego_width(-0.5)])
-                    socket_hole_set(l=l+1, w=w+1, radius=ring_radius-ring_thickness, length=length);
+                    socket_hole_set(l=l, w=w, radius=alternating_radius, length=length+defeather);
+                translate([lego_width(-0.5), lego_width(-0.5), -defeather])
+                    socket_hole_set(l=l+1, w=w+1, radius=ring_radius-ring_thickness, length=length+defeather);
             }
             
             if (is_true(bolt_holes)) {
@@ -253,7 +252,7 @@ module knob_flexture(h=h, knob_radius=knob_radius, knob_height=knob_height, knob
     
     if (knob_vent_radius>0) {
         translate([0, 0, knob_height-knob_top_thickness])
-            cylinder(r=knob_vent_radius, h=knob_height+0.1);
+            cylinder(r=knob_vent_radius, h=knob_height+defeather);
     }
 }
 
@@ -273,31 +272,28 @@ module outer_shell(l=l, w=w, h=h, shell=shell, top_shell=top_shell) {
 // Bars layed below a horizontal surface to make it stronger
 module bottom_stiffener_bar_set(l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height) {
     
+    cut_width = bottom_stiffener_width/6;
     translate([0, 0, lego_height(h)-bottom_stiffener_height]) {
         if (end_l >= start_l) {
-            for (i = [start_l:end_l]) {
-                cut_width = bottom_stiffener_width/2;
-            
-                translate([lego_width(i)-bottom_stiffener_width/2, 0, 0])
+            for (i = [start_l:end_l]) {            
+                translate([lego_width(i)-(bottom_stiffener_width-cut_width)/2, 0, 0])
                     difference() {
                         cube([bottom_stiffener_width, lego_width(w), bottom_stiffener_height]);
                     
-                        translate([bottom_stiffener_width/4, 0, 0])
-                            cube([cut_width, lego_width(w), bottom_stiffener_height]);
+                        translate([(bottom_stiffener_width-cut_width)/2, 0, -defeather])
+                            cube([cut_width, lego_width(w), bottom_stiffener_height+defeather]);
                     }
             }
         }
         
         if (end_w >= start_w) {
             for (j = [start_w:end_w]) {
-                cut_width = bottom_stiffener_width/2;
-
-                translate([0, lego_width(j)-bottom_stiffener_width/2, 0])
+                translate([0, lego_width(j)-(bottom_stiffener_width-cut_width)/2, 0])
                     difference() {
                         cube([lego_width(l), bottom_stiffener_width, bottom_stiffener_height]);
                     
-                        translate([0, bottom_stiffener_width/4, 0])
-                            cube([lego_width(l), cut_width, bottom_stiffener_height]);
+                        translate([0, (bottom_stiffener_width-cut_width)/2, -defeather])
+                            cube([lego_width(l), cut_width, bottom_stiffener_height+defeather]);
                     }
             }
         }
@@ -335,7 +331,7 @@ module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=lego_
             for (i = [1:l-1]) {
                 for (j = [1:w-1]) {
                     translate([lego_width(i), lego_width(j), 0])
-                        knob_attachment_hole(radius=radius, length=length);
+                        socket_hole(radius=radius, length=length);
                 }
             }
         }
@@ -344,14 +340,14 @@ module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=lego_
 
 
 // Hole to grab any knob on a block below this block
-module knob_attachment_hole(radius=ring_radius-ring_thickness, length=lego_height()) {
+module socket_hole(radius=ring_radius-ring_thickness, length=lego_height()) {
 
     h2 = knob_height/2; // TODO Refine the heignt    
     rotate([0, 0, 180/ring_fn]) {
-        cylinder(r=radius-side_lock_thickness, h=h2, $fn=ring_fn);
+        cylinder(r=radius-side_lock_thickness, h=h2+defeather, $fn=ring_fn);
         translate([0, 0, h2])    
             cylinder(r=radius, h=length-h2, $fn=ring_fn);
-        }
+    }
 }
 
 
