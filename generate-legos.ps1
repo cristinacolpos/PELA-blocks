@@ -40,6 +40,10 @@ Write-Output "Removing old .stl files"
 Get-ChildItem * -Include *.stl -Recurse | Remove-Item
 Write-Output ""
 
+render(".\technic-pin")
+render(".\technic-axle")
+render(".\technic-cross-axle")
+render(".\lego-calibration\lego-calibration")
 render(".\lego-hand\lego-hand")
 
 Invoke-Expression ".\lego.ps1 1 1 1"
@@ -48,10 +52,6 @@ Invoke-Expression ".\lego.ps1 2 2 2"
 Invoke-Expression ".\lego.ps1 4 2 1"
 Invoke-Expression ".\technic.ps1 4 4 2"
 
-render(".\lego-calibration\lego-calibration")
-render(".\technic-pin")
-render(".\technic-axle")
-render(".\technic-cross-axle")
 render(".\lego-sign\lego-sign")
 render(".\lego-motor\lego-motor")
 render(".\lego-knob-panel\lego-knob-panel")

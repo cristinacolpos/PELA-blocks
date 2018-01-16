@@ -67,7 +67,7 @@ SUGGESTIONS
 /* [3D Printing Filament Adjustments] */
 
 // Switch between flexible and rigid material geometry
-flexible_material = true;
+flexible_material = false;
 
 // Adjust gemoetry to aid the slicer with details when nozzle is 0.6mm
 large_nozzle = true;
