@@ -108,6 +108,9 @@ $fs=0.3;
 // Roundness of bottom connector rings
 ring_fn=8;
 
+// Show in grey where the knobs of a block below this block would appear
+show_shadow_knobs = 0;
+
 // Basic unit horizontal size of each block
 block_width=8;
 

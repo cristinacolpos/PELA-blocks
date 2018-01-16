@@ -99,9 +99,6 @@ top_vents = 1; // [0:disabled, 1:enabled]
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_vent_radius = 0;
 
-// Add bars to hold the rings in position during printing and when upper structures are modified
-ring_bars = 1;// [0:disabled, 1:bars between bottom rings]
-
 // There is usually no need or room for corner mounting M3 bolt holes
 bolt_holes=0;
 
