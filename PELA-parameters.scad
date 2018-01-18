@@ -28,7 +28,7 @@ Import this into other design files to set baseline constants:
 /* [PELA-compatible Options] */
 
 // Length of the block (PELA unit count)
-l = 4; 
+l = 6; 
 
 // Width of the block (PELA unit count)
 w = 2;
@@ -61,7 +61,7 @@ solid_bottom_layer = 0; // [0:empty, 1:solid]
 /* [Technic-compatible Block Features] */
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a sheath around Technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
@@ -73,7 +73,7 @@ end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full le
 end_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = 1; // [0:disabled, 1:enabled]
+top_vents = 0; // [0:disabled, 1:enabled]
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly manifold shape). 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
 knob_vent_radius = 0;

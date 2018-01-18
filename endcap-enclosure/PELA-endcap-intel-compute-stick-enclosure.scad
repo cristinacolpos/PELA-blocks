@@ -108,16 +108,16 @@ bolt_holes=0;
 // PELA End Cap Enclosure Display
 
 if (mode==1) {
-    left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, end_holes=end_holes);
+    left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 } else if (mode==2) {
-    right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, corner_radius=corner_radius, vertical_offset=vertical_offset);
+    right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 } else if (mode==3) {
-    PELA_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, end_holes=end_holes);
+    PELA_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 } else if (mode==4) {
-    left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, end_holes=end_holes);
+    left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 
     translate([0, block_width(w + 0.5), 0])
-        right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, corner_radius=corner_radius, vertical_offset=vertical_offset);
+        right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 } else {
     echo("<b>Unsupported: please check <i>mode</i> variable is 1-4</b>");
 }

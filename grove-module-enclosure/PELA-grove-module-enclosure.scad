@@ -35,15 +35,15 @@ h = 1.5;
 solid_upper_layers = 1; // [0:empty, 1:solid]
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=1; // [0:no holes, 1:holes]
+bolt_holes = 1; // [0:no holes, 1:holes]
 
-side_holes=0;
+side_holes = 0;
 
-end_holes=0;
+end_holes = 0;
 
 end_hole_sheaths = 1;
 
-bottom_stiffener_height=9.6;
+bottom_stiffener_height = 9.6;
 
 top_vents = 0;
 
@@ -64,13 +64,14 @@ eye_radius = 2.5;
 // Slide in mounting groove depth
 edge_inset = 0.6;
 
-connector_width=9;
+// USB conncector negative space width
+connector_width = 9;
 
-connector_height=5;
+// USB conncector negative space height
+connector_height = 5;
 
-connector_length=50;
-
-
+// USB conncector negative space length (to push some distance beyond the enclosure)
+connector_length = 50;
 
 // Additional space around the module for easly slotting the module into a surrounding case (make this bigger if the board fits too tightly)
 mink = 0.25;
@@ -103,7 +104,7 @@ function vertical_offset()=(block_height(2*h)-grove_width)/2;
 module bottom_piece() {
     difference() {
         union() {
-            PELA_technic_block(l=l, w=w, knob_flexture_height=0);
+            PELA_technic_block(l=l, w=w, knob_flexture_height=0, bolt_holes=bolt_holes, side_holes=side_holes, end_holes=end_holes);
             
             height=block_height(0.33333333);
             translate([0, 0, height])
@@ -140,7 +141,7 @@ module top_piece() {
 translate([0, block_width(w + 0.5), 0])
     difference() {
         union() {
-            PELA_technic_block(l=l, w=w, socket_height=1.8);
+            PELA_technic_block(l=l, w=w, socket_height=1.8, bolt_holes=bolt_holes, side_holes=side_holes, end_holes=end_holes);
         
             translate([0, 0, block_height(0.5)])
                 double_end_connector_sheath_set();
