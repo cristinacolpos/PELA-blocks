@@ -28,19 +28,30 @@ Function FormatElapsedTime($ts) {
 }
 
 Function render($name) {
-    Write-Output "Render $name"
+    Write-Output "Render $name as STL"
     $start = Get-Date
     Invoke-Expression "openscad -o $name.stl $name.scad"
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
-    Write-Output "Render time: $elapsed for $name"
+    Write-Output "STL Render time: $elapsed for $name"
+    Write-Output ""
+    render-png($name)
+}
+
+Function render-png($name) {
+    Write-Output "Render $name as PNG"
+    $start = Get-Date
+    Invoke-Expression "openscad --render -o $name.png $name.scad"
+    $elapsed = FormatElapsedTime ((Get-Date) - $start)
+    Write-Output "PNG Render time: $elapsed for $name"
     Write-Output ""        
 }
 
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
-Write-Output "Removing old .stl files"
+Write-Output "Removing old .stl and .png files"
 Get-ChildItem * -Include *.stl -Recurse | Remove-Item
+Get-ChildItem * -Include *.png -Recurse | Remove-Item
 Write-Output ""
 
 render(".\PELA-technic-pin")
