@@ -46,26 +46,42 @@ Function render-png($name) {
     Write-Output ""        
 }
 
+Function ConvertTo-Jpg {
+    [cmdletbinding()]
+    param([Parameter(Mandatory = $true, ValueFromPipeline = $true)] $Path)
+
+    process {
+        if ($Path -is [string])
+        { $Path = get-childitem $Path }
+
+        $Path | ForEach-Object {
+            $image = [System.Drawing.Image]::FromFile($($_.FullName));
+            $FilePath = [IO.Path]::ChangeExtension($_.FullName, '.jpg');
+            $image.Save($FilePath, [System.Drawing.Imaging.ImageFormat]::Jpeg);
+            $image.Dispose();
+        }
+    }
+}
+
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
-Write-Output "Removing old .stl and .png files"
+Write-Output "Removing old .stl, .png and .jpg files"
 Get-ChildItem * -Include *.stl -Recurse | Remove-Item
 Get-ChildItem * -Include *.png -Recurse | Remove-Item
+Get-ChildItem * -Include *.jpg -Recurse | Remove-Item
 Write-Output ""
+
+Invoke-Expression ".\PELA-block.ps1 1 1 1 -png"
+Invoke-Expression ".\PELA-block.ps1 2 2 1 -png"
+Invoke-Expression ".\PELA-block.ps1 2 2 2 -png"
+Invoke-Expression ".\PELA-block.ps1 4 2 1 -png"
+Invoke-Expression ".\PELA-technic-block.ps1 4 4 2 -png"
 
 render(".\PELA-technic-pin")
 render(".\PELA-technic-axle")
 render(".\PELA-technic-cross-axle")
 render(".\calibration\PELA-calibration")
-render(".\robot-hand\PELA-robot-hand")
-
-Invoke-Expression ".\PELA-block.ps1 1 1 1"
-Invoke-Expression ".\PELA-block.ps1 2 2 1"
-Invoke-Expression ".\PELA-block.ps1 2 2 2"
-Invoke-Expression ".\PELA-block.ps1 4 2 1"
-Invoke-Expression ".\PELA-technic-block.ps1 4 4 2"
-
 render(".\sign\PELA-sign")
 render(".\motor-enclosure\PELA-motor-enclosure")
 render(".\knob-panel\PELA-knob-panel")
@@ -78,5 +94,8 @@ render(".\endcap-enclosure\PELA-endcap-intel-compute-stick-enclosure")
 render(".\vive-tracker-mount\PELA-vive-tracker-mount")
 render(".\vive-tracker-mount\PELA-vive-tracker-screw")
 render(".\grove-module-enclosure\PELA-grove-module-enclosure")
+
+Write-Output "Converting .png files to .jpg"
+Get-ChildItem *.png | ConvertTo-Jpg
 
 Get-Date
