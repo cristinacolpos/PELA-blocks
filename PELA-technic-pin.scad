@@ -32,13 +32,13 @@ use <PELA-block.scad>
 axle_radius = 2.2;
 
 // Size of the hollow inside a pin
-pin_center_radius=3*axle_radius/4;
+pin_center_radius=axle_radius/2;
 
 // Size of the connector lock-in bump at the ends of a Pin
 pin_tip_length = 0.4;
 
 // Width of the long vertical flexture slots in the side of a pin
-slot_thickness = 0.7;
+slot_thickness = 0.5;
 
 counterbore_holder_radius = counterbore_inset_radius - skin;
 
@@ -76,7 +76,7 @@ module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_len
 
     length=(peg_length+pin_tip_length)*2 + counterbore_holder_height;
 
-    slot_length=length/2;
+    slot_length=3*length/5;
 
     difference() {
         union() {
@@ -127,25 +127,25 @@ module rounded_disc(radius=10, thickness=1) {
 
 // Side flexture slot with easement holes at each end
 module rounded_slot(thickness=2, slot_length=10) {
-    width = 20;
+    width = 10;
     
     hull() {
         translate([-width/2, 0, slot_length/2 - thickness])
             rotate([0, 90, 0])
-                cylinder(r=thickness/2, h=width, $fn=16);
+                cylinder(r=thickness/2, h=width);
             
         translate([-width/2, 0, -slot_length/2 + thickness])
             rotate([0, 90, 0])
-                cylinder(r=thickness/2, h=width, $fn=16);
+                cylinder(r=thickness/2, h=width);
     }
     
-    circle_to_slot_ratio = 1.2;
+    circle_to_slot_ratio = 1.1;
     
     translate([-width/2, 0, slot_length/2 - thickness])
         rotate([0, 90, 0])
-            cylinder(r=thickness/circle_to_slot_ratio, h=width, $fn=16);
+            cylinder(r=thickness/circle_to_slot_ratio, h=width);
             
     translate([-width/2, 0, -slot_length/2 + thickness])
         rotate([0, 90, 0])
-            cylinder(r=thickness/circle_to_slot_ratio, h=width, $fn=16);
+            cylinder(r=thickness/circle_to_slot_ratio, h=width);
 }
