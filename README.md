@@ -25,12 +25,16 @@ Printer, slider parameters and plastic effect the precise fit of press fit conne
 
 ## PELA-compatible Part Designs ##
 
-[PELA Block](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-4-2-1.stl) (edit `print-parameters.scad` to change the size)
+![Pela Block](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-block-4-2-1.stl "Pela Block")
+[PELA Block](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-block-4-2-1.stl) (edit `print-parameters.scad` to change the size)
 
+![Pela Block with Technics connectors](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-4-4-2.png "Pela Block with Tehcnics connectors")
 [PELA Block with Technics connectors](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-4-4-2.stl) (optional vents to help dissipate heat)
 
+![PELA Socket Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/socket-panel/PELA-socket-panel.png)
 [PELA Socket Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/socket-panel/PELA-socket-panel.stl) (double-sided)
 
+![PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/knob-panel/PELA-knob-panel.png)
 [PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/knob-panel/PELA-knob-panel.stl) (optional M3 corner mount bolt holes as with other models)
 
 [Double-sided PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-knob-panel/PELA-double_sided-knob-panel.stl) (print with supports)
