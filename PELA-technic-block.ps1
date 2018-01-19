@@ -6,7 +6,8 @@ param (
     [Int]$l = 4,
     [Int]$w = 2,
     [Int]$h = 1,
-    [String]$filename = "PELA-technic-block"
+    [String]$filename = "PELA-technic-block",
+    [switch]$png = $false
 )
 
 Function FormatElapsedTime($ts) {
@@ -30,6 +31,8 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
+$imagename = $filename + $l + "-" + $w + "-" + $h + ".png"
+
 $filename = $filename + $l + "-" + $w + "-" + $h + ".stl"
 
 $start = Get-Date
@@ -38,7 +41,12 @@ $param = "`"l=$l; w=$w; h=$h;`""
 
 Write-Output "Render $filename"
 
-openscad -o $filename -D $param technic.scad
+openscad --o $filename.stl -D $param PELA-technic-block.scad
+
+if ($png) {
+    Write-Output "Render $imagename"
+    openscad --render -o $imagename --D $param PELA-technic-block.scad
+}
 
 $elapsed = FormatElapsedTime ((Get-Date) - $start)
 Write-Output "Render time: $elapsed"
