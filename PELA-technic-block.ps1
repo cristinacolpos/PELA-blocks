@@ -41,7 +41,7 @@ $param = "`"l=$l; w=$w; h=$h;`""
 
 Write-Output "Render $filename"
 
-openscad --o $filename.stl -D $param PELA-technic-block.scad
+openscad --o $filename -D $param PELA-technic-block.scad
 
 if ($png) {
     Write-Output "Render $imagename"
