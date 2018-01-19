@@ -72,9 +72,6 @@ Get-ChildItem * -Include *.png -Recurse | Remove-Item
 Get-ChildItem * -Include *.jpg -Recurse | Remove-Item
 Write-Output ""
 
-Invoke-Expression ".\PELA-block.ps1 1 1 1 -png"
-Invoke-Expression ".\PELA-block.ps1 2 2 1 -png"
-Invoke-Expression ".\PELA-block.ps1 2 2 2 -png"
 Invoke-Expression ".\PELA-block.ps1 4 2 1 -png"
 Invoke-Expression ".\PELA-technic-block.ps1 4 4 2 -png"
 
