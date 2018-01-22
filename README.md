@@ -8,7 +8,7 @@ These designs are not by the LEGO corporation. They are compatible with LEGO and
 
 **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs and edit with [OpenSCAD](http://www.openscad.org/).
 
-**IMPORTANT:** First calibrate the designs for your printer.
+**IMPORTANT:** First calibrate the PELA Blocks for your printer to achieve a nice snap fit.
 
 ## Calibration ##
 
@@ -110,7 +110,7 @@ Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/
 * If more than 2 layer tall PELA with a relatively solid interior not allowing drainage below the knobs, check if you need to expand the airhole to allow resin to drain from the flexture chamber inside each knob
 * For translucent materials, setting knob_slice_count to 0 may make the interior structure look more like a standard PELA at the cost of a slight reduction of knob sidewall flex
 
-## Sponsors ##
+## Sponsor ##
 
 Special thanks to [Futurice](http://futurice.com) for sponsoring this design work. Futurice supports truly open innovation.
 
