@@ -46,23 +46,6 @@ Function render-png($name) {
     Write-Output ""        
 }
 
-Function ConvertTo-Jpg {
-    [cmdletbinding()]
-    param([Parameter(Mandatory = $true, ValueFromPipeline = $true)] $Path)
-
-    process {
-        if ($Path -is [string])
-        { $Path = get-childitem $Path }
-
-        $Path | ForEach-Object {
-            $image = [System.Drawing.Image]::FromFile($($_.FullName));
-            $FilePath = [IO.Path]::ChangeExtension($_.FullName, '.jpg');
-            $image.Save($FilePath, [System.Drawing.Imaging.ImageFormat]::Jpeg);
-            $image.Dispose();
-        }
-    }
-}
-
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
@@ -91,8 +74,5 @@ render(".\endcap-enclosure\PELA-endcap-intel-compute-stick-enclosure")
 render(".\vive-tracker-mount\PELA-vive-tracker-mount")
 render(".\vive-tracker-mount\PELA-vive-tracker-screw")
 render(".\grove-module-enclosure\PELA-grove-module-enclosure")
-
-Write-Output "Converting .png files to .jpg"
-Get-ChildItem *.png | ConvertTo-Jpg
 
 Get-Date

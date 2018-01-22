@@ -34,7 +34,7 @@ use <PELA-knob-panel.scad>
 /* [PELA Panel Options] */
 
 // Length of the block (PELA unit count)
-l = 8; 
+l = 4; 
 
 // Width of the block (PELA unit count)
 w = 4;
