@@ -84,10 +84,10 @@ function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 // Thickness of a flat panel
 function panel_height(i=1) = block_height(i)/3;
 
+
 /////////////////////////////////////
 // MODULES
 /////////////////////////////////////
-
 
 
 // A PELA block
@@ -142,7 +142,7 @@ module PELA(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_r
                 
             length = block_height(h)-top_shell;
 
-            if (is_true(sockets) && l>1 && w>1) {
+            if (is_true(sockets)) {
                 alternating_radius = large_nozzle ? 2/3*(ring_radius-ring_thickness) : ring_radius-ring_thickness;
                 translate([0, 0, -defeather])
                     socket_hole_set(l=l, w=w, radius=alternating_radius, length=length+defeather);

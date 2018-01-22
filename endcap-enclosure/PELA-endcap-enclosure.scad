@@ -116,9 +116,9 @@ if (mode==1) {
 } else if (mode==2) {
     right_cap();
 } else if (mode==3) {
-    left_cap();
     translate([0, block_width(w+0.5)])
-        right_cap();
+        left_cap();
+    right_cap();
 } else if (mode==4) {
     PELA_enclosure();
 } else {

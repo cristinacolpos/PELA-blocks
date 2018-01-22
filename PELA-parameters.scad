@@ -28,7 +28,7 @@ Import this into other design files to set baseline constants:
 /* [PELA-compatible Options] */
 
 // Length of the block (PELA unit count)
-l = 6; 
+l = 4; 
 
 // Width of the block (PELA unit count)
 w = 2;
