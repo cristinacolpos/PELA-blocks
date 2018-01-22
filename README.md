@@ -114,6 +114,11 @@ Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/
 
 Special thanks to [Futurice](http://futurice.com) for sponsoring this design work. Futurice supports truly open innovation.
 
+## License ##
+
+Creative Commons Attribution ShareAlike NonCommercial License
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
 ## Contact ##
 
 paul.houghton@futurice.com ( **[Blog](https://medium.com/@paulhoughton)** - **[Twitter](https://twitter.com/mobile_rat)** )
