@@ -267,6 +267,15 @@ module outer_shell(l=l, w=w, h=h, shell=shell, top_shell=top_shell) {
     }
 }
 
+// A solid block, no knobs or connectors. This is provided as a convenience for designs based on this block
+module skinned_block(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth) {
+    difference() {
+        hull() {
+            outer_shell(l=l, w=w, h=h, shell=1, top_shell=1);
+        }
+        skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth);
+    }
+}
 
 // Bars layed below a horizontal surface to make it stronger
 module bottom_stiffener_bar_set(l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height) {
