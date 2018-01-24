@@ -103,11 +103,11 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 ![PELA Endcap Enclosure](endcap-enclosure/PELA-endcap-enclosure.png)
 
-[PELA Endcap Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-enclosure.stl) (adjust the parameters to fit around something)
+![PELA Endcap Enclosure](endcap-enclosure/PELA-endcap-enclosure.stl) (adjust the parameters to fit around something)
 
 ![PELA Intel Compute Stick Enclosure](endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.png)
 
-[PELA Intel Compute Stick Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.stl) (a computer inside your robot)
+[PELA Intel Compute Stick Enclosure](endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.stl) (a computer inside your robot)
 
 
 Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/PELA-parametric-blocks
