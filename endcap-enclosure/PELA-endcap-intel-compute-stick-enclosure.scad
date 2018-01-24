@@ -3,12 +3,12 @@ Parametric PELA End Cap Enclosure For Intel Compute Stick
 
 Create 2 symmetric end pieces which can support a solid object with PELA-compatible attachment points on top and bottom. The print can be minimized by printing only smaller end caps instead of a complele enclosure.
 
-Published at
+
     https://www.thingiverse.com/thing:2544197
 Based on
     https://www.thingiverse.com/thing:2303714
-Maintained at
-    https://github.com/paulirotta/parametric_PELA
+
+
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -49,7 +49,7 @@ r_cap = 6;
 // Width of the enclosure (PELA knob count)
 w = 6;
 
-// Height of the enclosure (PELA brick layer count)
+// Height of the enclosure (PELA block layer count)
 h = 2;
 
 // Length of the object to be enclosed (mm)

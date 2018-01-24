@@ -1,14 +1,7 @@
 /*
-Parametric PELA Block
+PELA Parametric Knob Panel
 
-Published at
-    http://www.thingiverse.com/thing:2303714
-Maintained at
-    https://github.com/paulirotta/parametric_PELA
-See also the related files
-    PELA Sign Generator - https://www.thingiverse.com/thing:2546028
-    PELA Enclosure Generator - https://www.thingiverse.com/thing:2544197
-
+Published at http://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -33,10 +26,10 @@ use <../PELA-technic-block.scad>
 /* [PELA Panel Options] */
 
 // Length of the block (PELA unit count)
-l = 8; 
+l = 4; 
 
 // Width of the block (PELA unit count)
-w = 8;
+w = 4;
 
 top_vents = 0;
 
@@ -53,7 +46,7 @@ bolt_hole_radius=1.5;
 knobs=1; // [0:disabled, 1:enabled]
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
-bottom_stiffener_height=block_height/3;
+bottom_stiffener_height=0;
 
 
 /////////////////////////////////////
@@ -66,14 +59,14 @@ PELA_knob_panel();
 // PELA PANEL modules
 /////////////////////////////////////
 
-module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
+module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets) {
     
-    translate([0, 0, block_height(-2/3)])
+    translate([0, 0, panel_height(-2)])
         difference() {
-            PELA_technic_block(l=l, w=w, h=1, top_vents=top_vents, solid_bottom_layer=    solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height);
+            PELA_technic_block(l=l, w=w, h=1, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets);
     
             translate([-defeather, -defeather])
-            cube([block_width(l+1), block_width(w+1), panel_height(2)]);
+                cube([block_width(l+1), block_width(w+1), panel_height(2)]);
         }
 }
 

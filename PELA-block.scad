@@ -1,14 +1,9 @@
 /*
-Parametric PELA Block - 3D Printed LEGO-compatible parametric blocks
+Base PELA Parametric Block
 
-Published at
-    http://www.thingiverse.com/thing:2303714
-Maintained at
-    https://github.com/paulirotta/parametric_PELA
-See also the related files
-    PELA Sign Generator - https://www.thingiverse.com/thing:2546028
-    PELA Enclosure Generator - https://www.thingiverse.com/thing:2544197
+PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
+Published at http://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -107,14 +102,15 @@ module PELA(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_r
                 bottom_stiffener_bar_set(l=l, w=w, h=bar_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height);
 
             if (is_true(sockets)) {
-               socket_set(l=l, w=w, ring_radius=ring_radius, length=block_height(1), sockets=sockets, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, skin=skin);
-            }
-    
-            if (is_true(sockets)) {
+                length = min(block_height(1), block_height(h));
+                
+                socket_set(l=l, w=w, ring_radius=ring_radius, length=length, sockets=sockets, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, skin=skin);
+
                 translate([block_width(-0.5), block_width(-0.5)])
                     intersection() {
-                        cube([block_width(l+1), block_width(w+1), knob_height]);
-                        socket_set(l=l+1, w=w+1, ring_radius=ring_radius, length=block_height(1), sockets=sockets, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, skin=skin);
+                        cube([block_width(l+1), block_width(w+1), length]);
+
+                        socket_set(l=l+1, w=w+1, ring_radius=ring_radius, length=length, sockets=sockets, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, skin=skin);
                     }
             }
 
@@ -267,7 +263,7 @@ module outer_shell(l=l, w=w, h=h, shell=shell, top_shell=top_shell) {
     }
 }
 
-// A solid block, no knobs or connectors. This is provided as a convenience for designs based on this block
+// A solid block, no knobs or connectors. This is provided as a convenience for constructive solid geometry designs based on this block
 module skinned_block(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth) {
     difference() {
         hull() {

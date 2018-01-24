@@ -1,14 +1,7 @@
 /*
-Parametric PELA Block Parameters
+PELA Parametric Block Parameters
 
-Published at
-    http://www.thingiverse.com/thing:2303714
-Maintained at
-    https://github.com/paulirotta/parametric_PELA
-See also the related files
-    PELA Sign Generator - https://www.thingiverse.com/thing:2546028
-    PELA Enclosure Generator - https://www.thingiverse.com/thing:2544197
-
+Published at http://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -31,7 +24,7 @@ Import this into other design files to set baseline constants:
 l = 4; 
 
 // Width of the block (PELA unit count)
-w = 2;
+w = 4;
 
 // Height of the block (PELA unit count)
 h = 1;
@@ -132,7 +125,7 @@ counterbore_inset_radius = 3.1;
 // Technic connector inset depth
 counterbore_inset_depth = 0.8;
 
-// Contact length of axle to brick (not including inset length and end snap fit flexture in pin connectors)
+// Contact length of axle to block (not including inset length and end snap fit flexture in pin connectors)
 peg_length = 6.5;
 
 // Size of an optional cylinder wrapped around the bearing holes

@@ -1,14 +1,7 @@
 /*
 Parametric PELA Technic-compatible cross-shaped rotational drive Axle
 
-Published at
-    http://www.thingiverse.com/thing:XXXX
-Maintained at
-    https://github.com/paulirotta/parametric_PELA
-See also the related files
-    PELA Sign Generator - https://www.thingiverse.com/thing:2546028
-    PELA Enclosure Generator - https://www.thingiverse.com/thing:2544197
-
+PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
 By Paul Houghton
 Twitter: @mobile_rat

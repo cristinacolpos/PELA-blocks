@@ -3,12 +3,12 @@ Parametric PELA End Cap Enclosure Generator
 
 Create 2 symmetric end pieces which can support a solid object with PELA-compatible attachment points on top and bottom. The print can be minimized by printing only smaller end caps instead of a complele enclosure.
 
-Published at
+
     https://www.thingiverse.com/thing:2544197
 Based on
     https://www.thingiverse.com/thing:2303714
-Maintained at
-    https://github.com/paulirotta/parametric_PELA
+
+
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -50,7 +50,7 @@ r_cap = l - l_cap;
 //w = 10;
 w = 3;
 
-// Height of the enclosure (PELA brick layer count)
+// Height of the enclosure (PELA block layer count)
 //h = 4;
 h = 3;
 
@@ -151,7 +151,7 @@ module right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, 
 }
 
 
-// A PELA brick with a hole inside to contain something of the specified dimensions
+// A PELA block with a hole inside to contain something of the specified dimensions
 module PELA_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths) {
     
     difference() {        

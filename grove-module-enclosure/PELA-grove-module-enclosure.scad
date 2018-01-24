@@ -1,7 +1,8 @@
 /*
 Parametric PELA Grove Module Enclosure
-From http://www.thingiverse.com/thing:2298129
-Maintained at https://github.com/paulirotta/PELA_grove/
+
+
+
 Designed for use with http://wiki.seeed.cc/Grove_System/
 
 By Paul Houghton

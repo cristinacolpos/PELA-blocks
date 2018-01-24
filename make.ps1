@@ -5,6 +5,9 @@
 # Windows Powershell
 # Part of https://github.com/LEGO-prototypes/PELA-parametric-blocks
 
+param (
+    [switch]$publish = $false
+)
 
 Function FormatElapsedTime($ts) {
     $elapsedTime = ""
@@ -63,6 +66,7 @@ render(".\PELA-technic-axle")
 render(".\PELA-technic-cross-axle")
 render(".\calibration\PELA-calibration")
 render(".\sign\PELA-sign")
+render(".\sign\PELA-flat-sign")
 render(".\motor-enclosure\PELA-motor-enclosure")
 render(".\knob-panel\PELA-knob-panel")
 render(".\knob-panel\PELA-double-sided-knob-panel")
@@ -76,3 +80,15 @@ render(".\vive-tracker-mount\PELA-vive-tracker-screw")
 render(".\grove-module-enclosure\PELA-grove-module-enclosure")
 
 Get-Date
+
+if ($publish) {
+    Write-Output "Publishing"
+    Write-Output "=========="
+    git status
+    git add *.scad
+    git add *.png
+    git add *.stl
+    git commit -m "Publish"
+    git push
+    git status
+}

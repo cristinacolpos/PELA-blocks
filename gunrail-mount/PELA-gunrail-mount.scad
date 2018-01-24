@@ -8,13 +8,13 @@ alternative design.
 The current design omits top knobs which would interfere with the
 matching "PELA-vive-tracker-mount.scad".
 
-Published at
-    http://www.thingiverse.com/thing:2303714
-Maintained at
-    https://github.com/paulirotta/parametric_PELA
-See also the related files
-    PELA Sign Generator - https://www.thingiverse.com/thing:2546028
-    PELA Enclosure Generator - https://www.thingiverse.com/thing:2544197
+
+Published at http://PELAblocks.org
+
+
+
+
+
 
 
 By Paul Houghton
