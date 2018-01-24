@@ -89,11 +89,6 @@ cd2c = cd2b+2.3+pin_skin;
 cd2d = cd2c-0.5+pin_skin;
 slice_width = 0.6;
 
-// Winchester Ranger Model 120
-winchester_rail_w = 9.55;
-winchester_rail_h = 3.15;
-winchester_rail_clearance = 7; // top to barrel
-
 
 // Vive connector dimensions
 channel_d = 7;
@@ -111,75 +106,16 @@ alignment_pin_d = 4.8;
 alignment_pin_offset_from_screwhole = 13.9;
 cut = 0.8;
 
-/* [PELA-compatible Options] */
-
-// What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
-mode=3; // [1:1, 2:2, 3:3, 4:4]
-
 /////////////////////////////////////
 // PELA vive mount and screw display
 /////////////////////////////////////
 
-if (mode==1) {
-    PELA_vive_tracker_mount();
-} else if (mode==2) {
-    thumbscrew();
-} else if (mode==3) {
-    PELA_vive_tracker_mount();
-    translate([-5, -5])
-        thumbscrew();
-} else {
-    echo("<b>Unsupported mode: please check <i>mode</i> variable is 1-3</b>");
-}
-
-
-/////////////////////////////////////
-// PELA panel display
-/////////////////////////////////////
-
 PELA_vive_tracker_mount();
-
-//translate([-5, -5]) thumbscrew();
-
-//vive_connector();
-//vive_connector_left();
-//vive_connector_right();
 
 
 /////////////////////////////////////
 // PELA VIVE TRACKER modules
 /////////////////////////////////////
-
-
-module thumbscrew() {
-    height=panel_height(0.5)-skin;
-    
-    translate([0, 0, height])
-        us_bolt_thread(dInch=0.25, hInch=1/4, tpi=20);
-
-    thumbscrew_head(height=height);
-}
-
-
-module thumbscrew_head(height=undef) {
-    cylinder(d=thumbscrew_border_d/2, h=height);
-
-    difference() {
-        difference() {
-            cylinder(d=thumbscrew_border_d-0.2, h=height);
-            translate([-cut/2, 0])
-                cube([cut, thumbscrew_border_d, cut]);
-            
-        }
-        union() {
-            for (i = [30:30:360]) {
-                rotate([0, 0, i])
-                    translate([-cut/2, 0])
-                        cube([cut, thumbscrew_border_d, cut]);
-            }
-        }
-    }
-}
 
 
 module thumbscrew_hole() {
