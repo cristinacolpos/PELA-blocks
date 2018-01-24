@@ -1,6 +1,8 @@
 # Generate a 3D-printable PELA using command line parameters
-# Windows Powershell
-# Part of https://github.com/paulirotta/parametric_PELA
+#
+# PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
+# Published at http://PELAblocks.org
+# Part of https://github.com/LEGO-Prototypes/PELA-parametric-blocks
 
 param (
     [Int]$l = 4,

@@ -4,11 +4,17 @@
 
 3D print snap-together objects in exotic materials and gemoetries. This can be used to make exotic-shapes and materials. It is also great for creating enclosures for sensors, actuators, computers and IoT devices with commercial PELA and PELA Technics parts. Fully parametric fine-tuning parameters and calibration allow for a perfect fit with different materials, printers, nozzle sizes and slicer settings.
 
-These designs are not by the LEGO corporation. They are compatible with LEGO and LEGO-Technics as are blocks available from multiple manufacturers. These design are legal to use because the associated patents have expired. These designs are not identical to LEGO. They are specially modified for easy 3D printing and offered in the spirit of open source hardware innovation. If what you want is available as injection moulded ABS plastic, buy it for the high quality and durability. These model are helpful if you want something customized and special, or in an unusual material or for a quick replacement part.
+These designs are not by the LEGO corporation. They are compatible with LEGO and similar blocks available from multiple manufacturers. These design are legal to use because the associated patents have expired. These designs are not identical to LEGO. They are specially modified for easy 3D printing and offered in the spirit of open source hardware innovation. If what you want is available as injection moulded ABS plastic, buy it for the high quality and durability. These model are helpful if you want something customized and special, or in an unusual material or for a quick replacement part.
+
+The name PELA comes from the Finnish "pelataan" meaning "let's play".
 
 **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs and edit with [OpenSCAD](http://www.openscad.org/).
 
 **IMPORTANT:** First calibrate the PELA Blocks for your printer to achieve a nice snap fit.
+
+## Sponsor ##
+
+Special thanks to [Futurice](http://futurice.com) for sponsoring this design work. Futurice supports truly open innovation.
 
 ## Calibration ##
 
@@ -71,17 +77,21 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 [PELA Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-sign.stl) (label your designs)
 
+![PELA Flat Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-flat-sign.png)
+
+[PELA Flat Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-flat-sign.stl)
+
 ![PELA Grove Module](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/grove-module-enclosure/PELA-grove-module-enclosure.png)
 
 [PELA Grove Module](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/grove-module-enclosure/PELA-grove-module-enclosure.stl) (use 4x M3 bolts to assemble or switch to pressure fit)
 
-![PELA HTC Vive Tracker Mount](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/vive-tracker-mount/PELA-vive-tracker-mount.png)
+![PELA HTC Vive Tracker Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-mount.png)
 
-[PELA HTC Vive Tracker Mount](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/vive-tracker-mount/PELA-vive-tracker-mount.stl) (for [HTC Vive](https://www.vive.com/), use a standard tripod screw if you prefer)
+[PELA HTC Vive Tracker Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-mount.stl) (for [HTC Vive](https://www.vive.com/), use a standard tripod screw if you prefer)
 
-![PELA HTC Vive Tracker Screw](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/vive-tracker-mount/PELA-vive-tracker-screw.png)
+![PELA HTC Vive Tracker Screw](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-screw.png)
 
-[PELA HTC Vive Tracker Screw](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/vive-tracker-mount/PELA-vive-tracker-screw.stl) (a standard tripod screw sized for flush mounting in a PELA panel)
+[PELA HTC Vive Tracker Screw](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-screw.stl) (a standard tripod screw sized for flush mounting in a PELA panel)
 
 ![PELA Gunrail Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/gunrail-mount/PELA-gunrail-mount.png)
 
@@ -114,15 +124,18 @@ Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/
 * If more than 2 layer tall PELA with a relatively solid interior not allowing drainage below the knobs, check if you need to expand the airhole to allow resin to drain from the flexture chamber inside each knob
 * For translucent materials, setting knob_slice_count to 0 may make the interior structure look more like a standard PELA at the cost of a slight reduction of knob sidewall flex
 
-## Sponsor ##
-
-Special thanks to [Futurice](http://futurice.com) for sponsoring this design work. Futurice supports truly open innovation.
-
 ## License ##
 
 Creative Commons Attribution ShareAlike NonCommercial License
 https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
+## Alternative 3D Block Designs ##
+
+If you don't find what you need, consider adding it, contact us or check out the many other excellent design available.
+
+[Yeggi search for LEGO](http://www.yeggi.com/q/lego/)
+[Thingiverse](https://www.thingiverse.com/groups/parametric-lego) is an alternate source of these and other block designs.
+
 ## Contact ##
 
-paul.houghton@futurice.com ( **[Blog](https://medium.com/@paulhoughton)** - **[Twitter](https://twitter.com/mobile_rat)** )
+paul.houghton@futurice.com ( **[Blog](https://medium.com/@paulhoughton)** - **[Twitter](https://twitter.com/mobile_rat)**)

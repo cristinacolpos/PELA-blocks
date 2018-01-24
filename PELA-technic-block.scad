@@ -1,11 +1,9 @@
 /*
-Parametric PELA Block with Technic-style holes in the sides
+PELA Parametric Block with Technic-compatible connectors and air vents
 
-Published at
-    http://www.thingiverse.com/thing:
-Maintained at
-    https://github.com/paulirotta/parametric_PELA
+PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
+Published at http://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
