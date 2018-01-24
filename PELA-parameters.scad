@@ -96,7 +96,7 @@ $fa=10;
 $fs=0.3;
 
 // [0:hidden, 1:display where knobs of a block below would be ]
-show_shadow_knobs = 1;
+show_shadow_knobs = 0;
 
 // Basic unit horizontal size of each block
 block_width=8;
