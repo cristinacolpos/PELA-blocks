@@ -47,7 +47,7 @@ hide_vive_mount_knobs = 1;
 l = 6; 
 
 // Width of the block (PELA unit count)
-w = 6;
+w = 9;
 
 top_vents = 0;
 
@@ -63,32 +63,21 @@ bolt_hole_radius=1.5;
 // Presence of top connector knobs
 knobs=1; // [0:disabled, 1:enabled]
 
-// Picatinny/NATO Rail Mount Dimensions
-body_width = 21.2 - skin;
-
-top_width = 19;
-
-body_height = 9;
-
 body_length = block_width(l-1);
 
-top_height = 2.74;
-
-top_vertical_offset = 4.17;
-
-base_width = 15.67 + skin;
-
-holder_width = block_width(w-2.5);
-
+// Winchester Ranger Model 120 Shotgun Rail Dimensions (adjust for others)
+winchester_rail_w = 9.55;
+winchester_rail_h = 3.15;
+winchester_rail_clearance = 7; // top to barrel
 
 // Shotgun Square Rib Mount Dimensions (these are not standardized and may taper down towards the tip, measure the gun)
-rib_width = 15;
+rib_width = 9.55;
 
 rib_thickness = 25.4/4;
 
-rib_holder_height = 25.4;
+//rib_holder_height = 25.4;
 
-rib_body_width = 20;
+rib_body_width = 18;
 
 rib_body_thickness = 8;
 

@@ -82,7 +82,7 @@ top_shell = 1.4;
 /* [3D Printing Top Connector Adjustments] */
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-top_tweak = -0.01; // -0.01 for NGEN, 0.03 for NGEN Flex, 0.1 for Ninjaflex
+top_tweak = 0.01; // 0.01 for NGEN, 0.03 for NGEN Flex, 0.1 for Ninjaflex
 
 // Size of the top connectors (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 knob_radius = 2.45 + 0.11 + top_tweak;
@@ -90,8 +90,8 @@ knob_radius = 2.45 + 0.11 + top_tweak;
 // Distance below knob top surface and the internal flexture
 knob_top_thickness = 0.8;
 
-// Height of the connectors (1.8 is PELA standard, 2 may give a stronger hold while still maintaining compatibility)
-knob_height = flexible_material ? 9.6/3 : 1.8;
+// Height of the connectors (1.8 is original LEGO standard, 2 gives a stronger hold while still maintaining compatibility, flexible materials benefit from being taller)
+knob_height = flexible_material ? 9.6/3 : 2.0;
 
 // Size of the small flexture cavity inside each knob (default is 1.4, set to 0 for flexible materials)
 knob_flexture_radius = flexible_material ? 0.0 : 1.4;
@@ -111,9 +111,6 @@ ring_thickness = large_nozzle ? 1.2 : 0.8;
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 ring_radius = 2.75 + ring_thickness + bottom_tweak;
 
-// Base distance which small stiffeners protrude inwards from outside shell edges of a block to hold the knobs of any block below
-outside_lock_thickness = 1.44 + bottom_tweak;
-
 // Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist a snap fit
 side_lock_thickness = 0.02;
 
@@ -121,7 +118,7 @@ side_lock_thickness = 0.02;
 /* [3D Printing Side Connector Adjustments] */
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0.0; // 0 for NGEN, 0 for NGEN Flex, 0.02 for Ninjaflex
+axle_hole_tweak = 0.0; // 0 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex
 
 // Technic connector hole
-axle_hole_radius = 2.45 + 0.02 + axle_hole_tweak;
+axle_hole_radius = 2.45 + axle_hole_tweak;
