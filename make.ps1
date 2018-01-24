@@ -1,8 +1,8 @@
 # PELA - 3D Printed LEGO-compatible parametric blocks
 #
-# Generate a set of objects calibrated by changes to print-parameters.scad
-#
-# Windows Powershell
+# Generate a set of objects calibrated for your printer by changes to PELA-print-parameters.scad
+# See http://PELAblocks.org for more information
+# 
 # Part of https://github.com/LEGO-prototypes/PELA-parametric-blocks
 
 param (
@@ -66,7 +66,7 @@ render(".\PELA-technic-axle")
 render(".\PELA-technic-cross-axle")
 render(".\calibration\PELA-calibration")
 render(".\sign\PELA-sign")
-render(".\sign\PELA-flat-sign")
+render(".\sign\PELA-panel-sign")
 render(".\motor-enclosure\PELA-motor-enclosure")
 render(".\knob-panel\PELA-knob-panel")
 render(".\knob-panel\PELA-double-sided-knob-panel")
@@ -82,8 +82,8 @@ render(".\grove-module-enclosure\PELA-grove-module-enclosure")
 Get-Date
 
 if ($publish) {
-    Write-Output "Publishing"
-    Write-Output "=========="
+    Write-Output "Publishing PELA Blocks"
+    Write-Output "======================"
     git status
     git add *.scad
     git add *.png
