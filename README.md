@@ -109,7 +109,7 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 [PELA Intel Compute Stick Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.stl) (a computer inside your robot)
 
-<script src="https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.stl"></script>
+<iframe id="vs_iframe" src="https://www.viewstl.com/?embedded&url=https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-block-4-2-1.stl" style="border:0;margin:0;width:100%;height:100%;"></iframe>
 
 Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/PELA-parametric-blocks
 
