@@ -1,8 +1,9 @@
-# 3D Printable Parametric PELA #
+# PELA Blocks #
+## Parametric 3D Printed LEGO-compatible Blocks
 
 ## PELA- and Technics-compatible Blocks and Custom Parts ##
 
-3D print snap-together objects in exotic materials and gemoetries. This can be used to make exotic-shapes and materials. It is also great for creating enclosures for sensors, actuators, computers and IoT devices with commercial PELA and PELA Technics parts. Fully parametric fine-tuning parameters and calibration allow for a perfect fit with different materials, printers, nozzle sizes and slicer settings.
+3D print snap-together objects in exotic materials and geometries. This can be used to make exotic-shapes and materials. It is also great for creating enclosures for sensors, actuators, computers and IoT devices with commercial PELA and PELA Technics parts. Fully parametric fine-tuning parameters and calibration allow for a perfect fit with different materials, printers, nozzle sizes and slicer settings.
 
 These designs are not by the LEGO corporation. They are compatible with LEGO and similar blocks available from multiple manufacturers. These design are legal to use because the associated patents have expired. These designs are not identical to LEGO. They are specially modified for easy 3D printing and offered in the spirit of open source hardware innovation. If what you want is available as injection moulded ABS plastic, buy it for the high quality and durability. These model are helpful if you want something customized and special, or in an unusual material or for a quick replacement part.
 
@@ -36,6 +37,13 @@ Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-pri
 
 3. Print two 4x4 blocks with your selected values and confirm a good fit to each other and real PELA.
 
+## Backing Up Your Calibration Files ##
+
+If you later update the PELA-blocks project to a newer version, you risk overwirting and loosing your calibration customizations. The simplest solution is to create a backup copy those settings.
+
+1. `cd PELA-Blocks`
+1. `cp PELA-parameters.scad ../PELA-parameters-backup.scad`
+1. `cp PELA-print-parameters.scad ../PELA-print-parameters-backup.scad`
 
 ## PELA-compatible Part Designs ##
 
@@ -128,6 +136,10 @@ Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/
 
 Creative Commons Attribution ShareAlike NonCommercial License
 https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+These designs are not by the LEGO corporation. They are compatible with LEGO and similar blocks available from multiple manufacturers and online projects. The associated patents have expired. These designs are not identical to LEGO; they have been specially modified for easy 3D printing and offered in the spirit of open source collaborative innovation.
+
+If what you want is available as injection moulded plastic, buy it for the higher quality and durability. These model are helpful when you want something customized, a special color, an unusual material, and for replacement parts when you just can't wait.
 
 ## Alternative 3D Block Designs ##
 
