@@ -1,9 +1,7 @@
 /*
 Parametric PELA Grove Module Enclosure
 
-
-
-Designed for use with http://wiki.seeed.cc/Grove_System/
+Designed for enclosing http://wiki.seeed.cc/Grove_System/ sensors in a block for rapid prototyping and play
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -37,12 +35,6 @@ solid_upper_layers = 1; // [0:empty, 1:solid]
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes = 1; // [0:no holes, 1:holes]
-
-side_holes = 0;
-
-end_holes = 0;
-
-end_hole_sheaths = 1;
 
 bottom_stiffener_height = 9.6;
 
@@ -105,9 +97,9 @@ function vertical_offset()=(block_height(2*h)-grove_width)/2;
 module bottom_piece() {
     difference() {
         union() {
-            PELA_technic_block(l=l, w=w, knob_flexture_height=0, bolt_holes=bolt_holes, side_holes=side_holes, end_holes=end_holes);
+            PELA_technic_block(l=l, w=w, h=h, knob_flexture_height=0, bolt_holes=bolt_holes, side_holes=0, end_holes=0);
             
-            height=block_height(0.33333333);
+            height=block_height(1/3);
             translate([0, 0, height])
                 cube([block_width(l), block_width(w), block_height(h)-height]);
         }
@@ -117,15 +109,6 @@ module bottom_piece() {
                 rotate([0,-90,270])
                     grove();
 
-/*            
-#            translate([offset_x, block_width(2)-offset_y, block_height(h)])
-                rotate([180, 0, 0])
-                    axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
-            
-#            translate([block_width(l)-offset_x, block_width(2)-offset_y, block_height(h)])
-                rotate([180, 0, 0])
-                    axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
-*/            
             if (is_true(bolt_holes)) {
                 corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
             }
@@ -139,37 +122,30 @@ module bottom_piece() {
 // Top piece
 module top_piece() {
 
-translate([0, block_width(w + 0.5), 0])
-    difference() {
-        union() {
-            PELA_technic_block(l=l, w=w, socket_height=1.8, bolt_holes=bolt_holes, side_holes=side_holes, end_holes=end_holes);
-        
-            translate([0, 0, block_height(0.5)])
-                double_end_connector_sheath_set();
-        }
-        
-        union() {
-            translate([(block_width(l)-grove_width)/2, 1.2, block_height(-h)+vertical_offset()])
-                rotate([0,-90,270])
-                    grove();
+    translate([0, block_width(w + 0.5), 0])
+        difference() {
+            union() {
+                PELA_technic_block(l=l, w=w, h=h, socket_height=1.8, bolt_holes=bolt_holes, side_holes=0, end_holes=0);
             
-            translate([0, 0, block_height(0.5)])
-                double_end_connector_hole_set(hole_type=2);
-            
-/*                        
-#            translate([offset_x, block_width(2)-offset_y, 0])
-                axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
-            
-#            translate([block_width(l)-offset_x, block_width(2)-offset_y, 0])
-                axle_hole(hole_type=2, length=counterbore_inset_depth+peg_length);
-*/
-            if (is_true(bolt_holes)) {
-                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
+                translate([0, 0, block_height(0.5)])
+                    double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
             }
             
-            skin();
-        }
-};
+            union() {
+                translate([(block_width(l)-grove_width)/2, 1.2, block_height(-h)+vertical_offset()])
+                    rotate([0,-90,270])
+                        grove();
+                
+                translate([0, 0, block_height(0.5)])
+                    double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=2);
+
+                if (is_true(bolt_holes)) {
+                    corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
+                }
+                
+                skin();
+            }
+        };
 }    
     
 

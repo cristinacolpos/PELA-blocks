@@ -151,7 +151,7 @@ module side_connector_sheath_set(l=l, w=w, side_holes=side_holes, axle_hole_radi
     }
 }
 
-
+// Two rows of end connector enclosing cylinders
 module double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width) {
 
     end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
@@ -188,6 +188,7 @@ module sheath(sheath_radius=bearing_sheath_thickness+axle_hole_radius, sheath_le
     cylinder(r=sheath_radius, h=sheath_length);
 }
 
+// For use by extension routines
 module double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=end_holes) {
  
     translate([block_width(l), 0, 0])
@@ -195,6 +196,7 @@ module double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius
             double_side_connector_hole_set(l=w, w=l, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=hole_type);
 }
 
+// For use by extension routines
 module double_side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes) {
     
     side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=hole_type);
