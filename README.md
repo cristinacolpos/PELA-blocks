@@ -9,6 +9,8 @@ These designs are not by the LEGO corporation. They are compatible with LEGO and
 
 The name PELA comes from the Finnish "pelataan" meaning "let's play".
 
+Pelataan.
+
 **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs and edit with [OpenSCAD](http://www.openscad.org/).
 
 **IMPORTANT:** First calibrate the PELA Blocks for your printer to achieve a nice snap fit.
@@ -21,21 +23,18 @@ Special thanks to [Futurice](http://futurice.com) for sponsoring this design wor
 
 ![PELA Calibration Bar](calibration/PELA-calibration.png)
 
-*TL;DR: Print a [PELA Calibration Bar](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl), test fit with LEGO, read the best fit numbers from the side of the block and add these to [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad). Open any model in OpenSCAD, press F6, and export as STL*
+![PELA Calibration Set](calibration/PELA-calibration-set.png)
 
-Printer, slider parameters and plastic effect the precise fit of press fit connectors. It is usually necessary to slightly adjust knob and bottom ring size to achieve a good fit by editing [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). The most common settings are `top_tweak` and `bottom_tweak` which can be read from the side of the clibration block. Other model settings affecting all designs are available in [`PELA-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-parameters.scad).
+*TL;DR: Print a [PELA-calibration.stl](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl) or [PELA-calibration-set](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration-set.stl), test fit with LEGO, read the best 'top_tweak' and 'bottom_tweak' numbers from the sides and update these in [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad). Open any model in OpenSCAD, press F6, and export as STL*
 
-Best results are achieved with durable materials that are not too stiff (PET, co-oplimers like NGEN, semi-flexible and "engineering" materials).
+Printer, slider parameters and plastic effect the precise fit of press fit connectors. It is usually necessary to slightly adjust knob and bottom ring size to achieve a good fit by editing [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). The most common settings are `top_tweak` and `bottom_tweak` which can be read from the side of the clibration block. Other model settings affecting all designs are available in [`PELA-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-parameters.scad). The `PELA-calibreation-set` blocks vary the size of `axle_hole_tweak`. Read the same `top_tweak` number from the side, nearer the top of the block.
 
-Best results are achieved with smaller nozzle diameters. Adjust slicer settings for precision over speed. Layer height is not particularly important on most models.
-
-Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad) to adjust the models for easier printing and a better fit.
+Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad) to tailor the models for easier printing and a better fit.
 
 1. Print the Calibration Bar and test fit the top and bottom against real PELA. Put the `top_tweak` and `bottom_tweak` values that you can read from the side of the bar into `print-parameters.scad`.
-
-2. Generate a new 4x4 [PELA Block](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-block-4-2-1.stl) in OpenSCAD using these settings, press F6 to render, and export as `.STL`.
-
-3. Print two 4x4 blocks with your selected values and confirm a good fit to each other and real PELA.
+1. Generate a new 4x4 `PELA Block` in OpenSCAD using these new settings, press F6 to render, and export as `.STL`.
+1. Confirm a good fit with commercial LEGO Blocks and between PELA Blocks.
+1. Repeat as needed when you change materials, nozzle size or significant model and slicer settings
 
 ## Backing Up Your Calibration Files ##
 
@@ -51,71 +50,75 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 ![PELA Block](PELA-block-4-2-1.png)
 
-[PELA Block](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-block-4-2-1.stl) 
+[3D PELA Block](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-block-4-2-1.stl) 
 
 ![PELA Block with Technics connectors](PELA-technic-block-4-4-2.png)
 
-[PELA Block with Technics connectors](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-block-4-4-2.stl) (optional vents to help dissipate heat)
+[3D PELA Block with Technics connectors](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-block-4-4-2.stl) (optional vents to help dissipate heat)
 
 ![PELA Socket Panel](socket-panel/PELA-socket-panel.png)
 
-[PELA Socket Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/socket-panel/PELA-socket-panel.stl) (double-sided)
+[3D PELA Socket Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/socket-panel/PELA-socket-panel.stl) (double-sided)
 
 ![PELA Knob Panel](knob-panel/PELA-knob-panel.png)
 
-[PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/knob-panel/PELA-knob-panel.stl) (optional M3 corner mount bolt holes as with other models)
+[3D PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/knob-panel/PELA-knob-panel.stl) (optional M3 corner mount bolt holes as with other models)
 
 ![Double-sided PELA Knob Panel](knob-panel/PELA-double-sided-knob-panel.png)
 
-[Double-sided PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/knob-panel/PELA-double-sided-knob-panel.stl)
+[3D Double-sided PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/knob-panel/PELA-double-sided-knob-panel.stl)
 
 ![PELA Technic Pin](PELA-technic-pin.png)
 
-[PELA Technic Pin](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-pin.stl) (in case you run short and don't want to wait for mail order)
+[3D PELA Technic Pin](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-pin.stl) (in case you run short and don't want to wait for mail order)
 
 ![PELA Technic Axle](PELA-technic-axle.png)
 
-[PELA Technic Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-axle.stl) (adjustable lenth)
+[3D PELA Technic Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-axle.stl) (adjustable lenth)
 
 ![PELA Technic Cross Axle](PELA-technic-cross-axle.png)
 
-[PELA Technic Cross Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-cross-axle.stl) (rigid and flexible drive shafts)
+[3D PELA Technic Cross Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-cross-axle.stl) (rigid and flexible drive shafts)
 
 ![PELA Sign](sign/PELA-sign.png)
 
-[PELA Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-sign.stl) (label your designs)
+[3D PELA Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-sign.stl) (label your designs, optionally etch text into the surface)
 
 ![PELA Panel Sign](sign/PELA-panel-sign.png)
 
-[PELA Panel Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl)
+[3D PELA Panel Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl) (corner bolt holes are optional on most models)
 
 ![PELA Grove Module](grove-module-enclosure/PELA-grove-module-enclosure.png)
 
-[PELA Grove Module](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/grove-module-enclosure/PELA-grove-module-enclosure.stl) (use 4x M3 bolts to assemble or switch to pressure fit)
+[3D PELA Grove Module](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/grove-module-enclosure/PELA-grove-module-enclosure.stl) (use 4x M3 bolts to assemble or switch to pressure fit)
+
+![PELA Motor Enclosure](motor-enclosure/PELA-motor-enclosure.png)
+
+[3D PELA Motor Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-motor-enclosure.stl) (adjust parameters for different motor sizes)
 
 ![PELA HTC Vive Tracker Mount](vive-tracker-mount/PELA-vive-tracker-mount.png)
 
-[PELA HTC Vive Tracker Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-mount.stl) (for [HTC Vive](https://www.vive.com/), use a standard tripod screw if you prefer)
+[3D PELA HTC Vive Tracker Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-mount.stl) (for [HTC Vive](https://www.vive.com/), use a standard tripod screw if you prefer)
 
 ![PELA HTC Vive Tracker Screw](vive-tracker-mount/PELA-vive-tracker-screw.png)
 
-[PELA HTC Vive Tracker Screw](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-screw.stl) (a standard tripod screw sized for flush mounting in a PELA panel)
+[3D PELA HTC Vive Tracker Screw](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-screw.stl) (a standard tripod screw sized for flush mounting in a PELA panel)
 
 ![PELA Gunrail Mount](gunrail-mount/PELA-gunrail-mount.png)
 
-[PELA Gunrail Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/gunrail-mount/PELA-gunrail-mount.stl) (for placing HTC Vive Tracker or other sensors on a real gun)
+[3D PELA Gunrail Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/gunrail-mount/PELA-gunrail-mount.stl) (for placing HTC Vive Tracker or other sensors on a real gun)
 
 ![PELA Gunrib Mount](gunrail-mount/PELA-gunrib-mount.png)
 
-[PELA Gunrib Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/gunrail-mount/PELA-gunrib-mount.stl) (alternative attachment when there is no accessory rail on the gun)
+[3D PELA Gunrib Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/gunrail-mount/PELA-gunrib-mount.stl) (alternative attachment when there is no accessory rail on the gun)
 
 ![PELA Endcap Enclosure](endcap-enclosure/PELA-endcap-enclosure.png)
 
-[PELA Endcap Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-enclosure.stl) (adjust the parameters to fit around something)
+[3D PELA Endcap Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-enclosure.stl) (adjust the parameters to fit around something)
 
 ![PELA Intel Compute Stick Enclosure](endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.png)
 
-[PELA Intel Compute Stick Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.stl) (a computer inside your robot)
+[3D PELA Intel Compute Stick Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.stl) (a computer inside your robot)
 
 Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/PELA-parametric-blocks
 
@@ -125,6 +128,12 @@ Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/
 * Use a 0.4mm or smaller nozzle if possible to avoid decimation of some details (inside vertical shell bars..)
 * If slicing with Simplify 3D with 0.5mm or larger nozzle, either expand the ring_thickness (and risk stiff bottom connectors) or set Advanced | External Thing Wall Type | Allow single extrusion walls
 * Be aware that Cura Engine may in some cases not be able to correct OpenSCAD STL export errors. These errors should be visible in layer preview as for example extra excursions back to origin. If this happens, open and clean the STL files first (Windows 3D Builder, Meshmixer, Meshlab..).
+* Best results are achieved with durable materials that are not too stiff (PET, co-oplimers like NGEN, semi-flexible and "engineering" materials instead of PLA and  carbon filled).
+* Best results are achieved with smaller nozzle diameters. Adjust slicer settings for precision over speed. Layer height is not particularly important on most models.
+* Think carefully before using very slippery materials such as Nylon.
+* "standard" and "fast" print setting layer lines are helpful for extra connector grip provided the resulting print geometry is sufficiently accurate.
+* A print "brim" the appears inside the model may negatively affect the bottom connector fit
+* Leaving the blocks on a heated bed may negatively affect the bottom connector fit
 
 ## Resin Printing Tips ##
 
@@ -145,7 +154,7 @@ If what you want is available as injection moulded plastic, buy it for the highe
 If you don't find what you need, consider adding it, contact us or check out the many other excellent design available.
 
 [Yeggi search for LEGO](http://www.yeggi.com/q/lego/)
-[Thingiverse](https://www.thingiverse.com/groups/parametric-lego) is an alternate source of these and other block designs.
+[Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) are alternate sourcse of these and other block designs.
 
 ## Contact ##
 

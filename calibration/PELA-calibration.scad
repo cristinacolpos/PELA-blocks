@@ -1,5 +1,5 @@
 /*
-Parametric PELA-compatible 3D Print Calibration Block
+PELA Blocks 3D Print Calibration Bar
 
 Published at http://PELAblocks.org
 
@@ -21,9 +21,6 @@ use <../PELA-technic-block.scad>
 use <../PELA-block.scad>
 
 /* [PELA Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real PELA first, then 3D printed to 3D printed using a calibration block with your selected paramters] */
-
-// Generator mode: ususally start with the calibration bar, then use others if needed
-mode=1; // [1:Calibration bar, 2:Set of calibration blocks, 3:One calibration block]
 
 // Length of each calibration block (PELA unit count)
 l = 2; 
@@ -78,17 +75,7 @@ calibration_block_increment = 0.02;
 // PELA Calibration Display
 /////////////////////////////////////
 
-if (mode==1) {
-    PELA_calibration_bar();
-} else if (mode==2) {
-    PELA_calibration_set();
-} else if (mode==3) {
-    // A single calibration block
-    PELA_calibration_block();
-} else {
-    echo("<b>Unsupported: please check <i>mode</i> variable is 1-5</b>");
-}
-
+PELA_calibration_bar();
 
 /////////////////////////////////////
 // PELA CALIBRATION BLOCK MODULES
@@ -118,35 +105,6 @@ module PELA_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibrati
         }
 
         etch_all_calibration_bar_dividers(from=from, to=to, w=w);
-    }
-}
-
-
-// A set of blocks with different tweak parameters written on the side
-module PELA_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, bolt_holes=bolt_holes, block_height=block_height, side_lock_thickness=side_lock_thickness, knobs=knobs) {
-    
-    // Tighter top, looser bottom
-    for (i = [0:5]) {
-        cal = i*calibration_block_increment;
-        
-        translate([i*block_width(l+0.5), 0, 0])
-            PELA_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
-    }
-    
-    // Tightest top, loosest bottom
-    for (i = [6:10]) {
-        cal = i*calibration_block_increment;
-        
-        translate([(i-5)*block_width(l+0.5), -block_width(w+0.5), 0])
-            PELA_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
-    }
-    
-    // Looser top, tighter bottom
-    for (i = [1:5]) {
-        cal = -i*calibration_block_increment;
-        
-        translate([i*block_width(l+0.5), block_width(w+0.5), 0])
-            PELA_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
     }
 }
 
