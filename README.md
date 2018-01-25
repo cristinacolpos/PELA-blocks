@@ -11,9 +11,13 @@ The name PELA comes from the Finnish "pelataan" meaning "let's play".
 
 Pelataan.
 
-**[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs and edit with [OpenSCAD](http://www.openscad.org/).
+## Download or Clone ##
 
-**IMPORTANT:** First calibrate the PELA Blocks for your printer to achieve a nice snap fit.
+1. **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs and edit with [OpenSCAD](http://www.openscad.org/).
+1. Or you can `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git` 
+1. **IMPORTANT:** First calibrate the PELA Blocks for your printer to achieve a nice snap fit.
+
+These designs are too complex to reliably use the Thingiverse online customizer.
 
 ## Sponsor ##
 
@@ -25,7 +29,7 @@ Special thanks to [Futurice](http://futurice.com) for sponsoring this design wor
 
 ![PELA Calibration Set](calibration/PELA-calibration-set.png)
 
-*TL;DR: Print a [PELA-calibration.stl](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl) or [PELA-calibration-set](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration-set.stl), test fit with LEGO, read the best 'top_tweak' and 'bottom_tweak' numbers from the sides and update these in [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad). Open any model in OpenSCAD, press F6, and export as STL*
+**TL;DR** *: Print a [PELA-calibration.stl](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl) or [PELA-calibration-set](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration-set.stl), test fit with LEGO, read the best 'top_tweak' and 'bottom_tweak' numbers from the sides and update these in [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad). Open any model in OpenSCAD, press F6, and export as STL*
 
 Printer, slider parameters and plastic effect the precise fit of press fit connectors. It is usually necessary to slightly adjust knob and bottom ring size to achieve a good fit by editing [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). The most common settings are `top_tweak` and `bottom_tweak` which can be read from the side of the clibration block. Other model settings affecting all designs are available in [`PELA-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-parameters.scad). The `PELA-calibreation-set` blocks vary the size of `axle_hole_tweak`. Read the same `top_tweak` number from the side, nearer the top of the block.
 
@@ -154,6 +158,7 @@ If what you want is available as injection moulded plastic, buy it for the highe
 If you don't find what you need, consider adding it, contact us or check out the many other excellent design available.
 
 [Yeggi search for LEGO](http://www.yeggi.com/q/lego/)
+
 [Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) are alternate sourcse of these and other block designs.
 
 ## Contact ##
