@@ -37,6 +37,7 @@ Function render($name) {
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
     Write-Output "STL Render time: $elapsed for $name"
     Write-Output ""
+    shrink-mesh($name)
     render-png($name)
 }
 
@@ -49,13 +50,28 @@ Function render-png($name) {
     Write-Output ""        
 }
 
+Function show-png($name) {
+    Write-Output "Show $name as PNG"
+    $start = Get-Date
+    $param = "`"filename=$name.stl;`""
+    Invoke-Expression "openscad --render -o $name.png loadstl.scad  --D $param"
+    $elapsed = FormatElapsedTime ((Get-Date) - $start)
+    Write-Output "PNG Render time: $elapsed for $name"
+    Write-Output ""        
+}
+
+Function shrink-mesh($name) {
+    Write-Output "Shrink Mesh $name.stl"
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean.mlx -o $name.stl"    
+    # Invoke-Expression "meshlabserver.exe -i $name.stl -o $name.stl"    
+}
+
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
-Write-Output "Removing old .stl, .png and .jpg files"
+Write-Output "Removing old STL and PNG files"
 Get-ChildItem * -Include *.stl -Recurse | Remove-Item
 Get-ChildItem * -Include *.png -Recurse | Remove-Item
-Get-ChildItem * -Include *.jpg -Recurse | Remove-Item
 Write-Output ""
 
 Invoke-Expression ".\PELA-block.ps1 4 2 1 -png"

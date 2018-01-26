@@ -33,17 +33,25 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
+Function shrink-mesh($name) {
+    Write-Output "Shrink Mesh $name"
+    Invoke-Expression "meshlabserver.exe -i $name -s clean.mlx -o $name"    
+    # Invoke-Expression "meshlabserver.exe -i $name -s clean.mlx -o $name"    
+}
+
 $imagename = $filename + $l + "-" + $w + "-" + $h + ".png"
 
-$filename = $filename + $l + "-" + $w + "-" + $h + ".stl"
+$fullname = $filename + $l + "-" + $w + "-" + $h + ".stl"
 
 $start = Get-Date
 
 $param = "`"l=$l; w=$w; h=$h;`""
 
-Write-Output "Render $filename"
+Write-Output "Render $fullname"
 
-openscad --o $filename -D $param PELA-technic-block.scad
+openscad --o $fullname -D $param PELA-technic-block.scad
+
+shrink-mesh($fullname)
 
 if ($png) {
     Write-Output "Render $imagename"

@@ -33,21 +33,54 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
+# Not working, problems with ""*` string parameter passing
+Function show-png($name) {
+    Write-Output "Show $name as PNG"
+    $start = Get-Date
+    $expression = "openscad loadstl.scad --render -o $name.png --D ``filename=`"$name.stl`";``"
+    Write-Output $expression
+    # The goal: openscad loadstl.scad --render -o PELA-block-1-1-1.png --D 'filename=\"PELA-block-1-1-1.stl\";'
+    Invoke-Expression $expression
+    $elapsed = FormatElapsedTime ((Get-Date) - $start)
+    Write-Output "PNG Render time: $elapsed for $name"
+    Write-Output ""        
+}
+
+
+Function show-png($name) {
+    Write-Output "Show $name as PNG"
+    $start = Get-Date
+    $param = "`"filename=$name.stl;`""
+    Invoke-Expression "openscad --render -o $name.png loadstl.scad  --D $param"
+    $elapsed = FormatElapsedTime ((Get-Date) - $start)
+    Write-Output "PNG Render time: $elapsed for $name"
+    Write-Output ""        
+}
+
+Function shrink-mesh($name) {
+    Write-Output "Shrink Mesh $name.stl"
+    Invoke-Expression "meshlabserver.exe -i $name -s clean.mlx -o $name"    
+    # Invoke-Expression "meshlabserver.exe -i $name -o $name"    
+}
+
 $imagename = $filename + $l + "-" + $w + "-" + $h + ".png"
 
-$filename = $filename + $l + "-" + $w + "-" + $h + ".stl"
+$fullname = $filename + $l + "-" + $w + "-" + $h + ".stl"
 
 $start = Get-Date
 
 $param = "`"l=$l; w=$w; h=$h;`""
 
-Write-Output "Render $filename"
+Write-Output "Render $fullname"
 
-openscad -o $filename -D $param PELA-block.scad
+openscad -o $fullname -D $param PELA-block.scad
+
+shrink-mesh($fullname)
 
 if ($png) {
-    Write-Output "Render $imagename"
+    # Write-Output "Show $imagename"
     openscad --render -o $imagename -D $param PELA-block.scad
+    # show-png($filename)
 }
 
 $elapsed = FormatElapsedTime ((Get-Date) - $start)
