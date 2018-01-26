@@ -1,4 +1,4 @@
-# PELA Blocks #
+# PELA Blocks
 ## Parametric 3D Printed LEGO-compatible Blocks
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
@@ -11,7 +11,7 @@ The name PELA comes from the Finnish "pelataan" meaning "let's play".
 
 Pelataan.
 
-## Download or Clone ##
+## Download or Clone
 
 1. **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs and edit with [OpenSCAD](http://www.openscad.org/).
 1. Or you can `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git` 
@@ -19,11 +19,11 @@ Pelataan.
 
 These designs are too complex to reliably use the Thingiverse online customizer.
 
-## Sponsor ##
+## Sponsor
 
 Special thanks to [Futurice](http://futurice.com) for sponsoring this design work. Futurice supports truly open innovation.
 
-## Calibration ##
+## Calibration
 
 ![PELA Calibration Bar](calibration/PELA-calibration.png)
 
@@ -40,7 +40,7 @@ Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-pri
 1. Confirm a good fit with commercial LEGO Blocks and between PELA Blocks.
 1. Repeat as needed when you change materials, nozzle size or significant model and slicer settings
 
-## Backing Up Your Calibration Files ##
+## Backing Up Your Calibration Files
 
 If you later update the PELA-blocks project to a newer version, you risk overwirting and loosing your calibration customizations. The simplest solution is to create a backup copy those settings.
 
@@ -48,7 +48,7 @@ If you later update the PELA-blocks project to a newer version, you risk overwir
 1. `cp PELA-parameters.scad ../PELA-parameters-backup.scad`
 1. `cp PELA-print-parameters.scad ../PELA-print-parameters-backup.scad`
 
-## PELA-compatible Part Designs ##
+## PELA-compatible Part Designs
 
 Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these models before printing them. The example renders are for a Taz 6, 0.5mm nozzle, NGEN rigid filament, LulzBot Cura standard slicer settings.
 
@@ -127,7 +127,7 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/PELA-parametric-blocks
 
 
-## FFF Printing Tips ##
+## FFF Printing Tips
 
 * Use a 0.4mm or smaller nozzle if possible to avoid decimation of some details (inside vertical shell bars..)
 * If slicing with Simplify 3D with 0.5mm or larger nozzle, either expand the ring_thickness (and risk stiff bottom connectors) or set Advanced | External Thing Wall Type | Allow single extrusion walls
@@ -139,12 +139,12 @@ Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/
 * A print "brim" the appears inside the model may negatively affect the bottom connector fit
 * Leaving the blocks on a heated bed may negatively affect the bottom connector fit
 
-## Resin Printing Tips ##
+## Resin Printing Tips
 
 * If more than 2 layer tall PELA with a relatively solid interior not allowing drainage below the knobs, check if you need to expand the airhole to allow resin to drain from the flexture chamber inside each knob
 * For translucent materials, setting knob_slice_count to 0 may make the interior structure look more like a standard PELA at the cost of a slight reduction of knob sidewall flex
 
-## License ##
+## License
 
 Creative Commons Attribution ShareAlike NonCommercial License
 https://creativecommons.org/licenses/by-sa/4.0/legalcode
@@ -153,7 +153,7 @@ These designs are not by the LEGO corporation. They are compatible with LEGO and
 
 If what you want is available as injection moulded plastic, buy it for the higher quality and durability. These model are helpful when you want something customized, a special color, an unusual material, and for replacement parts when you just can't wait.
 
-## Alternative 3D Block Designs ##
+## Alternative 3D Block Designs
 
 If you don't find what you need, consider adding it, contact us or check out the many other excellent design available.
 
@@ -161,6 +161,6 @@ If you don't find what you need, consider adding it, contact us or check out the
 
 [Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) are alternate sourcse of these and other block designs.
 
-## Contact ##
+## Contact
 
 paul.houghton@futurice.com ( **[Blog](https://medium.com/@paulhoughton)** - **[Twitter](https://twitter.com/mobile_rat)**)
