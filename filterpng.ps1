@@ -1,0 +1,1 @@
+git filter-branch -f --tree-filter "rm -rf *.stl" --prune-empty -- --all
