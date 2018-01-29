@@ -59,8 +59,12 @@ Function show-png($name) {
 
 Function shrink-mesh($name) {
     Write-Output "Shrink Mesh $name.stl"
-    Invoke-Expression "meshlabserver.exe -i $name -s clean.mlx -o $name"    
-    # Invoke-Expression "meshlabserver.exe -i $name -o $name"    
+    Invoke-Expression "meshlabserver.exe -i $name -s clean1.mlx -o $name"
+    Invoke-Expression "meshlabserver.exe -i $name -s clean2.mlx -o $name"
+    Invoke-Expression "meshlabserver.exe -i $name -s clean3.mlx -o $name"
+    Invoke-Expression "meshlabserver.exe -i $name -s clean4.mlx -o $name"
+    Invoke-Expression "meshlabserver.exe -i $name -s clean5.mlx -o $name"
+    Invoke-Expression "meshlabserver.exe -i $name -s clean6.mlx -o $name"
 }
 
 $imagename = $filename + $l + "-" + $w + "-" + $h + ".png"
