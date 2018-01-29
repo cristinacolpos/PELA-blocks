@@ -11,34 +11,49 @@ The name PELA comes from the Finnish "pelataan" meaning "let's play".
 
 Pelataan.
 
+## Sponsor
+
+Special thanks to [Futurice](http://futurice.com) for sponsoring this design work. Futurice supports truly open innovation.
+
 ## Download or Clone
 
 1. **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs and edit with [OpenSCAD](http://www.openscad.org/).
 1. Or you can `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git` 
-1. **IMPORTANT:** First calibrate the PELA Blocks for your printer to achieve a nice snap fit.
+1. **IMPORTANT:** First calibrate the PELA Blocks for your printer to achieve a nice snap fit (below)
 
 These designs are too complex to reliably use the Thingiverse online customizer.
 
-## Sponsor
-
-Special thanks to [Futurice](http://futurice.com) for sponsoring this design work. Futurice supports truly open innovation.
+## Advanced Setup (adds raytraced image generation)
+1. Install Python 3
+1. Install PovRay
+1. `git clone --recursive git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git` 
+1. `cd stltools`
+1. `python .\setup.py build`
+1. `python .\setup.py install`
+1. Calibrate for your printer (below)
+1. `make.ps1 -clean -jpg`
 
 ## Calibration
 
 ![PELA Calibration Bar](calibration/PELA-calibration.png)
 
+[3D PELA Calibration Bar](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
+
 ![PELA Calibration Set](calibration/PELA-calibration-set.png)
 
-**TL;DR** *: Print a [PELA-calibration.stl](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl) or [PELA-calibration-set](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration-set.stl), test fit with LEGO, read the best 'top_tweak' and 'bottom_tweak' numbers from the sides and update these in [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad). Open any model in OpenSCAD, press F6, and export as STL*
+[3D PELA Calibration Block Set](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration-set.stl)
+
+**TL;DR** *: Print either a Calibration Bar or Calibration Block Set, test fit with LEGO and read the best 'top_tweak' and 'bottom_tweak' numbers from the block side from the block sides, then update these numbers in [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad). Now open any model in OpenSCAD, press F6, and `Export as STL` to create the model optimized for your printer.*
 
 Printer, slider parameters and plastic effect the precise fit of press fit connectors. It is usually necessary to slightly adjust knob and bottom ring size to achieve a good fit by editing [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). The most common settings are `top_tweak` and `bottom_tweak` which can be read from the side of the clibration block. Other model settings affecting all designs are available in [`PELA-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-parameters.scad). The `PELA-calibreation-set` blocks vary the size of `axle_hole_tweak`. Read the same `top_tweak` number from the side, nearer the top of the block.
 
-Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad) to tailor the models for easier printing and a better fit.
+Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). These help to tailor the models for easier printing and a better fit.
 
-1. Print the Calibration Bar and test fit the top and bottom against real PELA. Put the `top_tweak` and `bottom_tweak` values that you can read from the side of the bar into `print-parameters.scad`.
-1. Generate a new 4x4 `PELA Block` in OpenSCAD using these new settings, press F6 to render, and export as `.STL`.
-1. Confirm a good fit with commercial LEGO Blocks and between PELA Blocks.
-1. Repeat as needed when you change materials, nozzle size or significant model and slicer settings
+1. Print the Calibration Bar and test fit the top knobs and bottom sockets against commercial LEGO. Put the `top_tweak` (on the side, near the top) and `bottom_tweak` (on the side, near the bottom) values that you can read from the side of the bar into `print-parameters.scad`.
+1. Generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press F6 to render, and export as `.STL`. In Windows, you can do with from the command line: `.\PELA-block.ps1 2 2 1` or `.\PELA-technic-block.ps1 2 2 1`
+1. Confirm a good fit with both commercial LEGO and other PELA Blocks.
+1. If you find you also need to adjust the Technics connector hole size, print the Calibration Block Set. `axle_hole_tweak` numbers change along with `top_tweak` numbers.
+1. Repeat this process as needed when you change material, nozzle size or and slicer settings.
 
 ## Backing Up Your Calibration Files
 

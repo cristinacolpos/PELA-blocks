@@ -6,7 +6,9 @@
 # Part of https://github.com/LEGO-prototypes/PELA-parametric-blocks
 
 param (
-    [switch]$publish = $false
+    [switch]$publish = $false,
+    [switch]$png = $false,
+    [switch]$clean = $false
 )
 
 Function FormatElapsedTime($ts) {
@@ -37,10 +39,15 @@ Function render($name) {
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
     Write-Output "STL Render time: $elapsed for $name"
     Write-Output ""
-    shrink-mesh($name)
-    render-png($name)
+    if ($clean) {
+        shrink-mesh($name)
+    }
+    if ($png) {
+        render-png($name)
+    }
 }
 
+# Create a PNG from the .scad file (slow, not pretty, but no Python or POVRay needed)
 Function render-png($name) {
     Write-Output "Render $name as PNG"
     $start = Get-Date
@@ -50,20 +57,27 @@ Function render-png($name) {
     Write-Output ""        
 }
 
-Function show-png($name) {
-    Write-Output "Show $name as PNG"
+Function render-jpg($name) {
+    Write-Output "Render $name as Raytraced JPG"
     $start = Get-Date
     $param = "`"filename=$name.stl;`""
-    Invoke-Expression "openscad --render -o $name.png loadstl.scad  --D $param"
+    Invoke-Expression "python .\stlutils\stl2pov.py $name.stl"
+    Move-Item $name.inc temp.inc
+    Remove-Item temp.inc
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
+
     Write-Output "PNG Render time: $elapsed for $name"
-    Write-Output ""        
+    Write-Output ""
 }
 
 Function shrink-mesh($name) {
     Write-Output "Shrink Mesh $name.stl"
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean.mlx -o $name.stl"    
-    # Invoke-Expression "meshlabserver.exe -i $name.stl -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean1.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean2.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean3.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean4.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean5.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean6.mlx -o $name.stl"    
 }
 
 Write-Output "Generating PELA Blocks"
