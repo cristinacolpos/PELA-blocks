@@ -75,7 +75,7 @@ top_shell = 1.5;
 /* [3D Printing Top Connector Adjustments] */
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-top_tweak = 0.02; // 0 for PLA, 0 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex
+top_tweak = 0.04; // 0.04 for rPET, 0 for PLA, 0 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex
 
 // Size of the top connectors (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 knob_radius = 2.45 + 0.12 + top_tweak;
@@ -96,7 +96,7 @@ knob_bevel = flexible_material ? 0.3 : 0.0;
 /* [3D Printing Bottom Connector Adjustments] */
 
 // Bottom connector size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-bottom_tweak = 0.04; // 0.04 for NGEN, 0 for NGEN Flex, -0.04 for Ninjaflex
+bottom_tweak = 0.12; // 0.12 for rPET, 0.04 for NGEN, 0 for NGEN Flex, -0.04 for Ninjaflex
 
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 ring_thickness = large_nozzle ? 1.2 : 0.8;
@@ -111,7 +111,7 @@ side_lock_thickness = 0.02;
 /* [3D Printing Side Connector Adjustments] */
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0.0; // 0 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex
+axle_hole_tweak = 0.04; // 0.04 for rPET, 0 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex
 
 // Technic connector hole
 axle_hole_radius = 2.45 + axle_hole_tweak;
