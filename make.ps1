@@ -83,9 +83,12 @@ Function shrink-mesh($name) {
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
-Write-Output "Removing old STL and PNG files"
+Write-Output "Removing old STL files"
 Get-ChildItem * -Include *.stl -Recurse | Remove-Item
-Get-ChildItem * -Include *.png -Recurse | Remove-Item
+if ($png) {
+    Write-Output "Removing old PNG files"
+    Get-ChildItem * -Include *.png -Recurse | Remove-Item
+}
 Write-Output ""
 
 Invoke-Expression ".\PELA-block.ps1 4 2 1 -png"
