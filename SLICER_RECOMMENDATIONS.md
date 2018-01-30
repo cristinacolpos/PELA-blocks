@@ -13,11 +13,11 @@ Made from recycled plastic bottles. Note that the overextrusion and other settin
 `large_nozzle = true;`
 `flexible_filament = false;`
 `top_tweak = 0.04;`
-`bottom_tweak = 0.12;`
+`bottom_tweak = 0.10;`
 `axle_hole_tweak = 0.04;`
 
 ## Slicer Settings
-Layer Height: 0.25
+Layer Height: 0.2
 Print Temp: 245C
 Initial Print Temp: 245C
 Build Plate: 85C
