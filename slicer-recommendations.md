@@ -41,7 +41,6 @@ Optional Finish: Lightly sand the outer surface and spray with a clear polimer.
 
 # Colorfabb NGEN
 
-
 ## `PELA_print_parameters.scad`
 `large_nozzle = true;` (if nozzle >= 0.5mm)
 `flexible_filament = false;`
@@ -54,12 +53,14 @@ Layer Height: 0.3   (or smaller for aesthetics and when there is side text in th
 Print Temp: 260C
 Initial Print Temp: 250C
 Build Plate: 80C
-Flow: 100%
-Fan: 30%
+Flow: 95%
+Fan: 50%
 Retraction: 8.5mm
 Retraction Speed: 25mm/s
 Speed: 50mm/s
-Bottom Speed: 30mm/s
+Wall Speed: 40mm/s
+Top/Bottom Speed: 35mm/s
+Initial Layer Speed: 30mm/s
 Support: No
 Adhesion: Skirt
 Infill: 0%
