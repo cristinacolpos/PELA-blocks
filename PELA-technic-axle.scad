@@ -30,7 +30,7 @@ axle_length = block_width(3);
 axle_radius = 2.2;
 
 // Size of the hollow inside an axle
-axle_center_radius=2*axle_radius/3;
+axle_center_radius=axle_radius/2;
 
 ///////////////
 

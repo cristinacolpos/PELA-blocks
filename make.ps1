@@ -112,6 +112,7 @@ render(".\endcap-enclosure\PELA-endcap-intel-compute-stick-enclosure")
 render(".\vive-tracker-mount\PELA-vive-tracker-mount")
 render(".\vive-tracker-mount\PELA-vive-tracker-screw")
 render(".\grove-module-enclosure\PELA-grove-module-enclosure")
+render(".\support\support")
 
 Get-Date
 

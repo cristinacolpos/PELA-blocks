@@ -10,19 +10,19 @@ Avoid "brim" and "support" options if possible as they can be difficult to clean
 Made from recycled plastic bottles. Note that the overextrusion and other settings adjusted for translucenty and minimum "hop and hunt" on these models are matched to the tweak numbers.
 
 ## `PELA_print_parameters.scad`
-`large_nozzle = true;`
+`large_nozzle = true;` (if nozzle >= 0.5mm)
 `flexible_filament = false;`
 `top_tweak = 0.04;`
 `bottom_tweak = 0.10;`
 `axle_hole_tweak = 0.04;`
 
 ## Slicer Settings
-Layer Height: 0.2
+Layer Height: 0.2     (for transparency- taller is fine and prints faster)
 Print Temp: 245C
 Initial Print Temp: 245C
 Build Plate: 85C
 Flow: 105%
-Fan: 10%
+Fan: 20%
 Retraction: 8.5mm
 Retraction Speed: 25mm/s
 Speed: 80mm/s
@@ -41,7 +41,36 @@ Optional Finish: Lightly sand the outer surface and spray with a clear polimer.
 
 # Colorfabb NGEN
 
-Default settings similar to the above. As with other PET/co-copolymer filaments, unless you seek transparency then do not overextude and consider 50% fan if layer adhesion is sufficent (knobs are particularly sensitive to delamination). Lower or disable the fan for better layer adhesion. Works well, slightly slippery surface is not ideal.
+
+## `PELA_print_parameters.scad`
+`large_nozzle = true;` (if nozzle >= 0.5mm)
+`flexible_filament = false;`
+`top_tweak = 0.02;`
+`bottom_tweak = 0.04;`
+`axle_hole_tweak = 0.04;`
+
+## Slicer Settings
+Layer Height: 0.3   (or smaller for aesthetics and when there is side text in the model)
+Print Temp: 260C
+Initial Print Temp: 250C
+Build Plate: 80C
+Flow: 100%
+Fan: 30%
+Retraction: 8.5mm
+Retraction Speed: 25mm/s
+Speed: 50mm/s
+Bottom Speed: 30mm/s
+Support: No
+Adhesion: Skirt
+Infill: 0%
+Wall Line Count: 1
+Top Layers: 4
+Bottom Layers: 4
+Fill Gabs Between Walls: Nowhere
+Z Seam Alignment: Random
+Extensive Stitching: True
+
+Works well despite a slightly slippery surface finish. As with other PET/co-copolymer filaments, unless you seek transparency then do not overextude. Consider more fan if layer adhesion is sufficent (knobs are particularly sensitive to delamination). Lower or disable the fan for better layer adhesion.
 
 # Colorfabb NGEN Flex
 
