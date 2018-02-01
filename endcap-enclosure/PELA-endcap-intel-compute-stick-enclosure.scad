@@ -30,6 +30,7 @@ include <../PELA-print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <PELA-endcap-enclosure.scad>
+use <../support/support.scad>
 
 
 /* [PELA Options plus Plastic and Printer Variance Adjustments] */
@@ -43,8 +44,14 @@ l = 15;
 // Length of the left side of the enclosure (PELA knob count, for example l/2 or less)
 l_cap = 6;
 
+// Size of the left cap vertical support structure near the cut point (PELA knob count, 0 to disable)
+l_cap_support_width = 0.5;
+
+// Size of the right cap vertical support structure near the cut point (PELA knob count, 0 to disable)
+r_cap_support_width = 0.5;
+
 // Length of the right side of the enclosure (PELA knob count, for example l/2 or less)
-r_cap = 6;
+r_cap = l - l_cap;
 
 // Width of the enclosure (PELA knob count)
 w = 6;
@@ -103,21 +110,24 @@ knob_vent_radius = 0;
 // There is usually no need or room for corner mounting M3 bolt holes
 bolt_holes=0;
 
+// Generate print-time support aid structures
+print_supports = true;
+
 
 /////////////////////////////////////
 // PELA End Cap Enclosure Display
 
 if (mode==1) {
-    left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
+    left_endcap(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 } else if (mode==2) {
-    right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
+    right_endcap(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 } else if (mode==3) {
-    PELA_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
+    PELA_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 } else if (mode==4) {
     translate([0, block_width(w + 0.5), 0])
-        left_cap(l_cap=l_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
+        left_endcap(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 
-    right_cap(r_cap=r_cap, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
+    right_endcap(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
 } else {
     echo("<b>Unsupported: please check <i>mode</i> variable is 1-4</b>");
 }
