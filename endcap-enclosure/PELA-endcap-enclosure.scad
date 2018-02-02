@@ -150,9 +150,10 @@ module left_endcap(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=
 
 
 module print_supports(cap, w=w, h=h, socket_height=socket_height, eh=eh, vertical_offset=vertical_offset) {
+    
     if (print_supports && cap > 1) {
         dh = dh(socket_height=socket_height, h=h, eh=eh);
-        support_side_length=ring_radius*1.4;
+        support_side_length=ring_radius*1.5;
         for (x=[0:1:cap-1]) {
             for (y=[0:1:w-1]) {
                 if (!((x==0 || x==cap-1) && (y==0 || y==w-1))) {
