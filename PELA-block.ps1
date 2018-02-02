@@ -57,6 +57,8 @@ Function show-png($name) {
     Write-Output ""        
 }
 
+# Shrinking to save space and fix some OpenSCAD export artifacts is done in
+# several discrete steps to minimize memory stress with large models
 Function shrink-mesh($name) {
     Write-Output "Shrink Mesh $name.stl"
     Invoke-Expression "meshlabserver.exe -i $name -s clean1.mlx -o $name"

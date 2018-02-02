@@ -35,7 +35,7 @@ use <../support/support.scad>
 /* [PELA Options plus Plastic and Printer Variance Adjustments] */
 
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>both caps, 4=>preview a single object that can not be opened
-mode=3;
+mode=1;
 
 // Length of the enclosure (PELA knob count)
 //l = 23;
@@ -132,12 +132,19 @@ if (mode==1) {
     echo("<b>Unsupported: please check <i>mode</i> variable is 1-3</b>");
 }
 
+///////////////////////////////////
+// Functions
+///////////////////////////////////
+
+// Height of the bottom of the cutout space (not including vertical_offset)
+function dh(socket_height, h, eh)=socket_height+(block_height(h)-(eh + 2*skin)-socket_height)/2;
+
 
 ///////////////////////////////////
-// PELA Enclosure Modules
+// Modules
 ///////////////////////////////////
 
-module left_endcap(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths) {
+module left_endcap(print_supports=print_supports, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths) {
     
     intersection() {
         PELA_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
@@ -145,20 +152,23 @@ module left_endcap(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=
         cube([block_width(l_cap), block_width(w), block_height(h+1)]);
     }
 
-    print_supports(cap=l_cap, w=w, h=h, socket_height=socket_height, eh=eh, vertical_offset=vertical_offset);
+    print_supports(print_supports=print_supports, cap=l_cap, w=w, h=h, socket_height=socket_height, eh=eh, vertical_offset=vertical_offset);
 }
 
 
-module print_supports(cap, w=w, h=h, socket_height=socket_height, eh=eh, vertical_offset=vertical_offset) {
+module print_supports(print_supports=print_supports, cap, w=w, h=h, socket_height=socket_height, eh=eh, vertical_offset=vertical_offset) {
     
     if (print_supports && cap > 1) {
-        dh = dh(socket_height=socket_height, h=h, eh=eh);
+        dh = dh(socket_height=socket_height, h=h, eh=eh) + vertical_offset + skin;
         support_side_length=ring_radius*1.5;
         for (x=[0:1:cap-1]) {
             for (y=[0:1:w-1]) {
+                support_max_rotation = y==0 || y==w-1 ? 30 : 0;
+                support_initial_rotation = y!=0 && y!= w-1 ? 0 : y==0 ? -90 : -30;
                 if (!((x==0 || x==cap-1) && (y==0 || y==w-1))) {
-                    translate([block_width(x+0.5), block_width(y+0.5), dh+vertical_offset])
-                        support(height=eh, support_side_length=support_side_length);
+                    translate([block_width(x+0.5), block_width(y+0.5), dh])
+                        rotate([0, 0, support_initial_rotation])
+                            support(support_max_rotation=support_max_rotation, height=eh, support_side_length=support_side_length);
                     }
                 }
             }
@@ -166,7 +176,7 @@ module print_supports(cap, w=w, h=h, socket_height=socket_height, eh=eh, vertica
 }
 
 
-module right_endcap(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes) {
+module right_endcap(print_supports=print_supports, el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes) {
     
     intersection() {
         PELA_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
@@ -177,7 +187,7 @@ module right_endcap(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_cap
 
     translate([block_width(l), block_width(w), 0])
         rotate([0, 0, 180])
-            print_supports(cap=r_cap, w=w, h=h, socket_height=socket_height, eh=eh, vertical_offset=vertical_offset);
+            print_supports(print_supports=print_supports, cap=r_cap, w=w, h=h, socket_height=socket_height, eh=eh, vertical_offset=vertical_offset);
 }
 
 
@@ -191,10 +201,6 @@ module PELA_enclosure(el=el, ew=ew, eh=eh, shoulder=shoulder, l=l, w=w, h=h, l_c
             enclosure_negative_space(l=l, w=w, h=h, el=el, ew=ew, eh=eh, l_cap=l_cap, r_cap=r_cap, l_cap_support_width=l_cap_support_width, r_cap_support_width=r_cap_support_width, shoulder=shoulder, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius);
     }
 }
-
-
-// Height of the bottom of the cutout space (not including vertical_offset)
-function dh(socket_height, h, eh)=socket_height+(block_height(h)-(eh + 2*skin)-socket_height)/2;
 
 
 // Where to remove material to provide side and end access for attachments and air ventilation

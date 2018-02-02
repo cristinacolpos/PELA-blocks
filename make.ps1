@@ -70,6 +70,8 @@ Function render-jpg($name) {
     Write-Output ""
 }
 
+# Shrinking to save space and fix some OpenSCAD export artifacts is done in
+# several discrete steps to minimize memory stress with large models
 Function shrink-mesh($name) {
     Write-Output "Shrink Mesh $name.stl"
     Invoke-Expression "meshlabserver.exe -i $name.stl -s clean1.mlx -o $name.stl"    
@@ -83,12 +85,12 @@ Function shrink-mesh($name) {
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
-Write-Output "Removing old STL files"
-Get-ChildItem * -Include *.stl -Recurse | Remove-Item
-if ($png) {
-    Write-Output "Removing old PNG files"
-    Get-ChildItem * -Include *.png -Recurse | Remove-Item
-}
+# Write-Output "Removing old STL files"
+#Get-ChildItem * -Include *.stl -Recurse | Remove-Item
+# if ($png) {
+#    Write-Output "Removing old PNG files"
+#    Get-ChildItem * -Include *.png -Recurse | Remove-Item
+#}
 Write-Output ""
 
 Invoke-Expression ".\PELA-block.ps1 4 2 1 -png"
@@ -105,8 +107,8 @@ render(".\motor-enclosure\PELA-motor-enclosure")
 render(".\knob-panel\PELA-knob-panel")
 render(".\knob-panel\PELA-double-sided-knob-panel")
 render(".\socket-panel\PELA-socket-panel")
-render(".\gunrail-mount\PELA-gunrail-mount")
-render(".\gunrail-mount\PELA-gunrib-mount")
+render(".\rail-mount\PELA-rail-mount")
+render(".\rail-mount\PELA-rib-mount")
 render(".\endcap-enclosure\PELA-endcap-enclosure")
 render(".\endcap-enclosure\PELA-endcap-intel-compute-stick-enclosure")
 render(".\vive-tracker-mount\PELA-vive-tracker-mount")

@@ -87,7 +87,6 @@ Works well. Gluestick acts as a release agent that protects the PEI print surfac
 
 # PLA
 
-Generally avoid PLA if you have other choices. The stiffness and easy chipping mean part fit well and lifetime are less than other materials.
+Generally avoid PLA if you have other choices. The stiffness and easy chipping mean part fit and lifetime are worse than other materials.
 
-Minimize bed heating as it may alter the lower socket connector geometry.
-
+Minimize or avoid bed heating as it can elephant foot the lower socket connectors.

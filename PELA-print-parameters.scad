@@ -130,3 +130,6 @@ support_side_length = 2;
 
 // Degrees to rotate for strength at each successive layer
 support_layer_rotation = 6; // Degrees
+
+// Max rotation before reversing direction to keep shape basically triangular but still strong (0 to disable)
+support_max_rotation = 0; // Degrees
