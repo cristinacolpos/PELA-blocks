@@ -156,15 +156,16 @@ module left_endcap(print_supports=print_supports, el=el, ew=ew, eh=eh, shoulder=
 }
 
 
+// Add support columns to hold up the roof of one clamshell end
 module print_supports(print_supports=print_supports, cap, w=w, h=h, socket_height=socket_height, eh=eh, vertical_offset=vertical_offset) {
     
     if (print_supports && cap > 1) {
         dh = dh(socket_height=socket_height, h=h, eh=eh) + vertical_offset + skin;
-        support_side_length=ring_radius*1.5;
+        support_side_length=ring_radius*1.4;
         for (x=[0:1:cap-1]) {
             for (y=[0:1:w-1]) {
-                support_max_rotation = y==0 || y==w-1 ? 30 : 0;
-                support_initial_rotation = y!=0 && y!= w-1 ? 0 : y==0 ? -90 : -30;
+                support_max_rotation = x== 0 || y==0 || y==w-1 ? 0.1 : 0;
+                support_initial_rotation = y!=0 && y!=w-1 ? 0 : x==0 ? 90 : y==0 ? -90-support_max_rotation/2 : -30-support_max_rotation/2;
                 if (!((x==0 || x==cap-1) && (y==0 || y==w-1))) {
                     translate([block_width(x+0.5), block_width(y+0.5), dh])
                         rotate([0, 0, support_initial_rotation])
