@@ -87,14 +87,12 @@ Write-Output "======================"
 Get-Date
 Write-Output "Removing old STL files"
 Get-ChildItem * -Include *.stl -Recurse -Exclude stltools | Remove-Item
-if ($png) {
-    Write-Output "Removing old PNG files"
-    Get-ChildItem * -Include *.png -Recurse | Remove-Item
-}
+Write-Output "Removing old PNG files"
+Get-ChildItem * -Include *.png -Recurse | Remove-Item
 Write-Output ""
 
-Invoke-Expression ".\PELA-block.ps1 4 2 1 -png"
-Invoke-Expression ".\PELA-technic-block.ps1 4 4 2 -png"
+Invoke-Expression ".\PELA-block.ps1 4 2 1 -clean -png"
+Invoke-Expression ".\PELA-technic-block.ps1 4 4 2 -clean -png"
 
 render(".\PELA-technic-pin")
 render(".\PELA-technic-axle")
