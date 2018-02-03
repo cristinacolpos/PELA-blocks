@@ -165,7 +165,7 @@ module print_supports(print_supports=print_supports, cap, w=w, h=h, socket_heigh
         for (x=[0:1:cap-1]) {
             for (y=[0:1:w-1]) {
                 support_max_rotation = x== 0 || y==0 || y==w-1 ? 0.1 : 0;
-                support_initial_rotation = y!=0 && y!=w-1 ? 0 : x==0 ? 90 : y==0 ? -90-support_max_rotation/2 : -30-support_max_rotation/2;
+                support_initial_rotation = y!=0 && y!=w-1 ? 0 : x==0 ? -90 : y==0 ? -90-support_max_rotation/2 : -30-support_max_rotation/2;
                 if (!((x==0 || x==cap-1) && (y==0 || y==w-1))) {
                     translate([block_width(x+0.5), block_width(y+0.5), dh])
                         rotate([0, 0, support_initial_rotation])

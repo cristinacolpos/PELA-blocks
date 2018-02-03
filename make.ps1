@@ -86,7 +86,7 @@ Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
 Write-Output "Removing old STL files"
-Get-ChildItem * -Include *.stl -Recurse | Remove-Item
+Get-ChildItem * -Include *.stl -Recurse -Exclude stltools | Remove-Item
 if ($png) {
     Write-Output "Removing old PNG files"
     Get-ChildItem * -Include *.png -Recurse | Remove-Item

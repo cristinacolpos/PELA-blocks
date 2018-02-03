@@ -1,20 +1,14 @@
 /*
 Parametric PELA Shotgun Rib Mount
 
-A "rib" is a rectantular metal bar to reinforce the barrel of a gun. See
-also the "PELA-gunrail-mount.scad" for an alternative design.
+A "rib" is a rectantular metal bar such as those used to
+reinforce the barrel of a long gun. See
+also the "PELA-rail-mount.scad" for an alternative design.
 
 The current design omits top knobs which would interfere with the
 matching "PELA-vive-tracker-mount.scad".
 
-
 Published at http://PELAblocks.org
-
-
-
-
-
-
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -36,7 +30,7 @@ include <../PELA-print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../knob-panel/PELA-knob-panel.scad>
-use <PELA-gunrail-mount.scad>
+use <PELA-rail-mount.scad>
 
 /* [PELA Panel Options] */
 

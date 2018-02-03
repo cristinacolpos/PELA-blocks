@@ -18,7 +18,10 @@ Import this into other design files to set baseline constants:
     include <PELA_parameters.scad>
 */
 
-/* [PELA-compatible Options] */
+include <PELA-print-parameters.scad>
+
+
+/* [PELA Block Dimensions] */
 
 // Length of the block (PELA unit count)
 l = 4; 
@@ -68,7 +71,7 @@ end_sheaths = 1; // [0:disabled, 1:enabled]
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = 0; // [0:disabled, 1:enabled]
 
-// Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly manifold shape). 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
+// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
 knob_vent_radius = 0;
 
 
@@ -79,12 +82,6 @@ ridge_width = 0.15;
 
 // Depth of a line etched in the side of multi-layer block sets
 ridge_depth = 0.3;
-
-
-
-include <PELA-print-parameters.scad>
-
-function dummy(x)=x; // This first function will block all uncommon parameters below from appearing in the online customizer
 
 
 /* [Advanced Options for Basic Blocks] */
