@@ -124,13 +124,13 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 [3D PELA HTC Vive Tracker Screw](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-screw.stl) (a standard tripod screw sized for flush mounting in a PELA panel)
 
-![PELA Gunrail Mount](gunrail-mount/PELA-gunrail-mount.png)
+![PELA Rail Mount](rail-mount/PELA-rail-mount.png)
 
 [3D PELA Rail Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/rail-mount/PELA-rail-mount.stl) (for placing HTC Vive Tracker or other sensors on a real gun rail)
 
 ![PELA Rib Mount](rail-mount/PELA-rib-mount.png) (alternative design to attach to rectangular ribs)
 
-[3D PELA Gunrib Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/gunrail-mount/PELA-gunrib-mount.stl) (alternative attachment when there is no accessory rail on the gun)
+[3D PELA Rib Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/rail-mount/PELA-rib-mount.stl) (alternative attachment to a recangular rail)
 
 ![PELA Endcap Enclosure](endcap-enclosure/PELA-endcap-enclosure.png)
 

@@ -23,7 +23,10 @@ l = 4;
 w = 2;
 
 // Height of the bottom part of the motor enclosure (block count, the top part is always 1/3)
-h = 4/3;
+h_bottom = 1;
+
+// Height of the bottom part of the motor enclosure (block count, the top part is always 1/3)
+h_top = 1;
 
 
 /* [Motor Options] */
@@ -38,6 +41,9 @@ motor_square_length=9.5;
 
 // Width of the motor slot body (may reduce rounding, add 0.2 for space to insert the motor)
 motor_width=10+2*skin;
+
+// Vertical position of the motor inside the enclosure
+motor_offset = block_height(4/3)-motor_radius-block_width(0.5);
 
 // Radius of the motor shaft cutout slot
 motor_shaft_radius=1.9;
@@ -54,56 +60,68 @@ electric_vertical_displacement=-3;
 // Distance the electrical connector cutout extends from the body
 electric_length=20;
 
+// Heat ventilation holes in the sides
 side_holes=1;
 
-side_sheaths=0;
-
-end_holes=0;
-
+// Heat ventilation holes in the top surface
 top_vents=1;
 
-//knob_vent_radius=1.5;
+// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
+knob_vent_radius = 1.2;
+
 
 ////////////////////
-
-
+// Test print
+////////////////////
 motor_enclosure_bottom();
-motor_enclosure_top();
 
+translate([0, block_width(w + 0.5), 0])
+    motor_enclosure_top();
+
+
+////////////////////
+// Modules
+////////////////////
+
+// Bottom of the enclosure
 module motor_enclosure_bottom() {
     difference() {
-        PELA_technic_block(l, w, h, knob_flexture_radius=0, solid_upper_layers=1, top_vents=0, knob_vent_radius=0);
+        PELA_technic_block(l=l, w=w, h=h_bottom, knob_flexture_radius=0, solid_upper_layers=1, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=0, knob_vent_radius=0);
         
-        union() {
-            translate([(block_width(l)-motor_round_length-motor_square_length)/2, (block_width(w)-motor_width)/2, block_height(h)-motor_radius-block_width(0.5)]) {
-                motor_slot();
-                shaft_slot();
-                electric_slot();
-            }
-        
-            if (is_true(side_holes)) {
-                translate([0, 0, block_height(h-1)])
-                    side_connector_hole_set();
-            }
+        motor_cutouts();
+    }
+}
+
+
+// Top of the enclosure
+module motor_enclosure_top() {
+    difference() {
+        PELA_technic_block(l=l, w=w, h=h_top, side_holes=side_holes, end_holes=0, top_vents=top_vents, knob_vent_radius=knob_vent_radius);
+
+        translate([0, 0, block_height(-h_top)])    
+            motor_cutouts(ss=false, es=false);
+    }
+}
+
+
+// Space for the motor and connectors and shafts to be removed from the block
+module motor_cutouts(ms=true, ss=true, es=true) {
+
+    translate([(block_width(l)-motor_round_length-motor_square_length)/2, (block_width(w)-motor_width)/2, motor_offset]) {
+        if (ms) {
+            motor_slot();
+        }
+        if (es) {
+            electric_slot();
+        }
+        if (ss) {
+            shaft_slot();
         }
     }
 }
 
 
-module motor_enclosure_top() {
-        translate([0, block_width(w + 0.5), block_height(-1/3)])
-            difference() {
-                PELA_technic_block(l=l, w=w, h=1, side_holes=0);
-    
-                union() {
-                    cube([block_width(l), block_width(w), block_height(1/3)]);
-            
-                    translate([(block_width(l)-motor_round_length-motor_square_length)/2, (block_width(w)-motor_radius*2)/2, block_height(2/3)-motor_radius-block_width(0.5)])
-                        motor();
-                }
-            }
-}
-
+// Shape of the motor body
 module motor() {
     intersection() {
         union() {
@@ -123,18 +141,23 @@ module motor() {
 }
 
 
+// Drive shaft sticking from one end of the motor
 module motor_shaft() {
     translate([0, motor_radius, motor_radius])
         rotate([0, 90, 0])
             cylinder(r=motor_shaft_radius, h=motor_round_length+motor_square_length+motor_shaft_length);
 }
 
+
+// Electrical connections on the end opposite the shaft
 module electric_cutout() {
     translate([0, motor_radius, motor_radius+electric_vertical_displacement])
         rotate([0, -90, 0])
             cylinder(r=electric_radius, h=electric_length);    
 }
 
+
+// For inserting the motor from the top
 module motor_slot() {
     translate([0, -(2*motor_radius-motor_width)/2, 0])
         motor();
@@ -143,6 +166,8 @@ module motor_slot() {
         cube([motor_square_length+motor_round_length, motor_width, motor_radius]);    
 }
 
+
+// For the shaft when the motor slides down into the bottom half of the enclosure
 module shaft_slot() {
     hull() {
         translate([0, -(2*motor_radius-motor_width)/2, 0])
@@ -153,6 +178,8 @@ module shaft_slot() {
     }    
 }
 
+
+// For the electrical connections when the motor slides down into the bottom half of the enclosure
 module electric_slot() {
     hull() {
         translate([0, -(2*motor_radius-motor_width)/2, 0])

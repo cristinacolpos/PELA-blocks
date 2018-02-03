@@ -1,21 +1,14 @@
 /*
-Parametric PELA Long Gun Rail Mount
+Parametric PELA Rail Mount
 
 A "rail" is a Picatinny/NATO metal bar for attachments along the
-the barrel of a gun. See also the "PELA-gunrib-mount.scad" for an
+the barrel of a gun. See also the "PELA-rib-mount.scad" for an
 alternative design.
 
 The current design omits top knobs which would interfere with the
 matching "PELA-vive-tracker-mount.scad".
 
-
 Published at http://PELAblocks.org
-
-
-
-
-
-
 
 By Paul Houghton
 Twitter: @mobile_rat
