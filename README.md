@@ -32,7 +32,7 @@ These designs are too complex to reliably use the Thingiverse online customizer.
 1. `python .\setup.py build`
 1. `python .\setup.py install`
 1. Calibrate for your printer (below)
-1. `make.ps1 -clean -jpg`
+1. `make.ps1 -clean` (or if you don't want to wait: open a `.scad` file, `F6`, then `Export STL`) 
 
 ## Calibration
 
