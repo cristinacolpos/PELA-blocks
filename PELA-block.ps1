@@ -9,7 +9,8 @@ param (
     [Int]$w = 2,
     [Int]$h = 1,
     [String]$filename = "PELA-block-",
-    [switch]$png = $false
+    [switch]$png = $false,
+    [switch]$clean = $false
 )
 
 Function FormatElapsedTime($ts) {
@@ -31,19 +32,6 @@ Function FormatElapsedTime($ts) {
     }
 
     return $elapsedTime
-}
-
-# Not working, problems with ""*` string parameter passing
-Function show-png($name) {
-    Write-Output "Show $name as PNG"
-    $start = Get-Date
-    $expression = "openscad loadstl.scad --render -o $name.png --D ``filename=`"$name.stl`";``"
-    Write-Output $expression
-    # The goal: openscad loadstl.scad --render -o PELA-block-1-1-1.png --D 'filename=\"PELA-block-1-1-1.stl\";'
-    Invoke-Expression $expression
-    $elapsed = FormatElapsedTime ((Get-Date) - $start)
-    Write-Output "PNG Render time: $elapsed for $name"
-    Write-Output ""        
 }
 
 
@@ -81,7 +69,9 @@ Write-Output "Render $fullname"
 
 openscad -o $fullname -D $param PELA-block.scad
 
-shrink-mesh($fullname)
+if ($clean) {
+    shrink-mesh($fullname)
+}
 
 if ($png) {
     # Write-Output "Show $imagename"

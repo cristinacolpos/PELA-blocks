@@ -9,7 +9,8 @@ param (
     [Int]$w = 2,
     [Int]$h = 1,
     [String]$filename = "PELA-technic-block-",
-    [switch]$png = $false
+    [switch]$png = $false,
+    [switch]$clean = $false
 )
 
 Function FormatElapsedTime($ts) {
@@ -57,7 +58,9 @@ Write-Output "Render $fullname"
 
 openscad --o $fullname -D $param PELA-technic-block.scad
 
-shrink-mesh($fullname)
+if ($clean) {
+    shrink-mesh($fullname)
+}
 
 if ($png) {
     Write-Output "Render $imagename"
