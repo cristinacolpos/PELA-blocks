@@ -1,6 +1,7 @@
-# Unless you are maintaining a git repo of models, you do not need this script
-#
 # Remove all PNG and STL files from git history to save space before a new build
+#
+# Unless you are maintaining a git repo of models, you do not need this script
+
 git filter-branch -f --tree-filter "rm -rf *.png && rm -rf *.stl" --prune-empty -- --all
 
 # Finish removing dead space from the git repo after filtering out media files
@@ -15,4 +16,4 @@ Invoke-Expression ".\make.ps1 -clean -png"
 
 Write-Output "================================"
 Write-Output "Now type: git push --all --force"
-Write-Output "       (if not changes since this process started)"
+Write-Output "       (if no changes since this process started)"
