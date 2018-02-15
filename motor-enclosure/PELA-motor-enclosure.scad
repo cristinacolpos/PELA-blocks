@@ -31,16 +31,16 @@ h_top = 1;
 
 /* [Motor Options] */
 // Diameter of the rounded part of the motor body (if no rounding, set length as appropriate and this to 1/2 the motor width)
-motor_radius=6.1;
+motor_radius=6.1+skin;
 
 // Shaft-axis ditance of the rounded part of the motor body (motor_width may reduce this)
-motor_round_length=15.5;
+motor_round_length=15.5+skin;
 
 // Shaft-axis distance of the square part of the motor body (motor_width may reduce this)
-motor_square_length=9.5;
+motor_square_length=9.5+skin;
 
-// Width of the motor slot body (may reduce rounding, add 0.2 for space to insert the motor)
-motor_width=10+2*skin;
+// Width of the motor slot body (may reduce rounding, add space to more easily insert the motor)
+motor_width=10.1+2*skin;
 
 // Vertical position of the motor inside the enclosure
 motor_offset = block_height(4/3)-motor_radius-block_width(0.5);
