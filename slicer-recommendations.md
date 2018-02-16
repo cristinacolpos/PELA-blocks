@@ -1,13 +1,14 @@
 # PELA Blocks
 ## Slicer Recommmendations
 
-Our experience with different materials are recommended below. Unless otherwise noted, prints are on a Lulzbot Taz 6, 0.5mm extruder, using LulzBot Cura. Flexible printers use an 0.6mm extruder.
+Our experience with different materials are recommended below. Unless otherwise noted, prints are on a Lulzbot Taz 6, 0.5mm extruder, using LulzBot Cura.
 
-Avoid "brim" and "support" options if possible as they can be difficult to clean from inside the model. Most models are designed to not require supports. Some models offer a switch for optional, minimal supports in key areas. Consider dissovable supports in other cases.
+Most designs are adjusted to print upright with any layer height. There is very little infill with most designs so using 50% does not greatly affect print speed. Adjust settings to minimize "hop and hunt" during printing on the intricate inner geometry. Avoid "brim" and "support" options if possible as they require difficult post-processing. Most models are do not require supports, but some models offer a switch for minimal, pre-placed supports added to the model. Minimize bed heating if you find the bottom edge distorted by melting.
+
 
 # Innofil rPET
 
-Made from recycled plastic bottles. Note that the overextrusion and other settings adjusted for translucenty and minimum "hop and hunt" on these models are matched to the tweak numbers.
+Made from recycled plastic bottles. Note that the overextrusion is for aesthetics- skip if you don't care about translucency.
 
 ## `PELA_print_parameters.scad`
 
@@ -101,7 +102,7 @@ Works well despite a slightly slippery surface finish. As with other PET/co-copo
 
 # Colorfabb NGEN Flex
 
-Basically the same settings as NGEN. Better results due to the extra flexibility.
+Works well on Flexistruder with 0.6mm nozzle. Basically the same settings as NGEN. Better results due to the extra flexibility.
 
 `large_nozzle = true;` (if nozzle >= 0.5mm. Usually you use a large nozzle for flex because the print speeds are low)
 
@@ -111,11 +112,11 @@ Basically the same settings as NGEN. Better results due to the extra flexibility
 
 # ColorFabb HT
 
-Generally avoid. It is quite stiff and has slippery finish. It takes a long time to clean this sticky stuff from your printer.
+Avoid. It is quite stiff and has slippery finish. It takes a long time to clean this sticky stuff from your printer.
 
 # NinjaTek NinjaFlex
 
-Works well. Gluestick acts as a release agent that protects the PEI print surface from damage, or better use plain glass with gluestick.
+Works well on Flexistruder with 0.6mm nozzle. . Gluestick acts as a release agent that protects the PEI print surface from damage, or better use plain glass with gluestick.
 
 `large_nozzle = true;` (if nozzle >= 0.5mm. Usually you use a large nozzle for flex because the print speeds are low)
 
@@ -123,12 +124,10 @@ Works well. Gluestick acts as a release agent that protects the PEI print surfac
 
 # PLA
 
-PLA is OK if you don't have other choices. It is stiff and chips easily so part fit and lifetime are worse than other materials.
-
-Minimize or avoid bed heating as it can elephant foot the lower socket connectors.
+OK if you don't have other choices. It is stiff and chips easily so part fit and lifetime are not as good as more flexible materials. Avoid bed heating as it can "elephant foot" the lower socket connectors.
 
 # ABS
 
-LEGO is made from ABS. It has many nice properties and works well, however large parts may lift or delaminate due to thermal expansion. Use it if you know and like ABS.
+Good if you are familiar with ABS. LEGO is made from ABS. It has many nice properties if you know how to minimize lift and delamination due to thermal contraction in larger parts.
 
-`Adhesion: Brim`   (check the slicer's preview image. If the brim pollutes the inside of the bottom connectors that creates difficult post-processing. Consider alaternatives like a PEI sheet or `Adhesion: Brim` instead)
+`Adhesion: Brim`   (check the slicer's preview image. If the brim pollutes the inside of the bottom connectors that creates difficult post-processing. Consider alaternatives like `Adhesion: Skirt` with a PEI sheet, glue stick, or unscented hairspray. Minimize bed heating as it can "elephant foot" the lower socket connectors.
