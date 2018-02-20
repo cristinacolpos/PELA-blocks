@@ -8,16 +8,18 @@ use notify::DebouncedEvent::Create;
 
 fn main() {
     let (tx, rx) = channel();
-    let mut watcher = watcher(tx, Duration::from_secs(10)).unwrap();
+    let mut watcher = watcher(tx, Duration::from_secs(10)).expect("Can not init file watch");
     let path = "C:\\Users\\pauli\\Sync\\github\\PELA-parametric-blocks";
 
-    println!("Watching: {:?}", path);
-    watcher.watch(path, RecursiveMode::NonRecursive).unwrap();
+    println!("Watching: {}", path);
+    watcher
+        .watch(path, RecursiveMode::NonRecursive)
+        .expect("Can not start file watch");
 
     loop {
         match rx.recv() {
             Ok(event) => receive_event(event),
-            Err(e) => println!("watch error: {:?}", e),
+            Err(e) => println!("watch error: {}", e),
         }
     }
 }
@@ -43,17 +45,17 @@ fn execute_command(command: &str) {
         Command::new("cmd")
             .args(&["/C", command])
             .output()
-            .expect("failed to execute process")
+            .expect(&format!("failed to execute Windows process: {}", command))
     } else {
         Command::new("sh")
             .arg("-c")
             .arg(command)
             .output()
-            .expect("failed to execute process")
+            .expect(&format!("failed to execute shell process: {}", command))
     };
 
     let hello = output.stdout;
     let s = String::from_utf8_lossy(&hello);
-    println!("Result: {:?}", s);
+    println!("Result: {}", s);
     println!();
 }
