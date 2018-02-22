@@ -8,7 +8,7 @@ Twitter: @mobile_rat
 Email: paulirotta@gmail.com
 Blog: https://medium.com/@paulhoughton
 
-Creative Commons Attribution ShareAlike NonCommercial License
+Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Design work kindly sponsored by
@@ -123,7 +123,7 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 support_layer_height = 0.25;
 
 // Horizontal width of each side of a support triangle
-support_line_width = large_nozzle ? 0.6 : 0.4;
+support_line_width = large_nozzle ? 0.7 : 0.4;
 
 // Length of sides of a support triangle
 support_side_length = 2;
