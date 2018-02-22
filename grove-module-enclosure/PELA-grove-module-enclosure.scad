@@ -18,6 +18,7 @@ include <../PELA-parameters.scad>
 include <../PELA-print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
+use <../support/support.scad>
 
 /* [Grove Enclosure Options] */
 // Length of the enclosure (PELA unit count)
@@ -81,13 +82,25 @@ offset_y=3.7;
 // Distance to slide the grove module forward
 grove_y_shift = 0.25;
 
+// Generate print-time support aid structures
+print_supports = true;
+
+
+///////////////////////////////
+// Display
 ///////////////////////////////
 
 bottom_piece();
 
 top_piece();
 
+
+/////////////////////////////////////
+// FUNCTIONS
+/////////////////////////////////////
+
 function vertical_offset()=(block_height(2*h)-grove_width)/2;
+
 
 /////////////////////////////////////
 // MODULES
@@ -122,7 +135,7 @@ module bottom_piece() {
 // Top piece
 module top_piece() {
 
-    translate([0, block_width(w + 0.5), 0])
+    translate([0, block_width(w + 0.5), 0]) {
         difference() {
             union() {
                 PELA_technic_block(l=l, w=w, h=h, socket_height=1.8, bolt_holes=bolt_holes, side_holes=0, end_holes=0);
@@ -143,10 +156,40 @@ module top_piece() {
                     corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
                 }
                 
-                skin();
+                skin(l=l, w=w, h=h);
             }
         };
-}    
+
+        if (print_supports) {
+            top_supports();
+        }
+    }
+}
+
+module top_supports() {
+    support_side_length=3;
+    height = block_height(h) - 1.95 - skin;
+    
+    translate([block_width(2), block_width(0.5), 0])
+        support(height=height, support_side_length=support_side_length);
+    
+    translate([block_width(2), block_width(1.5), 0])
+        support(height=height, support_side_length=support_side_length);
+    
+    translate([block_width(1.5), block_width(1), 0])
+        support(height=height, support_side_length=support_side_length);
+    
+    translate([block_width(2.5), block_width(1), 0])
+        support(height=height, support_side_length=support_side_length);
+
+    h2 = 9.6;
+
+    translate([block_width(1.5), block_width(1.9), 0])
+        support(height=h2, support_side_length=support_side_length);
+
+    translate([block_width(2.5), block_width(1.9), 0])
+        support(height=h2, support_side_length=support_side_length);    
+}
     
 
 ///////////////////////////////

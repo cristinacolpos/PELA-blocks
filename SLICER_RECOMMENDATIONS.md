@@ -104,8 +104,6 @@ Works well despite a slightly slippery surface finish. As with other PET/co-copo
 
 Works well on Flexistruder with 0.6mm nozzle. Basically the same settings as NGEN. Better results due to the extra flexibility.
 
-`large_nozzle = true;` (if nozzle >= 0.5mm. Usually you use a large nozzle for flex because the print speeds are low)
-
 `flexible_filament = true;`   (this results in longer top knobs help it maintain grip while flexing)
 
 `Fan: 50%`  (or less for better inter-layer adhesion)
@@ -118,8 +116,6 @@ Avoid. It is quite stiff and has slippery finish. It takes a long time to clean 
 
 Works well on Flexistruder with 0.6mm nozzle. . Gluestick acts as a release agent that protects the PEI print surface from damage, or better use plain glass with gluestick.
 
-`large_nozzle = true;` (if nozzle >= 0.5mm. Usually you use a large nozzle for flex because the print speeds are low)
-
 `flexible_filament = true;`   (this results in longer top knobs help it maintain grip while flexing)
 
 # PLA
@@ -128,6 +124,22 @@ OK if you don't have other choices. It is stiff and chips easily so part fit and
 
 # ABS
 
-Good if you are familiar with ABS. LEGO is made from ABS. It has many nice properties if you know how to minimize lift and delamination due to thermal contraction in larger parts.
+## `PELA_print_parameters.scad`
 
-`Adhesion: Brim`   (check the slicer's preview image. If the brim pollutes the inside of the bottom connectors that creates difficult post-processing. Consider alaternatives like `Adhesion: Skirt` with a PEI sheet, glue stick, or unscented hairspray. Minimize bed heating as it can "elephant foot" the lower socket connectors.
+`top_tweak = 0.04;`
+
+`bottom_tweak = -0.02;`
+
+## Slicer Settings
+
+`flexible_filament = false;`
+
+`Adhesion: Brim`   (check the slicer's preview image. If the brim pollutes the inside of the bottom connectors that creates difficult post-processing. Consider alaternatives like `Adhesion: Raft` or `Adhesion: Skirt` with a PEI sheet, glue stick, or unscented extra hold hairspray. Minimize bed heating as it can "elephant foot" the lower socket connectors.)
+
+`Infill: 20%`   (minimal effect, most models this can be 50% without taking more time)
+
+`Wall Line Count: 1`
+
+`Fill Gaps Between Walls: Nowhere`
+
+Good if you are familiar with ABS. LEGO is made from ABS. It has many nice properties if you know how to minimize lift and delamination due to thermal contraction in larger parts.
