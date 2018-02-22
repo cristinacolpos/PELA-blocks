@@ -10,7 +10,7 @@ Twitter: @mobile_rat
 Email: paulirotta@gmail.com
 Blog: https://medium.com/@paulhoughton
 
-Creative Commons Attribution ShareAlike NonCommercial License
+Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Design work kindly sponsored by

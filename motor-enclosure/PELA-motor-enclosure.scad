@@ -40,7 +40,7 @@ motor_round_length=15.5+skin;
 motor_square_length=9.5+skin;
 
 // Width of the motor slot body (may reduce rounding, add space to more easily insert the motor)
-motor_width=10.1+2*skin;
+motor_width=10.15+2*skin;
 
 // Vertical position of the motor inside the enclosure
 motor_offset = block_height(4/3)-motor_radius-block_width(0.5);

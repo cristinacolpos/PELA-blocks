@@ -108,6 +108,10 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 [3D PELA Panel Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl) (corner bolt holes are optional on most models)
 
+![PELA Box Enclosure](box-enclosure/PELA-box-enclosure.png)
+
+[3D PELA Box Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl) (use a panel for a lid; modify with access holes and mounts for internal componets)
+
 ![PELA Grove Module](grove-module-enclosure/PELA-grove-module-enclosure.png)
 
 [3D PELA Grove Module](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/grove-module-enclosure/PELA-grove-module-enclosure.stl) (use 4x M3 bolts to assemble or switch to pressure fit)
@@ -166,7 +170,7 @@ Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/
 
 ## License
 
-Creative Commons Attribution ShareAlike NonCommercial License
+Creative Commons Attribution-ShareAlike 4.0 International License
 https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 These designs are not by the LEGO corporation. They are compatible with LEGO and similar blocks available from multiple manufacturers and online projects. The associated patents have expired. These designs are not identical to LEGO; they have been specially modified for easy 3D printing and offered in the spirit of open source collaborative innovation.

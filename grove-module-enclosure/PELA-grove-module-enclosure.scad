@@ -34,7 +34,7 @@ h = 1.5;
 solid_upper_layers = 1; // [0:empty, 1:solid]
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = 1; // [0:no holes, 1:holes]
+bolt_holes = 0; // [0:no holes, 1:holes]
 
 bottom_stiffener_height = 9.6;
 

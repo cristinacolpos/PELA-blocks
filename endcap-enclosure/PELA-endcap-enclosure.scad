@@ -15,7 +15,7 @@ Twitter: @mobile_rat
 Email: paulirotta@gmail.com
 Blog: https://medium.com/@paulhoughton
 
-Creative Commons Attribution ShareAlike NonCommercial License
+Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Work sponsored by
@@ -161,7 +161,7 @@ module print_supports(print_supports=print_supports, cap, w=w, h=h, socket_heigh
     
     if (print_supports && cap>2 && w>2) {
         dh = dh(socket_height=socket_height, h=h, eh=eh) + vertical_offset + skin;
-        support_side_length=ring_radius*1.4;
+        support_side_length=ring_radius*1.5;
         for (x=[1:1:cap-1]) {
             for (y=[1:1:w-2]) {
                 support_max_rotation = x== 0 || y==0 || y==w-1 ? 0.1 : 0;
