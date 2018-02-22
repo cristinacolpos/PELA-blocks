@@ -62,7 +62,7 @@ SUGGESTIONS
 // Switch between flexible and rigid material geometry
 flexible_material = false;
 
-// Adjust gemoetry to aid the slicer when the minimum trace width is a problem (nozzle is > 0.5mm). This adjustments prevents geometry too thin to reproduce reliably in high speed or flexible material processing. Some features such as the ability to insert knobs into 1/2 unit sockets will be lost to accomodate thicker parts.
+// Set true if nozzle is >= 0.5mm. Adjust gemoetry to aid the slicer when the minimum trace width is a problem. This adjustments prevents geometry too thin to reproduce reliably in high speed or flexible material processing. Some features such as the ability to insert knobs into 1/2 unit sockets will be lost to accomodate thicker parts.
 large_nozzle = true;
 
 // Thickness of the solid outside surface of the block
@@ -75,7 +75,7 @@ top_shell = 1.5;
 /* [3D Printing Top Connector Adjustments] */
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-top_tweak = 0.01; // 0.04 for rPET, 0 for PLA, 0.01 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex
+top_tweak = 0.04; // 0.04 for ABS, 0.04 for rPET, 0 for PLA, 0.01 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex
 
 // Size of the top connectors (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 knob_radius = 2.45 + 0.12 + top_tweak;
@@ -96,7 +96,7 @@ knob_bevel = flexible_material ? 0.3 : 0.0;
 /* [3D Printing Bottom Connector Adjustments] */
 
 // Bottom connector size adjustment (smaller is tigher, add in multiples of 0.01mm as determined from your calibration-block print)
-bottom_tweak = 0.05; // 0.10 for overextruded rPET, 0.05 for NGEN, 0 for NGEN Flex, -0.04 for Ninjaflex
+bottom_tweak = -0.02; // -0.02 for ABS, 0.10 for overextruded rPET, 0.05 for NGEN, 0 for NGEN Flex, -0.04 for Ninjaflex
 
 // Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 ring_thickness = large_nozzle ? 1.2 : 0.8;
@@ -104,14 +104,14 @@ ring_thickness = large_nozzle ? 1.2 : 0.8;
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 ring_radius = 2.75 + ring_thickness + bottom_tweak;
 
-// Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist a snap fit
+// Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
 side_lock_thickness = 0.02;
 
 
 /* [3D Printing Side Connector Adjustments] */
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0; // 0.04 for rPET, 0 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex
+axle_hole_tweak = 0; // 0 for ABS, 0.04 for rPET, 0 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex
 
 // Technic connector hole
 axle_hole_radius = 2.45 + axle_hole_tweak;
@@ -123,7 +123,7 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 support_layer_height = 0.25;
 
 // Horizontal width of each side of a support triangle
-support_line_width = large_nozzle ? 0.7 : 0.4;
+support_line_width = large_nozzle ? 0.5 : 0.3;
 
 // Length of sides of a support triangle
 support_side_length = 2;
