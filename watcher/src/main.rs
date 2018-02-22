@@ -2,19 +2,28 @@ extern crate notify;
 
 use notify::{watcher, RecursiveMode, Watcher};
 use std::sync::mpsc::channel;
+use std::env::*;
 use std::time::Duration;
 use std::process::Command;
 use notify::DebouncedEvent::Create;
 
+const FILE_TO_WATCH_FOR: &str = "start.txt";
+const COMMAND_TO_EXECUTE: &str = "servermake.bat";
+
 fn main() {
     let (tx, rx) = channel();
     let mut watcher = watcher(tx, Duration::from_secs(10)).expect("Can not init file watch");
-    let path = "C:\\Users\\pauli\\Sync\\github\\PELA-parametric-blocks";
+    let path = current_directory();
+
+    watcher
+        .watch(path.clone(), RecursiveMode::NonRecursive)
+        .expect("Can not start directory change watcher");
 
     println!("Watching: {}", path);
-    watcher
-        .watch(path, RecursiveMode::NonRecursive)
-        .expect("Can not start file watch");
+    println!(
+        "Now create \"{}\" to trigger the action \"{}\"",
+        FILE_TO_WATCH_FOR, COMMAND_TO_EXECUTE
+    );
 
     loop {
         match rx.recv() {
@@ -24,15 +33,21 @@ fn main() {
     }
 }
 
+fn current_directory() -> String {
+    current_dir()
+        .expect("Could not get current directory")
+        .to_str()
+        .expect("Could not parse current directory name")
+        .into()
+}
+
 fn receive_event(event: notify::DebouncedEvent) {
     println!("Event: {:?}", event);
 
     if let Create(pathbuff) = event {
         if let Some(filename) = pathbuff.as_path().file_name() {
-            if let Some("start.txt") = filename.to_str() {
-                execute_command(
-                    "C:\\Users\\pauli\\Sync\\github\\PELA-parametric-blocks\\donothing.bat",
-                );
+            if let Some(FILE_TO_WATCH_FOR) = filename.to_str() {
+                execute_command(COMMAND_TO_EXECUTE);
             }
         }
     }
