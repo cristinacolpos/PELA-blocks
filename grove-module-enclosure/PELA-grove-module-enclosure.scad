@@ -90,9 +90,10 @@ print_supports = true;
 // Display
 ///////////////////////////////
 
-bottom_piece();
-
-top_piece();
+rotate([0, 0, 180]) {
+    bottom_piece();
+    top_piece();
+}
 
 
 /////////////////////////////////////
