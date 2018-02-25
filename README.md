@@ -16,7 +16,7 @@ Special thanks to [Futurice](http://futurice.com) for sponsoring this design wor
 ## Download or Clone
 
 1. **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs and edit with [OpenSCAD](http://www.openscad.org/).
-1. Or you can `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git` 
+1. Or you can `git lfs install` (large file support to reduce old STL and PNG clutter) and `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git` 
 1. Setup your printer for geometric precision. [Slicer Recommendations](SLICER_RECOMMENDATIONS.md) gives some ideas.
 1. **IMPORTANT:** First calibrate the PELA Blocks for your printer to achieve a nice snap fit (below)
 
