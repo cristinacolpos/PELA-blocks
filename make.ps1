@@ -6,9 +6,10 @@
 # Part of https://github.com/LEGO-prototypes/PELA-parametric-blocks
 
 param (
-    [switch]$publish = $false,
+    [switch]$stl = $false,
     [switch]$png = $false,
-    [switch]$clean = $false
+    [switch]$clean = $false,
+    [switch]$publish = $false
 )
 
 Function FormatElapsedTime($ts) {
@@ -33,14 +34,18 @@ Function FormatElapsedTime($ts) {
 }
 
 Function render($name) {
-    Write-Output "Render $name as STL"
-    $start = Get-Date
-    Invoke-Expression "openscad -o $name.stl $name.scad"
-    $elapsed = FormatElapsedTime ((Get-Date) - $start)
-    Write-Output "STL Render time: $elapsed for $name"
     Write-Output ""
+    if ($stl) {
+        Write-Output "Render $name as STL"
+        $start = Get-Date
+        Invoke-Expression "openscad -o $name.stl $name.scad"
+        $elapsed = FormatElapsedTime ((Get-Date) - $start)
+        Write-Output "STL Render time: $elapsed for $name"
+        Write-Output ""    
+    }
     if ($clean) {
         shrink-mesh($name)
+        Write-Output ""    
     }
     if ($png) {
         render-png($name)
