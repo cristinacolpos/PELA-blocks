@@ -35,18 +35,21 @@ Function FormatElapsedTime($ts) {
 
 Function render($name) {
     Write-Output ""
+    $start = Get-Date
     if ($stl) {
         Write-Output "Render $name as STL"
-        $start = Get-Date
+        Write-Output $start
         Invoke-Expression "openscad -o $name.stl $name.scad"
         $elapsed = FormatElapsedTime ((Get-Date) - $start)
         Write-Output "STL Render time: $elapsed for $name"
         Write-Output ""    
     }
     if ($clean) {
+        Write-Output Get-Date
         shrink-mesh($name)
     }
     if ($png) {
+        Write-Output Get-Date
         render-png($name)
     }
 }
