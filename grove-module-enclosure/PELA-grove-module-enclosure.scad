@@ -163,13 +163,23 @@ module top_piece() {
 
         if (print_supports) {
             top_supports();
+
+            difference() {
+                hull() {
+                    top_supports();
+                }
+
+                translate([0, 0, support_layer_height*2])
+                    cube([block_width(l), block_width(w+1), block_height(h)]);
+            }
         }
     }
 }
 
-module top_supports() {
+module top_supports(height, h2) {
     support_side_length=4;
     height = block_height(h) - 1.95 - skin;
+    h2 = 9.6;
     
     translate([block_width(2), block_width(0.5), 0])
         support(height=height, support_side_length=support_side_length);
@@ -183,16 +193,11 @@ module top_supports() {
     translate([block_width(2.5), block_width(1), 0])
         support(height=height, support_side_length=support_side_length);
 
-    h2 = 9.6;
-
     translate([block_width(1.5), block_width(1.9), 0])
         support(height=h2, support_side_length=support_side_length);
 
     translate([block_width(2.5), block_width(1.9), 0])
         support(height=h2, support_side_length=support_side_length);
-
-    translate([block_width(1.5), block_width(0.5), 0])
-        cube([block_width(1), block_width(1.5), support_layer_height]);
 }
     
 
