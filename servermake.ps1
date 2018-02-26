@@ -43,7 +43,7 @@ Write-Output "Start remote build: $formatted_start"
 Write-Output ""
 Write-Output "Removing start.txt file"
 Rename-Item  .\start.txt RUNNING.txt
-Invoke-Expression "./make -png"
+Invoke-Expression "./make -png -stl"
 $elapsed = FormatElapsedTime ((Get-Date) - $start)
 Write-Output ""
 Write-Output "PELA Blocks CI Server time elapsed: $elapsed"
