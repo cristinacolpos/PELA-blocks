@@ -123,7 +123,7 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 support_layer_height = 0.25;
 
 // Horizontal width of each side of a support triangle
-support_line_width = large_nozzle ? 0.5 : 0.3;
+support_line_width = large_nozzle ? 0.8 : 0.5;
 
 // Length of sides of a support triangle
 support_side_length = 2;
