@@ -9,6 +9,7 @@ param (
     [Int]$w = 2,
     [Int]$h = 1,
     [String]$filename = "PELA-technic-block-",
+    [switch]$stl = $true,
     [switch]$png = $false,
     [switch]$clean = $false
 )
@@ -54,19 +55,24 @@ $start = Get-Date
 
 $param = "`"l=$l; w=$w; h=$h;`""
 
-Write-Output "Render $fullname"
-
-openscad --o $fullname -D $param PELA-technic-block.scad
+if ($stl) {
+    Write-Output "Render $fullname as STL"
+    openscad --o $fullname -D $param PELA-technic-block.scad
+    Write-Output ""
+}
 
 if ($clean) {
+    Write-Output "Clean $fullname"
     shrink-mesh($fullname)
+    Write-Output ""
 }
 
 if ($png) {
-    Write-Output "Render $imagename"
+    Write-Output "Render $imagename as PNG"
     openscad --render -o $imagename --D $param PELA-technic-block.scad
+    Write-Output ""
 }
 
 $elapsed = FormatElapsedTime ((Get-Date) - $start)
-Write-Output "Render time: $elapsed"
+Write-Output "Total time for $fullname : $elapsed"
 Write-Output ""

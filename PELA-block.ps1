@@ -9,6 +9,7 @@ param (
     [Int]$w = 2,
     [Int]$h = 1,
     [String]$filename = "PELA-block-",
+    [switch]$stl = $true,
     [switch]$png = $false,
     [switch]$clean = $false
 )
@@ -34,27 +35,23 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
-
-Function show-png($name) {
-    Write-Output "Show $name as PNG"
-    $start = Get-Date
-    $param = "`"filename=$name.stl;`""
-    Invoke-Expression "openscad --render -o $name.png loadstl.scad  --D $param"
-    $elapsed = FormatElapsedTime ((Get-Date) - $start)
-    Write-Output "PNG Render time: $elapsed for $name"
-    Write-Output ""        
-}
-
 # Shrinking to save space and fix some OpenSCAD export artifacts is done in
 # several discrete steps to minimize memory stress with large models
 Function shrink-mesh($name) {
-    Write-Output "Shrink Mesh $name.stl"
+    Write-Output "======== Shrink Mesh $name.stl"
     Invoke-Expression "meshlabserver.exe -i $name -s clean1.mlx -o $name"
+    Write-Output ""
     Invoke-Expression "meshlabserver.exe -i $name -s clean2.mlx -o $name"
+    Write-Output ""
     Invoke-Expression "meshlabserver.exe -i $name -s clean3.mlx -o $name"
+    Write-Output ""
     Invoke-Expression "meshlabserver.exe -i $name -s clean4.mlx -o $name"
+    Write-Output ""
     Invoke-Expression "meshlabserver.exe -i $name -s clean5.mlx -o $name"
+    Write-Output ""
     Invoke-Expression "meshlabserver.exe -i $name -s clean6.mlx -o $name"
+    Write-Output "========="
+    Write-Output ""
 }
 
 $imagename = $filename + $l + "-" + $w + "-" + $h + ".png"
@@ -65,20 +62,22 @@ $start = Get-Date
 
 $param = "`"l=$l; w=$w; h=$h;`""
 
-Write-Output "Render $fullname"
-
-openscad -o $fullname -D $param PELA-block.scad
+if ($stl) {
+    Write-Output "Render $fullname as STL"
+    openscad -o $fullname -D $param PELA-block.scad
+}
 
 if ($clean) {
     shrink-mesh($fullname)
 }
 
 if ($png) {
-    # Write-Output "Show $imagename"
+    Write-Output "Render $imagename as PNG"
     openscad --render -o $imagename -D $param PELA-block.scad
+    Write-Output ""
     # show-png($filename)
 }
 
 $elapsed = FormatElapsedTime ((Get-Date) - $start)
-Write-Output "Render time: $elapsed"
+Write-Output "Total time for $fullname : $elapsed"
 Write-Output ""

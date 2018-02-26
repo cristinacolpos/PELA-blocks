@@ -45,7 +45,6 @@ Function render($name) {
     }
     if ($clean) {
         shrink-mesh($name)
-        Write-Output ""    
     }
     if ($png) {
         render-png($name)
@@ -78,26 +77,37 @@ Function render-jpg($name) {
 # Shrinking to save space and fix some OpenSCAD export artifacts is done in
 # several discrete steps to minimize memory stress with large models
 Function shrink-mesh($name) {
-    Write-Output "Shrink Mesh $name.stl"
+    Write-Output "============ Shrink Mesh $name.stl"
     Invoke-Expression "meshlabserver.exe -i $name.stl -s clean1.mlx -o $name.stl"    
+    Write-Output ""    
     Invoke-Expression "meshlabserver.exe -i $name.stl -s clean2.mlx -o $name.stl"    
+    Write-Output ""    
     Invoke-Expression "meshlabserver.exe -i $name.stl -s clean3.mlx -o $name.stl"    
+    Write-Output ""    
     Invoke-Expression "meshlabserver.exe -i $name.stl -s clean4.mlx -o $name.stl"    
+    Write-Output ""    
     Invoke-Expression "meshlabserver.exe -i $name.stl -s clean5.mlx -o $name.stl"    
+    Write-Output ""    
     Invoke-Expression "meshlabserver.exe -i $name.stl -s clean6.mlx -o $name.stl"    
+    Write-Output "============"    
+    Write-Output ""    
 }
 
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
-Write-Output "Removing old STL files"
-Get-ChildItem * -Include *.stl -Recurse -Exclude stltools | Remove-Item
-Write-Output "Removing old PNG files"
-Get-ChildItem * -Include *.png -Recurse | Remove-Item
+if ($stl) {
+    Write-Output "Removing old STL files"
+    Get-ChildItem * -Include *.stl -Recurse -Exclude stltools\* | Remove-Item    
+}
+if ($png) {
+    Write-Output "Removing old PNG files"
+    Get-ChildItem * -Include *.png -Recurse | Remove-Item    
+}
 Write-Output ""
 
-Invoke-Expression ".\PELA-block.ps1 4 2 1 -clean -png"
-Invoke-Expression ".\PELA-technic-block.ps1 4 4 2 -clean -png"
+Invoke-Expression ".\PELA-block.ps1 4 2 1 -stl=$stl -png=$png -clean=$clean"
+Invoke-Expression ".\PELA-technic-block.ps1 4 4 2 -stl=$stl -png=$png -clean=$clean"
 
 render(".\PELA-technic-pin")
 render(".\PELA-technic-axle")
