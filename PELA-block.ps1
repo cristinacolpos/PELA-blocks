@@ -9,7 +9,7 @@ param (
     [Int]$w = 2,
     [Int]$h = 1,
     [String]$filename = "PELA-block-",
-    [switch]$stl = $true,
+    [switch]$stl = $false,
     [switch]$png = $false,
     [switch]$clean = $false
 )
