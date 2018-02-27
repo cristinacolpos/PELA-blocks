@@ -45,7 +45,7 @@ knobs=1; // [0:disabled, 1:enabled]
 bolt_holes=0; // [0:no holes, 1:holes]
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius=1.5;
+bolt_hole_radius=1.6;
 
 // Interior fill for layers above the bottom
 solid_upper_layers = 0; // [0:empty, 1:solid]
