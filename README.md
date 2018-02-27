@@ -186,6 +186,10 @@ If you don't find what you need, consider adding it, contact us or check out the
 
 ## Contact
 
+Collaboration and pull requests are welcome: [Git Project](https://github.com/LEGO-Prototypes/PELA-parametric-blocks)
+
 paul.houghton@futurice.com ( **[Blog](https://medium.com/@paulhoughton)** - **[Twitter](https://twitter.com/mobile_rat)**)
 
 If you like what you see, please let others know!
+
+[<img src="images/share-twitter-button.png">](https://twitter.com/intent/tweet?hashtags=PELAblocks%2C&related=mobile_rat&text=3D%20printed%20LEGO)
