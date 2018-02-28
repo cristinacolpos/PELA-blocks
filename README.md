@@ -176,13 +176,17 @@ These designs are by PELA project contributors, not by the LEGO corporation. The
 
 If what you want is available as injection moulded plastic, buy it for the higher quality and durability. These model are helpful when you want something customized, a special color, an unusual material, and for replacement parts when you just can't wait.
 
+## Projects Using PELA Blocks
+
+Robotics work in progress: [3D Printed LEGO-compatible Parametric Robot Hand](http://robothand.pelablocks.org)
+
 ## Alternative 3D Block Designs
 
 If you don't find what you need, consider adding it, contact us or check out the many other excellent design available.
 
 [Yeggi search for LEGO](http://www.yeggi.com/q/lego/)
 
-[Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) are alternate sourcse of these and other block designs.
+[Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) are alternate source of these and other block designs.
 
 ## Contact
 
