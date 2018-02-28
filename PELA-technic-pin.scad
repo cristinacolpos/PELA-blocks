@@ -1,5 +1,5 @@
 /*
-PELA Parametric Technic-compatible Connector Pin
+PELA Parametric LEGO-compatible Technic Connector Pin
 
 PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
@@ -21,7 +21,7 @@ include <PELA-parameters.scad>
 include <PELA-print-parameters.scad>
 use <PELA-block.scad>
 
-/* [PELA Technic-compatible Pin Options] */
+/* [Technic Pin Options] */
 
 // An axle which fits loosely in a technic bearing hole
 axle_radius = 2.2;
