@@ -73,10 +73,10 @@ mink = 0.25;
 // Length of the negative space exclusion zone in front of the module
 negative_space_height=100;
 
-// Distance from the outside edge of the Technics connector linking the top to the bottom
+// Distance from the outside edge of the technic connector linking the top to the bottom
 offset_x=3.5;
 
-// Distance from the outside edge of the Technics connector linking the top to the bottom
+// Distance from the outside edge of the technic connector linking the top to the bottom
 offset_y=3.7;
 
 // Distance to slide the grove module forward

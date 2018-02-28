@@ -1,5 +1,5 @@
 /*
-Parametric PELA Technic-compatible cross-shaped rotational drive Axle
+Parametric PELA LEGO-compatible technic cross-shaped rotational drive Axle
 
 PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
@@ -20,7 +20,7 @@ include <PELA-print-parameters.scad>
 use <PELA-block.scad>
 use <PELA-technic-axle.scad>
 
-/* [PELA Technic-compatible Pin Options] */
+/* [Technic Pin Options] */
 
 // Axle length
 axle_length = block_width(3);

@@ -54,12 +54,12 @@ solid_upper_layers = 0; // [0:empty, 1:solid]
 solid_bottom_layer = 0; // [0:empty, 1:solid]
 
 
-/* [Technic-compatible Block Features] */
+/* [Technic Features] */
 
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a sheath around Technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a sheath around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for PELA Techics connectors
@@ -114,7 +114,7 @@ bottom_stiffener_width=2.6;
 bottom_stiffener_height=knob_height;
 
 
-/* [Advanced Options for Technic-compatible Blocks] */
+/* [Advanced Options for Technic Features] */
 
 // Technic connector inset radius
 counterbore_inset_radius = 3.1;

@@ -1,5 +1,5 @@
 /*
-PELA Parametric Block with Technic-compatible connectors and air vents
+PELA Parametric Block with LEGO-compatible technic connectors and air vents
 
 PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
@@ -235,7 +235,7 @@ module rotation_hole(radius=axle_hole_radius, length=block_height()) {
 }
 
 
-// The rotation and connector hole for a Technic connector
+// The rotation and connector hole for a technic connector
 module axle_hole(hole_type=side_holes, radius=axle_hole_radius, length=counterbore_inset_depth+peg_length) {
     
     rotation_hole(radius=radius, length=length);
@@ -252,7 +252,7 @@ module axle_hole(hole_type=side_holes, radius=axle_hole_radius, length=counterbo
 }
 
 
-// The connector inset for a Technic side connector
+// The connector inset for a technic side connector
 module counterbore_inset(counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius) {
     
     translate([0, 0, -defeather])

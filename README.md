@@ -1,7 +1,7 @@
 # PELA Blocks
-## Parametric 3D Printed LEGO-compatible Blocks
+## LEGO-compatible Parametric 3D Printed Blocks
 
-3D print snap-together objects in exotic materials and geometries. This can be used to make exotic-shapes and materials. It is also great for creating enclosures for sensors, actuators, computers and IoT devices with commercial PELA and PELA Technics parts. Fully parametric fine-tuning parameters and calibration allow for a perfect fit with different materials, printers, nozzle sizes and slicer settings.
+3D print snap-together objects in exotic materials and geometries. This can be used to make exotic-shapes and materials. It is also great for creating enclosures for sensors, actuators, computers and IoT devices with mass produced blocks and technic parts. Fully parametric fine-tuning parameters and calibration allow for a perfect fit with different materials, printers, nozzle sizes and slicer settings.
 
 These designs are not by the LEGO corporation. They are compatible with LEGO and similar blocks available from multiple manufacturers. These design are legal to use because the associated patents have expired. These designs are not identical to LEGO. They are specially modified for easy 3D printing and offered in the spirit of open source hardware innovation. If what you want is available as injection moulded ABS plastic, buy it for the high quality and durability. These model are helpful if you want something customized and special, or in an unusual material or for a quick replacement part.
 
@@ -51,7 +51,7 @@ Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-pri
 1. Print the Calibration Bar and test fit the top knobs and bottom sockets against commercial LEGO. Put the `top_tweak` (on the side, near the top) and `bottom_tweak` (on the side, near the bottom) values that you can read from the side of the bar into `print-parameters.scad`.
 1. Generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press F6 to render, and export as `.STL`. Windows command line scripts are provided: `.\PELA-block.ps1 2 2 1` or `.\PELA-technic-block.ps1 2 2 1`
 1. Confirm a good fit with both commercial LEGO and other PELA Blocks.
-1. If you find you also need to adjust the Technics connector hole size, print the Calibration Block Set. `axle_hole_tweak` numbers change along with `top_tweak` numbers.
+1. If you find you also need to adjust the technic connector hole size, print the Calibration Block Set. `axle_hole_tweak` numbers change along with `top_tweak` numbers.
 1. Repeat this process as needed when you change material, nozzle size or and slicer settings.
 
 ## Backing Up Your Calibration Files
@@ -70,9 +70,9 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 [3D PELA Block](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-block-4-2-1.stl) 
 
-![PELA Block with Technics connectors](PELA-technic-block-4-4-2.png)
+![PELA Block with technic connectors](PELA-technic-block-4-4-2.png)
 
-[3D PELA Block with Technics connectors](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-block-4-4-2.stl) (optional vents to help dissipate heat)
+[3D PELA Block with technic connectors](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-block-4-4-2.stl) (optional vents to help dissipate heat)
 
 ![PELA Socket Panel](socket-panel/PELA-socket-panel.png)
 

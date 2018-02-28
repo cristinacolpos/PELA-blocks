@@ -1,5 +1,5 @@
 /*
-PELA Parametric Technic-compatible Axle
+PELA Parametric LEGO-compatible Technic Axle
 
 PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
@@ -21,7 +21,7 @@ include <PELA-parameters.scad>
 include <PELA-print-parameters.scad>
 use <PELA-block.scad>
 
-/* [PELA Technic-compatible Pin Options] */
+/* [Technic Pin Options] */
 
 // Axle length
 axle_length = block_width(3);
