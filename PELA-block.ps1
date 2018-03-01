@@ -64,7 +64,7 @@ $param = "`"l=$l; w=$w; h=$h;`""
 
 if ($stl) {
     Write-Output "Render $fullname as STL"
-    openscad -o $fullname -D $param PELA-block.scad
+    openscad -o $fullname PELA-block.scad -D $param
 }
 
 if ($clean) {
@@ -73,7 +73,7 @@ if ($clean) {
 
 if ($png) {
     Write-Output "Render $imagename as PNG"
-    openscad --render -o $imagename -D $param PELA-block.scad
+    openscad --render -o $imagename PELA-block.scad -D $param
     Write-Output ""
     # show-png($filename)
 }
