@@ -13,79 +13,49 @@ Pelataan.
 
 Special thanks to [Futurice](http://futurice.com) for sponsoring this design work. Futurice supports truly open innovation.
 
-## Download or Clone
+## Download
 
-1. **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs and edit with [OpenSCAD](http://www.openscad.org/).
-1. Or you can `git lfs install` (large file support to reduce old STL and PNG clutter) and `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git` 
-1. Setup your printer for geometric precision. [Slicer Recommendations](SLICER_RECOMMENDATIONS.md) gives some ideas.
-1. **IMPORTANT:** First calibrate the PELA Blocks for your printer to achieve a nice snap fit (below)
+These designs are intricate enough to not run reliably with the Thingiverse online customizer. The STL files shown are examples only. For best results, you need to download and clibrate the designs for your printer and personal preferences.
 
-These designs are too complex to reliably use the Thingiverse online customizer.
+1. **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs
+1. **[[ Calibrate | #calibrate ]]** the PELA Block models for your printer
 
-## Basic Use (Generate STL files)
-1. **You can make just one model manually: open the `.scad` file, `F6`, `File -> Export STL`**
-1. You can make all models: `make.ps1 -stl`  (make all STL files **after updating calibration**)
+## Advanced Setup
 
-## Advanced Setup (reduce future git pull size, adds raytraced image generation)
+Raytraced image generation, batch file generation and cleanup, and git lfs with sparce update are available.
 
-This saves time and bandwidth when the models are updated on the server.
+See [Advanced Setup](ADVANCED-SETUP)
 
-1. `git config core.sparcecheckout true`
-1. Edit `.git\info\sparce-checkout` to be:
-..* `/*` 
-..* `*.stl` 
-..* `*.png` 
-1. From now on `git pull` will ignore these files. Run `make.ps1 -stl` to create the models
-
-## Advanced Setup (Compress and cleanup STL files)
-
-OpenSCAD exports large files which benefit from converstion to binary STL and cleanup. You can load and re-save the file in various programs such as Windows `3D Builder` or `Meshlab`. Follow the instructions below if you want to this from the command line or automatically when rebuilding the models.
-
-1. Install **Meshlab**
-1. Add to your path `C:\Program Files\VCG\MeshLab`
-1. Add to your path (for example `C:\Program Files\VCG\MeshLab`)
-1. You can make and clean all models: `make.ps1 -stl -clean`
-1. You can make and clean all models: `make.ps1 -stl -clean`
-
-## Advanced Setup (Add raytraced image generation)
-1. Install **Python 3** and **PovRay**
-1. `git init submodule` 
-1. `git submodule update` 
-1. `cd stltools`
-1. `python .\setup.py build`
-1. `python .\setup.py install`
-1. **Calibrate for your printer as normal** (below)
-1. `make.ps1 -png`
-
-## Calibration
+## Calibrate
 
 ![PELA Calibration Bar](calibration/PELA-calibration.png)
 
 [3D PELA Calibration Bar](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
 
-![PELA Calibration Set](calibration/PELA-calibration-set.png)
+These parametric models are easily tuned for a perfect snap fit with almost any plastic and printer.
 
-[3D PELA Calibration Block Set](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration-set.stl)
+**TL;DR** *: To get a nice snap fit, print `PELA-calibration.stl` and test the fit with commercial LEGO. Type the best `top_tweak` and `bottom_tweak` into [`PELA-print-parameters.scad`](PELA-print-parameters.scad). Now open any model in OpenSCAD, press `F6` then `Export as STL`.*
 
-**TL;DR** *: Print either a Calibration Bar or Calibration Block Set, test fit with LEGO and add the best 'top_tweak' and 'bottom_tweak' numbers to [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). After that you can open any model in OpenSCAD, press `F6` then `Export as STL` to create the model snap fit optimized for your printer/plastic/nozzle/slicer. Be patient- OpenSCAD can be slow.*
+### Calibraton Instructions
 
-Printer, slider parameters and plastic effect the precise fit of press fit connectors. It is usually necessary to slightly adjust knob and bottom ring size to achieve a good fit by editing [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). The most common settings are `top_tweak` and `bottom_tweak` which can be read from the side of the clibration block. Other model settings affecting all designs are available in [`PELA-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-parameters.scad). The `PELA-calibreation-set` blocks vary the size of `axle_hole_tweak`. Read the same `top_tweak` number from the side, nearer the top of the block.
+Your printer, slider and plastic effect the precise fit of press fit connectors. To correct for this we adjust the models slightly. It is a one time process for each material. It is as simple as fitting two blocks together and editing a text file, [`PELA-print-parameters.scad`](PELA-print-parameters.scad), with your preferred fit.
+
+The most common settings are `top_tweak` and `bottom_tweak`. These can be read from the side of the clibration bar. 
 
 Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). These help to tailor the models for easier printing and a better fit.
 
 1. Print the Calibration Bar and test fit the top knobs and bottom sockets against commercial LEGO. Put the `top_tweak` (on the side, near the top) and `bottom_tweak` (on the side, near the bottom) values that you can read from the side of the bar into `print-parameters.scad`.
-1. Generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press F6 to render, and export as `.STL`. Windows command line scripts are provided: `.\PELA-block.ps1 2 2 1` or `.\PELA-technic-block.ps1 2 2 1`
-1. Confirm a good fit with both commercial LEGO and other PELA Blocks.
+1. Use OpenSCAD to open Generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press `F6` to render, and export as `.STL`. Windows command line scripts are provided: `.\PELA-block.ps1 2 2 1` or `.\PELA-technic-block.ps1 2 2 1`
+1. Confirm a good fit with both commercial blocks and other PELA Blocks.
 1. If you find you also need to adjust the technic connector hole size, print the Calibration Block Set. `axle_hole_tweak` numbers change along with `top_tweak` numbers.
 1. Repeat this process as needed when you change material, nozzle size or and slicer settings.
 
-## Backing Up Your Calibration Files
+## Advanced Calibration
 
-If you later update the PELA-blocks project to a newer version, you risk overwirting and loosing your calibration customizations. The simplest solution is to create a backup copy those settings.
+A alternative set of individual calibration blocks with technic holes are available.
 
-1. `cd PELA-Blocks`
-1. `cp PELA-parameters.scad ../PELA-parameters-backup.scad`
-1. `cp PELA-print-parameters.scad ../PELA-print-parameters-backup.scad`
+See [Advanced Calibration](ADVANCED-CALIBRATION)
+
 
 ## PELA-compatible Part Designs
 
