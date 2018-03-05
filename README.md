@@ -22,15 +22,40 @@ Special thanks to [Futurice](http://futurice.com) for sponsoring this design wor
 
 These designs are too complex to reliably use the Thingiverse online customizer.
 
-## Advanced Setup (adds raytraced image generation)
-1. Install Python 3
-1. Install PovRay
-1. `git clone --recursive git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git` 
+## Basic Use (Generate STL files)
+1. **You can make just one model manually: open the `.scad` file, `F6`, `File -> Export STL`**
+1. You can make all models: `make.ps1 -stl`  (make all STL files **after updating calibration**)
+
+## Advanced Setup (reduce future git pull size, adds raytraced image generation)
+
+This saves time and bandwidth when the models are updated on the server.
+
+1. `git config core.sparcecheckout true`
+1. Edit `.git\info\sparce-checkout` to be:
+..* `/*` 
+..* `*.stl` 
+..* `*.png` 
+1. From now on `git pull` will ignore these files. Run `make.ps1 -stl` to create the models
+
+## Advanced Setup (Compress and cleanup STL files)
+
+OpenSCAD exports large files which benefit from converstion to binary STL and cleanup. You can load and re-save the file in various programs such as Windows `3D Builder` or `Meshlab`. Follow the instructions below if you want to this from the command line or automatically when rebuilding the models.
+
+1. Install **Meshlab**
+1. Add to your path `C:\Program Files\VCG\MeshLab`
+1. Add to your path (for example `C:\Program Files\VCG\MeshLab`)
+1. You can make and clean all models: `make.ps1 -stl -clean`
+1. You can make and clean all models: `make.ps1 -stl -clean`
+
+## Advanced Setup (Add raytraced image generation)
+1. Install **Python 3** and **PovRay**
+1. `git init submodule` 
+1. `git submodule update` 
 1. `cd stltools`
 1. `python .\setup.py build`
 1. `python .\setup.py install`
-1. Calibrate for your printer (below)
-1. `make.ps1 -clean` (or if you don't want to wait: open a `.scad` file, `F6`, then `Export STL`) 
+1. **Calibrate for your printer as normal** (below)
+1. `make.ps1 -png`
 
 ## Calibration
 
