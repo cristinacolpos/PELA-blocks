@@ -15,5 +15,8 @@ git gc --aggressive --prune=now
 Invoke-Expression ".\make.ps1 -clean -png -stl"
 
 Write-Output "================================"
-Write-Output "Now type: git push --all --force"
-Write-Output "       (if no changes since this process started)"
+git add *
+git commit -m "gitcleanup.ps1"
+Write-Output "git push --all --force"
+git push --all --force
+git status
