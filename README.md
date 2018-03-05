@@ -11,20 +11,20 @@ Pelataan.
 
 ## Sponsor
 
-Special thanks to [Futurice](http://futurice.com) for sponsoring this design work. Futurice supports truly open innovation.
+![Futurice](futurice-logo.png)
+
+These free and open source designs are brought to you by [Futurice](http://futurice.com) and contributions from the community. All the software you need to use these is also free and open source. We believe in truly open innovation available to all.
 
 ## Download
 
 These designs are intricate enough to not run reliably with the Thingiverse online customizer. The STL files shown are examples only. For best results, you need to download and clibrate the designs for your printer and personal preferences.
 
 1. **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs
-1. **[[ Calibrate | #calibrate ]]** the PELA Block models for your printer
+1. **[Calibrat](#calibrate)** the PELA Block models for your printer
 
 ## Advanced Setup
 
-Raytraced image generation, batch file generation and cleanup, and git lfs with sparce update are available.
-
-See [Advanced Setup](ADVANCED-SETUP)
+Raytraced image generation, batch file generation and cleanup, and git lfs with sparce update are available. See [Advanced Setup](ADVANCED-SETUP)
 
 ## Calibrate
 
@@ -52,10 +52,7 @@ Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-pri
 
 ## Advanced Calibration
 
-A alternative set of individual calibration blocks with technic holes are available.
-
-See [Advanced Calibration](ADVANCED-CALIBRATION)
-
+A alternative set of individual calibration blocks with technic holes are available. See [Advanced Calibration](ADVANCED-CALIBRATION)
 
 ## PELA-compatible Part Designs
 
@@ -147,7 +144,7 @@ Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/
 ## FFF Printing Tips
 
 * Use a 0.4mm or smaller nozzle if possible to avoid decimation of some details (inside vertical shell bars..)
-* If slicing with Simplify 3D with 0.5mm or larger nozzle, either expand the ring_thickness (and risk stiff bottom connectors) or set Advanced | External Thing Wall Type | Allow single extrusion walls
+* If slicing with Simplify 3D with 0.5mm or larger nozzle, either expand the ring_thickness (and risk stiff bottom connectors) or set `Advanced | External Thing Wall Type | Allow single extrusion walls`
 * Be aware that slicers may in some cases not be able to correct OpenSCAD STL export errors. These errors should be visible in layer preview as for example extra excursions back to origin. If this happens, open and clean the STL files first with for example Windows 3D Builder, Meshmixer or Meshlab. Meshlab command line examples can be found in `build.ps1`. 
 * Best results are achieved with durable materials that are not too stiff (PET, co-oplimers like NGEN, semi-flexible and "engineering" materials instead of PLA and  carbon filled).
 * Best results are achieved with smaller nozzle diameters. Adjust slicer settings for precision over speed. Layer height is not particularly important on most models.
@@ -185,7 +182,7 @@ If you don't find what you need, consider adding it, contact us or check out the
 
 ## Contact
 
-Collaboration and pull requests are welcome: [Git Project](https://github.com/LEGO-Prototypes/PELA-parametric-blocks)
+Collaboration and pull requests are welcome!
 
 paul.houghton@futurice.com ( **[Blog](https://medium.com/@paulhoughton)** - **[Twitter](https://twitter.com/mobile_rat)**)
 
