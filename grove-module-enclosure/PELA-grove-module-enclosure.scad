@@ -176,11 +176,16 @@ module top_piece() {
     }
 }
 
+
+// Supports to prevent the long overhangs from drooping
 module top_supports(height, h2) {
     support_side_length=4;
     height = block_height(h) - 1.95 - skin;
     h2 = 9.6;
-    
+    end_h = 4.68;
+    end_x = 1;
+    end_support_side_length=3;
+
     translate([block_width(2), block_width(0.5), 0])
         support(height=height, support_side_length=support_side_length);
     
@@ -198,6 +203,12 @@ module top_supports(height, h2) {
 
     translate([block_width(2.5), block_width(1.9), 0])
         support(height=h2, support_side_length=support_side_length);
+
+    translate([end_x, block_width(1), 0])
+        support(height=end_h, support_side_length=end_support_side_length);
+
+    translate([block_width(l)-end_x, block_width(1), 0])
+        support(height=end_h, support_side_length=end_support_side_length);
 }
     
 

@@ -37,28 +37,11 @@ use <PELA-block.scad>
 
 /* [PELA-compatible Options] */
 
-// What type of object to generate: 1=>block, 2=>block without top knobs, 3=>block without bottom connector, 4=>block without top knob or bottom connector
-mode=1; // [1:1, 2:2, 3:3, 4:4]
-
 /////////////////////////////////////
 // PELA display
 /////////////////////////////////////
 
-if (mode==1) {
-    // A single block
-    PELA_technic_block();
-} else if (mode==2) {
-    // Bock without top knobs
-    PELA_technic_block(knob_height=0, knob_bevel=0, knob_flexture_radius=0, knob_vent_radius=0);
-} else if (mode==3) {
-    // Block without bottom sockets
-    PELA_technic_block(sockets=0);
-} else if (mode==4) {
-    // Block without top knobs or bottom sockets
-    PELA_technic_block(sockets=0, knob_height=0, knob_bevel=0, knob_flexture_radius=0, knob_vent_radius=0);
-} else {
-    echo("<b>Unsupported: please check <i>mode</i> variable is 1-4</b>");
-}
+PELA_technic_block();
 
 
 /////////////////////////////////////
