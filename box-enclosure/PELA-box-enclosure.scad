@@ -30,13 +30,13 @@ use <../knob-panel/PELA-knob-panel.scad>
 /* [PELA Box Option] */
 
 // Length of the enclosure including two for walls (PELA knob count)
-l = 6;
+l = 11;
 
 // Width of the enclosure including two for walls (PELA knob count)
-w = 4;
+w = 11;
 
 // Height of the enclosure including one for floor (PELA block layer count)
-h = 3;
+h = 1;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
@@ -63,11 +63,12 @@ knob_vent_radius = 0;
 bolt_holes = 0;
 
 // Bottom of enclosure
-bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 // Height of the bottom to the enclosure (by default this is shorter then a normal panel so there is room on the enclosure sides for technic holes)
 bottom_height = 2.5;
 
+ knob_flexture_radius= 0;
 skin=0.1;
 
 /////////////////////////////////////
@@ -101,7 +102,7 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=
 module left_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin) {
 
     difference() {
-        PELA_technic_block(l=1, w=w, h=h, top_vents=top_vents, side_holes=0, side_sheaths=0, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin);
+        PELA_technic_block(l=1, w=w, h=h, top_vents=top_vents, side_holes=0, side_sheaths=0, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin,, knob_flexture_radius= knob_flexture_radius);
 
         union() {
             corner_cut(angle=-45, h=h+1);
@@ -131,7 +132,7 @@ module right_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_s
 module front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin) {
 
     difference() {
-        PELA_technic_block(l=l, w=1, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=0, end_sheaths=0, skin=skin);
+        PELA_technic_block(l=l, w=1, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=0, end_sheaths=0, skin=skin, knob_flexture_radius= knob_flexture_radius);
 
         union() {
             corner_cut(angle=45, h=h+1);

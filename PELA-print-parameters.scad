@@ -87,7 +87,7 @@ knob_top_thickness = 0.8;
 knob_height = flexible_material ? 9.6/3 : 2.0;
 
 // Size of the small flexture cavity inside each knob (default is 1.4, set to 0 for flexible materials)
-knob_flexture_radius = flexible_material ? 0.0 : 1.4;
+knob_flexture_radius = flexible_material ? 0.0 : 0.8;
 
 // Height of the easy connect slope near connector top (0 to disable such as for flexible materials, a bigger value such as 0.1 may help ease a tightly tuned fit or compensate for overextrusion)
 knob_bevel = flexible_material ? 0.3 : 0.0;
@@ -96,7 +96,7 @@ knob_bevel = flexible_material ? 0.3 : 0.0;
 /* [3D Printing Bottom Connector Adjustments] */
 
 // Bottom connector size adjustment (smaller is tigher, add in multiples of 0.01mm as determined from your calibration-block print)
-bottom_tweak = 0.05; // -0.02 for ABS, 0.10 for overextruded rPET, 0.05 for NGEN, 0 for NGEN Flex, -0.04 for Ninjaflex
+bottom_tweak = 0.08; // -0.02 for ABS, 0.10 for overextruded rPET, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex
 
 // Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 ring_thickness = large_nozzle ? 1.2 : 0.8;
@@ -104,14 +104,14 @@ ring_thickness = large_nozzle ? 1.2 : 0.8;
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 ring_radius = 2.75 + ring_thickness + bottom_tweak;
 
-// Additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
-side_lock_thickness = 0.02;
+// Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
+side_lock_thickness = flexible_material ? 0.04 : 0.02;
 
 
 /* [3D Printing Side Connector Adjustments] */
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0; // 0 for ABS, 0.04 for rPET, 0 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex
+axle_hole_tweak = 0.04; // 0 for ABS, 0.04 for rPET, 0.04 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex
 
 // Technic connector hole
 axle_hole_radius = 2.45 + axle_hole_tweak;
