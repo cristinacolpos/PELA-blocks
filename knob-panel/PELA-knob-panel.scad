@@ -26,18 +26,18 @@ use <../PELA-technic-block.scad>
 /* [PELA Panel Options] */
 
 // Length of the block (PELA unit count)
-l = 4; 
+l = 11; 
 
 // Width of the block (PELA unit count)
-w = 4;
+w = 11;
 
-top_vents = 0;
+top_vents = 1;
 
 // Interior fill for layers above the bottom
 solid_bottom_layer = 0; // [0:empty, 1:solid]
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=1; // [0:no holes, 1:holes]
+bolt_holes=0; // [0:no holes, 1:holes]
 
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius=1.5;
@@ -47,7 +47,6 @@ knobs=1; // [0:disabled, 1:enabled]
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height=0;
-
 
 /////////////////////////////////////
 // PELA panel display
@@ -63,7 +62,7 @@ module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_b
     
     translate([0, 0, panel_height(-2)])
         difference() {
-            PELA_technic_block(l=l, w=w, h=1, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets);
+            PELA_technic_block(l=l, w=w, h=1, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets, knob_flexture_radius= knob_flexture_radius);
     
             translate([-defeather, -defeather])
                 cube([block_width(l+1), block_width(w+1), panel_height(2)]);
