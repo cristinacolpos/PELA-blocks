@@ -112,9 +112,9 @@ Write-Output ""
 Invoke-Expression ".\PELA-block.ps1 4 2 1 -stl=$stl -png=$png -clean=$clean"
 Invoke-Expression ".\PELA-technic-block.ps1 4 4 2 -stl=$stl -png=$png -clean=$clean"
 
-render(".\PELA-technic-pin")
-render(".\PELA-technic-axle")
-render(".\PELA-technic-cross-axle")
+render(".\pin\PELA-technic-pin")
+render(".\axle\PELA-technic-axle")
+render(".\axle\PELA-technic-cross-axle")
 render(".\calibration\PELA-calibration")
 render(".\calibration\PELA-calibration-set")
 render(".\sign\PELA-sign")

@@ -371,7 +371,7 @@ module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge
     translate([block_width(l)-skin, 0, 0])
         cube([skin, block_width(w), block_height(h)]);
     
-    if (ridge_width>0 && h>1) {
+    if (ridge_width>0 && ridge_depth>0 && h>1) {
         for (i = [1:h-1]) {
             // Front layer ridge
             translate([0, 0, block_height(i)])

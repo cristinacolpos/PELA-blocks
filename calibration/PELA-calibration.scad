@@ -99,12 +99,12 @@ module PELA_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibrati
             for (i = [from:to]) {
                 cal = i*calibration_block_increment;
                 
-                translate([i*block_width(l)-i*shell, 0, 0])
-                    PELA_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=-cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=0, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
+                translate([i*block_width(l)-i*shell, 100*cal, 0])
+                    PELA_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=0, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
             }
         }
 
-        etch_all_calibration_bar_dividers(from=from, to=to, w=w);
+//        etch_all_calibration_bar_dividers(from=from, to=to, w=w);
     }
 }
 
@@ -147,36 +147,4 @@ module PELA_calibration_bottom_text(txt="Text") {
     }
 }
 
-// Mark lines between each clibration bar section
-module etch_all_calibration_bar_dividers(from=1, to=4) {
-    for (i = [from:1:to]) {
-        etch_calibration_bar_divider(i=i);
-    }
-}
-
-// Mark a line between each calibration section of a calibration bar
-module etch_calibration_bar_divider(i=l) {
-    x = 0.5*shell + i*(block_width(l)-shell) - ridge_width/2;
-
-    // Front
-    translate([x, 0, 0])
-        cube([ridge_width, ridge_depth, block_height()]);
-
-    // Back
-    translate([x, block_width(w)-ridge_depth, 0])
-        cube([ridge_width, ridge_depth, block_height()]);
-
-    // Top
-    translate([x, 0, block_height()-ridge_depth])
-        cube([ridge_width, block_width(w), ridge_depth]);
-
-    // Bottom
-    translate([x, 0, 0])
-        cube([ridge_width, block_width(w), ridge_depth]);
-    
-    // Block Separator
-    inset=block_width(0.5)-knob_radius;
-    translate([x, inset, 0])
-        cube([ridge_width, block_width(w)-2*inset, block_height()]);    
-}
 

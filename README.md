@@ -78,17 +78,17 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 [3D Double-sided PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/knob-panel/PELA-double-sided-knob-panel.stl)
 
-![PELA Technic Pin](PELA-technic-pin.png)
+![PELA Technic Pin](pin/PELA-technic-pin.png)
 
-[3D PELA Technic Pin](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-pin.stl) (in case you run short and don't want to wait for mail order)
+[3D PELA Technic Pin](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/pin/PELA-technic-pin.stl) (in case you run short and don't want to wait for mail order)
 
-![PELA Technic Axle](PELA-technic-axle.png)
+![PELA Technic Axle](axle/PELA-technic-axle.png)
 
-[3D PELA Technic Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-axle.stl) (adjustable lenth)
+[3D PELA Technic Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/axle/PELA-technic-axle.stl) (adjustable lenth)
 
-![PELA Technic Cross Axle](PELA-technic-cross-axle.png)
+![PELA Technic Cross Axle](axle/PELA-technic-cross-axle.png)
 
-[3D PELA Technic Cross Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-cross-axle.stl) (rigid and flexible drive shafts)
+[3D PELA Technic Cross Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/axle/PELA-technic-cross-axle.stl) (rigid and flexible drive shafts)
 
 ![PELA Sign](sign/PELA-sign.png)
 
