@@ -11,7 +11,7 @@ Pelataan.
 
 ## Sponsor
 
-![Futurice](futurice-logo.png)
+![Futurice](images/futurice-logo.jpg)
 
 These free and open source designs are brought to you by [Futurice](http://futurice.com) and contributions from the community. All the software you need to use these is also free and open source. We believe in truly open innovation available to all.
 
@@ -26,7 +26,13 @@ These designs are intricate enough to not run reliably with the Thingiverse onli
 
 Raytraced image generation, batch file generation and cleanup, and git lfs with sparce update are available. See [Advanced Setup](ADVANCED-SETUP)
 
+## Slicer Recommendations
+
+See the [slicer recommendations](SLICER_RECOMMENDATIONS) for material information and settings.
+
 ## Calibrate
+
+![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)
 
 ![PELA Calibration Bar](calibration/PELA-calibration.png)
 
@@ -52,11 +58,11 @@ Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-pri
 
 ## Advanced Calibration
 
-A alternative set of individual calibration blocks with technic holes are available. See [Advanced Calibration](ADVANCED-CALIBRATION)
+An alternative set of individual calibration blocks with technic holes are available. See [Advanced Calibration](ADVANCED-CALIBRATION)
 
 ## PELA-compatible Part Designs
 
-Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these models before printing them. The example renders are for a Taz 6, 0.5mm nozzle, NGEN rigid filament, LulzBot Cura standard slicer settings.
+Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these models before printing them. **The example models below are not yet calibrated for your slicer and printer. Calibrate and then make the tuned model from the .scad file.**
 
 ![PELA Block](PELA-block-4-2-1.png)
 
