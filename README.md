@@ -19,7 +19,7 @@ These free and open source designs are brought to you by [Futurice](http://futur
 
 These designs are intricate enough to not run reliably with the Thingiverse online customizer. The STL files shown are examples only. For best results, you need to download and clibrate the designs for your printer and personal preferences.
 
-1. **[DOWNLOAD](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/archive/master.zip)** the latest designs
+1. **[DOWNLOAD](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the latest designs
 1. **[Calibrat](#calibrate)** the PELA Block models for your printer
 
 ## Advanced Setup
@@ -36,7 +36,7 @@ See the [slicer recommendations](SLICER_RECOMMENDATIONS) for material informatio
 
 ![PELA Calibration Bar](calibration/PELA-calibration.png)
 
-[3D PELA Calibration Bar](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
+[3D PELA Calibration Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
 
 These parametric models are easily tuned for a perfect snap fit with almost any plastic and printer.
 
@@ -66,85 +66,85 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 ![PELA Block](PELA-block-4-2-1.png)
 
-[3D PELA Block](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-block-4-2-1.stl) 
+[3D PELA Block](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-block-4-2-1.stl) 
 
 ![PELA Block with technic connectors](PELA-technic-block-4-4-2.png)
 
-[3D PELA Block with technic connectors](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/PELA-technic-block-4-4-2.stl) (optional vents to help dissipate heat)
+[3D PELA Block with technic connectors](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block-4-4-2.stl) (optional vents to help dissipate heat)
 
 ![PELA Socket Panel](socket-panel/PELA-socket-panel.png)
 
-[3D PELA Socket Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/socket-panel/PELA-socket-panel.stl) (double-sided)
+[3D PELA Socket Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/socket-panel/PELA-socket-panel.stl) (double-sided)
 
 ![PELA Knob Panel](knob-panel/PELA-knob-panel.png)
 
-[3D PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/knob-panel/PELA-knob-panel.stl) (optional M3 corner mount bolt holes as with other models)
+[3D PELA Knob Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-panel/PELA-knob-panel.stl) (optional M3 corner mount bolt holes as with other models)
 
 ![Double-sided PELA Knob Panel](knob-panel/PELA-double-sided-knob-panel.png)
 
-[3D Double-sided PELA Knob Panel](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/knob-panel/PELA-double-sided-knob-panel.stl)
+[3D Double-sided PELA Knob Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-panel/PELA-double-sided-knob-panel.stl)
 
 ![PELA Technic Pin](pin/PELA-technic-pin.png)
 
-[3D PELA Technic Pin](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/pin/PELA-technic-pin.stl) (in case you run short and don't want to wait for mail order)
+[3D PELA Technic Pin](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/pin/PELA-technic-pin.stl) (in case you run short and don't want to wait for mail order)
 
 ![PELA Technic Axle](axle/PELA-technic-axle.png)
 
-[3D PELA Technic Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/axle/PELA-technic-axle.stl) (adjustable lenth)
+[3D PELA Technic Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-axle.stl) (adjustable lenth)
 
 ![PELA Technic Cross Axle](axle/PELA-technic-cross-axle.png)
 
-[3D PELA Technic Cross Axle](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/axle/PELA-technic-cross-axle.stl) (rigid and flexible drive shafts)
+[3D PELA Technic Cross Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-cross-axle.stl) (rigid and flexible drive shafts)
 
 ![PELA Sign](sign/PELA-sign.png)
 
-[3D PELA Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-sign.stl) (label your designs, optionally etch text into the surface)
+[3D PELA Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-sign.stl) (label your designs, optionally etch text into the surface)
 
 ![PELA Panel Sign](sign/PELA-panel-sign.png)
 
-[3D PELA Panel Sign](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl) (corner bolt holes are optional on most models)
+[3D PELA Panel Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl) (corner bolt holes are optional on most models)
 
 ![PELA Box Enclosure](box-enclosure/PELA-box-enclosure.png)
 
-[3D PELA Box Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl) (use a panel for a lid; modify with access holes and mounts for internal componets)
+[3D PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl) (use a panel for a lid; modify with access holes and mounts for internal componets)
 
 ![PELA Grove Module](grove-module-enclosure/PELA-grove-module-enclosure.png)
 
-[3D PELA Grove Module](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/grove-module-enclosure/PELA-grove-module-enclosure.stl) (use 4x M3 bolts to assemble or switch to pressure fit)
+[3D PELA Grove Module](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/grove-module-enclosure/PELA-grove-module-enclosure.stl) (use 4x M3 bolts to assemble or switch to pressure fit)
 
 ![PELA Motor Enclosure](motor-enclosure/PELA-motor-enclosure.png)
 
-[3D PELA Motor Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-motor-enclosure.stl) (adjust parameters for different motor sizes)
+[3D PELA Motor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-motor-enclosure.stl) (adjust parameters for different motor sizes)
 
 ![PELA HTC Vive Tracker Mount](vive-tracker-mount/PELA-vive-tracker-mount.png)
 
-[3D PELA HTC Vive Tracker Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-mount.stl) (for [HTC Vive](https://www.vive.com/), use a standard tripod screw if you prefer)
+[3D PELA HTC Vive Tracker Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-mount.stl) (for [HTC Vive](https://www.vive.com/), use a standard tripod screw if you prefer)
 
 ![PELA HTC Vive Tracker Screw](vive-tracker-mount/PELA-vive-tracker-screw.png)
 
-[3D PELA HTC Vive Tracker Screw](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-screw.stl) (a standard tripod screw sized for flush mounting in a PELA panel)
+[3D PELA HTC Vive Tracker Screw](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/vive-tracker-mount/PELA-vive-tracker-screw.stl) (a standard tripod screw sized for flush mounting in a PELA panel)
 
 ![PELA Rail Mount](rail-mount/PELA-rail-mount.png)
 
-[3D PELA Rail Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/rail-mount/PELA-rail-mount.stl) (for placing HTC Vive Tracker or other sensors on a real gun rail)
+[3D PELA Rail Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/rail-mount/PELA-rail-mount.stl) (for placing HTC Vive Tracker or other sensors on a real gun rail)
 
 ![PELA Rib Mount](rail-mount/PELA-rib-mount.png) (alternative design to attach to rectangular ribs)
 
-[3D PELA Rib Mount](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/rail-mount/PELA-rib-mount.stl) (alternative attachment to a recangular rail)
+[3D PELA Rib Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/rail-mount/PELA-rib-mount.stl) (alternative attachment to a recangular rail)
 
 ![PELA Endcap Enclosure](endcap-enclosure/PELA-endcap-enclosure.png)
 
-[3D PELA Endcap Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-enclosure.stl) (adjust the parameters to fit around something)
+[3D PELA Endcap Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-enclosure.stl) (adjust the parameters to fit around something)
 
 ![PELA Intel Compute Stick Enclosure](endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.png)
 
-[3D PELA Intel Compute Stick Enclosure](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.stl) (a computer inside your robot)
+[3D PELA Intel Compute Stick Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.stl) (a computer inside your robot)
 
 ![Print Support](support/support.png)
 
-[3D Print Support](https://github.com/LEGO-Prototypes/PELA-parametric-blocks/blob/master/support/support.stl) (parametric internal print-time roof and overhang support explicitly placed in your model for precise control and limited side effects vs autogenerated slicer supports)
+[3D Print Support](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/support/support.stl) (parametric internal print-time roof and overhang support explicitly placed in your model for precise control and limited side effects vs autogenerated slicer supports)
 
-Collaboration and pull requests are welcome: https://github.com/LEGO-Prototypes/PELA-parametric-blocks
+Collaboration and pull requests are welcome: https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks
 
 
 ## FFF Printing Tips
@@ -194,4 +194,4 @@ paul.houghton@futurice.com ( **[Blog](https://medium.com/@paulhoughton)** - **[T
 
 If you like what you see, please let others know!
 
-[images/twitter-button.jpg](https://twitter.com/intent/tweet?screen_name=mobile_rat&hashtags=PELAblocks&related=mobile_rat&text=Engineering-grade%203D%20printed%20LEGO%20prototypes&tw_p=tweetbutton&url=http%3A%2F%2Fpelablocks.org)
+[![Twitter link](images/twitter-button.jpg)](https://twitter.com/intent/tweet?screen_name=mobile_rat&hashtags=PELAblocks&related=mobile_rat&text=Engineering-grade%203D%20printed%20LEGO%20prototypes&tw_p=tweetbutton&url=http%3A%2F%2Fpelablocks.org)

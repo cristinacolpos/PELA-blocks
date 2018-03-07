@@ -99,18 +99,26 @@ Function shrink-mesh($name) {
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
+
+$extras = ""
 if ($stl) {
     Write-Output "Removing old STL files"
     Get-ChildItem * -Include *.stl -Recurse -Exclude stltools\* | Remove-Item    
+    $extras += "-stl "
 }
 if ($png) {
     Write-Output "Removing old PNG files"
     Get-ChildItem * -Include *.png -Recurse | Remove-Item    
+    $extras += "-png "
 }
 Write-Output ""
 
-Invoke-Expression ".\PELA-block.ps1 4 2 1 -stl=$stl -png=$png -clean=$clean"
-Invoke-Expression ".\PELA-technic-block.ps1 4 4 2 -stl=$stl -png=$png -clean=$clean"
+if ($clean) {
+    $extras += "-clean "
+}
+
+Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
+Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
 
 render(".\pin\PELA-technic-pin")
 render(".\axle\PELA-technic-axle")
