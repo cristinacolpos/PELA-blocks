@@ -194,4 +194,4 @@ paul.houghton@futurice.com ( **[Blog](https://medium.com/@paulhoughton)** - **[T
 
 If you like what you see, please let others know!
 
-[<img src="images/share-twitter-button.png">](https://twitter.com/intent/tweet?screen_name=mobile_rat&hashtags=PELAblocks&related=mobile_rat&text=Engineering-grade%203D%20printed%20LEGO%20prototypes&tw_p=tweetbutton&url=http%3A%2F%2Fpelablocks.org)
+[images/twitter-button.jpg](https://twitter.com/intent/tweet?screen_name=mobile_rat&hashtags=PELAblocks&related=mobile_rat&text=Engineering-grade%203D%20printed%20LEGO%20prototypes&tw_p=tweetbutton&url=http%3A%2F%2Fpelablocks.org)
