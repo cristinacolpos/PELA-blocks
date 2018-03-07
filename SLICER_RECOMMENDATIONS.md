@@ -54,6 +54,29 @@ Made from recycled plastic bottles. Note that the overextrusion is for aesthetic
 
 Optional Finish: Lightly sand the outer surface and spray with a clear polimer.
 
+# Innofil Pro1
+
+A nice engineering co-polimer with good gemetric stability and able to print fast and hold well to the print bed. It has good flexture- more than PET but still rigid.
+
+## `PELA_print_parameters.scad`
+
+`large_nozzle = true;` (if nozzle >= 0.5mm)
+
+`flexible_filament = false;`
+
+`top_tweak = -0.04;`
+
+`bottom_tweak = 0.02;`
+
+`axle_hole_tweak = 0.02;`
+
+## Slicer Settings
+
+`Layer Height: 0.25`   (the manufacturer states lower layer heights are stronger and more aesthetic)
+
+`Fan: 20%`   (lower speed is stronger layer adhesion, more speed gives cleaner geometry)
+
+
 # Colorfabb NGEN
 
 ## `PELA_print_parameters.scad`
