@@ -111,7 +111,7 @@ knob_vent_radius = 0;
 bolt_holes=0;
 
 // Generate print-time support aid structures
-print_supports = true;
+print_supports = false;
 
 
 /////////////////////////////////////
