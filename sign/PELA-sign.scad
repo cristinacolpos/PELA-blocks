@@ -18,7 +18,7 @@ Blog: https://medium.com/@paulhoughton
 Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
-Design work kindly sponsored by
+Open source design, Powered By Futurice. Come work with the best.
     http://futurice.com
 
 Import this into other design files:

@@ -1,26 +1,26 @@
 # PELA Blocks
 ## LEGO-compatible Parametric 3D Printed Blocks
 
-3D print snap-together objects in exotic materials and geometries. This can be used to make exotic-shapes and materials. It is also great for creating enclosures for sensors, actuators, computers and IoT devices with mass produced blocks and technic parts. Fully parametric fine-tuning parameters and calibration allow for a perfect fit with different materials, printers, nozzle sizes and slicer settings.
+PELA blocks are designed for easy 3D printing, strength, and rapid customization using free software. One time calibration gives perfect snap-together objects in exotic materials and geometries to help you explore your ideas and build with exotic materials and any motors and electronics you like. Example enclosures with many options for custom sensors, actuators, computers and IoT devices are included, or create your own.
 
-These designs are not by the LEGO corporation. They are compatible with LEGO and similar blocks available from multiple manufacturers. These design are legal to use because the associated patents have expired. These designs are not identical to LEGO. They are specially modified for easy 3D printing and offered in the spirit of open source hardware innovation. If what you want is available as injection moulded ABS plastic, buy it for the high quality and durability. These model are helpful if you want something customized and special, or in an unusual material or for a quick replacement part.
+These designs are not by the LEGO corporation. LEGO-compatible blocks are available from multiple manufacturers. Associated patents expired long ago in a forgotten age.
 
-The name PELA comes from the Finnish "pelataan" meaning "let's play".
+The name PELA comes from the Finnish "pelataan" meaning "let's play". **Pelataan.**
 
-Pelataan.
-
-## Sponsor
+## Open source design, Powered By Futurice
 
 ![Futurice](images/futurice-logo.jpg)
 
-These free and open source designs are brought to you by [Futurice](http://futurice.com) and contributions from the community. All the software you need to use these is also free and open source. We believe in truly open innovation available to all.
+These open source designs are brought to you by [Futurice](http://futurice.com) and contributions from the community. Come work with the best.
+
+The software needed is free and open source, [OpenSCAD](http://www.openscad.org/). You can probably learn it in less than an hour.
 
 ## Download
 
-These designs are intricate enough to not run reliably with the Thingiverse online customizer. The STL files shown are examples only. For best results, you need to download and clibrate the designs for your printer and personal preferences.
+**The STL files shown are examples only.** To get a good snap fit with your 3D print, you need to fine tune the size of top and bottom connectors. It is also easy to personalize PELA designs- start by turning on or off optional features.
 
 1. **[DOWNLOAD](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the latest designs
-1. **[Calibrat](#calibrate)** the PELA Block models for your printer
+1. **[Calibrate](#calibrate)** the PELA Block models for your printer
 
 ## Advanced Setup
 

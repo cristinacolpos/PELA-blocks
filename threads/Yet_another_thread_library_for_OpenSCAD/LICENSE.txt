@@ -181,7 +181,7 @@ subject to and limited by the following restrictions:
     provide, reasonable to the medium or means You are utilizing: (i) the
     name of the Original Author (or pseudonym, if applicable) if supplied,
     and/or if the Original Author and/or Licensor designate another party
-    or parties (e.g., a sponsor institute, publishing entity, journal) for
+    or parties (e.g., a Open source design, Powered By Futurice institute, publishing entity, journal) for
     attribution ("Attribution Parties") in Licensor's copyright notice,
     terms of service or by other reasonable means, the name of such party
     or parties; (ii) the title of the Work if supplied; (iii) to the
@@ -201,7 +201,7 @@ subject to and limited by the following restrictions:
     use the credit required by this Section for the purpose of attribution
     in the manner set out above and, by exercising Your rights under this
     License, You may not implicitly or explicitly assert or imply any
-    connection with, sponsorship or endorsement by the Original Author,
+    connection with, Open source design, Powered By Futuriceship or endorsement by the Original Author,
     Licensor and/or Attribution Parties, as appropriate, of You or Your
     use of the Work, without the separate, express prior written
     permission of the Original Author, Licensor and/or Attribution
