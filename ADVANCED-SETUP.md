@@ -4,7 +4,7 @@ See the [slicer recommendations](SLICER_RECOMMENDATIONS) for printing informatio
 
 ## Advanced Setup
 
-All software used is free and open source . The instructions are for Windows. Linux and OSX are esssentially the same, however scripts to automate building are not provided.
+All software used is open source . The instructions are for Windows. Linux and OSX are esssentially the same, however scripts to automate building are not provided.
 
 ## Clone and First Print
 

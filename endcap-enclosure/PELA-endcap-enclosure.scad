@@ -18,7 +18,7 @@ Blog: https://medium.com/@paulhoughton
 Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
-Work sponsored by
+Open source design, Powered By Futurice. Come work with the best.
     http://futurice.com
 
 Import this into other design files:
@@ -36,6 +36,9 @@ use <../support/support.scad>
 
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>both caps, 4=>preview a single object that can not be opened
 mode=3;
+
+// Generate print-time support aid structures
+print_supports = true;
 
 // Length of the enclosure (PELA knob count)
 //l = 23;
@@ -111,9 +114,6 @@ knob_vent_radius = 0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
 bolt_holes=0;
-
-// Generate print-time support aid structures
-print_supports = true;
 
 /////////////////////////////////////
 // PELA End Cap Enclosure Display
