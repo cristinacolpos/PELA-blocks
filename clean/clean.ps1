@@ -24,4 +24,4 @@ Function shrink-mesh($name) {
 }
 
 Write-Output "Cleaning all STL files"
-Get-ChildItem * -Include *.stl -Recurse -Exclude stltools | ForEach-Object ($_) {shrink-mesh($_.FullName)}
+Get-ChildItem * -Include *.stl -Recurse -Exclude stltools\* | ForEach-Object ($_) {shrink-mesh($_.FullName)}

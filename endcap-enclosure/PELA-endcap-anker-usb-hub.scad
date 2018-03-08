@@ -38,11 +38,12 @@ use <../support/support.scad>
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>preview a single object that can not be opened, 4>both caps
 mode=3;
 
+
 // Length of the enclosure (PELA knob count)
-l = 15;
+l = 23;
 
 // Length of the left side of the enclosure (PELA knob count, for example l/2 or less)
-left_cap = 6;
+left_cap = 4;
 
 // Size of the left cap vertical support structure near the cut point (PELA knob count, 0 to disable)
 left_cap_support_width = 0.5;
@@ -54,19 +55,19 @@ right_cap_support_width = 0.5;
 right_cap = l - left_cap;
 
 // Width of the enclosure (PELA knob count)
-w = 6;
+w = 10;
 
 // Height of the enclosure (PELA block layer count)
-h = 2;
+h = 4;
 
 // Length of the object to be enclosed (mm)
-enclosed_l = 114.5;
+enclosed_l = 173;
 
 // Width of the object to be enclosed (mm)
-enclosed_w = 38.5;
+enclosed_w = 68;
 
 // Height of the object to be enclosed (mm)
-enclosed_height = 12.5;
+enclosed_height = 28;
 
 // Distance up from baselane for the hollowed space
 vertical_offset=-4;
