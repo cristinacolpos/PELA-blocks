@@ -71,9 +71,9 @@ A nice engineering co-polimer with good gemetric stability and able to print fas
 
 `flexible_filament = false;`
 
-`top_tweak = -0.04;`
+`top_tweak = -0.05;`
 
-`bottom_tweak = 0.02;`
+`bottom_tweak = 0.08;`
 
 `axle_hole_tweak = 0.02;`
 
@@ -92,9 +92,9 @@ A nice engineering co-polimer with good gemetric stability and able to print fas
 
 `flexible_filament = false;`
 
-`top_tweak = 0.01;`
+`top_tweak = -0.01;`
 
-`bottom_tweak = 0.05;`
+`bottom_tweak = 0.08;`
 
 `axle_hole_tweak = 0.04;`
 

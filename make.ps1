@@ -33,7 +33,7 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
-Function render($name) {
+Function render $name) {
     Write-Output ""
     $start = Get-Date
     if ($stl) {
@@ -81,17 +81,17 @@ Function render-jpg($name) {
 # several discrete steps to minimize memory stress with large models
 Function shrink-mesh($name) {
     Write-Output "============ Shrink Mesh $name.stl"
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean1.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean1.mlx -o $name.stl"    
     Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean2.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean2.mlx -o $name.stl"    
     Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean3.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean3.mlx -o $name.stl"    
     Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean4.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean4.mlx -o $name.stl"    
     Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean5.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean5.mlx -o $name.stl"    
     Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s clean6.mlx -o $name.stl"    
+    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean6.mlx -o $name.stl"    
     Write-Output "============"    
     Write-Output ""    
 }
@@ -120,26 +120,27 @@ if ($clean) {
 Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
 Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
 
-render(".\pin\PELA-technic-pin")
-render(".\axle\PELA-technic-axle")
-render(".\axle\PELA-technic-cross-axle")
-render(".\calibration\PELA-calibration")
-render(".\calibration\PELA-calibration-set")
-render(".\sign\PELA-sign")
-render(".\sign\PELA-panel-sign")
-render(".\box-enclosure\PELA-box-enclosure")
-render(".\motor-enclosure\PELA-motor-enclosure")
-render(".\knob-panel\PELA-knob-panel")
-render(".\knob-panel\PELA-double-sided-knob-panel")
-render(".\socket-panel\PELA-socket-panel")
-render(".\rail-mount\PELA-rail-mount")
-render(".\rail-mount\PELA-rib-mount")
-render(".\endcap-enclosure\PELA-endcap-enclosure")
-render(".\endcap-enclosure\PELA-endcap-intel-compute-stick-enclosure")
-render(".\vive-tracker-mount\PELA-vive-tracker-mount")
-render(".\vive-tracker-mount\PELA-vive-tracker-screw")
-render(".\grove-module-enclosure\PELA-grove-module-enclosure")
-render(".\support\support")
+render ".\pin\PELA-technic-pin"
+render ".\axle\PELA-technic-axle"
+render ".\axle\PELA-technic-cross-axle"
+render ".\calibration\PELA-calibration"
+render ".\calibration\PELA-calibration-set"
+render ".\sign\PELA-sign"
+render ".\sign\PELA-panel-sign"
+render ".\box-enclosure\PELA-box-enclosure"
+render ".\motor-enclosure\PELA-motor-enclosure"
+render ".\knob-panel\PELA-knob-panel"
+render ".\knob-panel\PELA-double-sided-knob-panel"
+render ".\socket-panel\PELA-socket-panel"
+render ".\rail-mount\PELA-rail-mount"
+render ".\rail-mount\PELA-rib-mount"
+render ".\endcap-enclosure\PELA-endcap-enclosure"
+render ".\endcap-enclosure\PELA-endcap-intel-compute-stick-enclosure"
+render ".\endcap-enclosure\PELA-endcap-anker_usb-hub-enclosure"
+render ".\vive-tracker-mount\PELA-vive-tracker-mount"
+render ".\vive-tracker-mount\PELA-vive-tracker-screw"
+render ".\grove-module-enclosure\PELA-grove-module-enclosure"
+render ".\support\support"
 
 Get-Date
 
