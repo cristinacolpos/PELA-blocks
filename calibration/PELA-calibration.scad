@@ -29,14 +29,14 @@ l = 2;
 w = 2;
 
 // Height of the block (PELA unit count, use 1/3 for short calibration panel)
-h = 2/3;
+h = 1;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 bolt_holes=0; // [0:disable, 1:enabled]
 
 end_holes=0;
 
-side_holes=0;
+side_holes=2;
 
 side_hole_sheaths=1;
 
@@ -103,8 +103,6 @@ module PELA_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibrati
                     PELA_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=0, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
             }
         }
-
-//        etch_all_calibration_bar_dividers(from=from, to=to, w=w);
     }
 }
 

@@ -33,7 +33,7 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
-Function render $name) {
+Function render($name) {
     Write-Output ""
     $start = Get-Date
     if ($stl) {
