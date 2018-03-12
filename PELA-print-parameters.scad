@@ -63,7 +63,7 @@ SUGGESTIONS
 flexible_material = false;
 
 // Set true if nozzle is >= 0.5mm. Adjust gemoetry to aid the slicer when the minimum trace width is a problem. This adjustments prevents geometry too thin to reproduce reliably in high speed or flexible material processing. Some features such as the ability to insert knobs into 1/2 unit sockets will be lost to accomodate thicker parts.
-large_nozzle = true;
+large_nozzle = false;
 
 // Thickness of the solid outside surface of the block
 shell = large_nozzle ? 1.2 : 1.0;
@@ -96,7 +96,7 @@ knob_bevel = flexible_material ? 0.3 : 0.0;
 /* [3D Printing Bottom Connector Adjustments] */
 
 // Bottom connector size adjustment (smaller is tigher, add in multiples of 0.01mm as determined from your calibration-block print)
-bottom_tweak = 0.08; // -0.02 for ABS, 0.10 for overextruded rPET, 0.08 for Pro1, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex
+bottom_tweak = 0.04; // -0.02 for ABS, 0.10 for overextruded rPET, 0.08 for Pro1, 0.04 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex
 
 // Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 ring_thickness = large_nozzle ? 1.2 : 0.8;
@@ -111,7 +111,7 @@ side_lock_thickness = flexible_material ? 0.04 : 0.02;
 /* [3D Printing Side Connector Adjustments] */
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0.04; // 0 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.04 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex
+axle_hole_tweak = 0.03; // 0 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.03 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex
 
 // Technic connector hole
 axle_hole_radius = 2.45 + axle_hole_tweak;
@@ -119,7 +119,7 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 
 /* [Print Supports] */
 
-// Generate print-time support aid structures
+// Generate print-time support aid structures for models which need this
 print_supports = true;
 
 // Difference between the top and/or bottom of a support column to make columns easier to separate in post-processing (add this to your model only where desired - it is not done for you in support/support.scad)

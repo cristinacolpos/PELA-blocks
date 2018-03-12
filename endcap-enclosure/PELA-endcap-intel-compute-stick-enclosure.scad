@@ -35,6 +35,9 @@ use <../support/support.scad>
 
 /* [PELA Options plus Plastic and Printer Variance Adjustments] */
 
+// Generate print-time support aid structures
+print_supports = true;
+
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>preview a single object that can not be opened, 4>both caps
 mode=3;
 
@@ -109,9 +112,6 @@ knob_vent_radius = 0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
 bolt_holes=0;
-
-// Generate print-time support aid structures
-print_supports = true;
 
 
 /////////////////////////////////////
