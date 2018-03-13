@@ -34,18 +34,18 @@ Function FormatElapsedTime($ts) {
 $ErrorActionPreference = "SilentlyContinue"
 Stop-Transcript | Out-Null
 $ErrorActionPreference = "Continue"
-Remove-Item -Force .\ci_log.txt | Out-Null
+Remove-Item -Force ci_log.txt | Out-Null
 
-Start-Transcript -Force .\ci_log.txt
+Start-Transcript -Force ci_log.txt
 $start = Get-Date
 $formatted_start = FormatElapsedTime $start
 Write-Output "Start remote build: $formatted_start"
 Write-Output ""
 Write-Output "Removing start.txt file"
-Rename-Item  .\start.txt RUNNING.txt
+Rename-Item start.txt RUNNING.txt
 Invoke-Expression "./make -png -stl"
 $elapsed = FormatElapsedTime ((Get-Date) - $start)
 Write-Output ""
 Write-Output "PELA Blocks CI Server time elapsed: $elapsed"
-Rename-Item .\RUNNING.txt FINISHED.txt
+Rename-Item RUNNING.txt FINISHED.txt
 Stop-Transcript
