@@ -9,9 +9,9 @@ The name PELA comes from the Finnish "pelataan" meaning "let's play". **Pelataan
 
 ## Open source design, Powered By Futurice
 
-![Futurice](images/futurice-logo.jpg)
+[![Futurice](images/share-twitter-button.jpg)](https://futurice.com)
 
-These open source designs are brought to you by [Futurice](http://futurice.com) and contributions from the community. Come work with the best.
+These open source designs are brought to you by [Futurice](https://futurice.com) and contributions from the community. Come work with the best.
 
 The software needed is free and open source, [OpenSCAD](http://www.openscad.org/). You can probably learn it in less than an hour.
 
