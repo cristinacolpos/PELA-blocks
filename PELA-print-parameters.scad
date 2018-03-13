@@ -96,7 +96,7 @@ knob_bevel = flexible_material ? 0.3 : 0.0;
 /* [3D Printing Bottom Connector Adjustments] */
 
 // Bottom connector size adjustment (smaller is tigher, add in multiples of 0.01mm as determined from your calibration-block print)
-bottom_tweak = 0.04; // -0.02 for ABS, 0.10 for overextruded rPET, 0.08 for Pro1, 0.04 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex
+bottom_tweak = 0.06; // -0.02 for ABS, 0.10 for overextruded rPET, 0.08 for Pro1, 0.06 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex
 
 // Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 ring_thickness = large_nozzle ? 1.2 : 0.8;
@@ -123,16 +123,16 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 print_supports = true;
 
 // Difference between the top and/or bottom of a support column to make columns easier to separate in post-processing (add this to your model only where desired - it is not done for you in support/support.scad)
-support_offset_from_part = 0.15;
+support_offset_from_part = 0.05;
 
 // Thickness of each rotating layer in a support
 support_layer_height = 0.25;
 
 // Horizontal width of each side of a support triangle
-support_line_width = large_nozzle ? 0.8 : 0.5;
+support_line_width = large_nozzle ? 0.5 : 0.3;
 
 // Length of sides of a support triangle
-support_side_length = 1.6;
+support_side_length = 2;
 
 // Degrees to rotate for strength at each successive layer
 support_layer_rotation = 6; // Degrees
