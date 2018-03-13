@@ -9,7 +9,7 @@ The name PELA comes from the Finnish "pelataan" meaning "let's play". **Pelataan
 
 ## Open source design, Powered By Futurice
 
-[![Futurice](images/share-twitter-button.jpg)](https://futurice.com)
+[![Futurice](images/futurice-logo.jpg)](https://futurice.com)
 
 These open source designs are brought to you by [Futurice](https://futurice.com) and contributions from the community. Come work with the best.
 
