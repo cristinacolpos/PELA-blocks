@@ -28,7 +28,7 @@ use <../support/support.scad>
 /* [PELA Options plus Plastic and Printer Variance Adjustments] */
 
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>both caps, 4=>preview a single object that can not be opened
-mode=3;
+mode=1;
 
 // Generate print-time support aid structures
 print_supports = true;
@@ -106,13 +106,14 @@ bolt_holes=0;
 // PELA End Cap Enclosure Display
 
 if (mode==1) {
-    left_endcap();
+    left_endcap_with_supports();
 } else if (mode==2) {
-    right_endcap();
+    right_endcap_with_supports();
 } else if (mode==3) {
-    translate([0, block_width(w+0.5)])
-        left_endcap();
-    right_endcap();
+    translate([0, block_width(w+0.5)]) {
+        left_endcap_with_supports();
+    }
+    right_endcap_with_supports();
 } else if (mode==4) {
     PELA_enclosure(print_supports=false);
 } else {
@@ -131,29 +132,70 @@ function enclosed_z(socket_height, h, enclosed_height)=socket_height+(block_heig
 // Modules
 ///////////////////////////////////
 
+// Left side shell including optional supports
+module left_endcap_with_supports(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports) {
+
+    left_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports);
+
+    if (print_supports) {
+        enclosed_z = enclosed_z(socket_height=socket_height, h=h, enclosed_height=enclosed_height) + vertical_offset + support_offset_from_part;
+
+        support_h = enclosed_height - 2*support_offset_from_part;
+
+        difference() {
+            translate([0, 0, enclosed_z]) {
+                support_set(corner_supports=false, l=left_cap, w=w, height=support_h);
+            }
+
+            minkowski() {
+                left_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, socket_height=0, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=0, side_holes=0, side_sheaths=0, end_holes=0, end_sheaths=0);
+
+                cube([2*support_offset_from_part, support_offset_from_part, support_offset_from_part], true);
+            }
+        }
+    }
+}
+
 // Left side shell (object is inserted from the right)
-module left_endcap(print_supports=print_supports, enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports) {
+module left_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths) {
     
     intersection() {
         PELA_enclosure(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
         
         cube([block_width(left_cap), block_width(w), block_height(h+1)]);
     }
+}
 
-    enclosed_z = enclosed_z(socket_height=socket_height, h=h, enclosed_height=enclosed_height) + vertical_offset + support_offset_from_part;
 
-    support_h = enclosed_height - 2*support_offset_from_part;
+// Right half of the object shell including optional supports
+module right_endcap_with_supports(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, print_supports=print_supports) {
+    
+    right_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes);
 
     if (print_supports) {
-        translate([0, 0, enclosed_z]) {
-            support_set(corner_supports=false, l=left_cap, w=w, height=support_h);
+        support_z = enclosed_z(socket_height=socket_height, h=h, enclosed_height=enclosed_height) + vertical_offset + support_offset_from_part;
+
+        support_h = enclosed_height - 2*support_offset_from_part;
+
+        difference() {
+            translate([block_width(l), block_width(w), support_z]) {
+                rotate([0, 0, 180]) {
+                    support_set(corner_supports=false, l=right_cap, w=w, height=support_h);
+                }
+            }
+
+            minkowski() {
+                right_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes);
+                
+                cube([2*support_offset_from_part, support_offset_from_part, support_offset_from_part], true);
+            }
         }
     }
 }
 
 
 // Right half of the object shell
-module right_endcap(print_supports=print_supports, enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, print_supports=print_supports) {
+module right_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes) {
     
     intersection() {
         PELA_enclosure(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths);
@@ -162,23 +204,11 @@ module right_endcap(print_supports=print_supports, enclosed_l=enclosed_l, enclos
             cube([block_width(right_cap), block_width(w), block_height(h+1)]);
         }
     }
-
-    support_z = enclosed_z(socket_height=socket_height, h=h, enclosed_height=enclosed_height) + vertical_offset + support_offset_from_part;
-
-    support_h = enclosed_height - 2*support_offset_from_part;
-
-    if (print_supports) {
-        translate([block_width(l), block_width(w), support_z]) {
-            rotate([0, 0, 180]) {
-                support_set(corner_supports=false, l=right_cap, w=w, height=support_h);
-            }
-        }
-    }
 }
 
 
 // A PELA block with a hole inside to contain something of the specified dimensions
-module PELA_enclosure(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports) {
+module PELA_enclosure(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, side_opening_vertical_offset=side_opening_vertical_offset, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths) {
     
     difference() {        
         PELA_technic_block(l=l, w=w, h=h, socket_height=socket_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_upper_layers=solid_upper_layers);
