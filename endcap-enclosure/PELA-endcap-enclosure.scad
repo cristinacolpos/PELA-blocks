@@ -156,6 +156,7 @@ module left_endcap_with_supports(enclosed_l=enclosed_l, enclosed_w=enclosed_w, e
     }
 }
 
+
 // Left side shell (object is inserted from the right)
 module left_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, socket_height=socket_height, corner_radius=corner_radius, vertical_offset=vertical_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths) {
     
