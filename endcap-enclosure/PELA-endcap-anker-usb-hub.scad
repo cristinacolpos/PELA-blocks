@@ -3,12 +3,9 @@ Parametric PELA End Cap Enclosure For Intel Compute Stick
 
 Create 2 symmetric end pieces which can support a solid object with PELA-compatible attachment points on top and bottom. The print can be minimized by printing only smaller end caps instead of a complele enclosure.
 
-
-    https://www.thingiverse.com/thing:2544197
-Based on
-    https://www.thingiverse.com/thing:2303714
-
-
+This large model takes considerable time to generate. For this reason it is not
+generated in the normal rebuilds, but can be build manually
+when needed.
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -20,9 +17,6 @@ Creative Commons Attribution-ShareAlike 4.0 International License
 
 Work sponsored by
     http://futurice.com
-
-Import this into other design files:
-    use <anker-usb-PELA-enclosure.scad>
 */
 
 include <../PELA-parameters.scad>
