@@ -28,7 +28,7 @@ Raytraced image generation, batch file generation and cleanup, and git lfs with 
 
 ## Slicer Recommendations
 
-See the [slicer recommendations](SLICER_RECOMMENDATIONS) for material information and settings.
+See the [Slicer Recommendations](SLICER-RECOMMENDATIONS) for material information and settings.
 
 ## Calibrate
 
@@ -71,7 +71,7 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 ___
 
 
-[![PELA Block with technic connectors](PELA-technic-block-4-4-2.png)] (https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block-4-4-2.stl)
+[![PELA Block with technic connectors](PELA-technic-block-4-4-2.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block-4-4-2.stl)
 
 [3D PELA Block with technic connectors](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block-4-4-2.stl) Optional vents help to dissipate heat. There are several types you can select from.
 
@@ -89,7 +89,7 @@ ___
 
 ___
 
-[![Double-sided PELA Knob Panel](knob-panel/PELA-double-sided-knob-panel.png)] (https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-panel/PELA-double-sided-knob-panel.stl)
+[![Double-sided PELA Knob Panel](knob-panel/PELA-double-sided-knob-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-panel/PELA-double-sided-knob-panel.stl)
 
 [3D Double-sided PELA Knob Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-panel/PELA-double-sided-knob-panel.stl) Double sided. Enable print supports in the slicer.
 
