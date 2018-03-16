@@ -123,13 +123,13 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 print_supports = true;
 
 // Difference between the top and/or bottom of a support column to make columns easier to separate in post-processing (add this to your model only where desired - it is not done for you in support/support.scad)
-support_offset_from_part = 0.05;
+support_offset_from_part = 0.1;
 
 // Thickness of each rotating layer in a support
 support_layer_height = 0.25;
 
 // Horizontal width of each side of a support triangle
-support_line_width = large_nozzle ? 0.5 : 0.3;
+support_line_width = large_nozzle ? 0.7 : 0.5;
 
 // Length of sides of a support triangle
 support_side_length = 2;

@@ -42,6 +42,8 @@ $formatted_start = FormatElapsedTime $start
 Write-Output "Start remote build: $formatted_start"
 Write-Output ""
 Write-Output "Removing start.txt file"
+Remove-Item RUNNING.txt -ErrorAction SilentlyContinue
+Remove-Item FINISHED.txt -ErrorAction SilentlyContinue
 Rename-Item start.txt RUNNING.txt
 Invoke-Expression "./make -png -stl"
 $elapsed = FormatElapsedTime ((Get-Date) - $start)
