@@ -32,9 +32,9 @@ Function FormatElapsedTime($ts) {
 }
 
 $ErrorActionPreference = "SilentlyContinue"
-Stop-Transcript | Out-Null
+Stop-Transcript -ErrorAction SilentlyContinue
 $ErrorActionPreference = "Continue"
-Remove-Item -Force ci_log.txt | Out-Null
+Remove-Item -Force ci_log.txt -ErrorAction SilentlyContinue
 
 Start-Transcript -Force ci_log.txt
 $start = Get-Date
