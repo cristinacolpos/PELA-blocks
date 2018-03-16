@@ -39,6 +39,7 @@ Function render($name) {
     if ($stl) {
         Write-Output "Render $name as STL"
         Write-Output $start
+        Remove-Item $name.stl -ErrorAction SilentlyContinue
         Invoke-Expression "openscad -o $name.stl $name.scad"
         $elapsed = FormatElapsedTime ((Get-Date) - $start)
         Write-Output "STL Render time: $elapsed for $name"
@@ -46,7 +47,7 @@ Function render($name) {
     }
     if ($clean) {
         Write-Output Get-Date
-        shrink-mesh($name)
+        Invoke-Expression "clean $name.stl"
     }
     if ($png) {
         Write-Output Get-Date
@@ -58,6 +59,7 @@ Function render($name) {
 Function render-png($name) {
     Write-Output "Render $name as PNG"
     $start = Get-Date
+    Remove-Item $name.png -ErrorAction SilentlyContinue
     Invoke-Expression "openscad --render -o $name.png $name.scad"
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
     Write-Output "PNG Render time: $elapsed for $name"
@@ -77,25 +79,6 @@ Function render-jpg($name) {
     Write-Output ""
 }
 
-# Shrinking to save space and fix some OpenSCAD export artifacts is done in
-# several discrete steps to minimize memory stress with large models
-Function shrink-mesh($name) {
-    Write-Output "============ Shrink Mesh $name.stl"
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean1.mlx -o $name.stl"    
-    Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean2.mlx -o $name.stl"    
-    Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean3.mlx -o $name.stl"    
-    Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean4.mlx -o $name.stl"    
-    Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean5.mlx -o $name.stl"    
-    Write-Output ""    
-    Invoke-Expression "meshlabserver.exe -i $name.stl -s .\clean\clean6.mlx -o $name.stl"    
-    Write-Output "============"    
-    Write-Output ""    
-}
-
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Get-Date
@@ -103,12 +86,10 @@ Get-Date
 $extras = ""
 if ($stl) {
     Write-Output "Removing old STL files"
-    Get-ChildItem * -Include *.stl -Recurse -Exclude stltools\* | Remove-Item    
     $extras += "-stl "
 }
 if ($png) {
     Write-Output "Removing old PNG files"
-    Get-ChildItem * -Include *.png -Recurse | Remove-Item    
     $extras += "-png "
 }
 Write-Output ""
@@ -117,7 +98,11 @@ if ($clean) {
     $extras += "-clean "
 }
 
+Remove-Item .\PELA-block-4-2-1.stl -ErrorAction SilentlyContinue
+Remove-Item .\PELA-block-4-2-1.png -ErrorAction SilentlyContinue
 Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
+Remove-Item .\PELA-technic-block-4-4-2.stl -ErrorAction SilentlyContinue
+Remove-Item .\PELA-technic-block-4-4-2.png -ErrorAction SilentlyContinue
 Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
 
 render ".\pin\PELA-technic-pin"
