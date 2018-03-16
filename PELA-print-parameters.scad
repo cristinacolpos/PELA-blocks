@@ -75,7 +75,7 @@ top_shell = 1.5;
 /* [3D Printing Top Connector Adjustments] */
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-top_tweak = -0.05; // 0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, 0 for PLA, -0.01 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex
+top_tweak = -0.03; // 0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, 0 for PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex
 
 // Size of the top connectors (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 knob_radius = 2.45 + 0.12 + top_tweak;

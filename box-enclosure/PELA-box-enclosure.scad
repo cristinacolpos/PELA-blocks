@@ -30,13 +30,13 @@ use <../knob-panel/PELA-knob-panel.scad>
 /* [PELA Box Option] */
 
 // Length of the enclosure including two for walls (PELA knob count)
-l = 11;
+l = 28;
 
 // Width of the enclosure including two for walls (PELA knob count)
-w = 11;
+w = 28;
 
 // Height of the enclosure including one for floor (PELA block layer count)
-h = 1;
+h = 2;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
