@@ -9,19 +9,9 @@
 # 
 # Part of https://github.com/LEGO-prototypes/PELA-parametric-blocks
 
-shrink-mesh($name)
+param (
+    [String]$name
+)
 
-# Shrinking to save space and fix some OpenSCAD export artifacts is done in
-# several discrete steps to minimize memory stress with large models
-Function shrink-mesh($name) {
-    Write-Output "Shrink Mesh $name"
-    Invoke-Expression "meshlabserver.exe -i $name -s clean1.mlx -o $name"    
-    Invoke-Expression "meshlabserver.exe -i $name -s clean2.mlx -o $name"    
-    Invoke-Expression "meshlabserver.exe -i $name -s clean3.mlx -o $name"    
-    Invoke-Expression "meshlabserver.exe -i $name -s clean4.mlx -o $name"    
-    Invoke-Expression "meshlabserver.exe -i $name -s clean5.mlx -o $name"    
-    Invoke-Expression "meshlabserver.exe -i $name -s clean6.mlx -o $name"    
-}
-
-Write-Output "Cleaning all STL files"
-Get-ChildItem * -Include *.stl -Recurse -Exclude stltools\* | ForEach-Object ($_) {shrink-mesh($_.FullName)}
+Write-Output "Clean Mesh $name"
+Invoke-Expression "meshlabserver.exe -i $name -s clean
