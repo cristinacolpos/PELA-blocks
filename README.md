@@ -20,11 +20,11 @@ The software needed is free and open source, [OpenSCAD](http://www.openscad.org/
 **The STL files shown are examples only.** To get a good snap fit with your 3D print, you need to fine tune the size of top and bottom connectors. It is also easy to personalize PELA designs- start by turning on or off optional features.
 
 1. **[DOWNLOAD](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the latest designs
-1. **[Calibrate](#calibrate)** the PELA Block models for your printer
+1. **[Calibrate](#calibrate)** the PELA Block models for your material and printer
 
 ## Advanced Setup
 
-Raytraced image generation, batch file generation and cleanup, and git lfs with sparce update are available. See [Advanced Setup](ADVANCED-SETUP)
+Raytraced image generation, batch file generation and cleanup, and git lfs with sparse update are available. See [Advanced Setup](ADVANCED-SETUP)
 
 ## Slicer Recommendations
 
