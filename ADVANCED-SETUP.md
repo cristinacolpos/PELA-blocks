@@ -10,7 +10,7 @@ All software used is open source . The instructions are for Windows. Linux and O
 
 1. `git lfs install` (large file support, only needed once per computer)
 1. `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git`
-1. **[Calibrate](README#calibrate)** the PELA Block models for your printer 
+1. **[Calibrate](README.md#calibrate)** the PELA Block models for your printer 
 
 ## Sparce Checkout (optional)
 
@@ -20,7 +20,9 @@ This saves time and bandwidth when the models are updated on the server.
 1. Edit `.git\info\sparce-checkout` to be:
 
     `/*` 
+
     `*.stl` 
+
     `*.png`
 
 1. From now on `git pull` will ignore these files. Run `make.ps1 -stl` to create the models
@@ -33,7 +35,7 @@ Follow the instructions below if you want to this from the command line or have 
 
 1. Install **Meshlab**
 1. Add to your path `C:\Program Files\VCG\MeshLab`
-1. **[Calibrate](README#calibrate)** the PELA Block models for your printer 
+1. **[Calibrate](README.md#calibrate)** the PELA Block models for your printer 
 1. Make and clean a single block: `PELA-block.ps1 -stl -clean l=4 w=2 h=1`
 1. Make and clean a single block with technic holes: `PELA-technic-block.ps1 -stl -clean l=2 w=2 h=2`
 1. Make and clean all models: `make.ps1 -stl -clean`
@@ -48,7 +50,7 @@ This is a work in progress and not currently recommended
 1. `cd stltools`
 1. `python .\setup.py build`
 1. `python .\setup.py install`
-1. **[Calibrate](README#calibrate)** the PELA Block models for your printer 
+1. **[Calibrate](README.md#calibrate)** the PELA Block models for your printer 
 1. Make a block image: `PELA-block.ps1 -png l=4 w=2 h=1`
 1. Make a block with technic features image: `PELA-technic-block.ps1 -png l=2 w=2 h=2`
 1. Make all models as images: `make.ps1 -png`
