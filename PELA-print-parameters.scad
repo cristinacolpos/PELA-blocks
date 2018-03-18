@@ -86,7 +86,7 @@ knob_top_thickness = 0.8;
 // Height of the connectors (1.8 is original LEGO standard, 2 gives a stronger hold while still maintaining compatibility, flexible materials benefit from being taller)
 knob_height = flexible_material ? 9.6/3 : 2.0;
 
-// Size of the small flexture cavity inside each knob (default is 1.4, set to 0 for flexible materials)
+// Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
 knob_flexture_radius = flexible_material ? 0.0 : 0.8;
 
 // Height of the easy connect slope near connector top (0 to disable such as for flexible materials, a bigger value such as 0.1 may help ease a tightly tuned fit or compensate for overextrusion)
