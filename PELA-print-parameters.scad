@@ -63,7 +63,7 @@ SUGGESTIONS
 flexible_material = false;
 
 // Set true if nozzle is >= 0.5mm. Adjust gemoetry to aid the slicer when the minimum trace width is a problem. This adjustments prevents geometry too thin to reproduce reliably in high speed or flexible material processing. Some features such as the ability to insert knobs into 1/2 unit sockets will be lost to accomodate thicker parts.
-large_nozzle = false;
+large_nozzle = true;
 
 // Thickness of the solid outside surface of the block
 shell = large_nozzle ? 1.2 : 1.0;
