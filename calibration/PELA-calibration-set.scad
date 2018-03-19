@@ -33,11 +33,11 @@ w = 2;
 h = 1;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=0; // [0:disable, 1:enabled]
+bolt_holes=false;
 
 end_holes=3;
 
-side_holes=0;
+side_holes=true;
 
 end_hole_sheaths=1;
 
