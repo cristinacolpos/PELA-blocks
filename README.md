@@ -19,17 +19,16 @@ The software needed is free and open source, [OpenSCAD](http://www.openscad.org/
 
 **The STL files shown are examples only.** To get a good snap fit with your 3D print, you need to fine tune the size of top and bottom connectors. It is also easy to personalize PELA designs- start by turning on or off optional features.
 
-1. **[DOWNLOAD](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the latest designs
-1. Alternatively, `git lfs install` and `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git`
+1. **[DOWNLOAD](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the latest designs or `git lfs install` and `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git`
 1. **[Calibrate](#calibrate)** the PELA Block models for your material and printer
 
 ## Advanced Setup
 
-See [Advanced Setup](ADVANCED-SETUP.md) for git lfs with sparse update to save you space and bandwidth, Raytraced image generation, batch file generation and cleanup.
+See [Advanced Setup](ADVANCED-SETUP.md) for additional tricks sparse update to save you space and bandwidth, Raytraced image generation, command line STL cleanup and and batch file generation of all models when you change filaments.
 
 ## Slicer Recommendations
 
-See the [Slicer Recommendations](SLICER-RECOMMENDATIONS.md) for material information and settings.
+See the [Slicer Recommendations](SLICER-RECOMMENDATIONS.md) for settings recommendations and material information.
 
 ## Calibrate
 
@@ -59,7 +58,7 @@ Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-pri
 
 ## Advanced Calibration
 
-An alternative set of individual calibration blocks with technic holes are available. See [Advanced Calibration](ADVANCED-CALIBRATION)
+An alternative set of individual calibration blocks are available. See [Advanced Calibration](ADVANCED-CALIBRATION)
 
 ## PELA-compatible Part Designs
 
@@ -129,6 +128,12 @@ ___
 [![PELA Box Enclosure](box-enclosure/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl)
 
 [3D PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl) Use as a box or starting point for an enclusure. Print a separate panel for the top lid. The bottom can be knobs, sockets, flat bottom or no bottom. Check also the PELA Endcap Enclosure below for another way to add enclosed objects to your designs.
+
+___
+
+[![PELA STMF4 Discovery Box Enclosure](box-enclosure/PELA-stmf4discovery-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl)
+
+[3D PELA STMF4 Discovery Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-stmf4discovery-box-enclosure.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
 ___
 

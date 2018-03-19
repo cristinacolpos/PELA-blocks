@@ -33,8 +33,8 @@ use <../knob-panel/PELA-knob-panel.scad>
 
 /* [PELA Panel Options] */
 
-// Eliminate knobs that are in the way of PELA-vive-tracker-mount.scad sitting on top of this part
-hide_vive_mount_knobs = 1;
+// Eliminate a few select knobs that are in the way of a PELA-vive-tracker-mount.scad sitting on top of this part
+hide_vive_mount_knobs = true;
 
 // Length of the block (PELA unit count)
 l = 6; 
@@ -54,7 +54,7 @@ bolt_holes=0; // [0:no holes, 1:holes]
 bolt_hole_radius=1.5;
 
 // Presence of top connector knobs
-knobs=1; // [0:disabled, 1:enabled]
+knobs=true;
 
 // Picatinny/NATO Rail Mount Dimensions
 body_width = 21.2 - skin;
@@ -81,15 +81,16 @@ rail_mount();
 
 
 module top_panel(hide_vive_mount_knobs=hide_vive_mount_knobs) {
-    translate([block_width(-3), block_width(-2), 0])
+    translate([block_width(-3), block_width(-2), 0]) {
         cube([block_width(w), block_width(4), panel_height()]);
+    }
 
-    translate([block_width(-l/2), block_width(-w/2)])
+    translate([block_width(-l/2), block_width(-w/2)]) {
         difference() {
             PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
 
             union() {
-                if (is_true(hide_vive_mount_knobs)) {
+                if (hide_vive_mount_knobs) {
                     translate([block_width(l/2-1), block_width(w/2-1), panel_height()])
                         cube([block_width(2), block_width(2), panel_height()]);
                 
@@ -98,6 +99,7 @@ module top_panel(hide_vive_mount_knobs=hide_vive_mount_knobs) {
                 }
             }
         }
+    }
 }
 
 

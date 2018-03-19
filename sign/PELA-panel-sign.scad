@@ -76,25 +76,25 @@ vertical_margin = 1.8;
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a sheath around Technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
-side_sheaths = 1; // [0:disabled, 1:enabled]
+side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
-end_sheaths = 1; // [0:disabled, 1:enabled]
+end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = 0; // [0:disabled, 1:enabled]
+top_vents = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=1; // [0:no holes, 1:holes]
+bolt_holes=true;
 
 // Presence of bottom connector sockets
-sockets = 1; // [0:no sockets, 1:sockets]
+sockets = true;
 
 // Presence of top connector knobs
-knobs = 0; // [0:disabled, 1:enabled]
+knobs = false;
 
 /////////////////////////////////////
 // PELA Flat Sign Display
@@ -106,7 +106,7 @@ PELA_flat_sign();
 // A PELA block with text on the top
 module PELA_flat_sign(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, bolt_holes=bolt_holes, sockets=sockets, knobs=knobs) {
     
-    if (is_true(extrude)) {
+    if (extrude) {
         PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets);
         
         translate([skin, skin, 0])

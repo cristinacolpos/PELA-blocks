@@ -36,22 +36,22 @@ h = 1;
 /* [Basic Block Features] */
 
 // Presence of bottom connector sockets
-sockets= 1; // [0:no sockets, 1:sockets]
+sockets = true;
 
 // Presence of top connector knobs
-knobs=1; // [0:disabled, 1:enabled]
+knobs = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=0; // [0:no holes, 1:holes]
+bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius=1.6;
 
 // Interior fill for layers above the bottom
-solid_upper_layers = 0; // [0:empty, 1:solid]
+solid_upper_layers = false;
 
 // Interior fill for layers above the bottom
-solid_bottom_layer = 0; // [0:empty, 1:solid]
+solid_bottom_layer = false;
 
 
 /* [Technic Features] */
@@ -60,16 +60,16 @@ solid_bottom_layer = 0; // [0:empty, 1:solid]
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a sheath around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
-side_sheaths = 1; // [0:disabled, 1:enabled]
+side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
-end_sheaths = 1; // [0:disabled, 1:enabled]
+end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = 0; // [0:disabled, 1:enabled]
+top_vents = false;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
 knob_vent_radius = 0;
@@ -93,7 +93,7 @@ $fa=10;
 $fs=0.3;
 
 // [0:hidden, 1:display where knobs of a block below would be ]
-show_shadow_knobs = 0;
+show_shadow_knobs = false;
 
 // Basic unit horizontal size of each block
 block_width=8;

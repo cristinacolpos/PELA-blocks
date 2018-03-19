@@ -40,7 +40,7 @@ side_holes=2;
 
 side_hole_sheaths=1;
 
-top_vents = 0;
+top_vents = false;
 
 knobs = 1;
 
@@ -129,7 +129,7 @@ module PELA_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=b
 module PELA_calibration_top_text(txt="Text") {
     
     linear_extrude(height=text_extrusion_height) {        
-        if (is_true(knobs)) {    
+        if (knobs) {    
             text(text=txt, font=font, size=font_size, halign="left", valign="top");
         }
     }
@@ -138,7 +138,7 @@ module PELA_calibration_top_text(txt="Text") {
 // Text for the back side of calibration block prints
 module PELA_calibration_bottom_text(txt="Text") {
     
-    if (is_true(sockets)) {
+    if (sockets) {
         linear_extrude(height=text_extrusion_height) {
             text(text=txt, font=font, size=font_size, halign="right");
         }

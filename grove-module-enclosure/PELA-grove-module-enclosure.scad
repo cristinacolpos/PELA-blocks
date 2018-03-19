@@ -123,7 +123,7 @@ module bottom_piece() {
                 rotate([0,-90,270])
                     grove();
 
-            if (is_true(bolt_holes)) {
+            if (bolt_holes) {
                 corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
             }
             
@@ -153,7 +153,7 @@ module top_piece() {
                 translate([0, 0, block_height(0.5)])
                     double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=2);
 
-                if (is_true(bolt_holes)) {
+                if (bolt_holes) {
                     corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
                 }
                 
