@@ -1,9 +1,9 @@
 <!DOCTYPE FilterScript>
 <FilterScript>
- <filter name="Remove Unreferenced Vertices"/>
- <filter name="Remove Zero Area Faces"/>
  <filter name="Remove Duplicate Faces"/>
  <filter name="Remove Duplicate Vertices"/>
+ <filter name="Remove Unreferenced Vertices"/>
+ <filter name="Remove Zero Area Faces"/>
  <filter name="Compact faces"/> 
  <filter name="Compact vertices"/>
 </FilterScript>
