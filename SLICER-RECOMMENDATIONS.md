@@ -173,3 +173,7 @@ OK if you don't have other choices. It is stiff and chips easily so part fit and
 `Fill Gaps Between Walls: Nowhere`
 
 Good if you are familiar with ABS. LEGO is made from ABS. It has many nice properties if you know how to minimize lift and delamination due to thermal contraction in larger parts.
+
+# Taulman Bridge Nylon
+
+Still evaluating. Bed of watery PVA glue and a raft for adhesion. Amazing strength, but a bit slippery and bottom geometry requires more cleanup due to stringing of high-strength material.
