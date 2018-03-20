@@ -152,17 +152,23 @@ Works well on Flexistruder with 0.6mm nozzle. . Gluestick acts as a release agen
 
 OK if you don't have other choices. It is stiff and chips easily so part fit and lifetime are not as good as more flexible materials. Avoid bed heating as it can "elephant foot" the lower socket connectors.
 
+Not all brands of PLA are the same. Ultimaker brand PLA is more flexible than generics. Other companies also offer soft formulations.
+
 # ABS
 
+This is a good material if you are familiar with handling ABS shinkage. This is not much of an issue if your parts are not too large or too tall. LEGO is made from ABS because it has many nice properties if you know how to minimize lift and delamination due to thermal contraction in larger parts.
+
+Not all brands of ABS are the same. Village Plastics ABS gives better results than some others.
+
 ## `PELA_print_parameters.scad`
+
+`flexible_filament = false;`
 
 `top_tweak = 0.04;`
 
 `bottom_tweak = -0.02;`
 
 ## Slicer Settings
-
-`flexible_filament = false;`
 
 `Adhesion: Brim`   (check the slicer's preview image. If the brim pollutes the inside of the bottom connectors that creates difficult post-processing. Consider alaternatives like `Adhesion: Raft` or `Adhesion: Skirt` with a PEI sheet, glue stick, or unscented extra hold hairspray. Minimize bed heating as it can "elephant foot" the lower socket connectors.)
 
@@ -172,8 +178,50 @@ OK if you don't have other choices. It is stiff and chips easily so part fit and
 
 `Fill Gaps Between Walls: Nowhere`
 
-Good if you are familiar with ABS. LEGO is made from ABS. It has many nice properties if you know how to minimize lift and delamination due to thermal contraction in larger parts.
 
 # Taulman Bridge Nylon
 
-Still evaluating. Bed of watery PVA glue and a raft for adhesion. Amazing strength, but a bit slippery and bottom geometry requires more cleanup due to stringing of high-strength material.
+A very nice material for PELA blocks. Use a bed of watery PVA white glue. Amazing strength, but a bit slippery and and stringy requires cleanup unless the settings are right. Speed is your friend- print fast and retract fast and far, also "coast" at the end of prints to minimize stringing.
+
+## `PELA_print_parameters.scad`
+
+`flexible_material = true;`
+
+`top_tweak = -0.02;`
+
+`bottom_tweak = 0.15;`
+
+`axle_hole_tweak = 0.06;`
+
+## Slicer Settings
+
+`Layer Height: 0.3`
+
+`Fill gaps between walls: Nowhere`       (Use Everywhere if the block is printed tilted or on the side)
+
+`Keep Heating: No`      (Bed heater can be disabled after the print)
+
+`Retraction Distance: 3mm`
+
+`Retraction Speed: 20 mm/s`
+
+`Print Speed: 100 mm/s`
+
+`Infill Speed: 100 mm/s`
+
+`Outer Wall Speed: 60 mm/s`
+
+`Inner Wall Speed: 80 mm/s`
+
+`Top/Bottom Speed: 60 mm/s`
+
+`Initial Layer Speed: 50 mm/s`
+
+`Number of Slow Layers: 1`
+
+`Equalize Filament Flow: Yes`     (Move faster over thin walls)
+
+`Print Cooling: 100%`
+
+`Enable Coasting: Yes`    (Stop extrusion before the end of a segment to minimize oozing)
+

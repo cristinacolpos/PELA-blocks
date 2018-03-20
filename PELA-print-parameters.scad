@@ -59,7 +59,7 @@ SUGGESTIONS
 /* [Main Calibration Settings] */
 
 // Switch between flexible and rigid material geometry
-flexible_material = false;
+flexible_material = true; // Set true for Nylon and flexible filaments for better grip
 
 // Set true if nozzle is >= 0.5mm. Adjust gemoetry to aid the slicer when the minimum trace width is a problem. This adjustments prevents geometry too thin to reproduce reliably in high speed or flexible material processing. Some features such as the ability to insert knobs into 1/2 unit sockets will be lost to accomodate thicker parts.
 large_nozzle = true;
@@ -68,13 +68,13 @@ large_nozzle = true;
 print_supports = true;
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-top_tweak = 0.02; // 0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, 0 for PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, 0.02 for Bridge Nylon
+top_tweak = -0.02; // 0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, 0 for PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon
 
 // Bottom connector size adjustment (smaller is tigher, add in multiples of 0.01mm as determined from your calibration-block print)
-bottom_tweak = 0.08; // -0.02 for ABS, 0.10 for overextruded rPET, 0.08 for Pro1, 0.06 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.08 for Bridge Nylon
+bottom_tweak = 0.15; // -0.02 for ABS, 0.10 for overextruded rPET, 0.08 for Pro1, 0.06 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0.06; // 0 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.03 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon
+axle_hole_tweak = 0.06; // 0 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.04 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon
 
 
 /* [Shell Adjustments] */
@@ -98,7 +98,7 @@ knob_top_thickness = 0.8;
 knob_height = flexible_material ? 9.6/3 : 2.0;
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-knob_flexture_radius = flexible_material ? 0.0 : 1.0;
+knob_flexture_radius = flexible_material ? 1.0 : 1.0;
 
 // Height of the easy connect slope near connector top (0 to disable such as for flexible materials, a bigger value such as 0.1 may help ease a tightly tuned fit or compensate for overextrusion)
 knob_bevel = flexible_material ? 0.3 : 0.1;
@@ -113,7 +113,7 @@ ring_thickness = large_nozzle ? 1.2 : 0.8;
 ring_radius = 2.75 + ring_thickness + bottom_tweak;
 
 // Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
-side_lock_thickness = flexible_material ? 0.04 : 0.02;
+side_lock_thickness = flexible_material ? 0.06 : 0.02;
 
 
 /* [3D Printing Side Connector Adjustments] */
