@@ -30,7 +30,7 @@ axle_radius = 2.2;
 pin_center_radius=axle_radius/2;
 
 // Size of the connector lock-in bump at the ends of a Pin
-pin_tip_length = 0.4;
+pin_tip_length = 0.7;
 
 // Width of the long vertical flexture slots in the side of a pin
 slot_thickness = 0.5;
