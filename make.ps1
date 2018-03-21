@@ -81,7 +81,7 @@ Function render-jpg($name) {
 
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
-Get-Date
+Write-Otuput Get-Date
 
 $extras = ""
 if ($stl) {
@@ -134,7 +134,7 @@ render ".\vive-tracker-mount\PELA-vive-tracker-screw"
 render ".\grove-module-enclosure\PELA-grove-module-enclosure"
 render ".\support\support"
 
-Get-Date
+Write-Output Get-Date
 
 if ($publish) {
     Write-Output "Publishing PELA Blocks"

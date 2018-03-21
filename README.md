@@ -32,9 +32,9 @@ See the [Slicer Recommendations](SLICER-RECOMMENDATIONS.md) for settings recomme
 
 ## Calibrate
 
-![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)
+[![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
 
-![PELA Calibration Bar](calibration/PELA-calibration.png)
+[![PELA Calibration Bar](calibration/PELA-calibration.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
 
 [3D PELA Calibration Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
 
@@ -131,7 +131,7 @@ ___
 
 ___
 
-[![PELA STMF4 Discovery Box Enclosure](box-enclosure/PELA-stmf4discovery-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl)
+[![PELA STMF4 Discovery Box Enclosure](box-enclosure/PELA-stmf4discovery-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-stmf4discovery-box-enclosure.stl)
 
 [3D PELA STMF4 Discovery Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-stmf4discovery-box-enclosure.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
