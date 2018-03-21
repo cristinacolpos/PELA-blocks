@@ -14,4 +14,4 @@ param (
 )
 
 Write-Output "Clean Mesh $name"
-Invoke-Expression "meshlabserver.exe -i $name -s clean
+Invoke-Expression "meshlabserver.exe -i $name -s clean"

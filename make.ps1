@@ -47,7 +47,7 @@ Function render($name) {
     }
     if ($clean) {
         Write-Output Get-Date
-        Invoke-Expression "clean $name.stl"
+        Invoke-Expression "clean\clean.ps1 $name.stl"
     }
     if ($png) {
         Write-Output Get-Date
@@ -98,12 +98,19 @@ if ($clean) {
     $extras += "-clean "
 }
 
-Remove-Item .\PELA-block-4-2-1.stl -ErrorAction SilentlyContinue
-Remove-Item .\PELA-block-4-2-1.png -ErrorAction SilentlyContinue
-Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
-Remove-Item .\PELA-technic-block-4-4-2.stl -ErrorAction SilentlyContinue
-Remove-Item .\PELA-technic-block-4-4-2.png -ErrorAction SilentlyContinue
-Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
+if ($stl) {
+    Remove-Item .\PELA-block-4-2-1.stl -ErrorAction SilentlyContinue
+    Remove-Item .\PELA-block-4-2-1.png -ErrorAction SilentlyContinue
+    Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
+    Remove-Item .\PELA-technic-block-4-4-2.stl -ErrorAction SilentlyContinue
+    Remove-Item .\PELA-technic-block-4-4-2.png -ErrorAction SilentlyContinue
+    Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
+}
+elseif ($clean) {
+    Write-Output Get-Date
+    Invoke-Expression "clean\clean.ps1 PELA-block-4-2-1.stl"
+    Invoke-Expression "clean\clean.ps1 PELA-block-4-4-2.stl"
+}
 
 render ".\pin\PELA-technic-pin"
 render ".\axle\PELA-technic-axle"
