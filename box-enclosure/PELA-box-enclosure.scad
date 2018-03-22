@@ -35,8 +35,8 @@ l = 4;
 // Width of the enclosure including two for walls (PELA knob count)
 w = 4;
 
-// Height of the enclosure including one for floor (PELA block layer count)
-h = 2;
+// Height of the enclosure not including the possible drop_bottom floor (PELA block layer count)
+h = 1+2/3;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
@@ -83,6 +83,9 @@ front_wall_enabled = true;
 // Create the back wall
 back_wall_enabled = true;
 
+// Bottom of the enclosure is a panel below the edges of the wall (if true, box is 1/3 of a block taller)
+drop_bottom = true;
+
 // Number of knobs at the edge to not add to the top panel (leave space for example for a nearby top wall or technic connectors)
 skip_edge_knobs = 1;
 
@@ -119,10 +122,15 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=
                     }
                 }
 
-                bottom_negative_space(l=l, w=w, bottom_type=1, bottom_height=bottom_height, skin=0);
+                if (!drop_bottom) {
+                    bottom_negative_space(l=l, w=w, bottom_type=1, bottom_height=bottom_height, skin=0);
+                }
             }
 
-            enclosure_bottom(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_height, skin=skin);
+            bottom_z = drop_bottom ? -panel_height() : 0;
+            translate([0, 0, bottom_z]) {
+                enclosure_bottom(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_height, skin=skin);
+            }
         }
 
         edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_height, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes);
@@ -130,6 +138,8 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=
 }
 
 
+
+// Left side of the box with corner cuts
 module left_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled) {
 
     difference() {
@@ -150,6 +160,7 @@ module left_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sh
 }
 
 
+// A slice removed so that two wall fit together as a single whole
 module corner_cut(angle, h=h) {
     translate([0, 0, -defeather]) {
         rotate([0, 0, angle]) {
@@ -159,6 +170,7 @@ module corner_cut(angle, h=h) {
 }
 
 
+// Mirror image of the left side
 module right_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled) {
 
     translate([block_width(l), block_width(w), 0]) {
@@ -169,6 +181,7 @@ module right_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_s
 }
 
 
+// Front side of the box with corner cuts
 module front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled) {
 
     difference() {
@@ -189,6 +202,7 @@ module front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, sid
 }
 
 
+// Mirror image of the front wall
 module back_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled) {
 
     translate([block_width(l), block_width(w), 0]) {
@@ -199,6 +213,7 @@ module back_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side
 }
 
 
+// Cutout for the box bottom
 module bottom_negative_space(l=l, w=w, bottom_type=1, bottom_height=bottom_height, skin=skin) {
     
     if (bottom_type > 0) {
@@ -207,6 +222,7 @@ module bottom_negative_space(l=l, w=w, bottom_type=1, bottom_height=bottom_heigh
 }
 
 
+// Space for the edge connectors
 module edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_height, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes) {
 
     if (bottom_type > 0) {
@@ -215,6 +231,7 @@ module edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, bottom_h
 }
 
 
+// The optional bottom layer of the box
 module enclosure_bottom(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_height, skin=skin, skip_edge_knobs=skip_edge_knobs) {
     if (bottom_type==1) {
         translate([skin, skin, 0]) {
