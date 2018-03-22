@@ -96,6 +96,9 @@ front_wall_enabled = true;
 // Create the back wall
 back_wall_enabled = true;
 
+// Bottom of the enclosure is a panel below the edges of the wall (if true, box is 1/3 of a block taller)
+drop_bottom = false;
+
 /////////////////////////////////////
 // PELA Box Enclosure Display
 
@@ -107,11 +110,11 @@ PELA_stmf4discovery_box_enclosure();
 ///////////////////////////////////
 
 
-module PELA_stmf4discovery_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled) {
+module PELA_stmf4discovery_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom) {
 
     difference() {
         union() {
-            PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled);
+            PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom);
 
 //            board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
         }
