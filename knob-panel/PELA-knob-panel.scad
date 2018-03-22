@@ -31,25 +31,25 @@ l = 8;
 // Width of the block (PELA unit count)
 w = 8;
 
-top_vents = 0;
+top_vents = false;
 
 // Interior fill for layers above the bottom
-solid_bottom_layer = 1; // [0:empty, 1:solid]
+solid_bottom_layer = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=0; // [0:no holes, 1:holes]
+bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius=1.5;
+bolt_hole_radius = 1.5;
 
 // Presence of top connector knobs
-knobs=1; // [0:disabled, 1:enabled]
+knobs = true;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
-bottom_stiffener_height=0;
+bottom_stiffener_height = 0;
 
 // How many outside rows to skip before adding knobs
-skip_edge_knobs=0;
+skip_edge_knobs = 0;
 
 /////////////////////////////////////
 // PELA panel display

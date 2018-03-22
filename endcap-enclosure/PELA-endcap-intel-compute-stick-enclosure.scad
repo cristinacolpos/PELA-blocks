@@ -30,7 +30,7 @@ use <../support/support.scad>
 print_supports = true;
 
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>preview a single object that can not be opened, 4>both caps
-mode=3;
+mode = 3;
 
 // Length of the enclosure (PELA knob count)
 l = 15;
@@ -63,7 +63,7 @@ enclosed_w = 38.5;
 enclosed_height = 12.5;
 
 // Distance up from baselane for the hollowed space
-vertical_offset=-4;
+vertical_offset = -4;
 
 // The size of the step which supports the enclosed part at the edges and corners in case ventilation openings would allow the enclosed part to slip out of place (mm)
 shoulder = 2.5;
@@ -72,37 +72,37 @@ shoulder = 2.5;
 side_opening_vertical_offset = -2.5;
 
 // Depth which connectors may press into part bottom
-socket_height=8.2;
+socket_height = 8.2;
 
 // Rounding for side air hole corners
-corner_radius=3.25;
+corner_radius = 3.25;
 
 // Number of lines to approximate a circle in corner rounding
-corner_fn=64;
+corner_fn = 64;
 
 // Solid interior is assumed for this model before carving away from that block
-solid_upper_layers=1;
+solid_upper_layers = true;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+side_holes = false;
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
-side_sheaths = 0; // [0:disabled, 1:enabled]
+side_sheaths = false;
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = false;
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
-end_sheaths = 0; // [0:disabled, 1:enabled]
+end_sheaths = false;
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = 1; // [0:disabled, 1:enabled]
+top_vents = true;
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_vent_radius = 0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
-bolt_holes=0;
+bolt_holes = false;
 
 
 /////////////////////////////////////

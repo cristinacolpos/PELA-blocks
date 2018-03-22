@@ -49,7 +49,7 @@ board_w = 66.3;
 board_h = 12;
 
 // Thickness, including some extra for insertion
-board_thickness=1.8;
+board_thickness = 1.8;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
@@ -64,16 +64,16 @@ end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full le
 end_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = 0; // [0:disabled, 1:enabled]
+top_vents = false;
 
 // Add holes in the bottom deck to improve airflow and reduce weight (only used with bottom_type==2, knob panel)
-bottom_vents = 0; // [0:disabled, 1:enabled]
+bottom_vents = false;
 
-// Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
+// Size of a hole in the top surface of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_vent_radius = 0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
-bolt_holes = 0;
+bolt_holes = false;
 
 // Bottom of enclosure
 bottom_type = 3; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
@@ -113,42 +113,12 @@ module PELA_stmf4discovery_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type,
         union() {
             PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled);
 
-            board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
+//            board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
         }
 
         union() {
             board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
-            
-#            wall_cutout();
-        }
-    }
-}
-
-
-// Remove board insertion shell space from the cut-away walls
-module wall_cutout() {
-    if (!left_wall_enabled) {
-        translate([0, block_width(1)-skin, bottom_height]) {
-            cube([block_width(1)+2*skin, block_width(w-2)+2*skin, block_height(h)]);
-        }
-    }
-
-    if (!right_wall_enabled) {
-        translate([block_width(l-1)-skin, 0, bottom_height]) {
-            cube([block_width(1)+2*skin, block_width(w-2)+2*skin, block_height(h)]);
-        }
-    }
-
-    if (!front_wall_enabled) {
-        translate([0, block_width(1)-skin, bottom_height]) {
-            cube([block_width(l-2)+2*skin, block_width(1)+2*skin, block_height(h)]);
-        }
-    }
-
-
-    if (!back_wall_enabled) {
-        translate([0, block_width(w-1)-skin, bottom_height]) {
-            cube([block_width(l-2)+2*skin, block_width(1)+2*skin, block_height(h)]);
+            bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes);
         }
     }
 }
@@ -186,7 +156,16 @@ module board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, b
         minkowski() {
             board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
 
-            cube([shell, shell, shell], center=true);
+            dx_left = 0;
+            dx_right = 0;
+            dy_front = shell;
+            dy_back = shell;
+            x_thickness = max(shell, dx_left+dx_right);
+            y_thickness = max(shell, dy_front+dy_back);
+
+            translate([-dx_left, -dy_front, 0]) {
+                cube([x_thickness, y_thickness, shell]);
+            }
         }
 
         cube([block_width(l), block_width(w), block_height(h)]);

@@ -88,7 +88,7 @@ end_sheaths = true;
 top_vents = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=true;
+bolt_holes = true;
 
 // Presence of bottom connector sockets
 sockets = true;

@@ -32,14 +32,14 @@ h = 1.5;
 
 
 // Interior fill for layers above the bottom
-solid_upper_layers = 1; // [0:empty, 1:solid]
+solid_upper_layers = true;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = 0; // [0:no holes, 1:holes]
+bolt_holes = false;
 
 bottom_stiffener_height = 9.6;
 
-top_vents = 0;
+top_vents = false;
 
 /* [Grove Module Options] */
 

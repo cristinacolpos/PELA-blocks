@@ -85,22 +85,22 @@ solid_upper_layers=1;
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
-side_sheaths = 1; // [0:disabled, 1:enabled]
+side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
-end_sheaths = 1; // [0:disabled, 1:enabled]
+end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = 1; // [0:disabled, 1:enabled]
+top_vents = true;
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 knob_vent_radius = 0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
-bolt_holes=0;
+bolt_holes = false;
 
 /////////////////////////////////////
 // PELA End Cap Enclosure Display

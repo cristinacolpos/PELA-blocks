@@ -35,13 +35,13 @@ w = 8;
 panel_height = panel_height(1);
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=0; // [0:no holes, 1:holes]
+bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius=1.6;
+bolt_hole_radius = 1.6;
 
 // Presence of top connector knobs
-knobs=1; // [0:disabled, 1:enabled]
+knobs = true;
 
 
 /////////////////////////////////////
@@ -60,9 +60,11 @@ module PELA_socket_panel(l=l, w=w, pane_height=panel_height, bolt_holes=bolt_hol
     
     PELA_socket_panel_one_sided(l=l, w=w, panel_height=panel_height, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin);
     
-    translate([0, block_width(w), panel_height()])
-        rotate([180, 0, 0])
+    translate([0, block_width(w), panel_height()]) {
+        rotate([180, 0, 0]) {
             PELA_socket_panel_one_sided(l=l, w=w, panel_height=panel_height, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin);
+        }
+    }
 }
 
 
@@ -70,7 +72,7 @@ module PELA_socket_panel(l=l, w=w, pane_height=panel_height, bolt_holes=bolt_hol
 module PELA_socket_panel_one_sided(l=l, w=w, panel_height=panel_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin) {
     
         intersection() {
-            PELA_technic_block(l=l, w=w, h=1, top_vents=0, solid_bottom_layer=1, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, skin=skin);
+            PELA_technic_block(l=l, w=w, h=1, top_vents=false, solid_bottom_layer=true, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, skin=skin, knobs=false);
     
             translate([skin, skin, 0])
                 cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height]);

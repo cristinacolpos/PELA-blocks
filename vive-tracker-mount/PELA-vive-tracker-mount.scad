@@ -40,19 +40,20 @@ l = 6;
 // Width of the block (PELA unit count)
 w = 6;
 
-top_vents = 1;
+// Add holes in the top deck to improve airflow and reduce weight
+top_vents = true;
 
 // Interior fill for layers above the bottom
-solid_bottom_layer = 0; // [0:empty, 1:solid]
+solid_bottom_layer = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes=0; // [0:no holes, 1:holes]
+bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius=1.5;
+bolt_hole_radius = 1.5;
 
 // Presence of top connector knobs
-knobs=0; // [0:disabled, 1:enabled]
+knobs = false;
 
 // Distance between Vive connector pins
 pin_spacing = 3.5;
