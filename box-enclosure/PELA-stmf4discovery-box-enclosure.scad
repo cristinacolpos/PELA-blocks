@@ -116,12 +116,13 @@ module PELA_stmf4discovery_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type,
         union() {
             PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom);
 
-//            board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
+            board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
         }
 
         union() {
             board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
-            bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes);
+            // bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes);
+            side_snap_board_holder_cut();
         }
     }
 }
@@ -173,4 +174,23 @@ module board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, b
 
         cube([block_width(l), block_width(w), block_height(h)]);
     }
+}
+
+
+module side_snap_board_holder_cut() {
+    side_snap_cut_width = 0.2;
+
+    translate([block_width(2), block_width(0.5), block_height(1)-block_width(0.5)]) {
+        translate([-axle_hole_radius, 0, 0]) {
+            side_snap_cut();
+        }
+        translate([axle_hole_radius-side_snap_cut_width, 0, 0]) {
+            side_snap_cut(side_snap_cut_width=side_snap_cut_width);
+        }
+    }
+}
+
+
+module side_snap_cut(side_snap_cut_width=side_snap_cut_width) {
+    cube([side_snap_cut_width, block_width(0.5), block_height(3)]);
 }
