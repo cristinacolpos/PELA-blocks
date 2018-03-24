@@ -81,7 +81,7 @@ Function render-jpg($name) {
 
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
-Write-Otuput Get-Date
+Write-Output Get-Date
 
 $extras = ""
 if ($stl) {
