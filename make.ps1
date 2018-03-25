@@ -34,39 +34,44 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
-Function render($name) {
+Function render($path, $name) {
     Write-Output ""
     $start = Get-Date
     Write-Output $start
     if ($stl) {
         Write-Output "Render $outdir\$name as STL"
-        Remove-Item $outdir\$name.stl 2> $null
-        Remove-Item $name.stl 2> $null
-        Invoke-Expression "openscad -o $name.stl $name.scad"
-        Move-Item $name.stl $outdir
-        $elapsed = FormatElapsedTime ((Get-Date) - $start)
+        Remove-Item .\$name.stl 2> $null
+        Invoke-Expression "openscad -o $name.stl $path\$name.scad"
         Write-Output "STL Render time: $elapsed for $name"
-        Write-Output ""    
     }
 
     if ($clean) {
-        Invoke-Expression ".\clean.ps1 $outdir\$name.stl"
+        Invoke-Expression ".\clean.ps1 $name.stl"
+    }
+
+    if ($stl) {
+        if ($outdir -NE ".") {
+            Move-Item .\$name.stl $outdir
+        }
+        $elapsed = FormatElapsedTime ((Get-Date) - $start)
     }
 
     if ($png) {
-        render-png($name)
+        render-png $path $name
     }
+    Write-Output ""    
 }
 
 # Create a PNG from the .scad file (slow, not pretty, but no Python or POVRay needed)
-Function render-png($name) {
-    Write-Output "Render $name as PNG"
+Function render-png($path, $name) {
+    Write-Output "Render $outdir\$name as PNG"
     $start = Get-Date
     Write-Output $start
-    Remove-Item $outdir\$name.png 2> $null
-    Remove-Item $name.png 2> $null
-    Invoke-Expression "openscad --render -o $outdir\$name.png $name.scad"
-    Move-Item $name.stl $outdir
+    Remove-Item .\$name.png 2> $null
+    Invoke-Expression "openscad --render -o $name.png $path\$name.scad"
+    if ($outdir -NE ".") {
+        Move-Item .\$name.png $outdir
+    }
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
     Write-Output "PNG Render time: $elapsed for $name"
     Write-Output ""
@@ -106,41 +111,37 @@ if ($png) {
 
 
 if ($stl -OR $png -OR $clean) {
-    Remove-Item $outdir\PELA-block-4-2-1.stl 2> $null
-    Remove-Item $outdir\PELA-block-4-2-1.png 2> $null
     Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
     Move-Item .\PELA-block-4-2-1.stl $outdir
     Move-Item .\PELA-block-4-2-1.png $outdir
 
-    Remove-Item $outdir\PELA-technic-block-4-2-1.stl 2> $null
-    Remove-Item $outdir\PELA-technic-block-4-2-1.png 2> $null
     Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
     Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
     Move-Item .\PELA-technic-block-4-2-1.stl $outdir
     Move-Item .\PELA-technic-block-4-2-1.png $outdir
 }
 
-render ".\pin\PELA-technic-pin"
-render ".\axle\PELA-technic-axle"
-render ".\axle\PELA-technic-cross-axle"
-render ".\calibration\PELA-calibration"
-render ".\calibration\PELA-calibration-set"
-render ".\sign\PELA-sign"
-render ".\sign\PELA-panel-sign"
-render ".\box-enclosure\PELA-box-enclosure"
-render ".\box-enclosure\PELA-stmf4discovery-box-enclosure"
-render ".\motor-enclosure\PELA-motor-enclosure"
-render ".\knob-panel\PELA-knob-panel"
-render ".\knob-panel\PELA-double-sided-knob-panel"
-render ".\socket-panel\PELA-socket-panel"
-render ".\rail-mount\PELA-rail-mount"
-render ".\rail-mount\PELA-rib-mount"
-render ".\endcap-enclosure\PELA-endcap-enclosure"
-render ".\endcap-enclosure\PELA-endcap-intel-compute-stick-enclosure"
-render ".\vive-tracker-mount\PELA-vive-tracker-mount"
-render ".\vive-tracker-mount\PELA-vive-tracker-screw"
-render ".\grove-module-enclosure\PELA-grove-module-enclosure"
-render ".\support\support"
+render ".\pin\" "PELA-technic-pin"
+render ".\axle\" "PELA-technic-axle"
+render ".\axle\" "PELA-technic-cross-axle"
+render ".\calibration\" "PELA-calibration"
+render ".\calibration\" "PELA-calibration-set"
+render ".\sign\" "PELA-sign"
+render ".\sign\" "PELA-panel-sign"
+render ".\box-enclosure\" "PELA-box-enclosure"
+render ".\box-enclosure\" "PELA-stmf4discovery-box-enclosure"
+render ".\motor-enclosure\" "PELA-motor-enclosure"
+render ".\knob-panel\" "PELA-knob-panel"
+render ".\knob-panel\" "PELA-double-sided-knob-panel"
+render ".\socket-panel\" "PELA-socket-panel"
+render ".\rail-mount\" "PELA-rail-mount"
+render ".\rail-mount\" "PELA-rib-mount"
+render ".\endcap-enclosure\" "PELA-endcap-enclosure"
+render ".\endcap-enclosure\" "PELA-endcap-intel-compute-stick-enclosure"
+render ".\vive-tracker-mount\" "PELA-vive-tracker-mount"
+render ".\vive-tracker-mount\" "PELA-vive-tracker-screw"
+render ".\grove-module-enclosure\" "PELA-grove-module-enclosure"
+render ".\support\" "support"
 
 Write-Output Get-Date
 
