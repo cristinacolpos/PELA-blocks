@@ -40,7 +40,7 @@ Function render($name) {
     Write-Output $start
     if ($stl) {
         Write-Output "Render $name as STL"
-        Remove-Item $name.stl -ErrorAction SilentlyContinue
+        Remove-Item $name.stl > $null
         Invoke-Expression "openscad -o $outdir\$name.stl $name.scad"
         $elapsed = FormatElapsedTime ((Get-Date) - $start)
         Write-Output "STL Render time: $elapsed for $name"
@@ -59,7 +59,7 @@ Function render-png($name) {
     Write-Output "Render $name as PNG"
     $start = Get-Date
     Write-Output $start
-    Remove-Item $name.png -ErrorAction SilentlyContinue
+    Remove-Item $name.png > $null
     Invoke-Expression "openscad --render -o $outdir\$name.png $name.scad"
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
     Write-Output "PNG Render time: $elapsed for $name"
