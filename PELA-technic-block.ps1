@@ -36,7 +36,7 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
-$imagename = $filename + $l + "-" + $w + "-" + $h + ".png"
+$imagename = $outdir + "\" + $filename + $l + "-" + $w + "-" + $h + ".png"
 
 $fullname = $outdir + "\" + $filename + $l + "-" + $w + "-" + $h + ".stl"
 
@@ -51,7 +51,7 @@ if ($stl) {
 }
 
 if ($clean) {
-    Invoke-Expression "clean\clean.ps1 $name.stl"
+    Invoke-Expression "clean.ps1 $fullname.stl"
 }
 
 if ($png) {

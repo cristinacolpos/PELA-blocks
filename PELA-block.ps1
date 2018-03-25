@@ -36,7 +36,7 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
-$imagename = $filename + $l + "-" + $w + "-" + $h + ".png"
+$imagename = $outdir + "\" + $filename + $l + "-" + $w + "-" + $h + ".png"
 
 $fullname = $outdir + "\" + $filename + $l + "-" + $w + "-" + $h + ".stl"
 
@@ -50,14 +50,13 @@ if ($stl) {
 }
 
 if ($clean) {
-    Invoke-Expression "clean\clean.ps1 $fullname"
+    Invoke-Expression "clean.ps1 $fullname"
 }
 
 if ($png) {
     Write-Output "Render $imagename as PNG"
     openscad --render -o $imagename PELA-block.scad -D $param
     Write-Output ""
-    # show-png($filename)
 }
 
 $elapsed = FormatElapsedTime ((Get-Date) - $start)
