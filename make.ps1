@@ -39,8 +39,9 @@ Function render($name) {
     $start = Get-Date
     Write-Output $start
     if ($stl) {
-        Write-Output "Render $name as STL"
-        Remove-Item $name.stl > $null
+        Write-Output "Render $outdir\$name as STL"
+        Remove-Item $outdir\$name.stl 2> $null
+        Remove-Item $name.stl 2> $null
         Invoke-Expression "openscad -o $name.stl $name.scad"
         Move-Item $name.stl $outdir
         $elapsed = FormatElapsedTime ((Get-Date) - $start)
@@ -62,8 +63,10 @@ Function render-png($name) {
     Write-Output "Render $name as PNG"
     $start = Get-Date
     Write-Output $start
-    Remove-Item $name.png > $null
+    Remove-Item $outdir\$name.png 2> $null
+    Remove-Item $name.png 2> $null
     Invoke-Expression "openscad --render -o $outdir\$name.png $name.scad"
+    Move-Item $name.stl $outdir
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
     Write-Output "PNG Render time: $elapsed for $name"
     Write-Output ""
@@ -87,7 +90,6 @@ Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Write-Output Get-Date
 
-$extras = " -outdir=$outdir"
 if ($stl) {
     Write-Output "Removing old STL files"
     $extras += " -stl"
@@ -103,18 +105,19 @@ if ($png) {
 }
 
 
-if ($stl) {
-    Remove-Item .\PELA-block-4-2-1.stl -ErrorAction SilentlyContinue
-    Remove-Item .\PELA-block-4-2-1.png -ErrorAction SilentlyContinue
+if ($stl -OR $png -OR $clean) {
+    Remove-Item $outdir\PELA-block-4-2-1.stl 2> $null
+    Remove-Item $outdir\PELA-block-4-2-1.png 2> $null
     Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
-    Remove-Item .\PELA-technic-block-4-4-2.stl -ErrorAction SilentlyContinue
-    Remove-Item .\PELA-technic-block-4-4-2.png -ErrorAction SilentlyContinue
+    Move-Item .\PELA-block-4-2-1.stl $outdir
+    Move-Item .\PELA-block-4-2-1.png $outdir
+
+    Remove-Item $outdir\PELA-technic-block-4-2-1.stl 2> $null
+    Remove-Item $outdir\PELA-technic-block-4-2-1.png 2> $null
+    Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
     Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
-}
-elseif ($clean) {
-    Write-Output Get-Date
-    Invoke-Expression ".\clean.ps1 PELA-block-4-2-1.stl"
-    Invoke-Expression ".\clean.ps1 PELA-block-4-4-2.stl"
+    Move-Item .\PELA-technic-block-4-2-1.stl $outdir
+    Move-Item .\PELA-technic-block-4-2-1.png $outdir
 }
 
 render ".\pin\PELA-technic-pin"
