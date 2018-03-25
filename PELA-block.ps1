@@ -11,8 +11,7 @@ param (
     [String]$filename = "PELA-block-",
     [switch]$stl = $false,
     [switch]$png = $false,
-    [switch]$clean = $false,
-    [String]$outdir = "."
+    [switch]$clean = $false
 )
 
 Function FormatElapsedTime($ts) {
@@ -46,18 +45,18 @@ $param = "`"l=$l; w=$w; h=$h;`""
 
 if ($stl) {
     Write-Output "Render $fullname as STL"
+    Remove-Item .\$fullname.stl 2> $null
     openscad -o $fullname PELA-block.scad -D $param
-    Move-Item $fullname $outdir
 }
 
 if ($clean) {
-    Invoke-Expression "clean.ps1 $outdir\$fullname"
+    Invoke-Expression ".\clean.ps1 $outdir\$fullname"
 }
 
 if ($png) {
     Write-Output "Render $imagename as PNG"
+    Remove-Item .\$imagename 2> $null
     openscad --render -o $imagename PELA-block.scad -D $param
-    Move-Item $imagename $outdir
     Write-Output ""
 }
 
