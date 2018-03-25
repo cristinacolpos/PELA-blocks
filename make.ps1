@@ -46,9 +46,11 @@ Function render($name) {
         Write-Output "STL Render time: $elapsed for $name"
         Write-Output ""    
     }
+
     if ($clean) {
-        Invoke-Expression "clean\clean.ps1 $name.stl"
+        Invoke-Expression "clean.ps1 $outdir\$name.stl"
     }
+
     if ($png) {
         render-png($name)
     }
@@ -89,15 +91,16 @@ if ($stl) {
     Write-Output "Removing old STL files"
     $extras += " -stl"
 }
+
+if ($clean) {
+    Write-Output "Cleaning STL files as they are created"
+    $extras += " -clean"
+}
 if ($png) {
     Write-Output "Removing old PNG files"
     $extras += " -png"
 }
-Write-Output ""
 
-if ($clean) {
-    $extras += " -clean"
-}
 
 if ($stl) {
     Remove-Item .\PELA-block-4-2-1.stl -ErrorAction SilentlyContinue
