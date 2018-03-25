@@ -11,7 +11,8 @@ param (
     [String]$filename = "PELA-technic-block-",
     [switch]$stl = $false,
     [switch]$png = $false,
-    [switch]$clean = $false
+    [switch]$clean = $false,
+    [switch]$outdir = "."
 )
 
 Function FormatElapsedTime($ts) {
@@ -35,21 +36,9 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
-# Shrinking to save space and fix some OpenSCAD export artifacts is done in
-# several discrete steps to minimize memory stress with large models
-Function shrink-mesh($name) {
-    Write-Output "Shrink Mesh $name"
-    Invoke-Expression "meshlabserver.exe -i $name -s clean1.mlx -o $name"
-    Invoke-Expression "meshlabserver.exe -i $name -s clean2.mlx -o $name"
-    Invoke-Expression "meshlabserver.exe -i $name -s clean3.mlx -o $name"
-    Invoke-Expression "meshlabserver.exe -i $name -s clean4.mlx -o $name"
-    Invoke-Expression "meshlabserver.exe -i $name -s clean5.mlx -o $name"
-    Invoke-Expression "meshlabserver.exe -i $name -s clean6.mlx -o $name"
-}
-
 $imagename = $filename + $l + "-" + $w + "-" + $h + ".png"
 
-$fullname = $filename + $l + "-" + $w + "-" + $h + ".stl"
+$fullname = $outdir + "\" + $filename + $l + "-" + $w + "-" + $h + ".stl"
 
 $start = Get-Date
 
@@ -62,9 +51,7 @@ if ($stl) {
 }
 
 if ($clean) {
-    Write-Output "Clean $fullname"
-    shrink-mesh($fullname)
-    Write-Output ""
+    Invoke-Expression "clean\clean.ps1 $name.stl"
 }
 
 if ($png) {

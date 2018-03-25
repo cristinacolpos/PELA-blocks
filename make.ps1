@@ -9,7 +9,8 @@ param (
     [switch]$stl = $false,
     [switch]$png = $false,
     [switch]$clean = $false,
-    [switch]$publish = $false
+    [switch]$publish = $false,
+    [switch]$outdir = "."
 )
 
 Function FormatElapsedTime($ts) {
@@ -36,21 +37,19 @@ Function FormatElapsedTime($ts) {
 Function render($name) {
     Write-Output ""
     $start = Get-Date
+    Write-Output $start
     if ($stl) {
         Write-Output "Render $name as STL"
-        Write-Output $start
         Remove-Item $name.stl -ErrorAction SilentlyContinue
-        Invoke-Expression "openscad -o $name.stl $name.scad"
+        Invoke-Expression "openscad -o $outdir\$name.stl $name.scad"
         $elapsed = FormatElapsedTime ((Get-Date) - $start)
         Write-Output "STL Render time: $elapsed for $name"
         Write-Output ""    
     }
     if ($clean) {
-        Write-Output Get-Date
         Invoke-Expression "clean\clean.ps1 $name.stl"
     }
     if ($png) {
-        Write-Output Get-Date
         render-png($name)
     }
 }
@@ -59,14 +58,16 @@ Function render($name) {
 Function render-png($name) {
     Write-Output "Render $name as PNG"
     $start = Get-Date
+    Write-Output $start
     Remove-Item $name.png -ErrorAction SilentlyContinue
-    Invoke-Expression "openscad --render -o $name.png $name.scad"
+    Invoke-Expression "openscad --render -o $outdir\$name.png $name.scad"
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
     Write-Output "PNG Render time: $elapsed for $name"
-    Write-Output ""        
+    Write-Output ""
 }
 
-Function render-jpg($name) {
+# Work in Progress, not yet supported
+Function raytrace-png($name) {
     Write-Output "Render $name as Raytraced JPG"
     $start = Get-Date
     $param = "`"filename=$name.stl;`""
@@ -83,19 +84,19 @@ Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Write-Output Get-Date
 
-$extras = ""
+$extras = "outdir=$outdir"
 if ($stl) {
     Write-Output "Removing old STL files"
-    $extras += "-stl "
+    $extras += " -stl"
 }
 if ($png) {
     Write-Output "Removing old PNG files"
-    $extras += "-png "
+    $extras += " -png"
 }
 Write-Output ""
 
 if ($clean) {
-    $extras += "-clean "
+    $extras += " -clean"
 }
 
 if ($stl) {
