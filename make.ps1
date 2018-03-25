@@ -10,7 +10,7 @@ param (
     [switch]$png = $false,
     [switch]$clean = $false,
     [switch]$publish = $false,
-    [switch]$outdir = "."
+    [string]$outdir = "."
 )
 
 Function FormatElapsedTime($ts) {
