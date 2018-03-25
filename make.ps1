@@ -84,7 +84,7 @@ Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Write-Output Get-Date
 
-$extras = "outdir=$outdir"
+$extras = "-outdir=$outdir"
 if ($stl) {
     Write-Output "Removing old STL files"
     $extras += " -stl"
