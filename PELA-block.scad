@@ -173,9 +173,9 @@ module top_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_hei
     for (i = [0:1:l-1]) {
         for (j = [0:1:w-1]) {
             if (!bolt_holes || !is_corner(x=i, y=j, l=l, w=w)) {
-                translate([block_width(i), block_width(j), 0])
+                translate([block_width(i), block_width(j), 0]) {
                     top_knob(h=h, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel);
-                ;
+                }
             }
         }
     }
@@ -185,8 +185,9 @@ module top_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_hei
 // The connector cylinder
 module top_knob(h=h, knob_height=knob_height, knob_bevel=knob_bevel) {
     
-    translate([block_width(0.5), block_width(0.5), block_height(h)])
+    translate([block_width(0.5), block_width(0.5), block_height(h)]) {
         knob(knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel);
+    }
 }
 
 
@@ -196,11 +197,12 @@ module knob(knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_be
     cylinder(r=knob_radius, h=knob_height-knob_bevel);
 
     if (knob_bevel > 0) {
-        translate([0, 0, knob_height-knob_bevel])
+        translate([0, 0, knob_height-knob_bevel]) {
             intersection() {
                 cylinder(r=knob_radius,h=knob_bevel);
                 cylinder(r1=knob_radius,r2=0,h=1.5*(knob_radius));
             }
+        }
     }
 }
 
@@ -210,8 +212,9 @@ module knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=kno
     for (i = [0:l-1]) {
         for (j = [0:w-1]) {
             if (!bolt_holes || !is_corner(x=i, y=j, l=l, w=w)) {
-                translate([block_width(i+0.5), block_width(j+0.5), block_height(h)])
+                translate([block_width(i+0.5), block_width(j+0.5), block_height(h)]) {
                     knob_flexture(h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_vent_radius=knob_vent_radius);
+                }
             }
         }
     }
@@ -221,12 +224,14 @@ module knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=kno
 // The negative space flexture inside a single knob
 module knob_flexture(h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_vent_radius=knob_vent_radius) {
 
-   translate([0, 0, knob_height-knob_top_thickness-knob_flexture_height])
+   translate([0, 0, knob_height-knob_top_thickness-knob_flexture_height]) {
         cylinder(r=knob_flexture_radius, h=knob_flexture_height);
+   }
     
     if (knob_vent_radius>0) {
-        translate([0, 0, knob_height-knob_top_thickness])
+        translate([0, 0, knob_height-knob_top_thickness]) {
             cylinder(r=knob_vent_radius, h=knob_height+defeather);
+        }
     }
 }
 
@@ -237,8 +242,9 @@ module outer_shell(l=l, w=w, h=h, shell=shell, top_shell=top_shell) {
     difference() {
         cube([block_width(l), block_width(w), block_height(h)]);
         
-        translate([shell, shell, -top_shell])
+        translate([shell, shell, -top_shell]) {
             cube([block_width(l)-2*shell, block_width(w)-2*shell, block_height(h)]);
+        }
     }
 }
 
@@ -259,25 +265,28 @@ module bottom_stiffener_bar_set(l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, 
     translate([0, 0, block_height(h)-bottom_stiffener_height]) {
         if (end_l >= start_l) {
             for (i = [start_l:end_l]) {            
-                translate([block_width(i)-(bottom_stiffener_width)/2, 0, 0])
+                translate([block_width(i)-(bottom_stiffener_width)/2, 0, 0]) {
                     difference() {
                         cube([bottom_stiffener_width, block_width(w), bottom_stiffener_height]);
                     
-                        translate([(bottom_stiffener_width-cut_width)/2, 0, -defeather])
+                        translate([(bottom_stiffener_width-cut_width)/2, 0, -defeather]) {
                             cube([cut_width, block_width(w), bottom_stiffener_height+defeather]);
+                        }
                     }
+                }
             }
         }
         
         if (end_w >= start_w) {
             for (j = [start_w:end_w]) {
-                translate([0, block_width(j)-(bottom_stiffener_width)/2, 0])
+                translate([0, block_width(j)-(bottom_stiffener_width)/2, 0]) {
                     difference() {
                         cube([block_width(l), bottom_stiffener_width, bottom_stiffener_height]);
                     
                         translate([0, (bottom_stiffener_width-cut_width)/2, -defeather])
                             cube([block_width(l), cut_width, bottom_stiffener_height+defeather]);
                     }
+                }
             }
         }
     }
@@ -290,8 +299,9 @@ module socket_set(l=l, w=w, ring_radius=ring_radius, length=block_height(), sock
     if (sockets && (l>1 && w>1)) {
         for (i = [1:l-1]) {
             for (j = [1:w-1]) {
-                translate([block_width(i), block_width(j), 0])
+                translate([block_width(i), block_width(j), 0]) {
                     socket_ring(ring_radius=ring_radius, length=length);
+                }
             }
         }
     }
@@ -301,8 +311,9 @@ module socket_set(l=l, w=w, ring_radius=ring_radius, length=block_height(), sock
 // The circular bottom insert for attaching knobs
 module socket_ring(ring_radius=ring_radius, length=block_height()) {
     
-    rotate([0, 0, 180/ring_fn])
+    rotate([0, 0, 180/ring_fn]) {
         cylinder(r=ring_radius, h=length, $fn=ring_fn);
+    }
 }
 
 
@@ -312,8 +323,9 @@ module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=block
     if (sockets && l>1 && w>1) {
         for (i = [1:l-1]) {
             for (j = [1:w-1]) {
-                translate([block_width(i), block_width(j), 0])
+                translate([block_width(i), block_width(j), 0]) {
                     socket_hole(radius=radius, length=length);
+                }
             }
         }
     }
@@ -339,33 +351,39 @@ module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge
     cube([block_width(l), skin, block_height(h)]);
 
     // Back skin
-    translate([0, block_width(w)-skin, 0])
+    translate([0, block_width(w)-skin, 0]) {
         cube([block_width(l), skin, block_height(h)]);
+    }
 
     // Left skin
     cube([skin, block_width(w), block_height(h)]);
     
     // Right skin
-    translate([block_width(l)-skin, 0, 0])
+    translate([block_width(l)-skin, 0, 0]) {
         cube([skin, block_width(w), block_height(h)]);
+    }
     
     if (ridge_width>0 && ridge_depth>0 && h>1) {
         for (i = [1:h-1]) {
             // Front layer ridge
-            translate([0, 0, block_height(i)])
+            translate([0, 0, block_height(i)]) {
                 cube([block_width(l), ridge_depth, ridge_width]);
+            }
                 
             // Back layer ridge
-            translate([0, block_width(w)-skin-ridge_depth, block_height(i)])
+            translate([0, block_width(w)-skin-ridge_depth, block_height(i)]) {
                 cube([block_width(l), ridge_depth, ridge_width]);
+            }
 
             // Left layer ridge
-            translate([skin, 0, block_height(i)])
+            translate([skin, 0, block_height(i)]) {
                 cube([ridge_depth, block_width(w), ridge_width]);
+            }
 
             // Right layer ridge
-            translate([block_width(l) - skin - ridge_depth, 0, block_height(i)])
+            translate([block_width(l) - skin - ridge_depth, 0, block_height(i)]) {
                 cube([ridge_depth, block_width(w), ridge_width]);
+            }
         }
     }
 }
@@ -401,6 +419,7 @@ module bolt_hole_support(x=1, y=1, h=h, top_shell=top_shell, bottom_stiffener_he
     
     depth = top_shell+bottom_stiffener_height;
     
-    translate([block_width(x-1), block_width(y-1), block_height(h)-depth])
+    translate([block_width(x-1), block_width(y-1), block_height(h)-depth]) {
         cube([block_width(), block_width(), depth]);
+    }
 }
