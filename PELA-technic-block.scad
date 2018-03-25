@@ -61,36 +61,37 @@ function is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes) = end_hole
 
 // A PELA block with optional side and top vent holes
 module PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, ring_thickness=ring_thickness, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_bottom_layer=solid_bottom_layer) {
-
-    difference() {
-        union() {
-            PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, ring_thickness=ring_thickness, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer);
-            
-            if (is_side_sheaths(side_sheaths=side_sheaths, side_holes=side_holes)) {
-                double_side_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, block_width=block_width);
-            }
-            
-            if (is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes)) {
-                double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, block_width=block_width);
-            }
-        }
-        
-        union() {
-            if (side_holes || end_holes || top_vents) {
-                length = top_vents ? block_height(h+1) : block_height(h)-block_width(0.5);
+    render(convexity=5) {
+        difference() {
+            union() {
+                PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, ring_thickness=ring_thickness, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer);
                 
-                offset_from_bottom = large_nozzle ? knob_height : 0;
-                translate([0, 0, offset_from_bottom]) {
-                    socket_hole_set(l=l, w=w, radius=axle_hole_radius, length=length);
+                if (is_side_sheaths(side_sheaths=side_sheaths, side_holes=side_holes)) {
+                    double_side_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, block_width=block_width);
                 }
-                if (large_nozzle) {
-                      socket_hole_set(l=l, w=w, radius=axle_hole_radius*2/3, length=length);
+                
+                if (is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes)) {
+                    double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, block_width=block_width);
                 }
             }
-
-            bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes);
             
-            skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth);
+            union() {
+                if (side_holes || end_holes || top_vents) {
+                    length = top_vents ? block_height(h+1) : block_height(h)-block_width(0.5);
+                    
+                    offset_from_bottom = large_nozzle ? knob_height : 0;
+                    translate([0, 0, offset_from_bottom]) {
+                        socket_hole_set(l=l, w=w, radius=axle_hole_radius, length=length);
+                    }
+                    if (large_nozzle) {
+                        socket_hole_set(l=l, w=w, radius=axle_hole_radius*2/3, length=length);
+                    }
+                }
+
+                bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes);
+                
+                skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth);
+            }
         }
     }
 }
