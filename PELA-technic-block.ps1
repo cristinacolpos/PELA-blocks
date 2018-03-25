@@ -36,9 +36,9 @@ Function FormatElapsedTime($ts) {
     return $elapsedTime
 }
 
-$imagename = $outdir + "\" + $filename + $l + "-" + $w + "-" + $h + ".png"
+$imagename = $filename + $l + "-" + $w + "-" + $h + ".png"
 
-$fullname = $outdir + "\" + $filename + $l + "-" + $w + "-" + $h + ".stl"
+$fullname = $filename + $l + "-" + $w + "-" + $h + ".stl"
 
 $start = Get-Date
 
@@ -47,16 +47,18 @@ $param = "`"l=$l; w=$w; h=$h;`""
 if ($stl) {
     Write-Output "Render $fullname as STL"
     openscad -o $fullname PELA-technic-block.scad -D $param
+    Move-Item $fullname $outdir
     Write-Output ""
 }
 
 if ($clean) {
-    Invoke-Expression "clean.ps1 $fullname.stl"
+    Invoke-Expression "clean.ps1 $outdir\$fullname.stl"
 }
 
 if ($png) {
     Write-Output "Render $imagename as PNG"
     openscad --render -o $imagename PELA-technic-block.scad -D $param
+    Move-Item $imagename $outdir
     Write-Output ""
 }
 
