@@ -41,14 +41,15 @@ Function render($name) {
     if ($stl) {
         Write-Output "Render $name as STL"
         Remove-Item $name.stl > $null
-        Invoke-Expression "openscad -o $outdir\$name.stl $name.scad"
+        Invoke-Expression "openscad -o $name.stl $name.scad"
+        Move-Item $name.stl $outdir
         $elapsed = FormatElapsedTime ((Get-Date) - $start)
         Write-Output "STL Render time: $elapsed for $name"
         Write-Output ""    
     }
 
     if ($clean) {
-        Invoke-Expression "clean.ps1 $outdir\$name.stl"
+        Invoke-Expression ".\clean.ps1 $outdir\$name.stl"
     }
 
     if ($png) {
@@ -86,7 +87,7 @@ Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Write-Output Get-Date
 
-$extras = "-outdir=$outdir"
+$extras = " -outdir=$outdir"
 if ($stl) {
     Write-Output "Removing old STL files"
     $extras += " -stl"
@@ -112,8 +113,8 @@ if ($stl) {
 }
 elseif ($clean) {
     Write-Output Get-Date
-    Invoke-Expression "clean\clean.ps1 PELA-block-4-2-1.stl"
-    Invoke-Expression "clean\clean.ps1 PELA-block-4-4-2.stl"
+    Invoke-Expression ".\clean.ps1 PELA-block-4-2-1.stl"
+    Invoke-Expression ".\clean.ps1 PELA-block-4-4-2.stl"
 }
 
 render ".\pin\PELA-technic-pin"
