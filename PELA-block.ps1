@@ -50,7 +50,7 @@ if ($stl) {
 }
 
 if ($clean) {
-    Invoke-Expression ".\clean.ps1 $outdir\$fullname"
+    Invoke-Expression ".\clean.ps1 $fullname"
 }
 
 if ($png) {

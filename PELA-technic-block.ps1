@@ -47,18 +47,16 @@ if ($stl) {
     Write-Output "Render $fullname as STL"
     Remove-Item $fullname 2> $null
     openscad -o $fullname PELA-technic-block.scad -D $param
-    Write-Output ""
 }
 
 if ($clean) {
-    Invoke-Expression ".\clean.ps1 $outdir\$fullname"
+    Invoke-Expression ".\clean.ps1 $fullname"
 }
 
 if ($png) {
     Write-Output "Render $imagename as PNG"
     Remove-Item $imagename 2> $null
     openscad --render -o $imagename PELA-technic-block.scad -D $param
-    Write-Output ""
 }
 
 $elapsed = FormatElapsedTime ((Get-Date) - $start)
