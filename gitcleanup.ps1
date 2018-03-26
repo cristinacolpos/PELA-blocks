@@ -12,7 +12,7 @@ git reflog expire --expire=now --all
 Write-Output "git gc --aggressive --prune=now"
 git gc --aggressive --prune=now
 
-Invoke-Expression ".\make.ps1 -clean -png -stl"
+Invoke-Expression ".\make.ps1 -png"
 
 Write-Output "================================"
 git add *
