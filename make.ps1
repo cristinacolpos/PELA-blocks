@@ -115,10 +115,9 @@ if ($stl -OR $png -OR $clean) {
     Move-Item .\PELA-block-4-2-1.stl $outdir
     Move-Item .\PELA-block-4-2-1.png $outdir
 
-    Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
     Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
-    Move-Item .\PELA-technic-block-4-2-1.stl $outdir
-    Move-Item .\PELA-technic-block-4-2-1.png $outdir
+    Move-Item .\PELA-technic-block-4-4-2.stl $outdir
+    Move-Item .\PELA-technic-block-4-4-2.png $outdir
 }
 
 render ".\pin\" "PELA-technic-pin"
