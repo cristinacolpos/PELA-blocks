@@ -75,8 +75,8 @@ Function render-png($path, $name) {
     $start = Get-Date
     Write-Output $start
     Remove-Item .\$name.png 2> $null
-    Remove-Item $outdir\$name.png 2> $null
     Invoke-Expression "openscad --render -o $name.png $path\$name.scad"
+    Remove-Item $outdir\images\$name.png 2> $null
     Move-Item .\$name.png $outdir\images\
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
     Write-Output "PNG Render time: $elapsed for $name"
@@ -117,13 +117,23 @@ if ($png) {
 
 
 if ($stl -OR $png -OR $clean) {
-    Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
-    Move-Item .\PELA-block-4-2-1.stl $outdir
-    Move-Item .\PELA-block-4-2-1.png $outdir
+    if ($png) {
+        Remove-Item $outdir\images\PELA-block-4-2-1.png 2> $null
+        Remove-Item $outdir\images\PELA-technic-block-4-4-2.png 2> $null
+    }
 
+    Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
     Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
-    Move-Item .\PELA-technic-block-4-4-2.stl $outdir
-    Move-Item .\PELA-technic-block-4-4-2.png $outdir
+
+    if ($stl) {
+        Move-Item .\PELA-technic-block-4-4-2.stl $outdir
+        Move-Item .\PELA-block-4-2-1.stl $outdir
+    }
+
+    if ($png) {
+        Move-Item .\PELA-block-4-2-1.png $outdir\images\
+        Move-Item .\PELA-technic-block-4-4-2.png $outdir\images\
+    }
 }
 
 render ".\pin\" "PELA-technic-pin"
