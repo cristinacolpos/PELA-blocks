@@ -3,32 +3,39 @@
 # Generate a set of objects calibrated for your printer by changes to PELA-print-parameters.scad
 # See http://PELAblocks.org for more information
 # 
-# Part of https://github.com/LEGO-prototypes/PELA-parametric-blocks
+# Part of https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks
+#
+# The parameters turn on generation of various features. Note that STLs are .gitignore so you can create them
+# locally without impacting publishing. Published PNGs are generated in this project. They must be here because of
+# how github pages markdown works). Published STLs for the website are generated in the sister project 
+# https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render to minimize your pain of large file
+# gitthrashing as the project evolves. The $outdir parameter is used by this sister project when updating generated
+# STLs so you can safely ignore it.
 
 param (
-    [switch]$stl = $false,
-    [switch]$png = $false,
-    [switch]$clean = $false,
-    [switch]$publish = $false,
-    [String]$outdir = "."
+    [switch]$stl = $false, # Generate models with current print calibration (.gitignore)
+    [switch]$png = $false, # Generate preview images for the website
+    [switch]$clean = $false, # Clean some model defects and re-save as binary STL (1/2 the size)
+    [switch]$publish = $false, # Publish the result back to the github and the web when done
+    [String]$outdir = "."         # In what based directory are generated STL and PNG files written
 )
 
 Function FormatElapsedTime($ts) {
     $elapsedTime = ""
 
     if ( $ts.Minutes -gt 0 ) {
-        $elapsedTime = [string]::Format( "{0:00}m {1:00}.{2:00}s", $ts.Minutes, $ts.Seconds, $ts.Milliseconds / 10 );
+        $elapsedTime = [String]::Format( "{0:00}m {1:00}.{2:00}s", $ts.Minutes, $ts.Seconds, $ts.Milliseconds / 10 );
     }
     else {
-        $elapsedTime = [string]::Format( "{0:00}.{1:00}s", $ts.Seconds, $ts.Milliseconds / 10 );
+        $elapsedTime = [String]::Format( "{0:00}.{1:00}s", $ts.Seconds, $ts.Milliseconds / 10 );
     }
 
     if ($ts.Hours -eq 0 -and $ts.Minutes -eq 0 -and $ts.Seconds -eq 0) {
-        $elapsedTime = [string]::Format("{0:00}ms", $ts.Milliseconds);
+        $elapsedTime = [String]::Format("{0:00}ms", $ts.Milliseconds);
     }
 
     if ($ts.Milliseconds -eq 0) {
-        $elapsedTime = [string]::Format("{0}ms", $ts.TotalMilliseconds);
+        $elapsedTime = [String]::Format("{0}ms", $ts.TotalMilliseconds);
     }
 
     return $elapsedTime
@@ -68,10 +75,9 @@ Function render-png($path, $name) {
     $start = Get-Date
     Write-Output $start
     Remove-Item .\$name.png 2> $null
+    Remove-Item $outdir\$name.png 2> $null
     Invoke-Expression "openscad --render -o $name.png $path\$name.scad"
-    if ($outdir -NE ".") {
-        Move-Item .\$name.png $outdir
-    }
+    Move-Item .\$name.png $outdir\images\
     $elapsed = FormatElapsedTime ((Get-Date) - $start)
     Write-Output "PNG Render time: $elapsed for $name"
     Write-Output ""
