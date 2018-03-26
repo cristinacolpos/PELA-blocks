@@ -14,5 +14,10 @@ param (
 )
 
 Write-Output "======= Clean Mesh $name"
-Invoke-Expression "meshlabserver.exe -i $name -s clean.mlx"
+Invoke-Expression "meshlabserver.exe -i $name -o $name -s clean1.mlx"
+Invoke-Expression "meshlabserver.exe -i $name -o $name -s clean2.mlx"
+Invoke-Expression "meshlabserver.exe -i $name -o $name -s clean3.mlx"
+Invoke-Expression "meshlabserver.exe -i $name -o $name -s clean4.mlx"
+Invoke-Expression "meshlabserver.exe -i $name -o $name -s clean5.mlx"
+Invoke-Expression "meshlabserver.exe -i $name -o $name -s clean6.mlx"
 Write-Output ""
