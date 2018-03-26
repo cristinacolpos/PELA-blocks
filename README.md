@@ -32,9 +32,9 @@ See the [Slicer Recommendations](SLICER-RECOMMENDATIONS.md) for settings recomme
 
 ## Calibrate
 
-[![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
+[![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master//PELA-calibration.stl)
 
-[![PELA Calibration Bar](calibration/PELA-calibration.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
+[![PELA Calibration Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration.stl)
 
 [3D PELA Calibration Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/calibration/PELA-calibration.stl)
 
