@@ -59,7 +59,7 @@ SUGGESTIONS
 /* [Main Calibration Settings] */
 
 // Switch between flexible and rigid material geometry. Set true for Nylon, Ninjaflex, NGEN Semiflex, Ultimaker TPU95A and other flexible filaments for taller knobs and other changes to maintain a better grip when flexed
-flexible_material = true; 
+flexible_material = false; 
 
 // Set true if nozzle is >= 0.5mm. This simplifies the bottom gemoetry to create wider walls but at the cost of loosing the alternate bottom connector socket between every 4 other sockets. If not used with a large extruder the slicer may decimate features.
 large_nozzle = true;
