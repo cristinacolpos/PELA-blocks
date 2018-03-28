@@ -100,7 +100,7 @@ module motor_enclosure_top() {
         PELA_technic_block(l=l, w=w, h=h_top, side_holes=side_holes, end_holes=0, top_vents=top_vents, knob_vent_radius=knob_vent_radius);
 
         translate([0, 0, block_height(-h_top)]) {
-            motor_cutouts(ss=false, es=false);
+            motor_cutouts(ss=false);
         }
     }
 }
@@ -200,7 +200,7 @@ module electric_slot() {
             electric_cutout();
         }
 
-        translate([0, -(2*motor_radius-motor_width)/2, block_height()]) {
+        translate([0, -(2*motor_radius-motor_width)/2, block_height(3/4)]) {
             electric_cutout();
         }
     }    
