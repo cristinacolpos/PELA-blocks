@@ -1,11 +1,8 @@
 /*
-Parametric PELA End Cap Enclosure For Intel Compute Stick
+Parametric PELA End Cap Enclosure For Actuonix PQ12 Linear Servo
 
-Create 2 symmetric end pieces which can support a solid object with PELA-compatible attachment points on top and bottom. The print can be minimized by printing only smaller end caps instead of a complele enclosure.
+The left and right caps slip around the actuator.
 
-This large model takes considerable time to generate. For this reason it is not
-generated in the normal rebuilds, but can be build manually
-when needed.
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -29,15 +26,17 @@ use <../support/support.scad>
 
 /* [PELA Options plus Plastic and Printer Variance Adjustments] */
 
+// Generate print-time support aid structures
+print_supports = true;
+
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>preview a single object that can not be opened, 4>both caps
 mode = 3;
 
-
 // Length of the enclosure (PELA knob count)
-l = 23;
+l = 5;
 
 // Length of the left side of the enclosure (PELA knob count, for example l/2 or less)
-left_cap = 4;
+left_cap = 2;
 
 // Size of the left cap vertical support structure near the cut point (PELA knob count, 0 to disable)
 left_cap_support_width = 0.5;
@@ -49,46 +48,46 @@ right_cap_support_width = 0.5;
 right_cap = l - left_cap;
 
 // Width of the enclosure (PELA knob count)
-w = 10;
+w = 2;
 
 // Height of the enclosure (PELA block layer count)
-h = 4;
+h = 2;
 
 // Length of the object to be enclosed (mm)
-enclosed_l = 173;
+enclosed_l = 36.9;
 
 // Width of the object to be enclosed (mm)
-enclosed_w = 68;
+enclosed_w = 15.15;
 
 // Height of the object to be enclosed (mm)
-enclosed_height = 28;
+enclosed_height = 21.6;
 
 // Distance up from baselane for the hollowed space
-vertical_offset = -4;
+vertical_offset = 0;
 
 // The size of the step which supports the enclosed part at the edges and corners in case ventilation openings would allow the enclosed part to slip out of place (mm)
 shoulder = 2.5;
 
 // Slide all side openings up (-down) 
-side_opening_vertical_offset = -2.5;
+side_opening_vertical_offset = 0;
 
 // Rounding for side air hole corners
 corner_radius = 3.25;
 
 // Number of lines to approximate a circle in corner rounding
-corner_fn = 64;
+corner_fn = 32;
 
 // Solid interior is assumed for this model before carving away from that block
 solid_upper_layers = true;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = false;
+side_holes = 1;
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = false;
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = false;
+end_holes = 0;
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = false;
@@ -102,22 +101,19 @@ knob_vent_radius = 0;
 // There is usually no need or room for corner mounting M3 bolt holes
 bolt_holes = false;
 
-// Generate print-time support aid structures
-print_supports = true;
-
 
 /////////////////////////////////////
 // PELA End Cap Enclosure Display
 
 if (mode==1) {
-    left_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports, solid_upper_layers=solid_upper_layers);
+    left_endcap_with_supports(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports, solid_upper_layers=solid_upper_layers);
 } else if (mode==2) {
-    right_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports, solid_upper_layers=solid_upper_layers);
+    right_endcap_with_supports(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports, solid_upper_layers=solid_upper_layers);
 } else if (mode==3) {
     translate([0, block_width(w + 0.5), 0])
-        left_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports, solid_upper_layers=solid_upper_layers);
+        left_endcap_with_supports(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports, solid_upper_layers=solid_upper_layers);
 
-    right_endcap(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports, solid_upper_layers=solid_upper_layers);
+    right_endcap_with_supports(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, print_supports=print_supports, solid_upper_layers=solid_upper_layers);
 } else if (mode==4) {
     endcap_enclosure(enclosed_l=enclosed_l, enclosed_w=enclosed_w, enclosed_height=enclosed_height, shoulder=shoulder, l=l, w=w, h=h, left_cap=left_cap, right_cap=right_cap, left_cap_support_width=left_cap_support_width, right_cap_support_width=right_cap_support_width, side_opening_vertical_offset=side_opening_vertical_offset, corner_radius=corner_radius, vertical_offset=vertical_offset, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_upper_layers=solid_upper_layers);
 } else {

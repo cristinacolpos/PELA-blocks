@@ -139,7 +139,7 @@ module top_piece() {
     translate([0, block_width(w + 0.5), 0]) {
         difference() {
             union() {
-                PELA_technic_block(l=l, w=w, h=h, socket_height=1.8, bolt_holes=bolt_holes, side_holes=0, end_holes=0);
+                PELA_technic_block(l=l, w=w, h=h, bolt_holes=bolt_holes, side_holes=0, end_holes=0);
             
                 translate([0, 0, block_height(0.5)])
                     double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);

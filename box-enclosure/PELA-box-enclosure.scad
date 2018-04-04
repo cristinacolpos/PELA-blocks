@@ -83,6 +83,12 @@ front_wall_enabled = true;
 // Create the back wall
 back_wall_enabled = true;
 
+// Interior fill for layers above the bottom
+solid_upper_layers = true;
+
+// Interior fill for layers above the bottom
+solid_bottom_layer = true;
+
 // Bottom of the enclosure is a panel below the edges of the wall (if true, box is 1/3 of a block taller)
 drop_bottom = true;
 
