@@ -87,10 +87,10 @@ ridge_depth = 0.3;
 /* [Advanced Options for Basic Blocks] */
 
 // Minimum angle to approximate a circle
-$fa=10;
+$fa=15;
 
 // Minimum segment length to approximate a circle
-$fs=0.3;
+$fs=0.5;
 
 // [0:hidden, 1:display where knobs of a block below would be ]
 show_shadow_knobs = false;
