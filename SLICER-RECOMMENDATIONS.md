@@ -207,16 +207,6 @@ A very nice material for PELA blocks. Use a bed of watery PVA white glue. Amazin
 
 `Print Speed: 100 mm/s`
 
-`Infill Speed: 100 mm/s`
-
-`Outer Wall Speed: 60 mm/s`
-
-`Inner Wall Speed: 80 mm/s`
-
-`Top/Bottom Speed: 60 mm/s`
-
-`Initial Layer Speed: 50 mm/s`
-
 `Number of Slow Layers: 1`
 
 `Equalize Filament Flow: Yes`     (Move faster over thin walls)
@@ -225,3 +215,45 @@ A very nice material for PELA blocks. Use a bed of watery PVA white glue. Amazin
 
 `Enable Coasting: Yes`    (Stop extrusion before the end of a segment to minimize oozing)
 
+# Biofila Silk
+
+This is one of the most attractive filaments and biodegradable. It is between PLA and ABS is flexability and durability. Make sure you have good bed adhesion and adjust the settings for quick long retraction to minimize stringing in the block bottom connector.
+
+## `PELA_print_parameters.scad`
+
+`flexible_material = true;`
+
+`top_tweak = -0.02;`
+
+`bottom_tweak = 0.15;`
+
+`axle_hole_tweak = 0.06;`
+
+
+## Slicer Settings
+
+`Layer Height: 0.25`
+
+`Printing Temperature: 175C`
+
+`Build Plate: 60C`
+
+`Keep Heating: No`      (Bed heater can be disabled after the print)
+
+`Infill: 50%`    (minimal impact on time)
+
+`Fill gaps between walls: Nowhere`       (Use Everywhere if the block is printed tilted or on the side)
+
+`Retraction Distance: 3mm`
+
+`Retraction Speed: 20 mm/s`
+
+`Print Speed: 70 mm/s`
+
+`Number of Slow Layers: 1`
+
+`Equalize Filament Flow: Yes`     (Move faster over thin walls)
+
+`Print Cooling: 100%`
+
+`Enable Coasting: Yes`    (Stop extrusion before the end of a segment to minimize oozing)
