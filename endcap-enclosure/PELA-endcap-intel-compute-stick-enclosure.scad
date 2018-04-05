@@ -30,7 +30,7 @@ use <../support/support.scad>
 print_supports = true;
 
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>preview a single object that can not be opened, 4>both caps
-mode = 3;
+mode = 1;
 
 // Length of the enclosure (PELA knob count)
 l = 15;
