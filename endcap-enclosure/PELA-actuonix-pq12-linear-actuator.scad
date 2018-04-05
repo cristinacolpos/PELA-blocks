@@ -1,7 +1,7 @@
 /*
-Parametric PELA End Cap Enclosure For Intel Compute Stick
+Parametric PELA End Cap Enclosure For Actuonix PQ12 Linear Servo
 
-Create 2 symmetric end pieces which can support a solid object with PELA-compatible attachment points on top and bottom. The print can be minimized by printing only smaller end caps instead of a complele enclosure.
+The left and right caps slip around the actuator.
 
 
 By Paul Houghton
@@ -30,13 +30,13 @@ use <../support/support.scad>
 print_supports = true;
 
 // Type of print to generate- 1=>left cap, 2=>right cap, 3=>preview a single object that can not be opened, 4>both caps
-mode = 1;
+mode = 3;
 
 // Length of the enclosure (PELA knob count)
-l = 15;
+l = 5;
 
 // Length of the left side of the enclosure (PELA knob count, for example l/2 or less)
-left_cap = 6;
+left_cap = 2;
 
 // Size of the left cap vertical support structure near the cut point (PELA knob count, 0 to disable)
 left_cap_support_width = 0.5;
@@ -48,46 +48,46 @@ right_cap_support_width = 0.5;
 right_cap = l - left_cap;
 
 // Width of the enclosure (PELA knob count)
-w = 6;
+w = 2;
 
 // Height of the enclosure (PELA block layer count)
 h = 2;
 
 // Length of the object to be enclosed (mm)
-enclosed_l = 114.5;
+enclosed_l = 36.9;
 
 // Width of the object to be enclosed (mm)
-enclosed_w = 38.5;
+enclosed_w = 15.15;
 
 // Height of the object to be enclosed (mm)
-enclosed_height = 12.5;
+enclosed_height = 21.6;
 
 // Distance up from baselane for the hollowed space
-vertical_offset = -4;
+vertical_offset = 0;
 
 // The size of the step which supports the enclosed part at the edges and corners in case ventilation openings would allow the enclosed part to slip out of place (mm)
 shoulder = 2.5;
 
 // Slide all side openings up (-down) 
-side_opening_vertical_offset = -2.5;
+side_opening_vertical_offset = 0;
 
 // Rounding for side air hole corners
 corner_radius = 3.25;
 
 // Number of lines to approximate a circle in corner rounding
-corner_fn = 64;
+corner_fn = 32;
 
 // Solid interior is assumed for this model before carving away from that block
 solid_upper_layers = true;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = false;
+side_holes = 1;
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = false;
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = false;
+end_holes = 0;
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = false;

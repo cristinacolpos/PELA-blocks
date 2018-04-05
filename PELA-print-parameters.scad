@@ -128,13 +128,13 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 support_offset_from_part = 0.1;
 
 // Thickness of each rotating layer in a twisting support
-support_layer_height = 0.25;
+support_layer_height = 2;
 
 // Horizontal width of each side of a support triangle
-support_line_width = large_nozzle ? 0.7 : 0.5;
+support_line_width = large_nozzle ? 0.8 : 0.5;
 
 // Length of sides of a support equilateral triangle
-support_side_length = 2;
+support_side_length = 4;
 
 // Degrees to rotate for strength at each successive layer
 support_layer_rotation = 6; // Degrees
