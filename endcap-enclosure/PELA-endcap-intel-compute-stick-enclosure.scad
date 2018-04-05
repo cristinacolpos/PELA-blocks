@@ -36,7 +36,7 @@ mode = 1;
 l = 15;
 
 // Length of the left side of the enclosure (PELA knob count, for example l/2 or less)
-left_cap = 6;
+left_cap = 4;
 
 // Size of the left cap vertical support structure near the cut point (PELA knob count, 0 to disable)
 left_cap_support_width = 0.5;

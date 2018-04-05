@@ -99,7 +99,6 @@ knob_vent_radius = 0;
 // There is usually no need or room for corner mounting M3 bolt holes
 bolt_holes = false;
 
-support_offset_from_part=0.5;
 
 /////////////////////////////////////
 // PELA End Cap Enclosure Display
