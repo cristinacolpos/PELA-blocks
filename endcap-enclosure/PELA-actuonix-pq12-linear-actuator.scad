@@ -51,7 +51,7 @@ right_cap = l - left_cap;
 w = 2;
 
 // Height of the enclosure (PELA block layer count)
-h = 2 + 1/3;
+h = 2 + 2/3;
 
 // Length of the object to be enclosed (mm)
 enclosed_l = 36.9;
