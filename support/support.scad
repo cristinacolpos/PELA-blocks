@@ -39,7 +39,7 @@ translate([4, -4, 0]) {
     support(support_side_length=3, support_max_rotation=smr, support_line_width=0.2, height=10);
 }
 
-// No twisting when support_max_rotation is >0 and < 
+// Show an example of limited twisting when support_max_rotation is >0 
 translate([12, -4, 0]) {
     support(support_side_length=3, support_max_rotation=1, height=10);
 }
