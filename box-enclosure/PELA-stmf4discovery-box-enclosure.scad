@@ -109,7 +109,7 @@ side_snap_cut_width = 0.5;
 side_snap_cut_depth = 0.3;
 
 // Block with units in from board ends where the side snaps are placed
-side_snap_end_inset = 2;
+side_snap_end_inset = 1.5;
 
 // Size of the bump which holds the board down (part of the snap inset flexture)
 retainer_tab_radius = 0.8;
@@ -207,6 +207,7 @@ module connector_holes() {
 module board(l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
     x = (block_width(l) - board_l)/2;
     y = (block_width(w) - board_w)/2;
+
     translate([x, y, board_h]) {
         cube([board_l, board_w, board_thickness]);
     } 
@@ -215,16 +216,13 @@ module board(l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_
 
 // The space needed to drop the board in from above (may cut into the side walls)
 module board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
+
     hull() {
         board(l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
 
-        translate([0, 0, block_height(h)]) {
+        translate([0, 0, block_height(h) - board_h - board_thickness]) {
             board(l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
         }
-    }
-
-    translate([block_width(1)-skin, block_width(1)-skin, bottom_height]) {
-        cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, block_height(h)]);
     }
 }
 
@@ -232,24 +230,7 @@ module board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l
 // A solid layer around the space removed to allow dropping the board in from above
 module board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
 
-    dx_left = 0;
-    dx_right = 0;
-    dy_front = shell;
-    dy_back = shell;
-    x_thickness = max(shell, dx_left + dx_right); // >= 0
-    y_thickness = max(shell, dy_front + dy_back); // >= 0
-
-    intersection() {
-        minkowski() {
-            board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
-
-            translate([-dx_left, -dy_front, shell/2]) {
-                cube([x_thickness, y_thickness, shell], center=true);
-            }
-        }
-
-        cube([block_width(l), block_width(w), block_height(h)]);
-    }
+    board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w + 2*shell, board_h=board_h, board_thickness=board_thickness);
 }
 
 
