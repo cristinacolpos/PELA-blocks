@@ -88,19 +88,19 @@ top_shell = 1.5;
 
 /* [Top Connector Adjustments] */
 
-// Size of the top connectors (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
+// Size of the top connectors (slippery or brittle plastics negatively affect results and lifetime- the value below is roughly in the middle of various materials tested)
 knob_radius = 2.45 + 0.12 + top_tweak;
 
 // Distance below knob top surface and the internal flexture
 knob_top_thickness = 0.8;
 
-// Height of the connectors (1.8 is original LEGO standard, 2 gives a stronger hold while still maintaining compatibility, flexible materials benefit from being taller)
+// Height of the connectors (LEGO uses 1.8- taller gives a stronger hold, flexible materials should be even taller if possible)
 knob_height = flexible_material ? 9.6/3 : 2.0;
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-knob_flexture_radius = flexible_material ? 1.0 : 1.0;
+knob_flexture_radius = flexible_material ? 1.2 : 1.0;
 
-// Height of the easy connect slope near connector top (0 to disable such as for flexible materials, a bigger value such as 0.1 may help ease a tightly tuned fit or compensate for overextrusion)
+// Height of the knob top slope to ease connections (helps compensate for overextrusion, 0 to disable)
 knob_bevel = flexible_material ? 0.3 : 0.1;
 
 

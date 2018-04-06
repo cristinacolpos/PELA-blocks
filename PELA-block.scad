@@ -228,7 +228,7 @@ module knob_flexture(h=h, knob_radius=knob_radius, knob_height=knob_height, knob
         cylinder(r=knob_flexture_radius, h=knob_flexture_height);
    }
     
-    if (knob_vent_radius>0) {
+    if (knob_vent_radius > 0) {
         translate([0, 0, knob_height-knob_top_thickness]) {
             cylinder(r=knob_vent_radius, h=knob_height+defeather);
         }
