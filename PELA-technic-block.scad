@@ -49,10 +49,10 @@ PELA_technic_block();
 /////////////////////////////////////
 
 // Indicates a solid cylinder around side hole connectors
-function is_side_sheaths(side_sheaths=side_sheaths, side_holes=side_holes) = side_sheaths && side_holes>1;
+function is_side_sheaths(side_sheaths=side_sheaths, side_holes=side_holes) = side_sheaths && side_holes > 1;
 
 // Indicates a solid cylinder around end hole connectors
-function is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes) = end_holes>1 && end_sheaths;
+function is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes) = end_holes > 1 && end_sheaths;
 
 
 /////////////////////////////////////
