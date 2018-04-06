@@ -81,9 +81,6 @@ bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:kno
 // Height of the bottom to the enclosure (by default this is shorter then a normal panel so there is room on the enclosure sides for technic holes)
 bottom_height = 2.5;
 
-// Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-knob_flexture_radius = 0;
-
 // Create the left wall
 left_wall_enabled = false;
 
