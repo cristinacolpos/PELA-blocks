@@ -52,13 +52,13 @@ board_h = 12;
 board_thickness = 1.8;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]
@@ -73,10 +73,10 @@ bottom_vents = false;
 knob_vent_radius = 0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
-bolt_holes = false;
+bolt_holes = true;
 
 // Bottom of enclosure
-bottom_type = 3; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 // Height of the bottom to the enclosure (by default this is shorter then a normal panel so there is room on the enclosure sides for technic holes)
 bottom_height = 2.5;
@@ -99,6 +99,29 @@ back_wall_enabled = true;
 // Bottom of the enclosure is a panel below the edges of the wall (if true, box is 1/3 of a block taller)
 drop_bottom = false;
 
+// Side snap size, block units. Longer is stronger/stiffer
+flexture_width = 1;
+
+// Width of flexture spacings from the rest of the side wall
+side_snap_cut_width = 0.5;
+
+// Depth into the side walls of the cut (block units, larger value means thicker/stiffer flexture)
+side_snap_cut_depth = 0.3;
+
+// Block with units in from board ends where the side snaps are placed
+side_snap_end_inset = 2;
+
+// Size of the bump which holds the board down (part of the snap inset flexture)
+retainer_tab_radius = 0.8;
+
+// Size of the space for cable access on the enclosure end
+connector_hole_radius = 8;
+
+// Height of the flexture which allows the board to slide past the retainer tab (block height count)
+side_fexture_cut_height = 2;
+
+solid_upper_layers = true;
+
 /////////////////////////////////////
 // PELA Box Enclosure Display
 
@@ -110,19 +133,71 @@ PELA_stmf4discovery_box_enclosure();
 ///////////////////////////////////
 
 
-module PELA_stmf4discovery_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom) {
+module PELA_stmf4discovery_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers, shell=shell) {
 
     difference() {
         union() {
-            PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom);
+            PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers);
 
             board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
         }
 
         union() {
             board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
-            // bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes);
-            side_snap_board_holder_cut();
+            
+            connector_holes();
+            
+            right_side_snap_cuts(side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, shell=shell);
+
+            left_side_snap_cuts(side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, shell=shell);
+        }
+    }
+
+    right_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius);
+
+    left_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius);
+}
+
+
+// Two bumps on the two right side flextures to keep the board from moving upwards
+module right_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius) {
+
+    side_snap_board_retainer_tab(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius);
+
+    translate([block_width(l - flexture_width - 2*side_snap_end_inset), 0, 0]) {
+        side_snap_board_retainer_tab(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius);
+    }        
+}
+
+
+// Two bumps on the left side to hold the board down
+module left_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius) {
+
+    translate([block_width(l), block_width(w), 0]) {
+        rotate([0, 0, 180]) {
+            right_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius);
+        }
+    }
+}
+
+
+// A bump sticking inward from the side flexture- keeps the board down
+module side_snap_board_retainer_tab(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius) {
+
+    translate([block_width(side_snap_end_inset) + side_snap_cut_width, block_width(0.5) + 3, board_h + board_thickness + retainer_tab_radius]) {
+
+        rotate([0, 90, 0]) {
+            cylinder(r=retainer_tab_radius, h=block_width(flexture_width) - 2*side_snap_cut_width);
+        }
+    }
+}
+
+
+// Access points in the back panel for parts of the board which have wires attached
+module connector_holes() {
+    translate([0, block_width(w/2), block_height(h/2)]) {
+        rotate([0, 90, 0]) {
+            cylinder(r=connector_hole_radius, h=block_width(l));
         }
     }
 }
@@ -156,19 +231,20 @@ module board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l
 
 // A solid layer around the space removed to allow dropping the board in from above
 module board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
+
+    dx_left = 0;
+    dx_right = 0;
+    dy_front = shell;
+    dy_back = shell;
+    x_thickness = max(shell, dx_left + dx_right); // >= 0
+    y_thickness = max(shell, dy_front + dy_back); // >= 0
+
     intersection() {
         minkowski() {
             board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
 
-            dx_left = 0;
-            dx_right = 0;
-            dy_front = shell;
-            dy_back = shell;
-            x_thickness = max(shell, dx_left+dx_right);
-            y_thickness = max(shell, dy_front+dy_back);
-
-            translate([-dx_left, -dy_front, 0]) {
-                cube([x_thickness, y_thickness, shell]);
+            translate([-dx_left, -dy_front, shell/2]) {
+                cube([x_thickness, y_thickness, shell], center=true);
             }
         }
 
@@ -177,20 +253,56 @@ module board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, b
 }
 
 
-module side_snap_board_holder_cut() {
-    side_snap_cut_width = 0.2;
+// Four vertical cuts into the side for two flexture to move with the board retaining tab
+module right_side_snap_cuts(side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, shell=shell) {
 
-    translate([block_width(2), block_width(0.5), block_height(1)-block_width(0.5)]) {
-        translate([-axle_hole_radius, 0, 0]) {
-            side_snap_cut();
+    side_snap_board_holder_cut(side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, shell=shell);
+
+    translate([block_width(l - 2*side_snap_end_inset - flexture_width), 0, 0]) {
+        side_snap_board_holder_cut(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, shell=shell);
+    }
+}
+
+
+// Four vertical cuts into the left side
+module left_side_snap_cuts(side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, shell=shell) {
+
+    translate([block_width(l), block_width(w), 0]) {
+        rotate([0, 0, 180]) {
+            right_side_snap_cuts(side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, shell=shell);
         }
-        translate([axle_hole_radius-side_snap_cut_width, 0, 0]) {
-            side_snap_cut(side_snap_cut_width=side_snap_cut_width);
+    }
+}
+
+// Two vertical cuts in the side to hold a single board retaining tab
+module side_snap_board_holder_cut(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, shell=shell) {
+
+    translate([block_width(side_snap_end_inset), block_width(0.5), block_height(1)-block_width(0.5)]) {
+        
+        side_snap_cut(side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height);
+
+        translate([block_width(flexture_width) - side_snap_cut_width, 0, 0]) {
+
+            side_snap_cut(side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height);
+        }
+
+        translate([0, block_width(0.5 - side_snap_cut_depth) - side_snap_cut_width, 0]) {
+
+            side_snap_back_cut(flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height);
         }
     }
 }
 
 
-module side_snap_cut(side_snap_cut_width=side_snap_cut_width) {
-    cube([side_snap_cut_width, block_width(0.5), block_height(3)]);
+// A vertical slice to allow the flexture to move inward as the board is inserted past the retaining tab
+module side_snap_cut(side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height) {
+
+    cube([side_snap_cut_width, block_width(1), block_height(side_fexture_cut_height)]);
+}
+
+
+// A vertical slice to allow the flexture to move inward as the board is inserted past the retaining tab
+module side_snap_back_cut(flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height) {
+
+    cube([block_width(flexture_width), side_snap_cut_width, block_height(side_fexture_cut_height)]);
 }
