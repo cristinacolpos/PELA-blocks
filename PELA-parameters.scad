@@ -87,31 +87,31 @@ ridge_depth = 0.3;
 /* [Advanced Options for Basic Blocks] */
 
 // Minimum angle to approximate a circle
-$fa=15;
+$fa = 15;
 
 // Minimum segment length to approximate a circle
-$fs=0.5;
+$fs = 0.5;
 
-// [0:hidden, 1:display where knobs of a block below would be ]
+// Display where knobs of a block below would be
 show_shadow_knobs = false;
 
 // Basic unit horizontal size of each block
-block_width=8;
+block_width = 8;
 
 // Basic unit vertical size of each block
-block_height=9.6;
+block_height = 9.6;
 
 // Horizontal clearance space around the outer surface of the set of blocks to allow two parts to be placed next to one another
 skin = 0.1;
 
 // Height of the hole beneath each knob which facilitates click lock in low-flex materials by variable side pressure on any block above
-knob_flexture_height=4.5;
+knob_flexture_height = 4.5;
 
 // Width of horizontal surface strengthening slats between the bottom rings
-bottom_stiffener_width=2.6;
+bottom_stiffener_width = 2.6;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings, default is print-parameters.scad:knob_height)
-bottom_stiffener_height=knob_height;
+bottom_stiffener_height = knob_height;
 
 
 /* [Advanced Options for Technic Features] */
