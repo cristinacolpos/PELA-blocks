@@ -179,9 +179,15 @@ ___
 
 ___
 
-[![PELA Intel Compute Stick Enclosure](images/PELA-endcap-intel-compute-stick-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-endcap-intel-compute-stick-enclosure.stl)
+[![PELA Intel Compute Stick Enclosure](images/PELA-intel-compute-stick-endcap-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-endcap-enclosure.stl)
 
-[3D PELA Intel Compute Stick Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-endcap-intel-compute-stick-enclosure.stl) Add a full Windows or Linux computer to your robot and snap fit replace it to upgrade later.
+[3D PELA Intel Compute Stick Endcap Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-endcap-enclosure.stl) Add a full Windows or Linux computer to your robot and snap fit replace it to upgrade later.
+
+___
+
+[![PELA Actuonix PQ12 Linear Actuator Endcap Enclosure](images/PELA-actuonix-pq12-linear-actuator-endcap-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-actuonix-pq12-linear-actuator-endcap-enclosure.stl)
+
+[3D PELA Actuonix PQ12 Linear Actuator Endcap Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-actuonix-pq12-endcap-enclosure.stl) Add small linear servo to your robot.
 
 ___
 
