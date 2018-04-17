@@ -26,7 +26,7 @@ use <../support/support.scad>
 
 /* [PELA Options plus Plastic and Printer Variance Adjustments] */
 
-// Type of print to generate- 1=>left cap, 2=>right cap, 3=>preview a single object that can not be opened, 4>both caps
+// Type of print to generate- 1=>left cap, 2=>right cap, 3=>both caps, 4=>preview a single object that can not be opened
 mode = 3;
 
 // Length of the enclosure (PELA knob count)
