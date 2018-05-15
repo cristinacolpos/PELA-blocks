@@ -39,7 +39,7 @@ use <PELA-technic-block.scad>
 /* [PELA-compatible Options] */
 
 // What type of top connector
-top_type = 1; // [0:flat, 1:knob, 2:vented knob, 3:screw hole]
+top_type = 3; // [0:flat, 1:knob, 2:vented knob, 3:screw hole]
 
 // What type of bottom connector
 bottom_type = 1; // [0:flat, 1:socket, 2:screw hole]
