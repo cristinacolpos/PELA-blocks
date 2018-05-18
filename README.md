@@ -161,6 +161,12 @@ ___
 
 ___
 
+[![PELA Velcro Mount](images/PELA-velcro-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-velcro-mount.stl)
+
+[3D PELA Velcro Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-velcro-mount.stl) For attaching the HTC Vive Tracker or other sensors using velcro or similar straps.
+
+___
+
 [![PELA Rail Mount](images/PELA-rail-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rail-mount.stl)
 
 [3D PELA Rail Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rail-mount.stl) For attaching the HTC Vive Tracker or other sensors to a real gun rail. VR with a real gun.
