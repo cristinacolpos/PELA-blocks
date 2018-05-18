@@ -26,13 +26,13 @@ use <../PELA-technic-block.scad>
 /* [PELA Panel Options] */
 
 // Length of the block (PELA unit count)
-l = 8; 
+l = 4; 
 
 // Width of the block (PELA unit count)
-w = 8;
+w = 4;
 
 // Thickness of the panel (defaults to double thickness if flexible material to allow space for extra-tall flexible knobs below)
-panel_height = panel_height(flexible_material && knobs ? 2 : 1);
+panel_height = panel_height(1);
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 bolt_holes = false;
@@ -56,7 +56,7 @@ PELA_socket_panel();
 /////////////////////////////////////
 
 // Accept knobs from both top and bottom surface
-module PELA_socket_panel(l=l, w=w, pane_height=panel_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin) {
+module PELA_socket_panel(l=l, w=w, panel_height=panel_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin) {
     
     PELA_socket_panel_one_sided(l=l, w=w, panel_height=panel_height, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin);
     
