@@ -114,7 +114,7 @@ bottom_stiffener_width = 2.6;
 bottom_stiffener_height = knob_height;
 
 // Thickness of a default panel
-panel_height = panel_height(1);
+panel_height = panel_height();
 
 
 /* [Advanced Options for Technic Features] */

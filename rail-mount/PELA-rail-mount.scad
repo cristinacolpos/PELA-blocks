@@ -82,7 +82,7 @@ rail_mount();
 
 module top_panel(hide_vive_mount_knobs=hide_vive_mount_knobs) {
     translate([block_width(-3), block_width(-2), 0]) {
-        cube([block_width(w), block_width(4), panel_height()]);
+        cube([block_width(w), block_width(4), panel_height]);
     }
 
     translate([block_width(-l/2), block_width(-w/2)]) {
@@ -91,12 +91,12 @@ module top_panel(hide_vive_mount_knobs=hide_vive_mount_knobs) {
 
             union() {
                 if (hide_vive_mount_knobs) {
-                    translate([block_width(l/2-1), block_width(w/2-1), panel_height()]) {
-                        cube([block_width(2), block_width(2), panel_height()]);
+                    translate([block_width(l/2-1), block_width(w/2-1), panel_height]) {
+                        cube([block_width(2), block_width(2), panel_height]);
                     }
                 
-                    translate([block_width(l/2-3), block_width(w/2-2), panel_height()]) {
-                        cube([block_width(2), block_width(4), panel_height()]);
+                    translate([block_width(l/2-3), block_width(w/2-2), panel_height]) {
+                        cube([block_width(2), block_width(4), panel_height]);
                     }
                 }
             }
