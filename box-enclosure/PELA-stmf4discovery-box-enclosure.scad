@@ -225,9 +225,9 @@ module board_insertion_space(l=l, w=w, h=h, board_l=board_l, board_w=board_w, bo
 
 
 // A solid layer around the space removed to allow dropping the board in from above
-module board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
+module board_insertion_space_shell(l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
 
-    board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w + 2*shell, board_h=board_h, board_thickness=board_thickness);
+    board_insertion_space(l=l, w=w, h=h, board_l=board_l, board_w=board_w + 2*shell, board_h=board_h, board_thickness=board_thickness);
 }
 
 
