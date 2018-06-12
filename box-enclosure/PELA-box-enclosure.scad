@@ -133,7 +133,7 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=p
                 }
             }
 
-            bottom_z = drop_bottom ? -panel_height() : 0;
+            bottom_z = drop_bottom ? -panel_height : 0;
             translate([0, 0, bottom_z]) {
                 enclosure_bottom(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, skin=skin);
             }
