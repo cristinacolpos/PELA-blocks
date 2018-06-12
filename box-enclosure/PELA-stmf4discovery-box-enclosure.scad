@@ -136,11 +136,11 @@ module PELA_stmf4discovery_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type,
         union() {
             PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers);
 
-            board_insertion_space_shell(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
+            board_insertion_space_shell(l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
         }
 
         union() {
-            board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
+            board_insertion_space(l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
             
             connector_holes();
             
@@ -212,7 +212,7 @@ module board(l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_
 
 
 // The space needed to drop the board in from above (may cut into the side walls)
-module board_insertion_space(l=l, w=w, h=h, bottom_height=bottom_height, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
+module board_insertion_space(l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
 
     hull() {
         board(l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);

@@ -31,9 +31,6 @@ l = 4;
 // Width of the block (PELA unit count)
 w = 4;
 
-// Thickness of the panel (defaults to double thickness if flexible material to allow space for extra-tall flexible knobs below)
-panel_height = panel_height(1);
-
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 bolt_holes = false;
 
