@@ -113,6 +113,9 @@ bottom_stiffener_width = 2.6;
 // Height of horizontal surface strengthening slats (appears between the bottom rings, default is print-parameters.scad:knob_height)
 bottom_stiffener_height = knob_height;
 
+// Thickness of a default panel
+panel_height = panel_height(1);
+
 
 /* [Advanced Options for Technic Features] */
 
