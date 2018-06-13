@@ -41,22 +41,6 @@ include <PELA-print-parameters.scad>
 
 PELA_block();
 
-/////////////////////////////////////
-// FUNCTIONS
-/////////////////////////////////////
-
-// Horizontal size
-function block_width(i=1) = i*block_width;
-
-// Vertical size
-function block_height(h=1) = h*block_height;
-
-// Test if this is a corner block
-function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
-
-// Thickness of a flat panel
-function panel_height(i=1) = block_height(i)/3;
-
 
 /////////////////////////////////////
 // MODULES
