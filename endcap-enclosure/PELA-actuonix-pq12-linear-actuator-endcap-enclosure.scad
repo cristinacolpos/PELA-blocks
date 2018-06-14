@@ -45,19 +45,19 @@ right_cap_support_width = 0.5;
 right_cap = l - left_cap;
 
 // Width of the enclosure (PELA knob count)
-w = 2;
+w = 3;
 
 // Height of the enclosure (PELA block layer count)
-h = 2 + 2/3;
+h = 2 + 1/3;
 
 // Length of the object to be enclosed (mm)
 enclosed_l = 36.9;
 
 // Width of the object to be enclosed (mm)
-enclosed_w = 15.15;
+enclosed_w = 21.6;
 
 // Height of the object to be enclosed (mm)
-enclosed_height = 21.6;
+enclosed_height = 15.15;
 
 // Distance up from baselane for the hollowed space
 vertical_offset = 0;
