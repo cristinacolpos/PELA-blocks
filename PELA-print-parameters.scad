@@ -65,7 +65,7 @@ flexible_material = true;
 large_nozzle = true;
 
 // Generate print-time support aid structures for models which offer this. Turn this off if you will use slicer-generated print supports, but be aware that these may make the bottom connectors difficult to post process.
-print_supports = true;
+print_supports = false;
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
 top_tweak = 0.02; // -0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.05 for Polymaker PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon, 0.02 for Ultimaker TPU95A, 0.0 Biofila Silk

@@ -135,6 +135,13 @@ ___
 
 [3D PELA STMF4 Discovery Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-stmf4discovery-box-enclosure.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
+
+___
+
+[![PELA Sparkfun Pro Micro Box Enclosure](images/PELA-sparkfun-pro-micro-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-sparkfun-pro-micro-box-enclosure.stl)
+
+[3D PELA Sparkfun Pro Micro Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-sparkfun-pro-micro-box-enclosure.stl) Enclosure for the [Sparkfun Pro Micro](https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/introduction) board.
+
 ___
 
 [![PELA Grove Module](images/PELA-grove-module-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-grove-module-enclosure.stl)
