@@ -40,10 +40,10 @@ w = 4;
 h = 2;
 
 // Board length, including some extra
-board_l = 33.12;
+board_l = 33.3;
 
 // Board width, including some extra
-board_w = 18.2;
+board_w = 18.3;
 
 // Distance from box bottom to mount the board
 board_h = 3;

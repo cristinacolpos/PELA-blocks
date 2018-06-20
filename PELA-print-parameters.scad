@@ -59,19 +59,19 @@ SUGGESTIONS
 /* [Main Calibration Settings] */
 
 // Switch between flexible and rigid material geometry. Set true for Nylon, Ninjaflex, NGEN Semiflex, Ultimaker TPU95A and other flexible filaments for taller knobs and other changes to maintain a better grip when flexed
-flexible_material = false;
+flexible_material = true;
 
 // Set true if nozzle is >= 0.5mm. This simplifies the bottom gemoetry to create wider walls but at the cost of loosing the alternate bottom connector socket between every 4 other sockets. If not used with a large extruder the slicer may decimate features.
 large_nozzle = true;
 
 // Generate print-time support aid structures for models which offer this. Turn this off if you will use slicer-generated print supports, but be aware that these may make the bottom connectors difficult to post process.
-print_supports = false;
+print_supports = true;
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-top_tweak = -0.03; // -0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.05 for Polymaker PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon, 0.02 for Ultimaker TPU95A, 0.0 Biofila Silk
+top_tweak = 0.02; // -0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.05 for Polymaker PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon, 0.02 for Ultimaker TPU95A, 0.0 Biofila Silk
 
 // Bottom connector size adjustment (smaller is tigher, add in multiples of 0.01mm as determined from your calibration-block print)
-bottom_tweak = 0.08; // -0.02 for ABS, 0.10 for rPET, 0.08 for Pro1, 0.04 for Polymaker PLA, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon, 0.02 for Ultimaker TPU95A, -0.02 Biofila Silk
+bottom_tweak = 0.02; // -0.02 for ABS, 0.10 for rPET, 0.08 for Pro1, 0.04 for Polymaker PLA, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon, 0.02 for Ultimaker TPU95A, -0.02 Biofila Silk
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
 axle_hole_tweak = 0.04; // 0.04 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker PLA, 0.04 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, 0.04 for Ultimaker TPU95A, -0.04 Biofila Silk
@@ -100,7 +100,7 @@ knob_height = flexible_material ? 9.6/3 : 2.0;
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
 knob_flexture_radius = flexible_material ? 1.2 : 1.0;
 
-// Height of the knob top slope to ease connections (helps compensate for overextrusion, 0 to disable)
+// Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
 knob_bevel = flexible_material ? 0.3 : 0.1;
 
 
