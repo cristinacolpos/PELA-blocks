@@ -37,7 +37,7 @@ l = 14;
 w = 10;
 
 // Height of the enclosure including one for floor (PELA block layer count)
-h = 3;
+h = 3.2;
 
 // Board length, including some extra
 board_l = 97.3;
