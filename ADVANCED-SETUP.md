@@ -41,18 +41,3 @@ Follow the instructions below if you want to this from the command line or have 
 1. To make and clean a single block: `PELA-block.ps1 -stl -clean l=4 w=2 h=1`
 1. To make and clean a single block with technic holes: `PELA-technic-block.ps1 -stl -clean l=2 w=2 h=2`
 1. To batch make and clean all models with current material calibration values: `make.ps1 -stl -clean`
-
-## Raytraced image generation (Work in progress, not ready)
-
-This is a work in progress and not currently recommended
-
-1. Install **[Python 3](https://www.python.org/downloads/)** and **[PovRay](http://www.povray.org/download/)**
-1. `git init submodule` 
-1. `git submodule update` 
-1. `cd stltools`
-1. `python .\setup.py build`
-1. `python .\setup.py install`
-1. **[Calibrate](README.md#calibrate)** the PELA Block models for your printer 
-1. Make a block image: `PELA-block.ps1 -png l=4 w=2 h=1`
-1. Make a block with technic features image: `PELA-technic-block.ps1 -png l=2 w=2 h=2`
-1. Make all models as images: `make.ps1 -png`
