@@ -26,15 +26,15 @@ use <../PELA-technic-block.scad>
 /* [PELA Panel Options] */
 
 // Length of the block (PELA unit count)
-l = 14; 
+l = 4; 
 
 // Width of the block (PELA unit count)
-w = 3;
+w = 8;
 
-top_vents = true;
+top_vents = false;
 
 // Interior fill for layers above the bottom
-solid_bottom_layer = false;
+solid_bottom_layer = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 bolt_holes = false;
