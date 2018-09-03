@@ -128,12 +128,12 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=p
                     }
                 }
 
-                if (!drop_bottom) {
+                if (!drop_bottom && bottom_type > 0) {
                     bottom_negative_space(l=l, w=w, bottom_type=1, panel_height=panel_height, skin=0);
                 }
             }
 
-            bottom_z = drop_bottom ? -panel_height : 0;
+            bottom_z = drop_bottom  ? -panel_height : 0;
             translate([0, 0, bottom_z]) {
                 enclosure_bottom(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, skin=skin);
             }
@@ -220,7 +220,7 @@ module back_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side
 
 
 // Cutout for the box bottom
-module bottom_negative_space(l=l, w=w, bottom_type=1, panel_height=bottom_height, skin=skin) {
+module bottom_negative_space(l=l, w=w, bottom_type=bottom_type, panel_height=bottom_height, skin=skin) {
     
     if (bottom_type > 0) {
         enclosure_bottom(l=l, w=w, bottom_type=1, panel_height=bottom_height, skin=skin);
