@@ -169,12 +169,12 @@ module left_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sh
 
         union() {
             if (back_wall_enabled) {
-                corner_cut(angle=-45, h=h+1);
+                corner_cut(angle=-45, h=h);
             }
 
             if (front_wall_enabled) {
                 translate([0, block_width(w), 0]) {
-                    corner_cut(angle=-45, h=h+1);
+                    corner_cut(angle=-45, h=h);
                 }
             }
         }
@@ -211,12 +211,12 @@ module front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, sid
 
         union() {
             if (left_wall_enabled) {
-                corner_cut(angle=45, h=h+1);
+                corner_cut(angle=45, h=h);
             }
 
             if (right_wall_enabled) {
                 translate([block_width(l), 0, 0]) {
-                    corner_cut(angle=45, h=h+1);
+                    corner_cut(angle=45, h=h);
                 }
             }
         }
