@@ -204,6 +204,12 @@ ___
 
 ___
 
+[![PELA Raspberry Pi 3 Board Mount](images/PELA-raspberry-p3-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl)
+
+[3D PELA Raspberry Pi 3 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl) A base allowing snap-in holding of the board with full connector access and optional top cover
+
+___
+
 [![Print Support](images/support.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/support.stl)
 
 [3D Print Support](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/support.stl) This is are examples of the designed-in internal print-time roof and overhang supports. You can enable and disable this feature in some of the other models. These may be faster to print and easier to remove than slicer-generated supports.

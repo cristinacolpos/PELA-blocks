@@ -83,20 +83,6 @@ Function render-png($path, $name) {
     Write-Output ""
 }
 
-# Work in Progress, not yet supported
-Function raytrace-png($name) {
-    Write-Output "Render $name as Raytraced JPG"
-    $start = Get-Date
-    $param = "`"filename=$name.stl;`""
-    Invoke-Expression "python .\stlutils\stl2pov.py $name.stl"
-    Move-Item $name.inc temp.inc
-    Remove-Item temp.inc
-    $elapsed = FormatElapsedTime ((Get-Date) - $start)
-
-    Write-Output "PNG Render time: $elapsed for $name"
-    Write-Output ""
-}
-
 Write-Output "Generating PELA Blocks"
 Write-Output "======================"
 Write-Output Get-Date
@@ -158,6 +144,7 @@ render ".\endcap-enclosure\" "PELA-intel-compute-stick-endcap-enclosure"
 render ".\endcap-enclosure\" "PELA-actuonix-pq12-linear-actuator-endcap-enclosure"
 render ".\vive-tracker-mount\" "PELA-vive-tracker-mount"
 render ".\vive-tracker-mount\" "PELA-vive-tracker-screw"
+render ".\board-mount\" "PELA-raspberry-pi3-board-mount"
 render ".\grove-module-enclosure\" "PELA-grove-module-enclosure"
 render ".\support\" "support"
 
