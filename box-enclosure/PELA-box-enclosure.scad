@@ -111,9 +111,9 @@ drop_bottom = true;
 skip_edge_knobs = 1;
 
 
-/////////////////////////////////////
+///////////////////////////////////
 // PELA Box Enclosure Display
-
+///////////////////////////////////
 PELA_box_enclosure();
 
 
@@ -168,13 +168,13 @@ module left_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sh
         PELA_technic_block(l=1, w=w, h=h, top_vents=top_vents, side_holes=0, side_sheaths=0, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, knobs=knobs, knob_flexture_radius= knob_flexture_radius, solid_upper_layers=solid_upper_layers, shell=shell, knobs=knobs, knob_flexture_radius=knob_flexture_radius);
 
         union() {
-            if (back_wall_enabled) {
-                corner_cut(angle=-45, h=h);
+            if (front_wall_enabled) {
+                corner_cut(angle=-45, h=h+1);
             }
 
-            if (front_wall_enabled) {
+            if (back_wall_enabled) {
                 translate([0, block_width(w), 0]) {
-                    corner_cut(angle=-45, h=h);
+                    corner_cut(angle=-45, h=h+1);
                 }
             }
         }
@@ -211,12 +211,12 @@ module front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, sid
 
         union() {
             if (left_wall_enabled) {
-                corner_cut(angle=45, h=h);
+                corner_cut(angle=45, h=h+1);
             }
 
             if (right_wall_enabled) {
                 translate([block_width(l), 0, 0]) {
-                    corner_cut(angle=45, h=h);
+                    corner_cut(angle=45, h=h+1);
                 }
             }
         }
