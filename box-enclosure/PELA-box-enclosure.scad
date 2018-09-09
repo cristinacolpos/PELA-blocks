@@ -140,7 +140,7 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=p
                     }
 
                     if (front_wall_enabled) {
-                        front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_upper_layers=solid_upper_layers, shell=shell, knobs=front_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz;
+                        front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_upper_layers=solid_upper_layers, shell=shell, knobs=front_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz);
                     }
 
                     if (back_wall_enabled) {
@@ -172,12 +172,12 @@ module left_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sh
 
         union() {
             if (front_wall_enabled) {
-                corner_cut(angle=-45, h=h+1);
+                corner_cut(angle=-45, h=h);
             }
 
             if (back_wall_enabled) {
                 translate([0, block_width(w), 0]) {
-                    corner_cut(angle=-45, h=h+1);
+                    corner_cut(angle=-45, h=h);
                 }
             }
         }
@@ -214,12 +214,12 @@ module front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, sid
 
         union() {
             if (left_wall_enabled) {
-                corner_cut(angle=45, h=h+1);
+                corner_cut(angle=45, h=h);
             }
 
             if (right_wall_enabled) {
                 translate([block_width(l), 0, 0]) {
-                    corner_cut(angle=45, h=h+1);
+                    corner_cut(angle=45, h=h);
                 }
             }
         }
