@@ -39,9 +39,13 @@ counterbore_holder_radius = counterbore_inset_radius - skin;
 
 counterbore_holder_height = counterbore_inset_depth * 2;
 
+array_count = 4; // The number of half-pins in an array supported by as base
+
+base_thickness = panel_height(); // The thickness of the base below an array of half-pins
+
 ///////////////
 
-pin();
+pin_array();
     
 //////////////////
 
@@ -73,32 +77,36 @@ module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_len
 
     slot_length=3*length/5;
 
-    difference() {
-        union() {
-            cylinder(r=axle_radius, h=length);
-            
-            translate([0, 0, peg_length+pin_tip_length])
-                cylinder(r=counterbore_holder_radius, h=counterbore_holder_height);
-            
-            tip(axle_radius=axle_radius, pin_tip_length=pin_tip_length);
-            
-            translate([0, 0, length-pin_tip_length])
-                tip(axle_radius=axle_radius, pin_tip_length=pin_tip_length);
-        }
-        
-        union() {
-            translate([0, 0, -defeather])
-                cylinder(r=pin_center_radius, h=length+2*defeather);
+    translate([0, 0, -length/2]) {
+        rotate([0, 0, 90]) {
+            difference() {
+                union() {
+                    cylinder(r=axle_radius, h=length);
+                    
+                    translate([0, 0, peg_length+pin_tip_length])
+                        cylinder(r=counterbore_holder_radius, h=counterbore_holder_height);
+                    
+                    tip(axle_radius=axle_radius, pin_tip_length=pin_tip_length);
+                    
+                    translate([0, 0, length-pin_tip_length])
+                        tip(axle_radius=axle_radius, pin_tip_length=pin_tip_length);
+                }
+                
+                union() {
+                    translate([0, 0, -defeather])
+                        cylinder(r=pin_center_radius, h=length+2*defeather);
 
-            translate([0, 0, slot_thickness])
-                rounded_slot(thickness=slot_thickness, slot_length=slot_length);
-            
-            translate([0, 0, length-slot_thickness])
-                rounded_slot(thickness=slot_thickness, slot_length=slot_length);
-            
-            translate([0, 0, length/2])
-                rotate([0, 0, 90])
-                rounded_slot(thickness=slot_thickness, slot_length=slot_length);
+                    translate([0, 0, slot_thickness])
+                        rounded_slot(thickness=slot_thickness, slot_length=slot_length);
+                    
+                    translate([0, 0, length-slot_thickness])
+                        rounded_slot(thickness=slot_thickness, slot_length=slot_length);
+                    
+                    translate([0, 0, length/2])
+                        rotate([0, 0, 90])
+                        rounded_slot(thickness=slot_thickness, slot_length=slot_length);
+                }
+            }
         }
     }
 }
@@ -143,4 +151,42 @@ module rounded_slot(thickness=2, slot_length=10) {
     translate([-width/2, 0, -slot_length/2 + thickness])
         rotate([0, 90, 0])
             cylinder(r=thickness/circle_to_slot_ratio, h=width);
+}
+
+
+// A set of half-pins connected by at the base
+module pin_array(array_count=array_count, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
+
+    translate([block_width(1/2), block_width(1/2), base_thickness]) {
+        difference() {
+            union() {
+                for (i = [0 : array_count-1]) {
+                    translate([block_width(i), 0, 0]) {
+                        pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height);
+                    }
+                }
+            }
+            
+            translate([-block_width(), -block_width(), -block_height()-skin]) {
+                cube([block_width(array_count+1), block_width(2), block_height()]);
+            }
+        }
+        
+        pin_base(array_count=array_count, base_thickness=base_thickness);
+    }
+}
+
+
+// The default connector between base pins
+module pin_base(array_count=array_count, base_thichness=base_thickness) {
+    
+    translate([-block_width(1/2), -block_width(1/2), -base_thickness-skin]) {
+        difference() {
+            cube([block_width(array_count), block_width(1), base_thickness]);
+        
+            translate([0, block_width(1/2)-slot_thickness/2, 0]) {
+                cube([block_width(array_count), slot_thickness, base_thickness]);
+            }
+        }
+    }    
 }
