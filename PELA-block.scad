@@ -35,6 +35,20 @@ include <PELA-parameters.scad>
 include <PELA-print-parameters.scad>
 
 
+
+/* [PELA Block Dimensions] */
+
+// Length of the block (PELA unit count)
+l = 4; 
+
+// Width of the block (PELA unit count)
+w = 2;
+
+// Height of the block (PELA unit count)
+h = 1;
+
+
+
 /////////////////////////////////////
 // PELA display
 /////////////////////////////////////
@@ -48,7 +62,7 @@ PELA_block();
 
 
 // A PELA block
-module PELA_block(l=l, w=w, h=1/3, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, ring_thickness=ring_thickness, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer) {
+module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, ring_thickness=ring_thickness, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer) {
     
     difference() {
         union() {
@@ -94,7 +108,7 @@ module PELA_block(l=l, w=w, h=1/3, axle_hole_radius=axle_hole_radius, knob_radiu
         }
 
         union() {
-            skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth);
+            skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset);
             
             if (knobs) {
                 knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes);
@@ -332,7 +346,7 @@ module socket_hole(radius=ring_radius-ring_thickness, length=block_height()) {
 
 
 // The thin negative space surrounding a PELA block so that two blocks can fit next to each other easily in a tight grid
-module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth) {
+module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset) {
     // Front skin
     cube([block_width(l), skin, block_height(h)]);
 
@@ -350,25 +364,25 @@ module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge
     }
     
     if (ridge_width>0 && ridge_depth>0 && h>1) {
-        for (i = [1:h-1]) {
+        for (i = [block_height(1):block_height():block_height(h)]) {
             // Front layer ridge
-            translate([0, 0, block_height(i)]) {
-                cube([block_width(l), ridge_depth, ridge_width]);
+            translate([0, 0, i]) {
+#                cube([block_width(l), ridge_depth, ridge_width]);
             }
                 
             // Back layer ridge
-            translate([0, block_width(w)-skin-ridge_depth, block_height(i)]) {
-                cube([block_width(l), ridge_depth, ridge_width]);
+            translate([0, block_width(w)-skin-ridge_depth, i]) {
+#                cube([block_width(l), ridge_depth, ridge_width]);
             }
 
             // Left layer ridge
-            translate([skin, 0, block_height(i)]) {
-                cube([ridge_depth, block_width(w), ridge_width]);
+            translate([skin, 0, i]) {
+#                cube([ridge_depth, block_width(w), ridge_width]);
             }
 
             // Right layer ridge
-            translate([block_width(l) - skin - ridge_depth, 0, block_height(i)]) {
-                cube([ridge_depth, block_width(w), ridge_width]);
+            translate([block_width(l) - skin - ridge_depth, 0, i]) {
+#                cube([ridge_depth, block_width(w), ridge_width]);
             }
         }
     }

@@ -83,6 +83,9 @@ ridge_width = 0.15;
 // Depth of a line etched in the side of multi-layer block sets
 ridge_depth = 0.3;
 
+// How far up or down for artistic purposes to move the thin outside shell ridge which shows the height of each layer
+ridge_z_offset = 0;
+
 
 /* [Advanced Options for Basic Blocks] */
 
