@@ -367,22 +367,22 @@ module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge
         for (i = [block_height(1):block_height():block_height(h)]) {
             // Front layer ridge
             translate([0, 0, i]) {
-#                cube([block_width(l), ridge_depth, ridge_width]);
+                cube([block_width(l), ridge_depth, ridge_width]);
             }
                 
             // Back layer ridge
             translate([0, block_width(w)-skin-ridge_depth, i]) {
-#                cube([block_width(l), ridge_depth, ridge_width]);
+                cube([block_width(l), ridge_depth, ridge_width]);
             }
 
             // Left layer ridge
             translate([skin, 0, i]) {
-#                cube([ridge_depth, block_width(w), ridge_width]);
+                cube([ridge_depth, block_width(w), ridge_width]);
             }
 
             // Right layer ridge
             translate([block_width(l) - skin - ridge_depth, 0, i]) {
-#                cube([ridge_depth, block_width(w), ridge_width]);
+                cube([ridge_depth, block_width(w), ridge_width]);
             }
         }
     }

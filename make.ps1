@@ -145,6 +145,7 @@ render ".\endcap-enclosure\" "PELA-actuonix-pq12-linear-actuator-endcap-enclosur
 render ".\vive-tracker-mount\" "PELA-vive-tracker-mount"
 render ".\vive-tracker-mount\" "PELA-vive-tracker-screw"
 render ".\board-mount\" "PELA-raspberry-pi3-board-mount"
+render ".\board-mount\" "PELA-raspberry-pi3-board-mount-sides"
 render ".\grove-module-enclosure\" "PELA-grove-module-enclosure"
 render ".\support\" "support"
 
