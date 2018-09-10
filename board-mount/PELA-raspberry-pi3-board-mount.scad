@@ -59,8 +59,9 @@ back_wall_knobs = true;
 board_x_offset = 1.9;
 board_y_offset = -3;
 board_z_offset = -0.2;
-sd_card_cutout_width = 16;
+sd_card_cutout_width = block_width(3);
 sd_card_cutout_depth = 3.8;
+sd_card_cutout_offset = -block_width(1/2);
 top_edge_height = 2;
 
 ///////////
@@ -82,7 +83,7 @@ difference() {
 module sd_card_cutout() {
     w = fit_mm_to_pela_blocks(width);
 
-    translate([-0.1, (block_width(w)-sd_card_cutout_width)/2, block_height(h)-sd_card_cutout_depth]) {
+    translate([-0.1, sd_card_cutout_offset + (block_width(w)-sd_card_cutout_width)/2, block_height(h)-sd_card_cutout_depth]) {
         cube([block_width(2), sd_card_cutout_width, block_height(2)]);
     }
 }
