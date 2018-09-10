@@ -88,7 +88,7 @@ module sd_card_cutout() {
 }
 
 
-module pi_caae_sides() {
+module pi_case_sides() {
     l = fit_mm_to_pela_blocks(length);
     w = fit_mm_to_pela_blocks(width);
 
