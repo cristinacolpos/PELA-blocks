@@ -35,7 +35,37 @@ include <PELA-parameters.scad>
 include <PELA-print-parameters.scad>
 use <PELA-block.scad>
 
-/* [PELA-compatible Options] */
+/* [PELA Block Dimensions] */
+
+// Length of the block (PELA unit count)
+l = 7; 
+
+// Width of the block (PELA unit count)
+w = 3;
+
+// Height of the block (PELA unit count)
+h = 2;
+
+/* [Basic Block Features] */
+
+// Presence of bottom connector sockets
+sockets = true;
+
+// Presence of top connector knobs
+knobs = true;
+
+// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
+bolt_holes = true;
+
+// Size of corner holes for M3 mountings bolts
+bolt_hole_radius=1.6;
+
+// Interior fill for layers above the bottom
+solid_upper_layers = true;
+
+// Interior fill for layers above the bottom
+solid_bottom_layer = false;
+
 
 /////////////////////////////////////
 // PELA display
