@@ -205,13 +205,13 @@ ___
 
 ___
 
-[![PELA Raspberry Pi 3 Board Mount](images/PELA-raspberry-p3-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl)
+[![PELA Raspberry Pi 3 Board Mount](images/PELA-raspberry-pi3-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl)
 
 [3D PELA Raspberry Pi 3 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl) A base allowing snap-in holding of the board with full connector access and optional top cover
 
 ___
 
-[![PELA Raspberry Pi 3 Sides for Board Mount](images/PELA-raspberry-p3-board-mount-sides.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount-sides.stl)
+[![PELA Raspberry Pi 3 Sides for Board Mount](images/PELA-raspberry-pi3-board-mount-sides.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount-sides.stl)
 
 [3D PELA Raspberry Pi 3 Sides for Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount-sides.stl) Two walls making up the non-access sides of the Pi case
 
