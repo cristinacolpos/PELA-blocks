@@ -217,6 +217,12 @@ ___
 
 ___
 
+[![PELA PCA9685 16 Channel Servo Board Mount](images/PELA-pca9685-servo-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-board-mount.stl)
+
+[3D PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-board-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end
+
+___
+
 [![Print Support](images/support.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/support.stl)
 
 [3D Print Support](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/support.stl) This is are examples of the designed-in internal print-time roof and overhang supports. You can enable and disable this feature in some of the other models. These may be faster to print and easier to remove than slicer-generated supports.
