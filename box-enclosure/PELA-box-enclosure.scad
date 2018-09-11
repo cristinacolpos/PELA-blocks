@@ -30,22 +30,22 @@ use <../knob-panel/PELA-knob-panel.scad>
 /* [PELA Box Option] */
 
 // Length of the enclosure including two for walls (PELA knob count)
-l = 4;
+l = 9;
 
 // Width of the enclosure including two for walls (PELA knob count)
-w = 4;
+w = 5;
 
 // Height of the enclosure not including the possible drop_bottom floor (PELA block layer count)
-h = 1+2/3;
+h = 2/3;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
@@ -60,10 +60,10 @@ bottom_vents = true;
 knob_vent_radius = 0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
-bolt_holes = false;
+bolt_holes = true;
 
 // Bottom of enclosure
-bottom_type = 3; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 // Height of the bottom to the enclosure (by default this is shorter then a normal panel so there is room on the enclosure sides for technic holes)
 bottom_height = 2.5;
@@ -75,7 +75,7 @@ knobs = true;
 knob_flexture_radius = 0;
 
 // Create the left wall
-left_wall_enabled = true;
+left_wall_enabled = false;
 
 // Shoud there be knobs on top of the left wall
 left_wall_knobs = knobs;
