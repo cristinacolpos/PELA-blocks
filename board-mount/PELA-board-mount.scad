@@ -74,7 +74,7 @@ difference() {
 function fit_mm_to_pela_blocks(i) = ceil((i+block_width)/block_width);
 
 
-module pcb_space(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset) {
+module pcb_space(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, dome=true) {
 
     l = fit_mm_to_pela_blocks(length);
     w = fit_mm_to_pela_blocks(width);
@@ -82,7 +82,17 @@ module pcb_space(length=length, width=width, h=h, thickness=thickness, undercut=
     y_inset = (block_width(w) - width)/2;
 
     translate([x_inset + board_x_offset, y_inset + board_y_offset, block_height(h)+board_z_offset]) {
-        cube([length, width, thickness]);
+        if (dome) {
+            hull() {
+                cube([length, width, thickness]);
+                i = w/3;
+                translate([i, i, i]) {
+                    cube([length-2*i, 0.01, 0.01]);
+                }
+            }
+        } else {
+            cube([length, width, thickness]);
+        }
     }
 
     // Undercut space for board bottom

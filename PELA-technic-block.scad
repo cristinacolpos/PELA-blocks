@@ -38,13 +38,13 @@ use <PELA-block.scad>
 /* [PELA Block Dimensions] */
 
 // Length of the block (PELA unit count)
-l = 28; 
+l = 24;
 
 // Width of the block (PELA unit count)
-w = 3;
+w = 5;
 
 // Height of the block (PELA unit count)
-h = 2;
+h = 1;
 
 /* [Basic Block Features] */
 
