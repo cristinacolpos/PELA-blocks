@@ -123,8 +123,10 @@ if ($stl -OR $png -OR $clean) {
 }
 
 render ".\pin\" "PELA-technic-pin"
+render ".\pin\" "PELA-technic-pin-array"
 render ".\axle\" "PELA-technic-axle"
 render ".\axle\" "PELA-technic-cross-axle"
+render ".\openbeam\" "PELA-openbeam15-twist-connector"
 render ".\calibration\" "PELA-calibration"
 render ".\calibration\" "PELA-calibration-set"
 render ".\sign\" "PELA-sign"

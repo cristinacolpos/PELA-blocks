@@ -38,13 +38,13 @@ use <PELA-block.scad>
 /* [PELA Block Dimensions] */
 
 // Length of the block (PELA unit count)
-l = 24;
+l = 8;
 
 // Width of the block (PELA unit count)
-w = 5;
+w = 4;
 
 // Height of the block (PELA unit count)
-h = 1;
+h = 2;
 
 /* [Basic Block Features] */
 
@@ -55,7 +55,7 @@ sockets = true;
 knobs = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = true;
+bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius=1.6;
@@ -65,6 +65,28 @@ solid_upper_layers = true;
 
 // Interior fill for layers above the bottom
 solid_bottom_layer = false;
+
+
+/* [Technic Features] */
+
+// Add full width through holes spaced along the length for PELA Techics connectors
+side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+
+// Add a sheath around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
+side_sheaths = true;
+
+// Add short end holes spaced along the width for PELA Techics connectors
+end_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+
+// Add a sheath around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
+end_sheaths = true;
+
+// Add holes in the top deck to improve airflow and reduce weight
+top_vents = false;
+
+// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
+knob_vent_radius = 0;
+
 
 
 /////////////////////////////////////
@@ -260,8 +282,7 @@ module double_side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radiu
 // A row of knob-size holes around the sides of row 1
 module side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes) {
     
-    //TODO Short holes not properly supprted
-    length = side_holes==3 ? block_width() : block_width(w);
+    length = (hole_type==1 || hole_type==3) ? block_width() : block_width(w);
 
     if (l==1) {
         translate([block_width(0.5), 0, block_height()-block_width(0.5)]) {
