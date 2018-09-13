@@ -39,14 +39,13 @@ counterbore_holder_radius = counterbore_inset_radius - skin;
 
 counterbore_holder_height = counterbore_inset_depth * 2;
 
-array_count = 4; // The number of half-pins in an array supported by as base
-
-base_thickness = panel_height(); // The thickness of the base below an array of half-pins
 
 ///////////////
+// Display
+//////////////
 
-pin_array();
-    
+pin();
+
 //////////////////
 
 
