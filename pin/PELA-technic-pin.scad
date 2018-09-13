@@ -39,6 +39,12 @@ counterbore_holder_radius = counterbore_inset_radius - skin;
 
 counterbore_holder_height = counterbore_inset_depth * 2;
 
+/* [Technic Pin Array Options] */
+
+array_count = 4; // The number of half-pins in an array supported by as base
+
+base_thickness = panel_height(); // The thickness of the base below an array of half-pins
+
 
 ///////////////
 // Display
@@ -126,6 +132,7 @@ module rounded_disc(radius=10, thickness=1) {
             sphere(r=thickness/2, $fn=16);
         }
 }
+
 
 // Side flexture slot with easement holes at each end
 module rounded_slot(thickness=2, slot_length=10) {

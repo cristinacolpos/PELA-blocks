@@ -32,4 +32,4 @@ base_thickness = panel_height(); // The thickness of the base below an array of 
 // Display
 ///////////////
 
-pin_array();
+pin_array(array_count=array_count, base_thickness=base_thickness);
