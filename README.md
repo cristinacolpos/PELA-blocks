@@ -43,11 +43,11 @@ These parametric models are easily tuned for a perfect snap fit with almost any 
 
 **TL;DR** *: To get a nice snap fit, print `PELA-calibration.stl` and test the fit with commercial LEGO. Type the best `top_tweak` and `bottom_tweak` into [`PELA-print-parameters.scad`](PELA-print-parameters.scad). Now open any model in OpenSCAD, press `F6` then `Export as STL`.*
 
-### Calibraton Instructions
+### Calibration Instructions
 
 Your printer, slider and plastic effect the precise fit of press fit connectors. To correct for this we adjust the models slightly. It is a one time process for each material. It is as simple as fitting two blocks together and editing a text file, [`PELA-print-parameters.scad`](PELA-print-parameters.scad), with your preferred fit.
 
-The most common settings are `top_tweak` and `bottom_tweak`. These can be read from the side of the clibration bar. 
+The most common settings are `top_tweak` and `bottom_tweak`. These can be read from the side of the calibration bar. 
 
 Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). These help to tailor the models for easier printing and a better fit.
 
@@ -105,6 +105,12 @@ ___
 [![PELA Technic Pin Array](images/PELA-technic-pin-array.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pin-array.stl)
 
 [3D PELA Technic Pin Array](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pin-array.stl) A set of technic pins for multi-point connection.
+
+___
+
+[![PELA Slot Mount](images/PELA-slot-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount.stl)
+
+[3D PELA Slot Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount.stl) A set of technic pins with an associated vertical PCB insertion slot. The default parameters are for holding a Haiworld wide angle Raspberry Pi 3 camera.
 
 ___
 
