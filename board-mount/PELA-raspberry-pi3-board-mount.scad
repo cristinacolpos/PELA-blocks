@@ -1,7 +1,7 @@
 /*
 PELA Board Holder - 3D Printed LEGO-compatible PCB mount
 
-Published at https://driftcar.PELAblocks.org
+Published at https://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat

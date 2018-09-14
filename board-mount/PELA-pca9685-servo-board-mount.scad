@@ -2,7 +2,7 @@
 PELA Board Holder - 3D Printed LEGO-compatible PCB mount
 For PCA9685 16 Channel 12 bit servo driver board, https://www.amazon.de/gp/product/B07CRDCP8V/ref=oh_aui_detailpage_o01_s00
 
-Published at https://driftcar.PELAblocks.org
+Published at https://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
