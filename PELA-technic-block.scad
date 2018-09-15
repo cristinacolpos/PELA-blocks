@@ -49,7 +49,7 @@ h = 1;
 /* [Basic Block Features] */
 
 // Presence of bottom connector sockets
-sockets = false;
+sockets = true;
 
 // Presence of top connector knobs
 knobs = true;
@@ -70,7 +70,7 @@ solid_bottom_layer = false;
 /* [Technic Features] */
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 3;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Add a sheath around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;

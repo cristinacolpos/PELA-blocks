@@ -98,7 +98,7 @@ knob_top_thickness = 0.8;
 knob_height = 9.6/3; //flexible_material ? 9.6/3 : 2.0;
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-knob_flexture_radius = flexible_material ? 0.5 : 0.8;
+knob_flexture_radius = flexible_material ? 0.6 : 0.8;
 
 // Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
 knob_bevel = flexible_material ? 0.3 : 0.1;
@@ -113,7 +113,7 @@ ring_thickness = large_nozzle ? 1.2 : 0.8;
 ring_radius = 2.75 + ring_thickness + bottom_tweak;
 
 // Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
-side_lock_thickness = flexible_material ? 0.07 : 0.03;
+side_lock_thickness = flexible_material ? 0.06 : 0.02;
 
 
 /* [3D Printing Side Connector Adjustments] */
@@ -125,13 +125,16 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 /* [Print Supports] */
 
 // Difference between the top and/or bottom of a support column to make columns easier to separate in post-processing (add this to your model only where desired - it is not done for you in support/support.scad)
-support_offset_from_part = 0.1;
+support_offset_from_part = 0.05;
 
 // Thickness of each rotating layer in a twisting support
 support_layer_height = 2;
 
+// Thickness of a base panel for holding supports together
+support_connection_height = 0.5;
+
 // Horizontal width of each side of a support triangle
-support_line_width = large_nozzle ? 0.6 : 0.4;
+support_line_width = large_nozzle ? 0.7 : 0.5;
 
 // Length of sides of a support equilateral triangle
 support_side_length = 4;

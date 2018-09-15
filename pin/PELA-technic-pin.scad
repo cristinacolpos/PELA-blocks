@@ -27,17 +27,18 @@ use <../PELA-block.scad>
 axle_radius = 2.2;
 
 // Size of the hollow inside a pin
-pin_center_radius=axle_radius/2;
+pin_center_radius=axle_radius/3;
 
 // Size of the connector lock-in bump at the ends of a Pin
 pin_tip_length = 0.7;
 
 // Width of the long vertical flexture slots in the side of a pin
-slot_thickness = 0.5;
+slot_thickness = 0.4;
 
 counterbore_holder_radius = counterbore_inset_radius - skin;
 
 counterbore_holder_height = counterbore_inset_depth * 2;
+
 
 /* [Technic Pin Array Options] */
 

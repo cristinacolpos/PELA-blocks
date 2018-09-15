@@ -9,9 +9,9 @@ param (
     [Int]$w = 2,
     [Int]$h = 1,
     [String]$filename = "PELA-block-",
-    [switch]$stl = $false,
+    [switch]$stl,
     [switch]$png = $false,
-    [switch]$clean = $false
+    [switch]$clean
 )
 
 Function FormatElapsedTime($ts) {

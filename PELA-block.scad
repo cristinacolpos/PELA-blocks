@@ -47,7 +47,7 @@ w = 2;
 // Height of the block (PELA unit count)
 h = 1;
 
-
+solid_bottom_layer = true;
 
 /////////////////////////////////////
 // PELA display
@@ -97,7 +97,7 @@ module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=
             }
 
             if (solid_bottom_layer) {
-                fill_bottom_layer(l=l, w=w);
+                fill_bottom_layer(l=l, w=w, h=h, sockets=sockets, knob_height=knob_height);
             } else if (h>1) {
                 bottom_stiffener_bar_set(l=l, w=w, h=bar_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height);
             }
@@ -154,8 +154,13 @@ module shadow_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_
 
 
 // Make the bottom layer be solid instead of mostly open space
-module fill_bottom_layer(l=l, w=w) {
-    cube([block_width(l), block_width(w), block_height()]);
+module fill_bottom_layer(l=l, w=w, h=h, sockets=sockets, knob_height=knob_height) {
+    offset = sockets ? knob_height : 0;
+    fill_height = min(0, block_height(h) - offset);
+
+    translate([0, 0, offset]) {
+        cube([block_width(l), block_width(w), fill_height]);
+    }
 }
 
 

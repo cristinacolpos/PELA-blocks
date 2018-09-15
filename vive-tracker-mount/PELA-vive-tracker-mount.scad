@@ -160,20 +160,20 @@ module PELA_vive_tracker_mount() {
             alignment_pin();
 
             hull() {
-                translate([block_width(1), block_width(1.81)])
+                translate([block_width(), block_width(1.81)])
                     cylinder(d=channel_d, h=panel_height());
 
-                translate([block_width(1), block_width(4.19)])
+                translate([block_width(), block_width(4.19)])
                     cylinder(d=channel_d, h=panel_height());
             }
         }
         
         union() {
             hull() {
-                translate([block_width(1), block_width(2)])
+                translate([block_width(), block_width(2)])
                     cylinder(d=block_width(0.6), h=panel_height());
 
-                translate([block_width(1), block_width(4)])
+                translate([block_width(), block_width(4)])
                     cylinder(d=block_width(0.6), h=panel_height());
             }
             
