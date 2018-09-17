@@ -24,14 +24,14 @@ use <PELA-technic-pin.scad>
 
 /* [Technic Pin Array Options] */
 
-array_count = 4; // The number of half-pins in an array supported by as base
+array_count = 2; // The number of half-pins in an array supported by as base
 
 base_thickness = panel_height(); // The thickness of the base below an array of half-pins
 
-array_spacing = block_width();
+array_spacing = block_height();
 
 ///////////////
 // Display
 ///////////////
 
-pin_array(array_count=array_count, base_thickness=base_thickness);
+pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness);

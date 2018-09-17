@@ -102,57 +102,8 @@ if ($png) {
 }
 
 
-if ($stl -OR $png -OR $clean) {
-    if ($png) {
-        Remove-Item $outdir\images\PELA-block-4-2-1.png 2> $null
-        Remove-Item $outdir\images\PELA-technic-block-4-4-2.png 2> $null
-    }
+render ".\" "riser"
 
-    Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
-    Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
-
-    if ($stl) {
-        Move-Item .\PELA-technic-block-4-4-2.stl $outdir
-        Move-Item .\PELA-block-4-2-1.stl $outdir
-    }
-
-    if ($png) {
-        Move-Item .\PELA-block-4-2-1.png $outdir\images\
-        Move-Item .\PELA-technic-block-4-4-2.png $outdir\images\
-    }
-}
-
-render ".\pin\" "PELA-technic-pin"
-render ".\pin\" "PELA-technic-pin-array"
-render ".\axle\" "PELA-technic-axle"
-render ".\axle\" "PELA-technic-cross-axle"
-render ".\openbeam\" "PELA-openbeam15-twist-connector"
-render ".\slot-mount\" "PELA-slot-mount"
-render ".\calibration\" "PELA-calibration"
-render ".\calibration\" "PELA-calibration-set"
-render ".\sign\" "PELA-sign"
-render ".\sign\" "PELA-panel-sign"
-render ".\box-enclosure\" "PELA-box-enclosure"
-render ".\box-enclosure\" "PELA-stmf4discovery-box-enclosure"
-render ".\box-enclosure\" "PELA-sparkfun-pro-micro-box-enclosure"
-render ".\motor-enclosure\" "PELA-motor-enclosure"
-render ".\knob-panel\" "PELA-knob-panel"
-render ".\knob-panel\" "PELA-double-sided-knob-panel"
-render ".\socket-panel\" "PELA-socket-panel"
-render ".\rail-mount\" "PELA-rail-mount"
-render ".\rail-mount\" "PELA-rib-mount"
-render ".\velcro-mount\" "PELA-velcro-mount"
-render ".\velcro-mount\" "PELA-vive-velcro-mount"
-render ".\endcap-enclosure\" "PELA-endcap-enclosure"
-render ".\endcap-enclosure\" "PELA-intel-compute-stick-endcap-enclosure"
-render ".\endcap-enclosure\" "PELA-actuonix-pq12-linear-actuator-endcap-enclosure"
-render ".\vive-tracker-mount\" "PELA-vive-tracker-mount"
-render ".\vive-tracker-mount\" "PELA-vive-tracker-screw"
-render ".\board-mount\" "PELA-raspberry-pi3-board-mount"
-render ".\board-mount\" "PELA-raspberry-pi3-board-mount-sides"
-render ".\board-mount\" "PELA-pca9685-servo-board-mount"
-render ".\grove-module-enclosure\" "PELA-grove-module-enclosure"
-render ".\support\" "support"
 
 Write-Output Get-Date
 

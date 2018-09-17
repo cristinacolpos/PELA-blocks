@@ -46,6 +46,8 @@ array_count = 4; // The number of half-pins in an array supported by as base
 
 base_thickness = panel_height(); // The thickness of the base below an array of half-pins
 
+array_spacing = block_width();
+
 
 ///////////////
 // Display
@@ -162,13 +164,13 @@ module rounded_slot(thickness=2, slot_length=10) {
 
 
 // A set of half-pins connected by at the base
-module pin_array(array_count=array_count, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
+module pin_array(array_count=array_count, array_spacing=array_spacing, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
 
     translate([block_width(1/2), block_width(1/2), base_thickness]) {
         difference() {
             union() {
                 for (i = [0 : array_count-1]) {
-                    translate([block_width(i), 0, 0]) {
+                    translate([i*array_spacing, 0, 0]) {
                         pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height);
                     }
                 }
@@ -179,20 +181,20 @@ module pin_array(array_count=array_count, base_thichness=base_thickness, axle_ra
             }
         }
         
-        pin_base(array_count=array_count, base_thickness=base_thickness);
+        pin_base(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness);
     }
 }
 
 
 // The default connector between base pins
-module pin_base(array_count=array_count, base_thichness=base_thickness) {
+module pin_base(array_count=array_count, array_spacing=array_spacing, base_thichness=base_thickness) {
     
     translate([-block_width(1/2), -block_width(1/2), -base_thickness-skin]) {
         difference() {
-            cube([block_width(array_count), block_width(1), base_thickness]);
+            cube([array_count*array_spacing, block_width(1), base_thickness]);
         
             translate([0, block_width(1/2)-slot_thickness/2, 0]) {
-                cube([block_width(array_count), slot_thickness, base_thickness]);
+                cube([array_count*array_spacing, slot_thickness, base_thickness]);
             }
         }
     }    
