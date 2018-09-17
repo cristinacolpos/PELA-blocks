@@ -340,7 +340,7 @@ module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=block
 // Hole to grab any knob on a block below this block
 module socket_hole(radius=ring_radius-ring_thickness, length=block_height()) {
 
-    h2 = knob_height/2; // TODO Refine the heignt    
+    h2 = official_knob_height/2;
     rotate([0, 0, 180/ring_fn]) {
         cylinder(r=radius-side_lock_thickness, h=h2+defeather, $fn=ring_fn);
         translate([0, 0, h2]) {  
