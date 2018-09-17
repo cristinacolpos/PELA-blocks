@@ -118,10 +118,14 @@ module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=
 
             if (sockets) {
                 alternating_radius = large_nozzle ? 2/3*(ring_radius-ring_thickness) : ring_radius-ring_thickness;
+
+                bevel_alternating_socket = large_nozzle ? false : true;
+
                 translate([0, 0, -defeather])
-                    socket_hole_set(l=l, w=w, radius=alternating_radius, length=length+defeather);
+                    socket_hole_set(l=l, w=w, radius=alternating_radius, length=length+defeather, bevel_socket=bevel_alternating_socket);
+
                 translate([block_width(-0.5), block_width(-0.5), -defeather])
-                    socket_hole_set(l=l+1, w=w+1, radius=ring_radius-ring_thickness, length=length+defeather);
+                    socket_hole_set(l=l+1, w=w+1, radius=ring_radius-ring_thickness, length=length+defeather, bevel_socket=true);
             }
             
             if (bolt_holes) {
@@ -323,13 +327,13 @@ module socket_ring(ring_radius=ring_radius, length=block_height()) {
 
 
 // Bottom connector- negative flexture space inside bottom rings for multiple blocks
-module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=block_height()) {
+module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=block_height(), bevel_socket=false) {
     
     if (sockets && l>1 && w>1) {
         for (i = [1:l-1]) {
             for (j = [1:w-1]) {
                 translate([block_width(i), block_width(j), 0]) {
-                    socket_hole(radius=radius, length=length);
+                    socket_hole(radius=radius, length=length, bevel_socket=bevel_socket);
                 }
             }
         }
@@ -337,14 +341,21 @@ module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=block
 }
 
 
-// Hole to grab any knob on a block below this block
-module socket_hole(radius=ring_radius-ring_thickness, length=block_height()) {
+// Hole with side grip ridge flexture to grab any knob on a block inserted from below
+module socket_hole(radius=ring_radius-ring_thickness, length=block_height(), bevel_socket=false) {
 
     h2 = official_knob_height/2;
+    bevel_h = bevel_socket ? socket_insert_bevel : 0;
+
     rotate([0, 0, 180/ring_fn]) {
-        cylinder(r=radius-side_lock_thickness, h=h2+defeather, $fn=ring_fn);
-        translate([0, 0, h2]) {  
-            cylinder(r=radius, h=length-h2, $fn=ring_fn);
+        cylinder(r=radius, h=bevel_h + defeather, $fn=ring_fn);
+
+        translate([0, 0, bevel_h - defeather]) {
+            cylinder(r=radius - side_lock_thickness, h=h2 + 2*defeather + socket_insert_bevel, $fn=ring_fn);
+        }
+
+        translate([0, 0, h2 + socket_insert_bevel]) {
+            cylinder(r=radius, h=length - h2 - socket_insert_bevel + 2*defeather, $fn=ring_fn);
         }
     }
 }

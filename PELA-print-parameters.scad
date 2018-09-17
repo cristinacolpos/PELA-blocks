@@ -94,17 +94,20 @@ knob_radius = 2.45 + 0.12 + top_tweak;
 // Distance below knob top surface and the internal flexture
 knob_top_thickness = 0.8;
 
+// Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
+knob_flexture_radius = flexible_material ? 0.6 : 0.8;
+
+// Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
+knob_bevel = flexible_material ? 0.3 : 0.1;
+
 // Height of the connectors (LEGO uses 1.8- taller gives a stronger hold, flexible materials should be even taller if possible)
 knob_height = 9.6/3; //flexible_material ? 9.6/3 : 2.0;
 
 // Height of the connectors LEGO uses- this affects flexture heights)
 official_knob_height = 1.8;
 
-// Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-knob_flexture_radius = flexible_material ? 0.6 : 0.8;
-
-// Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
-knob_bevel = flexible_material ? 0.3 : 0.1;
+// Height of a small bottom knob insert easement, flaring the bottom edges to make assembly easier
+socket_insert_bevel = 0.1;
 
 
 /* [Bottom Connector Adjustments] */
