@@ -57,6 +57,7 @@ left_wall_knobs = true;
 right_wall_knobs = false;
 front_wall_knobs = false;
 back_wall_knobs = true;
+solid_bottom_layer = true;
 
 board_x_offset = 1.9;
 board_y_offset = -3;
@@ -95,9 +96,9 @@ module pi_case_sides() {
 
     difference() {
         translate([0, 0, block_height(h)]) {
-            PELA_box_enclosure(l=l, w=w, h=top_edge_height, bottom_type=0, top_vents=false, side_holes=0, end_holes=0, left_wall_enabled=true, right_wall_enabled=false, front_wall_enabled=false, back_wall_enabled=true, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers);
+            PELA_box_enclosure(l=l, w=w, h=top_edge_height, bottom_type=0, top_vents=false, side_holes=0, end_holes=0, left_wall_enabled=true, right_wall_enabled=false, front_wall_enabled=false, back_wall_enabled=true, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, drop_bottom=drop_bottom, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers);
         }
 
-#        pcb_space_skinned(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset);
+#        pcb_space_skinned(length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset);
     }
 }
