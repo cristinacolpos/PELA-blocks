@@ -14,9 +14,6 @@ Creative Commons Attribution-ShareAlike 4.0 International License
 
 Open source design, Powered By Futurice. Come work with the best.
     http://futurice.com
-
-Import this into other design files:
-    use <anker-usb-PELA-enclosure.scad>
 */
 
 include <../PELA-parameters.scad>
@@ -122,7 +119,7 @@ solid_upper_layers = true;
 /////////////////////////////////////
 // PELA Box Enclosure Display
 
-PELA_stmf4discovery_box_enclosure();
+PELA_sparkfun_pro_micro_box_enclosure();
 
 
 ///////////////////////////////////
@@ -130,7 +127,7 @@ PELA_stmf4discovery_box_enclosure();
 ///////////////////////////////////
 
 
-module PELA_stmf4discovery_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers, retainer_tab_radius=retainer_tab_radius) {
+module PELA_sparkfun_pro_micro_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers, retainer_tab_radius=retainer_tab_radius) {
 
     difference() {
         union() {

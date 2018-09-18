@@ -121,7 +121,7 @@ bottom_stiffener_height = knob_height;
 /////////////////////////////////////
 
 // Horizontal size
-function block_width(i=1) = i*block_width;
+function block_width(i=1) = i*8; //TODO OPENSCAD Error, parameters in functions?
 
 // Vertical size
 function block_height(h=1) = h*block_height;

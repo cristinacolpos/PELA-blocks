@@ -28,7 +28,7 @@ include <../PELA-parameters.scad>
 include <../PELA-print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
-use <../knob-panel/PELA-knob-panel.scad>
+use <PELA-velcro-mount.scad>
 
 
 /* [PELA Panel Options] */
@@ -59,34 +59,44 @@ bolt_hole_radius = 1.5;
 // Presence of top connector knobs
 knobs = true;
 
+// Picatinny/NATO Rail Mount Dimensions
+body_width = 21.2 - skin;
+
+top_width = 19;
+
+body_height = 9;
+
+body_length = block_width(l-1);
+
+top_height = 2.74;
+
+top_vertical_offset = 4.17;
+
+base_width = 15.67 + skin;
+
+holder_width = block_width(w - 2.5);
 
 
 ////////////////////////////////////
 // Display
 ///////////////////////////////////
 
-velcro_mount();
+vive_velcro_mount();
 
 //////////////////////////////
 
-module velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
-
+module vive_velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
     difference() {
-        top_panel(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
+        velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
 
-        slot(l=l, w=w);
-    }
-}
-
-
-module top_panel(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
-
-    PELA_technic_block(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
-}
-
-
-module slot(l=l, w=w) {
-    translate([block_width(), -0.01, panel_height()]) {
-        cube([block_width(l-2), block_width(w)+0.02, panel_height()]);
+        union() {
+            translate([block_width(l/2-1), block_width(w/2-1), block_height()]) {
+                cube([block_width(2), block_width(2), panel_height()]);
+            }
+        
+            translate([block_width(l/2-3), block_width(w/2-2), block_height()]) {
+                cube([block_width(2), block_width(4), panel_height()]);
+            }
+        }
     }
 }

@@ -67,7 +67,7 @@ side_holes = true;
 top_vents = true;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
-knob_vent_radius = 1.2;
+knob_vent_radius = 0;
 
 
 ////////////////////
@@ -87,7 +87,7 @@ translate([0, block_width(w + 0.5), 0]) {
 // Bottom of the enclosure
 module motor_enclosure_bottom() {
     difference() {
-        PELA_technic_block(l=l, w=w, h=h_bottom, knob_flexture_radius=0, solid_upper_layers=1, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=0, knob_vent_radius=0);
+        PELA_technic_block(l=l, w=w, h=h_bottom, knob_flexture_radius=0, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, bolt_holes=bolt_holes);
         
         motor_cutouts();
     }
@@ -97,7 +97,7 @@ module motor_enclosure_bottom() {
 // Top of the enclosure
 module motor_enclosure_top() {
     difference() {
-        PELA_technic_block(l=l, w=w, h=h_top, side_holes=side_holes, end_holes=0, top_vents=top_vents, knob_vent_radius=knob_vent_radius);
+        PELA_technic_block(l=l, w=w, h=h_top, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, top_vents=top_vents, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes);
 
         translate([0, 0, block_height(-h_top)]) {
             motor_cutouts(ss=false);
