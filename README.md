@@ -43,11 +43,11 @@ These parametric models are easily tuned for a perfect snap fit with almost any 
 
 **TL;DR** *: To get a nice snap fit, print `PELA-calibration.stl` and test the fit with commercial LEGO. Type the best `top_tweak` and `bottom_tweak` into [`PELA-print-parameters.scad`](PELA-print-parameters.scad). Now open any model in OpenSCAD, press `F6` then `Export as STL`.*
 
-### Calibraton Instructions
+### Calibration Instructions
 
 Your printer, slider and plastic effect the precise fit of press fit connectors. To correct for this we adjust the models slightly. It is a one time process for each material. It is as simple as fitting two blocks together and editing a text file, [`PELA-print-parameters.scad`](PELA-print-parameters.scad), with your preferred fit.
 
-The most common settings are `top_tweak` and `bottom_tweak`. These can be read from the side of the clibration bar. 
+The most common settings are `top_tweak` and `bottom_tweak`. These can be read from the side of the calibration bar. 
 
 Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). These help to tailor the models for easier printing and a better fit.
 
@@ -80,7 +80,7 @@ ___
 
 [![PELA Socket Panel](images/PELA-socket-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-socket-panel.stl)
 
-[3D PELA Socket Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-socket-panel.stl) Insert knobs from both the top and bottom. Zoom in to see the subtle flexture ridges for enhanced "snap" fit.
+[3D PELA Socket Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-socket-panel.stl) Insert knobs from both the top and bottom. Zoom in to see the subtle flexure ridges for enhanced "snap" fit.
 
 ___
 
@@ -98,7 +98,19 @@ ___
 
 [![PELA Technic Pin](images/PELA-technic-pin.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pin.stl)
 
-[3D PELA Technic Pin](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pin.stl) This is a difficult print, but useful you run short and don't want to wait for mail order. It works best with slightly flexible materials.
+[3D PELA Technic Pin](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pin.stl) This is difficult to print with some material, but useful you run short and don't want to wait for mail order. It works best with slightly flexible materials.
+
+___
+
+[![PELA Technic Pin Array](images/PELA-technic-pin-array.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pin-array.stl)
+
+[3D PELA Technic Pin Array](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pin-array.stl) A set of technic pins for multi-point connection.
+
+___
+
+[![PELA Slot Mount](images/PELA-slot-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount.stl)
+
+[3D PELA Slot Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount.stl) A set of technic pins with an associated vertical PCB insertion slot. The default parameters are for holding a Haiworld wide angle Raspberry Pi 3 camera.
 
 ___
 
@@ -111,6 +123,12 @@ ___
 [![PELA Technic Cross Axle](images/PELA-technic-cross-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-cross-axle.stl)
 
 [3D PELA Technic Cross Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-cross-axle.stl) Rigid and flexible material torque drive shafts for adjustable length for attaching to other 3D printed designs.
+
+___
+
+[![PELA Openbeam 15 Twist Connector](images/PELA-openbeam15-twist-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-openbeam15-twist-connector.stl)
+
+[3D PELA Openbeam 15 Twist Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-openbeam15-twist-connector.stl) Insert into Openbeam 15 aluminum extrusion and twist 90 degrees to lock. This has the advantage over some other connection types that you do not need access to the ends of the beam which may require disassembly.
 
 ___
 
@@ -171,7 +189,13 @@ ___
 
 [![PELA Velcro Mount](images/PELA-velcro-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-velcro-mount.stl)
 
-[3D PELA Velcro Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-velcro-mount.stl) For attaching the HTC Vive Tracker or other sensors using velcro or similar straps.
+[3D PELA Velcro Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-velcro-mount.stl) For attaching using Velcro or similar straps through the bottom slot.
+
+___
+
+[![PELA Vive Velcro Mount](images/PELA-vive-velcro-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vive-velcro-mount.stl)
+
+[3D PELA Velcro Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vive-velcro-mount.stl) For attaching the HTC Vive Tracker or other sensors using Velcro or similar straps. Use this for example to attach position sensors to your shoes.
 
 ___
 
@@ -183,7 +207,7 @@ ___
 
 [![PELA Rib Mount](images/PELA-rib-mount.png) (alternative design to attach to rectangular ribs)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rib-mount.stl)
 
-[3D PELA Rib Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rib-mount.stl) An alternative attachment to a recangular rail.
+[3D PELA Rib Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rib-mount.stl) An alternative attachment to a rectangular rail.
 
 ___
 
@@ -205,21 +229,15 @@ ___
 
 ___
 
-[![PELA Raspberry Pi 3 Board Mount](images/PELA-raspberry-p3-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl)
+[![PELA Raspberry Pi 3 Board Mount](images/PELA-raspberry-pi3-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl)
 
 [3D PELA Raspberry Pi 3 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl) A base allowing snap-in holding of the board with full connector access and optional top cover
 
 ___
 
-[![PELA Raspberry Pi 3 Sides for Board Mount](images/PELA-raspberry-p3-board-mount-sides.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount-sides.stl)
+[![PELA PCA9685 16 Channel Servo Board Mount](images/PELA-pca9685-servo-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-board-mount.stl)
 
-[3D PELA Raspberry Pi 3 Sides for Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount-sides.stl) Two walls making up the non-access sides of the Pi case
-
-___
-
-[![Print Support](images/support.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/support.stl)
-
-[3D Print Support](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/support.stl) This is are examples of the designed-in internal print-time roof and overhang supports. You can enable and disable this feature in some of the other models. These may be faster to print and easier to remove than slicer-generated supports.
+[3D PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-board-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end
 
 
 ## FFF Printing Tips

@@ -68,13 +68,13 @@ large_nozzle = true;
 print_supports = true;
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-top_tweak = -0.04; // -0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.05 for Polymaker PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon, 0.02 for Ultimaker TPU95A, 0.0 Biofila Silk
+top_tweak = 0.02; // -0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.08 for Polymaker PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon, 0.02 for Ultimaker TPU95A, 0.0 Biofila Silk
 
 // Bottom connector size adjustment (smaller is tigher, add in multiples of 0.01mm as determined from your calibration-block print)
-bottom_tweak = -0.02; // -0.02 for ABS, 0.10 for rPET, 0.08 for Pro1, 0.04 for Polymaker PLA, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon, 0.02 for Ultimaker TPU95A, -0.02 Biofila Silk
+bottom_tweak = 0.04; // -0.02 for ABS, 0.10 for rPET, 0.08 for Pro1, 0.04 for Polymaker PLA, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon, 0.04 for Ultimaker TPU95A, -0.02 Biofila Silk
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0.04; // 0.04 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker PLA, 0.04 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, 0.04 for Ultimaker TPU95A, -0.04 Biofila Silk
+axle_hole_tweak = -0.06; // 0.04 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker PLA, 0.04 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, -0.06 for Ultimaker TPU95A, -0.04 Biofila Silk
 
 
 /* [Shell Adjustments] */
@@ -94,14 +94,20 @@ knob_radius = 2.45 + 0.12 + top_tweak;
 // Distance below knob top surface and the internal flexture
 knob_top_thickness = 0.8;
 
-// Height of the connectors (LEGO uses 1.8- taller gives a stronger hold, flexible materials should be even taller if possible)
-knob_height = 9.6/3; //flexible_material ? 9.6/3 : 2.0;
-
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-knob_flexture_radius = flexible_material ? 1.2 : 1.0;
+knob_flexture_radius = flexible_material ? 0.6 : 0.8;
 
 // Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
 knob_bevel = flexible_material ? 0.3 : 0.1;
+
+// Height of the connectors (LEGO uses 1.8- taller gives a stronger hold, flexible materials should be even taller if possible)
+knob_height = 9.6/3; //flexible_material ? 9.6/3 : 2.0;
+
+// Height of the connectors LEGO uses- this affects flexture heights)
+official_knob_height = 1.8;
+
+// Height of a small bottom knob insert easement, flaring the bottom edges to make assembly easier
+socket_insert_bevel = 0.1;
 
 
 /* [Bottom Connector Adjustments] */
@@ -125,13 +131,16 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 /* [Print Supports] */
 
 // Difference between the top and/or bottom of a support column to make columns easier to separate in post-processing (add this to your model only where desired - it is not done for you in support/support.scad)
-support_offset_from_part = 0.1;
+support_offset_from_part = 0.05;
 
 // Thickness of each rotating layer in a twisting support
 support_layer_height = 2;
 
+// Thickness of a base panel for holding supports together
+support_connection_height = 0.5;
+
 // Horizontal width of each side of a support triangle
-support_line_width = large_nozzle ? 0.6 : 0.4;
+support_line_width = large_nozzle ? 0.7 : 0.5;
 
 // Length of sides of a support equilateral triangle
 support_side_length = 4;

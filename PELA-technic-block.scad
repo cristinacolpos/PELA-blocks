@@ -38,13 +38,13 @@ use <PELA-block.scad>
 /* [PELA Block Dimensions] */
 
 // Length of the block (PELA unit count)
-l = 28; 
+l = 2;
 
 // Width of the block (PELA unit count)
-w = 3;
+w = 2;
 
 // Height of the block (PELA unit count)
-h = 2;
+h = 1;
 
 /* [Basic Block Features] */
 
@@ -55,16 +55,38 @@ sockets = true;
 knobs = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = true;
+bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius=1.6;
 
 // Interior fill for layers above the bottom
-solid_upper_layers = true;
+solid_upper_layers = false;
 
 // Interior fill for layers above the bottom
 solid_bottom_layer = false;
+
+
+/* [Technic Features] */
+
+// Add full width through holes spaced along the length for PELA Techics connectors
+side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+
+// Add a sheath around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
+side_sheaths = true;
+
+// Add short end holes spaced along the width for PELA Techics connectors
+end_holes = 3;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+
+// Add a sheath around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
+end_sheaths = true;
+
+// Add holes in the top deck to improve airflow and reduce weight
+top_vents = false;
+
+// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
+knob_vent_radius = 0;
+
 
 
 /////////////////////////////////////
@@ -94,7 +116,7 @@ module PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob
 
     difference() {
         union() {
-            PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, ring_thickness=ring_thickness, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer);
+            PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, ring_thickness=ring_thickness, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, side_lock_thickness=side_lock_thickness, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer);
             
             for (i = [0:h-1]) {
                 translate([0, 0, block_height(i)]) {
@@ -260,8 +282,7 @@ module double_side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radiu
 // A row of knob-size holes around the sides of row 1
 module side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes) {
     
-    //TODO Short holes not properly supprted
-    length = side_holes==3 ? block_width() : block_width(w);
+    length = (hole_type==1 || hole_type==3) ? block_width() : block_width(w);
 
     if (l==1) {
         translate([block_width(0.5), 0, block_height()-block_width(0.5)]) {

@@ -36,17 +36,14 @@ l = 8;
 // Width of the sign (PELA knob count)
 w = 2;
 
-// Height of the sign (PELA block layers)
-h = 1/3;
-
 // The top line of text. Set to "" to not have any top line
 line_1 = "PELAblocks.org";
 
 // The second line of text
 line_2 = "Rapid Prototyping";
 
-// 1=>text is pushing outward from the PELA block, 0=>etch text into the block
-extrude = 0;
+// true=>text is pushing outward from the PELA block, false=>etch text into the block
+extrude = true;
 
 // Language of the text
 lang = "en";
@@ -110,36 +107,45 @@ module PELA_flat_sign(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude
         PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets);
         
         translate([skin, skin, 0])
-            PELA_sign_extruded_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
+            PELA_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
     } else {
         difference() {
             PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets);
             
             translate([skin, 0, -extrusion_height])
-                PELA_sign_etched_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
+                PELA_sign_etched_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
         }
     }
 }
 
 
 // Two lines of text extruded out from the surface
-module PELA_sign_extruded_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
+module PELA_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
-    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, block_height(h)])
+    panel_h = block_height(knob_panel_height(knob_height=knob_height, sockets=sockets));
+
+    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_h]) {
         PELA_text(text=line_1, lang=lang, font=f1, font_size=fs1, vertical_alignment="top");
-    translate([left_margin+skin, vertical_margin+skin, block_height(h)])
+    }
+
+    translate([left_margin+skin, vertical_margin+skin, panel_h]) {
         PELA_text(text=line_2, lang=lang, font=f2, font_size=fs2, vertical_alignment="bottom");
+    }
 }
 
 
 // Two lines of text etched into the surface
 module PELA_sign_etched_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
-    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, block_height(h)])
+    panel_h = block_height(knob_panel_height(knob_height=knob_height, sockets=sockets));
+
+    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_h]) {
         PELA_text(text=line_1, lang=lang, extrusion_height=extrusion_height, font=f1, font_size=fs1, vertical_alignment="top");
+    }
     
-    translate([left_margin+skin, vertical_margin+skin, block_height(h)])
+    translate([left_margin+skin, vertical_margin+skin, panel_h]) {
         PELA_text(text=line_2, lang=lang, extrusion_height=extrusion_height, font=f2, font_size=fs2, vertical_alignment="baseline");
+    }
 }
 
 

@@ -137,43 +137,66 @@ module bottom_piece() {
 module top_piece() {
 
     translate([0, block_width(w + 0.5), 0]) {
-        difference() {
-            union() {
-                PELA_technic_block(l=l, w=w, h=h, bolt_holes=bolt_holes, side_holes=0, end_holes=0);
-            
-                translate([0, 0, block_height(0.5)])
-                    double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
-            }
-            
-            union() {
-                translate([(block_width(l)-grove_width)/2, 1.2, block_height(-h)+vertical_offset()])
-                    rotate([0,-90,270])
-                        grove();
-                
-                translate([0, 0, block_height(0.5)])
-                    double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=2);
-
-                if (bolt_holes) {
-                    corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
-                }
-                
-                skin(l=l, w=w, h=h);
-            }
-        };
+        main_top_piece();
 
         if (print_supports) {
-            top_supports();
-
             difference() {
-                hull() {
+                union() {
                     top_supports();
+
+                    difference() {
+                        hull() {
+                            top_supports();
+                        }
+
+                        translate([0, 0, support_connection_height]) {
+                            cube([block_width(l), block_width(w+1), block_height(h)]);
+                        }
+                    }
                 }
 
-                translate([0, 0, support_layer_height*2])
-                    cube([block_width(l), block_width(w+1), block_height(h)]);
+            main_top_piece_space();
             }
         }
     }
+}
+
+
+// Primary shape of the top piece
+module main_top_piece() {
+    difference() {
+        union() {
+            PELA_technic_block(l=l, w=w, h=h, bolt_holes=bolt_holes, side_holes=0, end_holes=0);
+        
+            translate([0, 0, block_height(0.5)])
+                double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
+        }
+        
+        union() {
+            translate([(block_width(l)-grove_width)/2, 1.2, block_height(-h)+vertical_offset()])
+                rotate([0,-90,270])
+                    grove();
+            
+            translate([0, 0, block_height(0.5)])
+                double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=2);
+
+            if (bolt_holes) {
+                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
+            }
+            
+            skin(l=l, w=w, h=h);
+        }
+    }
+}
+
+
+// The negative space which supports should not enter to be too close to the top piece
+module main_top_piece_space() {
+    minkowski() {
+        main_top_piece();
+
+        sphere(r=support_offset_from_part, $fn=8);
+    }    
 }
 
 
