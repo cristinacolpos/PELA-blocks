@@ -235,12 +235,6 @@ ___
 
 ___
 
-[![PELA Raspberry Pi 3 Sides for Board Mount](images/PELA-raspberry-pi3-board-mount-sides.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount-sides.stl)
-
-[3D PELA Raspberry Pi 3 Sides for Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount-sides.stl) Two walls making up the non-access sides of the Pi case
-
-___
-
 [![PELA PCA9685 16 Channel Servo Board Mount](images/PELA-pca9685-servo-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-board-mount.stl)
 
 [3D PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-board-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end
