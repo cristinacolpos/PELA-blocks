@@ -54,6 +54,58 @@ solid_upper_layers = true;
 solid_bottom_layer = false;
 
 
+
+/* [Shell Adjustments] */
+
+// Thickness of the solid outside surface of the block
+shell = large_nozzle ? 1.2 : 1.0;
+
+// Thickness of the solid top surface of the block
+top_shell = 1.5;
+
+
+/* [Top Connector Adjustments] */
+
+// Size of the top connectors (slippery or brittle plastics negatively affect results and lifetime- the value below is roughly in the middle of various materials tested)
+knob_radius = 2.45 + 0.12 + top_tweak;
+
+// Distance below knob top surface and the internal flexture
+knob_top_thickness = 0.8;
+
+// Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
+knob_flexture_radius = flexible_material ? 0.6 : 0.8;
+
+// Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
+knob_bevel = flexible_material ? 0.3 : 0.1;
+
+// Height of the connectors (LEGO uses 1.8- taller gives a stronger hold, flexible materials should be even taller if possible)
+knob_height = 9.6/3; //flexible_material ? 9.6/3 : 2.0;
+
+// Height of the connectors LEGO uses- this affects flexture heights)
+official_knob_height = 1.8;
+
+// Height of a small bottom knob insert easement, flaring the bottom edges to make assembly easier
+socket_insert_bevel = 0.1;
+
+
+/* [Bottom Connector Adjustments] */
+
+// Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
+ring_thickness = large_nozzle ? 1.2 : 0.8;
+
+// Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
+ring_radius = 2.75 + ring_thickness + bottom_tweak;
+
+// Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
+side_lock_thickness = flexible_material ? 0.06 : 0.02;
+
+
+/* [3D Printing Side Connector Adjustments] */
+
+// Technic connector hole
+axle_hole_radius = 2.45 + axle_hole_tweak;
+
+
 /* [Technic Features] */
 
 // Add full width through holes spaced along the length for PELA Techics connectors
@@ -150,6 +202,31 @@ peg_length = 6.5;
 // Size of an optional cylinder wrapped around the bearing holes
 bearing_sheath_thickness = 0.9;
 
+
+/* [Print Supports] */
+
+// Difference between the top and/or bottom of a support column to make columns easier to separate in post-processing (add this to your model only where desired - it is not done for you in support/support.scad)
+support_offset_from_part = 0.05;
+
+// Thickness of each rotating layer in a twisting support
+support_layer_height = 2;
+
+// Thickness of a base panel for holding supports together
+support_connection_height = 0.5;
+
+// Horizontal width of each side of a support triangle
+support_line_width = large_nozzle ? 0.7 : 0.5;
+
+// Length of sides of a support equilateral triangle
+support_side_length = 4;
+
+// Degrees to rotate for strength at each successive layer
+support_layer_rotation = 6; // Degrees
+
+// Max rotation before reversing direction to keep shape basically triangular but still strong (0 to disable)
+support_max_rotation = 0; // Degrees
+
+
 /* [Hidden] */
 
 // Slight visual offset to work around prevent goldfeather rendering bugs in OpenSCAD (visual, not affecting final print geometry)
@@ -157,3 +234,4 @@ defeather = 0.01;
 
 // Roundness of bottom connector rings (Use 8 for octagonal sockets- many parts of the geomoetry must be adjusted if you change this)
 ring_fn=8;
+
