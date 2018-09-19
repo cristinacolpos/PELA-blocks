@@ -35,14 +35,13 @@ use <PELA-board-mount.scad>
 
 length = 63;
 width = 25;
-thickness = 1.6;
+thickness = 1.7;
 h = 1;
-undercut = 2.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
+undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
 innercut = 0.8; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-hold_d = 2.4;
 bottom_type = 0;
 top_vents = false;
-side_holes = 0;
+side_holes = 2;
 end_holes = 0;
 side_sheaths = false;
 end_sheaths = false;
@@ -57,7 +56,7 @@ right_wall_knobs = true;
 front_wall_knobs = true;
 back_wall_knobs = true;
 solid_upper_layers = false;
-solid_bottom_layer = false;
+solid_bottom_layer = true;
 
 board_x_offset = 0;
 board_y_offset = 0;
@@ -67,7 +66,13 @@ sd_card_cutout_depth = 3.8;
 sd_card_cutout_offset = -block_width(1/2);
 top_edge_height = 2;
 
-dome = true;
+// A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
+length_tightness = 1.5;
+
+// Board surround ratio
+width_tightness = 1.0;
+
+dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
 ///////////
 // Display
@@ -75,7 +80,7 @@ dome = true;
 pca9685_servo_board_mount();
 
 
-module pca9685_servo_board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome) {
+module pca9685_servo_board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, length_tightness=length_tightness, width_tightness=width_tightness, solid_bottom_layer=solid_bottom_layer, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers) {
     
-    board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome);
+    board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, length_tightness=length_tightness, width_tightness=width_tightness, solid_bottom_layer=solid_bottom_layer, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers);
 }
