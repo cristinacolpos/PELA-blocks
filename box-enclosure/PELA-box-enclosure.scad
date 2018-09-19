@@ -107,7 +107,10 @@ solid_bottom_layer = false;
 // Bottom of the enclosure is a panel below the edges of the wall (if true, box is 1/3 of a block taller)
 drop_bottom = false;
 
-// Number of knobs at the edge to not add to the top panel (leave space for example for a nearby top wall or technic connectors)
+// Should the middle of the box be a solid block or empty. Other designs will typically then cut from this solid block to support something inside the enclosure.
+center_type = 1; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
+
+// Number of knobs at the edge of a bottom panel to omit (this will leave space for example for a nearby top wall or technic connectors)
 skip_edge_knobs = 1;
 
 
@@ -156,6 +159,8 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=p
             translate([0, 0, bottom_z]) {
                 enclosure_bottom(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, skin=skin, solid_bottom_layer=solid_bottom_layer);
             }
+
+            box_center(l=l, w=w, h=h, center_type=center_type);
         }
 
         edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes);
@@ -267,5 +272,18 @@ module enclosure_bottom(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_
     } else if (bottom_type==3) {
         // bottom_height is ignored- must adapt to be taller if tall knob_height (which is default)
         PELA_knob_panel(l=l, w=w, top_vents=bottom_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skin=skin, skip_edge_knobs=skip_edge_knobs);
+    }
+}
+
+
+// The middle "cheese" from which enclosure supports are cut
+module box_center(l=l, w=w, h=h, center_type=center_type) {
+    if (center_type > 0 && l > 2 && w > 2) {
+        l2 = block_width(l-2) + 2*skin;
+        w2 = block_width(w-2) + 2*skin;
+
+        translate([block_width(1) - skin, block_width(1) - skin, 0]) {
+            cube([l2, w2, block_height(h)]);
+        }
     }
 }

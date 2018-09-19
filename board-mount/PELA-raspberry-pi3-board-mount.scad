@@ -34,17 +34,14 @@ use <PELA-board-mount.scad>
 
 length = 85;
 width = 56;
-thickness = 1.6;
-l = fit_mm_to_pela_blocks(85);
-w = fit_mm_to_pela_blocks(56);
-h = 1 + 1/3;
-undercut = 2.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
+thickness = 1.7;
+h = 1; //4/3;
+undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
 innercut = 0.8; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-hold_d = 2.4;
 bottom_type = 0;
 top_vents = false;
 side_holes = 2;
-end_holes = 2;
+end_holes = 0;
 side_sheaths = true;
 end_sheaths = true;
 left_wall_enabled = true;
@@ -54,34 +51,38 @@ back_wall_enabled = true;
 drop_bottom = false;
 knobs_on_top = true;
 left_wall_knobs = true;
-right_wall_knobs = false;
+right_wall_knobs = true;
 front_wall_knobs = false;
 back_wall_knobs = true;
 solid_bottom_layer = true;
 
-board_x_offset = 1.9;
-board_y_offset = -3;
-board_z_offset = -1.6;
+board_x_offset = 0;//1.9;
+board_y_offset = 0; //-3;
+board_z_offset = -thickness;
 sd_card_cutout_width = block_width(3);
 sd_card_cutout_depth = 3.8;
 sd_card_cutout_offset = -block_width(1/2);
 top_edge_height = 2;
 
+// A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
+length_tightness = 1.0;
+
+// Board surround ratio
+width_tightness = 1.5;
+
+dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+
 ///////////
 // Display
 ///////////
 
+pi3_board_mount();
 
 
-difference() {
-    pcb_holder(length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs);
-    
-    union() {
-#        pcb_space_skinned(length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset);
-        sd_card_cutout();
-    }
+module pi3_board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, length_tightness=length_tightness, width_tightness=width_tightness) {
+
+    board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, length_tightness=length_tightness, width_tightness=width_tightness);
 }
-
 
 module sd_card_cutout() {
     w = fit_mm_to_pela_blocks(width);
