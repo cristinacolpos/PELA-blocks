@@ -28,9 +28,42 @@ use <PELA-box-enclosure.scad>
 /* [PELA Box Option] */
 
 // Length of the enclosure including two for walls (PELA knob count)
-l = 114.5;
+length = 114.5;
+
+length_tightness = 2;
 
 // Width of the enclosure including two for walls (PELA knob count)
-w = 38.5;
+width = 38.5;
 
-h = 12.5;
+width_tightness = 2;
+
+height = 12.5;
+
+bottom_type = 2;
+
+drop_bottom = false;
+
+top_vents = true;
+
+side_holes = 2;
+
+side_sheaths = true;
+
+end_holes = 2;
+
+end_sheaths = true;
+
+// Should the middle of the box be a solid block or empty. Other designs will typically then cut from this solid block to support something inside the enclosure.
+center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
+
+// Display 
+intel_compute_stick_box_enclosure();
+
+
+module intel_compute_stick_box_enclosure() {
+    l=fit_mm_to_pela_blocks(length, length_tightness);
+    w=fit_mm_to_pela_blocks(width, width_tightness);
+    h=2;
+
+    PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type);
+}
