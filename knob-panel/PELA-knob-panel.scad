@@ -26,18 +26,18 @@ use <../PELA-technic-block.scad>
 /* [PELA Panel Options] */
 
 // Length of the block (PELA unit count)
-l = 4; 
+l = 6; 
 
 // Width of the block (PELA unit count)
-w = 8;
+w = 5;
 
-top_vents = false;
+top_vents = true;
 
 // Interior fill for layers above the bottom
 solid_bottom_layer = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = true;
+bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius = 1.6;

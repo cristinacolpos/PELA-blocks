@@ -37,11 +37,11 @@ width = 56;
 thickness = 1.7;
 h = 1; //4/3;
 undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
-innercut = 0.8; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
+innercut = 1; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 bottom_type = 0;
 top_vents = false;
 side_holes = 2;
-end_holes = 0;
+end_holes = 2;
 side_sheaths = true;
 end_sheaths = true;
 left_wall_enabled = true;
@@ -51,24 +51,21 @@ back_wall_enabled = true;
 drop_bottom = false;
 knobs_on_top = true;
 left_wall_knobs = true;
-right_wall_knobs = true;
-front_wall_knobs = false;
+right_wall_knobs = false;
+front_wall_knobs = true;
 back_wall_knobs = true;
 solid_bottom_layer = true;
 
 board_x_offset = 0;//1.9;
 board_y_offset = 0; //-3;
 board_z_offset = -thickness;
-sd_card_cutout_width = block_width(3);
-sd_card_cutout_depth = 3.8;
-sd_card_cutout_offset = -block_width(1/2);
 top_edge_height = 2;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
-length_tightness = 1.0;
+length_tightness = 2.5;
 
 // Board surround ratio
-width_tightness = 1.5;
+width_tightness = 2.5;
 
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
@@ -81,25 +78,29 @@ pi3_board_mount();
 
 module pi3_board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, length_tightness=length_tightness, width_tightness=width_tightness) {
 
-    board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, length_tightness=length_tightness, width_tightness=width_tightness);
-}
+    difference() {
+        board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, length_tightness=length_tightness, width_tightness=width_tightness);
 
-module sd_card_cutout() {
-    w = fit_mm_to_pela_blocks(width);
+#        union() {
+            sd_card_cutout();
 
-    translate([-0.1, sd_card_cutout_offset + (block_width(w)-sd_card_cutout_width)/2, block_height(h)-sd_card_cutout_depth]) {
-        cube([block_width(2), sd_card_cutout_width, block_height(2)]);
+            front_connector_cutout();
+            
+            bottom_connector_negative_space(l=14, w=9, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes);
+        }
     }
 }
 
+module sd_card_cutout() {
 
-module pi_case_sides() {
+    translate([-0.01, block_width(3), block_height(0.5)]) {
+        cube([block_width(2), block_width(3), block_height(1)]);
+    }
+}
 
-    difference() {
-        translate([0, 0, block_height(h)]) {
-            PELA_box_enclosure(l=l, w=w, h=top_edge_height, bottom_type=0, top_vents=false, side_holes=0, end_holes=0, left_wall_enabled=true, right_wall_enabled=false, front_wall_enabled=false, back_wall_enabled=true, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, drop_bottom=drop_bottom, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers);
-        }
+module front_connector_cutout() {
 
-#        pcb_space_skinned(length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset);
+    translate([block_width(2), -0.01, 2.5]) {
+        cube([block_width(8), block_width(1.5), block_height(2)]);
     }
 }
