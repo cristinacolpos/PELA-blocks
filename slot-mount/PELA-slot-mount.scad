@@ -26,6 +26,7 @@ include <../PELA-print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
+use <../box-enclosure/PELA-box-enclosure.scad>
 use <../board-mount/PELA-board-mount.scad>
 
 /* [Technic Pin Array Options] */
@@ -33,42 +34,50 @@ use <../board-mount/PELA-board-mount.scad>
 length = 38;
 width = 38;
 thickness = 1.6;
-l = fit_mm_to_pela_blocks(38);
-w = fit_mm_to_pela_blocks(38);
 undercut = 2.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
 innercut = 0.8; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 
-array_count = w; // The number of half-pins in an array supported by as base
-
-base_thickness = panel_height(2); // The thickness of the base below an array of half-pins
+base_thickness = panel_height(1); // The thickness of the base below an array of half-pins
 
 slot_depth = 2;
 
 end_lock_d = 1.2;
 
+array_spacing = block_width();
+
+length_tightness = 1;
+
+width_tightness = 1;
+
 ///////////////
 // Display
 ///////////////
-slot_mount();
+slot_mount(length=length, width=width, thickness=thickness, array_spacing=array_spacing);
 
 
-module slot_mount() {
-    pin_array(array_count=array_count, base_thickness=base_thickness);
-    end_locks();
+module slot_mount(length=length, width=width, slot_depth=slot_depth, array_spacing=array_spacing, base_thickness=base_thickness, thickness=thickness, length_tightness=length_tightness, width_tightness=width_tightness, end_lock_d=end_lock_d) {
+    l = fit_mm_to_pela_blocks(length, length_tightness);
+    w = fit_mm_to_pela_blocks(width, width_tightness);
+    echo("l", l);
+    echo("w", w);
+
+    pin_array(array_count=w, array_spacing=array_spacing, base_thickness=base_thickness);
+
+    end_locks(l=l, w=w, length=length, width=width, end_lock_d=end_lock_d, base_thickness=base_thickness);
 
     difference() {
-        back();
+        back(l=l, w=w, base_thickness=base_thickness);
 
         union() {
-            board_access();
-            slot();
+            board_access(l, w, length=length, width=width, slot_depth=slot_depth, base_thickness=base_thickness);
+            slot(l=l, w=w, length=length, width=width, base_thickness=base_thickness, thickness=thickness);
         }
     }
 }
 
 
 // The base piece from which the board support slot is cut
-module back() {
+module back(l, w, length=length, width=width, base_thickness=base_thickness) {
     translate([0, block_width(1), 0]) {
         cube([block_width(w), block_width(l), base_thickness]);
     }
@@ -76,7 +85,7 @@ module back() {
 
 
 // Edge support for the board
-module slot() {
+module slot(l, w, length=length, width=width, base_thickness=base_thickness, thickness=thickness) {
     x_inset = (block_width(w)-width)/2;
     y_inset = (block_width(l)-width)/2;
     z_inset = (base_thickness-thickness)/2;
@@ -88,7 +97,7 @@ module slot() {
 
 
 // Space in front of and behind the board
-module board_access() {
+module board_access(l, w, length=length, width=width, slot_depth=slot_depth, base_thickness=base_thickness) {
     x_inset = (block_width(w)-width)/2 + slot_depth;
     y_inset = (block_width(l)-width)/2 + slot_depth;
 
@@ -99,17 +108,18 @@ module board_access() {
 
 
 // A tab to keep the board from sliding out of the slot
-module end_lock(x=-1, y=-1) {
+module end_lock(x, y, end_lock_d=end_lock_d, base_thickness=base_thickness) {
     translate([x, y, 0]) {
        cylinder(d=end_lock_d, h=base_thickness);
     }
 }
 
 
-module end_locks() {
+module end_locks(l, w, length=length, width=width, end_lock_d=end_lock_d, base_thickness=base_thickness) {
     x_inset = (block_width(w)-width)/2;
     y_inset = (block_width(l)-width)/2;
 
-    end_lock(x=x_inset, y=block_width(1) + y_inset + length + end_lock_d/2);
-    end_lock(x=x_inset + width, y=block_width(1) + y_inset + length + end_lock_d/2);
+    end_lock(x=x_inset, y=block_width(1) + y_inset + length + end_lock_d/2, end_lock_d=end_lock_d, base_thickness=base_thickness);
+
+    end_lock(x=x_inset + width, y=block_width(1) + y_inset + length + end_lock_d/2, end_lock_d=end_lock_d, base_thickness=base_thickness);
 }
