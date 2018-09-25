@@ -59,7 +59,7 @@ SUGGESTIONS
 /* [Main Calibration Settings] */
 
 // Switch between flexible and rigid material geometry. Set 'true' for Nylon, TPU (TPU95, Ninjaflex/TPU85), NGEN Semiflex and other flexible filaments. Subtle adjustments to part internal geometry will take advantage of this in flextures.
-flexible_material = false;
+flexible_material = true;
 
 // Set true if nozzle is >= 0.5mm. This simplifies the bottom gemoetry to create wider walls but at the cost of loosing the alternate bottom connector socket between every 4 other sockets. If not used with a large extruder the slicer may decimate features.
 large_nozzle = true;
