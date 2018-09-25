@@ -159,8 +159,8 @@ module sheath_supports() {
 // Holes cut into the sides for the block on layer 1 to allow technics pins and axles to be inserted
 module bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes) {
     
-        for (i = [0:h-1]) {
-            translate([0, 0, block_height(i)]) {
+        for (i = [1:h]) {
+            translate([0, 0, block_height(i-1)]) {
                 if (side_holes > 0) {
                     double_side_connector_hole_set(l=l, w=w, side_holes=side_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes);
                 }
