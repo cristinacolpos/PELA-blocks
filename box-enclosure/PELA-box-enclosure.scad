@@ -30,10 +30,10 @@ use <../knob-panel/PELA-knob-panel.scad>
 /* [PELA Box Option] */
 
 // Length of the enclosure including two for walls (PELA knob count)
-l = 8;
+l = 4;
 
 // Width of the enclosure including two for walls (PELA knob count)
-w = 4;
+w = 3;
 
 // Height of the enclosure not including the possible drop_bottom floor (PELA block layer count)
 h = 2;
@@ -42,13 +42,13 @@ h = 2;
 sockets = true;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 3;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = 2;  // [0:disabled, 1:short air vents, 2:full length connectors, 3:short connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
@@ -108,7 +108,7 @@ solid_bottom_layer = false;
 drop_bottom = false;
 
 // Should the middle of the box be a solid block or empty. Other designs will typically then cut from this solid block to support something inside the enclosure.
-center_type = 1; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
+center_type = 0; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
 // Number of knobs at the edge of a bottom panel to omit (this will leave space for example for a nearby top wall or technic connectors)
 skip_edge_knobs = 1;
@@ -120,50 +120,65 @@ skip_edge_knobs = 1;
 PELA_box_enclosure();
 
 
+
+
+///////////////////////////////////
+// Functions
+///////////////////////////////////
+
+// Find the dimensions of the optimum holder based on board length or width
+function fit_mm_to_pela_blocks(i, tightness) = ceil((i+(tightness*block_width()))/block_width());
+
 ///////////////////////////////////
 // Modules
 ///////////////////////////////////
 
-module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, knob_flexture_radius=knob_flexture_radius, drop_bottom=drop_bottom, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, ridge_z_offset=ridge_z_offset) {
+module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, knob_flexture_radius=knob_flexture_radius, drop_bottom=drop_bottom, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, ridge_z_offset=ridge_z_offset, center_type=center_type) {
 
     difference() {
         union() {
             bottom_z = drop_bottom  ? -panel_height : 0;
 
-            difference() {
-                union() {
-                    rz = ridge_z_offset + bottom_z;
-
-                    if (left_wall_enabled) {
-                        left_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, knobs=left_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz);
-                    }
-
-                    if (right_wall_enabled) {
-                        right_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, knobs=right_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz);
-                    }
-
-                    if (front_wall_enabled) {
-                        front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, knobs=front_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz);
-                    }
-
-                    if (back_wall_enabled) {
-                        back_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, knobs=back_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz);
-                    }
-                }
-
-                if (!drop_bottom && bottom_type > 0) {
-                    bottom_negative_space(l=l, w=w, bottom_type=1, panel_height=panel_height, skin=0, solid_bottom_layer=solid_bottom_layer);
-                }
-            }
+            walls();
 
             translate([0, 0, bottom_z]) {
                 enclosure_bottom(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, skin=skin, solid_bottom_layer=solid_bottom_layer);
             }
 
-            box_center(l=l, w=w, h=h, center_type=center_type);
+            box_center(l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes);
+        }
+        
+        bottom_connector_negative_space(l=l, w=w, h=h, side_holes=sh, end_holes=eh, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=3, bolt_holes=false);
+    }
+
+    edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes);
+}
+
+
+module walls(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, knob_flexture_radius=knob_flexture_radius, drop_bottom=drop_bottom, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, ridge_z_offset=ridge_z_offset, center_type=center_type) {
+
+    difference() {
+        union() {
+            rz = ridge_z_offset + bottom_z;
+
+            if (left_wall_enabled) {
+                left_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, knobs=left_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz);
+            }
+
+            if (right_wall_enabled) {
+                right_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, knobs=right_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz);
+            }
+
+            if (front_wall_enabled) {
+                front_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, knobs=front_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz);
+            }
+
+            if (back_wall_enabled) {
+                back_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, knobs=back_wall_knobs, knob_flexture_radius=knob_flexture_radius, ridge_z_offset=rz);
+            }
         }
 
-        edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes);
+        bottom_negative_space(l=l, w=w, h=h, bottom_type=1, panel_height=panel_height, skin=0, solid_bottom_layer=solid_bottom_layer);
     }
 }
 
@@ -277,10 +292,12 @@ module enclosure_bottom(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_
 
 
 // The middle "cheese" from which enclosure supports are cut
-module box_center(l=l, w=w, h=h, center_type=center_type) {
+module box_center(l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes) {
     if (center_type > 0 && l > 2 && w > 2) {
         l2 = block_width(l-2) + 2*skin;
         w2 = block_width(w-2) + 2*skin;
+        sh = (side_holes == 2) && (center_type == 2 || center_type == 4);
+        eh = (end_holes == 2) && (center_type == 3 || center_type == 4);
 
         translate([block_width(1) - skin, block_width(1) - skin, 0]) {
             cube([l2, w2, block_height(h)]);
