@@ -129,6 +129,8 @@ PELA_box_enclosure();
 // Find the dimensions of the optimum holder based on board length or width
 function fit_mm_to_pela_blocks(i, tightness) = ceil((i+(tightness*block_width()))/block_width());
 
+function bottom_z_offset(drop_bottom, panel_height) = drop_bottom  ? -panel_height : 0;
+
 ///////////////////////////////////
 // Modules
 ///////////////////////////////////
@@ -137,7 +139,7 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=p
 
     difference() {
         union() {
-            bottom_z = drop_bottom  ? -panel_height : 0;
+            bottom_z = bottom_z_offset(drop_bottom, panel_height);
 
             walls();
 
@@ -147,11 +149,13 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=p
 
             box_center(l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes);
         }
-        
-        bottom_connector_negative_space(l=l, w=w, h=h, side_holes=sh, end_holes=eh, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=3, bolt_holes=false);
-    }
 
-    edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes);
+        union() {    
+            bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=3, bolt_holes=false);
+
+            edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes);
+        }
+    }
 }
 
 
@@ -159,6 +163,7 @@ module walls(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, 
 
     difference() {
         union() {
+            bottom_z = bottom_z_offset(drop_bottom, panel_height);
             rz = ridge_z_offset + bottom_z;
 
             if (left_wall_enabled) {
@@ -296,8 +301,6 @@ module box_center(l=l, w=w, h=h, center_type=center_type, side_holes=side_holes,
     if (center_type > 0 && l > 2 && w > 2) {
         l2 = block_width(l-2) + 2*skin;
         w2 = block_width(w-2) + 2*skin;
-        sh = (side_holes == 2) && (center_type == 2 || center_type == 4);
-        eh = (end_holes == 2) && (center_type == 3 || center_type == 4);
 
         translate([block_width(1) - skin, block_width(1) - skin, 0]) {
             cube([l2, w2, block_height(h)]);
