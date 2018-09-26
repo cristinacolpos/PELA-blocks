@@ -28,19 +28,19 @@ use <PELA-box-enclosure.scad>
 /* [PELA Box Option] */
 
 // Length of the enclosure including two for walls (PELA knob count)
-l = 6;
+l = 11;
 
 // Width of the enclosure including two for walls (PELA knob count)
-w = 4;
+w = 9;
 
 // Height of the enclosure including one for floor (PELA block layer count)
 h = 2;
 
 // Board length, including some extra
-board_l = 33.3;
+board_l = 85;
 
 // Board width, including some extra
-board_w = 18.3;
+board_w = 56;
 
 // Distance from box bottom to mount the board
 board_h = 3.2;
@@ -116,6 +116,8 @@ side_fexture_cut_height = 1.5;
 
 solid_upper_layers = true;
 
+center_type = 0; // No fill in center
+
 /////////////////////////////////////
 // PELA Box Enclosure Display
 
@@ -127,11 +129,11 @@ PELA_pi3_box_enclosure();
 ///////////////////////////////////
 
 
-module PELA_pi3_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers, retainer_tab_radius=retainer_tab_radius) {
+module PELA_pi3_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers, retainer_tab_radius=retainer_tab_radius, center_type=center_type) {
 
     difference() {
         union() {
-            PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers);
+            PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, bottom_height=bottom_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, solid_upper_layers=solid_upper_layers, center_type=center_type);
 
             board_insertion_space_shell(l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
         }

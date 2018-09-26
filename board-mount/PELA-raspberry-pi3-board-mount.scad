@@ -35,7 +35,7 @@ use <PELA-board-mount.scad>
 length = 85;
 width = 56;
 thickness = 1.7;
-h = 1; //4/3;
+h = 1;
 undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
 innercut = 1; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 bottom_type = 0;
