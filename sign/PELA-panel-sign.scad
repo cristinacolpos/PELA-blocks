@@ -52,13 +52,13 @@ lang = "en";
 f1 = "Liberation Sans:style=Bold Italic";
 
 // The font to use for text on the bottom line
-f2 = "Arial";
+f2 = "Arial:style=Bold";
 
 // The font size (points) of the top line
 fs1 = 4.8;
 
 // The font size (points) of the bottom line
-fs2 = 4.5;
+fs2 = 4.3;
 
 // How deeply into the PELA block to etch/extrude the text
 extrusion_height = 0.5;

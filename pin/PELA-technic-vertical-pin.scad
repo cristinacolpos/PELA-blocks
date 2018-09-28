@@ -30,8 +30,14 @@ base_thickness = panel_height(); // The thickness of the base below an array of 
 
 array_spacing = block_height();
 
+// Trim the base connecting a pin array to the minimum rounded shape
+minimum_base = true;
+
+// Size of the connector lock-in bump at the ends of a Pin
+pin_tip_length = 0.7;
+
 ///////////////
 // Display
 ///////////////
 
-pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness);
+pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length);
