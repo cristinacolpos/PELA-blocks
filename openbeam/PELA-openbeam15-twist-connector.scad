@@ -42,7 +42,9 @@ foot_length = throat_length + 2*1.6;
 foot_height = 2;
 
 //////////// Render ////////////////////////
-openbeam15();
+rotate([45, 0, 0]) {
+	openbeam15();
+}
 
 
 //////////////////
