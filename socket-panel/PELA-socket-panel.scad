@@ -35,7 +35,7 @@ w = 6;
 bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.6;
+bolt_hole_radius = 1.5;
 
 // Presence of top connector knobs
 knobs = true;
