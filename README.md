@@ -146,7 +146,13 @@ ___
 
 [![PELA Box Enclosure](images/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-box-enclosure.stl)
 
-[3D PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/box-enclosure/PELA-box-enclosure.stl) Use as a box or starting point for an enclusure. Print a separate panel for the top lid. The bottom can be knobs, sockets, flat bottom or no bottom. Check also the PELA Endcap Enclosure below for another way to add enclosed objects to your designs.
+[3D PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/box-enclosure/PELA-box-enclosure.stl) Use as a box or starting point for a LEGO-compatible board holder. Print a separate panel for the top lid. The bottom can be knobs, sockets, flat bottom or no bottom. Check also the PELA Endcap Enclosure below for another way to add enclosed objects to your designs.
+
+___
+
+[![PELA Raspberry Pi3 Box Enclosure](images/PELA-raspberry-pi3-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-box-enclosure.stl)
+
+[3D PELA Raspberry Pi3 Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-box-enclosure.stl) Enclosure with closed sides for [Raspberry Pi2/3/3B/3B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/) boards.
 
 ___
 
@@ -154,12 +160,17 @@ ___
 
 [3D PELA STMF4 Discovery Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-stmf4discovery-box-enclosure.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
-
 ___
 
 [![PELA Sparkfun Pro Micro Box Enclosure](images/PELA-sparkfun-pro-micro-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-sparkfun-pro-micro-box-enclosure.stl)
 
 [3D PELA Sparkfun Pro Micro Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-sparkfun-pro-micro-box-enclosure.stl) Enclosure for the [Sparkfun Pro Micro](https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/introduction) board.
+
+___
+
+[![PELA Intel Compute Stick Box Enclosure](images/PELA-intel-compute-stick-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-box-enclosure.stl)
+
+[3D PELA Intel Compute Stick Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-box-enclosure.stl) Enclosure for the [Intel Compute Stick](https://www.intel.com/content/www/us/en/products/boards-kits/compute-stick.html)
 
 ___
 

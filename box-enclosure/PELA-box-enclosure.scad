@@ -127,7 +127,7 @@ PELA_box_enclosure();
 ///////////////////////////////////
 
 // Find the dimensions of the optimum holder based on board length or width
-function fit_mm_to_pela_blocks(i, tightness) = ceil((i+(tightness*block_width()))/block_width());
+function fit_mm_to_pela_blocks(i, tightness) = ceil((i+(tightness*block_width())) / block_width());
 
 function bottom_z_offset(drop_bottom, panel_height) = drop_bottom  ? -panel_height : 0;
 
@@ -141,7 +141,7 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=p
         union() {
             bottom_z = bottom_z_offset(drop_bottom, panel_height);
 
-            walls();
+            walls(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, knob_flexture_radius=knob_flexture_radius, drop_bottom=drop_bottom, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, ridge_z_offset=ridge_z_offset, center_type=center_type);
 
             translate([0, 0, bottom_z]) {
                 enclosure_bottom(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, skin=skin, solid_bottom_layer=solid_bottom_layer);
@@ -288,7 +288,7 @@ module enclosure_bottom(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_
             cube([block_width(l)-2*skin, block_width(w)-2*skin, bottom_height]);
         }
     } else if (bottom_type==2) {
-        PELA_socket_panel_one_sided(l=l, w=w, panel_height=bottom_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin);        
+        PELA_socket_panel_one_sided(l=l, w=w, panel_height=bottom_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin);    
     } else if (bottom_type==3) {
         // bottom_height is ignored- must adapt to be taller if tall knob_height (which is default)
         PELA_knob_panel(l=l, w=w, top_vents=bottom_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skin=skin, skip_edge_knobs=skip_edge_knobs);

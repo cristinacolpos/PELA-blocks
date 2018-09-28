@@ -187,7 +187,6 @@ module left_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inse
 module side_snap_board_retainer_tab(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius) {
 
     translate([block_width(side_snap_end_inset) + side_snap_cut_width, block_width(0.5) + 3, board_h + board_thickness + retainer_tab_radius]) {
-
         rotate([0, 90, 0]) {
             cylinder(r=retainer_tab_radius, h=block_width(flexture_width) - 2*side_snap_cut_width);
         }
@@ -260,17 +259,14 @@ module left_side_snap_cuts(side_snap_end_inset=side_snap_end_inset, flexture_wid
 // Two vertical cuts in the side to hold a single board retaining tab
 module side_snap_board_holder_cut(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius) {
 
-    translate([block_width(side_snap_end_inset), block_width(0.5), panel_height()]) {
-        
+    translate([block_width(side_snap_end_inset), block_width(0.5), panel_height()]) {        
         side_snap_cut(side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height);
 
         translate([block_width(flexture_width) - side_snap_cut_width, 0, 0]) {
-
             side_snap_cut(side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height);
         }
 
         translate([0, block_width(0.5 - side_snap_cut_depth) - retainer_tab_radius, 0]) {
-
             side_snap_back_cut(flexture_width=flexture_width, retainer_tab_radius=retainer_tab_radius, side_fexture_cut_height=side_fexture_cut_height);
         }
     }
