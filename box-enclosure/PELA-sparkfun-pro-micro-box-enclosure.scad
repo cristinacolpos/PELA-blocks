@@ -34,7 +34,7 @@ l = 6;
 w = 4;
 
 // Height of the enclosure including one for floor (PELA block layer count)
-h = 2;
+h = 1;
 
 // Board length, including some extra
 board_l = 33.3;
@@ -55,7 +55,7 @@ side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full w
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]
@@ -93,7 +93,7 @@ back_wall_enabled = true;
 // Bottom of the enclosure is a panel below the edges of the wall (if true, box is 1/3 of a block taller)
 drop_bottom = false;
 
-// Side snap size, block units. Longer is stronger/stiffer
+// Side snap size, block units. Wider is stronger and more stiff
 flexture_width = 1;
 
 // Width of flexture spacings from the rest of the side wall
@@ -106,13 +106,16 @@ side_snap_cut_depth = 0.3;
 side_snap_end_inset = 1.5;
 
 // Size of the bump which holds the board down (part of the snap inset flexture)
-retainer_tab_radius = 0.6;
+retainer_tab_radius = 0.5;
+
+// Distance from the bottom for the retainer tabs
+retainer_tab_height = 5;
 
 // Size of the space for cable access on the enclosure end
 connector_hole_radius = 0;
 
 // Height of the flexture which allows the board to slide past the retainer tab (block height count)
-side_fexture_cut_height = 1.5;
+side_fexture_cut_height = 0.93;
 
 solid_upper_layers = true;
 
@@ -153,7 +156,7 @@ module PELA_sparkfun_pro_micro_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_t
 
     left_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius);
 
-    translate([0, 0, board_thickness + 2*retainer_tab_radius]) {
+    translate([0, 0, board_thickness + retainer_tab_radius + skin]) {
         right_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius);
     
         left_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius);
@@ -186,7 +189,7 @@ module left_side_retainer_tabs(flexture_width=flexture_width, side_snap_end_inse
 // A bump sticking inward from the side flexture- keeps the board down
 module side_snap_board_retainer_tab(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius) {
 
-    translate([block_width(side_snap_end_inset) + side_snap_cut_width, block_width(0.5) + 3, board_h + board_thickness + retainer_tab_radius]) {
+    translate([block_width(side_snap_end_inset) + side_snap_cut_width, block_width(0.5) + 3, retainer_tab_height]) {
         rotate([0, 90, 0]) {
             cylinder(r=retainer_tab_radius, h=block_width(flexture_width) - 2*side_snap_cut_width);
         }
@@ -259,29 +262,31 @@ module left_side_snap_cuts(side_snap_end_inset=side_snap_end_inset, flexture_wid
 // Two vertical cuts in the side to hold a single board retaining tab
 module side_snap_board_holder_cut(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius) {
 
+    cut_height = block_height(side_fexture_cut_height) - panel_height();
+
     translate([block_width(side_snap_end_inset), block_width(0.5), panel_height()]) {        
-        side_snap_cut(side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height);
+        side_snap_cut(side_snap_cut_width=side_snap_cut_width, cut_height=cut_height);
 
         translate([block_width(flexture_width) - side_snap_cut_width, 0, 0]) {
-            side_snap_cut(side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height);
+            side_snap_cut(side_snap_cut_width=side_snap_cut_width, cut_height=cut_height);
         }
 
         translate([0, block_width(0.5 - side_snap_cut_depth) - retainer_tab_radius, 0]) {
-            side_snap_back_cut(flexture_width=flexture_width, retainer_tab_radius=retainer_tab_radius, side_fexture_cut_height=side_fexture_cut_height);
+            side_snap_back_cut(flexture_width=flexture_width, retainer_tab_radius=retainer_tab_radius, cut_height=cut_height);
         }
     }
 }
 
 
 // A vertical slice to allow the flexture to move inward as the board is inserted past the retaining tab
-module side_snap_cut(side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height) {
+module side_snap_cut(side_snap_cut_width=side_snap_cut_width, cut_height) {
 
-    cube([side_snap_cut_width, block_width(1), block_height(side_fexture_cut_height)]);
+    cube([side_snap_cut_width, block_width(1), cut_height]);
 }
 
 
 // A vertical slice to allow the flexture to move inward as the board is inserted past the retaining tab
-module side_snap_back_cut(flexture_width=flexture_width, retainer_tab_radius=retainer_tab_radius, side_fexture_cut_height=side_fexture_cut_height) {
+module side_snap_back_cut(flexture_width=flexture_width, retainer_tab_radius=retainer_tab_radius, cut_height) {
 
-    cube([block_width(flexture_width), retainer_tab_radius, block_height(side_fexture_cut_height)]);
+    cube([block_width(flexture_width), retainer_tab_radius, cut_height]);
 }
