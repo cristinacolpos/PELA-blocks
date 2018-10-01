@@ -49,13 +49,13 @@ board_h = 3.2;
 board_thickness = 1.7;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]
@@ -79,7 +79,7 @@ bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:kno
 bottom_height = panel_height();
 
 // Create the left wall
-left_wall_enabled = false;
+left_wall_enabled = true;
 
 // Create the right wall
 right_wall_enabled = true;

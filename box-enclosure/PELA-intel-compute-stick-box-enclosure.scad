@@ -39,6 +39,8 @@ width_tightness = 2;
 
 height = 12.5;
 
+height_tightness = 0.8;
+
 bottom_type = 2;
 
 drop_bottom = false;
@@ -65,5 +67,23 @@ module intel_compute_stick_box_enclosure() {
     w=fit_mm_to_pela_blocks(width, width_tightness);
     h=2;
 
-    PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type);
+    difference() {
+        PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type);
+
+#        union() {
+            intel_compute_stick_body(l=l, w=w, h=h);
+        }
+    }
+}
+
+
+// The space into which a compute stick is lowered from the top
+module intel_compute_stick_body() {
+    x = (block_width(l) - length) / 2;
+    y = (block_width(w) - width) / 2;
+    z = block_height(h) - height;
+
+    translate([x, y, z]) {
+        cube([length, width, block_height(h)]);
+    }
 }

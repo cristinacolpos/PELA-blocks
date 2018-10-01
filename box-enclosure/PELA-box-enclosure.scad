@@ -126,8 +126,11 @@ PELA_box_enclosure();
 // Functions
 ///////////////////////////////////
 
-// Find the dimensions of the optimum holder based on board length or width
+// Find the optimum enclosing horizontal dimension in block units for an object of width/length i
 function fit_mm_to_pela_blocks(i, tightness) = ceil((i+(tightness*block_width())) / block_width());
+
+// Find the optimum enclosing vertical dimension in block units for an object of height i
+function fit_mm_to_pela_block_height(i, tightness) = ceil((i+(tightness*block_height())) / block_height());
 
 function bottom_z_offset(drop_bottom, panel_height) = drop_bottom  ? -panel_height : 0;
 
