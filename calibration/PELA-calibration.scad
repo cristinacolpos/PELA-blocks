@@ -38,7 +38,7 @@ end_holes = 0;
 
 side_holes = 2;
 
-side_hole_sheaths = true;
+side_sheaths = true;
 
 top_vents = false;
 
