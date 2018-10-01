@@ -55,6 +55,8 @@ end_holes = 1;
 
 end_sheaths = true;
 
+solid_upper_layers = true;
+
 // Should the middle of the box be a solid block or empty. Other designs will typically then cut from this solid block to support something inside the enclosure.
 center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
@@ -68,10 +70,13 @@ module intel_compute_stick_box_enclosure() {
     h=2;
 
     difference() {
-        PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type);
+        PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
 
-#        union() {
+        union() {
             intel_compute_stick_body(l=l, w=w, h=h);
+            intel_compute_stick_descender();
+#            end_access(l=l, w=w, h=h);
+#            side_access(l=l, w=w, h=h);
         }
     }
 }
@@ -85,5 +90,35 @@ module intel_compute_stick_body() {
 
     translate([x, y, z]) {
         cube([length, width, block_height(h)]);
+    }
+}
+
+
+module end_access(l, w, h) {
+    z = block_height(1);
+
+    translate([0, block_width(2), z]) {
+        cube([block_width(l), block_width(w - 4), block_height(h)]);
+    }
+}
+
+
+module side_access(l, w, h) {
+    z = block_height(1);
+
+    translate([block_width(2), 0, z]) {
+        cube([block_width(l - 4), block_width(w), block_height(h)]);
+    }
+}
+
+
+// The open space below the stick for air ventilation
+module intel_compute_stick_descender() {
+    descender_offset = 2;
+
+    dh = block_height(h);
+
+    translate([block_width() + descender_offset, block_width() + descender_offset, panel_height]) {
+        cube([length - 2*descender_offset, width - 2*descender_offset, block_height(h)]);
     }
 }
