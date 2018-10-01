@@ -150,7 +150,7 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=p
                 enclosure_bottom(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, skin=skin, solid_bottom_layer=solid_bottom_layer);
             }
 
-            box_center(l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes);
+            box_center(l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes, panel_height=panel_height);
         }
 
         union() {    
@@ -300,13 +300,13 @@ module enclosure_bottom(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_
 
 
 // The middle "cheese" from which enclosure supports are cut
-module box_center(l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes) {
+module box_center(l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes, panel_height=panel_height) {
     if (center_type > 0 && l > 2 && w > 2) {
         l2 = block_width(l-2) + 2*skin;
         w2 = block_width(w-2) + 2*skin;
 
-        translate([block_width(1) - skin, block_width(1) - skin, 0]) {
-            cube([l2, w2, block_height(h)]);
+        translate([block_width(1) - skin, block_width(1) - skin, panel_height]) {
+            cube([l2, w2, block_height(h) - panel_height]);
         }
     }
 }
