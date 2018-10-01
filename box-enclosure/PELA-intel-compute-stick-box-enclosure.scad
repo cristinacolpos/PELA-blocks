@@ -51,7 +51,7 @@ side_holes = 2;
 
 side_sheaths = true;
 
-end_holes = 1;
+end_holes = 3;
 
 end_sheaths = true;
 
