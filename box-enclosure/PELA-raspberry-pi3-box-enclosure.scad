@@ -28,7 +28,7 @@ use <PELA-box-enclosure.scad>
 /* [PELA Box Option] */
 
 // Length of the enclosure including two for walls (PELA knob count)
-l = 11;
+l = 12;
 
 // Width of the enclosure including two for walls (PELA knob count)
 w = 9;
