@@ -37,11 +37,11 @@ bolt_holes = false;
 
 end_holes = 3;
 
-side_holes = true;
+side_holes = 0;
 
-end_hole_sheaths = true;
+end_sheaths = true;
 
-side_hole_sheaths = true;
+side_sheaths = true;
 
 top_vents = false;
 
