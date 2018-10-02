@@ -45,21 +45,21 @@ These parametric models are easily tuned for a perfect snap fit with almost any 
 
 ### Calibration Instructions
 
-Your printer, slider and plastic effect the precise fit of press fit connectors. To correct for this we adjust the models slightly. It is a one time process for each material. It is as simple as fitting two blocks together and editing a text file, [`PELA-print-parameters.scad`](PELA-print-parameters.scad), with your preferred fit.
+Your printer, slicer settings, and plastic effect the precise fit. To correct for this, we adjust the models slightly for your printing process. Calibration is a one time process for each material. It is as simple as fitting two blocks together and editing a text file, [`PELA-print-parameters.scad`](PELA-print-parameters.scad) to indicate which test block fits best.
 
-The most common settings are `top_tweak` and `bottom_tweak`. These can be read from the side of the calibration bar. 
+Before you print the calibration bar, be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad).
 
-Be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad). These help to tailor the models for easier printing and a better fit.
+After you print the clibration bar, you update three settings to get a tight fit: `top_tweak`, `bottom_tweak` and `axle_hole_tweak`. These can be read from the side of the calibration bar. 
 
 1. Print the Calibration Bar and test fit the top knobs and bottom sockets against commercial LEGO. Put the `top_tweak` (on the side, near the top) and `bottom_tweak` (on the side, near the bottom) values that you can read from the side of the bar into `print-parameters.scad`.
-1. Use OpenSCAD to open Generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press `F6` to render, and export as `.STL`. Windows command line scripts are provided: `.\PELA-block.ps1 2 2 1` or `.\PELA-technic-block.ps1 2 2 1`
+1. Use OpenSCAD to generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press `F6` to render, and `Export` as `.STL`. Windows command line scripts are provided: `.\PELA-block.ps1 2 2 1` or `.\PELA-technic-block.ps1 2 2 1`
 1. Confirm a good fit with both commercial blocks and other PELA Blocks.
 1. If you find you also need to adjust the technic connector hole size, print the Calibration Block Set. `axle_hole_tweak` numbers change along with `top_tweak` numbers.
-1. Repeat this process as needed when you change material, nozzle size or and slicer settings.
+1. Repeat this process as needed when you change material, nozzle size or and slicer settings which affect geometry.
 
 ## Advanced Calibration
 
-An alternative set of individual calibration blocks are available. See [Advanced Calibration](ADVANCED-CALIBRATION)
+An alternative set of individual calibration blocks are available, and if you have an unusual material there are other numbers you can tune such as various part thicknesses. See [Advanced Calibration](ADVANCED-CALIBRATION)
 
 ## PELA-compatible Part Designs
 
@@ -171,6 +171,12 @@ ___
 [![PELA Intel Compute Stick Box Enclosure](images/PELA-intel-compute-stick-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-box-enclosure.stl)
 
 [3D PELA Intel Compute Stick Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-box-enclosure.stl) Enclosure for the [Intel Compute Stick](https://www.intel.com/content/www/us/en/products/boards-kits/compute-stick.html)
+
+___
+
+[![PELA Intel Compute Stick Box Lid](images/PELA-intel-compute-stick-box-lid.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-box-lid.stl)
+
+[3D PELA Intel Compute Stick Box Lid](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-box-lid.stl) Enclosure cover. You may prefer a knobbed or flat panel, but ensure proper ventilation.
 
 ___
 
