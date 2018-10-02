@@ -30,10 +30,10 @@ use <../knob-panel/PELA-knob-panel.scad>
 /* [PELA Box Option] */
 
 // Length of the enclosure including two for walls (PELA knob count)
-l = 4;
+l = 6;
 
 // Width of the enclosure including two for walls (PELA knob count)
-w = 3;
+w = 4;
 
 // Height of the enclosure not including the possible drop_bottom floor (PELA block layer count)
 h = 2;
@@ -66,7 +66,7 @@ knob_vent_radius = 0;
 bolt_holes = true;
 
 // Bottom of enclosure
-bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 3; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 // Height of the bottom to the enclosure (by default this is shorter then a normal panel so there is room on the enclosure sides for technic holes)
 bottom_height = 2.5;
