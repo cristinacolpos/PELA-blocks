@@ -122,3 +122,11 @@ module intel_compute_stick_descender() {
         cube([length - 2*descender_offset, width - 2*descender_offset, block_height(h)]);
     }
 }
+
+
+module intel_compute_stick_box_lid() {
+    l=fit_mm_to_pela_blocks(length, length_tightness);
+    w=fit_mm_to_pela_blocks(width, width_tightness);
+
+    PELA_socket_panel(l=l, w=w, bolt_holes=bolt_holes);
+}
