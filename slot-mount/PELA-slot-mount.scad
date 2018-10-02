@@ -37,7 +37,7 @@ thickness = 1.6;
 undercut = 2.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
 innercut = 0.8; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 
-base_thickness = panel_height(1); // The thickness of the base below an array of half-pins
+base_thickness = panel_height(); // The thickness of the base below an array of half-pins
 
 slot_depth = 2;
 
@@ -61,7 +61,7 @@ module slot_mount(length=length, width=width, slot_depth=slot_depth, array_spaci
     echo("l", l);
     echo("w", w);
 
-    pin_array(array_count=w, array_spacing=array_spacing, base_thickness=base_thickness);
+    pin_array(array_count=w, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=false);
 
     end_locks(l=l, w=w, length=length, width=width, end_lock_d=end_lock_d, base_thickness=base_thickness);
 
