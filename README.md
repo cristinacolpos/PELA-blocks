@@ -114,6 +114,12 @@ ___
 
 ___
 
+[![PELA Slot Mount 30 Degree](images/PELA-slot-mount-30degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount-30degree.stl)
+
+[3D PELA Slot Mount 30 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount-30degree.stl) A set of technic holes with an associated vertical PCB insertion slot. This holds for example a Raspberry Pi3 camera with a 30 degree down angle.
+
+___
+
 [![PELA Technic Axle](images/PELA-technic-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-axle.stl)
 
 [3D PELA Technic Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-axle.stl) Rigid and flexible material shafts of adjustable length for attaching to other 3D printed designs such as wheels which you want to rotate freely.
