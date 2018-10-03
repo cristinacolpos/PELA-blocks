@@ -181,7 +181,7 @@ module top_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_hei
     
     for (i = [0:1:l-1]) {
         for (j = [0:1:w-1]) {
-            if (!bolt_holes || !is_corner(x=i, y=j, l=l, w=w)) {
+            if (!(bolt_holes && is_corner(x=i, y=j, l=l, w=w))) {
                 translate([block_width(i), block_width(j), 0]) {
                     top_knob(h=h, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel);
                 }

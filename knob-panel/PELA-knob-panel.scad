@@ -73,9 +73,11 @@ module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_b
     if (skip_edge_knobs > 0) {
         PELA_technic_block(l=l, w=w, h=panel_h, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=false, sockets=sockets, knob_flexture_radius=knob_flexture_radius);
 
+        echo("knob l", l);
+        echo("knob w", w);
         if (l>2 && w>2) {
             translate([block_width(skip_edge_knobs), block_width(skip_edge_knobs), 0]) {
-                top_knob_set(l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, bolt_holes=bolt_holes);
+                top_knob_set(l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=panel_h, knob_radius=knob_radius, knob_height=knob_height, knob_bevel=knob_bevel, bolt_holes=false);
             }
         }
     } else {
