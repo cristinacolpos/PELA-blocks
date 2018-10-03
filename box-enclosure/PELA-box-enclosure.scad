@@ -48,7 +48,7 @@ side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:s
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 2;  // [0:disabled, 1:short air vents, 2:full length connectors, 3:short connectors]
+end_holes = 3;  // [0:disabled, 1:short air vents, 2:full length connectors, 3:short connectors]
 
 // Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
@@ -269,7 +269,7 @@ module back_wall(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side
 module bottom_negative_space(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_height, skin=skin, solid_bottom_layer=solid_bottom_layer) {
     
     if (bottom_type > 0) {
-        enclosure_bottom(l=l, w=w, bottom_type=1, panel_height=bottom_height, skin=skin, solid_bottom_layer=solid_bottom_layer);
+        enclosure_bottom(l=l, w=w, bottom_type=bottom_type, panel_height=bottom_height, skin=skin, solid_bottom_layer=solid_bottom_layer);
     }
 }
 
@@ -295,7 +295,7 @@ module enclosure_bottom(l=l, w=w, bottom_type=bottom_type, bottom_height=bottom_
     } else if (bottom_type==3) {
         // bottom_height is ignored- must adapt to be taller if tall knob_height (which is default)
         PELA_knob_panel(l=l, w=w, top_vents=bottom_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skin=skin, skip_edge_knobs=skip_edge_knobs);
-    }
+   }
 }
 
 
