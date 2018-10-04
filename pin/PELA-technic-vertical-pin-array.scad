@@ -24,7 +24,7 @@ use <PELA-technic-pin.scad>
 
 /* [Technic Pin Array Options] */
 
-array_count = 3; // The number of half-pins in an array supported by as base
+array_count = 2; // The number of half-pins in an array supported by as base
 
 base_thickness = panel_height(); // The thickness of the base below an array of half-pins
 
@@ -39,5 +39,10 @@ pin_tip_length = 0.7;
 ///////////////
 // Display
 ///////////////
+vertical_pin_array();
 
-pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length);
+
+module vertical_pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length) {
+
+    pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length);
+}
