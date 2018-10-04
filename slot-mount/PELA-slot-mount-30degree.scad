@@ -52,7 +52,7 @@ width_tightness = 1;
 ///////////////
 // Display
 ///////////////
-slot_mount30_degree(length=length, width=width, thickness=thickness, array_spacing=array_spacing);
+slot_mount_30degree(length=length, width=width, thickness=thickness, array_spacing=array_spacing);
 
 
 module slot_mount_30degree(length=length, width=width, slot_depth=slot_depth, array_spacing=array_spacing, base_thickness=base_thickness, thickness=thickness, length_tightness=length_tightness, width_tightness=width_tightness, end_lock_d=end_lock_d) {
