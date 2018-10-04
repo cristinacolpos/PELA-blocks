@@ -38,10 +38,10 @@ use <PELA-block.scad>
 /* [PELA Block Dimensions] */
 
 // Length of the block (PELA unit count)
-l = 2;
+l = 3;
 
 // Width of the block (PELA unit count)
-w = 2;
+w = 3;
 
 // Height of the block (PELA unit count)
 h = 1;
@@ -76,7 +76,7 @@ side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:s
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 3;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+end_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Add a sheath around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
