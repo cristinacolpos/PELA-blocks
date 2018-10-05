@@ -38,10 +38,10 @@ use <PELA-block.scad>
 /* [PELA Block Dimensions] */
 
 // Length of the block (PELA unit count)
-l = 3;
+l = 28;
 
 // Width of the block (PELA unit count)
-w = 3;
+w = 1;
 
 // Height of the block (PELA unit count)
 h = 1;
@@ -49,10 +49,10 @@ h = 1;
 /* [Basic Block Features] */
 
 // Presence of bottom connector sockets
-sockets = true;
+sockets = false;
 
 // Presence of top connector knobs
-knobs = true;
+knobs = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 bolt_holes = false;
