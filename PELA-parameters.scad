@@ -48,7 +48,7 @@ bolt_holes = false;
 bolt_hole_radius=1.6;
 
 // Interior fill for layers above the bottom
-solid_upper_layers = true;
+solid_upper_layers = false;
 
 // Interior fill for layers above the bottom
 solid_bottom_layer = false;
@@ -153,8 +153,8 @@ show_shadow_knobs = false;
 // Basic unit horizontal size of each block
 block_width = 8;
 
-// Basic unit vertical size of each block
-block_height = 9.6;
+// Basic unit vertical size of each block (8 is technics standard, 9.6 is LEGO standard)
+block_height = 8;
 
 // Horizontal clearance space around the outer surface of the set of blocks to allow two parts to be placed next to one another
 skin = 0.1;
@@ -234,4 +234,7 @@ defeather = 0.01;
 
 // Roundness of bottom connector rings (Use 8 for octagonal sockets- many parts of the geomoetry must be adjusted if you change this)
 ring_fn=8;
+
+// Roundness of bottom connector rings (Use 8 for octagonal sockets- many parts of the geomoetry must be adjusted if you change this)
+axle_hole_fn=32;
 
