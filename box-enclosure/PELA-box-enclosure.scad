@@ -154,7 +154,7 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=p
         }
 
         union() {    
-            bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=3, bolt_holes=false);
+            bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=3, bolt_holes=false, sockets=sockets);
 
             edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, panel_height=panel_height, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes);
         }
@@ -278,7 +278,7 @@ module bottom_negative_space(l=l, w=w, bottom_type=bottom_type, bottom_height=bo
 module edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes) {
 
     if (bottom_type > 0) {
-        bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes);
+        bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes, sockets=sockets);
     }
 }
 

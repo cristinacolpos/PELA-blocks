@@ -86,7 +86,7 @@ module pi3_board_mount(length=length, width=width, h=h, thickness=thickness, und
 
             front_connector_cutout();
             
-            bottom_connector_negative_space(l=14, w=9, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes);
+            bottom_connector_negative_space(l=14, w=9, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
         }
     }
 }
