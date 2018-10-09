@@ -295,8 +295,9 @@ module vive_cutout() {
 
 // A flexture cut through the ring around a pin to facilitate pin insertion
 module slice() {
-    translate([-cd2d/2, -slice_width/2])
+    translate([-cd2d/2, -slice_width/2]) {
         cube([cd2d, slice_width, pin_height]);
+    }
 }
 
 // The himisphical body into which pins are inserted
@@ -305,11 +306,13 @@ module channel() {
         hull() {
             sphere(d=channel_d);
         
-            translate([0, channel_l, 0])
+            translate([0, channel_l, 0]) {
                 sphere(d=channel_d);
+            }
         }
             
-        translate([-channel_d/2, -channel_d/2, 0])
+        translate([-channel_d/2, -channel_d/2, 0]) {
             cube([channel_d, channel_l+channel_d, pin_holder_height]);
         }
+    }
 }

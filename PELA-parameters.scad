@@ -181,11 +181,11 @@ function block_height(h=1) = h*block_height;
 // Test if this is a corner block
 function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 
-// Thickness of a flat panel
-function panel_height(i=1) = block_height(i)/3;
+// Ratio of a flat panel thickness to a regular block thickness
+function panel_height_ratio() = 1/2;
 
-// Thickness of a default panel
-panel_height = panel_height();
+// Thickness of a flat panel
+function panel_height(i=1) = block_height(i)*panel_height_ratio();
 
 
 /* [Advanced Options for Technic Features] */
