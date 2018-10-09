@@ -72,7 +72,7 @@ module PELA_socket_panel_one_sided(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_ra
             PELA_technic_block(l=l, w=w, h=1, top_vents=false, solid_bottom_layer=true, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, skin=skin, knobs=false);
     
             translate([skin, skin, 0])
-                cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height]);
+                cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height()]);
         }
 }
 
