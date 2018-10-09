@@ -58,7 +58,7 @@ module PELA_double_sided_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_
 
     PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, sockets=false, knobs=true);
     
-    translate([0, block_width(w), panel_height]) {
+    translate([0, block_width(w), panel_height()]) {
         rotate([180, 0, 0]) {
             PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, sockets=false, knobs=true);
         }

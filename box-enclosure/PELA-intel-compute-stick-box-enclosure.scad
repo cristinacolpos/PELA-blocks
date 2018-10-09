@@ -70,7 +70,7 @@ module intel_compute_stick_box_enclosure() {
     h=2;
 
     difference() {
-        PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, panel_height=panel_height, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
+        PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
 
         union() {
             intel_compute_stick_body(l=l, w=w, h=h);
@@ -118,7 +118,7 @@ module intel_compute_stick_descender() {
 
     dh = block_height(h);
 
-    translate([block_width() + descender_offset, block_width() + descender_offset, panel_height]) {
+    translate([block_width() + descender_offset, block_width() + descender_offset, panel_height()]) {
         cube([length - 2*descender_offset, width - 2*descender_offset, block_height(h)]);
     }
 }

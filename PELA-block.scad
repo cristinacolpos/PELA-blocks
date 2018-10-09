@@ -45,7 +45,7 @@ l = 4;
 w = 2;
 
 // Height of the block (PELA unit count)
-h = 1;
+h = 2;
 
 solid_bottom_layer = false;
 
@@ -424,7 +424,7 @@ module corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius) {
 // A hole for a mounting bolt in the corners of a panel or block
 module bolt_hole(x=1, y=1, r=bolt_hole_radius, h=h) {
     translate([block_width(x-0.5), block_width(y-0.5), 0])
-        cylinder(r=r, h=block_height(h));
+        cylinder(r=r, h=block_height(h) + skin);
 }
     
 

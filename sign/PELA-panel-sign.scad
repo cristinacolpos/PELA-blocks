@@ -122,13 +122,11 @@ module PELA_flat_sign(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude
 // Two lines of text extruded out from the surface
 module PELA_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
-    panel_h = block_height(knob_panel_height(knob_height=knob_height, sockets=sockets));
-
-    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_h]) {
+    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_height()]) {
         PELA_text(text=line_1, lang=lang, font=f1, font_size=fs1, vertical_alignment="top");
     }
 
-    translate([left_margin+skin, vertical_margin+skin, panel_h]) {
+    translate([left_margin+skin, vertical_margin+skin, panel_height()]) {
         PELA_text(text=line_2, lang=lang, font=f2, font_size=fs2, vertical_alignment="bottom");
     }
 }
@@ -137,13 +135,11 @@ module PELA_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang
 // Two lines of text etched into the surface
 module PELA_sign_etched_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
-    panel_h = block_height(knob_panel_height(knob_height=knob_height, sockets=sockets));
-
-    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_h]) {
+    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_height()]) {
         PELA_text(text=line_1, lang=lang, extrusion_height=extrusion_height, font=f1, font_size=fs1, vertical_alignment="top");
     }
     
-    translate([left_margin+skin, vertical_margin+skin, panel_h]) {
+    translate([left_margin+skin, vertical_margin+skin, panel_height()]) {
         PELA_text(text=line_2, lang=lang, extrusion_height=extrusion_height, font=f2, font_size=fs2, vertical_alignment="baseline");
     }
 }
