@@ -96,9 +96,13 @@ module intel_compute_stick_body() {
 
 module end_access(l, w, h) {
     z = block_height(1);
+    y = 1.82;
 
-    translate([0, block_width(2), z]) {
-        cube([block_width(l), block_width(w - 4), block_height(h)]);
+    translate([0, block_width(y), z]) {
+        cube([block_width(l), block_width(w - 2*y), block_height(h)]);
+    }
+    translate([0, block_width(y), 0]) {
+        cube([block_width(1), block_width(w - 2*y), block_height(h)]);
     }
 }
 
@@ -108,6 +112,12 @@ module side_access(l, w, h) {
 
     translate([block_width(2), 0, z]) {
         cube([block_width(l - 4), block_width(w), block_height(h)]);
+    }
+    translate([block_width(2), 0, z/2]) {
+        cube([block_width(4), block_width(w), block_height(h)]);
+    }
+    translate([block_width(12), 0, z/2]) {
+        cube([block_width(2), block_width(w), block_height(h)]);
     }
 }
 

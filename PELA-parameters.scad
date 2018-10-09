@@ -181,7 +181,7 @@ function block_height(h=1) = h*block_height;
 // Test if this is a corner block
 function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 
-// Ratio of a flat panel thickness to a regular block thickness
+// Ratio of a flat panel thickness to a regular block thickness (1/2 for PELA 8mm tall blocks, 1/3 for LEGO 9.6mm block_height blocks)
 function panel_height_ratio() = 1/2;
 
 // Thickness of a flat panel
