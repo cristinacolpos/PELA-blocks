@@ -61,7 +61,7 @@ solid_bottom_layer = false;
 shell = large_nozzle ? 1.2 : 1.0;
 
 // Thickness of the solid top surface of the block
-top_shell = 1.5;
+top_shell = 1;
 
 
 /* [Top Connector Adjustments] */
@@ -78,8 +78,8 @@ knob_flexture_radius = flexible_material ? 0.6 : 0.8;
 // Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
 knob_bevel = flexible_material ? 0.3 : 0.1;
 
-// Height of the connectors (LEGO uses 1.8- taller gives a stronger hold, flexible materials should be even taller if possible)
-knob_height = 9.6/3; //flexible_material ? 9.6/3 : 2.0;
+// Height of the connectors (LEGO uses 1.8- taller gives a stronger hold especially for flexible materials, too tall can cause problems when connecting to thin panels)
+knob_height = 2.9;
 
 // Height of the connectors LEGO uses- this affects flexture heights)
 official_knob_height = 1.8;
