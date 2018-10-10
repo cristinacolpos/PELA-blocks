@@ -18,8 +18,8 @@ Import this into other design files:
     use <PELA-block.scad>
 */
 
-include <../PELA-parameters.scad>
 include <../PELA-print-parameters.scad>
+include <../PELA-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <PELA-knob-panel.scad>
@@ -32,16 +32,25 @@ l = 4;
 // Width of the block (PELA unit count)
 w = 4;
 
-top_vents = false;
+top_vents = true;
 
-// Interior fill for the bottom
-solid_bottom_layer = true;
+// Interior fill for layers above the bottom
+solid_bottom_layer = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
+bolt_holes = true;
 
-// Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.5;
+// Presence of top connector knobs (vs flat)
+knobs = true;
+
+// Presence of bottom socket connectors (vs flat)
+sockets = true;
+
+// Height of horizontal surface strengthening slats (appears between the bottom rings)
+bottom_stiffener_height = 0;
+
+// How many outside rows and columns on all edges to omit before adding knobs
+skip_edge_knobs = 0;
 
 
 /////////////////////////////////////
@@ -54,13 +63,13 @@ PELA_double_sided_knob_panel();
 // PELA PANEL modules
 /////////////////////////////////////
 
-module PELA_double_sided_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
+module PELA_double_sided_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, skip_edge_knobs=skip_edge_knobs) {
 
-    PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, sockets=false, knobs=true);
+PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs);
     
     translate([0, block_width(w), panel_height()]) {
         rotate([180, 0, 0]) {
-            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, sockets=false, knobs=true);
+            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs);
         }
     }
 }

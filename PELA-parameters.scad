@@ -76,7 +76,7 @@ knob_top_thickness = 0.8;
 knob_flexture_radius = flexible_material ? 0.6 : 0.8;
 
 // Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
-knob_bevel = flexible_material ? 0.3 : 0.1;
+knob_bevel = flexible_material ? 0.3 : 0.2;
 
 // Height of the connectors (LEGO uses 1.8- taller gives a stronger hold especially for flexible materials, too tall can cause problems when connecting to thin panels)
 knob_height = 2.9;
@@ -141,12 +141,6 @@ ridge_z_offset = 0;
 
 /* [Advanced Options for Basic Blocks] */
 
-// Minimum angle to approximate a circle
-$fa = 15;
-
-// Minimum segment length to approximate a circle
-$fs = 0.5;
-
 // Display where knobs of a block below would be
 show_shadow_knobs = false;
 
@@ -167,25 +161,6 @@ bottom_stiffener_width = 2.6;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings, default is print-parameters.scad:knob_height)
 bottom_stiffener_height = knob_height;
-
-/////////////////////////////////////
-// FUNCTIONS
-/////////////////////////////////////
-
-// Horizontal size
-function block_width(i=1) = i*8; //TODO OPENSCAD Error, parameters in functions?
-
-// Vertical size
-function block_height(h=1) = h*block_height;
-
-// Test if this is a corner block
-function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
-
-// Ratio of a flat panel thickness to a regular block thickness (1/2 for PELA 8mm tall blocks, 1/3 for LEGO 9.6mm block_height blocks)
-function panel_height_ratio() = 1/2;
-
-// Thickness of a flat panel
-function panel_height(i=1) = block_height(i)*panel_height_ratio();
 
 
 /* [Advanced Options for Technic Features] */
@@ -238,3 +213,28 @@ ring_fn=8;
 // Roundness of bottom connector rings (Use 8 for octagonal sockets- many parts of the geomoetry must be adjusted if you change this)
 axle_hole_fn=32;
 
+// Minimum angle to approximate a circle
+$fa = 15;
+
+// Minimum segment length to approximate a circle
+$fs = 0.5;
+
+
+/////////////////////////////////////
+// FUNCTIONS
+/////////////////////////////////////
+
+// Horizontal size
+function block_width(i=1) = i*8; //TODO OPENSCAD Error, parameters in functions?
+
+// Vertical size
+function block_height(h=1) = h*block_height;
+
+// Test if this is a corner block
+function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
+
+// Ratio of a flat panel thickness to a regular block thickness (1/2 for PELA 8mm tall blocks, 1/3 for LEGO 9.6mm block_height blocks)
+function panel_height_ratio() = 1/2;
+
+// Thickness of a flat panel
+function panel_height(i=1) = block_height(i)*panel_height_ratio();

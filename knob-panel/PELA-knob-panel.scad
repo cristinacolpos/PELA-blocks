@@ -18,8 +18,8 @@ Import this into other design files:
     use <PELA-block.scad>
 */
 
-include <../PELA-parameters.scad>
 include <../PELA-print-parameters.scad>
+include <../PELA-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 
@@ -55,14 +55,14 @@ skip_edge_knobs = 0;
 // PELA panel display
 /////////////////////////////////////
 
-//PELA_knob_panel();
-PELA_technic_block(l=l, w=w, h=1/2, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets);
+PELA_knob_panel();
+
 
 /////////////////////////////////////
 // PELA PANEL modules
 /////////////////////////////////////
 
-module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs) {
+module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height) {
 
     hr=panel_height_ratio();
 

@@ -47,18 +47,17 @@ angle = 30;
 ///////////////
 // Display
 ///////////////
-slot_mount_30degree(length=length, width=width, thickness=thickness, array_spacing=array_spacing);
+slot_mount_30degree();
 
 
 module slot_mount_30degree(length=length, width=width, slot_depth=slot_depth, array_spacing=array_spacing, base_thickness=base_thickness, thickness=thickness, length_tightness=length_tightness, width_tightness=width_tightness, end_lock_d=end_lock_d) {
+
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
-    echo("l", l);
-    echo("w", w);
 
     bar_offset = base_thickness + 4;
 
-    translate([0, block_width(3.5), bar_offset]) {
+    translate([0, block_width(3.5), block_height(2)]) {
         rotate([angle, 0, 0]) {
             PELA_technic_block(l=6, w=1, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0);
         }
