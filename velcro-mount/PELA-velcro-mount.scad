@@ -34,10 +34,10 @@ use <../knob-panel/PELA-knob-panel.scad>
 /* [PELA Panel Options] */
 
 // Length of the block (PELA unit count)
-l = 6; 
+l = 4; 
 
 // Width of the block (PELA unit count)
-w = 6;
+w = 4;
 
 top_vents = false;
 
@@ -72,21 +72,15 @@ velcro_mount();
 module velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
 
     difference() {
-        top_panel(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
+        PELA_technic_block(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, sockets=false, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
 
         slot(l=l, w=w);
     }
 }
 
 
-module top_panel(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
-
-    PELA_technic_block(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
-}
-
-
 module slot(l=l, w=w) {
-    translate([block_width(), -0.01, panel_height()]) {
+    translate([block_width(), -0.01, panel_height(0.5)]) {
         cube([block_width(l-2), block_width(w)+0.02, panel_height()]);
     }
 }
