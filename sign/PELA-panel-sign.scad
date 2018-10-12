@@ -31,16 +31,16 @@ use <../knob-panel/PELA-knob-panel.scad>
 /* [PELA Sign Options] */
 
 // Length of the sign (PELA knob count)
-l = 8; 
+l = 7; 
 
 // Width of the sign (PELA knob count)
-w = 2;
+w = 1;
 
 // The top line of text. Set to "" to not have any top line
-line_1 = "PELAblocks.org";
+line_1 = "";
 
 // The second line of text
-line_2 = "Rapid Prototyping";
+line_2 = "PELAblocks.org";
 
 // true=>text is pushing outward from the PELA block, false=>etch text into the block
 extrude = true;
@@ -58,16 +58,16 @@ f2 = "Arial:style=Bold";
 fs1 = 4.8;
 
 // The font size (points) of the bottom line
-fs2 = 4.3;
+fs2 = 5;
 
 // How deeply into the PELA block to etch/extrude the text
-extrusion_height = 0.5;
+extrusion_height = 0.8;
 
 // Left text margin (mm)
-left_margin = 6.5;
+left_margin = 1.8;
 
 // Top and bottom text margin (mm)
-vertical_margin = 1.8;
+vertical_margin = 0.3;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
@@ -85,7 +85,7 @@ end_sheaths = true;
 top_vents = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = true;
+bolt_holes = false;
 
 // Presence of bottom connector sockets
 sockets = true;
@@ -95,8 +95,11 @@ knobs = false;
 
 /////////////////////////////////////
 // PELA Flat Sign Display
+//
+// Enable these one at a time if a dual-color print
 
-PELA_flat_sign();
+color("white") PELA_flat_sign();
+color("green") PELA_flat_sign_extruded_text();
 
 ///////////////////////////////////
 
@@ -104,10 +107,11 @@ PELA_flat_sign();
 module PELA_flat_sign(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, bolt_holes=bolt_holes, sockets=sockets, knobs=knobs) {
     
     if (extrude) {
-        PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets);
-        
-        translate([skin, skin, 0])
-            PELA_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
+        difference() {
+            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets);
+
+            PELA_flat_sign_extruded_text();
+        }
     } else {
         difference() {
             PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets);
@@ -119,15 +123,25 @@ module PELA_flat_sign(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude
 }
 
 
+// A PELA block with text on the top
+module PELA_flat_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, bolt_holes=bolt_holes, sockets=sockets, knobs=knobs) {
+    
+    if (extrude) {
+        translate([skin, skin, 0])
+            PELA_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
+    }
+}
+
+
 // Two lines of text extruded out from the surface
 module PELA_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
-    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_height()]) {
-        PELA_text(text=line_1, lang=lang, font=f1, font_size=fs1, vertical_alignment="top");
+    translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_height()-extrusion_height]) {
+        PELA_text(text=line_1, lang=lang, font=f1, font_size=fs1, vertical_alignment="top", extrusion_height=extrusion_height*2);
     }
 
-    translate([left_margin+skin, vertical_margin+skin, panel_height()]) {
-        PELA_text(text=line_2, lang=lang, font=f2, font_size=fs2, vertical_alignment="bottom");
+    translate([left_margin+skin, vertical_margin+skin, panel_height()-extrusion_height]) {
+        PELA_text(text=line_2, lang=lang, font=f2, font_size=fs2, vertical_alignment="bottom", extrusion_height=extrusion_height*2);
     }
 }
 
