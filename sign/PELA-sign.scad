@@ -44,10 +44,10 @@ w = 1;
 h = 2;
 
 // The top line of text. Set to "" to not have any top line
-line_1 = "PELAblocks.org";
+line_1 = "Rapid Prototyping";
 
 // The second line of text
-line_2 = "Rapid Prototyping";
+line_2 = "PELAblocks.org";
 
 // 1=>text is pushing outward from the PELA block, 0=>etch text into the block
 extrude = 1;
