@@ -9,8 +9,6 @@ Most designs are adjusted to print upright with any layer height. There is very 
 
 ![PELA block with slicer-generated supports](images/PELA-block-with-slicer-generated-supports.jpg)
 
-PELA blocks are designed for zero cleanup after printing. Sometimes you need internal supports, but slicer supports can create a lot of post processing work as shown in the [PELA Intel Compute Stick Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/endcap-enclosure/PELA-endcap-intel-compute-stick-enclosure.stl) above.
-
 Look for `print_supports = true;` in the model to enable or disable print-time support generated into the model to minimize post-processing.
 
 # Innofil rPET
