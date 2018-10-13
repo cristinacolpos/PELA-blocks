@@ -47,89 +47,30 @@ angle = 30;
 ///////////////
 // Display
 ///////////////
-slot_mount_30degree();
+mount_30degree();
 
 
-module slot_mount_30degree(length=length, width=width, slot_depth=slot_depth, array_spacing=array_spacing, base_thickness=base_thickness, thickness=thickness, length_tightness=length_tightness, width_tightness=width_tightness, end_lock_d=end_lock_d) {
+module mount_30degree(angle=angle, length=length, width=width, slot_depth=slot_depth, array_spacing=array_spacing, base_thickness=base_thickness, thickness=thickness, length_tightness=length_tightness, width_tightness=width_tightness, end_lock_d=end_lock_d) {
 
-    l = fit_mm_to_pela_blocks(length, length_tightness);
-    w = fit_mm_to_pela_blocks(width, width_tightness);
-
-    bar_offset = base_thickness + 4;
-
-    translate([0, block_width(3.5), block_height(2)]) {
+    translate([0, 0, block_height(1)]) {
         rotate([angle, 0, 0]) {
             PELA_technic_block(l=6, w=1, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0);
         }
-
-        hull() {
-            rotate([angle, 0, 0]) {        
-                cube([block_width(6), block_width(1), 0.01]);
-            }
-
-            translate([0, 0, -bar_offset + panel_height()]) {
-                cube([block_width(6), block_width(1), 0.01]);
-            }
-        } 
     }
 
-    end_locks(l=l, w=w, length=length, width=width, end_lock_d=end_lock_d, base_thickness=base_thickness);
+    rotate([90, 0, 0]) {
+        PELA_technic_block(l=6, w=1, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0);
+    }
 
-    difference() {
-        back(l=l, w=w, base_thickness=base_thickness);
+    hull() {
+        translate([0, 0, block_height(1)]) {
+            rotate([angle+90, 0, 0]) {
+                cube([block_width(6), block_width(1), 0.01]);
+            }
+        }
 
-        union() {
-            board_access(l, w, length=length, width=width, slot_depth=slot_depth, base_thickness=base_thickness);
-            slot(l=l, w=w, length=length, width=width, base_thickness=base_thickness, thickness=thickness);
+        translate([0, block_width(-1), block_height(1)]) {
+            cube([block_width(6), block_width(1), 0.01]);
         }
     }
-}
-
-
-// The base piece from which the board support slot is cut
-module back(l, w, length=length, width=width, base_thickness=base_thickness) {
-    translate([0, block_width(1), 0]) {
-        cube([block_width(w), block_width(l), base_thickness]);
-    }
-}
-
-
-// Edge support for the board
-module slot(l, w, length=length, width=width, base_thickness=base_thickness, thickness=thickness) {
-    x_inset = (block_width(w)-width)/2;
-    y_inset = (block_width(l)-width)/2;
-    z_inset = (base_thickness-thickness)/2;
-
-    translate([x_inset, block_width(1)+y_inset, z_inset]) {
-        cube([width, length*2, thickness]);
-    }
-}
-
-
-// Space in front of and behind the board
-module board_access(l, w, length=length, width=width, slot_depth=slot_depth, base_thickness=base_thickness) {
-    x_inset = (block_width(w)-width)/2 + slot_depth;
-    y_inset = (block_width(l)-width)/2 + slot_depth;
-
-    translate([x_inset, block_width(1)+y_inset, -0.1]) {
-        cube([width - 2*slot_depth, 2*length, base_thickness + 0.2]);
-    }
-}
-
-
-// A tab to keep the board from sliding out of the slot
-module end_lock(x, y, end_lock_d=end_lock_d, base_thickness=base_thickness) {
-    translate([x, y, 0]) {
-       cylinder(d=end_lock_d, h=base_thickness);
-    }
-}
-
-
-module end_locks(l, w, length=length, width=width, end_lock_d=end_lock_d, base_thickness=base_thickness) {
-    x_inset = (block_width(w)-width)/2;
-    y_inset = (block_width(l)-width)/2;
-
-    end_lock(x=x_inset, y=block_width(1) + y_inset + length + end_lock_d/2, end_lock_d=end_lock_d, base_thickness=base_thickness);
-
-    end_lock(x=x_inset + width, y=block_width(1) + y_inset + length + end_lock_d/2, end_lock_d=end_lock_d, base_thickness=base_thickness);
 }
