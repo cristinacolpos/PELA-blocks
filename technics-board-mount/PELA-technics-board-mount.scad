@@ -28,58 +28,83 @@ use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../board-mount/PELA-board-mount.scad>
+use <../technics-bar/PELA-technics-bar.scad>
 
 /* [Technic Pin Array Options] */
 
-length = 38;
-width = 38;
-thickness = 1.6;
+length = 39.5;
+width = 39.5;
+thickness = 1.8;
 undercut = 2.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
-innercut = 0.8; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-
-base_thickness = panel_height(); // The thickness of the base below an array of half-pins
-
+innercut = 2; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
+base_thickness = block_height(); // The thickness of the base below an array of half-pins
 slot_depth = 2;
-
 end_lock_d = 1.2;
-
 array_spacing = block_width();
-
-length_tightness = 1;
-
-width_tightness = 1;
+length_tightness = 2;
+width_tightness = 2;
+angle = 45;
 
 ///////////////
 // Display
 ///////////////
-slot_mount(length=length, width=width, thickness=thickness, array_spacing=array_spacing);
+camera_holder();
 
 
-module slot_mount(length=length, width=width, slot_depth=slot_depth, array_spacing=array_spacing, base_thickness=base_thickness, thickness=thickness, length_tightness=length_tightness, width_tightness=width_tightness, end_lock_d=end_lock_d) {
-    l = fit_mm_to_pela_blocks(length, length_tightness);
-    w = fit_mm_to_pela_blocks(width, width_tightness);
-    echo("l", l);
-    echo("w", w);
-
-    pin_array(array_count=w, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=false);
-
-    end_locks(l=l, w=w, length=length, width=width, end_lock_d=end_lock_d, base_thickness=base_thickness);
-
+module camera_holder() {
+    
     difference() {
-        back(l=l, w=w, base_thickness=base_thickness);
-
+        camera_mount();
         union() {
-            board_access(l, w, length=length, width=width, slot_depth=slot_depth, base_thickness=base_thickness);
-            slot(l=l, w=w, length=length, width=width, base_thickness=base_thickness, thickness=thickness);
+            camera_board();
+            camera_back();
         }
     }
 }
 
 
-// The base piece from which the board support slot is cut
-module back(l, w, length=length, width=width, base_thickness=base_thickness) {
-    translate([0, block_width(1), 0]) {
-        cube([block_width(w), block_width(l), base_thickness]);
+module camera_mount() {
+
+    l = fit_mm_to_pela_blocks(length, length_tightness);
+    w = fit_mm_to_pela_blocks(width, width_tightness);
+
+    technic_bar(l=l);
+
+    rotate([0, 0, 90]) {
+        technic_bar(l=w);
+    }
+
+    translate([0, block_width(w-1), 0]) {
+        technic_bar(l=l);
+    }
+
+    rotate([0, 0, 90]) {
+        translate([0, -block_width(w-1), 0]) {
+            technic_bar(l=l);
+        }
+    }
+
+    translate([block_width(0.5)-skin, block_width(0.5)-skin, 0]) {
+        color("red") cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, block_height()]);
+    }
+}
+
+
+module camera_board(l=l, w=w) {
+    l2 = ((block_width(l) - length) / 2);
+    w2 = ((block_width(w) - width) / 2);
+
+    translate([block_width() + l2, block_width() + w2, block_height() - 1.8]) {
+        cube([length, width, 1.8]);
+    }
+}
+
+module camera_back(l=l, w=w) {
+    l2 = ((block_width(l) - length - 2) / 2);
+    w2 = ((block_width(w) - width - 2) / 2);
+
+#    translate([block_width(0.5) + 4, block_width(0.5) + 4, 0]) {
+        cube([length - 8, width - 8, block_height()]);
     }
 }
 

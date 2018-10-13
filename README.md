@@ -108,15 +108,27 @@ ___
 
 ___
 
-[![PELA Slot Mount](images/PELA-slot-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount.stl)
+[![PELA Pi Camera Technics Mount](images/PELA-technics-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-board-mount.stl)
 
-[3D PELA Slot Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount.stl) A set of technic pins with an associated vertical PCB insertion slot. The default parameters are for holding a Haiworld wide angle Raspberry Pi 3 camera.
+[3D PELA Pi Camera Technics Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-board-mount.stl) A Raspberry Pi 3 camera holder. Pin the board in place using a technics bar.
 
 ___
 
-[![PELA Slot Mount 30 Degree](images/PELA-slot-mount-30degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount-30degree.stl)
+[![PELA Technics Bar](images/PELA-technics-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar.stl)
 
-[3D PELA Slot Mount 30 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-slot-mount-30degree.stl) A set of technic holes with an associated vertical PCB insertion slot. This holds for example a Raspberry Pi3 camera with a 30 degree down angle.
+[3D PELA Technics Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar.stl) A minimalist technic bar.
+
+___
+
+[![PELA Technics Bar 30 Degree](images/PELA-technics-bar-30degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar-30degree.stl)
+
+[3D PELA Technics Bar 30 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar-30degree.stl) A technic bar at a 30 degree angle from a second technic bar.
+
+___
+
+[![PELA Technics Bar 45 Degree](images/PELA-technics-bar-45degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar-45degree.stl)
+
+[3D PELA Technics Bar 45 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar-45degree.stl) A technic bar at a 45 degree angle from a second technic bar.
 
 ___
 
@@ -152,7 +164,7 @@ ___
 
 [![PELA Box Enclosure](images/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-box-enclosure.stl)
 
-[3D PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/box-enclosure/PELA-box-enclosure.stl) Use as a box or starting point for a LEGO-compatible board holder. Print a separate panel for the top lid. The bottom can be knobs, sockets, flat bottom or no bottom. Check also the PELA Endcap Enclosure below for another way to add enclosed objects to your designs.
+[3D PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/box-enclosure/PELA-box-enclosure.stl) Use as a box or starting point for a LEGO-compatible board holder. Print a separate panel for the top lid. The bottom can be knobs, sockets, flat bottom or no bottom.
 
 ___
 
@@ -231,18 +243,6 @@ ___
 [![PELA Rib Mount](images/PELA-rib-mount.png) (alternative design to attach to rectangular ribs)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rib-mount.stl)
 
 [3D PELA Rib Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rib-mount.stl) An alternative attachment to a rectangular rail.
-
-___
-
-[![PELA Endcap Enclosure](images/PELA-endcap-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-endcap-enclosure.stl)
-
-[3D PELA Endcap Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-endcap-enclosure.stl) This base design allows you to adjust the parameters to fit around something. It tends to work best for items which are already enclosed. If the item needs more protection, check also the above PELA Box Enclosure.
-
-___
-
-[![PELA Actuonix PQ12 Linear Actuator Endcap Enclosure](images/PELA-actuonix-pq12-linear-actuator-endcap-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-actuonix-pq12-linear-actuator-endcap-enclosure.stl)
-
-[3D PELA Actuonix PQ12 Linear Actuator Endcap Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-actuonix-pq12-endcap-enclosure.stl) Add small linear servo to your robot.
 
 ___
 
