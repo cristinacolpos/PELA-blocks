@@ -108,27 +108,27 @@ ___
 
 ___
 
-[![PELA Pi Camera Technics Mount](images/PELA-technics-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-board-mount.stl)
+[![PELA Pi Camera Technic Mount](images/PELA-technic-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-board-mount.stl)
 
-[3D PELA Pi Camera Technics Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-board-mount.stl) A Raspberry Pi 3 camera holder. Pin the board in place using a technics bar.
-
-___
-
-[![PELA Technics Bar](images/PELA-technics-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar.stl)
-
-[3D PELA Technics Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar.stl) A minimalist technic bar.
+[3D PELA Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-board-mount.stl) A Raspberry Pi 3 camera holder. Pin the board in place using a technics bar.
 
 ___
 
-[![PELA Technics Bar 30 Degree](images/PELA-technics-bar-30degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar-30degree.stl)
+[![PELA Technic Bar](images/PELA-technic-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar.stl)
 
-[3D PELA Technics Bar 30 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar-30degree.stl) A technic bar at a 30 degree angle from a second technic bar.
+[3D PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar.stl) A minimalist technic bar.
 
 ___
 
-[![PELA Technics Bar 45 Degree](images/PELA-technics-bar-45degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar-45degree.stl)
+[![PELA Technic Bar 30 Degree](images/PELA-technic-bar-30degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar-30degree.stl)
 
-[3D PELA Technics Bar 45 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technics-bar-45degree.stl) A technic bar at a 45 degree angle from a second technic bar.
+[3D PELA Technic Bar 30 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar-30degree.stl) A technic bar at a 30 degree angle from a second technic bar.
+
+___
+
+[![PELA Technic Bar 45 Degree](images/PELA-technic-bar-45degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar-45degree.stl)
+
+[3D PELA Technic Bar 45 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar-45degree.stl) A technic bar at a 45 degree angle from a second technic bar.
 
 ___
 
