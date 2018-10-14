@@ -25,7 +25,7 @@ include <../PELA-print-parameters.scad>
 include <../PELA-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
-use <PELA-technics-bar-30degree.scad>
+use <PELA-technic-bar-30degree.scad>
 
 /* [Technic Pin Array Options] */
 
