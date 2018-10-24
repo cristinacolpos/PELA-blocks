@@ -41,12 +41,12 @@ module mount_30degree(angle=angle, l=l) {
 
     translate([0, 0, block_height(1)]) {
         rotate([angle, 0, 0]) {
-            PELA_technic_block(l=6, w=1, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0);
+            PELA_technic_block(l=6, w=1, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, skin=0);
         }
     }
 
     rotate([90, 0, 0]) {
-        PELA_technic_block(l=6, w=1, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0);
+        PELA_technic_block(l=6, w=1, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, skin=0);
     }
 
     hull() {

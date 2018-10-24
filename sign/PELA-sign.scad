@@ -35,7 +35,7 @@ use <../PELA-technic-block.scad>
 /* [PELA Sign Options] */
 
 // Length of the sign (PELA knob count)
-l = 8; 
+l = 9; 
 
 // Width of the sign (PELA knob count)
 w = 1;
@@ -74,7 +74,7 @@ fs2 = 5;
 extrusion_height = 0.5;
 
 // Left text margin (mm)
-left_margin = 1;
+left_margin = 1.2;
 
 // Top and bottom text margin (mm)
 vertical_margin = 1;

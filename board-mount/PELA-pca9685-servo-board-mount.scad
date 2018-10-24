@@ -88,7 +88,7 @@ module pca9685_servo_board_mount(length=length, width=width, h=h, thickness=thic
         union() {
             end_cut();
 
-            bottom_connector_negative_space(l=10, w=5, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=socketsw);
+            bottom_connector_negative_space(l=10, w=5, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
         }
     }
 }
