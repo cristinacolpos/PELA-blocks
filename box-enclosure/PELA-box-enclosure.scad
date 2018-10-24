@@ -36,7 +36,7 @@ l = 6;
 w = 4;
 
 // Height of the enclosure not including the possible drop_bottom floor (PELA block layer count)
-h = 2;
+h = 1;
 
 // Presence of bottom connector sockets
 sockets = true;
@@ -66,7 +66,7 @@ knob_vent_radius = 0;
 bolt_holes = true;
 
 // Bottom of enclosure
-bottom_type = 3; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
 knob_flexture_radius = 0;
@@ -183,7 +183,9 @@ module walls(l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_h
             }
         }
 
-        bottom_negative_space(l=l, w=w, h=h, bottom_type=1, skin=0, solid_bottom_layer=solid_bottom_layer);
+        if (bottom_type>0) {
+            bottom_negative_space(l=l, w=w, h=h, bottom_type=1, skin=0, solid_bottom_layer=solid_bottom_layer);
+        }
     }
 }
 
@@ -213,7 +215,7 @@ module left_wall(l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sh
 module corner_cut(angle, h=h) {
     translate([0, 0, -defeather]) {
         rotate([0, 0, angle]) {
-            cube([block_width(2), block_width(2), block_height(h)]);
+            cube([block_width(2), block_width(2), block_height(h) + defeather]);
         }
     }
 }
