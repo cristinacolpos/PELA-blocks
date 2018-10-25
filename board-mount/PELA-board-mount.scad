@@ -34,8 +34,6 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 length = 85;
 width = 56;
 thickness = 1.6;
-l = fit_mm_to_pela_blocks(85);
-w = fit_mm_to_pela_blocks(56);
 h = 1;
 undercut = 2.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
 innercut = 0.8; // How far in from the outside edges the board support can extend without hitting board bottom surface parts

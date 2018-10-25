@@ -59,7 +59,7 @@ solid_upper_layers = false;
 solid_bottom_layer = true;
 center_type = 2;
 
-board_x_offset = 0;
+board_x_offset = -2;
 board_y_offset = 0;
 board_z_offset = -thickness;
 sd_card_cutout_width = block_width(3);
@@ -68,7 +68,7 @@ sd_card_cutout_offset = -block_width(1/2);
 top_edge_height = 2;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
-length_tightness = 1.5;
+length_tightness = 1.0;
 
 // Board surround ratio
 width_tightness = 1.0;
@@ -89,7 +89,10 @@ module pca9685_servo_board_mount(length=length, width=width, h=h, thickness=thic
         union() {
             end_cut();
 
-            bottom_connector_negative_space(l=10, w=5, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
+            l = fit_mm_to_pela_blocks(i=length, tightness=length_tightness);
+            w = fit_mm_to_pela_blocks(i=width, tightness=width_tightness);
+
+            bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
         }
     }
 }
