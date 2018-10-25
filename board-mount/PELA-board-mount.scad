@@ -41,8 +41,8 @@ undercut = 2.3; // How far below the bottom of the board surface parts protude (
 innercut = 0.8; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 bottom_type = 2;
 top_vents = false;
-side_holes = 2;
-end_holes = 2;
+side_holes = 3;
+end_holes = 3;
 side_sheaths = true;
 end_sheaths = true;
 left_wall_enabled = true;
@@ -91,10 +91,12 @@ module board_mount(length=length, width=width, h=h, thickness=thickness, undercu
         z1 = block_height(h)+board_z_offset;
         z2 = board_z_offset;
 
-#        union() {
+        union() {
             pcb_space_skinned(z=z1, length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, dome=dome);
 
-            pcb_space_skinned(z=z2, length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, dome=dome);
+            if (bottom_type == 0) {
+                pcb_space_skinned(z=z2, length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, dome=dome);
+            }
         }
     }    
 }
@@ -124,8 +126,10 @@ module pcb_space(z, length=length, width=width, l, w, h=h, thickness=thickness, 
     // Undercut space for board bottom
     xu_inset = x_inset + innercut;
     yu_inset = y_inset + innercut;
-    translate([xu_inset + board_x_offset, yu_inset + board_y_offset, block_height(h)+board_z_offset-undercut]) {
-        cube([length - 2*innercut, width - 2*innercut, undercut]);
+
+    u = center_type > 0 ? min(undercut, block_height(0.5) - thickness) : undercut;
+#    translate([xu_inset + board_x_offset, yu_inset + board_y_offset, block_height(h)+board_z_offset-u]) {
+        cube([length - 2*innercut, width - 2*innercut, u]);
     }
 }
 

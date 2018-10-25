@@ -38,10 +38,10 @@ thickness = 1.7;
 h = 1;
 undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
 innercut = 1; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-bottom_type = 0;
+bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 top_vents = false;
-side_holes = 2;
-end_holes = 2;
+side_holes = 3;
+end_holes = 3;
 side_sheaths = true;
 end_sheaths = true;
 left_wall_enabled = true;
@@ -55,15 +55,15 @@ right_wall_knobs = false;
 front_wall_knobs = true;
 back_wall_knobs = true;
 solid_bottom_layer = true;
-center_type = 4;
+center_type = 1;
 
-board_x_offset = 0;//1.9;
-board_y_offset = 0; //-3;
+board_x_offset = 0;
+board_y_offset = 0;
 board_z_offset = -thickness;
 top_edge_height = 2;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
-length_tightness = 2.0;
+length_tightness = 1.0;
 
 // Board surround ratio
 width_tightness = 2.0;
@@ -87,7 +87,10 @@ module pi3_board_mount(length=length, width=width, h=h, thickness=thickness, und
 
             front_connector_cutout();
             
-            bottom_connector_negative_space(l=14, w=9, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
+            l = fit_mm_to_pela_blocks(l=length, tightness=length_tightness);
+            w = fit_mm_to_pela_blocks(l=width, tightness=width_tightness);
+
+            bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
         }
     }
 }
