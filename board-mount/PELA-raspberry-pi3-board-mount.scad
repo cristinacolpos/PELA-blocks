@@ -38,7 +38,7 @@ thickness = 1.7;
 h = 1;
 undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
 innercut = 1; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 top_vents = false;
 side_holes = 3;
 end_holes = 3;
@@ -57,12 +57,12 @@ back_wall_knobs = true;
 solid_bottom_layer = true;
 center_type = 1;
 
-board_x_offset = 0;
+board_x_offset = 2;
 board_y_offset = 0;
 board_z_offset = -thickness;
 top_edge_height = 2;
 
-// A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
+// A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a longer enclosure.
 length_tightness = 1.0;
 
 // Board surround ratio
