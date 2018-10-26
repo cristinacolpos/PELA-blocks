@@ -5,7 +5,7 @@
 # do this, for example because of high RAM requirements of cleaning, you can use
 # this script separately and possibly on a different computer.
 #
-# See http://PELAblocks.org for more information
+# See https://PELAblocks.org for more information
 # 
 # Part of https://github.com/LEGO-prototypes/PELA-parametric-blocks
 

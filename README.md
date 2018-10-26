@@ -204,9 +204,9 @@ ___
 
 ___
 
-[![PELA Motor Enclosure](images/PELA-motor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-motor-enclosure.stl)
+[![PELA N20 Gearmotor Enclosure](images/PELA-n20-gearmotor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-n20-gearmotor-enclosure.stl)
 
-[3D PELA Motor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-motor-enclosure.stl) Add a commonly available small gear motor to your design. Adjust the model parameters to fit other motor sizes.
+[3D PELA N20 Gearmotor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-n20-gearmotor-enclosure.stl) Add a commonly available small gear motor to your design. Adjust the model parameters to fit other motor sizes.
 
 ___
 
@@ -231,18 +231,6 @@ ___
 [![PELA Vive Velcro Mount](images/PELA-vive-velcro-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vive-velcro-mount.stl)
 
 [3D PELA Velcro Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vive-velcro-mount.stl) For attaching the HTC Vive Tracker or other sensors using Velcro or similar straps. Use this for example to attach position sensors to your shoes.
-
-___
-
-[![PELA Rail Mount](images/PELA-rail-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rail-mount.stl)
-
-[3D PELA Rail Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rail-mount.stl) For attaching the HTC Vive Tracker or other sensors to a real gun rail. VR with a real gun.
-
-___
-
-[![PELA Rib Mount](images/PELA-rib-mount.png) (alternative design to attach to rectangular ribs)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rib-mount.stl)
-
-[3D PELA Rib Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-rib-mount.stl) An alternative attachment to a rectangular rail.
 
 ___
 

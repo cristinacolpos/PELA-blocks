@@ -3,7 +3,7 @@ Base PELA Parametric Block
 
 PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
-Published at http://PELAblocks.org
+Published at https://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -14,7 +14,7 @@ Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Open source design, Powered By Futurice. Come work with the best.
-    http://futurice.com
+    https://www.futurice.com/
 
 Import this into other design files:
     include <PELA-parameters.scad>
@@ -147,14 +147,15 @@ module double_socket_hole_set(l=l, w=w, sockets=sockets, ring_radius=ring_radius
         alternating_fn = large_nozzle ? axle_hole_fn : ring_fn;
 
         translate([block_width(), block_width(), -defeather]) {
-            socket_hole_set(l=l-1, w=w-1, radius=alternating_radius, length=alternate_length+defeather, bevel_socket=bevel_socket, ring_fn=alternating_fn);
+            socket_hole_set(l=l-1, w=w-1, radius=alternating_radius, length=alternate_length+2*defeather, bevel_socket=bevel_socket, ring_fn=alternating_fn);
         }
 
         translate([block_width(0.5), block_width(0.5), -defeather]) {
-            socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=length+defeather, bevel_socket=bevel_socket, ring_fn=ring_fn);
+            socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn);
         }
     }
 }
+
 
 // Show a shadow representing the knobs of a block below
 module shadow_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes) {

@@ -1,7 +1,7 @@
 # PELA - 3D Printed LEGO-compatible parametric blocks
 #
 # Generate a set of objects calibrated for your printer by changes to PELA-print-parameters.scad
-# See http://PELAblocks.org for more information
+# See https://PELAblocks.org for more information
 # 
 # Part of https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks
 #
@@ -137,7 +137,7 @@ render ".\box-enclosure\" "PELA-sparkfun-pro-micro-box-enclosure"
 render ".\box-enclosure\" "PELA-intel-compute-stick-box-enclosure"
 render ".\box-enclosure\" "PELA-intel-compute-stick-box-lid"
 render ".\box-enclosure\" "PELA-raspberry-pi3-box-enclosure"
-render ".\motor-enclosure\" "PELA-motor-enclosure"
+render ".\motor-enclosure\" "PELA-n20-gearmotor-enclosure"
 render ".\technic-bar\" "PELA-technic-bar"
 render ".\technic-bar\" "PELA-technic-bar-30degree"
 render ".\technic-bar\" "PELA-technic-bar-45degree"
@@ -145,8 +145,6 @@ render ".\technic-board-mount\" "PELA-technic-board-mount"
 render ".\knob-panel\" "PELA-knob-panel"
 render ".\knob-panel\" "PELA-double-sided-knob-panel"
 render ".\socket-panel\" "PELA-socket-panel"
-render ".\rail-mount\" "PELA-rail-mount"
-render ".\rail-mount\" "PELA-rib-mount"
 render ".\velcro-mount\" "PELA-velcro-mount"
 render ".\velcro-mount\" "PELA-vive-velcro-mount"
 render ".\vive-tracker-mount\" "PELA-vive-tracker-mount"

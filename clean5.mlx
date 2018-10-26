@@ -1,4 +1,4 @@
 <!DOCTYPE FilterScript>
 <FilterScript>
- <filter name="Remove Zero Area Faces"/>
+ <filter name="Compact vertices"/>
 </FilterScript>

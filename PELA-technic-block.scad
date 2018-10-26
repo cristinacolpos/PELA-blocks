@@ -3,7 +3,7 @@ PELA Parametric Block with LEGO-compatible technic connectors and air vents
 
 PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
-Published at http://PELAblocks.org
+Published at https://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -14,7 +14,7 @@ Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Open source design, Powered By Futurice. Come work with the best.
-    http://futurice.com
+    https://www.futurice.com/
 
 Import this into other design files:
     include <PELA-parameters.scad>
@@ -134,8 +134,9 @@ module PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob
         union() {
             if (side_holes || end_holes || top_vents) {
                 length = knob_height + skin;
-                alternate_length = block_height(h-0.5);
-                double_socket_hole_set(l=l, w=w, sockets=sockets, ring_radius=ring_radius, ring_thickness=ring_thickness, length=length, alternate_length=length, bevel_socket=true);
+                alternate_length = top_vents ? block_height(h) + defeather : block_height(h-0.5);
+
+                double_socket_hole_set(l=l, w=w, sockets=sockets, ring_radius=ring_radius, ring_thickness=ring_thickness, length=length, alternate_length=alternate_length, bevel_socket=true);
             }
 
             bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes, sockets=sockets, skin=skin);

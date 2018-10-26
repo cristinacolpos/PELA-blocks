@@ -1,7 +1,7 @@
 # Generate a 3D-printable PELA using command line parameters
 #
 # PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
-# Published at http://PELAblocks.org
+# Published at https://PELAblocks.org
 # Part of https://github.com/LEGO-Prototypes/PELA-parametric-blocks
 
 param (
