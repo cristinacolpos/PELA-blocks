@@ -75,7 +75,7 @@ module intel_compute_stick_box_enclosure() {
         union() {
             intel_compute_stick_body(l=l, w=w, h=h);
             intel_compute_stick_descender();
-#            end_access(l=l, w=w, h=h);
+#            end_access(l=l, w=w, h=h, length=length);
 #            side_access(l=l, w=w, h=h);
         }
     }
@@ -94,13 +94,15 @@ module intel_compute_stick_body() {
 }
 
 
-module end_access(l, w, h) {
+module end_access(l, w, h, length=length) {
     z = block_height(1);
     y = 1.82;
+    left = (block_width(l) - length)/2;
 
     translate([0, block_width(y), z]) {
-        cube([block_width(l), block_width(w - 2*y), block_height(h)]);
+        cube([left, block_width(w - 2*y), block_height(h)]);
     }
+
     translate([0, block_width(y), 0]) {
         cube([block_width(1), block_width(w - 2*y), block_height(h)]);
     }
@@ -113,9 +115,11 @@ module side_access(l, w, h) {
     translate([block_width(2), 0, z]) {
         cube([block_width(l - 4), block_width(w), block_height(h)]);
     }
+    
     translate([block_width(2), 0, z/2]) {
         cube([block_width(4), block_width(w), block_height(h)]);
     }
+    
     translate([block_width(12), 0, z/2]) {
         cube([block_width(2), block_width(w), block_height(h)]);
     }
@@ -138,5 +142,5 @@ module intel_compute_stick_box_lid() {
     l=fit_mm_to_pela_blocks(length, length_tightness);
     w=fit_mm_to_pela_blocks(width, width_tightness);
 
-    PELA_socket_panel(l=l, w=w, bolt_holes=bolt_holes);
+    PELA_knob_panel(l=l, w=w, bolt_holes=bolt_holes, knobs=false, top_vents=false);
 }
