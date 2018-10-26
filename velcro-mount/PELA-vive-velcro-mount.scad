@@ -7,7 +7,7 @@ objects. Other types of strap can also be used. The slots
 The current design omits top knobs which would interfere with the
 matching "PELA-vive-tracker-mount.scad".
 
-Published at http://PELAblocks.org
+Published at https://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -18,7 +18,7 @@ Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Open source design, Powered By Futurice. Come work with the best.
-    http://futurice.com
+    https://www.futurice.com/
 
 Import this into other design files:
     use <PELA-block.scad>

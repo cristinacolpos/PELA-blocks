@@ -2,7 +2,7 @@
 Thread library convenience wrapper for 
 
 
-Published at http://PELAblocks.org
+Published at https://PELAblocks.org
 
 
 
@@ -19,7 +19,7 @@ Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Open source design, Powered By Futurice. Come work with the best.
-    http://futurice.com
+    https://www.futurice.com/
 
 Import this into other design files to set baseline constants:
     include <threads.scad>

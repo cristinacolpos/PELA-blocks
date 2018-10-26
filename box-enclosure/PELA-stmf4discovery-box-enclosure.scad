@@ -13,7 +13,7 @@ Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Open source design, Powered By Futurice. Come work with the best.
-    http://futurice.com
+    https://www.futurice.com/
 
 Import this into other design files:
     use <anker-usb-PELA-enclosure.scad>

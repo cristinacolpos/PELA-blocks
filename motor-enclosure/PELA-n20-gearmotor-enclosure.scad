@@ -1,3 +1,22 @@
+/*
+PELA Parametric LEGO-compatible Technic N20 Gearmotor Enclosure
+
+PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
+
+Published at https://PELAblocks.org
+
+By Paul Houghton
+Twitter: @mobile_rat
+Email: paulirotta@gmail.com
+Blog: https://medium.com/@paulhoughton
+
+Creative Commons Attribution-ShareAlike 4.0 International License
+    https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+Open source design, Powered By Futurice. Come work with the best.
+    https://www.futurice.com/
+*/
+
 
 include <../PELA-parameters.scad>
 include <../PELA-print-parameters.scad>

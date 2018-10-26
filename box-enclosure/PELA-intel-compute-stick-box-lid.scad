@@ -13,7 +13,7 @@ Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Work sponsored by
-    http://futurice.com
+    https://www.futurice.com/
 */
 
 include <../PELA-parameters.scad>

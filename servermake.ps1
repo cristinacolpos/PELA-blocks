@@ -1,6 +1,6 @@
 # PELA - 3D Printed LEGO-compatible parametric blocks
 #
-# See http://PELAblocks.org for more information
+# See https://PELAblocks.org for more information
 #
 # Remote-triggered generation of a set of objects calibrated for your printer by changes to PELA-print-parameters.scad
 #

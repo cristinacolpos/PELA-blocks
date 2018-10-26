@@ -3,7 +3,7 @@ PELA Parametric LEGO-compatible Openbeam15 Connector
 
 PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
-Published at http://PELAblocks.org
+Published at https://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -14,7 +14,7 @@ Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Open source design, Powered By Futurice. Come work with the best.
-    http://futurice.com
+    https://www.futurice.com/
 */
 
 include <../PELA-parameters.scad>

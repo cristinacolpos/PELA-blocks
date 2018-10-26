@@ -1,4 +1,4 @@
 <!DOCTYPE FilterScript>
 <FilterScript>
- <filter name="Remove Duplicate Faces"/>
+ <filter name="Remove Unreferenced Vertices"/>
 </FilterScript>

@@ -1,7 +1,7 @@
 /*
 Parametric PELA Print Tuning Parameters
 
-Published at http://PELAblocks.org
+Published at https://PELAblocks.org
 
 By Paul Houghton
 Twitter: @mobile_rat
@@ -12,7 +12,7 @@ Creative Commons Attribution-ShareAlike 4.0 International License
     https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 Open source design, Powered By Futurice. Come work with the best.
-    http://futurice.com
+    https://www.futurice.com/
 
 Imported automatically into other design files when you include PELA_parameters:
     include <PELA_parameters.scad>
