@@ -79,3 +79,5 @@ print_supports = false;
 // Generate two STL files, one for each material/color in models which support that
 two_color_print = false;
 
+// Add a text label to models which support that. The two_color_print setting will also affect if these is raised or colored text
+text_labels = true;

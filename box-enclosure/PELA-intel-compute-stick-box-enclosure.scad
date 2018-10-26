@@ -103,7 +103,7 @@ module end_access(l, w, h, length=length) {
         cube([block_width(l), block_width(w - 2*y), block_height(h)]);
     }
 
-#    translate([0, block_width(y), 0]) {
+    translate([0, block_width(y), 0]) {
         cube([left, block_width(w - 2*y), block_height(h)]);
     }
 }

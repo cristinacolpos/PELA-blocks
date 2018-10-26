@@ -1,5 +1,5 @@
 /*
-PELA Slot Mount - 3D Printed LEGO-compatible PCB mount, vertical slide-in
+PELA technic angle - 3D Printed LEGO-compatible 30 degree bend
 
 Published at https://PELAblocks.org
 
@@ -25,39 +25,69 @@ include <../PELA-print-parameters.scad>
 include <../PELA-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
+use <PELA-technic-bar.scad>
 
 /* [Technic Pin Array Options] */
 
 angle = 30;
-l = 6;
+l = 7;
 
 ///////////////
 // Display
 ///////////////
 mount_30degree();
 
-
 module mount_30degree(angle=angle, l=l) {
 
     translate([0, 0, block_height(1)]) {
         rotate([angle, 0, 0]) {
-            PELA_technic_block(l=6, w=1, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, skin=0);
-        }
-    }
-
-    rotate([90, 0, 0]) {
-        PELA_technic_block(l=6, w=1, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, skin=0);
-    }
-
-    hull() {
-        translate([0, 0, block_height(1)]) {
-            rotate([angle+90, 0, 0]) {
-                cube([block_width(6), block_width(1), 0.01]);
+            translate([0, block_width(0.5), 0]) {
+                technic_bar(l=l);
             }
         }
+    }
 
-        translate([0, block_width(-1), block_height(1)]) {
-            cube([block_width(6), block_width(1), 0.01]);
+    translate([0, block_width(0.5), 0]) {
+            technic_bar(l=l);
+    }
+
+    increment = 5;
+    for (theta = [0 : increment : angle]) {
+        pie_slice(theta=theta, increment=increment, l=l);
+    }
+}
+
+
+
+// theta-degree spacer between the two segments
+module pie_slice(theta=0, increment=5, l=l) {
+    translate([0, 0, block_width(1)]) {
+        rotate([theta, 0 , 0]) {
+            difference() {
+                hull() {
+                    technic_bar_slice(l=l);
+
+                    rotate([increment, 0, 0]) {
+                        technic_bar_slice(l=l);
+                    }
+                }
+
+                for (n = [0:1:l-1]) {
+                    translate([block_width(n), 0, 0]) {
+                        hull() {
+                            translate([0, 0, -defeather]) {
+                                technic_bar_slice_negative(l=0);
+                            }
+
+                            rotate([increment, 0, 0]) {
+                                translate([0, 0, defeather]) {
+                                    technic_bar_slice_negative(l=0);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

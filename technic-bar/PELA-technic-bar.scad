@@ -37,6 +37,7 @@ l=6;
 technic_bar();
 
 
+// A rounded-end minimal bar with no knobs or sockets
 module technic_bar(l=l) {
     l2 = l + 1;
 
@@ -56,6 +57,36 @@ module technic_bar(l=l) {
                 translate([block_width(l), block_width(0.5), 0]) {
                     cylinder(d=block_width(1), h=block_height());
                 }
+            }
+        }
+    }
+}
+
+
+// The 2D profile of the bar (for rotations and other uses)
+module technic_bar_slice(l=l) {
+    l2 = l + 1;
+
+    hull() {
+        translate([0, block_width(0.5), 0]) {
+            cylinder(d=block_width(1), h=0.01);
+        }
+
+        translate([block_width(l-1), block_width(0.5), 0]) {
+            cylinder(d=block_width(1), h=0.01);
+        }
+    }
+}
+
+
+// The 2D profile of the negative space of the bar (for rotations and other uses)
+module technic_bar_slice_negative(l=l) {
+    l2 = l + 1;
+
+    union() {
+        for (i = [0:block_width():block_width(l)]) {
+            translate([i, block_width(0.5), -defeather]) {
+                cylinder(r=counterbore_inset_radius, h=0.01 + defeather);
             }
         }
     }

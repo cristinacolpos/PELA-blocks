@@ -1,5 +1,5 @@
 /*
-PELA technic angle - 3D Printed LEGO-compatible 45 degree bend
+PELA technic angle - 3D Printed LEGO-compatible 60 degree bend
 
 Published at https://PELAblocks.org
 
@@ -29,7 +29,7 @@ use <PELA-technic-bar-30degree.scad>
 
 /* [Technic Pin Array Options] */
 
-angle = 45;
+angle = 60;
 l = 1;
 
 ///////////////
