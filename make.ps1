@@ -54,6 +54,7 @@ Function render($path, $name) {
 
     if ($clean) {
         Invoke-Expression ".\clean.ps1 $name.stl"
+        Write-Output "STL Render time: $elapsed for $name"
     }
 
     if ($stl) {

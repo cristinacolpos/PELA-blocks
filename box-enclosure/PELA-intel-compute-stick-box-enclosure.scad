@@ -75,8 +75,8 @@ module intel_compute_stick_box_enclosure() {
         union() {
             intel_compute_stick_body(l=l, w=w, h=h);
             intel_compute_stick_descender();
-#            end_access(l=l, w=w, h=h, length=length);
-#            side_access(l=l, w=w, h=h);
+            end_access(l=l, w=w, h=h, length=length);
+            side_access(l=l, w=w, h=h);
         }
     }
 }
@@ -100,11 +100,11 @@ module end_access(l, w, h, length=length) {
     left = (block_width(l) - length)/2;
 
     translate([0, block_width(y), z]) {
-        cube([left, block_width(w - 2*y), block_height(h)]);
+        cube([block_width(l), block_width(w - 2*y), block_height(h)]);
     }
 
-    translate([0, block_width(y), 0]) {
-        cube([block_width(1), block_width(w - 2*y), block_height(h)]);
+#    translate([0, block_width(y), 0]) {
+        cube([left, block_width(w - 2*y), block_height(h)]);
     }
 }
 
