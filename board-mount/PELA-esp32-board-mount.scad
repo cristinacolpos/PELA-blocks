@@ -67,7 +67,7 @@ sd_card_cutout_offset = -block_width(1/2);
 top_edge_height = 2;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
-length_tightness = 1.0;
+length_tightness = 0.5;
 
 // Board surround ratio
 width_tightness = 1.5;
