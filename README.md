@@ -262,6 +262,18 @@ ___
 
 [3D PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-board-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end
 
+___
+
+[![PELA ESP32 Board Mount](images/PELA-esp32-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-esp32-board-mount.stl)
+
+[3D PELA ESP32 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-esp32-board-mount.stl) For holding an ESP32 microcontroller board within a PELA block
+
+___
+
+[![PELA Arduino Mega Board Mount](images/PELA-aruino-mega-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-arduino-mega-board-mount.stl)
+
+[3D PELA Arduino Mega Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-aruino-mega-board-mount.stl) For holding an Arduino Mega within a PELA block
+
 
 ## FFF Printing Tips
 
