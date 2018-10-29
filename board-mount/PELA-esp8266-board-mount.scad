@@ -31,8 +31,9 @@ use <PELA-board-mount.scad>
 ////////////////////
 // Parameters
 ////////////////////
-length = 50.2;
-width = 25.5;
+
+length = 51.5;
+width = 28.5;
 thickness = 1.7;
 h = 1;
 undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
@@ -57,7 +58,7 @@ solid_upper_layers = false;
 solid_bottom_layer = true;
 center_type = 2; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
-board_x_offset = 0;
+board_x_offset = -1;
 board_y_offset = 0;
 board_z_offset = -thickness;
 top_edge_height = 2;
@@ -94,7 +95,7 @@ module esp32_board_mount(length=length, width=width, h=h, thickness=thickness, u
 
 
 module usb_cutout() {
-    translate([-defeather, block_width(1.5), block_height(0.5)]) {
+    translate([-defeather, block_width(2), block_height(0.5)]) {
         cube([block_width(2), block_width(2), block_height(2)]);
     }
 }
