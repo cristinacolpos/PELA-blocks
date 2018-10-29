@@ -89,6 +89,8 @@ module esp32_board_mount(length=length, width=width, h=h, thickness=thickness, u
             bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
 
             usb_cutout();
+
+            header_space(l=l, w=w, width=width);
         }
     }
 }
@@ -97,5 +99,13 @@ module esp32_board_mount(length=length, width=width, h=h, thickness=thickness, u
 module usb_cutout() {
     translate([-defeather, block_width(2), block_height(0.5)]) {
         cube([block_width(2), block_width(2), block_height(2)]);
+    }
+}
+
+
+module header_space(l, w, width=width) {
+    w2 = (block_width(w) - width) / 2;
+#    translate([block_width(1.5), w2, 0]) {
+        cube([block_width(l-3), width, block_height(2)]);
     }
 }
