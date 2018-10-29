@@ -55,7 +55,7 @@ back_wall_knobs = true;
 pcb_skin = 0.1;
 solid_bottom_layer = true;
 solid_upper_layers = true;
-center_type = 1;
+center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
 board_x_offset = 0;
 board_y_offset = 0;
@@ -82,6 +82,8 @@ module board_mount(length=length, width=width, h=h, thickness=thickness, undercu
 
     l = fit_mm_to_pela_blocks(length, tightness=length_tightness);
     w = fit_mm_to_pela_blocks(width, tightness=width_tightness);
+    echo("board mount l", l);
+    echo("board mount w", w);
 
     difference() {
         pcb_holder(length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers);

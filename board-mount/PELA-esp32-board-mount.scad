@@ -1,6 +1,5 @@
 /*
-PELA Board Holder - 3D Printed LEGO-compatible PCB mount
-For PCA9685 16 Channel 12 bit servo driver board, https://www.amazon.de/gp/product/B07CRDCP8V/ref=oh_aui_detailpage_o01_s00
+PELA Board Holder - 3D Printed LEGO-compatible ESP32 board mount
 
 Published at https://PELAblocks.org
 
@@ -33,7 +32,7 @@ use <PELA-board-mount.scad>
 // Parameters
 ////////////////////
 
-length = 63;
+length = 50.2;
 width = 25.5;
 thickness = 1.7;
 h = 1;
@@ -41,11 +40,11 @@ undercut = 12.3; // How far below the bottom of the board surface parts protude 
 innercut = 1; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 top_vents = false;
-side_holes = 2;
+side_holes = 3;
 end_holes = 0;
 side_sheaths = true;
 end_sheaths = false;
-left_wall_enabled = true;
+left_wall_enabled = false;
 right_wall_enabled = true;
 front_wall_enabled = true;
 back_wall_enabled = true;
@@ -71,35 +70,24 @@ top_edge_height = 2;
 length_tightness = 1.0;
 
 // Board surround ratio
-width_tightness = 1.0;
+width_tightness = 1.5;
 
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
 ///////////
 // Display
 ///////////
-pca9685_servo_board_mount();
+arduino_mega_board_mount();
 
 
-module pca9685_servo_board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, length_tightness=length_tightness, width_tightness=width_tightness, solid_bottom_layer=solid_bottom_layer, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers) {
+module arduino_mega_board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, length_tightness=length_tightness, width_tightness=width_tightness, solid_bottom_layer=solid_bottom_layer, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers) {
     
     difference() {
         board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, length_tightness=length_tightness, width_tightness=width_tightness, solid_bottom_layer=solid_bottom_layer, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers);
 
-        union() {
-            end_cut();
+        l = fit_mm_to_pela_blocks(i=length, tightness=length_tightness);
+        w = fit_mm_to_pela_blocks(i=width, tightness=width_tightness);
 
-            l = fit_mm_to_pela_blocks(i=length, tightness=length_tightness);
-            w = fit_mm_to_pela_blocks(i=width, tightness=width_tightness);
-
-            bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
-        }
-    }
-}
-
-
-module end_cut() {
-    translate([-0.01, block_width(1.5), block_height(0.5)]) {
-        cube([block_width(2), block_width(2), block_height()]);
+        bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
     }
 }
