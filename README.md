@@ -270,6 +270,12 @@ ___
 
 ___
 
+[![PELA ESP8266 Board Mount](images/PELA-esp8266-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-esp8266-board-mount.stl)
+
+[3D PELA ESP8266 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-esp8266-board-mount.stl) For holding an ESP8266 microcontroller board within a PELA block
+
+___
+
 [![PELA Arduino Mega Board Mount](images/PELA-aruino-mega-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-arduino-mega-board-mount.stl)
 
 [3D PELA Arduino Mega Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-aruino-mega-board-mount.stl) For holding an Arduino Mega within a PELA block
