@@ -32,8 +32,8 @@ use <PELA-board-mount.scad>
 // Parameters
 ////////////////////
 
-length = 51.5;
-width = 28.5;
+length = 51.7;
+width = 28.6;
 thickness = 1.7;
 h = 1;
 undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
