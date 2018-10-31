@@ -97,14 +97,14 @@ module pi3_board_mount(length=length, width=width, h=h, thickness=thickness, und
 
 module sd_card_cutout() {
 
-    translate([-0.01, block_width(3), block_height(0.5)]) {
-        cube([block_width(2), block_width(3), block_height(1)]);
+    translate([-0.01, block_width(3), block_height(0.5, block_height=block_height)]) {
+        cube([block_width(2), block_width(3), block_height(1, block_height=block_height)]);
     }
 }
 
 module front_connector_cutout() {
 
-    translate([block_width(2), -0.01, block_height(0.5)]) {
-        cube([block_width(8), block_width(2), block_height(2)]);
+    translate([block_width(2), -0.01, block_height(0.5, block_height=block_height)]) {
+        cube([block_width(8), block_width(2), block_height(2, block_height=block_height)]);
     }
 }

@@ -225,10 +225,10 @@ $fs = 0.5;
 /////////////////////////////////////
 
 // Horizontal size
-function block_width(i=1) = i*8; //TODO OPENSCAD Error, parameters in functions?
+function block_width(i=1, block_width=block_width) = i*block_width;
 
 // Vertical size
-function block_height(h=1) = h*block_height;
+function block_height(h=1, block_height=block_height) = h*block_height;
 
 // Test if this is a corner block
 function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
