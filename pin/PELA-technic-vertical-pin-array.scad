@@ -26,10 +26,6 @@ use <PELA-technic-pin.scad>
 
 array_count = 2; // The number of half-pins in an array supported by as base
 
-base_thickness = panel_height(); // The thickness of the base below an array of half-pins
-
-array_spacing = block_height();
-
 // Trim the base connecting a pin array to the minimum rounded shape
 minimum_base = true;
 
@@ -42,7 +38,11 @@ pin_tip_length = 0.7;
 vertical_pin_array();
 
 
-module vertical_pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length) {
+module vertical_pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length, block_height=block_height) {
 
-    pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length);
+    base_thickness = panel_height(block_height=block_height); // The thickness of the base below an array of half-pins
+
+    array_spacing = block_height(1, block_height=block_height);
+
+    pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length, block_height=block_height);
 }

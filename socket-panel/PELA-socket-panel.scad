@@ -53,26 +53,27 @@ PELA_socket_panel();
 /////////////////////////////////////
 
 // Accept knobs from both top and bottom surface
-module PELA_socket_panel(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin) {
+module PELA_socket_panel(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
     
-    PELA_socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin);
+    PELA_socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin, block_height=block_height);
 
-    translate([0, block_width(w), panel_height()]) {
+    translate([0, block_width(w), panel_height(block_height=block_height)]) {
         rotate([180, 0, 0]) {
-            PELA_socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin);
+            PELA_socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);
         }
     }
 }
 
 
 // Accept knobs from the bottom surface only
-module PELA_socket_panel_one_sided(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin) {
+module PELA_socket_panel_one_sided(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin, block_height=block_height) {
     
-        intersection() {
-            PELA_technic_block(l=l, w=w, h=1, top_vents=false, solid_bottom_layer=true, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, skin=skin, knobs=false);
-    
-            translate([skin, skin, 0])
-                cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height()]);
+    intersection() {
+        PELA_technic_block(l=l, w=w, h=1, top_vents=false, solid_bottom_layer=true, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height);
+
+        translate([skin, skin, 0]) {
+            cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height(block_height=block_height)]);
         }
+    }
 }
 

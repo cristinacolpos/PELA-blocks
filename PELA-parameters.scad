@@ -181,7 +181,7 @@ bearing_sheath_thickness = 0.9;
 /* [Print Supports] */
 
 // Difference between the top and/or bottom of a support column to make columns easier to separate in post-processing (add this to your model only where desired - it is not done for you in support/support.scad)
-support_offset_from_part = 0.05;
+support_offset_from_part = 0.1;
 
 // Thickness of each rotating layer in a twisting support
 support_layer_height = 2;
@@ -234,7 +234,7 @@ function block_height(h=1, block_height=block_height) = h*block_height;
 function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 
 // Ratio of a flat panel thickness to a regular block thickness (1/2 for PELA 8mm tall blocks, 1/3 for LEGO 9.6mm block_height blocks)
-function panel_height_ratio() = 1/2;
+function panel_height_ratio(block_height=block_height) = block_height < 9.6 ? 1/2 : 1/3;
 
 // Thickness of a flat panel
-function panel_height(i=1) = block_height(i)*panel_height_ratio();
+function panel_height(block_height=block_height) = block_height(1, block_height=block_height)*panel_height_ratio(block_height=block_height);

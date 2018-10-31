@@ -304,7 +304,7 @@ module box_center(l=l, w=w, h=h, center_type=center_type, side_holes=side_holes,
         l2 = block_width(l-2) + 2*skin;
         w2 = block_width(w-2) + 2*skin;
 
-        translate([block_width(1) - skin, block_width(1) - skin, panel_height()]) {
+        translate([block_width(1) - skin, block_width(1) - skin, panel_height(block_height=block_height)]) {
             cube([l2, w2, block_height(h, block_height=block_height) - panel_height(block_height=block_height)]);
         }
     }

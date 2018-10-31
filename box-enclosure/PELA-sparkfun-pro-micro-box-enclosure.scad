@@ -260,9 +260,9 @@ module left_side_snap_cuts(side_snap_end_inset=side_snap_end_inset, flexture_wid
 // Two vertical cuts in the side to hold a single board retaining tab
 module side_snap_board_holder_cut(flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
 
-    cut_height = block_height(side_fexture_cut_height, block_height=block_height) - panel_height();
+    cut_height = block_height(side_fexture_cut_height, block_height=block_height) - panel_height(block_height=block_height);
 
-    translate([block_width(side_snap_end_inset), block_width(0.5), panel_height()]) {        
+    translate([block_width(side_snap_end_inset), block_width(0.5), panel_height(block_height=block_height)]) {        
         side_snap_cut(side_snap_cut_width=side_snap_cut_width, cut_height=cut_height);
 
         translate([block_width(flexture_width) - side_snap_cut_width, 0, 0]) {
