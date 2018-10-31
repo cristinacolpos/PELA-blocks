@@ -69,18 +69,19 @@ velcro_mount();
 
 //////////////////////////////
 
-module velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs) {
+module velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
 
     difference() {
-        PELA_technic_block(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, sockets=false, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
+        PELA_technic_block(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, sockets=false, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
 
-        slot(l=l, w=w);
+        slot(l=l, w=w, block_height=block_height);
     }
 }
 
 
-module slot(l=l, w=w) {
-    translate([block_width(), -0.01, panel_height(0.5)]) {
-        cube([block_width(l-2), block_width(w)+0.02, panel_height()]);
+module slot(l=l, w=w, block_height=block_height) {
+    
+    translate([block_width(), -0.01, 0.5*panel_height(block_height=block_height)]) {
+        cube([block_width(l-2), block_width(w)+0.02, panel_height(block_height=block_height)]);
     }
 }

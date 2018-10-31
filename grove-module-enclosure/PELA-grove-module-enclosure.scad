@@ -119,7 +119,7 @@ module bottom_piece() {
     
         union() {
             translate([(block_width(4)-grove_width)/2, shell, vertical_offset(block_height=block_height)]) {
-                rotate([0,-90,270]) {
+                rotate([0, -90, 270]) {
                     grove();
                 }
             }

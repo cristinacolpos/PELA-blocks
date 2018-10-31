@@ -26,7 +26,7 @@ use <PELA-technic-pin.scad>
 
 array_count = 2; // The number of half-pins in an array supported by as base
 
-base_thickness = panel_height(); // The thickness of the base below an array of half-pins
+base_thickness = panel_height(block_height=block_height); // The thickness of the base below an array of half-pins
 
 array_spacing = block_width();
 

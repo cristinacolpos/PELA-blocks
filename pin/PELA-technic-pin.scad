@@ -44,7 +44,7 @@ counterbore_holder_height = counterbore_inset_depth * 2;
 
 array_count = 4; // The number of half-pins in an array supported by as base
 
-base_thickness = panel_height(); // The thickness of the base below an array of half-pins
+base_thickness = panel_height(block_height=block_height); // The thickness of the base below an array of half-pins
 
 array_spacing = block_width();
 
@@ -72,7 +72,7 @@ function technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length
 module axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length) {
     
     for (rot=[0:90:270]) {
-        rotate([0, 0, rot])
+        rotate([0, 0, rot]) {
             hull() {
                 translate([axle_rounding*2, axle_rounding*2, -defeather]) {
                     cylinder(r=axle_rounding, h=length+2*defeather);
@@ -84,6 +84,7 @@ module axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_r
                         cylinder(r=axle_rounding, h=length+2*defeather);
                 }
             }
+        }
     }
 }
 
@@ -101,28 +102,34 @@ module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_len
                 union() {
                     cylinder(r=axle_radius, h=length);
                     
-                    translate([0, 0, peg_length+pin_tip_length])
+                    translate([0, 0, peg_length+pin_tip_length]) {
                         cylinder(r=counterbore_holder_radius, h=counterbore_holder_height);
+                    }
                     
                     tip(axle_radius=axle_radius, pin_tip_length=pin_tip_length);
                     
-                    translate([0, 0, length-pin_tip_length])
+                    translate([0, 0, length-pin_tip_length]) {
                         tip(axle_radius=axle_radius, pin_tip_length=pin_tip_length);
+                    }
                 }
                 
                 union() {
-                    translate([0, 0, -defeather])
+                    translate([0, 0, -defeather]) {
                         cylinder(r=pin_center_radius, h=length+2*defeather);
+                    }
 
-                    translate([0, 0, pin_slot_thickness])
+                    translate([0, 0, pin_slot_thickness]) {
                         rounded_slot(thickness=pin_slot_thickness, slot_length=slot_length);
+                    }
                     
-                    translate([0, 0, length-pin_slot_thickness])
+                    translate([0, 0, length-pin_slot_thickness]) {
                         rounded_slot(thickness=pin_slot_thickness, slot_length=slot_length);
+                    }
                     
-                    translate([0, 0, length/2])
+                    translate([0, 0, length/2]) {
                         rotate([0, 0, 90])
                         rounded_slot(thickness=pin_slot_thickness, slot_length=slot_length);
+                    }
                 }
             }
         }
@@ -182,7 +189,7 @@ module rounded_slot(thickness=2, slot_length=10) {
 
 
 // A set of half-pins connected by at the base
-module pin_array(array_count=array_count, array_spacing=array_spacing, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, minimum_base=minimum_base,counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height) {
+module pin_array(array_count=array_count, array_spacing=array_spacing, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, minimum_base=minimum_base,counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height, block_height=block_height) {
 
     length = technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
 
@@ -195,8 +202,8 @@ module pin_array(array_count=array_count, array_spacing=array_spacing, base_thic
                     }
                 }
                 
-                translate([-block_width(), -block_width(), -block_height()-skin]) {
-                    cube([block_width(array_count+1), block_width(2), block_height()]);
+                translate([-block_width(), -block_width(), -block_height(1, block_height=block_height)-skin]) {
+                    cube([block_width(array_count+1), block_width(2), block_height(1, block_height=block_height)]);
                 }
             }
             
