@@ -59,7 +59,7 @@ axle_hole_tweak = 0;
 font = "Arial";
 
 // Text size on calibration blocks
-font_size = 4;
+font_size = 5;
 
 // Depth of text labels on calibration blocks
 text_extrusion_height = 0.6;
