@@ -99,7 +99,7 @@ module pca9685_servo_board_mount(length=length, width=width, h=h, thickness=thic
 
 
 module end_cut() {
-    translate([-0.01, block_width(1.5), block_height(0.5)]) {
-        cube([block_width(2), block_width(2), block_height()]);
+    translate([-0.01, block_width(1.5), block_height(0.5, block_height=block_height)]) {
+        cube([block_width(2), block_width(2), block_height(1, block_height=block_height)]);
     }
 }

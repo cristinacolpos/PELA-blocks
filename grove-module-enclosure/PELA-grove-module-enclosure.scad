@@ -100,7 +100,7 @@ rotate([0, 0, 180]) {
 // FUNCTIONS
 /////////////////////////////////////
 
-function vertical_offset()=(block_height(2*h)-grove_width)/2;
+function vertical_offset(block_height=block_height)=(block_height(2*h, block_height=block_height)-grove_width)/2;
 
 
 /////////////////////////////////////
@@ -111,23 +111,23 @@ function vertical_offset()=(block_height(2*h)-grove_width)/2;
 module bottom_piece() {
     difference() {
         union() {
-            PELA_technic_block(l=l, w=w, h=h, knob_flexture_height=0, solid_bottom_layer=true, solid_upper_layers=true, bolt_holes=bolt_holes, side_holes=0, end_holes=0);
+            PELA_technic_block(l=l, w=w, h=h, knob_flexture_height=0, solid_bottom_layer=true, solid_upper_layers=true, bolt_holes=bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
 
-            double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
+            double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
         }
 
     
         union() {
-            translate([(block_width(4)-grove_width)/2, shell, vertical_offset()]) {
+            translate([(block_width(4)-grove_width)/2, shell, vertical_offset(block_height=block_height)]) {
                 rotate([0,-90,270]) {
                     grove();
                 }
             }
 
-            double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=2);
+            double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=2, block_height=block_height);
 
             if (bolt_holes) {
-                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
+                corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
             }
             
             skin();
@@ -153,7 +153,7 @@ module top_piece() {
                         }
 
                         translate([0, 0, support_connection_height]) {
-                            cube([block_width(l), block_width(w+1), block_height(h)]);
+                            cube([block_width(l), block_width(w+1), block_height(h, block_height=block_height)]);
                         }
                     }
                 }
@@ -171,19 +171,19 @@ module main_top_piece() {
         union() {
             PELA_technic_block(l=l, w=w, h=h, bolt_holes=bolt_holes, side_holes=0, end_holes=0);
         
-            translate([0, 0, block_height(1)]) {
+            translate([0, 0, block_height(1, block_height=block_height)]) {
                 double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
             }
         }
         
         union() {
-            translate([(block_width(l)-grove_width)/2, 1.2, block_height(-h)+vertical_offset()]) {
+            translate([(block_width(l)-grove_width)/2, 1.2, block_height(-h, block_height=block_height)+vertical_offset()]) {
                 rotate([0,-90,270]) {
                     grove();
                 }
             }
             
-            translate([0, 0, block_height(1)]) {
+            translate([0, 0, block_height(1, block_height=block_height)]) {
                 double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=2);
             }
 

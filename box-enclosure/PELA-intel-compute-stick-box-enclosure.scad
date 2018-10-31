@@ -89,7 +89,7 @@ module intel_compute_stick_body() {
     z = block_height(h) - height;
 
     translate([x, y, z]) {
-        cube([length, width, block_height(h)]);
+        cube([length, width, block_height(h, block_height=block_height)]);
     }
 }
 
@@ -100,28 +100,28 @@ module end_access(l, w, h, length=length) {
     left = (block_width(l) - length)/2;
 
     translate([0, block_width(y), z]) {
-        cube([block_width(l), block_width(w - 2*y), block_height(h)]);
+        cube([block_width(l), block_width(w - 2*y), block_height(h, block_height=block_height)]);
     }
 
     translate([0, block_width(y), 0]) {
-        cube([left, block_width(w - 2*y), block_height(h)]);
+        cube([left, block_width(w - 2*y), block_height(h, block_height=block_height)]);
     }
 }
 
 
 module side_access(l, w, h) {
-    z = block_height(1);
+    z = block_height(1, block_height=block_height);
 
     translate([block_width(2), 0, z]) {
-        cube([block_width(l - 4), block_width(w), block_height(h)]);
+        cube([block_width(l - 4), block_width(w), block_height(h, block_height=block_height)]);
     }
     
     translate([block_width(2), 0, z/2]) {
-        cube([block_width(4), block_width(w), block_height(h)]);
+        cube([block_width(4), block_width(w), block_height(h, block_height=block_height)]);
     }
     
     translate([block_width(12), 0, z/2]) {
-        cube([block_width(2), block_width(w), block_height(h)]);
+        cube([block_width(2), block_width(w), block_height(h, block_height=block_height)]);
     }
 }
 
@@ -130,17 +130,15 @@ module side_access(l, w, h) {
 module intel_compute_stick_descender() {
     descender_offset = 2;
 
-    dh = block_height(h);
-
     translate([block_width() + descender_offset, block_width() + descender_offset, panel_height()]) {
-        cube([length - 2*descender_offset, width - 2*descender_offset, block_height(h)]);
+        cube([length - 2*descender_offset, width - 2*descender_offset, block_height(h, block_height=block_height)]);
     }
 }
 
 
-module intel_compute_stick_box_lid() {
+module intel_compute_stick_box_lid(block_height=block_height) {
     l=fit_mm_to_pela_blocks(length, length_tightness);
     w=fit_mm_to_pela_blocks(width, width_tightness);
 
-    PELA_knob_panel(l=l, w=w, bolt_holes=bolt_holes, knobs=false, top_vents=false);
+    PELA_knob_panel(l=l, w=w, bolt_holes=bolt_holes, knobs=false, top_vents=false, block_height=block_height);
 }
