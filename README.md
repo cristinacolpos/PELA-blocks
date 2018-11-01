@@ -186,12 +186,6 @@ ___
 
 ___
 
-[![PELA Raspberry Pi3 Box Enclosure](images/PELA-raspberry-pi3-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-box-enclosure.stl)
-
-[3D PELA Raspberry Pi3 Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-box-enclosure.stl) Enclosure with closed sides for [Raspberry Pi2/3/3B/3B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/) boards.
-
-___
-
 [![PELA STMF4 Discovery Box Enclosure](images/PELA-stmf4discovery-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-stmf4discovery-box-enclosure.stl)
 
 [3D PELA STMF4 Discovery Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-stmf4discovery-box-enclosure.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
@@ -264,15 +258,15 @@ ___
 
 ___
 
-[![PELA ESP32 Board Mount](images/PELA-esp32-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-esp32-board-mount.stl)
+[![PELA Node MCU-32S Board Mount](images/PELA-nodemcu-32s-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-board-mount.stl)
 
-[3D PELA ESP32 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-esp32-board-mount.stl) For holding an ESP32 microcontroller board within a PELA block
+[3D PELA Node MCU-32S Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-board-mount.stl) For holding an Node MCU-32S microcontroller board within a PELA block
 
 ___
 
-[![PELA ESP8266 Board Mount](images/PELA-esp8266-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-esp8266-board-mount.stl)
+[![PELA Node MCU-v2 Board Mount](images/PELA-nodemcu-v2-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-board-mount.stl)
 
-[3D PELA ESP8266 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-esp8266-board-mount.stl) For holding an ESP8266 microcontroller board within a PELA block
+[3D PELA Node MCU-v2 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-board-mount.stl) For holding an Node MCU-v2 microcontroller board within a PELA block
 
 ___
 
