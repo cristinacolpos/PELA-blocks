@@ -42,7 +42,7 @@ side_sheaths = true;
 
 top_vents = false;
 
-knobs = 1;
+knobs = true;
 
 top_shell = 1;
 
@@ -56,7 +56,7 @@ axle_hole_tweak = 0;
 font = "Arial";
 
 // Text size on calibration blocks
-font_size = 5;
+font_size = 4.8;
 
 // Depth of text labels on calibration blocks
 text_extrusion_height = 0.6;
@@ -69,6 +69,13 @@ horizontal_text_margin = 1;
 
 // Size between calibration block test steps (0.02 or larger for a rough calibration, 0.01 to refine if already close)
 calibration_block_increment = 0.02;
+
+block_height = 9.6;
+
+flexible_material = false;
+
+large_nozzle = false;
+
 
 
 /////////////////////////////////////
@@ -88,7 +95,7 @@ PELA_calibration_bar();
 
 
 // A set of calibration blocks in a row with reduced inter-block spacing to print faster
-module PELA_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, bolt_holes=bolt_holes, block_height=block_height, knobs=knobs) {
+module PELA_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, knob_flexture_radius=knob_flexture_radius, bolt_holes=bolt_holes, block_height=block_height, knobs=knobs, flexible_material=flexible_material, large_nozzle=large_nozzle) {
     
     from=-4;
     to=4;
@@ -98,51 +105,38 @@ module PELA_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibrati
         cal = i*calibration_block_increment;
         
         translate([i*block_width(l)-i*shell, 100*cal, 0])
-            PELA_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=0, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
+            PELA_calibration_block(l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=0, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs, flexible_material=flexible_material, large_nozzle=large_nozzle);
     }
 }
 
 
 // A block with the top and bottom connector tweak parameters etched on the side
-module PELA_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs, block_height=block_height) {
+module PELA_calibration_block(l=l, w=w, h=h, top_tweak=top_tweak, bottom_tweak=bottom_tweak, axle_hole_tweak=axle_hole_tweak, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle) {
     
     difference() { 
-        PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius+axle_hole_tweak, knob_radius=knob_radius+top_tweak, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius+bottom_tweak, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs, block_height=block_height);
+        PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius+axle_hole_tweak, knob_radius=knob_radius+top_tweak, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius+bottom_tweak, knob_flexture_radius=knob_flexture_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle);
 
         union() {
             translate([skin+horizontal_text_margin, text_extrusion_height+skin-defeather, skin+block_height(h, block_height=block_height)-vertical_text_margin]) {
-                rotate([90,0,0]) {
-                    PELA_calibration_top_text(str(top_tweak));
+                rotate([90 ,0, 0]) {
+                    calibration_text(txt=str(top_tweak), halign="left", valign="top");
                 }
             }
             
-            translate([skin+horizontal_text_margin, block_width(w)-text_extrusion_height-skin+defeather, skin+vertical_text_margin]) {
+            translate([block_width(w)-skin-horizontal_text_margin, block_width(w)-text_extrusion_height-skin+defeather, skin+vertical_text_margin]) {
                 rotate([90, 0, 180]) {
-                    PELA_calibration_bottom_text(str(bottom_tweak));
+                    calibration_text(txt=str(bottom_tweak), halign="bottom", valign="right");
                 }
             }
         }
     }
 }
 
+
 // Text for the front side of calibration block prints
-module PELA_calibration_top_text(txt="Text") {
+module calibration_text(txt="Text", halign="left", valign="top") {
     
     linear_extrude(height=text_extrusion_height) {        
-        if (knobs) {    
-            text(text=txt, font=font, size=font_size, halign="left", valign="top");
-        }
+        text(text=txt, font=font, size=font_size, halign=halign, valign=valign);
     }
 }
-
-// Text for the back side of calibration block prints
-module PELA_calibration_bottom_text(txt="Text") {
-    
-    if (sockets) {
-        linear_extrude(height=text_extrusion_height) {
-            text(text=txt, font=font, size=font_size, halign="right");
-        }
-    }
-}
-
-

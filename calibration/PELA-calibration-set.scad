@@ -21,6 +21,7 @@ use <../PELA-technic-block.scad>
 use <../PELA-block.scad>
 use <PELA-calibration.scad>
 
+
 /* [PELA Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real PELA first, then 3D printed to 3D printed using a calibration block with your selected paramters] */
 
 // Length of each calibration block (PELA unit count)
@@ -32,14 +33,12 @@ w = 2;
 // Height of the block (PELA unit count, use 1/3 for short calibration panel)
 h = 1;
 
-// Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
-
-end_holes = 3;
-
 side_holes = 0;
 
-end_sheaths = true;
+end_holes = 2;
+
+// Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
+bolt_holes = false;
 
 side_sheaths = true;
 
@@ -59,7 +58,7 @@ axle_hole_tweak = 0;
 font = "Arial";
 
 // Text size on calibration blocks
-font_size = 5;
+font_size = 4.8;
 
 // Depth of text labels on calibration blocks
 text_extrusion_height = 0.6;
@@ -72,6 +71,12 @@ horizontal_text_margin = 1;
 
 // Size between calibration block test steps (0.02 or larger for a rough calibration, 0.01 to refine if already close)
 calibration_block_increment = 0.02;
+
+block_height = 9.6;
+
+flexible_material = false;
+
+large_nozzle = false;
 
 
 /////////////////////////////////////
