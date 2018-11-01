@@ -36,7 +36,7 @@ support_set(l=4, w=3, height=10);
 translate([4, -4, 0]) {
     smr = 40;
     rotate([0, 0, -smr/2])
-    support(support_side_length=3, support_max_rotation=smr, support_line_width=0.2, height=10);
+    support(support_side_length=3, support_max_rotation=smr, height=10);
 }
 
 // Show an example of limited twisting when support_max_rotation is >0 
@@ -51,7 +51,7 @@ translate([12, -4, 0]) {
 
 
 // A twisted triangular column to aid in additive manufacturing print-time strength
-module support(support_side_length=support_side_length, support_layer_height=support_layer_height, support_line_width=support_line_width, height, support_max_rotation=support_max_rotation) {
+module support(support_side_length=support_side_length, support_layer_height=support_layer_height, height, support_max_rotation=support_max_rotation) {
 
     layer_count = ceil(height/support_layer_height);
 
@@ -61,7 +61,7 @@ module support(support_side_length=support_side_length, support_layer_height=sup
                 for (i = [0:1:layer_count]) {
                     angle=support_max_rotation > 0 ? abs((i*support_layer_rotation % support_max_rotation)-support_max_rotation/2) : i*support_layer_rotation;
                     translate([0, 0, -i*support_layer_height]) {
-                        support_triangle(support_side_length=support_side_length, support_layer_height=support_layer_height, support_line_width=support_line_width, angle=angle);
+                        support_triangle(support_side_length=support_side_length, support_layer_height=support_layer_height, angle=angle);
                     }
                 }
             }
@@ -75,29 +75,31 @@ module support(support_side_length=support_side_length, support_layer_height=sup
 
 
 // One side of one layer of a support triangle
-module support_line(support_side_length=support_side_length, support_layer_height=support_layer_height, support_line_width=support_line_width) {
+module support_line(support_side_length=support_side_length, support_layer_height=support_layer_height) {
     hull() {
-        cylinder(d=support_line_width, h=support_layer_height, $fn=6);
+        cylinder(d=support_line_width(), h=support_layer_height, $fn=6);
 
         translate([0, support_side_length, 0]) {
-            cylinder(d=support_line_width, h=support_layer_height, $fn=6);
+            cylinder(d=support_line_width(), h=support_layer_height, $fn=6);
         }
     }
 }
 
 // One layer of a support made up of three lines
-module support_triangle(support_side_length=support_side_length, support_layer_height=support_layer_height, support_line_width=support_line_width, angle=0) {
-    support_side_length = support_side_length-support_line_width;
+module support_triangle(support_side_length=support_side_length, support_layer_height=support_layer_height, angle=0) {
+
+    support_side_length = support_side_length-support_line_width();
+
     translate([support_side_length/2*sin(30+angle), -support_side_length/2*cos(30+angle), -support_layer_height]) {
         rotate([0, 0, angle]) {
-            support_line(support_side_length=support_side_length, support_layer_height=support_layer_height, support_line_width=support_line_width);
+            support_line(support_side_length=support_side_length, support_layer_height=support_layer_height);
             rotate([0, 0, 60]) {
-                support_line(support_side_length=support_side_length, support_layer_height=support_layer_height, support_line_width=support_line_width);
+                support_line(support_side_length=support_side_length, support_layer_height=support_layer_height);
             }
 
             translate([0, support_side_length, 0]) {
                 rotate([0, 0, 120]) {
-                    support_line(support_side_length=support_side_length, support_layer_height=support_layer_height, support_line_width=support_line_width);
+                    support_line(support_side_length=support_side_length, support_layer_height=support_layer_height);
                 }
             }
         }

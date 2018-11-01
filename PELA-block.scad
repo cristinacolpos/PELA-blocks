@@ -67,7 +67,7 @@ PELA_block();
 
 
 // A PELA block
-module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, ring_radius=ring_radius, ring_thickness=ring_thickness, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle) {
+module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_flexture_radius=knob_flexture_radius, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle) {
     
     difference() {
         union() {
@@ -121,7 +121,7 @@ module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=
                 
             length = block_height(h)-top_shell;
 
-            double_socket_hole_set(l=l, w=w, sockets=sockets, ring_radius=ring_radius, ring_thickness=ring_thickness, length=length, alternate_length=length, bevel_socket=true, flexible_material=flexible_material, large_nozzle=large_nozzle);
+            double_socket_hole_set(l=l, w=w, sockets=sockets, length=length, alternate_length=length, bevel_socket=true, flexible_material=flexible_material, large_nozzle=large_nozzle);
             
             if (bolt_holes) {
                 corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
@@ -140,18 +140,18 @@ module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=
 }
 
 
-module double_socket_hole_set(l=l, w=w, sockets=sockets, ring_radius=ring_radius, ring_thickness=ring_thickness, alternate_length, length, bevel_socket=true, flexible_material=flexible_material, large_nozzle=large_nozzle) {
+module double_socket_hole_set(l=l, w=w, sockets=sockets, alternate_length, length, bevel_socket=true, flexible_material=flexible_material, large_nozzle=large_nozzle) {
 
     if (sockets) {
-        alternating_radius = large_nozzle ? 2/3*(ring_radius-ring_thickness) : ring_radius-ring_thickness;
+        alternating_radius = large_nozzle ? 2/3*(ring_radius(large_nozzle=large_nozzle)-ring_thickness(large_nozzle=large_nozzle)) : ring_radius(large_nozzle=large_nozzle)-ring_thickness(large_nozzle=large_nozzle);
         alternating_fn = large_nozzle ? axle_hole_fn : ring_fn;
 
         translate([block_width(), block_width(), -defeather]) {
-            socket_hole_set(l=l-1, w=w-1, radius=alternating_radius, length=alternate_length+2*defeather, bevel_socket=bevel_socket, ring_fn=alternating_fn, flexible_material=flexible_material, large_nozzle=large_nozzle);
+            socket_hole_set(l=l-1, w=w-1, radius=alternating_radius, length=alternate_length+2*defeather, bevel_socket=bevel_socket, ring_fn=alternating_fn, flexible_material=flexible_material);
         }
 
         translate([block_width(0.5), block_width(0.5), -defeather]) {
-            socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn, flexible_material=flexible_material, large_nozzle=large_nozzle);
+            socket_hole_set(l=l, w=w, radius=ring_radius(large_nozzle=large_nozzle)-ring_thickness(large_nozzle=large_nozzle), length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn, flexible_material=flexible_material);
         }
     }
 }
@@ -343,13 +343,13 @@ module socket_ring(ring_radius=ring_radius, length=block_height(1, block_height=
 
 
 // Bottom connector- negative flexture space inside bottom rings for multiple blocks
-module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn) {
+module socket_hole_set(l=l, w=w, radius=ring_radius(large_nozzle=large_nozzle)-ring_thickness(large_nozzle=large_nozzle), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material) {
     
     if (sockets && l>0 && w>0) {
         for (i = [0:l-1]) {
             for (j = [0:w-1]) {
                 translate([block_width(i), block_width(j), 0]) {
-                    socket_hole(radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, block_height=block_height);
+                    socket_hole(radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, block_height=block_height, flexible_material=flexible_material);
                 }
             }
         }
@@ -358,7 +358,7 @@ module socket_hole_set(l=l, w=w, radius=ring_radius-ring_thickness, length=block
 
 
 // Hole with side grip ridge flexture to grab any knob on a block inserted from below
-module socket_hole(radius=ring_radius-ring_thickness, length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn) {
+module socket_hole(radius=ring_radius-ring_thickness, length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material) {
 
     h2 = official_knob_height/2;
     bevel_h = bevel_socket ? socket_insert_bevel : 0;
@@ -367,7 +367,7 @@ module socket_hole(radius=ring_radius-ring_thickness, length=block_height(1, blo
         cylinder(r=radius, h=bevel_h + defeather, $fn=ring_fn);
 
         translate([0, 0, bevel_h - defeather]) {
-            cylinder(r=radius - side_lock_thickness, h=h2 + 2*defeather + socket_insert_bevel, $fn=ring_fn);
+            cylinder(r=radius - side_lock_thickness(flexible_material=flexible_material), h=h2 + 2*defeather + socket_insert_bevel, $fn=ring_fn);
         }
 
         translate([0, 0, h2 + socket_insert_bevel]) {
