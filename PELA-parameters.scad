@@ -214,13 +214,13 @@ function block_height(h=1, block_height=block_height) = h*block_height;
 function ring_thickness(large_nozzle=large_nozzle) = large_nozzle ? 1.2 : 0.8;
 
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-function ring_radius(large_nozzle=large_nozzle) = 2.75 + ring_thickness(large_nozzle=large_nozzle) + bottom_tweak;
+function ring_radius(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak) = 2.75 + ring_thickness(large_nozzle=large_nozzle) + bottom_tweak;
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-knob_flexture_radius(flexible_material=flexible_material) = flexible_material ? 0.6 : 0.8;
+function knob_flexture_radius(flexible_material=flexible_material) = flexible_material ? 0.6 : 0.8;
 
 // Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
-knob_bevel(flexible_material=flexible_material) = flexible_material ? 0.3 : 0.2;
+function knob_bevel(flexible_material=flexible_material) = flexible_material ? 0.3 : 0.2;
 
 
 // Test if this is a corner block

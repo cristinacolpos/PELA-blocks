@@ -147,7 +147,7 @@ module alignment_pin(block_height=block_height) {
     }
 
     translate([block_width(5), block_width(3), 0.5*panel_height(block_height=block_height)]) {
-        cylinder(r=ring_radius, h=0.5*panel_height(block_height=block_height));
+        cylinder(r=ring_radius(), h=0.5*panel_height(block_height=block_height));
     }
 }
 
@@ -163,7 +163,7 @@ module PELA_vive_tracker_mount(block_height=block_height) {
             
             thumbscrew_hole_border(block_height=block_height);
             
-            alignment_pin();
+            alignment_pin(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
 
             hull() {
                 translate([block_width(), block_width(1.81)])
