@@ -1,5 +1,5 @@
 /*
-PELA Board Holder - 3D Printed LEGO-compatible ESP32 board mount
+PELA Board Holder - 3D Printed LEGO-compatible Node MCU 32s (ESP32) board mount
 
 Published at https://PELAblocks.org
 
@@ -31,8 +31,9 @@ use <PELA-board-mount.scad>
 ////////////////////
 // Parameters
 ////////////////////
-length = 49;
-width = 25.9;
+
+length = 51.7;
+width = 28.6;
 thickness = 1.7;
 h = 1;
 undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
@@ -57,7 +58,7 @@ solid_upper_layers = false;
 solid_bottom_layer = true;
 center_type = 2; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
-board_x_offset = 0;
+board_x_offset = -1;
 board_y_offset = 0;
 board_z_offset = -thickness;
 top_edge_height = 2;
@@ -70,25 +71,22 @@ width_tightness = 1.5;
 
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
-block_height = 9.6;
-
-
 ///////////
 // Display
 ///////////
 esp32_board_mount();
 
 
-module esp32_board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, length_tightness=length_tightness, width_tightness=width_tightness, solid_bottom_layer=solid_bottom_layer, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, block_height=block_height) {
+module esp32_board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, length_tightness=length_tightness, width_tightness=width_tightness, solid_bottom_layer=solid_bottom_layer, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers) {
     
     difference() {
-        board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, length_tightness=length_tightness, width_tightness=width_tightness, solid_bottom_layer=solid_bottom_layer, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, block_height=block_height);
+        board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, drop_bottom=drop_bottom, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, length_tightness=length_tightness, width_tightness=width_tightness, solid_bottom_layer=solid_bottom_layer, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers);
 
         union() {
             l = fit_mm_to_pela_blocks(i=length, tightness=length_tightness);
             w = fit_mm_to_pela_blocks(i=width, tightness=width_tightness);
 
-            bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, block_height=block_height, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
+            bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
 
             usb_cutout();
 
@@ -99,7 +97,7 @@ module esp32_board_mount(length=length, width=width, h=h, thickness=thickness, u
 
 
 module usb_cutout() {
-    translate([-defeather, block_width(1.5), block_height(0.5, block_height=block_height)]) {
+    translate([-defeather, block_width(2), block_height(0.5, block_height=block_height)]) {
         cube([block_width(2), block_width(2), block_height(2, block_height=block_height)]);
     }
 }
