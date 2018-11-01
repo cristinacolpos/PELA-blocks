@@ -72,12 +72,6 @@ knob_radius = 2.45 + 0.12 + top_tweak;
 // Distance below knob top surface and the internal flexture
 knob_top_thickness = 0.8;
 
-// Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-knob_flexture_radius = flexible_material ? 0.6 : 0.8;
-
-// Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
-knob_bevel = flexible_material ? 0.3 : 0.2;
-
 // Height of the connectors (LEGO uses 1.8- taller gives a stronger hold especially for flexible materials, too tall can cause problems when connecting to thin panels)
 knob_height = 2.9;
 
@@ -87,17 +81,6 @@ official_knob_height = 1.8;
 // Height of a small bottom knob insert easement, flaring the bottom edges to make assembly easier
 socket_insert_bevel = 0.1;
 
-
-/* [Bottom Connector Adjustments] */
-
-// Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-ring_thickness = large_nozzle ? 1.2 : 0.8;
-
-// Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-ring_radius = 2.75 + ring_thickness + bottom_tweak;
-
-// Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
-side_lock_thickness = flexible_material ? 0.06 : 0.02;
 
 
 /* [3D Printing Side Connector Adjustments] */
@@ -189,9 +172,6 @@ support_layer_height = 2;
 // Thickness of a base panel for holding supports together
 support_connection_height = 0.5;
 
-// Horizontal width of each side of a support triangle
-support_line_width = large_nozzle ? 0.7 : 0.5;
-
 // Length of sides of a support equilateral triangle
 support_side_length = 4;
 
@@ -230,6 +210,19 @@ function block_width(i=1, block_width=block_width) = i*block_width;
 // Vertical size
 function block_height(h=1, block_height=block_height) = h*block_height;
 
+// Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
+function ring_thickness(large_nozzle=large_nozzle) = large_nozzle ? 1.2 : 0.8;
+
+// Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
+function ring_radius(large_nozzle=large_nozzle) = 2.75 + ring_thickness(large_nozzle=large_nozzle) + bottom_tweak;
+
+// Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
+knob_flexture_radius(flexible_material=flexible_material) = flexible_material ? 0.6 : 0.8;
+
+// Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
+knob_bevel(flexible_material=flexible_material) = flexible_material ? 0.3 : 0.2;
+
+
 // Test if this is a corner block
 function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 
@@ -238,3 +231,9 @@ function panel_height_ratio(block_height=block_height) = block_height < 9.6 ? 1/
 
 // Thickness of a flat panel
 function panel_height(block_height=block_height) = block_height(1, block_height=block_height)*panel_height_ratio(block_height=block_height);
+
+// Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
+function side_lock_thickness(flexible_material=flexible_material) = flexible_material ? 0.06 : 0.02;
+
+// Horizontal width of each side of a support triangle
+function support_line_width(large_nozzle=large_nozzle) = large_nozzle ? 0.7 : 0.5;
