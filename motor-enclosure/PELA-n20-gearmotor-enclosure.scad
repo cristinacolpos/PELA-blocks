@@ -106,7 +106,7 @@ translate([0, block_width(w + 0.5), 0]) {
 // Bottom of the enclosure
 module motor_enclosure_bottom() {
     difference() {
-        PELA_technic_block(l=l, w=w, h=h_bottom, knob_flexture_radius=0, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, bolt_holes=bolt_holes);
+        PELA_technic_block(l=l, w=w, h=h_bottom, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, bolt_holes=bolt_holes);
         
         motor_cutouts();
     }
@@ -199,13 +199,13 @@ module motor_slot() {
 
 
 // For the shaft when the motor slides down into the bottom half of the enclosure
-module shaft_slot() {
+module shaft_slot(block_height=block_height) {
     hull() {
         translate([0, -(2*motor_radius-motor_width)/2, 0]) {
             motor_shaft();
         }
 
-        translate([0, -(2*motor_radius-motor_width)/2, block_height()]) {
+        translate([0, -(2*motor_radius-motor_width)/2, block_height(1, block_height=block_height)]) {
             motor_shaft();
         }
     }    

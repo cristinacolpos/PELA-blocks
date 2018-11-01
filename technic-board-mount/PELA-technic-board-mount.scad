@@ -52,21 +52,21 @@ camera_holder();
 
 
 module camera_holder() {
+
+    l = fit_mm_to_pela_blocks(length, length_tightness);
+    w = fit_mm_to_pela_blocks(width, width_tightness);
     
     difference() {
-        camera_mount();
+        camera_mount(l=l, w=w);
         union() {
-            camera_board();
-            camera_back();
+            camera_board(l=l, w=w, block_height=block_height);
+            camera_back(l=l, w=w, block_height=block_height);
         }
     }
 }
 
 
 module camera_mount() {
-
-    l = fit_mm_to_pela_blocks(length, length_tightness);
-    w = fit_mm_to_pela_blocks(width, width_tightness);
 
     technic_bar(l=l);
 
@@ -90,21 +90,21 @@ module camera_mount() {
 }
 
 
-module camera_board(l=l, w=w) {
+module camera_board(l=l, w=w, block_height=block_height) {
     l2 = ((block_width(l) - length) / 2);
     w2 = ((block_width(w) - width) / 2);
 
-    translate([block_width() + l2, block_width() + w2, block_height() - 1.8]) {
+    translate([block_width() + l2, block_width() + w2, block_height(1, block_height=block_height) - 1.8]) {
         cube([length, width, 1.8]);
     }
 }
 
-module camera_back(l=l, w=w) {
+module camera_back(l=l, w=w, block_height=block_height) {
     l2 = ((block_width(l) - length - 2) / 2);
     w2 = ((block_width(w) - width - 2) / 2);
 
 #    translate([block_width(0.5) + 4, block_width(0.5) + 4, 0]) {
-        cube([length - 8, width - 8, block_height()]);
+        cube([length - 8, width - 8, block_height(1, block_height=block_height)]);
     }
 }
 
