@@ -35,9 +35,43 @@ See the [Slicer Recommendations](SLICER-RECOMMENDATIONS.md) for settings recomme
 
 To get a perfect LEGO-compatible and technic-compatible fit, do some test fits against a printed calibration block tune 3 numbers before generating the STL model for your plastic and printer.
 
+___
+
+
 [![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master//PELA-calibration.stl)
 
-[![PELA Calibration Bar](images/PELA-calibration.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration.stl)
+Print one of the 4 calibration blocks below. Test fit some LEGO on the top and bottom to find the perfect fit. Test fit a technic connector on the side. When you update those material settings in  [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad) then one time calibration is complete.
+
+___
+
+
+[![PELA Calibration Bar, Normal Filament, Small Extruder](images/PELA-calibration-norm-small.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-small.stl)
+
+[PELA Calibration Bar, Normal Filament, Small Extruder](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-small.stl) PELA Calibration Bar for normal filament (non-flexible) and a small extruder (less than 0.5mm diameter- capable of printing thin walls)
+
+___
+
+
+[![PELA Calibration Bar, Normal Filament, Large Extruder](images/PELA-calibration-norm-large.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-large.stl)
+
+[PELA Calibration Bar, Normal Filament, Large Extruder](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-large.stl) PELA Calibration Bar for normal filament (non-flexible) and a large extruder (0.5mm diameter or greater- not capable of printing thin walls)
+
+___
+
+
+[![PELA Calibration Bar, Flexible Filament, Small Extruder](images/PELA-calibration-flex-small.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-small.stl)
+
+[PELA Calibration Bar, Flexible Filament, Small Extruder](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-small.stl) PELA Calibration Bar for flexible filament (TPU etc) and a small extruder (less than 0.5mm diameter- capable of printing thin walls)
+
+
+___
+
+[![PELA Calibration Bar, Flexible Filament, Large Extruder](images/PELA-calibration-flex-large.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-large.stl)
+
+[PELA Calibration Bar, Flexible Filament, Large Extruder](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-large.stl) PELA Calibration Bar for flexible filament (TPU etc) and a large extruder (0.5mm diameter or geater- not capable of printing thin walls)
+
+___
+
 
 Use either the [PELA Calibration Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration.stl) or [PELA Calibration Block Set](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-set.stl) to find the right settings for your printer setup.
 
@@ -285,8 +319,8 @@ ___
 
 * Use a 0.4mm or smaller nozzle if possible to avoid decimation of some details (inside vertical shell bars..)
 * If slicing with Simplify 3D with 0.5mm or larger nozzle, you may want to set Simplify 3D to `Advanced | External Thing Wall Type | Allow single extrusion walls`
-* Be aware that slicers may in some cases not be able to correct OpenSCAD STL export errors. These errors should be visible in layer preview as for example extra excursions back to origin. If this happens, open and clean the STL files first with for example Windows 3D Builder, Meshmixer or Meshlab. Meshlab command line examples can be found in `build.ps1`.
-* Best results are achieved with durable materials that are not too stiff (PET, co-oplimers like NGEN, semi-flexible and "engineering" materials instead of PLA and  carbon filled).
+* Be aware that slicers may in some cases not be able to correct OpenSCAD STL export errors. These errors should be visible in layer preview as for example extra excursions back to origin. If this happens, open and clean the STL files first with for example Microsoft 3D Builder, Meshmixer or MeshLab. MeshLab command line examples can be found in `build.ps1`.
+* Best results are achieved with durable materials that are not too stiff (PET, co-polymers like NGEN, semi-flexible and "engineering" materials instead of PLA and  carbon filled).
 * Best results are achieved with smaller nozzle diameters. Adjust slicer settings for precision over speed. Layer height is not particularly important on most models.
 * Think carefully before using very slippery materials such as Nylon.
 * "standard" and "fast" print setting layer lines are helpful for extra connector grip provided the resulting print geometry is sufficiently accurate.
@@ -295,7 +329,7 @@ ___
 
 ## Resin Printing Tips
 
-* If more than 2 layer tall PELA with a relatively solid interior not allowing drainage below the knobs, check if you need to expand the airhole to allow resin to drain from the flexture chamber inside each knob
+* If more than 2 layer tall PELA with a relatively solid interior not allowing drainage below the knobs, check if you need to expand the airhole to allow resin to drain from the flexure chamber inside each knob
 * For translucent materials, setting knob_slice_count to 0 may make the interior structure look more like a standard PELA at the cost of a slight reduction of knob sidewall flex
 
 ## License
@@ -306,13 +340,15 @@ ___
 
 These designs are by PELA project contributors, not by the LEGO corporation. They are compatible with LEGO and similar blocks available from multiple manufacturers and online projects. The associated patents have expired. These designs are not identical to LEGO; they have been specially modified for easy 3D printing and offered in the spirit of open source collaborative innovation.
 
-If what you want is available as injection moulded plastic, buy it for the higher quality and durability. These model are helpful when you want something customized, a special color, an unusual material, and for replacement parts when you just can't wait.
+If what you want is available as injection molded plastic, buy it for the higher quality and durability. These model are helpful when you want something customized, a special color, an unusual material, and for replacement parts when you just can't wait.
 
 ## Projects Using PELA Blocks
 
-PELA is also used to create more robot parts: [![3D Printed LEGO-compatible Parametric Robot Hand](http://robothand.pelablocks.org/PELA-robot-hand.png)](http://robothand.pelablocks.org)
+PELA has been used to create a self-driving car: [![3D Printed LEGO-compatible Parametric 1:10 Scale RC Drift Car Based On PELA Blocks](https://driftcar.pelablocks.org/images/pela-drift-car.jpg)](https://driftcar.pelablocks.org)
 
-The generated 3D models displayed here are hosted in a separate github project to minimize the size of pulling changes in this repo: [PELA-parametric-blocks-render](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render)
+PELA is also used to create robot parts: [![3D Printed LEGO-compatible Parametric Robot Hand](http://robothand.pelablocks.org/PELA-robot-hand.png)](https://robothand.pelablocks.org)
+
+The generated 3D models displayed here are hosted in a separate GitHub project to minimize the size of pulling changes in this repo: [PELA-parametric-blocks-render](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render)
 
 ## Alternative 3D Block Designs
 
