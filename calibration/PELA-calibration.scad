@@ -82,12 +82,6 @@ large_nozzle = false;
 
 
 /////////////////////////////////////
-// PELA Calibration Display
-/////////////////////////////////////
-
-PELA_calibration_bar();
-
-/////////////////////////////////////
 // PELA CALIBRATION BLOCK MODULES
 //
 // A single block or array of PELA blocks with different parameters.
