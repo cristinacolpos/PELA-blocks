@@ -49,7 +49,7 @@ Your printer, slicer settings, and plastic effect the precise fit. To correct fo
 
 Before you print the calibration bar, be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad).
 
-After you print the clibration bar, you update three settings to get a tight fit: `top_tweak`, `bottom_tweak` and `axle_hole_tweak`. These can be read from the side of the calibration bar. 
+After you print the clibration bar, you update three settings to get a tight fit: `top_tweak`, `bottom_tweak` and `axle_hole_tweak`. These can be read from the side of the calibration bar.
 
 1. Print the Calibration Bar and test fit the top knobs and bottom sockets against commercial LEGO. Put the `top_tweak` (on the side, near the top) and `bottom_tweak` (on the side, near the bottom) values that you can read from the side of the bar into `print-parameters.scad`.
 1. Use OpenSCAD to generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press `F6` to render, and `Export` as `.STL`. Windows command line scripts are provided: `.\PELA-block.ps1 2 2 1` or `.\PELA-technic-block.ps1 2 2 1`
@@ -67,7 +67,7 @@ Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these mode
 
 [![PELA Block](images/PELA-block-4-2-1.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block-4-2-1.stl)
 
-[3D PELA Block](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block-4-2-1.stl) 
+[3D PELA Block](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block-4-2-1.stl)
 
 ___
 
@@ -111,6 +111,12 @@ ___
 [![PELA Pi Camera Technic Mount](images/PELA-technic-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-board-mount.stl)
 
 [3D PELA Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-board-mount.stl) A Raspberry Pi 3 camera holder. Pin the board in place using a technics bar.
+
+___
+
+[![PELA NodeMCU v2 Technic Mount](images/PELA-technic-nodemcu-v2-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-board-mount.stl)
+
+[3D PELA NodeMCU v2 Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-board-mount.stl) A technic mount for NodeMCU v2.
 
 ___
 
@@ -258,15 +264,15 @@ ___
 
 ___
 
-[![PELA Node MCU-32S Board Mount](images/PELA-nodemcu-32s-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-board-mount.stl)
+[![PELA NodeMCU-32s Board Mount](images/PELA-nodemcu-32s-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-board-mount.stl)
 
-[3D PELA Node MCU-32S Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-board-mount.stl) For holding an Node MCU-32S microcontroller board within a PELA block
+[3D PELA NodeMCU-32s Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-board-mount.stl) For holding an NodeMCU-32s microcontroller board within a PELA block
 
 ___
 
-[![PELA Node MCU-v2 Board Mount](images/PELA-nodemcu-v2-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-board-mount.stl)
+[![PELA NodeMCU v2 Board Mount](images/PELA-nodemcu-v2-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-board-mount.stl)
 
-[3D PELA Node MCU-v2 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-board-mount.stl) For holding an Node MCU-v2 microcontroller board within a PELA block
+[3D PELA NodeMCU v2 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-board-mount.stl) For holding an NodeMCU v2 microcontroller board within a PELA block
 
 ___
 
@@ -279,7 +285,7 @@ ___
 
 * Use a 0.4mm or smaller nozzle if possible to avoid decimation of some details (inside vertical shell bars..)
 * If slicing with Simplify 3D with 0.5mm or larger nozzle, you may want to set Simplify 3D to `Advanced | External Thing Wall Type | Allow single extrusion walls`
-* Be aware that slicers may in some cases not be able to correct OpenSCAD STL export errors. These errors should be visible in layer preview as for example extra excursions back to origin. If this happens, open and clean the STL files first with for example Windows 3D Builder, Meshmixer or Meshlab. Meshlab command line examples can be found in `build.ps1`. 
+* Be aware that slicers may in some cases not be able to correct OpenSCAD STL export errors. These errors should be visible in layer preview as for example extra excursions back to origin. If this happens, open and clean the STL files first with for example Windows 3D Builder, Meshmixer or Meshlab. Meshlab command line examples can be found in `build.ps1`.
 * Best results are achieved with durable materials that are not too stiff (PET, co-oplimers like NGEN, semi-flexible and "engineering" materials instead of PLA and  carbon filled).
 * Best results are achieved with smaller nozzle diameters. Adjust slicer settings for precision over speed. Layer height is not particularly important on most models.
 * Think carefully before using very slippery materials such as Nylon.

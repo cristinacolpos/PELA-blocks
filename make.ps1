@@ -2,12 +2,12 @@
 #
 # Generate a set of objects calibrated for your printer by changes to PELA-print-parameters.scad
 # See https://PELAblocks.org for more information
-# 
+#
 # Part of https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks
 #
 # The parameters turn on generation of various features. Note that STLs are .gitignore so you can create them
 # locally without impacting publishing. Published PNGs are generated in this project. They must be here because of
-# how github pages markdown works). Published STLs for the website are generated in the sister project 
+# how github pages markdown works). Published STLs for the website are generated in the sister project
 # https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render to minimize your pain of large file
 # gitthrashing as the project evolves. The $outdir parameter is used by this sister project when updating generated
 # STLs so you can safely ignore it.
@@ -67,7 +67,7 @@ Function render($path, $name) {
     if ($png) {
         render-png $path $name
     }
-    Write-Output ""    
+    Write-Output ""
 }
 
 # Create a PNG from the .scad file (slow, not pretty, but no Python or POVRay needed)
@@ -150,6 +150,7 @@ render ".\technic-bar\" "PELA-technic-bar-60degree"
 render ".\technic-bar\" "PELA-technic-bar-90degree"
 render ".\technic-bar\" "PELA-technic-bar-120degree"
 render ".\technic-board-mount\" "PELA-technic-board-mount"
+render ".\technic-board-mount\" "PELA-technic-nodemcu-v2-board-mount"
 render ".\knob-panel\" "PELA-knob-panel"
 render ".\knob-panel\" "PELA-double-sided-knob-panel"
 render ".\socket-panel\" "PELA-socket-panel"
