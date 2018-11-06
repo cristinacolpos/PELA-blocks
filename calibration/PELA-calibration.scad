@@ -40,6 +40,8 @@ side_holes = 2;
 
 side_sheaths = true;
 
+end_sheaths = true;
+
 top_vents = false;
 
 knobs = true;
@@ -145,7 +147,7 @@ module lower_label(flexible_material=flexible_material) {
 
 // Is this calibration block for a large extruder (no thin walls because 0.5mm nozzle or larger) or small (< 0.5mm)? You can use the "large" setting with any extruder, but the parts are slightly heavier and the alternate line holes are not suitable for knob attachment because they must be smaller to leave room for thicker walls
 module upper_label(large_nozzle=large_nozzle) {
-    txt = large_nozzle ? "Large" : "Small";
+    txt = large_nozzle ? "Thick" : "Thin";
 
     translate([0, 5, 0]) {
         calibration_text(txt=txt, halign="left", valign="bottom", font_size=font_size2);

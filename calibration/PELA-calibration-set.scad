@@ -19,75 +19,18 @@ include <../PELA-parameters.scad>
 include <../PELA-print-parameters.scad>
 use <../PELA-technic-block.scad>
 use <../PELA-block.scad>
-use <PELA-calibration.scad>
+include <PELA-calibration.scad>
 
 
-/* [PELA Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real PELA first, then 3D printed to 3D printed using a calibration block with your selected paramters] */
-
-// Length of each calibration block (PELA unit count)
-l = 2; 
-
-// Width of each calibration block (PELA unit count)
-w = 2;
-
-// Height of the block (PELA unit count, use 1/3 for short calibration panel)
-h = 1;
-
-side_holes = 0;
+/* [PELA Calibration Set Options */
 
 end_holes = 2;
 
-// Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
-
-side_sheaths = true;
-
-top_vents = false;
-
-knobs = true;
-
-top_shell = 1;
-
-top_tweak = 0;
-
-bottom_tweak = 0;
-
-axle_hole_tweak = 0;
-
-// Font for calibration block text labels
-font = "Arial";
-
-// Text size on calibration blocks
-font_size = 4.8;
-
-// Depth of text labels on calibration blocks
-text_extrusion_height = 0.6;
-
-// Inset from block edge for text (vertical and horizontal)
-vertical_text_margin = 0.2;
-
-// Inset from block edge for text (vertical and horizontal)
-horizontal_text_margin = 1;
-
-// Size between calibration block test steps (0.02 or larger for a rough calibration, 0.01 to refine if already close)
-calibration_block_increment = 0.02;
-
-block_height = 9.6;
-
-flexible_material = false;
-
-large_nozzle = false;
+side_holes = 0;
 
 
 /////////////////////////////////////
-// PELA Calibration Display
-/////////////////////////////////////
-
-PELA_calibration_set();
-
-
-/////////////////////////////////////
-// PELA CALIBRATION BLOCK MODULES
+// PELA CALIBRATION SET MODULES
 //
 // A single block or array of PELA blocks with different parameters.
 // Use these to find the ideal fit with real PELA blocks
