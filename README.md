@@ -45,30 +45,30 @@ Print one of the 4 calibration blocks below. Test fit some LEGO on the top and b
 ___
 
 
-[![PELA Calibration Bar, Normal Filament, Small Extruder](images/PELA-calibration-norm-small.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-small.stl)
+[![PELA Calibration Bar, Normal Filament, Thin Sockets](images/PELA-calibration-norm-thin.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-thin.stl)
 
-[PELA Calibration Bar, Normal Filament, Small Extruder](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-small.stl) PELA Calibration Bar for normal filament (non-flexible) and a small extruder (less than 0.5mm diameter- capable of printing thin walls)
-
-___
-
-
-[![PELA Calibration Bar, Normal Filament, Large Extruder](images/PELA-calibration-norm-large.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-large.stl)
-
-[PELA Calibration Bar, Normal Filament, Large Extruder](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-large.stl) PELA Calibration Bar for normal filament (non-flexible) and a large extruder (0.5mm diameter or greater- not capable of printing thin walls)
+[PELA Calibration Bar, Normal Filament, Thin Sockets](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-thin.stl) PELA Calibration Bar for normal filament (non-flexible) and a fine extruder (nozzle less than 0.5mm diameter- thin bottom socket walls)
 
 ___
 
 
-[![PELA Calibration Bar, Flexible Filament, Small Extruder](images/PELA-calibration-flex-small.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-small.stl)
+[![PELA Calibration Bar, Normal Filament, Thick Sockets](images/PELA-calibration-norm-thick.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-thick.stl)
 
-[PELA Calibration Bar, Flexible Filament, Small Extruder](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-small.stl) PELA Calibration Bar for flexible filament (TPU etc) and a small extruder (less than 0.5mm diameter- capable of printing thin walls)
+[PELA Calibration Bar, Normal Filament, Thick Sockets](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-norm-large.stl) PELA Calibration Bar for normal filament (non-flexible) and a large extruder (0.5mm diameter or greater, or if you prefer to avoid thin walls)
+
+___
+
+
+[![PELA Calibration Bar, Flexible Filament, Thin Sockets](images/PELA-calibration-flex-thin.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-thin.stl)
+
+[PELA Calibration Bar, Flexible Filament, Thin Sockets](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-thin.stl) PELA Calibration Bar for flexible filament (TPU etc) and a fine extruder (less than 0.5mm diameter- thin bottom socket walls)
 
 
 ___
 
-[![PELA Calibration Bar, Flexible Filament, Large Extruder](images/PELA-calibration-flex-large.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-large.stl)
+[![PELA Calibration Bar, Flexible Filament, Thick Sockets](images/PELA-calibration-flex-thick.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-thick.stl)
 
-[PELA Calibration Bar, Flexible Filament, Large Extruder](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-large.stl) PELA Calibration Bar for flexible filament (TPU etc) and a large extruder (0.5mm diameter or geater- not capable of printing thin walls)
+[PELA Calibration Bar, Flexible Filament, Thick Sockets](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-thick.stl) PELA Calibration Bar for flexible filament (TPU etc) and a large extruder (0.5mm diameter or geater, or if you prefer to avoid thin walls)
 
 ___
 
