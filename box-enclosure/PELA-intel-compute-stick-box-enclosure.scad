@@ -43,8 +43,6 @@ height_tightness = 0.8;
 
 bottom_type = 2;
 
-drop_bottom = false;
-
 top_vents = true;
 
 side_holes = 2;
