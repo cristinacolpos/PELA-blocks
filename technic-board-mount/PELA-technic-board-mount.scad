@@ -48,10 +48,10 @@ angle = 45;
 ///////////////
 // Display
 ///////////////
-camera_holder();
+technic_board_mount();
 
 
-module camera_holder() {
+module technic_board_mount() {
 
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
