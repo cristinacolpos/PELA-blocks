@@ -26,10 +26,10 @@ use <../PELA-technic-block.scad>
 /* [PELA Panel Options] */
 
 // Length of the block (PELA unit count)
-l = 6; 
+l = 8; 
 
 // Width of the block (PELA unit count)
-w = 6;
+w = 8;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 bolt_holes = false;

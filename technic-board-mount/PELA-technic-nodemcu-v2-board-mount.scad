@@ -30,8 +30,8 @@ use <../technic-bar/PELA-technic-bar.scad>
 
 /* [Technic Node MCU v2 Options] */
 
-length = 48.5;
-width = 26;
+length = 48.7;
+width = 26.2;
 thickness = 1.8;
 undercut = 2.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
 innercut = 2; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
@@ -80,8 +80,8 @@ module technic_bar_frame(l, w) {
 }
 
 
-board_length = 48.6;
-board_width = 26.3;
+board_length = 48.8;
+board_width = 26.5;
 board_height = 2 + block_height();
 header_length = 38.4;
 header_height = 2.8 + block_height();

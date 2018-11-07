@@ -30,7 +30,7 @@ use <PELA-technic-bar-30degree.scad>
 /* [Technic Pin Array Options] */
 
 angle = 120;
-l = 4;
+l = 7;
 
 ///////////////
 // Display
