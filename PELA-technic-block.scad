@@ -44,7 +44,7 @@ l = 4;
 w = 2;
 
 // Height of the block (PELA unit count)
-h = 1;
+h = 2;
 
 /* [Basic Block Features] */
 

@@ -26,10 +26,10 @@ use <../PELA-technic-block.scad>
 /* [PELA Panel Options] */
 
 // Length of the block (PELA unit count)
-l = 4; 
+l = 8; 
 
 // Width of the block (PELA unit count)
-w = 4;
+w = 8;
 
 top_vents = false;
 
