@@ -8,10 +8,16 @@ div_length = margin*2 + spacing - 2*div_width;
 nominal_hole_r = 2.75;
 label="PELAblock.org Lasercutter Calibration";
 
-module lasercutter_calibration_bar(label=label, nominal_hole_r=nominal_hole_r) {
-    top_label(label=label);
+module lasercutter_calibration_bar_cuts(nominal_hole_r=nominal_hole_r) {
+
     knob_cuts(nominal_hole_r=nominal_hole_r);
     border();
+}
+
+
+module lasercutter_calibration_bar_labels(label=label) {
+
+    top_label(label=label);
     dividers();
     labels();
 }
