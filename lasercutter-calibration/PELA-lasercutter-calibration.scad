@@ -1,12 +1,14 @@
 spacing = 8;
 t = 2;
-cut = 0.01;
+cut = 0.001;
 margin = 8;
 $fn=128;
 div_width = 0.2;
 div_length = margin*2 + spacing - 2*div_width;
 nominal_hole_r = 2.75;
-label="PELAblock.org Lasercutter Calibration";
+label = "PELAblock.org Lasercutter Calibration";
+line_thickness = 0.001;
+kerf_d = 0.1; // Focused laser cut spot diameter 
 
 module lasercutter_calibration_bar_cuts(nominal_hole_r=nominal_hole_r) {
 
@@ -58,9 +60,11 @@ module corner() {
 
 
 module edge(length=8, rot=0) {
-    rotate([0, 0, rot])
+    rotate([0, 0, rot]) {
         square(size = [length, cut]);
+    }
 }
+
 
 module dividers() {
     for (i=[0:9]) {
@@ -91,11 +95,18 @@ module label(i=0, j="Err") {
 }
 
 
-
 module circle_cut(r=3) {
     for (i=[0:360/$fn:360]) {
-        translate([r*sin(i), r*cos(i)]) {
-            edge(length=2*PI*r/$fn, rot=-i);
-        }
+        x1 = r*sin(i);
+        y1 = r*cos(i);
+        x1b = x1 + cut*sin(i);
+        y1b = y1 + cut*cos(i);
+        theta = i+360/$fn;
+        x2 = r*sin(theta);
+        y2 = r*cos(theta);
+        x2b = x2 + cut*sin(theta);
+        y2b = y2 + cut*cos(theta);
+
+        polygon([[x1, y1], [x1b, y1b], [x2b, y2b], [x2, y2]]);
     }
 }
