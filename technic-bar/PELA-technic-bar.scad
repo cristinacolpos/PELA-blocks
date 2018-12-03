@@ -28,7 +28,7 @@ use <../PELA-technic-block.scad>
 
 /* [Technic Pin Array Options] */
 
-l=16;
+l=4;
 
 block_height = 8;
 
