@@ -71,7 +71,7 @@ top_tweak = -0.08; // -0.04 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.08 for Po
 bottom_tweak = 0.04; // -0.02 for ABS, 0.10 for rPET, 0.08 for Pro1, 0.04 for Polymaker Polylite PLA, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon, 0.04 for Ultimaker TPU95A, 0.0 Biofila Silk
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0.06; // 0.04 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker Polylite PLA, 0.04 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, -0.06 for Ultimaker TPU95A, -0.04 Biofila Silk
+axle_hole_tweak = 0.04; // 0.04 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker Polylite PLA, 0.04 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, -0.06 for Ultimaker TPU95A, -0.04 Biofila Silk
 
 // Generate print-time support aid structures for models which offer this. Turn this off if you will use slicer-generated print supports, but be aware that these may make the bottom connectors difficult to post process.
 print_supports = true;
