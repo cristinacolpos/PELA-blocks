@@ -12,8 +12,10 @@ kerf_d = 0.1; // Focused laser cut spot diameter
 
 module lasercutter_calibration_bar_cuts(nominal_hole_r=nominal_hole_r) {
 
-    knob_cuts(nominal_hole_r=nominal_hole_r);
-    border();
+    color("red") {
+        knob_cuts(nominal_hole_r=nominal_hole_r);
+        border();
+    }
 }
 
 
