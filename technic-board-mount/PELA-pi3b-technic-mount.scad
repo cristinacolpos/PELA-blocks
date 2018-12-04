@@ -93,6 +93,10 @@ module sd_card_cutout() {
     translate([block_width(-1.6), block_width(1.5), block_height(0.5, block_height=block_height)]) {
         cube([block_width(3), block_width(6), block_height(3, block_height=block_height)]);
     }
+    
+-    translate([block_width(0.5), block_width(1.5), 0]) {
+        cube([block_width(3), block_width(6), block_height(3, block_height=block_height)]);
+    }
 }
 
 
