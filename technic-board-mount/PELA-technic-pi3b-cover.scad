@@ -30,6 +30,7 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../board-mount/PELA-board-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../socket-panel/PELA-socket-panel.scad>
+use <PELA-technic-pi3b-mount.scad>
 include <PELA-technic-board-mount.scad>
 
 /* [Technic Pin Array Options] */
@@ -43,11 +44,8 @@ base_thickness = block_height(); // The thickness of the base below an array of 
 ///////////////
 // Display
 ///////////////
-pi3b_technic_mount();
 
-translate([block_width(12), 0, block_height(4)]) rotate([0, 180, 0]) {
-    pi3b_technic_top();
-}
+pi3b_technic_top();
 
 module pi3b_technic_top() {
 
@@ -57,92 +55,25 @@ module pi3b_technic_top() {
     union() {
         flat_mount(l=l, w=w);
         
-        translate([block_width(0.5), block_width(0.5), block_height(4)-panel_height()]) {
-            PELA_socket_panel(l=8, w=8, bolt_holes=false, skin=0, block_height=block_height);
+        translate([block_width(0.5), block_width(0.5), 0]) {
+            PELA_socket_panel(l=11, w=8, bolt_holes=false, skin=0, block_height=block_height);
         }
         
-        translate([0, 0, block_height(3)]) {
+        corner();
+        translate([0, block_width(9), 0]) {
+            rotate([0, 0, -90]) {
+                corner();
+            }
+        }
+    }
+}
+
+
+module corner() {
+    translate([0, 0, block_height(1)]) {
+        technic_bar(l=2);
+        rotate([0, 0, 90]) {
             technic_bar(l=2);
         }
-    }
-}
-
-
-
-module pi3b_technic_mount() {
-
-    l = fit_mm_to_pela_blocks(length, length_tightness);
-    w = fit_mm_to_pela_blocks(width, width_tightness);
-
-    difference() {
-        union() {
-            technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut, base_thickness=base_thickness);
-
-            translate([0, 0, block_height(1, block_height=block_height)]) {
-                flat_mount(l=l, w=w);
-            }
-
-            translate([0, 0, block_height(2, block_height=block_height)]) {
-                flat_mount(l=l, w=w);
-            }
-
-            retaining_ridge_sd_card_side();
-        }
-        
-#        union() {
-            main_board(l=l, w=w, length=length, width=width, block_height=block_height);
-            sd_card_cutout();
-            front_connector_cutout();
-            ethernet_cutout();
-            daughterboard_cutout();
-        }
-    }
-}
-
-
-module retaining_ridge_sd_card_side() {
-
-    translate([block_width(0.5), block_width(0.5), block_height(0.5, block_height=block_height)]) {
-        cube([block_width(0.5), block_width(2), block_height(2.5, block_height=block_height)]);
-    }
-
-    translate([block_width(0.5), block_width(6.5), block_height(0.5, block_height=block_height)]) {
-        cube([block_width(0.5), block_width(2), block_height(2.5, block_height=block_height)]);
-    }
-}
-
-
-module sd_card_cutout() {
-
-    translate([block_width(-1.6), block_width(1.5), block_height(0.5, block_height=block_height)]) {
-        cube([block_width(3), block_width(6), block_height(3, block_height=block_height)]);
-    }
-    
-    translate([block_width(0.5), block_width(1.5), 0]) {
-        cube([block_width(3), block_width(6), block_height(3, block_height=block_height)]);
-    }
-}
-
-
-module ethernet_cutout() {
-
-    translate([block_width(10), block_width(0.5), block_height(1, block_height=block_height)]) {
-        cube([block_width(3), block_width(8), block_height(3, block_height=block_height)]);
-    }
-}
-
-
-module front_connector_cutout() {
-
-    translate([block_width(1.5), block_width(-0.6), block_height(0.5, block_height=block_height)]) {
-        cube([block_width(8), block_width(2), block_height(3, block_height=block_height)]);
-    }
-}
-
-
-module daughterboard_cutout() {
-
-    translate([block_width(-0.5), block_width(-0.5), block_height(2, block_height=block_height)]) {
-        cube([block_width(10), block_width(10), block_height(3, block_height=block_height)]);
     }
 }
