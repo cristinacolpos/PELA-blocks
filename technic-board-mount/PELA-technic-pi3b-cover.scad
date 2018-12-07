@@ -35,7 +35,7 @@ include <PELA-technic-board-mount.scad>
 
 /* [Technic Pin Array Options] */
 
-length = 85.6;
+length = 85.9;
 width = 56.4;
 thickness = 1.9;
 innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
@@ -49,14 +49,20 @@ pi3b_technic_top();
 
 module pi3b_technic_top() {
 
-    l = fit_mm_to_pela_blocks(length, length_tightness);
+    l = fit_mm_to_pela_blocks(length, length_tightness) - 1;
     w = fit_mm_to_pela_blocks(width, width_tightness);
 
     union() {
         flat_mount(l=l, w=w);
         
+        translate([block_width(10), 0, 0]) {
+            rotate([0, 0, 90]) {
+                technic_bar(l=10);
+            }
+        }
+        
         translate([block_width(0.5), block_width(0.5), 0]) {
-            PELA_socket_panel(l=11, w=8, bolt_holes=false, skin=0, block_height=block_height);
+            PELA_socket_panel(l=9, w=8, bolt_holes=false, skin=0, block_height=block_height);
         }
         
         corner();
