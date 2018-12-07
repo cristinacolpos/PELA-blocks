@@ -142,15 +142,21 @@ ___
 
 ___
 
-[![PELA Pi Camera Technic Mount](images/PELA-technic-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-board-mount.stl)
+[![PELA Technic Raspberry Pi 3B Mount](images/PELA-technic-pi3b-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi3b-mount.stl)
 
-[3D PELA Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-board-mount.stl) A Raspberry Pi 3 camera holder. Pin the board in place using a technics bar.
+[3D PELA Technic Raspberry Pi 3B Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi3b-mount.stl) A Raspberry Pi 2/3 holder.
 
 ___
 
-[![PELA NodeMCU v2 Technic Mount](images/PELA-technic-nodemcu-v2-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-board-mount.stl)
+[![PELA Technic Pi Camera Mount](images/PELA-technic-pi-camera-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi-camera.stl)
 
-[3D PELA NodeMCU v2 Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-board-mount.stl) A technic mount for NodeMCU v2.
+[3D PELA Technic Pi Camera Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi-camera-mount.stl) A Raspberry Pi 3 camera holder.
+
+___
+
+[![PELA Technic NodeMCU v2 Mount](images/PELA-technic-nodemcu-v2-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-board-mount.stl)
+
+[3D PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-board-mount.stl) A technic mount for NodeMCU v2.
 
 ___
 
