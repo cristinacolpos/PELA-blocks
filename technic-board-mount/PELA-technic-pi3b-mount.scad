@@ -33,7 +33,7 @@ include <PELA-technic-board-mount.scad>
 
 /* [Technic Pin Array Options] */
 
-length = 85.6;
+length = 85.9;
 width = 56.4;
 thickness = 1.9;
 innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
