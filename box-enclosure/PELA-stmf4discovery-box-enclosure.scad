@@ -25,7 +25,7 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <../knob-panel/PELA-knob-panel.scad>
-use <PELA-box-enclosure.scad>
+include <PELA-box-enclosure.scad>
 
 
 /* [PELA Box Option] */

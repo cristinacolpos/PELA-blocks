@@ -22,7 +22,7 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <../knob-panel/PELA-knob-panel.scad>
-use <PELA-box-enclosure.scad>
+include <PELA-box-enclosure.scad>
 
 
 /* [PELA Box Option] */
@@ -138,5 +138,5 @@ module intel_compute_stick_box_lid(block_height=block_height) {
     l=fit_mm_to_pela_blocks(length, length_tightness);
     w=fit_mm_to_pela_blocks(width, width_tightness);
 
-    PELA_knob_panel(l=l, w=w, bolt_holes=bolt_holes, knobs=false, top_vents=false, block_height=block_height);
+    PELA_socket_panel(l=l, w=w, bolt_holes=bolt_holes, block_height=block_height);
 }

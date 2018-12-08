@@ -55,11 +55,11 @@ module pi3b_technic_mount() {
             technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut, base_thickness=base_thickness);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                flat_mount(l=l, w=w);
+                flat_mount(l=l-1, w=w);
             }
 
             translate([0, 0, block_height(2, block_height=block_height)]) {
-                flat_mount(l=l, w=w);
+                flat_mount(l=l-1, w=w);
             }
 
             retaining_ridge_sd_card_side();
