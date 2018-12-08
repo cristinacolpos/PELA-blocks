@@ -232,12 +232,6 @@ ___
 
 ___
 
-[![PELA Box Enclosure](images/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-box-enclosure.stl)
-
-[3D PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/box-enclosure/PELA-box-enclosure.stl) Use as a box or starting point for a LEGO-compatible board holder. Print a separate panel for the top lid. The bottom can be knobs, sockets, flat bottom or no bottom.
-
-___
-
 [![PELA STMF4 Discovery Box Enclosure](images/PELA-stmf4discovery-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-stmf4discovery-box-enclosure.stl)
 
 [3D PELA STMF4 Discovery Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-stmf4discovery-box-enclosure.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
