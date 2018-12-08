@@ -76,8 +76,8 @@ axle_hole_tweak = 0.05; // 0.05 for ABS, 0.04 for rPET, 0.04 for Pro1, 0.06 for 
 // Generate print-time support aid structures for models which offer this. Turn this off if you will use slicer-generated print supports, but be aware that these may make the bottom connectors difficult to post process.
 print_supports = true;
 
-// Generate two STL files, one for each material/color in models which support that
-two_color_print = false;
+// In some models, the user will load two STL files into the slicer for a dual-material printer, one for each material/color. If "false" then the user wants a simplified, single material model
+two_color_print = true;
 
 // Add a text label to models which support that. The two_color_print setting will also affect if these is raised or colored text
 text_labels = true;

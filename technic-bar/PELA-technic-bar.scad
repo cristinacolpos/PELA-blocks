@@ -40,14 +40,14 @@ technic_bar();
 
 
 // A rounded-end minimal bar with no knobs or sockets
-module technic_bar(l=l, h=h) {
+module technic_bar(l=l, h=h, side_holes=2) {
     l2 = l + 1;
 
     translate([block_width(-1), block_width(-0.5), 0]) {
         intersection() {
             translate([0, block_width(), 0]) {
                 rotate([90, 0, 0]) {
-                    PELA_technic_block(l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, side_holes=2, skin=0, block_height=block_height);
+                    PELA_technic_block(l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
                 }
             }
 
