@@ -154,7 +154,7 @@ ___
 
 ___
 
-[![PELA Technic Pi Camera Mount](images/PELA-technic-pi-camera-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi-camera.stl)
+[![PELA Technic Pi Camera Mount](images/PELA-technic-pi-camera-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi-camera-mount.stl)
 
 [3D PELA Technic Pi Camera Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi-camera-mount.stl) A Raspberry Pi 3 camera holder.
 
