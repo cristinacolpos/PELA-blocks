@@ -81,7 +81,10 @@ base_thickness = 2;
 ///////////////
 // Display
 ///////////////
-respeaker_core_v2_technic_mount();
+rotate([180, 0, 0]) {
+    respeaker_core_v2_technic_mount();
+}
+
 
 module respeaker_core_v2_technic_top() { 
     difference() {
