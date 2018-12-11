@@ -169,7 +169,6 @@ render ".\velcro-mount\" "PELA-vive-velcro-mount"
 render ".\vive-tracker-mount\" "PELA-vive-tracker-mount"
 render ".\vive-tracker-mount\" "PELA-vive-tracker-screw"
 render ".\grove-module-enclosure\" "PELA-grove-module-enclosure"
-render ".\support\" "support"
 
 Write-Output Get-Date
 
