@@ -32,9 +32,9 @@ use <../technic-bar/PELA-technic-bar.scad>
 
 /* [Model Options] */
 
-// two_color_print = false;    // Optional local model override of PELA_print_parameters.scad
+two_color_print = true;    // Optional local model override of PELA_print_parameters.scad
 
-center_support_spokes = !two_color_print; // Can change according to preference
+center_support_spokes = true; // Can change according to preference
 
 width = 88;
 thickness = 1.9;
@@ -47,16 +47,17 @@ side = (width/2) / sin(60);
 top = side + side*sin(30);
 mount_d = 5.5;
 mount_h = block_height(3) - 2;
+mount_pin_d = 2.8;
 center_height = 4;
 spoke_width=6;
 
 // Origin for the board model and board mounting holes
 outer_width = 2*block_width(side_length + 0.25)*sin(30);
 board_spacing = (side + sin(30)*side - outer_width)/2;
-ox = board_spacing*cos(30)/2;
-oy = board_spacing*sin(30)/2;
-center_x = -ox + side*cos(30)/sin(60);
-center_y = -oy + side*sin(30)/sin(60);
+ox = board_spacing*cos(30);
+oy = board_spacing*sin(30);
+center_y = block_width(side_length)/2 - block_width(0.5);
+center_x = block_width(side_length - 0.5)*cos(30) - block_width(0.5)*cos(30);
 
 // Orange
 x1 = width - 46 - 29.1;
@@ -84,16 +85,16 @@ base_thickness = 2;
 rotate([180, 0, 0]) {
     respeaker_core_v2_technic_mount();
 }
+//respeaker_core_v2_technic_top();
 
-
-module respeaker_core_v2_technic_top() { 
+module respeaker_core_v2_technic_top(two_color_print=two_color_print) { 
     difference() {
         union() {
             respeaker_core_v2_technic_top_edge();
             respeaker_core_v2_technic_top_center();
         }
         union() {
-            clear_ring();
+            clear_ring(two_color_print=two_color_print);
             switch_access();
         }        
     }
@@ -106,13 +107,13 @@ module respeaker_core_v2_technic_top() {
 
 module board_mounts_top() {
     translate([ox, oy, -thickness]) { 
-        board_mounts(h=4, rot=180);
+        board_mounts(h=3, rot=180, pin=false);
     }
 }
 
 
-module clear_ring() {
-    r1 = side*.88;
+module clear_ring(two_color_print=two_color_print) {
+    r1 = side*.87;
     r2 = r1 - 8;
 
     translate([center_x, center_y, -8]) {
@@ -127,7 +128,7 @@ module clear_ring() {
     }
 
     if (two_color_print) {
-        board_mounts_top();
+    #    board_mounts_top();
     }
 }
 
@@ -170,7 +171,7 @@ module respeaker_board(width=width, side=side, thickness=thickness) {
 module respeaker_base() {
     m = 1.035;
     translate([2.7, 2.2, block_height(3) - base_thickness]) {
-        color("silver") respeaker_board(width=width*m, side=side*m, thickness=base_thickness);
+        respeaker_board(width=width*m, side=side*m, thickness=base_thickness);
     }
 }
 
@@ -178,12 +179,12 @@ module respeaker_base() {
 module respeaker_core_v2_technic_mount() {
     translate([ox, oy]) { 
         translate([0, 0, block_height(3) - mount_h - thickness]) {
-           % respeaker_board();    
+//           % color("gold") respeaker_board();    
         }
         board_mounts();
     }
 
-    respeaker_base();
+    color("silver") respeaker_base();
 
     rotate([0, 0, -30]) {
         // Side 1
@@ -252,19 +253,30 @@ module respeaker_core_v2_technic_mount() {
 }
 
 
-module board_mounts(rot=0, h=mount_h) {
-        color("orange") board_mount(x1, y1, h=h, rot=rot);
-        color("yellow") board_mount(x2, y2, h=h, rot=rot);
-        color("pink") board_mount(x3, y3, h=h, rot=rot);
-        color("grey") board_mount(x4, y4, h=h, rot=rot);
+module board_mounts(rot=0, h=mount_h, pin=true) {
+        color("orange") board_mount(x1, y1, h=h, rot=rot, pin=pin);
+        color("yellow") board_mount(x2, y2, h=h, rot=rot, pin=pin);
+        color("pink") board_mount(x3, y3, h=h, rot=rot, pin=pin);
+        color("grey") board_mount(x4, y4, h=h, rot=rot, pin=pin);
 }
 
 
-module board_mount(x, y, h, rot) {
+module board_mount(x, y, h, rot, pin) {
+    d_multiplier = 1.5;
+    d2 = d_multiplier*mount_d;
+    h2 = min(h, d2);
+
     translate([x, y, block_height(3) - mount_h]) {
         rotate([rot, 0, 0]) {
-            cylinder(d=mount_d, h=h);
-            sphere(d=thickness);
+            cylinder(d1=mount_d, d2=d2, h=h2);
+            translate([0, 0, h2]) {
+                cylinder(d=d2, h=h2);
+            }
+            if (pin) {
+                rotate([180, 0, 0]){
+                    cylinder(d=mount_pin_d, h=thickness);
+                }
+            }
         }
     }
 }

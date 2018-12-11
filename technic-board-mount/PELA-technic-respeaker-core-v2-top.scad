@@ -33,6 +33,8 @@ use <PELA-technic-respeaker-core-v2-mount.scad>
 
 /* [Model Options] */
 
+two_color_print = false;    // Optional local model override of PELA_print_parameters.scad
+
 width = 88;
 thickness = 1.9;
 innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
@@ -74,4 +76,4 @@ base_thickness = 2;
 ///////////////
 // Display
 ///////////////
-respeaker_core_v2_technic_top();
+respeaker_core_v2_technic_top(two_color_print=two_color_print);
