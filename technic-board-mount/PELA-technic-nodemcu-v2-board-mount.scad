@@ -21,8 +21,8 @@ that may be hidden by the sensible default values. This is an evolving art.
 
 include <../PELA-parameters.scad>
 include <../print-parameters.scad>
-use <../PELA-block.scad>
-use <../PELA-technic-block.scad>
+use <../block.scad>
+use <../technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../board-mount/PELA-board-mount.scad>

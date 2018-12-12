@@ -17,8 +17,8 @@ Open source design, Powered By Futurice. Come work with the best.
 
 include <../PELA-parameters.scad>
 include <../print-parameters.scad>
-use <../PELA-technic-block.scad>
-use <../PELA-block.scad>
+use <../technic-block.scad>
+use <../block.scad>
 
 /* [PELA Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real PELA first, then 3D printed to 3D printed using a calibration block with your selected paramters] */
 

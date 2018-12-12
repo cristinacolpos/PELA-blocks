@@ -17,8 +17,8 @@ Open source design, Powered By Futurice. Come work with the best.
 
 include <../PELA-parameters.scad>
 include <../print-parameters.scad>
-use <../PELA-technic-block.scad>
-use <../PELA-block.scad>
+use <../technic-block.scad>
+use <../block.scad>
 include <PELA-calibration.scad>
 
 /* [PELA Calibration Block Options] */

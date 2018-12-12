@@ -33,7 +33,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 
 include <PELA-parameters.scad>
 include <print-parameters.scad>
-use <PELA-block.scad>
+use <block.scad>
 
 /* [PELA Block Dimensions] */
 

@@ -23,14 +23,14 @@ Open source design, Powered By Futurice. Come work with the best.
 
 Import this into other design files:
     use <PELA-sign.scad>
-    use <../PELA-block.scad>
-    use <../PELA-technic-block.scad>
+    use <../block.scad>
+    use <../technic-block.scad>
 */
 
 include <../PELA-parameters.scad>
 include <../print-parameters.scad>
-use <../PELA-block.scad>
-use <../PELA-technic-block.scad>
+use <../block.scad>
+use <../technic-block.scad>
 
 /* [PELA Sign Options] */
 
