@@ -12,7 +12,7 @@ If you later update the PELA-blocks project to a newer version, you risk overwir
 
 1. `cd PELA-blocks`
 1. `copy PELA-parameters.scad ..\PELA-parameters-backup.scad`
-1. `copy PELA-print-parameters.scad ..\PELA-print-parameters-backup.scad`
+1. `copy print-parameters.scad ..\PELA-print-parameters-backup.scad`
 
 ## Sparce Checkout
 

@@ -40,7 +40,7 @@ ___
 
 [![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master//PELA-calibration.stl)
 
-Print one of the 4 calibration blocks below. Test fit some LEGO on the top and bottom to find the perfect fit. Test fit a technic connector on the side. When you update those material settings in  [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad) then one time calibration is complete.
+Print one of the 4 calibration blocks below. Test fit some LEGO on the top and bottom to find the perfect fit. Test fit a technic connector on the side. When you update those material settings in  [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad) then one time calibration is complete.
 
 ___
 
@@ -75,13 +75,13 @@ ___
 
 Use either the [PELA Calibration Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration.stl) or [PELA Calibration Block Set](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-set.stl) to find the right settings for your printer setup.
 
-**TL;DR** *: To get a nice snap fit, print `PELA-calibration.stl` and test the fit with commercial LEGO. Type the best `top_tweak` and `bottom_tweak` into [`PELA-print-parameters.scad`](PELA-print-parameters.scad). Now open any model in OpenSCAD, press `F6` then `Export as STL`.*
+**TL;DR** *: To get a nice snap fit, print `PELA-calibration.stl` and test the fit with commercial LEGO. Type the best `top_tweak` and `bottom_tweak` into [`print-parameters.scad`](print-parameters.scad). Now open any model in OpenSCAD, press `F6` then `Export as STL`.*
 
 ### Calibration Instructions
 
-Your printer, slicer settings, and plastic effect the precise fit. To correct for this, we adjust the models slightly for your printing process. Calibration is a one time process for each material. It is as simple as fitting two blocks together and editing a text file, [`PELA-print-parameters.scad`](PELA-print-parameters.scad) to indicate which test block fits best.
+Your printer, slicer settings, and plastic effect the precise fit. To correct for this, we adjust the models slightly for your printing process. Calibration is a one time process for each material. It is as simple as fitting two blocks together and editing a text file, [`print-parameters.scad`](print-parameters.scad) to indicate which test block fits best.
 
-Before you print the calibration bar, be sure to set the `flexible_material` and `large_nozzle` settings in [`PELA-print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/PELA-print-parameters.scad).
+Before you print the calibration bar, be sure to set the `flexible_material` and `large_nozzle` settings in [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad).
 
 After you print the clibration bar, you update three settings to get a tight fit: `top_tweak`, `bottom_tweak` and `axle_hole_tweak`. These can be read from the side of the calibration bar.
 
@@ -97,7 +97,7 @@ An alternative set of individual calibration blocks are available, and if you ha
 
 ## PELA-compatible Part Designs
 
-Edit `PELA-print-parameters.scad` and `PELA-parameters.scad` to adapt these models before printing them. **The example models below are not yet calibrated for your slicer and printer. Calibrate and then make the tuned model from the .scad file.**
+Edit `print-parameters.scad` and `PELA-parameters.scad` to adapt these models before printing them. **The example models below are not yet calibrated for your slicer and printer. Calibrate and then make the tuned model from the .scad file.**
 
 [![PELA Block](images/PELA-block-4-2-1.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block-4-2-1.stl)
 
@@ -174,7 +174,7 @@ ___
 
 [![PELA Technic Seeed Respeaker Core v2 Top](images/PELA-technic-respeaker-core-v2-top.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respeaker-core-v2-top.stl)
 
-[3D PELA Technic Seeed Respeaker Core v2 Top](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respeaker-core-v2-top.stl) The opaque part of the lid for the Respeaker Core v2 microphone array. Change "two_color_print=false" in "PELA-print-parameters.scad" or two color print this with the "clear ring" part below.
+[3D PELA Technic Seeed Respeaker Core v2 Top](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respeaker-core-v2-top.stl) The opaque part of the lid for the Respeaker Core v2 microphone array. Change "two_color_print=false" in "print-parameters.scad" or two color print this with the "clear ring" part below.
 
 ___
 
