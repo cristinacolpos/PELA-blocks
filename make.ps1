@@ -109,8 +109,8 @@ if ($stl -OR $png -OR $clean) {
         Remove-Item $outdir\images\PELA-technic-block-4-4-2.png 2> $null
     }
 
-    Invoke-Expression ".\PELA-block.ps1 -l 4 -w 2 -h 1 $extras"
-    Invoke-Expression ".\PELA-technic-block.ps1 -l 4 -w 4 -h 2 $extras"
+    Invoke-Expression ".\block.ps1 -l 4 -w 2 -h 1 $extras"
+    Invoke-Expression ".\technic-block.ps1 -l 4 -w 4 -h 2 $extras"
 
     if ($stl) {
         Move-Item .\PELA-technic-block-4-4-2.stl $outdir
