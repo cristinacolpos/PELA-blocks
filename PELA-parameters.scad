@@ -18,7 +18,7 @@ Import this into other design files to set baseline constants:
     include <PELA_parameters.scad>
 */
 
-include <PELA-print-parameters.scad>
+include <print-parameters.scad>
 
 
 /* [PELA Block Dimensions] */

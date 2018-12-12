@@ -32,7 +32,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 */
 
 include <PELA-parameters.scad>
-include <PELA-print-parameters.scad>
+include <print-parameters.scad>
 
 
 
