@@ -15,13 +15,13 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files:
-    use <PELA-block.scad>
+    use <block.scad>
 */
 
 include <../print-parameters.scad>
 include <../PELA-parameters.scad>
-use <../PELA-block.scad>
-use <../PELA-technic-block.scad>
+use <../block.scad>
+use <../technic-block.scad>
 
 /* [PELA Panel Options] */
 

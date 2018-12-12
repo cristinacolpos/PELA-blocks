@@ -18,7 +18,7 @@ Open source design, Powered By Futurice. Come work with the best.
 
 Import this into other design files:
     include <PELA-parameters.scad>
-    use <PELA-block.scad>
+    use <block.scad>
 
 All modules have sensible defaults derived from <PELA_parameters.scad>. 
 You can ignore values you are not tampering with and only need to pass a

@@ -16,8 +16,8 @@ Although this file is parametric and designed for use with an online customizer,
 
 include <../PELA-parameters.scad>
 include <../print-parameters.scad>
-use <../PELA-block.scad>
-use <../PELA-technic-block.scad>
+use <../block.scad>
+use <../technic-block.scad>
 use <../support/support.scad>
 
 /* [Grove Enclosure Options] */

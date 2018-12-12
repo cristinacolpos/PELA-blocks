@@ -23,8 +23,8 @@ that may be hidden by the sensible default values. This is an evolving art.
 
 include <../print-parameters.scad>
 include <../PELA-parameters.scad>
-use <../PELA-block.scad>
-use <../PELA-technic-block.scad>
+use <../block.scad>
+use <../technic-block.scad>
 
 /* [Technic Pin Array Options] */
 

@@ -18,14 +18,14 @@ Open source design, Powered By Futurice. Come work with the best.
 
 Import this into other design files:
     use <PELA-flat-sign.scad>
-    use <../PELA-block.scad>
-    use <../PELA-technic-block.scad>
+    use <../block.scad>
+    use <../technic-block.scad>
 */
 
 include <../PELA-parameters.scad>
 include <../print-parameters.scad>
-use <../PELA-block.scad>
-use <../PELA-technic-block.scad>
+use <../block.scad>
+use <../technic-block.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 
 /* [PELA Sign Options] */
