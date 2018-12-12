@@ -147,7 +147,7 @@ module center_spokes() {
 
 
 module switch_access() {
-    translate([center_x - (side-21.5), center_y, -10]) {
+    translate([center_x - side + 29.85, center_y, -10]) {
         cylinder(r=4, h=15);
     }
 }
@@ -297,25 +297,20 @@ module respeaker_core_v2_technic_top_edge(side_holes=2) {
                 // Side 2
                 color("green") {
                     translate([block_width(2), 0, 0]) {
-                        technic_bar(l=4, side_holes=side_holes);
+                        technic_bar(l=1, side_holes=side_holes);
                     }
                 }
                 
                 translate([block_width(side_length - 1), 0, 0]) {
                     rotate([0, 0, 60]) {
                         // Side 3
-                        color("blue") {
-                            translate([block_width(2), 0, 0]) {
-                                technic_bar(l=4, side_holes=side_holes);
-                            }
-                        }
                         
                         translate([block_width(side_length - 1), 0, 0]) {
                             rotate([0, 0, 60]) {
                                 // Side 4
                                 color("yellow") {
                                     translate([block_width(2), 0, 0]) {
-                                        technic_bar(l=4, side_holes=side_holes);
+                                        technic_bar(l=2, side_holes=side_holes);
                                     }
                                 }
                                 
@@ -325,17 +320,6 @@ module respeaker_core_v2_technic_top_edge(side_holes=2) {
                                         color("white") {
                                             translate([block_width(2), 0, 0]) {
                                                 technic_bar(l=4, side_holes=side_holes);
-                                            }
-                                       }
-                                        
-                                        translate([block_width(side_length - 1), 0, 0]) {
-                                            rotate([0, 0, 60]) {
-                                                // Side 6
-                                                color("black") {
-                                                    translate([block_width(2), 0, 0]) {
-                                                        technic_bar(l=4, side_holes=side_holes);
-                                                    }
-                                                }
                                             }
                                         }
                                     }

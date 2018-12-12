@@ -38,6 +38,6 @@ Follow the instructions below if you want to this from the command line or have 
 1. **[Calibrate](README.md#calibrate)** the PELA Block models for your printer before making and clearning any models
 1. Install **[Meshlab](http://www.meshlab.net/)**
 1. Add it to your path: `C:\Program Files\VCG\MeshLab`
-1. To make and clean a single block: `PELA-block.ps1 -stl -clean l=4 w=2 h=1`
-1. To make and clean a single block with technic holes: `PELA-technic-block.ps1 -stl -clean l=2 w=2 h=2`
+1. To make and clean a single block: `block.ps1 -stl -clean l=4 w=2 h=1`
+1. To make and clean a single block with technic holes: `technic-block.ps1 -stl -clean l=2 w=2 h=2`
 1. To batch make and clean all models with current material calibration values: `make.ps1 -stl -clean`
