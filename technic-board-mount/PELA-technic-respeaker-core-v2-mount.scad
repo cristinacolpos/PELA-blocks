@@ -21,7 +21,7 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../PELA-parameters.scad>
+include <../parameters.scad>
 include <../print-parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>
@@ -34,7 +34,7 @@ use <../technic-bar/PELA-technic-bar.scad>
 
 two_color_print = true;    // Optional local model override of PELA_print_parameters.scad
 
-center_support_spokes = true; // Can change according to preference
+center_support_spokes = !two_color_print; // Can change according to preference
 
 width = 88;
 thickness = 1.9;

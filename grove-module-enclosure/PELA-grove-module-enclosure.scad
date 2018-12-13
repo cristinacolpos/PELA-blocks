@@ -14,7 +14,7 @@ https://creativecommons.org/licenses/by-sa/4.0/legalcode
 Although this file is parametric and designed for use with an online customizer, it is too slow and things break in the cloud- you must download it to make changes vs the pre-generated .STL files normally found with this file.
 */
 
-include <../PELA-parameters.scad>
+include <../parameters.scad>
 include <../print-parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>

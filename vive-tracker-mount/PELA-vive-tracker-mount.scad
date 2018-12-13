@@ -25,7 +25,7 @@ Import this into other design files:
     use <block.scad>
 */
 
-include <../PELA-parameters.scad>
+include <../parameters.scad>
 include <../print-parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>

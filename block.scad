@@ -17,7 +17,7 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files:
-    include <PELA-parameters.scad>
+    include <parameters.scad>
     use <block.scad>
 
 All modules have sensible defaults derived from <PELA_parameters.scad>. 
@@ -31,7 +31,7 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <PELA-parameters.scad>
+include <parameters.scad>
 include <print-parameters.scad>
 
 

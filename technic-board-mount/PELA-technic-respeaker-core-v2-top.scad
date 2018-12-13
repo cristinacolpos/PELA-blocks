@@ -21,7 +21,7 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../PELA-parameters.scad>
+include <../parameters.scad>
 include <../print-parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>
@@ -33,7 +33,7 @@ use <PELA-technic-respeaker-core-v2-mount.scad>
 
 /* [Model Options] */
 
-two_color_print = false;    // Optional local model override of PELA_print_parameters.scad
+two_color_print = true;    // Optional local model override of PELA_print_parameters.scad
 
 width = 88;
 thickness = 1.9;
@@ -76,4 +76,5 @@ base_thickness = 2;
 ///////////////
 // Display
 ///////////////
-respeaker_core_v2_technic_top(two_color_print=two_color_print);
+translate([0, 0, block_height()])
+    respeaker_core_v2_technic_top(two_color_print=two_color_print);
