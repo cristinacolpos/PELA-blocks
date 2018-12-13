@@ -29,7 +29,7 @@ See [Advanced Setup](ADVANCED-SETUP.md) for additional tricks sparse update to s
 
 ## Slicer Recommendations
 
-See the [Slicer Recommendations](SLICER-RECOMMENDATIONS.md) for settings recommendations and material information.
+See the [Slicer Recommendations](SLICER.md) for settings recommendations and material information.
 
 ## Calibrate
 
@@ -97,7 +97,7 @@ An alternative set of individual calibration blocks are available, and if you ha
 
 ## PELA-compatible Part Designs
 
-Edit `print-parameters.scad` and `PELA-parameters.scad` to adapt these models before printing them. **The example models below are not yet calibrated for your slicer and printer. Calibrate and then make the tuned model from the .scad file.**
+Edit `print-parameters.scad` and `parameters.scad` to adapt these models before printing them. **The example models below are not yet calibrated for your slicer and printer. Calibrate and then make the tuned model from the .scad file.**
 
 [![PELA Block](images/PELA-block-4-2-1.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block-4-2-1.stl)
 
@@ -151,6 +151,12 @@ ___
 [![PELA Technic Raspberry Pi 3B Cover](images/PELA-technic-pi3b-cover.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi3b-cover.stl)
 
 [3D PELA Technic Raspberry Pi 3B Cover](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi3b-cover.stl) A Raspberry Pi 2/3 holder optional top cover.
+
+___
+
+[![PELA Technic Raspberry Pi 3B Corner](images/PELA-technic-pi3b-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi3b-corner.stl)
+
+[3D PELA Technic Raspberry Pi 3B Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi3b-corner.stl) An optional Raspberry Pi 2/3 techic corner to help attach the top cover.
 
 ___
 

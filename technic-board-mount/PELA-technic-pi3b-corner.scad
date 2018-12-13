@@ -1,5 +1,5 @@
 /*
-PELA technic angle - 3D Printed LEGO-compatible 90 degree bend
+PELA Slot Mount - 3D Printed LEGO-compatible PCB mount, vertical slide-in
 
 Published at https://PELAblocks.org
 
@@ -21,18 +21,38 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../print-parameters.scad>
 include <../parameters.scad>
+include <../print-parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>
-use <PELA-technic-bar-30degree.scad>
+use <../pin/PELA-technic-pin.scad>
+use <../box-enclosure/PELA-box-enclosure.scad>
+use <../board-mount/PELA-board-mount.scad>
+use <../technic-bar/PELA-technic-bar.scad>
+use <../socket-panel/PELA-socket-panel.scad>
+use <PELA-technic-pi3b-mount.scad>
+include <PELA-technic-board-mount.scad>
 
 /* [Technic Pin Array Options] */
 
-angle = 90;
-l = 1;
+length = 85.9;
+width = 56.4;
+thickness = 1.9;
+innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
+base_thickness = block_height(); // The thickness of the base below an array of half-pins
 
 ///////////////
 // Display
 ///////////////
-mount_30degree(angle=angle, l=l);
+
+pi3b_corner();
+
+
+module pi3b_corner() {
+    translate([0, 0, block_height(1)]) {
+        technic_bar(l=2);
+        rotate([0, 0, 90]) {
+            technic_bar(l=2);
+        }
+    }
+}

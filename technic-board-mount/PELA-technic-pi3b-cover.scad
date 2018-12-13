@@ -21,7 +21,7 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../PELA-parameters.scad>
+include <../parameters.scad>
 include <../print-parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>
@@ -63,23 +63,6 @@ module pi3b_technic_top() {
         
         translate([block_width(0.5), block_width(0.5), 0]) {
             PELA_socket_panel(l=9, w=8, bolt_holes=false, skin=0, block_height=block_height);
-        }
-        
-        corner();
-        translate([0, block_width(9), 0]) {
-            rotate([0, 0, -90]) {
-                corner();
-            }
-        }
-    }
-}
-
-
-module corner() {
-    translate([0, 0, block_height(1)]) {
-        technic_bar(l=2);
-        rotate([0, 0, 90]) {
-            technic_bar(l=2);
         }
     }
 }

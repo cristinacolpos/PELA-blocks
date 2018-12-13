@@ -21,7 +21,7 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../PELA-parameters.scad>
+include <../parameters.scad>
 include <../print-parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>
@@ -31,4 +31,5 @@ use <../board-mount/PELA-board-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <PELA-technic-respeaker-core-v2-mount.scad>
 
-clear_ring();
+translate([0, 0, block_height()])
+    clear_ring();

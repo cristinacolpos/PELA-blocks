@@ -22,7 +22,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 */
 
 include <../print-parameters.scad>
-include <../PELA-parameters.scad>
+include <../parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>
 

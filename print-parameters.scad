@@ -53,7 +53,7 @@ SUGGESTIONS
 
 - Smaller 0.4mm nozzles give better results. If 'large_nozzle' (>= 0.5mm) is true, the models will adjust the bottom socket geometry to make some of the inner structures thicker. If this is set wrong, then thin walls with a large nozzle may be eliminated by your slicer.
 
-- See 'SLICER-RECOMMENDATIONS.md' for more tips and settings that have worked for us on specific materials.
+- See 'SLICER.md' for more tips and settings that have worked for us on specific materials.
 */
 
 /* [Main Calibration Settings] */

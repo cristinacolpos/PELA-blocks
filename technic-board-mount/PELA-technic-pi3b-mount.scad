@@ -21,12 +21,13 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../PELA-parameters.scad>
+include <../parameters.scad>
 include <../print-parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
+use <../socket-panel/PELA-socket-panel.scad>
 use <../board-mount/PELA-board-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 include <PELA-technic-board-mount.scad>
@@ -38,6 +39,7 @@ width = 56.4;
 thickness = 1.9;
 innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 base_thickness = block_height(); // The thickness of the base below an array of half-pins
+bottom_bolt_holes = true; // Mounting holes inset from the corners
 
 ///////////////
 // Display
@@ -49,6 +51,8 @@ module pi3b_technic_mount() {
 
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
+    x=0.5;
+    y=0.5;
 
     difference() {
         union() {
@@ -73,6 +77,15 @@ module pi3b_technic_mount() {
             daughterboard_cutout();
         }
     }
+
+    bottom(x=x, y=y, l=l-x-2, w=w-y-2);
+}
+
+
+module bottom(x, y, l, w, bottom_bolt_holes=bottom_bolt_holes, block_height=block_height) {
+    translate([block_width(x), block_width(y), 0]) {
+    PELA_socket_panel(l=l, w=w, bolt_holes=bottom_bolt_holes, skin=0, block_height=block_height);
+    }
 }
 
 
@@ -90,7 +103,7 @@ module retaining_ridge_sd_card_side() {
 
 module sd_card_cutout() {
 
-    translate([block_width(-1.6), block_width(1.5), block_height(0.5, block_height=block_height)]) {
+    translate([block_width(-1.6), block_width(1.5), 0]) {
         cube([block_width(3), block_width(6), block_height(3, block_height=block_height)]);
     }
     
