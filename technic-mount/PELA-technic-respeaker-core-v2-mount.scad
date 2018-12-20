@@ -47,7 +47,7 @@ side = (width/2) / sin(60);
 top = side + side*sin(30);
 mount_d = 5.5;
 mount_h = block_height(3) - 2;
-mount_pin_d = 2.8;
+mount_pin_d = 2.7;
 center_height = 4;
 spoke_width=6;
 
@@ -85,7 +85,7 @@ base_thickness = 2;
 rotate([180, 0, 0]) {
     respeaker_core_v2_technic_mount();
 }
-//respeaker_core_v2_technic_top();
+// respeaker_core_v2_technic_top();
 
 module respeaker_core_v2_technic_top(two_color_print=two_color_print) { 
     difference() {
@@ -106,8 +106,8 @@ module respeaker_core_v2_technic_top(two_color_print=two_color_print) {
 
 
 module board_mounts_top() {
-    translate([ox, oy, -thickness]) { 
-        board_mounts(h=3, rot=180, pin=false);
+    translate([ox, oy, -thickness - 0.1]) { 
+        board_mounts(h=6, rot=180, pin=false);
     }
 }
 
@@ -270,11 +270,11 @@ module board_mount(x, y, h, rot, pin) {
         rotate([rot, 0, 0]) {
             cylinder(d1=mount_d, d2=d2, h=h2);
             translate([0, 0, h2]) {
-                cylinder(d=d2, h=h2);
+                cylinder(d=d2, h=h-h2);
             }
             if (pin) {
                 rotate([180, 0, 0]){
-                    cylinder(d=mount_pin_d, h=thickness);
+                    cylinder(d=mount_pin_d, h=thickness - 0.1);
                 }
             }
         }

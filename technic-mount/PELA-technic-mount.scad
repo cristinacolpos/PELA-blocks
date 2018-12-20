@@ -105,10 +105,10 @@ module main_board(l=l, w=w, length=length, width=width, block_height=block_heigh
 
 
 module main_board_back(l=l, w=w, length=length, width=width, innercut=innercut, block_height=block_height) {
-    l2 = ((block_width(l) - length) / 2);
-    w2 = ((block_width(w) - width) / 2);
+    l2 = ((block_width(l - 0.25) - length) / 2);
+    w2 = ((block_width(w - 0.25) - width) / 2);
 
-    translate([l2 - block_width(0.25) + innercut, w2 - block_width(0.25) + innercut, 0]) {
+    translate([l2, w2, 0]) {
         color("green") cube([length-2*innercut-block_width(0.25), width-2*innercut-block_width(0.25), block_height(1, block_height=block_height)]);
     }
 }
