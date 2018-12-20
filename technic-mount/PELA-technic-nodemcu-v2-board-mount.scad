@@ -25,7 +25,7 @@ use <../block.scad>
 use <../technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
-use <../board-mount/PELA-board-mount.scad>
+use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 
 /* [Technic Node MCU v2 Options] */

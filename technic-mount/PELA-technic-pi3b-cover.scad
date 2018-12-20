@@ -27,11 +27,11 @@ use <../block.scad>
 use <../technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
-use <../board-mount/PELA-board-mount.scad>
+use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <PELA-technic-pi3b-mount.scad>
-include <PELA-technic-board-mount.scad>
+include <PELA-technic-mount.scad>
 
 /* [Technic Pin Array Options] */
 
@@ -45,14 +45,24 @@ base_thickness = block_height(); // The thickness of the base below an array of 
 // Display
 ///////////////
 
-pi3b_corner();
+pi3b_technic_top();
 
+module pi3b_technic_top() {
 
-module pi3b_corner() {
-    translate([0, 0, block_height(1)]) {
-        technic_bar(l=2);
-        rotate([0, 0, 90]) {
-            technic_bar(l=2);
+    l = fit_mm_to_pela_blocks(length, length_tightness) - 1;
+    w = fit_mm_to_pela_blocks(width, width_tightness);
+
+    union() {
+        flat_mount(l=l, w=w);
+        
+        translate([block_width(10), 0, 0]) {
+            rotate([0, 0, 90]) {
+                technic_bar(l=10);
+            }
+        }
+        
+        translate([block_width(0.5), block_width(0.5), 0]) {
+            PELA_socket_panel(l=9, w=8, bolt_holes=false, skin=0, block_height=block_height);
         }
     }
 }

@@ -38,10 +38,10 @@ use <block.scad>
 /* [PELA Block Dimensions] */
 
 // Length of the block (PELA unit count)
-l = 3;
+l = 2;
 
 // Width of the block (PELA unit count)
-w = 4;
+w = 2;
 
 // Height of the block (PELA unit count)
 h = 1;

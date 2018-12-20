@@ -8,7 +8,7 @@ param (
     [Int]$l = 4,
     [Int]$w = 2,
     [Int]$h = 1,
-    [String]$filename = "PELA-technic-block-",
+    [String]$filename = "technic-block-",
     [switch]$stl,
     [switch]$png = $false,
     [switch]$clean

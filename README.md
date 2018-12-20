@@ -166,9 +166,9 @@ ___
 
 ___
 
-[![PELA Technic NodeMCU v2 Mount](images/PELA-technic-nodemcu-v2-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-board-mount.stl)
+[![PELA Technic NodeMCU v2 Mount](images/PELA-technic-nodemcu-v2-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-knob-mount.stl)
 
-[3D PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-board-mount.stl) A technic mount for NodeMCU v2.
+[3D PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-knob-mount.stl) A technic mount for NodeMCU v2.
 
 ___
 
@@ -316,33 +316,33 @@ ___
 
 ___
 
-[![PELA Raspberry Pi 3 Board Mount](images/PELA-raspberry-pi3-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl)
+[![PELA Raspberry Pi 3 Board Mount](images/PELA-raspberry-pi3-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-knob-mount.stl)
 
-[3D PELA Raspberry Pi 3 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-board-mount.stl) A base allowing snap-in holding of the board with full connector access and optional top cover
-
-___
-
-[![PELA PCA9685 16 Channel Servo Board Mount](images/PELA-pca9685-servo-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-board-mount.stl)
-
-[3D PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-board-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end
+[3D PELA Raspberry Pi 3 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-knob-mount.stl) A base allowing snap-in holding of the board with full connector access and optional top cover
 
 ___
 
-[![PELA NodeMCU-32s Board Mount](images/PELA-nodemcu-32s-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-board-mount.stl)
+[![PELA PCA9685 16 Channel Servo Board Mount](images/PELA-pca9685-servo-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-knob-mount.stl)
 
-[3D PELA NodeMCU-32s Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-board-mount.stl) For holding an NodeMCU-32s microcontroller board within a PELA block
-
-___
-
-[![PELA NodeMCU v2 Board Mount](images/PELA-nodemcu-v2-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-board-mount.stl)
-
-[3D PELA NodeMCU v2 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-board-mount.stl) For holding an NodeMCU v2 microcontroller board within a PELA block
+[3D PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-knob-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end
 
 ___
 
-[![PELA Arduino Mega Board Mount](images/PELA-arduino-mega-board-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-arduino-mega-board-mount.stl)
+[![PELA NodeMCU-32s Board Mount](images/PELA-nodemcu-32s-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-knob-mount.stl)
 
-[3D PELA Arduino Mega Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-aruino-mega-board-mount.stl) For holding an Arduino Mega within a PELA block
+[3D PELA NodeMCU-32s Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-32s-knob-mount.stl) For holding an NodeMCU-32s microcontroller board within a PELA block
+
+___
+
+[![PELA NodeMCU v2 Board Mount](images/PELA-nodemcu-v2-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-knob-mount.stl)
+
+[3D PELA NodeMCU v2 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-knob-mount.stl) For holding an NodeMCU v2 microcontroller board within a PELA block
+
+___
+
+[![PELA Arduino Mega Board Mount](images/PELA-arduino-mega-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-arduino-mega-knob-mount.stl)
+
+[3D PELA Arduino Mega Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-aruino-mega-knob-mount.stl) For holding an Arduino Mega within a PELA block
 
 
 ## FFF Printing Tips
