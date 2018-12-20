@@ -29,6 +29,7 @@ use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
+use <../knob-panel/PELA-knob-panel.scad>
 
 /* [Model Options] */
 
@@ -172,6 +173,12 @@ module respeaker_base() {
     m = 1.035;
     translate([2.7, 2.2, block_height(3) - base_thickness]) {
         respeaker_board(width=width*m, side=side*m, thickness=base_thickness);
+    }
+
+    translate([block_width(11), block_width(1), block_height(3)]) {
+        rotate([0, 180, 0]) {
+            PELA_knob_panel(l=10, w=5, top_vents=false, solid_bottom_layer=true, bolt_holes=false, knobs=true, sockets=false);
+        }
     }
 }
 
