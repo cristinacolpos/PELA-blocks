@@ -21,7 +21,7 @@ include <../print-parameters.scad>
 use <../block.scad>
 use <../technic-block.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
-use <PELA-board-mount.scad>
+use <PELA-knob-mount.scad>
 
 
 /* [PELA Board Mount Options] */
