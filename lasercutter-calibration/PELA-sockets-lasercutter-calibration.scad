@@ -1,5 +1,5 @@
 
-nominal_hole_r = 2.75;
+nominal_hole_r = 2.7;
 label="PELAblock.org Socket Lasercutter Calibration";
 
 use <PELA-lasercutter-calibration.scad>
