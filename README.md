@@ -142,27 +142,27 @@ ___
 
 ___
 
-[![PELA Technic Raspberry Pi 3B Mount](images/PELA-technic-respberry-pi3b-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respberry-pi3b-mount.stl)
+[![PELA Technic Raspberry Pi 3B Mount](images/PELA-technic-raspberry-pi3-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-raspberry-pi3-mount.stl)
 
-[3D PELA Technic Raspberry Pi 3B Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respberry-pi3b-mount.stl) A Raspberry Pi 2/3 holder.
-
-___
-
-[![PELA Technic Raspberry Pi 3B Cover](images/PELA-technic-respberry-pi3b-cover.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respberry-pi3b-cover.stl)
-
-[3D PELA Technic Raspberry Pi 3B Cover](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respberry-pi3b-cover.stl) A Raspberry Pi 2/3 holder optional top cover.
+[3D PELA Technic Raspberry Pi 3B Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-raspberry-pi3-mount.stl) A Raspberry Pi 2/3 holder.
 
 ___
 
-[![PELA Technic Raspberry Pi 3B Corner](images/PELA-technic-respberry-pi3b-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respberry-pi3b-corner.stl)
+[![PELA Technic Raspberry Pi 3B Cover](images/PELA-technic-raspberry-pi3-cover.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-raspberry-pi3-cover.stl)
 
-[3D PELA Technic Raspberry Pi 3B Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respberry-pi3b-corner.stl) An optional Raspberry Pi 2/3 techic corner to help attach the top cover.
+[3D PELA Technic Raspberry Pi 3B Cover](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-raspberry-pi3-cover.stl) A Raspberry Pi 2/3 holder optional top cover.
 
 ___
 
-[![PELA Technic Pi Camera Mount](images/PELA-technic-pi-camera-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi-camera-mount.stl)
+[![PELA Technic Raspberry Pi 3B Corner](images/PELA-technic-raspberry-pi3-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-raspberry-pi3-corner.stl)
 
-[3D PELA Technic Pi Camera Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-pi-camera-mount.stl) A Raspberry Pi 3 camera holder.
+[3D PELA Technic Raspberry Pi 3B Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-raspberry-pi3-corner.stl) An optional Raspberry Pi 2/3 techic corner to help attach the top cover.
+
+___
+
+[![PELA Technic Pi Camera Mount](images/PELA-technic-raspberry-pi-camera-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-raspberry-pi-camera-mount.stl)
+
+[3D PELA Technic Pi Camera Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-raspberry-pi-camera-mount.stl) A Raspberry Pi 3 camera holder.
 
 ___
 
