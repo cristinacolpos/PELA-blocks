@@ -105,24 +105,32 @@ if ($png) {
 
 if ($stl -OR $png -OR $clean) {
     if ($png) {
-        Remove-Item $outdir\images\PELA-block-4-2-1.png 2> $null
-        Remove-Item $outdir\images\PELA-technic-block-4-4-2.png 2> $null
+        Remove-Item $outdir\images\block-4-2-1.png 2> $null
+        Remove-Item $outdir\images\technic-block-4-4-2.png 2> $null
     }
 
     Invoke-Expression ".\block.ps1 -l 4 -w 2 -h 1 $extras"
     Invoke-Expression ".\technic-block.ps1 -l 4 -w 4 -h 2 $extras"
 
     if ($stl) {
-        Move-Item .\PELA-technic-block-4-4-2.stl $outdir
-        Move-Item .\PELA-block-4-2-1.stl $outdir
+        Move-Item .\technic-block-4-4-2.stl $outdir
+        Move-Item .\block-4-2-1.stl $outdir
     }
 
     if ($png) {
-        Move-Item .\PELA-block-4-2-1.png $outdir\images\
-        Move-Item .\PELA-technic-block-4-4-2.png $outdir\images\
+        Move-Item .\block-4-2-1.png $outdir\images\
+        Move-Item .\technic-block-4-4-2.png $outdir\images\
     }
 }
 
+render ".\technic-mount\" "PELA-technic-respberry-pi3b-mount"
+render ".\technic-mount\" "PELA-technic-respberry-pi3b-cover"
+render ".\technic-mount\" "PELA-technic-respberry-pi3b-corner"
+render ".\technic-mount\" "PELA-technic-nodemcu-v2-knob-mount"
+render ".\technic-mount\" "PELA-technic-pi-camera-mount"
+render ".\technic-mount\" "PELA-technic-respeaker-core-v2-mount"
+render ".\technic-mount\" "PELA-technic-respeaker-core-v2-top"
+render ".\technic-mount\" "PELA-technic-respeaker-core-v2-clear-ring"
 render ".\knob-mount\" "PELA-raspberry-pi3-knob-mount"
 render ".\knob-mount\" "PELA-pca9685-servo-knob-mount"
 render ".\knob-mount\" "PELA-nodemcu-32s-knob-mount"
@@ -154,14 +162,6 @@ render ".\technic-bar\" "PELA-technic-bar-45degree"
 render ".\technic-bar\" "PELA-technic-bar-60degree"
 render ".\technic-bar\" "PELA-technic-bar-90degree"
 render ".\technic-bar\" "PELA-technic-bar-120degree"
-render ".\technic-mount\" "PELA-technic-pi3b-mount"
-render ".\technic-mount\" "PELA-technic-pi3b-cover"
-render ".\technic-mount\" "PELA-technic-pi3b-corner"
-render ".\technic-mount\" "PELA-technic-nodemcu-v2-knob-mount"
-render ".\technic-mount\" "PELA-technic-pi-camera-mount"
-render ".\technic-mount\" "PELA-technic-respeaker-core-v2-mount"
-render ".\technic-mount\" "PELA-technic-respeaker-core-v2-top"
-render ".\technic-mount\" "PELA-technic-respeaker-core-v2-clear-ring"
 render ".\knob-panel\" "PELA-knob-panel"
 render ".\knob-panel\" "PELA-double-sided-knob-panel"
 render ".\socket-panel\" "PELA-socket-panel"
