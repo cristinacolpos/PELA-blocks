@@ -123,11 +123,11 @@ if ($stl -OR $png -OR $clean) {
     }
 }
 
-render ".\technic-mount\" "PELA-technic-respberry-pi3b-mount"
-render ".\technic-mount\" "PELA-technic-respberry-pi3b-cover"
-render ".\technic-mount\" "PELA-technic-respberry-pi3b-corner"
+render ".\technic-mount\" "PELA-technic-raspberry-pi3-mount"
+render ".\technic-mount\" "PELA-technic-raspberry-pi3-cover"
+render ".\technic-mount\" "PELA-technic-raspberry-pi3-corner"
 render ".\technic-mount\" "PELA-technic-nodemcu-v2-knob-mount"
-render ".\technic-mount\" "PELA-technic-pi-camera-mount"
+render ".\technic-mount\" "PELA-technic-raspberry-pi-camera-mount"
 render ".\technic-mount\" "PELA-technic-respeaker-core-v2-mount"
 render ".\technic-mount\" "PELA-technic-respeaker-core-v2-top"
 render ".\technic-mount\" "PELA-technic-respeaker-core-v2-clear-ring"

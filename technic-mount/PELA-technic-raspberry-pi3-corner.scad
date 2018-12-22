@@ -30,7 +30,7 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../socket-panel/PELA-socket-panel.scad>
-use <PELA-technic-respberry-pi3b-mount.scad>
+use <PELA-technic-raspberry-pi3-mount.scad>
 include <PELA-technic-mount.scad>
 
 /* [Technic Pin Array Options] */
@@ -45,10 +45,10 @@ base_thickness = block_height(); // The thickness of the base below an array of 
 // Display
 ///////////////
 
-pi3b_corner();
+pi3_corner();
 
 
-module pi3b_corner() {
+module pi3_corner() {
     translate([0, 0, block_height(1)]) {
         technic_bar(l=2);
         rotate([0, 0, 90]) {

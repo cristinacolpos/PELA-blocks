@@ -44,10 +44,10 @@ bottom_bolt_holes = true; // Mounting holes inset from the corners
 ///////////////
 // Display
 ///////////////
-pi3b_technic_mount();
+pi3_technic_mount();
 
 
-module pi3b_technic_mount() {
+module pi3_technic_mount() {
 
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
