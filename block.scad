@@ -384,20 +384,23 @@ module socket_hole(radius=ring_radius()-ring_thickness(), length=block_height(1,
 
 // The thin negative space surrounding a PELA block so that two blocks can fit next to each other easily in a tight grid
 module skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, block_height=block_height) {
-    // Front skin
-    cube([block_width(l), skin, block_height(h, block_height=block_height)]);
 
-    // Back skin
-    translate([0, block_width(w)-skin, 0]) {
+    if (skin>0) {
+        // Front skin
         cube([block_width(l), skin, block_height(h, block_height=block_height)]);
-    }
 
-    // Left skin
-    cube([skin, block_width(w), block_height(h, block_height=block_height)]);
-    
-    // Right skin
-    translate([block_width(l)-skin, 0, 0]) {
+        // Back skin
+        translate([0, block_width(w)-skin, 0]) {
+            cube([block_width(l), skin, block_height(h, block_height=block_height)]);
+        }
+
+        // Left skin
         cube([skin, block_width(w), block_height(h, block_height=block_height)]);
+        
+        // Right skin
+        translate([block_width(l)-skin, 0, 0]) {
+            cube([skin, block_width(w), block_height(h, block_height=block_height)]);
+        }
     }
     
     if (ridge_width>0 && ridge_depth>0 && h>1) {
