@@ -51,7 +51,7 @@ module pi3b_technic_mount() {
 
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
-    x=0.5;
+    x=1;
     y=0.5;
 
     difference() {
@@ -78,13 +78,14 @@ module pi3b_technic_mount() {
         }
     }
 
-    bottom(x=x, y=y, l=l-x-2, w=w-y-2);
+    bottom(x=x, y=y, l=l-x-1.5, w=w-y-1.5);
 }
 
 
 module bottom(x, y, l, w, bottom_bolt_holes=bottom_bolt_holes, block_height=block_height) {
-    translate([block_width(x), block_width(y), 0]) {
-    PELA_socket_panel(l=l, w=w, bolt_holes=bottom_bolt_holes, skin=0, block_height=block_height);
+
+    translate([block_width(x) - skin, block_width(y), 0]) {
+        skinned_block(l=l, w=w, h=0.25, skin=0, ridge_width=0, ridge_depth=0, block_height=block_height);
     }
 }
 
