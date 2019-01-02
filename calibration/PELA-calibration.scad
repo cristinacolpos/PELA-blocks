@@ -61,10 +61,10 @@ font = "Arial";
 font_size = 4.8;
 
 // Text size on calibration blocks
-font_size2 = 4;
+font_size2 = 4.2;
 
 // Depth of text labels on calibration blocks
-text_extrusion_height = 0.6;
+text_extrusion_height = 0.4;
 
 // Inset from block edge for text (vertical and horizontal)
 vertical_text_margin = 0.2;
