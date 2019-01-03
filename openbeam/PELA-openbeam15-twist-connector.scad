@@ -34,7 +34,7 @@ top_width = block_width(w);
 top_length = block_width(l);
 top_height = panel_height(block_height=block_height);
 
-throat_length = 2.7;
+throat_length = block_width();
 throat_width = 2.7;
 throat_height = 1.9;
 
@@ -42,10 +42,12 @@ foot_width = throat_width;
 foot_length = throat_length + 2*1.6;
 foot_height = 2;
 
+toe_length = 1;
+
 //////////// Render ////////////////////////
-rotate([45, 0, -120]) {
+//rotate([45, 0, -120]) {
 	openbeam15();
-}
+//}
 
 
 //////////////////
@@ -60,31 +62,41 @@ module openbeam15() {
 
 	translate([0, top_length, 0]) {
 		rotate([180, 0, 0]) {
-			openbeam15_neck();
-			openbeam15_insert();
+			hull() {
+				openbeam15_neck();
+				openbeam15_foot_back();
+			}
+
+			color("white") translate([0, block_width(1), 0])
+				openbeam15_insert();
 		}
 	}
 }
 
 
 module openbeam15_neck() {
-	translate([(top_width - throat_width) / 2,
-			(top_length - throat_length) / 2,
-			0]) {
-			translate([throat_width/2, throat_length/2,0]) 
-				cylinder(h=throat_height, r=throat_width/2);
-			cube([throat_width/2, throat_length/2, throat_height]);
-			translate([throat_width/2, throat_length/2,0]) 
-				cube([throat_width/2, throat_length/2, throat_height]);
+	translate([(top_width - throat_width) / 2, 0, 0]) {
+		cube([throat_width, throat_length, throat_height]);
 	}
 }
 
 
+module openbeam15_foot_back() {
+		translate([(top_width + throat_height/2) / 2, top_length / 2, throat_height*3/2]) {
+			rotate([90, 0, 0]) {
+				cylinder(h=throat_length, d=throat_height);
+			}
+		}
+}
+
 module openbeam15_insert() {
-	intersection() {
-		translate([top_width / 2, top_length / 2, throat_height])
+//	intersection() {
+		translate([top_width / 2, top_length / 2, throat_height]) {
 			cylinder(h=throat_height, d=foot_length);
-		translate([top_width/2 - throat_width/2, 0, 0])
-			cube([throat_width, 1000, 1000]);
-	}
+		}
+
+//		translate([top_width/2 - throat_width/2, 0, 0]) {
+//			cube([throat_width, 1000, 1000]);
+//		}
+//	}
 }
