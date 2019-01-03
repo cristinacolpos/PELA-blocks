@@ -32,7 +32,7 @@ use <PELA-knob-mount.scad>
 // Parameters
 ////////////////////
 
-length = 85.2;
+length = 86.2;
 width = 56.4;
 thickness = 1.7;
 h = 1;
@@ -89,7 +89,7 @@ module pi3_board_mount(length=length, width=width, h=h, thickness=thickness, und
             l = fit_mm_to_pela_blocks(l=length, tightness=length_tightness);
             w = fit_mm_to_pela_blocks(l=width, tightness=width_tightness);
 
-            bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
+//            bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets);
         }
     }
 }

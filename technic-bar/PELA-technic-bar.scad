@@ -28,7 +28,7 @@ use <../technic-block.scad>
 
 /* [Technic Pin Array Options] */
 
-l=4;
+l=15;
 h=1;
 block_height = 8;
 
