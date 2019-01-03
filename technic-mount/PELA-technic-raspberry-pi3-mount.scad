@@ -35,7 +35,7 @@ include <PELA-technic-mount.scad>
 /* [Technic Pin Array Options] */
 
 length = 86.2;
-width = 56.4;
+width = 56.8;
 thickness = 1.9;
 innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 base_thickness = block_height(); // The thickness of the base below an array of half-pins
