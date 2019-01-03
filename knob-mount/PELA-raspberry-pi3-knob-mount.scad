@@ -33,7 +33,7 @@ use <PELA-knob-mount.scad>
 ////////////////////
 
 length = 86.2;
-width = 56.4;
+width = 56.8;
 thickness = 1.7;
 h = 1;
 undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
