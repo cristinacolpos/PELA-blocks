@@ -30,7 +30,7 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../socket-panel/PELA-socket-panel.scad>
-use <PELA-technic-raspberry-pi3-mount.scad>
+use <PELA-raspberry-pi3-technic-mount.scad>
 include <PELA-technic-mount.scad>
 
 /* [Technic Pin Array Options] */
