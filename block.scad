@@ -141,11 +141,11 @@ module double_socket_hole_set(l=l, w=w, sockets=sockets, alternate_length, lengt
         alternating_fn = bottom_centers_are_sockets ? ring_fn : axle_hole_fn;
 
         translate([block_width(), block_width(), -defeather]) {
-            socket_hole_set(l=l-1, w=w-1, radius=alternating_radius, length=alternate_length+2*defeather, bevel_socket=bevel_socket, ring_fn=alternating_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
+            socket_hole_set(is_socket=bottom_centers_are_sockets, l=l-1, w=w-1, radius=alternating_radius, length=alternate_length+2*defeather, bevel_socket=bevel_socket, ring_fn=alternating_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
         }
 
         translate([block_width(0.5), block_width(0.5), -defeather]) {
-            socket_hole_set(l=l, w=w, radius=rr-rt, length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
+            socket_hole_set(is_socket=true, l=l, w=w, radius=rr-rt, length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
         }
     }
 }
@@ -268,6 +268,7 @@ module outer_shell(l=l, w=w, h=h, shell=shell, top_shell=top_shell, block_height
     }
 }
 
+
 // A solid block, no knobs or connectors. This is provided as a convenience for constructive solid geometry designs based on this block
 module skinned_block(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height) {
     difference() {
@@ -278,6 +279,7 @@ module skinned_block(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_de
         skin(l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height);
     }
 }
+
 
 // Bars layed below a horizontal surface to make it stronger
 module bottom_stiffener_bar_set(l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
@@ -339,13 +341,13 @@ module socket_ring(length=block_height(1, block_height=block_height), large_nozz
 
 
 // Bottom connector- negative flexture space inside bottom rings for multiple blocks
-module socket_hole_set(l=l, w=w, radius=ring_radius()-ring_thickness(large_nozzle=large_nozzle), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel) {
+module socket_hole_set(is_socket=true, l=l, w=w, radius=ring_radius()-ring_thickness(large_nozzle=large_nozzle), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel) {
     
     if (sockets && l>0 && w>0) {
         for (i = [0:l-1]) {
             for (j = [0:w-1]) {
                 translate([block_width(i), block_width(j), 0]) {
-                    socket_hole(radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, block_height=block_height, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
+                    socket_hole(is_socket=is_socket, radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, block_height=block_height, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
                 }
             }
         }
@@ -354,9 +356,9 @@ module socket_hole_set(l=l, w=w, radius=ring_radius()-ring_thickness(large_nozzl
 
 
 // Hole with side grip ridge flexture to grab any knob on a block inserted from below
-module socket_hole(radius=ring_radius()-ring_thickness(), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel) {
+module socket_hole(is_socket=true, radius=ring_radius()-ring_thickness(), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel) {
 
-    h2 = official_knob_height/2;
+    h2 = is_socket ? official_knob_height/2 : 0;
     bevel_h = bevel_socket ? socket_insert_bevel : 0;
 
     rotate([0, 0, 180/ring_fn]) {
