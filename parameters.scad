@@ -124,9 +124,6 @@ ridge_z_offset = 0;
 
 /* [Advanced Options for Basic Blocks] */
 
-// Display where knobs of a block below would be
-show_shadow_knobs = false;
-
 // Basic unit horizontal size of each block
 block_width = 8;
 
