@@ -67,7 +67,7 @@ PELA_block();
 
 
 // A PELA block
-module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak) {
+module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_centers_are_sockets=bottom_centers_are_sockets, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak, socket_insert_bevel=socket_insert_bevel) {
     
     difference() {
         union() {
@@ -121,40 +121,31 @@ module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=
                 
             length = block_height(h)-top_shell;
 
-            double_socket_hole_set(l=l, w=w, sockets=sockets, length=length, alternate_length=length, bevel_socket=true, flexible_material=flexible_material, large_nozzle=large_nozzle);
+            double_socket_hole_set(l=l, w=w, sockets=sockets, length=length, alternate_length=length, bevel_socket=true, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak, bottom_centers_are_sockets=bottom_centers_are_sockets);
             
             if (bolt_holes) {
                 corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
             }
         }
     }
-    
-    if (show_shadow_knobs) {
-        %shadow_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes, flexible_material=flexible_material);
-        
-        if (!large_nozzle && l>1 && w >1) {
-            % translate([block_width(0.5), block_width(0.5)])
-                shadow_knob_set(l=l-1, w=w-1, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes, block_height=block_height, flexible_material=flexible_material);
-        }
-    }
 }
 
 
-module double_socket_hole_set(l=l, w=w, sockets=sockets, alternate_length, length, bevel_socket=true, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak) {
+module double_socket_hole_set(l=l, w=w, sockets=sockets, alternate_length, length, bevel_socket=true, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak, bottom_centers_are_sockets=bottom_centers_are_sockets) {
 
     if (sockets) {
         rr = ring_radius(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
         rt = ring_thickness(large_nozzle=large_nozzle);
 
-        alternating_radius = large_nozzle ? 2/3*(rr-rt) : rr-rt;
-        alternating_fn = large_nozzle ? axle_hole_fn : ring_fn;
+        alternating_radius = bottom_centers_are_sockets ? rr-rt : 2/3*(rr-rt);
+        alternating_fn = bottom_centers_are_sockets ? ring_fn : axle_hole_fn;
 
         translate([block_width(), block_width(), -defeather]) {
-            socket_hole_set(l=l-1, w=w-1, radius=alternating_radius, length=alternate_length+2*defeather, bevel_socket=bevel_socket, ring_fn=alternating_fn, flexible_material=flexible_material);
+            socket_hole_set(l=l-1, w=w-1, radius=alternating_radius, length=alternate_length+2*defeather, bevel_socket=bevel_socket, ring_fn=alternating_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
         }
 
         translate([block_width(0.5), block_width(0.5), -defeather]) {
-            socket_hole_set(l=l, w=w, radius=rr-rt, length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn, flexible_material=flexible_material);
+            socket_hole_set(l=l, w=w, radius=rr-rt, length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
         }
     }
 }
@@ -348,13 +339,13 @@ module socket_ring(length=block_height(1, block_height=block_height), large_nozz
 
 
 // Bottom connector- negative flexture space inside bottom rings for multiple blocks
-module socket_hole_set(l=l, w=w, radius=ring_radius()-ring_thickness(large_nozzle=large_nozzle), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material) {
+module socket_hole_set(l=l, w=w, radius=ring_radius()-ring_thickness(large_nozzle=large_nozzle), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel) {
     
     if (sockets && l>0 && w>0) {
         for (i = [0:l-1]) {
             for (j = [0:w-1]) {
                 translate([block_width(i), block_width(j), 0]) {
-                    socket_hole(radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, block_height=block_height, flexible_material=flexible_material);
+                    socket_hole(radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, block_height=block_height, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
                 }
             }
         }
@@ -363,7 +354,7 @@ module socket_hole_set(l=l, w=w, radius=ring_radius()-ring_thickness(large_nozzl
 
 
 // Hole with side grip ridge flexture to grab any knob on a block inserted from below
-module socket_hole(radius=ring_radius()-ring_thickness(), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material) {
+module socket_hole(radius=ring_radius()-ring_thickness(), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel) {
 
     h2 = official_knob_height/2;
     bevel_h = bevel_socket ? socket_insert_bevel : 0;

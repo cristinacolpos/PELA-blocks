@@ -58,7 +58,7 @@ SUGGESTIONS
 
 /* [Main Calibration Settings] */
 
-// Switch between flexible and rigid material geometry. Set 'true' for Nylon, TPU (TPU95, Ninjaflex/TPU85), NGEN Semiflex and other flexible filaments. Subtle adjustments to part internal geometry will take advantage of this in flextures.
+// Switch between flexible and rigid material geometry. Set 'true' for Nylon, TPU (TPU95, TPU85/Ninjaflex), NGEN Semiflex and other low durometer filaments. Subtle adjustments to part internal geometry will take advantage of this in flextures.
 flexible_material = false;
 
 // Set true if nozzle is >= 0.5mm. This simplifies the bottom gemoetry to create wider walls but at the cost of loosing the alternate bottom connector socket between every 4 other sockets. If not used with a large extruder the slicer may decimate features.
@@ -72,6 +72,8 @@ bottom_tweak = 0.12; // -0.02 for ABS (0.12 for thin), 0.10 for rPET, 0.08 for P
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
 axle_hole_tweak = 0.12; // 0.06 for ABS (0.12 for thin), 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker Polylite PLA, 0.07 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, -0.06 for Ultimaker TPU95A, -0.04 Biofila Silk
+
+bottom_centers_are_sockets = false; //!large_nozzle; // 0=false, 1=true (default is "true" if not "large_nozzle"). When "true", the space in the center of 4 bottom sockets is also a socket. When false, it is smaller axle hole to help allow the 4 bottom socket walls to be thicker and more printable. You may need to disable this (0=false) if printing the bottom sockets is too difficult due to material properties or when "bottom_tweak" is so large that the walls between sockets become too thin.
 
 // Generate print-time support aid structures for models which offer this. Turn this off if you will use slicer-generated print supports, but be aware that these may make the bottom connectors difficult to post process.
 print_supports = true;
