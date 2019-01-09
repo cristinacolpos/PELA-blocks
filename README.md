@@ -166,9 +166,9 @@ ___
 
 ___
 
-[![PELA Technic NodeMCU v2 Mount](images/PELA-technic-nodemcu-v2-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-knob-mount.stl)
+[![PELA Technic NodeMCU v2 Mount](images/PELA-technic-nodemcu-v2-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-knob-mount.stl)
 
-[3D PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-knob-mount.stl) A technic mount for NodeMCU v2.
+[3D PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-mount.stl) A technic mount for NodeMCU v2.
 
 ___
 
@@ -193,6 +193,12 @@ ___
 [![PELA Technic Bar](images/PELA-technic-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar.stl)
 
 [3D PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar.stl) A minimalist technic bar.
+
+___
+
+[![PELA Technic Bar](images/PELA-technic-twist-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-twist-bar.stl)
+
+[3D PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-twist-bar.stl) A technic bar with a center section of holes rotated 90 degrees.
 
 ___
 
