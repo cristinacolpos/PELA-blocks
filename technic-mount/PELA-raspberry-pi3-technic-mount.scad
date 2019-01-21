@@ -36,6 +36,7 @@ include <PELA-technic-board-mount.scad>
 
 length = 86.2;
 width = 56.8;
+twist = 2; // How many blocks in from rectangle ends do the technic holes rotate 90 degrees
 thickness = 1.9;
 innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 bottom_bolt_holes = true; // Mounting holes inset from the corners
@@ -48,28 +49,35 @@ pi3_technic_mount();
 
 module pi3_technic_mount() {
 
-    l = fit_mm_to_pela_blocks(length, length_tightness);
+    l_fit = 1;
+    l = fit_mm_to_pela_blocks(length, length_tightness) - l_fit;
     w = fit_mm_to_pela_blocks(width, width_tightness);
     x=1;
     y=0.5;
+    l1 = l - 2*twist;    
+    l3 = l1;
+    l2 = l - l1 - l3;
+    w1 = w - 2*twist;
+    w3 = w1;
+    w2 = w - w1 - w2;
 
     difference() {
         union() {
             technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                flat_mount(l=l-1, w=w);
+                technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
             }
 
             translate([0, 0, block_height(2, block_height=block_height)]) {
-                flat_mount(l=l-1, w=w);
+                technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
             }
 
             retaining_ridge_sd_card_side();
         }
         
 #        union() {
-            main_board(l=l, w=w, length=length, width=width, block_height=block_height);
+            main_board(l=l+l_fit, w=w, length=length, width=width, block_height=block_height);
             sd_card_cutout();
             front_connector_cutout();
             ethernet_cutout();
@@ -77,7 +85,7 @@ module pi3_technic_mount() {
         }
     }
 
-    bottom(x=x, y=y, l=l-x-1.5, w=w-y-1.5, bottom_bolt_holes=bottom_bolt_holes, block_height=block_height);
+    bottom(x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_bolt_holes=bottom_bolt_holes, block_height=block_height);
 }
 
 

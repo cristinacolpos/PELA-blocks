@@ -34,6 +34,7 @@ use <../technic-bar/PELA-technic-bar.scad>
 
 length = 39.5;
 width = 39.5;
+twist = 2; // How many blocks in from rectangle ends do the technic holes rotate 90 degrees
 thickness = 1.8;
 innercut = 05; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 slot_depth = 2;
@@ -43,7 +44,6 @@ length_tightness = 2;
 width_tightness = 2;
 
 
-
 ///////////////
 // Display
 ///////////////
@@ -51,11 +51,17 @@ module technic_board_mount(length=length, width=width, thickness=thickness, inne
 
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
-    
+    l1 = l - 2*twist;    
+    l3 = l1;
+    l2 = l - l1 - l3;
+    w1 = w - 2*twist;
+    w3 = w1;
+    w2 = w - w1 - w2;
+
     difference() {
         union() {
-            flat_mount(l=l, w=w);
-            flat_mount_infill(l=l, w=w);
+            technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+            technic-rectangle_infill(l=l, w=w);
         }
         
         union() {
@@ -66,27 +72,29 @@ module technic_board_mount(length=length, width=width, thickness=thickness, inne
 }
 
 
-module flat_mount(l=l, w=w) {
+module technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3) {
 
-    technic_bar(l=l);
+    l = l1+l2+l3;
+    w = w1+w2+w3;
+    technic_twist_bar(left=l1, center=l2, right=l3);
 
     rotate([0, 0, 90]) {
-        technic_bar(l=w);
+        technic_twist_bar(left=w1, center=w2, right=w3);
     }
 
     translate([0, block_width(w-1), 0]) {
-        technic_bar(l=l);
+        technic_twist_bar(left=l3, center=l2, right=l1);
     }
 
     rotate([0, 0, 90]) {
         translate([0, -block_width(l-1), 0]) {
-            technic_bar(l=w);
+            technic_twist_bar(left=w3, center=w2, right=w1);
         }
     }
 }
 
 
-module flat_mount_infill(l=l, w=w) {
+module technic-rectangle_infill(l=l, w=w) {
     translate([block_width(0.5)-skin, block_width(0.5)-skin, 0]) {
         cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, block_height()]);
     }

@@ -155,7 +155,7 @@ module alignment_pin(block_height=block_height) {
 module PELA_vive_tracker_mount(block_height=block_height) {
     difference() {
         union() {
-            PELA_socket_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
+            socket_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
 
             translate([block_width(), 2.4+block_width(1.5), panel_height()]) {
                 vive_connector();

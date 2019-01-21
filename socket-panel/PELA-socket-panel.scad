@@ -45,7 +45,7 @@ knobs = true;
 // PELA panel display
 /////////////////////////////////////
 
-PELA_socket_panel();
+socket_panel();
 
 
 /////////////////////////////////////
@@ -53,7 +53,7 @@ PELA_socket_panel();
 /////////////////////////////////////
 
 // Accept knobs from both top and bottom surface
-module PELA_socket_panel(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
+module socket_panel(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
     
     PELA_socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin, block_height=block_height);
 

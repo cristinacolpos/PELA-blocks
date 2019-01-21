@@ -43,12 +43,18 @@ module technic_top_panel(length=length, width=width) {
 
     l = fit_mm_to_pela_blocks(length, length_tightness) - 1;
     w = fit_mm_to_pela_blocks(width, width_tightness);
+    l1 = l - 2*twist;    
+    l3 = l1;
+    l2 = l - l1 - l3;
+    w1 = w - 2*twist;
+    w3 = w1;
+    w2 = w - w1 - w2;
 
     union() {
-        flat_mount(l=l, w=w);
+        technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
         
         translate([block_width(0.5), block_width(0.5), 0]) {
-            PELA_socket_panel(l=l-2, w=w-2, bolt_holes=false, skin=0, block_height=block_height);
+            socket_panel(l=l-2, w=w-2, bolt_holes=false, skin=0, block_height=block_height);
         }
     }
 }
