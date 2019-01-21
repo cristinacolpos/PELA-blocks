@@ -36,7 +36,6 @@ length = 39.5;
 width = 39.5;
 thickness = 1.8;
 innercut = 05; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-base_thickness = block_height(); // The thickness of the base below an array of half-pins
 slot_depth = 2;
 end_lock_d = 1.2;
 array_spacing = block_width();
@@ -48,7 +47,7 @@ width_tightness = 2;
 ///////////////
 // Display
 ///////////////
-module technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut, base_thickness=base_thickness) {
+module technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut) {
 
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
@@ -60,7 +59,7 @@ module technic_board_mount(length=length, width=width, thickness=thickness, inne
         }
         
         union() {
-            main_board(l=l, w=w, length=length, width=width, block_height=block_height);
+            main_board(l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
             main_board_back(l=l, w=w, length=length, width=width, innercut=innercut, block_height=block_height);
         }
     }
@@ -94,12 +93,12 @@ module flat_mount_infill(l=l, w=w) {
 }
 
 
-module main_board(l=l, w=w, length=length, width=width, block_height=block_height) {
+module main_board(l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height) {
     l2 = ((block_width(l) - length) / 2);
     w2 = ((block_width(w) - width) / 2);
 
-    translate([l2-block_width(0.5), w2-block_width(0.5), block_height(1, block_height=block_height) - 1.8]) {
-        color("blue") cube([length, width, 1.8]);
+    translate([l2-block_width(0.5), w2-block_width(0.5), block_height(1, block_height=block_height) - thickness]) {
+        color("blue") cube([length, width, thickness]);
     }
 }
 

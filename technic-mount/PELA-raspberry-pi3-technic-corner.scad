@@ -31,15 +31,7 @@ use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <PELA-raspberry-pi3-technic-mount.scad>
-include <PELA-technic-mount.scad>
-
-/* [Technic Pin Array Options] */
-
-length = 85.9;
-width = 56.4;
-thickness = 1.9;
-innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-base_thickness = block_height(); // The thickness of the base below an array of half-pins
+include <PELA-technic-board-mount.scad>
 
 ///////////////
 // Display
