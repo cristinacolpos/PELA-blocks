@@ -32,15 +32,23 @@ use <../technic-bar/PELA-technic-bar.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <PELA-raspberry-pi3-technic-mount.scad>
 include <PELA-technic-mount.scad>
-include <PELA-technic-cover.scad>
 
 /* [Technic Pin Array Options] */
 
 length = 85.9;
 width = 56.4;
 
-///////////////
-// Display
-///////////////
 
-technic_top_panel(length=length, width=width);
+module technic_top_panel(length=length, width=width) {
+
+    l = fit_mm_to_pela_blocks(length, length_tightness) - 1;
+    w = fit_mm_to_pela_blocks(width, width_tightness);
+
+    union() {
+        flat_mount(l=l, w=w);
+        
+        translate([block_width(0.5), block_width(0.5), 0]) {
+            PELA_socket_panel(l=l-2, w=w-2, bolt_holes=false, skin=0, block_height=block_height);
+        }
+    }
+}
