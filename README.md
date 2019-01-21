@@ -220,18 +220,6 @@ ___
 
 ___
 
-[![PELA Technic Bar 90 Degree](images/PELA-technic-bar-90degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar-90degree.stl)
-
-[3D PELA Technic Bar 90 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar-90degree.stl) A technic bar at a 90 degree angle from a second technic bar.
-
-___
-
-[![PELA Technic Bar 120 Degree](images/PELA-technic-bar-120degree.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar-120degree.stl)
-
-[3D PELA Technic Bar 120 Degree](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar-120degree.stl) A technic bar at a 90 degree angle from a second technic bar.
-
-___
-
 [![PELA Technic Axle](images/PELA-technic-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-axle.stl)
 
 [3D PELA Technic Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-axle.stl) Rigid and flexible material shafts of adjustable length for attaching to other 3D printed designs such as wheels which you want to rotate freely.
