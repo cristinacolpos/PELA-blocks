@@ -138,5 +138,5 @@ module intel_compute_stick_box_lid(block_height=block_height) {
     l=fit_mm_to_pela_blocks(length, length_tightness);
     w=fit_mm_to_pela_blocks(width, width_tightness);
 
-    PELA_socket_panel(l=l, w=w, bolt_holes=bolt_holes, block_height=block_height);
+    socket_panel(l=l, w=w, bolt_holes=bolt_holes, block_height=block_height);
 }
