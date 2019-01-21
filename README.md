@@ -156,13 +156,19 @@ ___
 
 [![PELA Technic Raspberry Pi 3B Corner](images/PELA-raspberry-pi3-technic-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-corner.stl)
 
-[3D PELA Technic Raspberry Pi 3B Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-corner.stl) An optional Raspberry Pi 2/3 techic corner to help attach the top cover.
+[3D PELA Technic Raspberry Pi 3B Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-corner.stl) An optional Raspberry Pi 2/3 technic corner to help attach the top cover.
 
 ___
 
 [![PELA Technic Pi Camera Mount](images/PELA-raspberry-pi3-technic-camera-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-camera-mount.stl)
 
 [3D PELA Technic Pi Camera Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-camera-mount.stl) A Raspberry Pi 3 camera holder.
+
+___
+
+[![PELA Technic PIR Motion Sensor Mount](images/PELA-raspberry-technic-pir-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pir-technic-mount.stl)
+
+[3D PELA Technic PIR Motion Sensor Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pir-technic-mount.stl) A PIR motion sensor holder.
 
 ___
 
