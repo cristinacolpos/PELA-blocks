@@ -30,27 +30,31 @@ use <PELA-technic-bar.scad>
 /* [Technic Pin Array Options] */
 
 left = 2;
-center = 6;
+center = 4;
 right = 2;
 
 ///////////////
 // Display
 ///////////////
-twist_bar();
+technic_twist_bar();
 
-module twist_bar(left=left, center=center, right=right) {
+module technic_twist_bar(left=left, center=center, right=right) {
 
-    left_square_end_bar(l=left);
+    if (center == 0) {
+        technic_bar(l=left+right);
+    } else {
+        left_square_end_bar(l=left);
 
-    translate([block_width(left), 0, 0]) {
-        translate([0, block_width(0.5), block_width(0.5)]) {
-            rotate([90, 0, 0]) {
-                square_end_bar(l=center);
+        translate([block_width(left), 0, 0]) {
+            translate([0, block_width(0.5), block_width(0.5)]) {
+                rotate([90, 0, 0]) {
+                    square_end_bar(l=center);
+                }
             }
-        }
 
-        translate([block_width(center), 0, 0]) {
-            right_square_end_bar(l=right);
+            translate([block_width(center), 0, 0]) {
+                right_square_end_bar(l=right);
+            }
         }
     }
 }

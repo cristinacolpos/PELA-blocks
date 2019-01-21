@@ -33,15 +33,6 @@ use <../technic-bar/PELA-technic-bar.scad>
 length = 48.7;
 width = 26.2;
 thickness = 1.8;
-undercut = 2.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
-innercut = 2; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-base_thickness = block_height(); // The thickness of the base below an array of half-pins
-slot_depth = 2;
-end_lock_d = 1.2;
-array_spacing = block_width();
-length_tightness = 2;
-width_tightness = 2;
-angle = 45;
 
 ///////////////
 // Display

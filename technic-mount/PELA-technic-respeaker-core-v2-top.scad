@@ -76,5 +76,6 @@ base_thickness = 2;
 ///////////////
 // Display
 ///////////////
-translate([0, 0, block_height()])
+translate([0, 0, block_height()]) {
     respeaker_core_v2_technic_top(two_color_print=two_color_print);
+}

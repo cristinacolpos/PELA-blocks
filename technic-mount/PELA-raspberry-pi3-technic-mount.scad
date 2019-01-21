@@ -30,7 +30,7 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
-include <PELA-technic-mount.scad>
+include <PELA-technic-board-mount.scad>
 
 /* [Technic Pin Array Options] */
 
@@ -38,7 +38,6 @@ length = 86.2;
 width = 56.8;
 thickness = 1.9;
 innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-base_thickness = block_height(); // The thickness of the base below an array of half-pins
 bottom_bolt_holes = true; // Mounting holes inset from the corners
 
 ///////////////
@@ -56,7 +55,7 @@ module pi3_technic_mount() {
 
     difference() {
         union() {
-            technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut, base_thickness=base_thickness);
+            technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
                 flat_mount(l=l-1, w=w);
@@ -78,7 +77,7 @@ module pi3_technic_mount() {
         }
     }
 
-    bottom(x=x, y=y, l=l-x-1.5, w=w-y-1.5);
+    bottom(x=x, y=y, l=l-x-1.5, w=w-y-1.5, bottom_bolt_holes=bottom_bolt_holes, block_height=block_height);
 }
 
 
