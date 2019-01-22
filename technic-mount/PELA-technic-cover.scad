@@ -29,6 +29,7 @@ use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
+use <../technic-bar/PELA-technic-twist-bar.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <PELA-raspberry-pi3-technic-mount.scad>
 include <PELA-technic-board-mount.scad>
@@ -51,7 +52,7 @@ module technic_top_panel(length=length, width=width) {
     w2 = w - w1 - w2;
 
     union() {
-        technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+        technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
         
         translate([block_width(0.5), block_width(0.5), 0]) {
             socket_panel(l=l-2, w=w-2, bolt_holes=false, skin=0, block_height=block_height);

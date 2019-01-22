@@ -30,6 +30,7 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
+use <../technic-bar/PELA-technic-twist-bar.scad>
 include <PELA-technic-board-mount.scad>
 
 /* [Technic Pin Array Options] */
@@ -66,11 +67,11 @@ module pi3_technic_mount() {
             technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+                technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
             }
 
             translate([0, 0, block_height(2, block_height=block_height)]) {
-                technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+                technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
             }
 
             retaining_ridge_sd_card_side();

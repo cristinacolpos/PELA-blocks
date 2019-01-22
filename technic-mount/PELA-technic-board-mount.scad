@@ -29,6 +29,7 @@ use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
+use <../technic-bar/PELA-technic-twist-bar.scad>
 
 /* [Technic Pin Array Options] */
 
@@ -60,8 +61,8 @@ module technic_board_mount(length=length, width=width, thickness=thickness, inne
 
     difference() {
         union() {
-            technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
-            technic-rectangle_infill(l=l, w=w);
+            technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+            technic_rectangle_infill(l=l, w=w);
         }
         
         union() {
@@ -72,7 +73,7 @@ module technic_board_mount(length=length, width=width, thickness=thickness, inne
 }
 
 
-module technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3) {
+module technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3) {
 
     l = l1+l2+l3;
     w = w1+w2+w3;
@@ -94,7 +95,7 @@ module technic-rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3) {
 }
 
 
-module technic-rectangle_infill(l=l, w=w) {
+module technic_rectangle_infill(l=l, w=w) {
     translate([block_width(0.5)-skin, block_width(0.5)-skin, 0]) {
         cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, block_height()]);
     }
