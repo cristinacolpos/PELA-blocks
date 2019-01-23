@@ -60,7 +60,7 @@ module pi3_technic_mount() {
     l2 = l - l1 - l3;
     w1 = w - 2*twist;
     w3 = w1;
-    w2 = w - w1 - w2;
+    w2 = w - w1 - w3;
 
     difference() {
         union() {

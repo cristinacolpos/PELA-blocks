@@ -288,7 +288,7 @@ module side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, bloc
         for (i = [1:l-1]) {
             translate([block_width(i), 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
                 rotate([-90, 0, 0]) {
-                    axle_hole(hole_type=hole_type, length=length,  axle_hole_radius=axle_hole_radius);
+                    axle_hole(radius=axle_hole_radius, hole_type=hole_type, length=length);
                 }
             }
         }

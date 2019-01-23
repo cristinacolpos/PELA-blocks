@@ -39,7 +39,7 @@ include <PELA-technic-cover.scad>
 
 length = 85.9;
 width = 56.4;
-twist = 1;
+twist = 2;
 length_tightness = 1;
 width_tightness = 1;
 

@@ -347,7 +347,7 @@ module socket_hole_set(is_socket=true, l=l, w=w, radius=ring_radius()-ring_thick
         for (i = [0:l-1]) {
             for (j = [0:w-1]) {
                 translate([block_width(i), block_width(j), 0]) {
-                    socket_hole(is_socket=is_socket, radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, block_height=block_height, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
+                    socket_hole(is_socket=is_socket, radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, flexible_material=flexible_material, socket_insert_bevel=socket_insert_bevel);
                 }
             }
         }
