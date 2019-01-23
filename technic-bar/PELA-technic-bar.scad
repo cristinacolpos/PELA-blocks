@@ -40,24 +40,24 @@ technic_bar();
 
 
 // A rounded-end minimal bar with no knobs or sockets
-module technic_bar(l=l, h=h, side_holes=2) {
+module technic_bar(l=l, h=h, side_holes=2, block_width=block_width) {
     l2 = l + 1;
 
-    translate([block_width(-1), block_width(-0.5), 0]) {
+    translate([block_width(-1, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
         intersection() {
-            translate([0, block_width(), 0]) {
+            translate([0, block_width(1, block_width=block_width), 0]) {
                 rotate([90, 0, 0]) {
-                    PELA_technic_block(l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
+                    PELA_technic_block(l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_width=block_width, block_height=block_height);
                 }
             }
 
             hull() {
                 translate([block_width(1), block_width(0.5), 0]) {
-                    cylinder(d=block_width(1), h=block_height(h, block_height=block_height));
+                    cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height=block_height));
                 }
 
                 translate([block_width(l), block_width(0.5), 0]) {
-                    cylinder(d=block_width(1), h=block_height(h, block_height=block_height));
+                    cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height=block_height));
                 }
             }
         }
@@ -66,28 +66,28 @@ module technic_bar(l=l, h=h, side_holes=2) {
 
 
 // The 2D profile of the bar (for rotations and other uses)
-module technic_bar_slice(l=l) {
+module technic_bar_slice(l=l, block_width=block_width) {
     l2 = l + 1;
 
     hull() {
         translate([0, block_width(0.5), 0]) {
-            cylinder(d=block_width(1), h=0.01);
+            cylinder(d=block_width(1, block_width=block_width), h=0.01);
         }
 
         translate([block_width(l-1), block_width(0.5), 0]) {
-            cylinder(d=block_width(1), h=0.01);
+            cylinder(d=block_width(1, block_width=block_width), h=0.01);
         }
     }
 }
 
 
 // The 2D profile of the negative space of the bar (for rotations and other uses)
-module technic_bar_slice_negative(l=l) {
+module technic_bar_slice_negative(l=l, block_width=block_width) {
     l2 = l + 1;
 
     union() {
-        for (i = [0:block_width():block_width(l)]) {
-            translate([i, block_width(0.5), -defeather]) {
+        for (i = [0:block_width(1, block_width=block_width):block_width(l, block_width=block_width)]) {
+            translate([i, block_width(0.5, block_width=block_width), -defeather]) {
                 cylinder(r=counterbore_inset_radius, h=0.01 + defeather);
             }
         }

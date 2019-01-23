@@ -34,28 +34,38 @@ use <../socket-panel/PELA-socket-panel.scad>
 use <PELA-raspberry-pi3-technic-mount.scad>
 include <PELA-technic-board-mount.scad>
 
-/* [Technic Pin Array Options] */
+/* [Technic Cover Options] */
+length = 30;
+width = 30;
+twist = 2;
+length_tightness = 1;
+width_tightness = 1;
 
-length = 85.9;
-width = 56.4;
+technic_cover();
 
 
-module technic_top_panel(length=length, width=width) {
+module technic_cover(length=length, width=width, twist=twist, length_tightness=length_tightness, width_tightness=width_tightness) {
 
-    l = fit_mm_to_pela_blocks(length, length_tightness) - 1;
+    assert(twist >= 0, "TWIST must be >= 0");
+
+    l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
-    l1 = l - 2*twist;    
-    l3 = l1;
-    l2 = l - l1 - l3;
-    w1 = w - 2*twist;
-    w3 = w1;
-    w2 = w - w1 - w2;
+
+    assert(twist*2 <= l, "TWIST must <= l/2, please reduce TWIST or increate LENGTH");
+    assert(twist*2 <= w, "TWIST must <= w/2, please reduce TWIST or increate WIDTH");
+
+    l2 = max(0, l - 2*twist);
+    w2 = max(0, w - 2*twist);
+    
+    echo("twist=", twist, "l=", l, " l1=", l1, " l2=", l2, " l3=", l3);
+
+    echo( "w=", w, " w1=", w1, " w2=", w2, " w3=", w3);
 
     union() {
-        technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+        technic_rectangle(l1=twist, l2=l2, l3=twist, w1=twist, w2=w2, w3=twist);
         
         translate([block_width(0.5), block_width(0.5), 0]) {
             socket_panel(l=l-2, w=w-2, bolt_holes=false, skin=0, block_height=block_height);
         }
-    }
+    }        
 }
