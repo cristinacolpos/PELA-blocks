@@ -35,13 +35,16 @@ use <PELA-raspberry-pi3-technic-mount.scad>
 include <PELA-technic-board-mount.scad>
 include <PELA-technic-cover.scad>
 
-/* [Technic Pin Array Options] */
+/* [Raspberry Pi Technic Cover Options] */
 
 length = 85.9;
 width = 56.4;
+twist = 1;
+length_tightness = 1;
+width_tightness = 1;
 
 ///////////////
 // Display
 ///////////////
 
-technic_top_panel(length=length, width=width);
+technic_cover(length=length, width=width, twist=twist, length_tightness=length_tightness, width_tightness=width_tightness);

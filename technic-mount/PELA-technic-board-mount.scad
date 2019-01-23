@@ -35,7 +35,7 @@ use <../technic-bar/PELA-technic-twist-bar.scad>
 
 length = 39.5;
 width = 39.5;
-twist = 2; // How many blocks in from rectangle ends do the technic holes rotate 90 degrees
+twist = 1; // How many blocks in from rectangle ends do the technic holes rotate 90 degrees
 thickness = 1.8;
 innercut = 05; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 slot_depth = 2;
@@ -57,7 +57,7 @@ module technic_board_mount(length=length, width=width, thickness=thickness, inne
     l2 = l - l1 - l3;
     w1 = w - 2*twist;
     w3 = w1;
-    w2 = w - w1 - w2;
+    w2 = w - w1 - w3;
 
     difference() {
         union() {
@@ -75,36 +75,37 @@ module technic_board_mount(length=length, width=width, thickness=thickness, inne
 
 module technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3) {
 
-    l = l1+l2+l3;
-    w = w1+w2+w3;
-    technic_twist_bar(left=l1, center=l2, right=l3);
+    ll = l1+l2+l3;
+    ww = w1+w2+w3;
+
+    color("red") technic_twist_bar(left=l1, center=l2, right=l3);
 
     rotate([0, 0, 90]) {
-        technic_twist_bar(left=w1, center=w2, right=w3);
+        color("green") technic_twist_bar(left=w1, center=w2, right=w3);
     }
 
-    translate([0, block_width(w-1), 0]) {
-        technic_twist_bar(left=l3, center=l2, right=l1);
+    translate([0, block_width(ww-1), 0]) {
+        color("blue") technic_twist_bar(left=l3, center=l2, right=l1);
     }
 
     rotate([0, 0, 90]) {
-        translate([0, -block_width(l-1), 0]) {
-            technic_twist_bar(left=w3, center=w2, right=w1);
+        translate([0, -block_width(ll-1), 0]) {
+            color("purple") technic_twist_bar(left=w3, center=w2, right=w1);
         }
     }
 }
 
 
 module technic_rectangle_infill(l=l, w=w) {
-    translate([block_width(0.5)-skin, block_width(0.5)-skin, 0]) {
-        cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, block_height()]);
+    translate([block_width(0.5, block_width=block_width)-skin, block_width(0.5, block_width=block_width)-skin, 0]) {
+        cube([block_width(l-2, block_width=block_width)+2*skin, block_width(w-2, block_width=block_width)+2*skin, block_height()]);
     }
 }
 
 
 module main_board(l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height) {
-    l2 = ((block_width(l) - length) / 2);
-    w2 = ((block_width(w) - width) / 2);
+    l2 = ((block_width(l, block_width=block_width) - length) / 2);
+    w2 = ((block_width(w, block_width=block_width) - width) / 2);
 
     translate([l2-block_width(0.5), w2-block_width(0.5), block_height(1, block_height=block_height) - thickness]) {
         color("blue") cube([length, width, thickness]);
