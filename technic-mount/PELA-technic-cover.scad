@@ -35,8 +35,8 @@ use <PELA-raspberry-pi3-technic-mount.scad>
 include <PELA-technic-board-mount.scad>
 
 /* [Technic Cover Options] */
-length = 30;
-width = 30;
+length = 35;
+width = 35;
 twist = 2;
 length_tightness = 1;
 width_tightness = 1;
