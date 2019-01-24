@@ -87,13 +87,13 @@ module PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=
             if (sockets) {
                 length = block_height(min(1, h), block_height=block_height);
                 
-                socket_set(l=l, w=w, length=length, sockets=sockets, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
+                socket_set(l=l, w=w, length=length, sockets=sockets, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
 
                 translate([block_width(-0.5), block_width(-0.5)])
                     intersection() {
                         cube([block_width(l+1), block_width(w+1), length]);
 
-                        socket_set(l=l+1, w=w+1, length=length, sockets=sockets, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
+                        socket_set(l=l+1, w=w+1, length=length, sockets=sockets, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
                     }
             }
 
@@ -201,7 +201,7 @@ module top_knob_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_hei
 
 
 // The connector cylinder
-module top_knob(h=h, knob_height=knob_height, block_height=block_height, flexible_material=flexible_material) {
+module top_knob(h=h, knob_radius=knob_radius, knob_height=knob_height, block_height=block_height, flexible_material=flexible_material) {
     
     translate([block_width(0.5), block_width(0.5), block_height(h, block_height=block_height)]) {
         knob(knob_radius=knob_radius, knob_height=knob_height, flexible_material=flexible_material);
@@ -317,7 +317,7 @@ module bottom_stiffener_bar_set(l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, 
 
 
 // Bottom connector rings positive space for multiple blocks
-module socket_set(l=l, w=w, length=block_height(), sockets=sockets, flexible_material=flexible_material, bottom_tweak=bottom_tweak) {
+module socket_set(l=l, w=w, length=block_height(), sockets=sockets, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak) {
     
     if (sockets && (l>1 && w>1)) {
         for (i = [1:l-1]) {
