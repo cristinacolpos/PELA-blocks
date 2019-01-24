@@ -270,7 +270,7 @@ module enclosure_bottom(l=l, w=w, bottom_type=bottom_type, skin=skin, skip_edge_
             cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height(block_height=block_height)]);
         }
     } else if (bottom_type==2) {
-        PELA_socket_panel_one_sided(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);    
+        socket_panel_one_sided(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);    
     } else if (bottom_type==3) {
         PELA_knob_panel(l=l, w=w, top_vents=bottom_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skin=skin, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
    }
