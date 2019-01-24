@@ -14,8 +14,8 @@ Creative Commons Attribution-ShareAlike 4.0 International License
 Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
-Imported automatically into other design files when you include PELA_parameters:
-    include <PELA_parameters.scad>
+Imported automatically into other design files when you include parameters:
+    include <parameters.scad>
  
 
 INSTRUCTIONS

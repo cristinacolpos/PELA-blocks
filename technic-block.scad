@@ -20,7 +20,7 @@ Import this into other design files:
     include <parameters.scad>
     use <technic.scad>
     
-All modules have sensible defaults derived from <PELA_parameters.scad>. 
+All modules have sensible defaults derived from <parameters.scad>. 
 You can ignore values you are not tampering with and only need to pass a
 parameter if you are overriding.
 

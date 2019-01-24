@@ -34,7 +34,7 @@ use <../knob-panel/PELA-knob-panel.scad>
 
 /* [Model Options] */
 
-two_color_print = true;    // Optional local model override of PELA_print_parameters.scad
+two_color_print = true;    // Optional local model override of print_parameters.scad
 
 center_support_spokes = !two_color_print; // Can change according to preference
 

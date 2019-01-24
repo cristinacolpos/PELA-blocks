@@ -33,7 +33,7 @@ use <PELA-technic-respeaker-core-v2-mount.scad>
 
 /* [Model Options] */
 
-two_color_print = true;    // Optional local model override of PELA_print_parameters.scad
+two_color_print = true;    // Optional local model override of print_parameters.scad
 
 width = 88;
 thickness = 1.9;

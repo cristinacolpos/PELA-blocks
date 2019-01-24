@@ -15,7 +15,7 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files to set baseline constants:
-    include <PELA_parameters.scad>
+    include <parameters.scad>
 */
 
 include <print-parameters.scad>
