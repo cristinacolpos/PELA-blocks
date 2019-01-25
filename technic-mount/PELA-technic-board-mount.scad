@@ -83,7 +83,7 @@ module technic_board_mount(length=length, width=width, length_tightness=length_t
 }
 
 
-module technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3) {
+module technic_rectangle(l1, l2, l3, w1, w2, w3) {
 
     ll = l1+l2+l3;
     ww = w1+w2+w3;
