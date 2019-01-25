@@ -124,7 +124,7 @@ module PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob
                         double_side_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, block_width=block_width, block_height=block_height);
                     }
                     
-                    if (is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes, block_height=block_height)) {
+                    if (is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes)) {
                         double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, block_width=block_width, block_height=block_height);
                     }
                 }
@@ -136,7 +136,7 @@ module PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob
                 length = knob_height + skin;
                 alternate_length = top_vents ? block_height(h, block_height=block_height) + defeather : block_height(h-0.5, block_height=block_height);
 
-                double_socket_hole_set(l=l, w=w, sockets=sockets, length=length, alternate_length=alternate_length, bevel_socket=true, block_height=block_height, large_nozzle=large_nozzle, flexible_material=flexible_material);
+                double_socket_hole_set(l=l, w=w, sockets=sockets, length=length, alternate_length=alternate_length, bevel_socket=true, large_nozzle=large_nozzle, flexible_material=flexible_material);
             }
 
             bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, block_height=block_height, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes, sockets=sockets, skin=skin, block_height=block_height);
@@ -153,11 +153,11 @@ module bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end
     for (i = [1:h]) {
         translate([0, 0, block_height(i-1)]) {
             if (side_holes > 0) {
-                double_side_connector_hole_set(l=l, w=w, side_holes=side_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, skin=skin, block_height=block_height);
+                double_side_connector_hole_set(l=l, w=w, hole_type=side_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, skin=skin, block_height=block_height);
             }
             
             if (end_holes > 0) {
-                double_end_connector_hole_set(l=l, w=w, knob_radius=knob_radius, block_width=block_width, hole_type=end_holes, skin=skin, block_height=block_height);
+                double_end_connector_hole_set(l=l, w=w, hole_type=end_holes, knob_radius=knob_radius, block_width=block_width, skin=skin, block_height=block_height);
             }
         }
     }
@@ -251,17 +251,17 @@ module sheath(sheath_radius=bearing_sheath_thickness+axle_hole_radius, sheath_le
 
 
 // For use by extension routines
-module double_end_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=end_holes) {
+module double_end_connector_hole_set(l=l, w=w, hole_type=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width) {
  
     translate([block_width(l), 0, 0]) {
         rotate([0, 0, 90]) {
-            double_side_connector_hole_set(l=w, w=l, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=hole_type, block_height=block_height);
+            double_side_connector_hole_set(l=w, w=l, hole_type=hole_type, axle_hole_radius=axle_hole_radius, block_width=block_width, block_height=block_height);
         }
     }
 }
 
 // For use by extension routines
-module double_side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, block_height=block_height) {
+module double_side_connector_hole_set(l=l, w=w, hole_type=side_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, block_height=block_height) {
     
     side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=hole_type, block_height=block_height);
     
@@ -281,14 +281,14 @@ module side_connector_hole_set(l=l, w=w, axle_hole_radius=axle_hole_radius, bloc
     if (l==1) {
         translate([block_width(0.5), 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
             rotate([-90, 0, 0]) {
-                axle_hole(hole_type=hole_type, length=length, axle_hole_radius=axle_hole_radius);
+                axle_hole(hole_type=hole_type, radius=axle_hole_radius, length=counterbore_inset_depth+peg_length);
             }
         }        
     } else {
         for (i = [1:l-1]) {
             translate([block_width(i), 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
                 rotate([-90, 0, 0]) {
-                    axle_hole(radius=axle_hole_radius, hole_type=hole_type, length=length);
+                    axle_hole(hole_type=hole_type, radius=axle_hole_radius, length=counterbore_inset_depth+peg_length);
                 }
             }
         }
