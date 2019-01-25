@@ -1,5 +1,5 @@
 /*
-PELA Slot Mount - 3D Printed LEGO-compatible PCB mount, vertical slide-in
+PELA PIR (pulsed infra-red) Technic Mount - 3D Printed LEGO-compatible PCB mount with the board held in place by technic bars
 
 Published at https://PELAblocks.org
 
@@ -34,11 +34,15 @@ include <PELA-technic-board-mount.scad>
 
 /* [Technic Pin Array Options] */
 
-length = 39.5;
-width = 39.5;
-thickness = 1.8;
-undercut = 2.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
-innercut = 2; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
+length = 39.5; // board space length [mm]
+width = 39.5; // board space width [mm]
+length_tightness = 1; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+width_tightness = 1; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+twist_length = 2; // 90 degree rotation from length ends [blocks]
+twist_width = 2; // 90 degree rotation from width ends [blocks]
+thickness = 1.8; // board space thickness [mm]
+undercut = 2.3; // Extrude down below board center to make space for components and cooling [mm]
+innercut = 2; // Step in from board space edges to support the board [mm]
 
 ///////////////
 // Display
@@ -46,6 +50,7 @@ innercut = 2; // How far in from the outside edges the board support can extend 
 pi_camera_technic_mount();
 
 
-module pi_camera_technic_mount() {
-    technic_board_mount(length=length, width=width, thickness=thickness, undercut=undercut, innercut=innercut);
+module pi_camera_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, undercut=undercut, innercut=innercut) {
+
+    technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, undercut=undercut, innercut=innercut);
 }

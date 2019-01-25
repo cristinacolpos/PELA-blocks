@@ -1,5 +1,5 @@
 /*
-PELA Slot Mount - 3D Printed LEGO-compatible PCB mount, vertical slide-in
+PELA Raspberry Pi3 Technic Mount - 3D Printed LEGO-compatible PCB mount on which other technic and PELA parts can be stacked to create a complete case
 
 Published at https://PELAblocks.org
 
@@ -33,13 +33,16 @@ use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 include <PELA-technic-board-mount.scad>
 
-/* [Technic Pin Array Options] */
+/* [Raspberry Pi3 Technic Mount Options] */
 
-length = 86.2;
-width = 56.8;
-twist = 2; // How many blocks in from rectangle ends do the technic holes rotate 90 degrees
-thickness = 1.9;
-innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
+length = 86.2; // board space length [mm]
+width = 56.8; // board space width [mm]
+length_tightness = 1.5; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+width_tightness = 1.5; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+twist_length = 2; // How many blocks in from  length ends do the technic holes rotate 90 degrees
+twist_width = 2; // How many blocks in from width ends do the technic holes rotate 90 degrees
+thickness = 1.9; // board space height [mm]
+innercut = 0.8; // Step in from board space edges to support the board [mm]
 bottom_bolt_holes = true; // Mounting holes inset from the corners
 
 ///////////////
@@ -48,37 +51,34 @@ bottom_bolt_holes = true; // Mounting holes inset from the corners
 pi3_technic_mount();
 
 
-module pi3_technic_mount() {
+module pi3_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width) {
 
     l_fit = 1;
     l = fit_mm_to_pela_blocks(length, length_tightness) - l_fit;
     w = fit_mm_to_pela_blocks(width, width_tightness);
     x=1;
     y=0.5;
-    l1 = l - 2*twist;    
+    l1 = l - 2*twist_length;    
     l3 = l1;
     l2 = l - l1 - l3;
-    w1 = w - 2*twist;
+    w1 = w - 2*twist_width;
     w3 = w1;
     w2 = w - w1 - w3;
 
     difference() {
         union() {
-            technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut);
+            technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut, block_width=block_width);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
-            }
-
-            translate([0, 0, block_height(2, block_height=block_height)]) {
-                technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+                technic_board_mount(length=length-block_width, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=0, innercut=0);
+//                technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
             }
 
             retaining_ridge_sd_card_side();
         }
         
 #        union() {
-            main_board(l=l+l_fit, w=w, length=length, width=width, block_height=block_height);
+            main_board(l=l+2_fit, w=w, length=length, width=width, block_height=block_height);
             sd_card_cutout();
             front_connector_cutout();
             ethernet_cutout();

@@ -1,5 +1,7 @@
 /*
-PELA Slot Mount - 3D Printed LEGO-compatible PCB mount, vertical slide-in
+PELA Technic Board Mount - 3D Printed LEGO-compatible PCB mount used for including printed ciruit boards in technic models
+
+This is a library module used by other models
 
 Published at https://PELAblocks.org
 
@@ -31,31 +33,39 @@ use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 
-/* [Technic Pin Array Options] */
+/* [Technic Board Mount Options] */
 
-length = 39.5;
-width = 39.5;
-twist = 1; // How many blocks in from rectangle ends do the technic holes rotate 90 degrees
-thickness = 1.8;
-innercut = 05; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-slot_depth = 2;
-end_lock_d = 1.2;
-array_spacing = block_width();
-length_tightness = 2;
-width_tightness = 2;
+length = 39.5; // board space length [mm]
+width = 39.5; // board space width [mm]
+length_tightness = 1.5; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+width_tightness = 1.5; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+twist_length = 2; // How many blocks in from length ends do the technic holes rotate 90 degrees
+twist_width = 2; // How many blocks in from width ends do the technic holes rotate 90 degrees
+thickness = 1.8; // board space height [mm]
+innercut = 1; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
+
+
+technic_board_mount();
 
 
 ///////////////
 // Display
 ///////////////
-module technic_board_mount(length=length, width=width, thickness=thickness, innercut=innercut) {
+module technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+
+    assert(twist_length >= 0, "TWIST_LENGTH must be >= 0");
+    assert(twist_width >= 0, "TWIST_LENGTH must be >= 0");
+    assert(length_tightness > 0, "LENGTH_TIGHTNESS must be > 0 (usually 1 to 1.5)");
+    assert(width_tightness > 0, "WIDTH_TIGHTNESS must be > 0 (usually 1 to 1.5)");
+    assert(twist_length*2 <= l, "TWIST_LENGTH must <= l/2, please reduce TWIST_LENGTH or increate LENGTH");
+    assert(twist_width*2 <= w, "TWIST_WIDTH must <= w/2, please reduce TWIST_WIDTH or increate WIDTH");
 
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
-    l1 = l - 2*twist;    
+    l1 = l - 2*twist_length;    
     l3 = l1;
     l2 = l - l1 - l3;
-    w1 = w - 2*twist;
+    w1 = w - 2*twist_width;
     w3 = w1;
     w2 = w - w1 - w3;
 

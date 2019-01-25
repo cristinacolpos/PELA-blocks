@@ -160,9 +160,9 @@ ___
 
 ___
 
-[![PELA Technic Pi Camera Mount](images/PELA-raspberry-pi3-technic-camera-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-camera-mount.stl)
+[![PELA Technic Pi Camera Mount](images/PELA-raspberry-pi3-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-camera-technic-mount.stl)
 
-[3D PELA Technic Pi Camera Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-camera-mount.stl) A Raspberry Pi 3 camera holder.
+[3D PELA Technic Pi Camera Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-camera-technic-mount.stl) A Raspberry Pi 3 camera holder.
 
 ___
 
