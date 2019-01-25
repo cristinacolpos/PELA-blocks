@@ -35,34 +35,34 @@ use <PELA-raspberry-pi3-technic-mount.scad>
 include <PELA-technic-board-mount.scad>
 
 /* [Technic Cover Options] */
-length = 35;
-width = 35;
-twist = 2;
-length_tightness = 1;
-width_tightness = 1;
+length = 35; // board space length [mm]
+width = 35; // board space width [mm]
+length_tightness = 1.0; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+width_tightness = 1.0; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+twist_length = 1; // Distance from length ends to rotate 90 degrees [blocks]
+twist_width = 1; // Distance from width ends to rotate 90 degrees [blocks]
+
 
 technic_cover();
 
 
-module technic_cover(length=length, width=width, twist=twist, length_tightness=length_tightness, width_tightness=width_tightness) {
+module technic_cover(length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_tightness=length_tightness, width_tightness=width_tightness) {
 
-    assert(twist >= 0, "TWIST must be >= 0");
+    assert(twist_length >= 0, "TWIST_LENGTH must be >= 0");
+    assert(twist_width >= 0, "TWIST_LENGTH must be >= 0");
+    assert(length_tightness > 0, "LENGTH_TIGHTNESS must be > 0 (usually 1 to 1.5)");
+    assert(width_tightness > 0, "WIDTH_TIGHTNESS must be > 0 (usually 1 to 1.5)");
+    assert(twist_length*2 <= l, "TWIST_LENGTH must <= l/2, please reduce TWIST_LENGTH or increate LENGTH");
+    assert(twist_width*2 <= w, "TWIST_WIDTH must <= w/2, please reduce TWIST_WIDTH or increate WIDTH");
 
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
 
-    assert(twist*2 <= l, "TWIST must <= l/2, please reduce TWIST or increate LENGTH");
-    assert(twist*2 <= w, "TWIST must <= w/2, please reduce TWIST or increate WIDTH");
-
-    l2 = max(0, l - 2*twist);
-    w2 = max(0, w - 2*twist);
-    
-    echo("twist=", twist, "l=", l, " l1=", l1, " l2=", l2, " l3=", l3);
-
-    echo( "w=", w, " w1=", w1, " w2=", w2, " w3=", w3);
+    l2 = max(0, l - 2*twist_length);
+    w2 = max(0, w - 2*twist_width);
 
     union() {
-        technic_rectangle(l1=twist, l2=l2, l3=twist, w1=twist, w2=w2, w3=twist);
+        technic_rectangle(l1=twist_length, l2=l2, l3=twist_length, w1=twist_width, w2=w2, w3=twist_width);
         
         translate([block_width(0.5), block_width(0.5), 0]) {
             socket_panel(l=l-2, w=w-2, bolt_holes=false, skin=0, block_height=block_height);

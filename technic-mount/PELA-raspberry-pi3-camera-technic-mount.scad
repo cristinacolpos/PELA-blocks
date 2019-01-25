@@ -1,5 +1,5 @@
 /*
-PELA Slot Mount - 3D Printed LEGO-compatible PCB mount, vertical slide-in
+Raspberry Pi3 Camera Mount - 3D Printed LEGO-compatible PCB mount with the board held in place by technic bars
 
 Published at https://PELAblocks.org
 
@@ -30,23 +30,27 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
-use <../socket-panel/PELA-socket-panel.scad>
-use <PELA-raspberry-pi3-technic-mount.scad>
 include <PELA-technic-board-mount.scad>
-include <PELA-technic-cover.scad>
 
-/* [Raspberry Pi Technic Cover Options] */
+/* [Raspberry Pi3 Camera Technic Options] */
 
-length = 85.9; // board space length [mm]
-width = 56.4; // board space width [mm]
+length = 39.5; // board space length [mm]
+width = 39.5; // board space width [mm]
 length_tightness = 1.5; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
 width_tightness = 1.5; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
-twist_length = 2; // How many blocks in from  length ends do the technic holes rotate 90 degrees
-twist_width = 2; // How many blocks in from width ends do the technic holes rotate 90 degrees
-
+twist_length = 1; // How many blocks in from length ends do the technic holes rotate 90 degrees
+twist_width = 1; // How many blocks in from width ends do the technic holes rotate 90 degrees
+thickness = 1.8; // board space height [mm]
+undercut = 2.3; // Extrude down below board center to make space for components and cooling [mm]
+innercut = 2; // Step in from board space edges to support the board [mm]
 
 ///////////////
 // Display
 ///////////////
+pi_camera_technic_mount();
 
-technic_cover(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width);
+
+module pi_camera_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, undercut=undercut, innercut=innercut) {
+
+    technic_board_mount(length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_tightness=length_tightness, width_tightness=width_tightness, thickness=thickness, undercut=undercut, innercut=innercut);
+}
