@@ -28,9 +28,8 @@ use <../technic-block.scad>
 
 /* [Technic Pin Array Options] */
 
-l=15;
-h=1;
-block_height = 8;
+l=15; // Length
+h=1; // Height
 
 
 ///////////////
@@ -47,7 +46,7 @@ module technic_bar(l=l, h=h, side_holes=2, block_width=block_width) {
         intersection() {
             translate([0, block_width(1, block_width=block_width), 0]) {
                 rotate([90, 0, 0]) {
-                    PELA_technic_block(l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_width=block_width, block_height=block_height);
+                    PELA_technic_block(l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, bolt_holes=false, solid_bottom_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
                 }
             }
 
