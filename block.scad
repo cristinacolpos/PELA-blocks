@@ -45,7 +45,7 @@ l = 4;
 w = 2;
 
 // Height of the block (PELA unit count)
-h = 2;
+h = 1;
 
 solid_bottom_layer = false;
 

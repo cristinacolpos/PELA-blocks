@@ -153,11 +153,11 @@ module bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end
     for (i = [1:h]) {
         translate([0, 0, block_height(i-1)]) {
             if (side_holes > 0) {
-                double_side_connector_hole_set(l=l, w=w, hole_type=side_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, skin=skin, block_height=block_height);
+                double_side_connector_hole_set(l=l, w=w, hole_type=side_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, block_height=block_height);
             }
             
             if (end_holes > 0) {
-                double_end_connector_hole_set(l=l, w=w, hole_type=end_holes, knob_radius=knob_radius, block_width=block_width, skin=skin, block_height=block_height);
+                double_end_connector_hole_set(l=l, w=w, hole_type=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width);
             }
         }
     }

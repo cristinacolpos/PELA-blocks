@@ -124,7 +124,7 @@ module bottom_piece() {
                 }
             }
 
-            double_end_connector_hole_set(l=l, w=w, hole_type=2, axle_hole_radius=axle_hole_radius, block_width=block_width, block_height=block_height);
+            double_end_connector_hole_set(l=l, w=w, hole_type=2, axle_hole_radius=axle_hole_radius, block_width=block_width);
 
             if (bolt_holes) {
                 corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
