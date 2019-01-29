@@ -45,7 +45,7 @@ knobs = true;
 corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.6;
+bolt_hole_radius = 0.0;
 
 // Interior fill for layers above the bottom
 solid_upper_layers = false;
