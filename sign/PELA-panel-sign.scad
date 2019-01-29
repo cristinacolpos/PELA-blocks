@@ -23,7 +23,7 @@ Import this into other design files:
 */
 
 include <../style.scad>
-include <../print-style.scad>
+include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../knob-panel/PELA-knob-panel.scad>

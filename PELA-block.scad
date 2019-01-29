@@ -32,7 +32,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 */
 
 include <style.scad>
-include <print-style.scad>
+include <print-parameters.scad>
 
 
 
@@ -249,12 +249,12 @@ module knob_flexture_set(l=l, w=w, h=h, knob_radius=knob_radius, knob_height=kno
 // The negative space flexture inside a single knob
 module knob_flexture(knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, flexible_material=flexible_material) {
 
-   translate([0, 0, knob_height-knob_top_thickness-knob_flexture_height]) {
-        cylinder(r=knob_flexture_radius(flexible_material=flexible_material), h=knob_flexture_height);
-   }
-    
     if (knob_vent_radius > 0) {
         cylinder(r=knob_vent_radius, h=knob_height+defeather);
+    } else {
+        translate([0, 0, knob_height-knob_top_thickness-knob_flexture_height]) {
+            cylinder(r=knob_flexture_radius(flexible_material=flexible_material), h=knob_flexture_height);
+        }
     }
 }
 

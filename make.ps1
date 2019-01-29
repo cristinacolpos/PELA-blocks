@@ -1,6 +1,6 @@
 # PELA - 3D Printed LEGO-compatible parametric blocks
 #
-# Generate a set of objects calibrated for your printer by changes to print-style.scad
+# Generate a set of objects calibrated for your printer by changes to print-parameters.scad
 # See https://PELAblocks.org for more information
 #
 # Part of https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks
@@ -159,9 +159,7 @@ render ".\box-enclosure\" "PELA-intel-compute-stick-box-lid"
 render ".\motor-enclosure\" "PELA-n20-gearmotor-enclosure"
 render ".\technic-bar\" "PELA-technic-bar"
 render ".\technic-bar\" "PELA-technic-twist-bar"
-render ".\technic-bar\" "PELA-technic-bar-30degree"
-render ".\technic-bar\" "PELA-technic-bar-45degree"
-render ".\technic-bar\" "PELA-technic-bar-60degree"
+render ".\technic-bar\" "PELA-technic-angle-connector"
 render ".\knob-panel\" "PELA-knob-panel"
 render ".\knob-panel\" "PELA-double-sided-knob-panel"
 render ".\socket-panel\" "PELA-socket-panel"

@@ -19,7 +19,7 @@ Open source design, Powered By Futurice. Come work with the best.
 
 
 include <../style.scad>
-include <../print-style.scad>
+include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 
@@ -31,6 +31,7 @@ solid_upper_layers = true;
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
 
+// Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height = 9.6;
 
 
@@ -51,16 +52,16 @@ h_top = 1;
 
 /* [Motor Options] */
 // Diameter of the rounded part of the motor body (if no rounding, set length as appropriate and this to 1/2 the motor width)
-motor_radius = 6.1+skin;
+motor_radius = 6.1 + skin;
 
 // Shaft-axis ditance of the rounded part of the motor body (motor_width may reduce this)
-motor_round_length = 15.5+skin;
+motor_round_length = 15.5 + skin;
 
 // Shaft-axis distance of the square part of the motor body (motor_width may reduce this)
-motor_square_length = 9.5+skin;
+motor_square_length = 9.5 + skin;
 
 // Width of the motor slot body (may reduce rounding, add space to more easily insert the motor)
-motor_width = 10.15+2*skin;
+motor_width = 10.15 + 2*skin;
 
 // Vertical position of the motor inside the enclosure
 motor_offset = block_height(4/3)-motor_radius-block_width(0.5);
@@ -75,10 +76,10 @@ motor_shaft_length = 9.4;
 electric_radius = 1.9;
 
 // Additional depth to the electrical cutout
-electric_vertical_displacement = -3;
+electric_vertical_displacement = -3.0;
 
 // Distance the electrical connector cutout extends from the body
-electric_length = 20;
+electric_length = 20.0;
 
 // Heat ventilation holes in the sides
 side_holes = true;
@@ -87,7 +88,7 @@ side_holes = true;
 top_vents = true;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
-knob_vent_radius = 0;
+knob_vent_radius = 0.0;
 
 
 

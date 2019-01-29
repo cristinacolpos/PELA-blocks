@@ -1,5 +1,7 @@
 /*
-PELA Parametric Block Parameters
+PELA Parametric Block Style
+
+Alter the baseline style of all designs. Many designs will locally override some but not all of these parameters.
 
 Published at https://PELAblocks.org
 
@@ -18,7 +20,7 @@ Import this into other design files to set baseline constants:
     include <style.scad>
 */
 
-include <print-style.scad>
+include <print-parameters.scad>
 
 
 /* [PELA Block Dimensions] */
@@ -107,7 +109,7 @@ end_sheaths = true;
 top_vents = false;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
-knob_vent_radius = 0;
+knob_vent_radius = 0.0;
 
 
 /* [Aesthetic Options for Basic Blocks] */
@@ -139,7 +141,7 @@ knob_flexture_height = 4.5;
 // Width of horizontal surface strengthening slats between the bottom rings
 bottom_stiffener_width = 2.6;
 
-// Height of horizontal surface strengthening slats (appears between the bottom rings, default is print-style.scad:knob_height)
+// Height of horizontal surface strengthening slats (appears between the bottom rings, default is print-parameters.scad:knob_height)
 bottom_stiffener_height = knob_height;
 
 

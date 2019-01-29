@@ -22,7 +22,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 */
 
 include <../style.scad>
-include <../print-style.scad>
+include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
@@ -41,9 +41,9 @@ length = 35; // board space length [mm]
 
 width = 35; // board space width [mm]
 
-length_tightness = 1.0; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+length_tightness = 1.0; // closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
-width_tightness = 1.0; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+width_tightness = 1.0; // closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
 twist_length = 1; // Distance from length ends to rotate 90 degrees [blocks]
 

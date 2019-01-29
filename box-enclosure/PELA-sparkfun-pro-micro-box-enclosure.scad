@@ -17,7 +17,7 @@ Open source design, Powered By Futurice. Come work with the best.
 */
 
 include <../style.scad>
-include <../print-style.scad>
+include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>
@@ -67,7 +67,7 @@ top_vents = false;
 bottom_vents = false;
 
 // Size of a hole in the top surface of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
-knob_vent_radius = 0;
+knob_vent_radius = 0.0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
 corner_bolt_holes = true;

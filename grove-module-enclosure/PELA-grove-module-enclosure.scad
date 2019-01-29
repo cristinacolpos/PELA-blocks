@@ -15,7 +15,7 @@ Although this file is parametric and designed for use with an online customizer,
 */
 
 include <../style.scad>
-include <../print-style.scad>
+include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../support/support.scad>
@@ -36,6 +36,7 @@ solid_upper_layers = true;
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
 
+// Height of horizontal surface strengthening slats (appears between the bottom rings)
 bottom_stiffener_height = 9.6;
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -208,7 +209,7 @@ module main_top_piece_space() {
 
 
 // Supports to prevent the long overhangs from drooping
-module top_supports(height, h2) {
+module top_supports() {
     support_side_length=4;
     height = block_height(h) - 1.95 - skin;
     h2 = 9.6;
