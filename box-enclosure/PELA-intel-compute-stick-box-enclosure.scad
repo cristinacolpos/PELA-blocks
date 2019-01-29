@@ -66,7 +66,7 @@ center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end 
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 intel_compute_stick_box_enclosure();

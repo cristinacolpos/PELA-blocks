@@ -48,7 +48,7 @@ innercut = 1; // How far in from the outside edges the board support can extend 
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 technic_board_mount();
@@ -56,7 +56,7 @@ technic_board_mount();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {

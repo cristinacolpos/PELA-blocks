@@ -38,7 +38,7 @@ right = 2;
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 technic_twist_bar();
@@ -46,7 +46,7 @@ technic_twist_bar();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module technic_twist_bar(left=left, center=center, right=right) {

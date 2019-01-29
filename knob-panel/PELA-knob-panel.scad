@@ -25,10 +25,10 @@ use <../PELA-technic-block.scad>
 
 /* [PELA Panel Options] */
 
-// Length of the block (PELA unit count)
+// Length of the block [blocks]
 l = 8; 
 
-// Width of the block (PELA unit count)
+// Width of the block [blocks]
 w = 8;
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -55,7 +55,7 @@ skip_edge_knobs = 0;
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 PELA_knob_panel();
@@ -64,7 +64,7 @@ PELA_knob_panel();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {

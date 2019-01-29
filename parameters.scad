@@ -23,13 +23,13 @@ include <print-parameters.scad>
 
 /* [PELA Block Dimensions] */
 
-// Length of the block (PELA unit count)
+// Length of the block [blocks]
 l = 4; 
 
-// Width of the block (PELA unit count)
+// Width of the block [blocks]
 w = 4;
 
-// Height of the block (PELA unit count)
+// Height of the block [blocks]
 h = 1;
 
 

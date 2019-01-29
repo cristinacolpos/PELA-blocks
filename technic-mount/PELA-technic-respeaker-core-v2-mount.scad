@@ -83,7 +83,7 @@ base_thickness = 2;
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 rotate([180, 0, 0]) {
@@ -94,7 +94,7 @@ rotate([180, 0, 0]) {
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module respeaker_core_v2_technic_top(two_color_print=two_color_print) { 

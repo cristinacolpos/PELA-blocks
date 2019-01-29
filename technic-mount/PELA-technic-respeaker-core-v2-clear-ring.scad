@@ -33,7 +33,7 @@ use <PELA-technic-respeaker-core-v2-mount.scad>
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 translate([0, 0, block_height()])

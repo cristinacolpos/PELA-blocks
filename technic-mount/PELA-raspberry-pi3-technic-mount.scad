@@ -49,7 +49,7 @@ bottom_corner_bolt_holes = true; // Mounting holes inset from the corners
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 pi3_technic_mount();
@@ -57,7 +57,7 @@ pi3_technic_mount();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module pi3_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width) {

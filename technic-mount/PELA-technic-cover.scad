@@ -52,7 +52,7 @@ twist_width = 1; // Distance from width ends to rotate 90 degrees [blocks]
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 technic_cover();
@@ -60,7 +60,7 @@ technic_cover();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module technic_cover(length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_tightness=length_tightness, width_tightness=width_tightness) {

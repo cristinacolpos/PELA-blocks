@@ -39,7 +39,7 @@ minimum_base = true;
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 pin_array(array_count=array_count, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length);

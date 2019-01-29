@@ -122,7 +122,7 @@ function fit_mm_to_pela_block_height(i, tightness, block_height=block_height) = 
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, shell=shell, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height) {

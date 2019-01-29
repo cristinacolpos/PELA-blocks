@@ -22,10 +22,10 @@ use <../PELA-block.scad>
 
 /* [PELA Calibration Block Options, for convenience "tight" knobs are matched with equally "loose" sockets, but your best fit may not be identical. Test against real PELA first, then 3D printed to 3D printed using a calibration block with your selected paramters] */
 
-// Length of each calibration block (PELA unit count)
+// Length of each calibration block [blocks]
 l = 2; 
 
-// Width of each calibration block (PELA unit count)
+// Width of each calibration block [blocks]
 w = 2;
 
 // Height of the block (PELA unit count, use 1/3 for short calibration panel)
@@ -85,7 +85,7 @@ large_nozzle = false;
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module PELA_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, knobs=knobs, flexible_material=flexible_material, large_nozzle=large_nozzle) {

@@ -35,10 +35,11 @@ bottom_stiffener_height = 9.6;
 
 
 /* [Motor Enclosure Size] */
-// Length of the motor enclosure (block count)
+
+// Length of the motor enclosure [blocks]
 l = 4; 
 
-// Width of the motor enclosure (block count)
+// Width of the motor enclosure [blocks]
 w = 2;
 
 // Height of the bottom part of the motor enclosure (block count, the top part is always 1/3)
@@ -92,7 +93,7 @@ knob_vent_radius = 0;
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 motor_enclosure_bottom();
@@ -104,7 +105,7 @@ translate([0, block_width(w + 0.5), 0]) {
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module motor_enclosure_bottom() {

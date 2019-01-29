@@ -76,7 +76,7 @@ holder_width = block_width(w - 2.5);
 
 
 ////////////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////////
 
 vive_velcro_mount();
@@ -84,7 +84,7 @@ vive_velcro_mount();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module vive_velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
