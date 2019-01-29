@@ -61,9 +61,11 @@ skip_edge_knobs = 0;
 PELA_knob_panel();
 
 
-/////////////////////////////////////
-// PELA PANEL modules
-/////////////////////////////////////
+
+
+///////////////////////////////////
+// Modules
+///////////////////////////////////
 
 module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
 

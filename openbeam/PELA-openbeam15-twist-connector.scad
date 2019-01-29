@@ -55,6 +55,10 @@ openbeam15();
 
 
 
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module openbeam15() {
 	PELA_knob_panel(l=l, w=w, corner_bolt_holes=false, sockets=false, block_height=block_height);
 

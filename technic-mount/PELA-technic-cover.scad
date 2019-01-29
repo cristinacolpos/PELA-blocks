@@ -58,6 +58,11 @@ twist_width = 1; // Distance from width ends to rotate 90 degrees [blocks]
 technic_cover();
 
 
+
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module technic_cover(length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_tightness=length_tightness, width_tightness=width_tightness) {
 
     assert(twist_length >= 0, "TWIST_LENGTH must be >= 0");

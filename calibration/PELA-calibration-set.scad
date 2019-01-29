@@ -1,6 +1,11 @@
 /*
 PELA Blocks 3D Print Calibration Block Set
 
+A single block or array of PELA blocks with different parameters.
+Use these to find the ideal fit with real PELA blocks
+for a given printer, settings and plastic combination. Pre-generated examples and numbers are as a guide only
+based on tests with a Lulzbot Taz 6 printer and give example results but may not be suitable for your setup.
+
 Published at https://PELAblocks.org
 
 By Paul Houghton
@@ -29,17 +34,12 @@ end_holes = 2;
 side_holes = 0;
 
 
-/////////////////////////////////////
-// PELA CALIBRATION SET MODULES
-//
-// A single block or array of PELA blocks with different parameters.
-// Use these to find the ideal fit with real PELA blocks
-// for a given printer, settings and plastic combination. Pre-generated examples and numbers are as a guide only
-// based on tests with a Lulzbot Taz 6 printer and give example results but may not be suitable for your setup.
-/////////////////////////////////////
 
 
-// A set of blocks with different tweak parameters written on the side
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module PELA_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, corner_bolt_holes=corner_bolt_holes, block_height=block_height, knobs=knobs) {
     
     // Tighter top, looser bottom

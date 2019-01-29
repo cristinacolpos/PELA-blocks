@@ -94,7 +94,7 @@ knob_vent_radius = 1.5;
 
 
 /////////////////////////////////////
-// PELA display
+// Display
 /////////////////////////////////////
 
 PELA_technic_block();
@@ -111,11 +111,12 @@ function is_side_sheaths(side_sheaths=side_sheaths, side_holes=side_holes) = sid
 function is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes) = end_holes > 1 && end_sheaths;
 
 
-/////////////////////////////////////
-// MODULES
-/////////////////////////////////////
 
-// A PELA block with optional side and top vent holes
+
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_bottom_layer=solid_bottom_layer, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_centers_are_sockets=bottom_centers_are_sockets, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak) {
 
     difference() {

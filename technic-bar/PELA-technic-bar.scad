@@ -41,6 +41,11 @@ h=1; // Height
 technic_bar();
 
 
+
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module technic_bar(l=l, h=h, side_holes=2, block_width=block_width) {
     l2 = l + 1;
 

@@ -119,6 +119,8 @@ function fit_mm_to_pela_blocks(i, tightness) = ceil((i+(tightness*block_width())
 // Find the optimum enclosing vertical dimension in block units for an object of height i
 function fit_mm_to_pela_block_height(i, tightness, block_height=block_height) = ceil((i+(tightness*block_height(1, block_height=block_height))) / block_height(1, block_height=block_height));
 
+
+
 ///////////////////////////////////
 // Modules
 ///////////////////////////////////

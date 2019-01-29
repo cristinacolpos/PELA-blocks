@@ -84,17 +84,10 @@ large_nozzle = false;
 
 
 
-/////////////////////////////////////
-// PELA CALIBRATION BLOCK MODULES
-//
-// A single block or array of PELA blocks with different parameters.
-// Use these to find the ideal fit with real PELA blocks
-// for a given printer, settings and plastic combination. Pre-generated examples and numbers are as a guide only
-// based on tests with a Lulzbot Taz 6 printer and give example results but may not be suitable for your setup.
-/////////////////////////////////////
+///////////////////////////////////
+// Modules
+///////////////////////////////////
 
-
-// A set of calibration blocks in a row with reduced inter-block spacing to print faster
 module PELA_calibration_bar(l=l, w=w, h=h, calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, knobs=knobs, flexible_material=flexible_material, large_nozzle=large_nozzle) {
     
     from=-4;

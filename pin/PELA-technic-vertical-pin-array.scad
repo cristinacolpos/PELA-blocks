@@ -42,6 +42,11 @@ pin_tip_length = 0.7;
 vertical_pin_array();
 
 
+
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module vertical_pin_array(array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length, block_height=block_height) {
 
     base_thickness = panel_height(block_height=block_height); // The thickness of the base below an array of half-pins
