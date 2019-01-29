@@ -47,7 +47,7 @@ thickness = 1.9;
 // Step in from board space edges to support the board [mm]
 innercut = 0.5;
 
-side_length = 8; // blocks
+side_length = 8; // Blocks
 
 // Mounting hole centers
 side = (width/2) / sin(60);

@@ -34,13 +34,13 @@ include <PELA-technic-board-mount.scad>
 
 /* [Raspberry Pi3 Camera Options] */
 
-length = 39.5; // board space length [mm]
+length = 39.5; // Board space length [mm]
 
-width = 39.5; // board space width [mm]
+width = 39.5; // Board space width [mm]
 
-length_tightness = 1.5; // closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+length_tightness = 1.5; // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
-width_tightness = 1.5; // closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+width_tightness = 1.5; // Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
 twist_length = 2; // How many blocks in from length ends do the technic holes rotate 90 degrees [blocks]
 
