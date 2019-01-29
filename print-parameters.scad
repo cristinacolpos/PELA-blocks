@@ -35,7 +35,7 @@ INSTRUCTIONS
 
 SUGGESTIONS
 ===========
-- Don't waste time- use LEGO and LEGO technics to assemble what you need with a minimum of printed parts. Print the part yourself when you need something special (shape, function, material..).
+- Don't waste time- use LEGO and LEGO technic to assemble what you need with a minimum of printed parts. Print the part yourself when you need something special (shape, function, material..).
 
 - Make sure 'flexible_material' and 'large_nozzle' are set before you print the calibration block. These affect the size of flextures. All other numbers in this file are then set based on preference for a good fit of the calibration block to LEGO and other PELA pieces.
 

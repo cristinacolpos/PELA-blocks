@@ -43,9 +43,12 @@ twist_width = 2; // How many blocks in from width ends do the technic holes rota
 thickness = 1.8; // Board space height [mm]
 innercut = 2; // Step in from board space edges to support the board [mm]
 
-///////////////
+
+
+///////////////////////////////
 // Display
-///////////////
+///////////////////////////////
+
 pi_camera_technic_mount();
 
 

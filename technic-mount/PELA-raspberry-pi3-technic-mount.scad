@@ -45,9 +45,13 @@ thickness = 1.9; // board space height [mm]
 innercut = 0.8; // Step in from board space edges to support the board [mm]
 bottom_corner_bolt_holes = true; // Mounting holes inset from the corners
 
-///////////////
+
+
+
+///////////////////////////////
 // Display
-///////////////
+///////////////////////////////
+
 pi3_technic_mount();
 
 

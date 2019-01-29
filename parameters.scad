@@ -127,7 +127,7 @@ ridge_z_offset = 0;
 // Basic unit horizontal size of each block
 block_width = 8;
 
-// Basic unit vertical size of each block (8 is technics standard, 9.6 is LEGO standard)
+// Basic unit vertical size of each block (8 is technic standard, 9.6 is LEGO standard)
 block_height = 8;
 
 // Horizontal clearance space around the outer surface of the set of blocks to allow two parts to be placed next to one another

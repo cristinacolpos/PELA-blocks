@@ -35,10 +35,16 @@ length = 48.7;
 width = 26.2;
 thickness = 1.8;
 
-///////////////
+
+
+///////////////////////////////
 // Display
-///////////////
+///////////////////////////////
+
 board_mount();
+
+
+
 
 module board_mount() {
   l = fit_mm_to_pela_blocks(length, length_tightness);

@@ -20,28 +20,31 @@ include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <PELA-technic-axle.scad>
 
-/* [Technic Pin Options] */
+/* [Technic Cross Axle Options] */
 
-// Axle length
+// Axle length [mm]
 axle_length = block_width(3);
 
-// Outside radius of an axle which fits loosely in a technic bearing hole
+// Outside radius of an axle which fits loosely in a technic bearing hole [mm]
 axle_radius = 2.2;
 
-// Cross axle inside rounding radius
-axle_rounding=0.63;
+// Cross axle inside rounding radius [mm]
+axle_rounding = 0.63;
 
-// Size of the hollow inside an axle
-axle_center_radius=2*axle_radius/3;
+// Size of the hollow inside an axle [mm]
+axle_center_radius = (2/3)*axle_radius;
 
-///////////////
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
+
 
 cross_axle();
     
-//////////////////
 
 
-// A rotation axle with a "+" cross section
 module cross_axle(axle_rounding=axle_rounding, axle_radius=axle_radius, axle_length=axle_length) {
 
     rotate([90, 45, 0])

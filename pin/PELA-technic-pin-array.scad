@@ -36,8 +36,10 @@ pin_tip_length = 0.7;
 // Trim the base connecting a pin array to the minimum rounded shape
 minimum_base = true;
 
-///////////////
+
+
+///////////////////////////////
 // Display
-///////////////
+///////////////////////////////
 
 pin_array(array_count=array_count, base_thickness=base_thickness, minimum_base=minimum_base, pin_tip_length=pin_tip_length);

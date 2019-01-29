@@ -32,13 +32,15 @@ l=15; // Length
 h=1; // Height
 
 
-///////////////
+
+
+///////////////////////////////
 // Display
-///////////////
+///////////////////////////////
+
 technic_bar();
 
 
-// A rounded-end minimal bar with no knobs or sockets
 module technic_bar(l=l, h=h, side_holes=2, block_width=block_width) {
     l2 = l + 1;
 

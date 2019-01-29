@@ -35,19 +35,32 @@ include <PELA-technic-board-mount.scad>
 /* [Technic Pin Array Options] */
 
 length = 39.5; // board space length [mm]
+
 width = 39.5; // board space width [mm]
+
 length_tightness = 1; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+
 width_tightness = 1; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+
 twist_length = 2; // 90 degree rotation from length ends [blocks]
+
 twist_width = 2; // 90 degree rotation from width ends [blocks]
+
 thickness = 1.8; // board space thickness [mm]
+
 undercut = 2.3; // Extrude down below board center to make space for components and cooling [mm]
+
 innercut = 2; // Step in from board space edges to support the board [mm]
 
-///////////////
+
+
+///////////////////////////////
 // Display
-///////////////
+///////////////////////////////
+
 pi_camera_technic_mount();
+
+
 
 
 module pi_camera_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, undercut=undercut, innercut=innercut) {

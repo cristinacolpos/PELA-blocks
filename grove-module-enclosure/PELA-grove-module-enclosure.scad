@@ -30,7 +30,6 @@ w = 2;
 // Height of HALF the enclosure (PELA unit count)
 h = 2;
 
-
 // Interior fill for layers above the bottom
 solid_upper_layers = true;
 
@@ -39,7 +38,9 @@ corner_bolt_holes = false;
 
 bottom_stiffener_height = 9.6;
 
+// Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
+
 
 /* [Grove Module Options] */
 

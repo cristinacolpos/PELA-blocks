@@ -32,7 +32,10 @@ use <PELA-technic-bar-30degree.scad>
 angle = 60;
 l = 1;
 
-///////////////
+
+
+///////////////////////////////
 // Display
-///////////////
+///////////////////////////////
+
 mount_30degree(angle=angle, l=l);
