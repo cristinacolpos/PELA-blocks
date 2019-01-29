@@ -37,13 +37,13 @@ include <PELA-technic-board-mount.scad>
 
 /* [Technic Cover Options] */
 
-length = 35; // board space length [mm]
+length = 35; // Board space length [mm]
 
-width = 35; // board space width [mm]
+width = 35; // Board space width [mm]
 
-length_tightness = 1.0; // closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+length_tightness = 1.0; // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
-width_tightness = 1.0; // closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+width_tightness = 1.0; // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
 twist_length = 1; // Distance from length ends to rotate 90 degrees [blocks]
 

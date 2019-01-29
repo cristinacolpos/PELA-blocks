@@ -35,22 +35,29 @@ use <../technic-bar/PELA-technic-twist-bar.scad>
 
 /* [Technic Board Mount Options] */
 
-length = 39.5; // board space length [mm]
+// Board space length [mm]
+length = 39.5; 
 
-width = 39.5; // board space width [mm]
+// Board space width [mm]
+width = 39.5;
 
-length_tightness = 1.5; // closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+// Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+length_tightness = 1.5;
 
-width_tightness = 1.5; // closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+// Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+width_tightness = 1.5;
 
-twist_length = 2; // How many blocks in from length ends do the technic holes rotate 90 degrees
+// How many blocks in from length ends do the technic holes rotate 90 degrees
+twist_length = 2;
 
-twist_width = 2; // How many blocks in from width ends do the technic holes rotate 90 degrees
+// How many blocks in from width ends do the technic holes rotate 90 degrees
+twist_width = 2;
 
-thickness = 1.8; // board space height [mm]
+// Board space height [mm]
+thickness = 1.8;
 
 // Step in from board space edges to support the board [mm]
-innercut = 1;
+innercut = 1.0;
 
 
 
@@ -69,21 +76,33 @@ technic_board_mount();
 
 module technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
 
-    assert(twist_length >= 0, "TWIST_LENGTH must be >= 0");
-    assert(twist_width >= 0, "TWIST_LENGTH must be >= 0");
-    assert(length_tightness > 0, "LENGTH_TIGHTNESS must be > 0 (usually 1 to 1.5)");
+    assert(twist_length >= 0, "twist_length must be >= 0");
+    assert(twist_width >= 0, "twist_length must be >= 0");
+    assert(length_tightness > 0, "length_tightness must be > 0 (usually 1 to 1.5)");
     assert(width_tightness > 0, "WIDTH_TIGHTNESS must be > 0 (usually 1 to 1.5)");
     assert(twist_length*2 <= l, "TWIST_LENGTH must <= l/2, please reduce TWIST_LENGTH or increate LENGTH");
     assert(twist_width*2 <= w, "TWIST_WIDTH must <= w/2, please reduce TWIST_WIDTH or increate WIDTH");
 
     l = fit_mm_to_pela_blocks(length, length_tightness);
     w = fit_mm_to_pela_blocks(width, width_tightness);
-    l1 = l - 2*twist_length;    
+    echo("l", l);
+    echo("w", l);
+
+    assert(l - 2*twist_length, "The board length is quite small- consider decreasing twist_length or increasing length_tightness");
+    assert(w - 2*twist_width, "The board width is quite small- consider decreasing twist_width or increasing width_tightness");
+
+    l1 = twist_length;
     l3 = l1;
     l2 = l - l1 - l3;
-    w1 = w - 2*twist_width;
+    w1 = twist_width;
     w3 = w1;
     w2 = w - w1 - w3;
+    echo("l1", l1);
+    echo("l2", l2);
+    echo("l3", l3);
+    echo("w1", w1);
+    echo("w2", w2);
+    echo("w3", w3);
 
     difference() {
         union() {

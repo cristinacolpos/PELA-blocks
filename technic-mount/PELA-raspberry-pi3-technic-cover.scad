@@ -37,10 +37,10 @@ include <PELA-technic-cover.scad>
 
 /* [Raspberry Pi Technic Cover Options] */
 
-length = 85.9; // board space length [mm]
-width = 56.4; // board space width [mm]
-length_tightness = 1.5; // closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-width_tightness = 1.5; // closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+length = 85.9; // Board space length [mm]
+width = 56.4; // Board space width [mm]
+length_tightness = 1.5; // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+width_tightness = 1.5; // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 twist_length = 2; // How many blocks in from  length ends do the technic holes rotate 90 degrees
 twist_width = 2; // How many blocks in from width ends do the technic holes rotate 90 degrees
 
