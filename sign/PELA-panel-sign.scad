@@ -18,14 +18,14 @@ Open source design, Powered By Futurice. Come work with the best.
 
 Import this into other design files:
     use <PELA-flat-sign.scad>
-    use <../block.scad>
-    use <../technic-block.scad>
+    use <../PELA-block.scad>
+    use <../PELA-technic-block.scad>
 */
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 
 /* [PELA Sign Options] */
@@ -72,20 +72,20 @@ vertical_margin = 0.3;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a sheath around Technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a shell around Technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a sheath around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a shell around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
+corner_bolt_holes = false;
 
 // Presence of bottom connector sockets
 sockets = true;
@@ -104,17 +104,17 @@ color("green") PELA_flat_sign_extruded_text();
 ///////////////////////////////////
 
 // A PELA block with text on the top
-module PELA_flat_sign(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, bolt_holes=bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
+module PELA_flat_sign(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
     
     if (extrude) {
         difference() {
-            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, block_height=block_height);
+            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, block_height=block_height);
 
-            PELA_flat_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, bolt_holes=bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height);
+            PELA_flat_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height);
         }
     } else {
         difference() {
-            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, block_height=block_height);
+            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, block_height=block_height);
             
             translate([skin, 0, -extrusion_height])
                 PELA_sign_etched_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, block_height=block_height);
@@ -124,7 +124,7 @@ module PELA_flat_sign(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude
 
 
 // A PELA block with text on the top
-module PELA_flat_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, bolt_holes=bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
+module PELA_flat_sign_extruded_text(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
     
     if (extrude) {
         translate([skin, skin, 0])

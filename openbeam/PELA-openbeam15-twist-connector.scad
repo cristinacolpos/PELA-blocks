@@ -19,7 +19,7 @@ Open source design, Powered By Futurice. Come work with the best.
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
+use <../PELA-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 
@@ -54,7 +54,7 @@ toe_length = 1;
 
 
 module openbeam15() {
-	PELA_knob_panel(l=l, w=w, bolt_holes=false, sockets=false, block_height=block_height);
+	PELA_knob_panel(l=l, w=w, corner_bolt_holes=false, sockets=false, block_height=block_height);
 
 	translate([top_width/2, top_length/2, 0]) {
 		cylinder(r=block_width(1/3), h=top_height);

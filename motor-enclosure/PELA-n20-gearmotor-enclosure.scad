@@ -20,8 +20,8 @@ Open source design, Powered By Futurice. Come work with the best.
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 
 /* [Block Connector Fit Options] */
 
@@ -29,7 +29,7 @@ use <../technic-block.scad>
 solid_upper_layers = true;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
+corner_bolt_holes = false;
 
 bottom_stiffener_height = 9.6;
 
@@ -106,7 +106,7 @@ translate([0, block_width(w + 0.5), 0]) {
 // Bottom of the enclosure
 module motor_enclosure_bottom() {
     difference() {
-        PELA_technic_block(l=l, w=w, h=h_bottom, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, bolt_holes=bolt_holes);
+        PELA_technic_block(l=l, w=w, h=h_bottom, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, corner_bolt_holes=corner_bolt_holes);
         
         motor_cutouts();
     }
@@ -116,7 +116,7 @@ module motor_enclosure_bottom() {
 // Top of the enclosure
 module motor_enclosure_top() {
     difference() {
-        PELA_technic_block(l=l, w=w, h=h_top, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, top_vents=top_vents, knob_vent_radius=knob_vent_radius, bolt_holes=bolt_holes);
+        PELA_technic_block(l=l, w=w, h=h_top, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, solid_upper_layers=solid_upper_layers, top_vents=top_vents, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes);
 
         translate([0, 0, block_height(-h_top)]) {
             motor_cutouts(ss=false);

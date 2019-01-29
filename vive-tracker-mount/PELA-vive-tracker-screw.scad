@@ -15,13 +15,13 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files:
-    use <block.scad>
+    use <PELA-block.scad>
 */
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../threads/threads.scad>
 
 /* [PELA Vive Tracker Screw Options] */

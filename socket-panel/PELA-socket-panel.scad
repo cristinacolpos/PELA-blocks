@@ -15,13 +15,13 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files:
-    use <block.scad>
+    use <PELA-block.scad>
 */
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 
 /* [PELA Panel Options] */
 
@@ -32,7 +32,7 @@ l = 8;
 w = 8;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
+corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius = 1.5;
@@ -53,23 +53,23 @@ socket_panel();
 /////////////////////////////////////
 
 // Accept knobs from both top and bottom surface
-module socket_panel(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
+module socket_panel(l=l, w=w, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
     
-    socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin, block_height=block_height);
+    socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin, block_height=block_height);
 
     translate([0, block_width(w), panel_height(block_height=block_height)]) {
         rotate([180, 0, 0]) {
-            socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);
+            socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);
         }
     }
 }
 
 
 // Accept knobs from the bottom surface only
-module socket_panel_one_sided(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin, block_height=block_height) {
+module socket_panel_one_sided(l=l, w=w, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin, block_height=block_height) {
     
     intersection() {
-        PELA_technic_block(l=l, w=w, h=1, top_vents=false, solid_bottom_layer=true, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height);
+        PELA_technic_block(l=l, w=w, h=1, top_vents=false, solid_bottom_layer=true, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height);
 
         translate([skin, skin, 0]) {
             cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height(block_height=block_height)]);

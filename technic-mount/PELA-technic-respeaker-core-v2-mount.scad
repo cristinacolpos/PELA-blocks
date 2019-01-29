@@ -23,8 +23,8 @@ that may be hidden by the sensible default values. This is an evolving art.
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
@@ -178,7 +178,7 @@ module respeaker_base() {
 
     translate([block_width(11), block_width(1), block_height(3)]) {
         rotate([0, 180, 0]) {
-            PELA_knob_panel(l=10, w=5, top_vents=false, solid_bottom_layer=true, bolt_holes=false, knobs=true, sockets=false);
+            PELA_knob_panel(l=10, w=5, top_vents=false, solid_bottom_layer=true, corner_bolt_holes=false, knobs=true, sockets=false);
         }
     }
 }

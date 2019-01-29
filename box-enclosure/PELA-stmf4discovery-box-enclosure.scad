@@ -21,8 +21,8 @@ Import this into other design files:
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 include <PELA-box-enclosure.scad>
@@ -54,13 +54,13 @@ board_thickness = 1.8;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
+// Add a shell around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
+// Add a shell around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -73,7 +73,7 @@ bottom_vents = false;
 knob_vent_radius = 0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
-bolt_holes = true;
+corner_bolt_holes = true;
 
 // Bottom of enclosure
 bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]

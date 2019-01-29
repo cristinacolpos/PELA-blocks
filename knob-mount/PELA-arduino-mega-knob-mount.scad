@@ -23,8 +23,8 @@ that may be hidden by the sensible default values. This is an evolving art.
 
 include <../print-parameters.scad>
 include <../parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <PELA-knob-mount.scad>
 
@@ -90,6 +90,6 @@ module arduino_mega_board_mount(length=length, width=width, h=h, thickness=thick
         l = fit_mm_to_pela_blocks(i=length, tightness=length_tightness);
         w = fit_mm_to_pela_blocks(i=width, tightness=width_tightness);
 
-        bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, bolt_holes=bolt_holes, sockets=sockets, block_height=block_height);
+        bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, block_height=block_height);
     }
 }

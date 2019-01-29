@@ -22,13 +22,13 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files:
-    use <block.scad>
+    use <PELA-block.scad>
 */
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <../threads/threads.scad>
 
@@ -47,7 +47,7 @@ top_vents = true;
 solid_bottom_layer = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
+corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius = 1.5;
@@ -155,7 +155,7 @@ module alignment_pin(block_height=block_height) {
 module PELA_vive_tracker_mount(block_height=block_height) {
     difference() {
         union() {
-            socket_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
+            socket_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
 
             translate([block_width(), 2.4+block_width(1.5), panel_height()]) {
                 vive_connector();

@@ -15,13 +15,13 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files:
-    use <block.scad>
+    use <PELA-block.scad>
 */
 
 include <../print-parameters.scad>
 include <../parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <PELA-knob-panel.scad>
 
 /* [PELA Panel Options] */
@@ -38,7 +38,7 @@ top_vents = true;
 solid_bottom_layer = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = true;
+corner_bolt_holes = true;
 
 // Presence of top connector knobs (vs flat)
 knobs = true;
@@ -63,13 +63,13 @@ PELA_double_sided_knob_panel();
 // PELA PANEL modules
 /////////////////////////////////////
 
-module PELA_double_sided_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, skip_edge_knobs=skip_edge_knobs, block_height=block_height) {
+module PELA_double_sided_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, skip_edge_knobs=skip_edge_knobs, block_height=block_height) {
 
-PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
+PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
     
     translate([0, block_width(w), panel_height(block_height=block_height)]) {
         rotate([180, 0, 0]) {
-            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
+            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
         }
     }
 }
