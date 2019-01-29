@@ -34,10 +34,10 @@ use <../threads/threads.scad>
 
 /* [PELA Panel Options] */
 
-// Length of the block (PELA unit count)
+// Length of the block [blocks]
 l = 6; 
 
-// Width of the block (PELA unit count)
+// Width of the block [blocks]
 w = 6;
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -110,7 +110,7 @@ cut = 0.8;
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 PELA_vive_tracker_mount();
@@ -119,7 +119,7 @@ PELA_vive_tracker_mount();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module thumbscrew_hole(block_height=block_height) {

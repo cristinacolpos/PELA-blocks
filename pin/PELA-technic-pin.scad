@@ -55,7 +55,7 @@ minimum_base = true;
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 pin();
@@ -71,7 +71,7 @@ function technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length
 
 
 //////////////////
-// Modules
+// MODULES
 //////////////////
 
 module axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length) {

@@ -37,7 +37,7 @@ translate([10, 0]) {
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module us_bolt_thread(dInch=0.25, hInch=1, tpi=20) {

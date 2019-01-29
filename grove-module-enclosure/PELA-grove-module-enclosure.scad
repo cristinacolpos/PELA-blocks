@@ -21,13 +21,13 @@ use <../PELA-technic-block.scad>
 use <../support/support.scad>
 
 /* [Grove Enclosure Options] */
-// Length of the enclosure (PELA unit count)
+// Length of the enclosure [blocks]
 l = 4; 
 
-// Width of the enclosure (PELA unit count)
+// Width of the enclosure [blocks]
 w = 2;
 
-// Height of HALF the enclosure (PELA unit count)
+// Height of HALF the enclosure [blocks]
 h = 2;
 
 // Interior fill for layers above the bottom
@@ -88,7 +88,7 @@ print_supports = true;
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 rotate([0, 0, 180]) {

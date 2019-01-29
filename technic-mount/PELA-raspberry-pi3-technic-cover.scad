@@ -46,7 +46,7 @@ twist_width = 2; // How many blocks in from width ends do the technic holes rota
 
 
 ///////////////
-// Display
+// DISPLAY
 ///////////////
 
 technic_cover(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width);

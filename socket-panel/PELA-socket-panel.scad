@@ -25,10 +25,10 @@ use <../PELA-technic-block.scad>
 
 /* [PELA Panel Options] */
 
-// Length of the block (PELA unit count)
+// Length of the block [blocks]
 l = 8; 
 
-// Width of the block (PELA unit count)
+// Width of the block [blocks]
 w = 8;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
@@ -47,7 +47,7 @@ top_vents = false;
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 socket_panel();
@@ -56,7 +56,7 @@ socket_panel();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module socket_panel(l=l, w=w, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {

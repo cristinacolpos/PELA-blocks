@@ -38,7 +38,7 @@ two_color_print = true;    // Optional local model override of print_parameters.
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 translate([0, 0, block_height()]) {

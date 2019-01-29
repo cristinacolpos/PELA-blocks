@@ -35,7 +35,7 @@ h=1; // Height
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 technic_bar();
@@ -43,7 +43,7 @@ technic_bar();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module technic_bar(l=l, h=h, side_holes=2, block_width=block_width) {

@@ -37,7 +37,7 @@ side_holes = 0;
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module PELA_calibration_set(l=l, w=w, h=h,  calibration_block_increment=calibration_block_increment, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, corner_bolt_holes=corner_bolt_holes, block_height=block_height, knobs=knobs) {

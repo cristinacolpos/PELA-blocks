@@ -117,14 +117,14 @@ center_type = 0; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end 
 
 
 ///////////////////////////////
-// Display
+// DISPLAY
 ///////////////////////////////
 
 PELA_sparkfun_pro_micro_box_enclosure();
 
 
 ///////////////////////////////////
-// Modules
+// MODULES
 ///////////////////////////////////
 
 module PELA_sparkfun_pro_micro_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_upper_layers=solid_upper_layers, retainer_tab_radius=retainer_tab_radius, center_type=center_type) {
