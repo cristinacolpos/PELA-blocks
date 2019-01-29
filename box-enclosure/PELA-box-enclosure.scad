@@ -27,15 +27,15 @@ use <../socket-panel/PELA-socket-panel.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 
 
-/* [PELA Box Option] */
+/* [PELA Enclosure Option] */
 
-// Length of the enclosure including two for walls (PELA knob count)
+// Length of the enclosure including two for walls [blocks]
 l = 6;
 
-// Width of the enclosure including two for walls (PELA knob count)
+// Width of the enclosure including two for walls [blocks]
 w = 4;
 
-// Height of the enclosure (PELA block layer count)
+// Height of the enclosure [mm]
 h = 1;
 
 // Presence of bottom connector sockets
@@ -44,7 +44,7 @@ sockets = true;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
-// Add a shell around side holes (disable for extra ventilation, enable for connector lock notches)
+// Add a shell around side holes (disable for extra ventilation, enable for lock notch fit)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
@@ -104,6 +104,7 @@ center_type = 0; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end 
 // Number of knobs at the edge of a bottom panel to omit (this will leave space for example for a nearby top wall or technic connectors)
 skip_edge_knobs = 1;
 
+// Height of each block
 block_height = 9.6;
 
 

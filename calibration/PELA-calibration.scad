@@ -42,6 +42,7 @@ side_sheaths = true;
 
 end_sheaths = true;
 
+// Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
 knobs = true;

@@ -151,7 +151,7 @@ module PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob
 }
 
 
-// Holes cut into the sides for the block on layer 1 to allow technics pins and axles to be inserted
+// Holes cut into the sides for the block on layer 1 to allow technic pins and axles to be inserted
 module bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, block_height=block_height, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height) {
     
     for (i = [1:h]) {

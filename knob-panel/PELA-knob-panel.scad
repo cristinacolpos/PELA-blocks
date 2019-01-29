@@ -31,6 +31,7 @@ l = 8;
 // Width of the block (PELA unit count)
 w = 8;
 
+// Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
 // Interior fill for layers above the bottom
@@ -51,9 +52,11 @@ bottom_stiffener_height = 0;
 // How many outside rows and columns on all edges to omit before adding knobs
 skip_edge_knobs = 0;
 
-/////////////////////////////////////
-// PELA panel display
-/////////////////////////////////////
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
 
 PELA_knob_panel();
 

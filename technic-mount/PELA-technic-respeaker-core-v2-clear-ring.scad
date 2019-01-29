@@ -31,5 +31,10 @@ use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <PELA-technic-respeaker-core-v2-mount.scad>
 
+
+///////////////////////////////
+// Display
+///////////////////////////////
+
 translate([0, 0, block_height()])
     clear_ring();

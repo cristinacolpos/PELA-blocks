@@ -89,14 +89,18 @@ top_vents = true;
 knob_vent_radius = 0;
 
 
-////////////////////
-// Test print
-////////////////////
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
+
 motor_enclosure_bottom();
 
 translate([0, block_width(w + 0.5), 0]) {
     motor_enclosure_top();
 }
+
 
 
 ////////////////////

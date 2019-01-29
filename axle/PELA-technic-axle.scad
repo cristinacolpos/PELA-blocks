@@ -21,26 +21,27 @@ include <../parameters.scad>
 include <../print-parameters.scad>
 use <../PELA-block.scad>
 
-/* [Technic Pin Options] */
+/* [Technic Axle Options] */
 
-// Axle length
+// Axle length [mm]
 axle_length = block_width(3);
 
-// An axle which fits loosely in a technic bearing hole
+// An axle which fits loosely in a technic bearing hole [mm]
 axle_radius = 2.2;
 
-// Size of the hollow inside an axle
+// Size of the hollow inside an axle [mm]
 axle_center_radius=axle_radius/2;
 
-///////////////
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
 
 axle();
-
-    
-//////////////////
+  
 
 
-// A round rotation axle
 module axle(axle_radius=axle_radius, axle_center_radius=axle_center_radius, axle_length=axle_length) {
 
     difference() {

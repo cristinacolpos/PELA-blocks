@@ -24,11 +24,13 @@ include <../print-parameters.scad>
 include <../parameters.scad>
 use <../PELA-block.scad>
 
-////////////////////////////
-// Test print
-///////////////////////////
 
-// A twisting triangle support column
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
+
 support_set(l=4, w=3, height=10);
 
 

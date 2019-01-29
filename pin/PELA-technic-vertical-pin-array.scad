@@ -32,9 +32,13 @@ minimum_base = true;
 // Size of the connector lock-in bump at the ends of a Pin
 pin_tip_length = 0.7;
 
-///////////////
+
+
+
+///////////////////////////////
 // Display
-///////////////
+///////////////////////////////
+
 vertical_pin_array();
 
 

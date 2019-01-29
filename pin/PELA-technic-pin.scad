@@ -51,17 +51,23 @@ array_spacing = block_width();
 // Trim the base connecting a pin array to the minimum rounded shape
 minimum_base = true;
 
-///////////////
+
+
+
+///////////////////////////////
 // Display
-//////////////
+///////////////////////////////
 
 pin();
+
+
 
 //////////////////
 // Functions
 //////////////////
 
 function technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height) = (peg_length+pin_tip_length)*2 + counterbore_holder_height;
+
 
 
 //////////////////

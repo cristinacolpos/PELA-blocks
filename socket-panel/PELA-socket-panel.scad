@@ -40,10 +40,15 @@ bolt_hole_radius = 1.5;
 // Presence of top connector knobs
 knobs = true;
 
+// Add holes in the top deck to improve airflow and reduce weight
+top_vents = false;
 
-/////////////////////////////////////
-// PELA panel display
-/////////////////////////////////////
+
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
 
 socket_panel();
 

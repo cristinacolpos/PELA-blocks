@@ -48,19 +48,19 @@ board_h = 3.2;
 // Thickness, including some extra for insertion
 board_thickness = 1.7;
 
-// Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 0;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+// Holes spaced along the length for techic connectors
+side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a shell around side holes (disable for extra ventilation, enable for connector lock notches)
+// A shell around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
-// Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+// Short end holes spaced along the width for PELA Techics connectors
+end_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a shell around end holes  (disable for extra ventilation, enable for connector lock notches)
+// A shell around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]
 
-// Add holes in the top deck to improve airflow and reduce weight
+// Holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
 // Add holes in the bottom deck to improve airflow and reduce weight (only used with bottom_type==2, knob panel)
@@ -75,48 +75,50 @@ corner_bolt_holes = true;
 // Bottom of enclosure
 bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
-// Create the left wall
+// Include the left wall
 left_wall_enabled = false;
 
-// Create the right wall
+// Include the right wall
 right_wall_enabled = true;
 
-// Create the front wall
+// Include the front wall
 front_wall_enabled = true;
 
-// Create the back wall
+// Include the back wall
 back_wall_enabled = true;
 
-// Side snap size, block units. Wider is stronger and more stiff
+// Side snap size, block units. Wider is stronger and more stiff [mm]
 flexture_width = 1;
 
-// Width of flexture spacings from the rest of the side wall
+// Width of flexture spacings from the rest of the side wall [mm]
 side_snap_cut_width = 0.5;
 
-// Depth into the side walls of the cut (block units, larger value means thicker/stiffer flexture)
+// Depth into the side walls of the cut (block units, larger value means thicker/stiffer flexture) [mm]
 side_snap_cut_depth = 0.3;
 
-// Block with units in from board ends where the side snaps are placed
+// Block with units in from board ends where the side snaps are placed [mm]
 side_snap_end_inset = 1.5;
 
-// Size of the bump which holds the board down (part of the snap inset flexture)
+// Size of the bump which holds the board down (part of the snap inset flexture) [mm]
 retainer_tab_radius = 0.5;
 
-// Distance from the bottom for the retainer tabs
+// Distance from the bottom for the retainer tabs [mm]
 retainer_tab_height = 5;
 
-// Size of the space for cable access on the enclosure end
+// Size of the space for cable access on the enclosure end [mm]
 connector_hole_radius = 0;
 
-// Height of the flexture which allows the board to slide past the retainer tab (block height count)
+// Height of the flexture which allows the board to slide past the retainer tab (block height count) [mm]
 side_fexture_cut_height = 0.93;
 
 solid_upper_layers = true;
 
-center_type = 0; // No fill in center
+center_type = 0; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
-/////////////////////////////////////
-// PELA Box Enclosure Display
+
+///////////////////////////////
+// Display
+///////////////////////////////
 
 PELA_sparkfun_pro_micro_box_enclosure();
 

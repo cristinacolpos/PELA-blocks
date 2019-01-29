@@ -34,14 +34,26 @@ use <../socket-panel/PELA-socket-panel.scad>
 use <PELA-raspberry-pi3-technic-mount.scad>
 include <PELA-technic-board-mount.scad>
 
+
 /* [Technic Cover Options] */
+
 length = 35; // board space length [mm]
+
 width = 35; // board space width [mm]
+
 length_tightness = 1.0; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+
 width_tightness = 1.0; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+
 twist_length = 1; // Distance from length ends to rotate 90 degrees [blocks]
+
 twist_width = 1; // Distance from width ends to rotate 90 degrees [blocks]
 
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
 
 technic_cover();
 

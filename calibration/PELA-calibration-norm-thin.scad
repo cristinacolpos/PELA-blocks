@@ -28,9 +28,8 @@ flexible_material = false;
 large_nozzle = false;
 
 
-
-/////////////////////////////////////
-// PELA Calibration Display
-/////////////////////////////////////
+///////////////////////////////
+// Display
+///////////////////////////////
 
 PELA_calibration_bar(flexible_material=flexible_material, large_nozzle=large_nozzle);

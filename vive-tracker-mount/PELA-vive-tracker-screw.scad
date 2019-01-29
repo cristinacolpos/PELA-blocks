@@ -44,9 +44,11 @@ dInch=1/4;
 // Thumbscrew total height (inches)
 hInch=1/4;
 
-/////////////////////////////////////
-// PELA vive mount screw display
-/////////////////////////////////////
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
 
 thumbscrew();
 
@@ -63,7 +65,7 @@ module thumbscrew() {
 }
 
 
-module thumbscrew_head(height=undef) {
+module thumbscrew_head(height=height) {
     cylinder(d=thumbscrew_border_d/2, h=height);
 
     difference() {

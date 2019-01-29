@@ -81,13 +81,17 @@ y4 = y3 - 47.9;
 base_thickness = 2;
 
 
-///////////////
+
+///////////////////////////////
 // Display
-///////////////
+///////////////////////////////
+
 rotate([180, 0, 0]) {
     respeaker_core_v2_technic_mount();
 }
 // respeaker_core_v2_technic_top();
+
+
 
 module respeaker_core_v2_technic_top(two_color_print=two_color_print) { 
     difference() {

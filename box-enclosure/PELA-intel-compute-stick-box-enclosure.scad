@@ -27,22 +27,27 @@ include <PELA-box-enclosure.scad>
 
 /* [PELA Box Option] */
 
-// Length of the enclosure including two for walls (PELA knob count)
+// Length of the enclosed object [mm]
 length = 114.5;
 
+// How close to the object ends should the walls be [ratio]
 length_tightness = 2;
 
-// Width of the enclosure including two for walls (PELA knob count)
+// Width of the enclosed object [mm]
 width = 38.5;
 
+// How close to the object sides should the walls be [ratio]
 width_tightness = 2;
 
+// Height of the enclosed object [mm]
 height = 12.5;
 
+// How close to the object top and bottom should the walls be [ratio]
 height_tightness = 0.8;
 
-bottom_type = 2;
+bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
+// Add holes in the top deck to improve airflow and reduce weight
 top_vents = true;
 
 side_holes = 2;
@@ -58,8 +63,14 @@ solid_upper_layers = true;
 // Should the middle of the box be a solid block or empty. Other designs will typically then cut from this solid block to support something inside the enclosure.
 center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
-// Display 
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
+
 intel_compute_stick_box_enclosure();
+
 
 
 module intel_compute_stick_box_enclosure() {

@@ -33,33 +33,60 @@ use <PELA-knob-mount.scad>
 ////////////////////
 
 length = 28.7;
+
 width = 10.6;
+
 thickness = 1.7;
+
 h = 1;
+
 undercut = 12.3; // How far below the bottom of the board surface parts protude (not indlucing big things like an SD card holder)
+
 innercut = 1; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
+
 bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+
+// Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
+
 side_holes = 3;
+
 end_holes = 0;
+
 side_sheaths = true;
+
 end_sheaths = false;
+
 left_wall_enabled = true;
+
 right_wall_enabled = true;
+
 front_wall_enabled = true;
+
 back_wall_enabled = true;
+
 knobs_on_top = true;
+
 left_wall_knobs = false;
+
 right_wall_knobs = true;
+
 front_wall_knobs = true;
+
 back_wall_knobs = true;
+
 solid_upper_layers = false;
+
 solid_bottom_layer = true;
+
 center_type = 2; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
 board_x_offset = -1;
+
 board_y_offset = 0;
+
 board_z_offset = -thickness;
+
 top_edge_height = 2;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
@@ -70,9 +97,12 @@ width_tightness = 1.5;
 
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
-///////////
+
+
+///////////////////////////////
 // Display
-///////////
+///////////////////////////////
+
 esp32_board_mount();
 
 

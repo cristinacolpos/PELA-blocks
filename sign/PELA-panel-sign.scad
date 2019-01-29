@@ -93,17 +93,19 @@ sockets = true;
 // Presence of top connector knobs
 knobs = false;
 
-/////////////////////////////////////
-// PELA Flat Sign Display
-//
+
+
+///////////////////////////////
+// Display
+///////////////////////////////
+
 // Enable these one at a time if a dual-color print
 
 color("white") PELA_flat_sign();
 color("green") PELA_flat_sign_extruded_text();
 
-///////////////////////////////////
 
-// A PELA block with text on the top
+
 module PELA_flat_sign(l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
     
     if (extrude) {

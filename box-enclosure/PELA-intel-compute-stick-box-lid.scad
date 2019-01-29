@@ -25,8 +25,6 @@ use <PELA-box-enclosure.scad>
 use <PELA-intel-compute-stick-box-enclosure.scad>
 
 
-/* [PELA Box Option] */
-
 ////////////
 // Display
 ////////////
