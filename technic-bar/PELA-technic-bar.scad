@@ -21,15 +21,18 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../print-style.scad>
+include <../print-parameters.scad>
 include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 
-/* [Technic Pin Array Options] */
+/* [Technic Bar Options] */
 
-l=15; // Length
-h=1; // Height
+// Length [blocks]
+l = 15;
+
+// Height [blocks]
+h = 1;
 
 
 
@@ -47,6 +50,8 @@ technic_bar();
 ///////////////////////////////////
 
 module technic_bar(l=l, h=h, side_holes=2, block_width=block_width) {
+    assert(l > 0, "Technic bar length must be greater than zero");
+
     l2 = l + 1;
 
     translate([block_width(-1, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {

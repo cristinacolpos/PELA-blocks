@@ -22,7 +22,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 */
 
 include <../style.scad>
-include <../print-style.scad>
+include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
@@ -34,23 +34,32 @@ include <PELA-technic-board-mount.scad>
 
 /* [Technic Pin Array Options] */
 
-length = 39.5; // board space length [mm]
+// Board space length [mm]
+length = 39.5;
 
-width = 39.5; // board space width [mm]
+// Board space width [mm]
+width = 39.5;
 
-length_tightness = 1; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+// Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+length_tightness = 1;
 
-width_tightness = 1; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+// Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+width_tightness = 1;
 
-twist_length = 2; // 90 degree rotation from length ends [blocks]
+// 90 degree rotation from length ends [blocks]
+twist_length = 2;
 
-twist_width = 2; // 90 degree rotation from width ends [blocks]
+// 90 degree rotation from width ends [blocks]
+twist_width = 2;
 
-thickness = 1.8; // board space thickness [mm]
+// Board space thickness [mm]
+thickness = 1.8;
 
-undercut = 2.3; // Extrude down below board center to make space for components and cooling [mm]
+// Extrude down below board center to make space for components and cooling [mm]
+undercut = 2.3;
 
-innercut = 2; // Step in from board space edges to support the board [mm]
+// Step in from board space edges to support the board [mm]
+innercut = 2;
 
 
 
@@ -66,7 +75,7 @@ pi_camera_technic_mount();
 // MODULES
 ///////////////////////////////////
 
-module pi_camera_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, undercut=undercut, innercut=innercut) {
+module pi_camera_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
 
-    technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, undercut=undercut, innercut=innercut);
+    technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut);
 }

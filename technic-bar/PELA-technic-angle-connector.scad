@@ -21,7 +21,7 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../print-style.scad>
+include <../print-parameters.scad>
 include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
@@ -29,7 +29,10 @@ use <PELA-technic-bar.scad>
 
 /* [Technic Pin Array Options] */
 
+// Angle between the top and bottom parts of the connector [degrees]
 angle = 30;
+
+// Length of the connector [blocks]
 l = 7;
 
 
@@ -38,7 +41,7 @@ l = 7;
 // DISPLAY
 ///////////////////////////////
 
-mount_30degree();
+technic_angle_connector();
 
 
 
@@ -46,7 +49,9 @@ mount_30degree();
 // MODULES
 ///////////////////////////////////
 
-module mount_30degree(angle=angle, l=l) {
+module technic_angle_connector(angle=angle, l=l) {
+    assert(angle >= 0, "Angle connector must be 0-180 degrees")
+    assert(angle <= 180, "Angle connector must be 0-180 degrees")
 
     translate([0, 0, block_height(1)]) {
         rotate([angle, 0, 0]) {

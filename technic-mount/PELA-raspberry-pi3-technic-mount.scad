@@ -22,7 +22,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 */
 
 include <../style.scad>
-include <../print-style.scad>
+include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
@@ -36,13 +36,22 @@ include <PELA-technic-board-mount.scad>
 /* [Raspberry Pi3 Technic Mount Options] */
 
 length = 86.2; // board space length [mm]
+
 width = 56.8; // board space width [mm]
-length_tightness = 1.5; // closeness of board fit lengthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
-width_tightness = 1.5; // closeness of board fit widthwise inside a ring of blocks [blocks/blocks] (increase to make outer box slightly larger)
+
+length_tightness = 1.5; // closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+
+width_tightness = 1.5; // closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+
 twist_length = 2; // How many blocks in from  length ends do the technic holes rotate 90 degrees
+
 twist_width = 2; // How many blocks in from width ends do the technic holes rotate 90 degrees
+
 thickness = 1.9; // board space height [mm]
-innercut = 0.8; // Step in from board space edges to support the board [mm]
+
+// Step in from board space edges to support the board [mm]
+innercut = 0.8;
+
 bottom_corner_bolt_holes = true; // Mounting holes inset from the corners
 
 

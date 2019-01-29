@@ -21,18 +21,21 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../print-style.scad>
+include <../print-parameters.scad>
 include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <PELA-technic-bar.scad>
 
-/* [Technic Pin Array Options] */
+/* [Technic Twist Bar Options] */
 
+// Left side length of upward facing connectors [blocks]
 left = 2;
 
+// Center length of sideways facing connectors [blocks]
 center = 4;
 
+// Right side length of upward facing connectors [blocks]
 right = 2;
 
 
@@ -50,6 +53,9 @@ technic_twist_bar();
 ///////////////////////////////////
 
 module technic_twist_bar(left=left, center=center, right=right) {
+    assert(left > 0, "Left side of twist bar must be at least 1")
+    assert(center >= 0, "Center of twist bar must be at least 0")
+    assert(right > 0, "Right side of twist bar must be at least 1")
 
     if (center == 0) {
         technic_bar(l=left+right);
@@ -77,7 +83,7 @@ module square_end_bar(l=4) {
             technic_bar(l=l+2);
         }
 
-#       bar_space(l=l);
+       bar_space(l=l);
     }
 }
 
@@ -88,7 +94,7 @@ module right_square_end_bar(l=4) {
             technic_bar(l=l+1);
         }
 
-#       bar_space(l=l);
+       bar_space(l=l);
     }
 }
 

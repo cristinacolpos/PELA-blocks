@@ -22,7 +22,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 */
 
 include <../style.scad>
-include <../print-style.scad>
+include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
@@ -34,47 +34,67 @@ use <../knob-panel/PELA-knob-panel.scad>
 
 /* [Model Options] */
 
-two_color_print = true;    // Optional local model override of print_style.scad
+// Prepare the model to print in two colors
+two_color_print = true;
 
-center_support_spokes = !two_color_print; // Can change according to preference
+// Can change according to preference
+center_support_spokes = !two_color_print;
 
 width = 88;
+
 thickness = 1.9;
-innercut = 0.5; // How far in from the outside edges the board support can extend without hitting board bottom surface parts
+
+// Step in from board space edges to support the board [mm]
+innercut = 0.5;
 
 side_length = 8; // blocks
 
 // Mounting hole centers
 side = (width/2) / sin(60);
+
 top = side + side*sin(30);
+
 mount_d = 5.5;
+
 mount_h = block_height(3) - 2;
+
 mount_pin_d = 2.7;
+
 center_height = 4;
+
 spoke_width=6;
 
 // Origin for the board model and board mounting holes
 outer_width = 2*block_width(side_length + 0.25)*sin(30);
+
 board_spacing = (side + sin(30)*side - outer_width)/2;
+
 ox = board_spacing*cos(30);
+
 oy = board_spacing*sin(30);
+
 center_y = block_width(side_length)/2 - block_width(0.5);
+
 center_x = block_width(side_length - 0.5)*cos(30) - block_width(0.5)*cos(30);
 
 // Orange
 x1 = width - 46 - 29.1;
+
 y1 = top - 20.8;
 
 // Yellow
 x2 = x1;
+
 y2 = top - 20.8 - 5.5 - 47.9 - 5.1;
 
 // Pink
 x3 = width - 29.1;
+
 y3 = top - 20.8 - 5.5;
 
 // Grey
 x4 = width - 29.1;
+
 y4 = y3 - 47.9;
 
 // Base

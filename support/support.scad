@@ -20,7 +20,7 @@ Import this into other design files:
     use <support/support.scad>
 */
 
-include <../print-style.scad>
+include <../print-parameters.scad>
 include <../style.scad>
 use <../PELA-block.scad>
 

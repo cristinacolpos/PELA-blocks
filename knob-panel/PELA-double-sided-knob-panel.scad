@@ -18,7 +18,7 @@ Import this into other design files:
     use <PELA-block.scad>
 */
 
-include <../print-style.scad>
+include <../print-parameters.scad>
 include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
@@ -48,7 +48,7 @@ knobs = true;
 sockets = true;
 
 // Height of horizontal surface strengthening slats (appears between the bottom rings)
-bottom_stiffener_height = 0;
+bottom_stiffener_height = 0.0;
 
 // How many outside rows and columns on all edges to omit before adding knobs
 skip_edge_knobs = 0;

@@ -22,7 +22,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 */
 
 include <../style.scad>
-include <../print-style.scad>
+include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
@@ -48,7 +48,8 @@ twist_width = 2; // How many blocks in from width ends do the technic holes rota
 
 thickness = 1.8; // Board space height [mm]
 
-innercut = 2; // Step in from board space edges to support the board [mm]
+// Step in from board space edges to support the board [mm]
+innercut = 2;
 
 
 
