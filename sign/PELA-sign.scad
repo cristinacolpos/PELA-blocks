@@ -23,14 +23,14 @@ Open source design, Powered By Futurice. Come work with the best.
 
 Import this into other design files:
     use <PELA-sign.scad>
-    use <../block.scad>
-    use <../technic-block.scad>
+    use <../PELA-block.scad>
+    use <../PELA-technic-block.scad>
 */
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 
 /* [PELA Sign Options] */
 
@@ -88,20 +88,20 @@ ridge_depth = 0.3;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = false;
 
-// Add a sheath around Technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a shell around Technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a sheath around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a shell around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
+corner_bolt_holes = false;
 
 /////////////////////////////////////
 // PELA Sign Display
@@ -111,10 +111,10 @@ PELA_sign();
 ///////////////////////////////////
 
 // A PELA block with text on the side
-module PELA_sign(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, bolt_holes=bolt_holes) {
+module PELA_sign(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes) {
     
     if (extrude) {
-        PELA_technic_block(l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, bolt_holes=bolt_holes);
+        PELA_technic_block(l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes);
         
         translate([skin, skin, 0])
             PELA_sign_extruded_text(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
@@ -126,7 +126,7 @@ module PELA_sign(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude
         }
     } else {
         difference() {
-            PELA_technic_block(l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, bolt_holes=bolt_holes);
+            PELA_technic_block(l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes);
             
             union() {
                 translate([skin, 0, 0])

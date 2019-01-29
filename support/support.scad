@@ -22,7 +22,7 @@ Import this into other design files:
 
 include <../print-parameters.scad>
 include <../parameters.scad>
-use <../block.scad>
+use <../PELA-block.scad>
 
 ////////////////////////////
 // Test print

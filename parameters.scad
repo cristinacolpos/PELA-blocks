@@ -42,7 +42,7 @@ sockets = true;
 knobs = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
+corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius = 1.6;
@@ -94,13 +94,13 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a sheath around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a shell around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a sheath around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a shell around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight

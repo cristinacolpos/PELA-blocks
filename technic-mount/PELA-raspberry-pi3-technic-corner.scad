@@ -23,15 +23,15 @@ that may be hidden by the sensible default values. This is an evolving art.
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <PELA-raspberry-pi3-technic-mount.scad>
-include <PELA-technic-board-mount.scad>
+// include <PELA-technic-board-mount.scad>
 
 ///////////////
 // Display
@@ -41,10 +41,8 @@ pi3_corner();
 
 
 module pi3_corner() {
-    translate([0, 0, block_height(1)]) {
+    technic_bar(l=2);
+    rotate([0, 0, 90]) {
         technic_bar(l=2);
-        rotate([0, 0, 90]) {
-            technic_bar(l=2);
-        }
     }
 }

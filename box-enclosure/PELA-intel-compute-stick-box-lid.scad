@@ -18,8 +18,8 @@ Work sponsored by
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <PELA-box-enclosure.scad>
 use <PELA-intel-compute-stick-box-enclosure.scad>

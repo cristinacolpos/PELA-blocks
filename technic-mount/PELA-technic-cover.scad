@@ -23,8 +23,8 @@ that may be hidden by the sensible default values. This is an evolving art.
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
@@ -65,7 +65,7 @@ module technic_cover(length=length, width=width, twist_length=twist_length, twis
         technic_rectangle(l1=twist_length, l2=l2, l3=twist_length, w1=twist_width, w2=w2, w3=twist_width);
         
         translate([block_width(0.5), block_width(0.5), 0]) {
-            socket_panel(l=l-2, w=w-2, bolt_holes=false, skin=0, block_height=block_height);
+            socket_panel(l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height);
         }
     }        
 }

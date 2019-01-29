@@ -17,7 +17,7 @@ Open source design, Powered By Futurice. Come work with the best.
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
+use <../PELA-block.scad>
 use <PELA-technic-axle.scad>
 
 /* [Technic Pin Options] */

@@ -21,8 +21,8 @@ Import this into other design files:
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 
@@ -44,13 +44,13 @@ sockets = true;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
-// Add a sheath around side holes (disable for extra ventilation, enable for connector lock notches)
+// Add a shell around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 3;  // [0:disabled, 1:short air vents, 2:full length connectors, 3:short connectors]
 
-// Add a sheath around end holes  (disable for extra ventilation, enable for connector lock notches)
+// Add a shell around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -63,7 +63,7 @@ bottom_vents = true;
 knob_vent_radius = 0;
 
 // There is usually no need or room for corner mounting M3 bolt holes
-bolt_holes = true;
+corner_bolt_holes = true;
 
 // Bottom of enclosure
 bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
@@ -134,9 +134,9 @@ module PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_
         }
 
         union() {    
-            bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=3, bolt_holes=false, sockets=sockets, block_height=block_height);
+            bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=3, corner_bolt_holes=false, sockets=sockets, block_height=block_height);
 
-            edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes, block_height=block_height);
+            edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
         }
     }
 }
@@ -254,10 +254,10 @@ module bottom_negative_space(l=l, w=w, bottom_type=bottom_type, skin=skin, solid
 
 
 // Space for the edge connectors
-module edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, bolt_holes=bolt_holes, block_height=block_height) {
+module edge_connector_negative_space(l=l, w=w, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, corner_bolt_holes=corner_bolt_holes, block_height=block_height) {
 
     if (bottom_type > 0) {
-        bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, bolt_holes=bolt_holes, sockets=sockets, block_height=block_height);
+        bottom_connector_negative_space(l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, corner_bolt_holes=corner_bolt_holes, sockets=sockets, block_height=block_height);
     }
 }
 
@@ -270,9 +270,9 @@ module enclosure_bottom(l=l, w=w, bottom_type=bottom_type, skin=skin, skip_edge_
             cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height(block_height=block_height)]);
         }
     } else if (bottom_type==2) {
-        socket_panel_one_sided(l=l, w=w, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);    
+        socket_panel_one_sided(l=l, w=w, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);    
     } else if (bottom_type==3) {
-        PELA_knob_panel(l=l, w=w, top_vents=bottom_vents, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skin=skin, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
+        PELA_knob_panel(l=l, w=w, top_vents=bottom_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skin=skin, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
    }
 }
 

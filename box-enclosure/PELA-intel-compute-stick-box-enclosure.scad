@@ -18,8 +18,8 @@ Work sponsored by
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 include <PELA-box-enclosure.scad>
@@ -138,5 +138,5 @@ module intel_compute_stick_box_lid(block_height=block_height) {
     l=fit_mm_to_pela_blocks(length, length_tightness);
     w=fit_mm_to_pela_blocks(width, width_tightness);
 
-    socket_panel(l=l, w=w, bolt_holes=bolt_holes, block_height=block_height);
+    socket_panel(l=l, w=w, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
 }

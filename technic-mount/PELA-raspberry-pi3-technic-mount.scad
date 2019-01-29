@@ -23,8 +23,8 @@ that may be hidden by the sensible default values. This is an evolving art.
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../socket-panel/PELA-socket-panel.scad>
@@ -43,7 +43,7 @@ twist_length = 2; // How many blocks in from  length ends do the technic holes r
 twist_width = 2; // How many blocks in from width ends do the technic holes rotate 90 degrees
 thickness = 1.9; // board space height [mm]
 innercut = 0.8; // Step in from board space edges to support the board [mm]
-bottom_bolt_holes = true; // Mounting holes inset from the corners
+bottom_corner_bolt_holes = true; // Mounting holes inset from the corners
 
 ///////////////
 // Display
@@ -86,11 +86,11 @@ module pi3_technic_mount(length=length, width=width, length_tightness=length_tig
         }
     }
 
-    bottom(x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_bolt_holes=bottom_bolt_holes, block_height=block_height);
+    bottom(x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height);
 }
 
 
-module bottom(x, y, l, w, bottom_bolt_holes=bottom_bolt_holes, block_height=block_height) {
+module bottom(x, y, l, w, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
 
     translate([block_width(x) - skin, block_width(y), 0]) {
         skinned_block(l=l, w=w, h=0.25, skin=0, ridge_width=0, ridge_depth=0, block_height=block_height);

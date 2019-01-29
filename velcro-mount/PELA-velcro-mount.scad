@@ -21,40 +21,35 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files:
-    use <block.scad>
+    use <PELA-block.scad>
 */
 
 include <../parameters.scad>
 include <../print-parameters.scad>
-use <../block.scad>
-use <../technic-block.scad>
+use <../PELA-block.scad>
+use <../PELA-technic-block.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 
 
-/* [PELA Panel Options] */
+/* [PELA Velcro Mount Options] */
 
-// Length of the block (PELA unit count)
-l = 4; 
+l = 4; // Length of the mount [blocks]
 
-// Width of the block (PELA unit count)
-w = 4;
+w = 4; // Width of the mount [blocks]
 
-top_vents = false;
+h = 1; // Height of the mount [blocks]
 
 // Interior fill for layers above the bottom
 solid_bottom_layer = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-bolt_holes = false;
+corner_bolt_holes = false;
 
 side_holes = 0;
 
 end_holes = 2;
 
 end_sheaths = 0;
-
-// Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.5;
 
 // Presence of top connector knobs
 knobs = true;
@@ -69,10 +64,10 @@ velcro_mount();
 
 //////////////////////////////
 
-module velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
+module velcro_mount(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
 
     difference() {
-        PELA_technic_block(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, sockets=false, bolt_holes=bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
+        PELA_technic_block(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, sockets=false, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
 
         slot(l=l, w=w, block_height=block_height);
     }
