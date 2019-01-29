@@ -21,8 +21,8 @@ the boilerplate arguments which are passed in to each module or any errors
 that may be hidden by the sensible default values. This is an evolving art.
 */
 
-include <../parameters.scad>
-include <../print-parameters.scad>
+include <../style.scad>
+include <../print-style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
@@ -34,7 +34,7 @@ use <../knob-panel/PELA-knob-panel.scad>
 
 /* [Model Options] */
 
-two_color_print = true;    // Optional local model override of print_parameters.scad
+two_color_print = true;    // Optional local model override of print_style.scad
 
 center_support_spokes = !two_color_print; // Can change according to preference
 

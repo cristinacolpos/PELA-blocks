@@ -11,8 +11,8 @@ Instructions are for Windows, however Linux and OSX are esssentially the same bu
 If you later update the PELA-blocks project to a newer version, you risk overwirting and loosing your calibration customizations. The simplest solution is to create a backup copy those settings.
 
 1. `cd PELA-blocks`
-1. `copy parameters.scad ..\PELA-parameters-backup.scad`
-1. `copy print-parameters.scad ..\PELA-print-parameters-backup.scad`
+1. `copy style.scad ..\PELA-parameters-backup.scad`
+1. `copy print-style.scad ..\PELA-print-parameters-backup.scad`
 
 ## Sparce Checkout
 
