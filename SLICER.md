@@ -15,7 +15,7 @@ Look for `print_supports = true;` in the model to enable or disable print-time s
 
 Made from recycled plastic bottles. Note that the overextrusion is for aesthetics- skip if you don't care about translucency.
 
-## `print_parameters.scad`
+## `print_style.scad`
 
 `large_nozzle = true;` (if nozzle >= 0.5mm)
 
@@ -47,7 +47,7 @@ Made from recycled plastic bottles. Note that the overextrusion is for aesthetic
 
 `Bottom Speed: 40mm/s`
 
-`Support: None`   (see 'PEL-print-parameters.scad' where support can be added to some models)
+`Support: None`   (see 'PEL-print-style.scad' where support can be added to some models)
 
 `Adhesion: Skirt`
 
@@ -63,7 +63,7 @@ Optional Finish: Lightly sand the outer surface and spray with a clear polimer.
 
 A nice engineering co-polimer with good gemetric stability and able to print fast and hold well to the print bed. It has good flexture- more than PET but still rigid.
 
-## `print_parameters.scad`
+## `print_style.scad`
 
 `large_nozzle = true;` (if nozzle >= 0.5mm)
 
@@ -84,7 +84,7 @@ A nice engineering co-polimer with good gemetric stability and able to print fas
 
 # Colorfabb NGEN
 
-## `print_parameters.scad`
+## `print_style.scad`
 
 `large_nozzle = true;` (if nozzle >= 0.5mm)
 
@@ -158,7 +158,7 @@ This is a good material if you are familiar with handling ABS shinkage. This is 
 
 Not all brands of ABS are the same. Village Plastics ABS gives better results than some others.
 
-## `print_parameters.scad`
+## `print_style.scad`
 
 `flexible_filament = false;`
 
@@ -181,7 +181,7 @@ Not all brands of ABS are the same. Village Plastics ABS gives better results th
 
 A very nice material for PELA blocks. Use a bed of watery PVA white glue. Amazing strength, but a bit slippery and and stringy requires cleanup unless the settings are right. Speed is your friend- print fast and retract fast and far, also "coast" at the end of prints to minimize stringing.
 
-## `print_parameters.scad`
+## `print_style.scad`
 
 `flexible_material = true;`
 
@@ -217,7 +217,7 @@ A very nice material for PELA blocks. Use a bed of watery PVA white glue. Amazin
 
 This is one of the most attractive filaments and biodegradable. It is between PLA and ABS is flexability and durability. Make sure you have good bed adhesion and adjust the settings for quick long retraction to minimize stringing in the block bottom connector.
 
-## `print_parameters.scad`
+## `print_style.scad`
 
 `flexible_material = true;`
 

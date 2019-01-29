@@ -25,8 +25,8 @@ Import this into other design files:
     use <PELA-block.scad>
 */
 
-include <../parameters.scad>
-include <../print-parameters.scad>
+include <../style.scad>
+include <../print-style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../socket-panel/PELA-socket-panel.scad>

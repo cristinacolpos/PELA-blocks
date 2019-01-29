@@ -15,7 +15,7 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Imported automatically into other design files when you include parameters:
-    include <parameters.scad>
+    include <style.scad>
  
 
 INSTRUCTIONS
