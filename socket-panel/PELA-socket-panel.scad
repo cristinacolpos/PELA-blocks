@@ -53,11 +53,12 @@ top_vents = false;
 socket_panel();
 
 
-/////////////////////////////////////
-// PELA PANEL modules
-/////////////////////////////////////
 
-// Accept knobs from both top and bottom surface
+
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module socket_panel(l=l, w=w, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
     
     socket_panel_one_sided(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knob_height=knob_height, skin=skin, block_height=block_height);

@@ -74,7 +74,6 @@ function technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length
 // Modules
 //////////////////
 
-// That which is cut away four times from a solid to create a cross axle
 module axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length) {
     
     for (rot=[0:90:270]) {

@@ -116,10 +116,11 @@ cut = 0.8;
 PELA_vive_tracker_mount();
 
 
-/////////////////////////////////////
-// PELA VIVE TRACKER modules
-/////////////////////////////////////
 
+
+///////////////////////////////////
+// Modules
+///////////////////////////////////
 
 module thumbscrew_hole(block_height=block_height) {
     translate([thumscrew_offset_from_edge, block_width(w/2)]) {

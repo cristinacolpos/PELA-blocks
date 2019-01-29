@@ -25,9 +25,8 @@ use <PELA-box-enclosure.scad>
 use <PELA-intel-compute-stick-box-enclosure.scad>
 
 
-////////////
+///////////////////////////////
 // Display
-////////////
-
+///////////////////////////////
 
 intel_compute_stick_box_lid();

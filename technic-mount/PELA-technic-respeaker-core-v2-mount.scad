@@ -93,6 +93,10 @@ rotate([180, 0, 0]) {
 
 
 
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module respeaker_core_v2_technic_top(two_color_print=two_color_print) { 
     difference() {
         union() {

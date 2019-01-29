@@ -30,7 +30,7 @@ axle_length = block_width(3);
 axle_radius = 2.2;
 
 // Size of the hollow inside an axle [mm]
-axle_center_radius=axle_radius/2;
+axle_center_radius = axle_radius/2;
 
 
 
@@ -41,6 +41,11 @@ axle_center_radius=axle_radius/2;
 axle();
   
 
+
+
+/////////////////////////////////////
+// MODULES
+/////////////////////////////////////
 
 module axle(axle_radius=axle_radius, axle_center_radius=axle_center_radius, axle_length=axle_length) {
 

@@ -31,11 +31,15 @@ extrusionNudge = 0.001;
 
 us_bolt_thread();
 
-translate([10, 0]) 
+translate([10, 0]) {
     us_nut_thread();
+}
 
 
-// The thread of a bolt (no head)
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module us_bolt_thread(dInch=0.25, hInch=1, tpi=20) {
     isoThread(dInch=dInch, hInch=hInch, tpi=tpi, internal=false);
 }

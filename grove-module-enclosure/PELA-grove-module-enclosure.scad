@@ -108,7 +108,6 @@ function vertical_offset(block_height=block_height)=(block_height(2*h, block_hei
 // MODULES
 /////////////////////////////////////
 
-// Bottom piece
 module bottom_piece() {
     difference() {
         union() {

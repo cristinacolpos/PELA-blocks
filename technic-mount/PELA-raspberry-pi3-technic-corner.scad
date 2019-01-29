@@ -37,6 +37,12 @@ use <../technic-bar/PELA-technic-bar.scad>
 pi3_corner();
 
 
+
+
+///////////////////////////////////
+// Modules
+///////////////////////////////////
+
 module pi3_corner() {
     technic_bar(l=2);
     rotate([0, 0, 90]) {
