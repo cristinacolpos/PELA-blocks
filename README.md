@@ -270,7 +270,7 @@ ___
 
 [![PELA Grove Module](images/PELA-grove-module-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-grove-module-enclosure.stl)
 
-[3D PELA Grove Module](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-grove-module-enclosure.stl) Attach a Grove module to your build such as a plug-in electronic sensors (ultrasound, touch..) with a 4 wire plug in connector. Snap your design together with no breadboarding and no soldering!
+[3D PELA Grove Module](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-grove-module-enclosure.stl) Attach a SEEED Grove module to your build such as a plug-in electronic sensors (ultrasound, touch..) with a 4 wire plug in connector. Snap your design together without soldering.
 
 ___
 
