@@ -24,11 +24,11 @@ Import this into other design files:
     use <PELA-block.scad>
 */
 
-include <../style.scad>
-include <../print-parameters.scad>
-use <../PELA-block.scad>
-use <../PELA-technic-block.scad>
-use <../knob-panel/PELA-knob-panel.scad>
+include <style.scad>
+include <print-parameters.scad>
+use <PELA-block.scad>
+use <PELA-technic-block.scad>
+use <knob-panel/PELA-knob-panel.scad>
 
 
 /* [PELA Velcro Mount Options] */

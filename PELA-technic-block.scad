@@ -55,14 +55,14 @@ sockets = true;
 // Presence of top connector knobs
 knobs = true;
 
-// How tall are top connectors [mm] (1.8-2.9)
-knob_height=2.9;
+// How tall are top connectors [mm]
+knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA improved 3D print fit]
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius=1.6;
+bolt_hole_radius = 1.6;
 
 // Add interior fill for upper layers
 solid_upper_layers = false;
