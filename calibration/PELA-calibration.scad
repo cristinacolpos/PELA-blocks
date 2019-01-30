@@ -76,7 +76,8 @@ horizontal_text_margin = 1;
 // Size between calibration block test steps (0.02 or larger for a rough calibration, 0.01 to refine if already close)
 calibration_block_increment = 0.02;
 
-block_height = 9.6;
+// Basic unit vertical size of each block
+block_height = 9.6; // [8:technic and traditional blocks]
 
 flexible_material = false;
 

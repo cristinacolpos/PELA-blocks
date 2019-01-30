@@ -16,13 +16,13 @@ Work sponsored by
     https://www.futurice.com/
 */
 
-include <../style.scad>
 include <../print-parameters.scad>
+include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../PELA-socket-panel.scad>
 use <../knob-panel/PELA-knob-panel.scad>
-include <PELA-box-enclosure.scad>
+use <PELA-box-enclosure.scad>
 
 
 /* [PELA Box Option] */

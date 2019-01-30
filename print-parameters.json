@@ -1,0 +1,27 @@
+{
+    "parameterSets": {
+        "TPU95": {
+            "axle_hole_tweak": "0",
+            "bottom_centers_are_sockets": "false",
+            "bottom_tweak": "-0.04",
+            "flexible_material": "true",
+            "large_nozzle": "true",
+            "print_supports": "true",
+            "text_labels": "true",
+            "top_tweak": "0.08",
+            "two_color_print": "false"
+        },
+        "ABS": {
+            "axle_hole_tweak": "0.06",
+            "bottom_centers_are_sockets": "false",
+            "bottom_tweak": "-0.02",
+            "flexible_material": "false",
+            "large_nozzle": "true",
+            "print_supports": "true",
+            "text_labels": "true",
+            "top_tweak": "-0.06",
+            "two_color_print": "false"
+        }
+    },
+    "fileFormatVersion": "1"
+}
