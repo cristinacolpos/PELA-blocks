@@ -82,7 +82,7 @@ electric_vertical_displacement = -3.0;
 electric_length = 20.0;
 
 // Heat ventilation holes in the sides
-side_holes = true;
+side_holes = 1; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Heat ventilation holes in the top surface
 top_vents = true;

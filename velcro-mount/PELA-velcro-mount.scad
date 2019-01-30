@@ -45,17 +45,19 @@ solid_bottom_layer = true;
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
 
-side_holes = 0;
+side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-end_holes = 2;
+side_sheaths = true;
 
-end_sheaths = 0;
+end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+
+end_sheaths = false;
 
 // Presence of top connector knobs
 knobs = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = false;
+top_vents = true;
 
 
 

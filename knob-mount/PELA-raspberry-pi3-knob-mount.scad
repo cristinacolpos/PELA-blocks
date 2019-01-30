@@ -51,9 +51,9 @@ bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:kno
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
-side_holes = 2;
+side_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-end_holes = 2;
+end_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 side_sheaths = true;
 
