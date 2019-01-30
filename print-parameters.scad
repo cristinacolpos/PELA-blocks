@@ -56,7 +56,7 @@ SUGGESTIONS
 - See 'SLICER.md' for more tips and settings that have worked for us on specific materials.
 */
 
-/* [Main Calibration Settings] */
+/* [Print Calibration] */
 
 // Switch between flexible and rigid material geometry. Set 'true' for Nylon, TPU (TPU95, TPU85/Ninjaflex), NGEN Semiflex and other low durometer filaments. Subtle adjustments to part internal geometry will take advantage of this in flextures.
 flexible_material = true;
@@ -71,7 +71,7 @@ top_tweak = 0.08; // -0.06 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.08 for Pol
 bottom_tweak = -0.04; // -0.02 for ABS (0.12 for thin), 0.10 for rPET, 0.08 for Pro1, 0.04 for Polymaker Polylite PLA, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon, -0.04 for TPU95, 0.0 Biofila Silk
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0.0; // 0.06 for ABS (0.12 for thin), 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker Polylite PLA, 0.07 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, 0.0 for TPU95A, -0.04 Biofila Silk
+axle_hole_tweak = 0.06; // 0.06 for ABS (0.12 for thin), 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker Polylite PLA, 0.07 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, 0.0 for TPU95A, -0.04 Biofila Silk
 
 bottom_centers_are_sockets = false; //!large_nozzle; // 0=false, 1=true (default is "true" if not "large_nozzle"). When "true", the space in the center of 4 bottom sockets is also a socket. When false, it is smaller axle hole to help allow the 4 bottom socket walls to be thicker and more printable. You may need to disable this (0=false) if printing the bottom sockets is too difficult due to material properties or when "bottom_tweak" is so large that the walls between sockets become too thin.
 

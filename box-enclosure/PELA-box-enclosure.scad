@@ -36,7 +36,7 @@ l = 6;
 w = 4;
 
 // Height of the enclosure [mm]
-h = 1;
+h = 2;
 
 // Presence of bottom connector sockets
 sockets = true;
@@ -105,8 +105,8 @@ center_type = 0; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end 
 // Number of knobs at the edge of a bottom panel to omit (this will leave space for example for a nearby top wall or technic connectors)
 skip_edge_knobs = 1;
 
-// Height of each block
-block_height = 9.6;
+// Basic unit vertical size of each block
+block_height = 9.6; // [8:technic and traditional blocks]
 
 
 
@@ -119,6 +119,10 @@ function fit_mm_to_pela_blocks(i, tightness) = ceil((i+(tightness*block_width())
 
 // Find the optimum enclosing vertical dimension in block units for an object of height i
 function fit_mm_to_pela_block_height(i, tightness, block_height=block_height) = ceil((i+(tightness*block_height(1, block_height=block_height))) / block_height(1, block_height=block_height));
+
+
+
+PELA_box_enclosure();
 
 
 

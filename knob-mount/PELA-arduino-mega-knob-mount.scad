@@ -106,7 +106,8 @@ width_tightness = 1.5;
 
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
-block_height = 9.6;
+// Basic unit vertical size of each block
+block_height = 9.6; // [8:technic and traditional blocks]
 
 
 ///////////////////////////////

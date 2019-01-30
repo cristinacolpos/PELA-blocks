@@ -53,7 +53,7 @@ knob_radius = 2.45 + 0.12 + top_tweak;
 knob_top_thickness = 0.8;
 
 // Height of the connectors (LEGO uses 1.8- taller gives a stronger hold especially for flexible materials, too tall can cause problems when connecting to thin panels)
-knob_height = 2.9;
+knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA improved 3D print fit]
 
 // Height of the connectors LEGO uses- this affects flexture heights)
 official_knob_height = 1.8;
@@ -102,8 +102,8 @@ top_shell = 1;
 // Basic unit horizontal size of each block
 block_width = 8; // [8:technic and traditional blocks]
 
-// Basic unit vertical size of each block (8 is technic standard, 9.6 is LEGO standard)
-block_height = 8; // [8:technic, 9.6:traditional blocks]
+// Basic unit vertical size of each block
+block_height = 8; // [8:technic and traditional blocks]
 
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid
 skin = 0.1;
