@@ -90,7 +90,7 @@ end_sheaths = true;
 top_vents = false;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
-knob_vent_radius = 1.5;
+knob_vent_radius = 0.0;
 
 
 
