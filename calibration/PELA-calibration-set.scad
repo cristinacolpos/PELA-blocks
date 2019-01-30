@@ -29,9 +29,9 @@ include <PELA-calibration.scad>
 
 /* [PELA Calibration Set Options */
 
-end_holes = 2;
+end_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-side_holes = 0;
+side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 
 

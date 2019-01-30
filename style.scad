@@ -47,7 +47,7 @@ knobs = true;
 corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 0.0;
+bolt_hole_radius = 1.6;
 
 // Interior fill for layers above the bottom
 solid_upper_layers = false;
@@ -94,7 +94,7 @@ axle_hole_radius = 2.45 + axle_hole_tweak;
 /* [Technic Features] */
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+side_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a shell around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;
