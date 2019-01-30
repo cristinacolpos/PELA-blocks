@@ -36,6 +36,7 @@ w = 4;
 top_vents = true;
 
 // Interior fill for layers above the bottom
+// Add interior fill for the first layer
 solid_bottom_layer = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)

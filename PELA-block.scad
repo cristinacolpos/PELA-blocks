@@ -48,6 +48,7 @@ w = 2;
 h = 1;
 
 // Layer one starts as a solid block (removes some air holes)
+// Add interior fill for the first layer
 solid_bottom_layer = false;
 
 // Presence of top connector knobs

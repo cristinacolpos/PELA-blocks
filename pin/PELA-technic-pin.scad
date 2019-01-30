@@ -40,19 +40,6 @@ counterbore_holder_radius = counterbore_inset_radius - skin;
 counterbore_holder_height = counterbore_inset_depth * 2;
 
 
-/* [Technic Pin Array Options] */
-
-array_count = 4; // The number of half-pins in an array supported by as base
-
-base_thickness = panel_height(block_height=block_height); // The thickness of the base below an array of half-pins
-
-array_spacing = block_width();
-
-// Trim the base connecting a pin array to the minimum rounded shape
-minimum_base = true;
-
-
-
 
 ///////////////////////////////
 // DISPLAY
@@ -74,29 +61,14 @@ function technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length
 // MODULES
 //////////////////
 
-module axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length) {
-    
-    for (rot=[0:90:270]) {
-        rotate([0, 0, rot]) {
-            hull() {
-                translate([axle_rounding*2, axle_rounding*2, -defeather]) {
-                    cylinder(r=axle_rounding, h=length+2*defeather);
-
-                    translate([axle_radius, 0, 0])
-                        cylinder(r=axle_rounding, h=length+2*defeather);
-
-                    translate([0, axle_radius, 0])
-                        cylinder(r=axle_rounding, h=length+2*defeather);
-                }
-            }
-        }
-    }
-}
-
-
 // A connector pin between two sockets
-module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
+module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, 
+    pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
 
+    assert(axle_radius > 0, "Technic pin axle radius must be positive");
+    assert(pin_center_radius < axle_radius, "Technic pin center radius must be less than axle radius");
+    assert(peg_length > 0, "Technic pin peg length must be positive");
+    
     length = technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
 
     slot_length=3*length/5;
@@ -135,6 +107,26 @@ module pin(axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_len
                         rotate([0, 0, 90])
                         rounded_slot(thickness=pin_slot_thickness, slot_length=slot_length);
                     }
+                }
+            }
+        }
+    }
+}
+
+
+module axle_cross_negative_space(axle_rounding=axle_rounding, axle_radius=axle_radius, length=length) {
+    
+    for (rot=[0:90:270]) {
+        rotate([0, 0, rot]) {
+            hull() {
+                translate([axle_rounding*2, axle_rounding*2, -defeather]) {
+                    cylinder(r=axle_rounding, h=length+2*defeather);
+
+                    translate([axle_radius, 0, 0])
+                        cylinder(r=axle_rounding, h=length+2*defeather);
+
+                    translate([0, axle_radius, 0])
+                        cylinder(r=axle_rounding, h=length+2*defeather);
                 }
             }
         }
@@ -194,7 +186,7 @@ module rounded_slot(thickness=2, slot_length=10) {
 
 
 // A set of half-pins connected by at the base
-module pin_array(array_count=array_count, array_spacing=array_spacing, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, minimum_base=minimum_base,counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height, block_height=block_height) {
+module pin_array(array_count, array_spacing, base_thichness, axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, minimum_base, counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height, base_thickness, block_height=block_height) {
 
     length = technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
 
@@ -212,12 +204,12 @@ module pin_array(array_count=array_count, array_spacing=array_spacing, base_thic
                 }
             }
             
-            pin_base(length, array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, peg_length=peg_length, counterbore_holder_radius=counterbore_holder_radius);
+            pin_base(length=length, array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, peg_length=peg_length, counterbore_holder_radius=counterbore_holder_radius);
         }
 
         if (minimum_base) {
             translate([0, block_width(1/2), -skin]) {
-                 pin_array_envelope(length=length, counterbore_holder_radius=counterbore_holder_radius, array_count=array_count, array_spacing=array_spacing, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
+                 pin_array_envelope(counterbore_holder_radius=counterbore_holder_radius, array_count=array_count, array_spacing=array_spacing, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
             }
         } else {
             cube([block_width(array_count), block_width(), length]);
@@ -227,7 +219,7 @@ module pin_array(array_count=array_count, array_spacing=array_spacing, base_thic
 
 
 // The default connector between base pins
-module pin_base(length, array_count=array_count, array_spacing=array_spacing, base_thichness=base_thickness, minimum_base=minimum_base, peg_length=peg_length, counterbore_holder_radius=counterbore_holder_radius) {
+module pin_base(length, array_count, array_spacing, base_thickness, minimum_base, peg_length=peg_length, counterbore_holder_radius=counterbore_holder_radius) {
     
     translate([-block_width(1/2), -block_width(1/2), -base_thickness-skin]) {
         difference() {
@@ -249,7 +241,7 @@ module pin_envelope(length, counterbore_holder_radius=counterbore_holder_radius)
 
 
 // The rounded space which just encloses the pin array but not the rest of the array base
-module pin_array_envelope(counterbore_holder_radius=counterbore_holder_radius, array_count=array_count, array_spacing=array_spacing, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height) {
+module pin_array_envelope(counterbore_holder_radius=counterbore_holder_radius, array_count, array_spacing, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height) {
 
     length = technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
 

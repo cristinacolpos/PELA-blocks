@@ -43,6 +43,7 @@ h = 1; // Height of the mount [blocks]
 top_vents = true;
 
 // Interior fill for layers above the bottom
+// Add interior fill for the first layer
 solid_bottom_layer = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
