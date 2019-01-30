@@ -49,14 +49,11 @@ solid_upper_layers = false;
 // Size of the top connectors (slippery or brittle plastics negatively affect results and lifetime- the value below is roughly in the middle of various materials tested)
 knob_radius = 2.45 + 0.12 + top_tweak;
 
-// Distance below knob top surface and the internal flexture
+// Knob top surface strength
 knob_top_thickness = 0.8;
 
-// Height of the connectors (LEGO uses 1.8- taller gives a stronger hold especially for flexible materials, too tall can cause problems when connecting to thin panels)
+// Height of traditional connectors [mm] (taller gives a stronger hold especially for flexible materials, too tall can cause problems when connecting to thin panels)
 knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA improved 3D print fit]
-
-// Height of the connectors LEGO uses- this affects flexture heights)
-official_knob_height = 1.8;
 
 // Height of a small bottom knob insert easement, flaring the bottom edges to make assembly easier
 socket_insert_bevel = 0.1;
@@ -164,6 +161,9 @@ support_max_rotation = 0;
 
 
 /* [Hidden] */
+
+// Height of the connectors commercial blocks use
+official_knob_height = 1.8; // [1.8:traditional blocks]
 
 // How far up or down for artistic purposes to move the ridge which marks each layer
 ridge_z_offset = 0;
