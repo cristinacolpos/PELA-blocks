@@ -123,19 +123,19 @@ module technic_rectangle(l1, l2, l3, w1, w2, w3) {
     ll = l1+l2+l3;
     ww = w1+w2+w3;
 
-    color("red") technic_twist_bar(left=l1, center=l2, right=l3);
+    technic_twist_bar(left=l1, center=l2, right=l3);
 
     rotate([0, 0, 90]) {
-        color("green") technic_twist_bar(left=w1, center=w2, right=w3);
+        technic_twist_bar(left=w1, center=w2, right=w3);
     }
 
     translate([0, block_width(ww-1), 0]) {
-        color("blue") technic_twist_bar(left=l3, center=l2, right=l1);
+        technic_twist_bar(left=l1, center=l2, right=l3);
     }
 
     rotate([0, 0, 90]) {
         translate([0, -block_width(ll-1), 0]) {
-            color("purple") technic_twist_bar(left=w3, center=w2, right=w1);
+            technic_twist_bar(left=w1, center=w2, right=w3);
         }
     }
 }
