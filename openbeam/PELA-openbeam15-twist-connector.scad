@@ -20,7 +20,7 @@ Open source design, Powered By Futurice. Come work with the best.
 include <../style.scad>
 include <../print-parameters.scad>
 use <../PELA-block.scad>
-use <../socket-panel/PELA-socket-panel.scad>
+use <../PELA-socket-panel.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 
 
