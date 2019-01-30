@@ -31,15 +31,17 @@ l = 8;
 // Width of the block [blocks]
 w = 8;
 
-// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-corner_bolt_holes = false;
-
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius = 1.6;
 
 // Add interior fill for the base layer
-solid_first_layer = true;
+solid_first_layer = false;
 
+
+/* [Hidden] */
+
+// Place holes in the corners for mountings screws
+corner_bolt_holes = false;
 
 
 ///////////////////////////////
@@ -55,7 +57,7 @@ socket_panel();
 // MODULES
 ///////////////////////////////////
 
-module socket_panel(l=l, w=w, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
+module socket_panel(l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
     
     socket_panel_one_sided(l=l, w=w, solid_first_layer=solid_first_layer, knob_height=knob_height, skin=skin, block_height=block_height);
 

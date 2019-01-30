@@ -24,24 +24,24 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../threads/threads.scad>
 
-/* [PELA Vive Tracker Screw Options] */
+/* [Camera Mount Screw Options] */
 
 // Screwhole border
 thumbscrew_border_d=11;
 
-// Thumbscrew cut for finger tension
+// Thumbscrew cut for finger tension [mm]
 cut = 0.8;
 
 // Thumbscrew turns per inch
 tpi = 20;
 
-// Thumbscrew head height
-height=panel_height(0.5)-skin;
+// Thumbscrew head height [mm]
+height = 0.5*panel_height(block_height=block_height) - skin;
 
-// Thumscrew diameter of shaft (inches)
+// Thumscrew diameter of shaft [inches]
 dInch=1/4;
 
-// Thumbscrew total height (inches)
+// Thumbscrew total height [inches]
 hInch=1/4;
 
 
