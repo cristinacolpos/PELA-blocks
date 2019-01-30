@@ -76,6 +76,7 @@ back_wall_knobs = true;
 
 pcb_skin = 0.1;
 
+// Add interior fill for the first layer
 solid_bottom_layer = true;
 
 solid_upper_layers = true;

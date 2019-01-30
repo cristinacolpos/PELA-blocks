@@ -68,6 +68,7 @@ bolt_hole_radius=1.6;
 solid_upper_layers = false;
 
 // Interior fill for layers above the bottom
+// Add interior fill for the first layer
 solid_bottom_layer = false;
 
 

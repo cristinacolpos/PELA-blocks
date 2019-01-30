@@ -96,6 +96,7 @@ back_wall_knobs = true;
 solid_upper_layers = true;
 
 // Interior fill for layers above the bottom
+// Add interior fill for the first layer
 solid_bottom_layer = false;
 
 // Should the middle of the box be a solid block or empty. Other designs will typically then cut from this solid block to support something inside the enclosure.

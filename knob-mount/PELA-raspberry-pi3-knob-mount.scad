@@ -77,6 +77,7 @@ front_wall_knobs = true;
 
 back_wall_knobs = true;
 
+// Add interior fill for the first layer
 solid_bottom_layer = true;
 
 center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
