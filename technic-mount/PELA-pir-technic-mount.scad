@@ -35,28 +35,25 @@ include <PELA-technic-board-mount.scad>
 /* [Technic Pin Array Options] */
 
 // Board space length [mm]
-length = 39.5;
+length = 20.1;
 
 // Board space width [mm]
-width = 39.5;
+width = 20.1;
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-length_tightness = 1;
+length_tightness = 1.5;
 
 // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-width_tightness = 1;
+width_tightness = 1.5;
 
 // 90 degree rotation from length ends [blocks]
-twist_length = 2;
+twist_length = 1;
 
 // 90 degree rotation from width ends [blocks]
 twist_width = 2;
 
 // Board space thickness [mm]
 thickness = 1.8;
-
-// Extrude down below board center to make space for components and cooling [mm]
-undercut = 2.3;
 
 // Step in from board space edges to support the board [mm]
 innercut = 2;
