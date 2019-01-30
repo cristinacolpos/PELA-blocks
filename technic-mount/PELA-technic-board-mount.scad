@@ -141,28 +141,31 @@ module technic_rectangle(l1, l2, l3, w1, w2, w3) {
 }
 
 
-module technic_rectangle_infill(l=l, w=w) {
+module technic_rectangle_infill(l, w) {
+    
     translate([block_width(0.5, block_width=block_width)-skin, block_width(0.5, block_width=block_width)-skin, 0]) {
         cube([block_width(l-2, block_width=block_width)+2*skin, block_width(w-2, block_width=block_width)+2*skin, block_height()]);
     }
 }
 
 
-module main_board(l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height) {
+module main_board(l, w, length=length, width=width, thickness=thickness, block_height=block_height) {
+    
     l2 = ((block_width(l, block_width=block_width) - length) / 2);
     w2 = ((block_width(w, block_width=block_width) - width) / 2);
 
     translate([l2-block_width(0.5), w2-block_width(0.5), block_height(1, block_height=block_height) - thickness]) {
-        color("blue") cube([length, width, thickness]);
+        color("blue") cube([length, width, thickness*2]);
     }
 }
 
 
-module main_board_back(l=l, w=w, length=length, width=width, innercut=innercut, block_height=block_height) {
+module main_board_back(l, w, length=length, width=width, innercut=innercut, block_height=block_height) {
+    
     l2 = ((block_width(l - 0.25) - length) / 2);
     w2 = ((block_width(w - 0.25) - width) / 2);
 
-    translate([l2, w2, 0]) {
-        color("green") cube([length-2*innercut-block_width(0.25), width-2*innercut-block_width(0.25), block_height(1, block_height=block_height)]);
+    translate([l2, w2, -block_height(block_height=block_height)]) {
+        color("green") cube([length-2*innercut-block_width(0.25), width-2*innercut-block_width(0.25), block_height(2, block_height=block_height)]);
     }
 }

@@ -29,6 +29,16 @@ use <../pin/PELA-technic-pin.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 
 
+/* [Technic Corner Options] */
+
+// Length of the first bar [blocks]
+l1 = 2;
+
+// Length of the second bar [blocks]
+l2 = 2;
+
+// Angle between the two bars
+angle = 90;
 
 ///////////////////////////////
 // DISPLAY
@@ -43,9 +53,14 @@ pi3_corner();
 // MODULES
 ///////////////////////////////////
 
-module pi3_corner() {
-    technic_bar(l=2);
-    rotate([0, 0, 90]) {
-        technic_bar(l=2);
+module pi3_corner(l1=l1, l2=l2, angle=angle) {
+
+    assert(angle >= 65, "Angle must be at least 65 degrees");
+    assert(angle <= 295, "Angle must be at least 65 degrees");
+
+    technic_bar(l=l1);
+
+    rotate([0, 0, angle]) {
+        technic_bar(l=l2);
     }
 }
