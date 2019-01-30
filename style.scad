@@ -23,19 +23,7 @@ Import this into other design files to set baseline constants:
 include <print-parameters.scad>
 
 
-/* [PELA Block Dimensions] */
-
-// Length of the block [blocks]
-l = 4; 
-
-// Width of the block [blocks]
-w = 4;
-
-// Height of the block [blocks]
-h = 1;
-
-
-/* [Basic Block Features] */
+/* [Block] */
 
 // Presence of bottom connector sockets
 sockets = true;
@@ -49,24 +37,14 @@ corner_bolt_holes = false;
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius = 1.6;
 
-// Interior fill for layers above the bottom
+// Add interior fill for the base layer
+solid_first_layer = false;
+
+// Add interior fill for upper layers
 solid_upper_layers = false;
 
-// Add interior fill for the first layer
-solid_bottom_layer = false;
 
-
-
-/* [Shell Adjustments] */
-
-// Thickness of the solid outside surface of the block
-shell = large_nozzle ? 1.2 : 1.0;
-
-// Thickness of the solid top surface of the block
-top_shell = 1;
-
-
-/* [Top Connector Adjustments] */
+/* [Knob] */
 
 // Size of the top connectors (slippery or brittle plastics negatively affect results and lifetime- the value below is roughly in the middle of various materials tested)
 knob_radius = 2.45 + 0.12 + top_tweak;
@@ -85,24 +63,22 @@ socket_insert_bevel = 0.1;
 
 
 
-/* [3D Printing Side Connector Adjustments] */
+
+/* [Technic] */
 
 // Technic connector hole
 axle_hole_radius = 2.45 + axle_hole_tweak;
 
-
-/* [Technic Features] */
-
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a shell around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a wrapper around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
-end_holes = 2;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
+end_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a shell around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a wrapper around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -112,27 +88,24 @@ top_vents = false;
 knob_vent_radius = 0.0;
 
 
-/* [Aesthetic Options for Basic Blocks] */
+/* [Shell] */
 
-// Width of a line etched in the side of multi-layer block sets (0 to disable)
-ridge_width = 0.15;
+// Thickness of the solid outside surface of the block
+side_shell = large_nozzle ? 1.2 : 1.0;
 
-// Depth of a line etched in the side of multi-layer block sets
-ridge_depth = 0.3;
-
-// How far up or down for artistic purposes to move the thin outside shell ridge which shows the height of each layer
-ridge_z_offset = 0;
+// Thickness of the solid top surface of the block
+top_shell = 1;
 
 
-/* [Advanced Options for Basic Blocks] */
+/* [Advanced Block] */
 
 // Basic unit horizontal size of each block
-block_width = 8;
+block_width = 8; // [8:technic and traditional blocks]
 
 // Basic unit vertical size of each block (8 is technic standard, 9.6 is LEGO standard)
-block_height = 8;
+block_height = 8; // [8:technic, 9.6:traditional blocks]
 
-// Horizontal clearance space around the outer surface of the set of blocks to allow two parts to be placed next to one another
+// Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid
 skin = 0.1;
 
 // Height of the hole beneath each knob which facilitates click lock in low-flex materials by variable side pressure on any block above
@@ -145,43 +118,55 @@ bottom_stiffener_width = 2.6;
 bottom_stiffener_height = knob_height;
 
 
-/* [Advanced Options for Technic Features] */
+/* [Advanced Technic] */
 
-// Technic connector inset radius
+// Technic connector hole inset radius
 counterbore_inset_radius = 3.1;
 
-// Technic connector inset depth
+// Technic connector hole inset depth
 counterbore_inset_depth = 0.8;
 
 // Contact length of axle to block (not including inset length and end snap fit flexture in pin connectors)
 peg_length = 6.5;
 
-// Size of an optional cylinder wrapped around the bearing holes
+// Size of the cylinder wrapped around the technic holes
 bearing_sheath_thickness = 0.9;
 
 
-/* [Print Supports] */
+/* [Block Aesthetics] */
 
-// Difference between the top and/or bottom of a support column to make columns easier to separate in post-processing (add this to your model only where desired - it is not done for you in support/support.scad)
+// Width of a line etched in the side of multi-layer block sets (0 to disable)
+ridge_width = 0.15;
+
+// Depth of a line etched in the side of multi-layer block sets
+ridge_depth = 0.3;
+
+
+/* [Baked Print Supports] */
+
+// Space between support/support.scad and the part)
 support_offset_from_part = 0.1;
 
-// Thickness of each rotating layer in a twisting support
+// Thickness of each rotating layer in a twisting support [mm]
 support_layer_height = 2;
 
-// Thickness of a base panel for holding supports together
+// Thickness of a base panel for holding supports together [mm]
 support_connection_height = 0.5;
 
-// Length of sides of a support equilateral triangle
+// Length of sides of a support equilateral triangle [mm]
 support_side_length = 4;
 
-// Degrees to rotate for strength at each successive layer
-support_layer_rotation = 6; // Degrees
+// Per layer support rotation for strength [degrees]
+support_layer_rotation = 6;
 
-// Max rotation before reversing direction to keep shape basically triangular but still strong (0 to disable)
-support_max_rotation = 0; // Degrees
+// Reverse direction of support rotation periodically to constrain size [degrees] (0 to disable)
+support_max_rotation = 0;
 
 
 /* [Hidden] */
+
+// How far up or down for artistic purposes to move the ridge which marks each layer
+ridge_z_offset = 0;
 
 // Slight visual offset to work around prevent goldfeather rendering bugs in OpenSCAD (visual, not affecting final print geometry)
 defeather = 0.01;

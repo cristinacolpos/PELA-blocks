@@ -51,13 +51,13 @@ board_thickness = 1.7;
 // Holes spaced along the length for techic connectors
 side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// A shell around side holes (disable for extra ventilation, enable for connector lock notches)
+// A side_shell around side holes (disable for extra ventilation, enable for connector lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Short end holes spaced along the width for PELA Techics connectors
 end_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// A shell around end holes  (disable for extra ventilation, enable for connector lock notches)
+// A side_shell around end holes  (disable for extra ventilation, enable for connector lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Holes in the top deck to improve airflow and reduce weight
@@ -133,7 +133,7 @@ module PELA_sparkfun_pro_micro_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_t
         union() {
             PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_upper_layers=solid_upper_layers, center_type=center_type);
 
-            board_insertion_space_shell(l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
+            board_insertion_space_side_shell(l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
         }
 
         union() {
@@ -227,9 +227,9 @@ module board_insertion_space(l=l, w=w, h=h, board_l=board_l, board_w=board_w, bo
 
 
 // A solid layer around the space removed to allow dropping the board in from above
-module board_insertion_space_shell(l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height) {
+module board_insertion_space_side_shell(l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height) {
 
-    board_insertion_space(l=l, w=w, h=h, board_l=board_l, board_w=board_w + 2*shell, board_h=board_h, board_thickness=board_thickness, block_height=block_height);
+    board_insertion_space(l=l, w=w, h=h, board_l=board_l, board_w=board_w + 2*side_shell, board_h=board_h, board_thickness=board_thickness, block_height=block_height);
 }
 
 

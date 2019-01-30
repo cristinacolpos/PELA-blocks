@@ -64,12 +64,12 @@ corner_bolt_holes = false;
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius=1.6;
 
-// Interior fill for layers above the bottom
+// Add interior fill for upper layers
 solid_upper_layers = false;
 
-// Interior fill for layers above the bottom
-// Add interior fill for the first layer
-solid_bottom_layer = false;
+// Add interior fill for upper layers
+// Add interior fill for the base layer
+solid_first_layer = false;
 
 
 /* [Technic Features] */
@@ -77,13 +77,13 @@ solid_bottom_layer = false;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
-// Add a shell around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a wrapper around technic side holes (only used if there are side_holes, disable for extra ventilation, enable for connector lock notches)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 3; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
-// Add a shell around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
+// Add a wrapper around end holes  (only used if there are end_holes, disable for extra ventilation, enable for connector lock notches)
 end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -118,11 +118,11 @@ function is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes) = end_hole
 // MODULES
 ///////////////////////////////////
 
-module PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_bottom_layer=solid_bottom_layer, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_centers_are_sockets=bottom_centers_are_sockets, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak) {
+module PELA_technic_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_centers_are_sockets=bottom_centers_are_sockets, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak) {
 
     difference() {
         union() {
-            PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, shell=shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_bottom_layer=solid_bottom_layer, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_centers_are_sockets=bottom_centers_are_sockets, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
+            PELA_block(l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, flexible_material=flexible_material, large_nozzle=large_nozzle, bottom_centers_are_sockets=bottom_centers_are_sockets, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
             
             for (i = [0:h-1]) {
                 translate([0, 0, block_height(i, block_height=block_height)]) {

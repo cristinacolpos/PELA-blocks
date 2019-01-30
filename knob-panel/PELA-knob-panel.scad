@@ -34,9 +34,9 @@ w = 8;
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
-// Interior fill for layers above the bottom
-// Add interior fill for the first layer
-solid_bottom_layer = false;
+// Add interior fill for upper layers
+// Add interior fill for the base layer
+solid_first_layer = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = true;
@@ -68,12 +68,12 @@ PELA_knob_panel();
 // MODULES
 ///////////////////////////////////
 
-module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
+module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
 
     hr=panel_height_ratio(block_height=block_height);
 
     if (skip_edge_knobs > 0) {
-        PELA_technic_block(l=l, w=w, h=hr, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=false, sockets=sockets, block_height=block_height);
+        PELA_technic_block(l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=false, sockets=sockets, block_height=block_height);
 
         echo("knob l", l);
         echo("knob w", w);
@@ -83,6 +83,6 @@ module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_b
             }
         }
     } else {
-        PELA_technic_block(l=l, w=w, h=hr, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets, block_height=block_height);
+        PELA_technic_block(l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets, block_height=block_height);
     }
 }
