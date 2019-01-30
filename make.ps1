@@ -162,12 +162,12 @@ render ".\technic-bar\" "PELA-technic-twist-bar"
 render ".\technic-bar\" "PELA-technic-angle-connector"
 render ".\knob-panel\" "PELA-knob-panel"
 render ".\knob-panel\" "PELA-double-sided-knob-panel"
-render ".\socket-panel\" "PELA-socket-panel"
-render ".\velcro-mount\" "PELA-velcro-mount"
-render ".\velcro-mount\" "PELA-vive-velcro-mount"
-render ".\vive-tracker-mount\" "PELA-vive-tracker-mount"
-render ".\vive-tracker-mount\" "PELA-vive-tracker-screw"
-render ".\grove-module-enclosure\" "PELA-grove-module-enclosure"
+render ".\" "PELA-socket-panel"
+render ".\" "PELA-velcro-mount"
+render ".\vive-tracker\" "PELA-vive-velcro-mount"
+render ".\vive-tracker\" "PELA-vive-tracker-mount"
+render ".\vive-tracker\" "PELA-vive-tracker-screw"
+render ".\" "PELA-grove-module-enclosure"
 
 Write-Output Get-Date
 
