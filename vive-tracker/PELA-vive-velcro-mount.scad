@@ -28,7 +28,7 @@ include <../style.scad>
 include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
-use <PELA-velcro-mount.scad>
+use <../PELA-velcro-mount.scad>
 
 
 /* [PELA Panel Options] */
@@ -42,9 +42,9 @@ h = 1; // Height of the mount [blocks]
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = true;
 
-// Interior fill for layers above the bottom
-// Add interior fill for the first layer
-solid_bottom_layer = true;
+// Add interior fill for upper layers
+// Add interior fill for the base layer
+solid_first_layer = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
@@ -90,10 +90,10 @@ vive_velcro_mount();
 // MODULES
 ///////////////////////////////////
 
-module vive_velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
+module vive_velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
 
     difference() {
-        velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
+        velcro_mount(l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
 
         union() {
             translate([block_width(l/2-1), block_width(w/2-1), panel_height(block_height=block_height)]) {

@@ -30,7 +30,7 @@ w = 2;
 // Height of HALF the enclosure [blocks]
 h = 2;
 
-// Interior fill for layers above the bottom
+// Add interior fill for upper layers
 solid_upper_layers = true;
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
@@ -112,14 +112,14 @@ function vertical_offset(block_height=block_height)=(block_height(2*h, block_hei
 module bottom_piece() {
     difference() {
         union() {
-            PELA_technic_block(l=l, w=w, h=h, knob_flexture_height=0, solid_bottom_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
+            PELA_technic_block(l=l, w=w, h=h, knob_flexture_height=0, solid_first_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
 
             double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
         }
 
     
         union() {
-            translate([(block_width(4)-grove_width)/2, shell, vertical_offset(block_height=block_height)]) {
+            translate([(block_width(4)-grove_width)/2, side_shell, vertical_offset(block_height=block_height)]) {
                 rotate([0, -90, 270]) {
                     grove();
                 }
@@ -299,7 +299,7 @@ module PELA_grove() {
     difference() {
         PELA(l, w, h);
 
-        translate([grove_width + (block_width(4)-grove_width)/2, block_width(2)-2*shell, (block_height(3)-grove_width)/2]) {
+        translate([grove_width + (block_width(4)-grove_width)/2, block_width(2)-2*side_shell, (block_height(3)-grove_width)/2]) {
             rotate([90,0,90]) {
                 grove();       
             }

@@ -335,7 +335,7 @@ ___
 
 ## FFF Printing Tips
 
-* Use a 0.4mm or smaller nozzle if possible to avoid decimation of some details (inside vertical shell bars..)
+* Use a 0.4mm or smaller nozzle if possible to avoid decimation of some details (inside vertical side_shell bars..)
 * If slicing with Simplify 3D with 0.5mm or larger nozzle, you may want to set Simplify 3D to `Advanced | External Thing Wall Type | Allow single extrusion walls`
 * Be aware that slicers may in some cases not be able to correct OpenSCAD STL export errors. These errors should be visible in layer preview as for example extra excursions back to origin. If this happens, open and clean the STL files first with for example Microsoft 3D Builder, Meshmixer or MeshLab. MeshLab command line examples can be found in `build.ps1`.
 * Best results are achieved with durable materials that are not too stiff (PET, co-polymers like NGEN, semi-flexible and "engineering" materials instead of PLA and  carbon filled).

@@ -39,9 +39,9 @@ w = 4; // Width of the mount [blocks]
 
 h = 1; // Height of the mount [blocks]
 
-// Interior fill for layers above the bottom
-// Add interior fill for the first layer
-solid_bottom_layer = true;
+// Add interior fill for upper layers
+// Add interior fill for the base layer
+solid_first_layer = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
@@ -74,10 +74,10 @@ velcro_mount();
 // MODULES
 ///////////////////////////////////
 
-module velcro_mount(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
+module velcro_mount(l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
 
     difference() {
-        PELA_technic_block(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, solid_bottom_layer=solid_bottom_layer, sockets=false, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
+        PELA_technic_block(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, sockets=false, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
 
         slot(l=l, w=w, block_height=block_height);
     }

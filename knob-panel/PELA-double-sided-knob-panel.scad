@@ -35,9 +35,9 @@ w = 4;
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = true;
 
-// Interior fill for layers above the bottom
-// Add interior fill for the first layer
-solid_bottom_layer = false;
+// Add interior fill for upper layers
+// Add interior fill for the base layer
+solid_first_layer = false;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = true;
@@ -69,13 +69,13 @@ PELA_double_sided_knob_panel();
 // MODULES
 ///////////////////////////////////
 
-module PELA_double_sided_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, skip_edge_knobs=skip_edge_knobs, block_height=block_height) {
+module PELA_double_sided_knob_panel(l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, skip_edge_knobs=skip_edge_knobs, block_height=block_height) {
 
-PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
+PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
     
     translate([0, block_width(w), panel_height(block_height=block_height)]) {
         rotate([180, 0, 0]) {
-            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_bottom_layer=solid_bottom_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
+            PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=false, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
         }
     }
 }

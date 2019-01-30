@@ -66,7 +66,7 @@ fn execute_command(command: &str) {
             .arg("-c")
             .arg(command)
             .output()
-            .expect(&format!("failed to execute shell process: {}", command))
+            .expect(&format!("failed to execute side_shell process: {}", command))
     };
 
     let hello = output.stdout;
