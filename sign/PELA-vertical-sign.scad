@@ -22,7 +22,7 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files:
-    use <PELA-sign.scad>
+    use <PELA-vertical-sign.scad>
     use <../PELA-block.scad>
     use <../PELA-technic-block.scad>
 */
@@ -105,12 +105,11 @@ corner_bolt_holes = false;
 
 
 
-
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-PELA_sign();
+PELA_vertical_sign();
 
 
 
@@ -118,7 +117,7 @@ PELA_sign();
 // MODULES
 ///////////////////////////////////
 
-module PELA_sign(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes) {
+module PELA_vertical_sign(l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes) {
     
     if (extrude) {
         PELA_technic_block(l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes);

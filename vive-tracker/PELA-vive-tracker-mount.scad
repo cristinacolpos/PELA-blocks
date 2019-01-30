@@ -40,10 +40,6 @@ l = 6;
 // Width of the block [blocks]
 w = 6;
 
-// Add holes in the top deck to improve airflow and reduce weight
-top_vents = true;
-
-// Add interior fill for upper layers
 // Add interior fill for the base layer
 solid_first_layer = false;
 
@@ -53,11 +49,12 @@ corner_bolt_holes = false;
 // Size of corner holes for M3 mountings bolts
 bolt_hole_radius = 1.5;
 
-// Presence of top connector knobs
-knobs = false;
-
 // Distance between Vive connector pins
 pin_spacing = 3.5;
+
+
+
+/* [Hidden] */
 
 // Vive pin dimensions
 d1 = 3.2;
@@ -159,7 +156,7 @@ module alignment_pin(block_height=block_height) {
 module PELA_vive_tracker_mount(block_height=block_height) {
     difference() {
         union() {
-            socket_panel(l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
+            socket_panel(l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
 
             translate([block_width(), 2.4+block_width(1.5), panel_height()]) {
                 vive_connector();
@@ -167,7 +164,7 @@ module PELA_vive_tracker_mount(block_height=block_height) {
             
             thumbscrew_hole_border(block_height=block_height);
             
-            alignment_pin(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
+            alignment_pin(block_height=block_height);
 
             hull() {
                 translate([block_width(), block_width(1.81)])

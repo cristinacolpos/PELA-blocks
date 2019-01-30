@@ -112,6 +112,42 @@ ___
 
 ___
 
+[![PELA Technic Bar](images/PELA-technic-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar.stl)
+
+[3D PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar.stl) A minimalist technic bar.
+
+___
+
+[![PELA Technic Bar](images/PELA-technic-twist-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-twist-bar.stl)
+
+[3D PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-twist-bar.stl) A technic bar with a center section of holes rotated 90 degrees.
+
+___
+
+[![PELA Technic Corner](images/PELA-technic-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-corner.stl)
+
+[3D PELA Technic Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-corner.stl) Two bars joined at an angle.
+
+___
+
+[![PELA Technic Angle Connector](images/PELA-technic-angle-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-angle-connector.stl)
+
+[3D PELA Technic Angle Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-angle-connector.stl) Two technic bar connected vertically at an angle.
+
+___
+
+[![PELA Technic Axle](images/PELA-technic-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-axle.stl)
+
+[3D PELA Technic Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-axle.stl) Rigid and flexible material shafts of adjustable length for attaching to other 3D printed designs such as wheels which you want to rotate freely.
+
+___
+
+[![PELA Technic Cross Axle](images/PELA-technic-cross-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-cross-axle.stl)
+
+[3D PELA Technic Cross Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-cross-axle.stl) Rigid and flexible material torque drive shafts for adjustable length for attaching to other 3D printed designs.
+
+___
+
 [![PELA Socket Panel](images/PELA-socket-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-socket-panel.stl)
 
 [3D PELA Socket Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-socket-panel.stl) Insert knobs from both the top and bottom. Zoom in to see the subtle flexure ridges for enhanced "snap" fit.
@@ -121,12 +157,6 @@ ___
 [![PELA Knob Panel](images/PELA-knob-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-knob-panel.stl)
 
 [3D PELA Knob Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-knob-panel.stl) Optional corner holes for M3 bolts can be enabled
-
-___
-
-[![Double-sided PELA Knob Panel](images/PELA-double-sided-knob-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-double-sided-knob-panel.stl)
-
-[3D Double-sided PELA Knob Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-double-sided-knob-panel.stl) Double sided. Enable print supports in the slicer.
 
 ___
 
@@ -151,12 +181,6 @@ ___
 [![PELA Technic Raspberry Pi 3B Cover](images/PELA-raspberry-pi3-technic-cover.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-cover.stl)
 
 [3D PELA Technic Raspberry Pi 3B Cover](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-cover.stl) A Raspberry Pi 2/3 holder optional top cover.
-
-___
-
-[![PELA Technic Raspberry Pi 3B Corner](images/PELA-raspberry-pi3-technic-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-corner.stl)
-
-[3D PELA Technic Raspberry Pi 3B Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-corner.stl) An optional Raspberry Pi 2/3 technic corner to help attach the top cover.
 
 ___
 
@@ -196,45 +220,15 @@ ___
 
 ___
 
-[![PELA Technic Bar](images/PELA-technic-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar.stl)
-
-[3D PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-bar.stl) A minimalist technic bar.
-
-___
-
-[![PELA Technic Bar](images/PELA-technic-twist-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-twist-bar.stl)
-
-[3D PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-twist-bar.stl) A technic bar with a center section of holes rotated 90 degrees.
-
-___
-
-[![PELA Technic Angle Connector](images/PELA-technic-angle-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-angle-connector.stl)
-
-[3D PELA Technic Angle Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-angle-connector.stl) Two technic bar connected vertically at an angle.
-
-___
-
-[![PELA Technic Axle](images/PELA-technic-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-axle.stl)
-
-[3D PELA Technic Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-axle.stl) Rigid and flexible material shafts of adjustable length for attaching to other 3D printed designs such as wheels which you want to rotate freely.
-
-___
-
-[![PELA Technic Cross Axle](images/PELA-technic-cross-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-cross-axle.stl)
-
-[3D PELA Technic Cross Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-cross-axle.stl) Rigid and flexible material torque drive shafts for adjustable length for attaching to other 3D printed designs.
-
-___
-
 [![PELA Openbeam 15 Twist Connector](images/PELA-openbeam15-twist-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-openbeam15-twist-connector.stl)
 
 [3D PELA Openbeam 15 Twist Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-openbeam15-twist-connector.stl) Insert into Openbeam 15 aluminum extrusion and twist 90 degrees to lock. This has the advantage over some other connection types that you do not need access to the ends of the beam which may require disassembly.
 
 ___
 
-[![PELA Sign](images/PELA-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-sign.stl)
+[![PELA Sign](images/PELA-vertical-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vertical-sign.stl)
 
-[3D PELA Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-sign.stl) Change the text to label your designs. Options include front and back text with either etched for raised text.
+[3D PELA Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vertical-sign.stl) Change the text to label your designs. Options include front and back text with either etched for raised text.
 
 ___
 
@@ -286,9 +280,9 @@ ___
 
 ___
 
-[![PELA HTC Vive Tracker Screw](images/PELA-vive-tracker-screw.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vive-tracker-screw.stl)
+[![PELA Camera Mount Screw](images/PELA-camera-mount-screw.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-camera-mount-screw.stl)
 
-[3D PELA HTC Vive Tracker Screw](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vive-tracker-screw.stl) Use this printable bolt for flush mounting the HTC Vive Tracker (above), or use a standard tripod bolt. The printed version works better than you might expect.
+[3D PELA Camera Mount Screw](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-camera-mount-screw.stl) You can use this quarter inch standard camera mount screw for flush mounting the HTC Vive to the Vive Tracker Mount. The printed version works better than you might expect.
 
 ___
 
