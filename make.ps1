@@ -109,9 +109,6 @@ if ($stl -OR $png -OR $clean) {
         Remove-Item $outdir\images\technic-block-4-4-2.png 2> $null
     }
 
-    Invoke-Expression ".\block.ps1 -l 4 -w 2 -h 1 $extras"
-    Invoke-Expression ".\technic-block.ps1 -l 4 -w 4 -h 2 $extras"
-
     if ($stl) {
         Move-Item .\technic-block-4-4-2.stl $outdir
         Move-Item .\block-4-2-1.stl $outdir
@@ -123,6 +120,8 @@ if ($stl -OR $png -OR $clean) {
     }
 }
 
+render ".\" "PELA-block"
+render ".\" "PELA-technic-block"
 render ".\technic-mount\" "PELA-raspberry-pi3-technic-mount"
 render ".\technic-mount\" "PELA-raspberry-pi3-technic-cover"
 render ".\technic-mount\" "PELA-technic-nodemcu-v2-mount"

@@ -31,13 +31,13 @@ use <PELA-box-enclosure.scad>
 length = 114.5;
 
 // How close to the object ends should the walls be [ratio]
-length_tightness = 2;
+length_tightness = 2; // [1:tight fit, 2:loose fit]
 
 // Width of the enclosed object [mm]
 width = 38.5;
 
 // How close to the object sides should the walls be [ratio]
-width_tightness = 2;
+width_tightness = 2; // [1:tight fit, 2:loose fit]
 
 // Height of the enclosed object [mm]
 height = 12.5;
