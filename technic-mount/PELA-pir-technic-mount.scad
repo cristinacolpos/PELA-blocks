@@ -41,10 +41,10 @@ length = 20.1;
 width = 20.1;
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-length_tightness = 1.5;
+length_tightness = 1.0;
 
 // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-width_tightness = 1.5;
+width_tightness = 1.0;
 
 // 90 degree rotation from length ends [blocks]
 twist_length = 1;

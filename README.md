@@ -99,16 +99,16 @@ An alternative set of individual calibration blocks are available, and if you ha
 
 Edit `print-parameters.scad` and `style.scad` to adapt these models before printing them. **The example models below are not yet calibrated for your slicer and printer. Calibrate and then make the tuned model from the .scad file.**
 
-[![PELA Block](images/PELA-block-4-2-1.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block-4-2-1.stl)
+[![PELA Block](images/PELA-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block.stl)
 
-[3D PELA Block](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block-4-2-1.stl)
+[3D PELA Block](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block.stl)
 
 ___
 
 
-[![PELA Block with technic connectors](images/PELA-technic-block-4-4-2.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-block-4-4-2.stl)
+[![PELA Technic Block](images/PELA-technic-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-block.stl)
 
-[3D PELA Block with technic connectors](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-block-4-4-2.stl) Optional vents help to dissipate heat. There are several types you can select from.
+[3D PELA Block with technic connectors](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-block.stl) Optional vents help to dissipate heat. There are several types you can select from.
 
 ___
 
