@@ -20,7 +20,7 @@ The software needed is free and open source, [OpenSCAD](http://www.openscad.org/
 
 Newer "development snapshot" versions of [OpenSCAD](http://www.openscad.org/) make tailoring designs to fit your project easy. Just enable "Customizer" in the "Preferences" menu. You can **customize the PELA design then print directly from OpenSCAD** using Octoprint. These features work well though they are still "beta".
 
-[OpenSCAD Customizer with PELA Technic Block](images/pela-customizer.jpg)
+![OpenSCAD Customizer with PELA Technic Block](images/pela-customizer.jpg)
 
 
 ## Download
