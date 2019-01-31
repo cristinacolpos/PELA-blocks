@@ -55,64 +55,64 @@ technic_twist_bar();
 // MODULES
 ///////////////////////////////////
 
-module technic_twist_bar(left=left, center=center, right=right) {
+module technic_twist_bar(material=material, left=left, center=center, right=right) {
     assert(left > 0, "Left side of twist bar must be at least 1")
     assert(center >= 0, "Center of twist bar must be at least 0")
     assert(right > 0, "Right side of twist bar must be at least 1")
 
     if (center == 0) {
-        technic_bar(l=left+right);
+        technic_bar(material=material, l=left+right);
     } else {
-        left_square_end_bar(l=left);
+        left_square_end_bar(material=material, l=left);
 
         translate([block_width(left), 0, 0]) {
             translate([0, block_width(0.5), block_width(0.5)]) {
                 rotate([90, 0, 0]) {
-                    square_end_bar(l=center);
+                    square_end_bar(material=material, l=center);
                 }
             }
 
             translate([block_width(center), 0, 0]) {
-                right_square_end_bar(l=right);
+                right_square_end_bar(material=material, l=right);
             }
         }
     }
 }
 
 
-module square_end_bar(l=4) {
+module square_end_bar(material=material, l=4) {
     intersection() {
         translate([-block_width(1), 0, 0]) {
-            technic_bar(l=l+2);
+            technic_bar(material=material, l=l+2);
         }
 
-       bar_space(l=l);
+       bar_space(material=material, l=l);
     }
 }
 
 
-module right_square_end_bar(l=4) {
+module right_square_end_bar(material=material, l=4) {
     intersection() {
         translate([-block_width(1), 0, 0]) {
-            technic_bar(l=l+1);
+            technic_bar(material=material, l=l+1);
         }
 
-       bar_space(l=l);
+       bar_space(material=material, l=l);
     }
 }
 
 
-module left_square_end_bar(l=4) {
+module left_square_end_bar(material=material, l=4) {
     translate([block_width(l-1), 0, block_height()]) {
         rotate([0, 180, 0]) {
-            right_square_end_bar(l=l);
+            right_square_end_bar(material=material, l=l);
         }
     }
 }
 
 
-module bar_space(l=4) {
+module bar_space(material=material, l=4) {
     translate([block_width(-0.5), block_width(-0.5), 0]) {
-        skinned_block(l=l, w=1, h=1, skin=0, block_height=8);
+        skinned_block(material=material, l=l, w=1, h=1, skin=0, block_height=8);
     }
 }

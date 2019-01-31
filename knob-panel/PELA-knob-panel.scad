@@ -23,6 +23,8 @@ include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 
+
+
 /* [Knob Panel] */
 
 // Printing material
@@ -71,21 +73,21 @@ PELA_knob_panel();
 // MODULES
 ///////////////////////////////////
 
-module PELA_knob_panel(l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
+module PELA_knob_panel(material=material, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
 
     hr=panel_height_ratio(block_height=block_height);
 
     if (skip_edge_knobs > 0) {
-        PELA_technic_block(l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=false, sockets=sockets, block_height=block_height);
+        PELA_technic_block(material=material, l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=false, sockets=sockets, block_height=block_height);
 
         echo("knob l", l);
         echo("knob w", w);
         if (l>2 && w>2) {
             translate([block_width(skip_edge_knobs), block_width(skip_edge_knobs), 0]) {
-                top_knob_set(l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=hr, knob_radius=knob_radius, corner_bolt_holes=false, block_height=block_height);
+                top_knob_set(material=material, l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=hr, knob_radius=knob_radius, corner_bolt_holes=false, block_height=block_height);
             }
         }
     } else {
-        PELA_technic_block(l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets, block_height=block_height);
+        PELA_technic_block(material=material, l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets, block_height=block_height);
     }
 }

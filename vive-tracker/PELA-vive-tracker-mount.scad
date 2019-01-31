@@ -125,7 +125,7 @@ PELA_vive_tracker_mount();
 // MODULES
 ///////////////////////////////////
 
-module thumbscrew_hole(block_height=block_height) {
+module thumbscrew_hole(material=material, block_height=block_height) {
     translate([thumscrew_offset_from_edge, block_width(w/2)]) {
         cylinder(d=thumbscrew_hole_d, h=panel_height(block_height=block_height)+0.1);
     }
@@ -133,21 +133,21 @@ module thumbscrew_hole(block_height=block_height) {
 
 
 // The negative space to remove to make room for the thumbscrew head to flush mount inside the panel
-module thumbscrew_head_hole(block_height=block_height) {
+module thumbscrew_head_hole(material=material, block_height=block_height) {
     translate([thumscrew_offset_from_edge, block_width(w/2), -0.5*panel_height(block_height=block_height)+skin]) {
         cylinder(d=thumbscrew_border_d, h=panel_height(block_height=block_height));
     }
 }
 
 
-module thumbscrew_hole_border(block_height=block_height) {
+module thumbscrew_hole_border(material=material, block_height=block_height) {
     translate([thumscrew_offset_from_edge, block_width(w/2)]) {
         cylinder(d=thumbscrew_border_d, h=panel_height(block_height=block_height));
     }
 }
 
 
-module alignment_pin(block_height=block_height) {
+module alignment_pin(material=material, block_height=block_height) {
     translate([thumscrew_offset_from_edge+alignment_pin_offset_from_screwhole, block_width(w/2), panel_height(0.5)]) {
         cylinder(d=alignment_pin_d, h=panel_height(0.5)+alignment_pin_h);
     }
@@ -158,76 +158,79 @@ module alignment_pin(block_height=block_height) {
 }
 
 
-module PELA_vive_tracker_mount(block_height=block_height) {
+module PELA_vive_tracker_mount(material=material, block_height=block_height) {
     difference() {
         union() {
-            socket_panel(l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
+            socket_panel(material=material, l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
 
             translate([block_width(), 2.4+block_width(1.5), panel_height()]) {
-                vive_connector();
+                vive_connector(material=material);
             }
             
-            thumbscrew_hole_border(block_height=block_height);
+            thumbscrew_hole_border(material=material, block_height=block_height);
             
-            alignment_pin(block_height=block_height);
+            alignment_pin(material=material, block_height=block_height);
 
             hull() {
-                translate([block_width(), block_width(1.81)])
+                translate([block_width(), block_width(1.81)]) {
                     cylinder(d=channel_d, h=panel_height());
+                }
 
-                translate([block_width(), block_width(4.19)])
+                translate([block_width(), block_width(4.19)]) {
                     cylinder(d=channel_d, h=panel_height());
+                }
             }
         }
         
         union() {
             hull() {
-                translate([block_width(), block_width(2)])
+                translate([block_width(), block_width(2)]) {
                     cylinder(d=block_width(0.6), h=panel_height());
+                }
 
-                translate([block_width(), block_width(4)])
+                translate([block_width(), block_width(4)]) {
                     cylinder(d=block_width(0.6), h=panel_height());
+                }
             }
             
-            thumbscrew_hole();
-            thumbscrew_head_hole();
+            thumbscrew_hole(material=material);
+            thumbscrew_head_hole(material=material);
         }
     }
-    
 }
 
 
 // For display of interenal function and pin position
-module vive_connector_left() {
+module vive_connector_left(material=material) {
     intersection() {
-        vive_connector();
+        vive_connector(material=material);
         translate([0, -channel_d/2, 0]) {
             cube([channel_d, channel_l+channel_d, channel_d]);
         }
     }
     
-%    vive_pin_array();    
+%    vive_pin_array(material=material);    
 }
 
 // For display of interenal function and pin position
-module vive_connector_right() {
+module vive_connector_right(material=material) {
     difference() {
-        vive_connector();
+        vive_connector(material=material);
         translate([0, -channel_d/2, 0]) {
             cube([channel_d, channel_l+channel_d, channel_d]);
         }
     }
     
-%    vive_pin_array();    
+%    vive_pin_array(material=material);    
 }
 
 
 // 
-module vive_connector() {
+module vive_connector(material=material) {
     difference() {
-        channel();
+        channel(material=material);
         union () {
-            vive_cutout_array();
+            vive_cutout_array(material=material);
             
             translate([0, (channel_l-5*pin_spacing)/2, 0]) {
                 hull() {
@@ -243,11 +246,11 @@ module vive_connector() {
 
 
 // A set of pins
-module vive_pin_array(count=6) {
+module vive_pin_array(material=material, count=6) {
     for (i=[0:pin_spacing:pin_spacing*(count-1)]) {
         translate([0, i + (channel_l-(count-1)*pin_spacing)/2, pin_vertical_offset]) {
             rotate([180, 0, 0]) {
-                vive_pin();
+                vive_pin(material=material);
             }
         }
     }
@@ -255,18 +258,18 @@ module vive_pin_array(count=6) {
 
 
 // A set of negative space for pins
-module vive_cutout_array(count=6) {
+module vive_cutout_array(material=material, count=6) {
     for (i=[0:pin_spacing:pin_spacing*(count-1)]) {
         translate([0, i + (channel_l-(count-1)*pin_spacing)/2, pin_vertical_offset]) {
             rotate([180, 0, 0]) {
-                vive_cutout();
+                vive_cutout(material=material);
             }
         }
     }
 }
 
 // A pin to connect to a Vive, slightly over actual size to create an associated negative space
-module vive_pin() {
+module vive_pin(material=material) {
     $fn=32;
     
     cylinder(d=d1, h=h1);
@@ -288,11 +291,11 @@ module vive_pin() {
 }
 
 // A pin to connect to a Vive, slightly over actual size to create an associated negative space
-module vive_cutout() {
+module vive_cutout(material=material) {
     $fn=32;
     
     cylinder(d=cd1, h=ch1);
-    slice();
+    slice(material=material);
     translate([0, 0, ch1]) {
         cylinder(d1=cd1, d2=cd2, h=ch1_2);
         cylinder(d=cd2b, h=pin_height);
@@ -314,14 +317,14 @@ module vive_cutout() {
 }
 
 // A flexture cut through the ring around a pin to facilitate pin insertion
-module slice() {
+module slice(material=material) {
     translate([-cd2d/2, -slice_width/2]) {
         cube([cd2d, slice_width, pin_height]);
     }
 }
 
 // The himisphical body into which pins are inserted
-module channel() {
+module channel(material=material) {
     intersection() {
         hull() {
             sphere(d=channel_d);

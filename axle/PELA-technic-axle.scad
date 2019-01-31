@@ -50,7 +50,7 @@ axle();
 // MODULES
 /////////////////////////////////////
 
-module axle(l=l, axle_radius=axle_radius, center_radius=center_radius) {
+module axle(material=material, l=l, axle_radius=axle_radius, center_radius=center_radius) {
 
     axle_length = block_width(l);
 

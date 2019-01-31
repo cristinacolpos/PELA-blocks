@@ -54,34 +54,38 @@ cross_axle();
 // MODULES
 /////////////////////////////////////
 
-module cross_axle(l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius) {
+module cross_axle(material=material, l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius) {
 
     axle_length = block_width(l);
 
-    rotate([90, 45, 0])
+    rotate([90, 45, 0]) {
         difference() {
-            axle(l=l, axle_radius=axle_radius, center_radius=0);
+            axle(material=material, l=l, axle_radius=axle_radius, center_radius=0);
             
-            axle_cross_negative_space(axle_length=axle_length, axle_rounding=axle_rounding, axle_radius=axle_radius);
+            axle_cross_negative_space(material=material, axle_length=axle_length, axle_rounding=axle_rounding, axle_radius=axle_radius);
         }
+    }
 }
 
 
 // That which is cut away four times from a solid to create a cross axle
-module axle_cross_negative_space(axle_length, axle_rounding=axle_rounding, axle_radius=axle_radius) {
+module axle_cross_negative_space(material=material, axle_length, axle_rounding=axle_rounding, axle_radius=axle_radius) {
     
     for (rot=[0:90:270]) {
-        rotate([0, 0, rot])
+        rotate([0, 0, rot]) {
             hull() {
                 translate([axle_rounding*2, axle_rounding*2, -defeather]) {
                     cylinder(r=axle_rounding, h=axle_length+2*defeather);
 
-                    translate([axle_radius, 0, 0])
+                    translate([axle_radius, 0, 0]) {
                         cylinder(r=axle_rounding, h=axle_length+2*defeather);
+                    }
 
-                    translate([0, axle_radius, 0])
+                    translate([0, axle_radius, 0]) {
                         cylinder(r=axle_rounding, h=axle_length+2*defeather);
+                    }
                 }
             }
+        }
     }
 }

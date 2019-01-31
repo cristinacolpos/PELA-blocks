@@ -115,26 +115,26 @@ function vertical_offset(block_height=block_height)=(block_height(2*h, block_hei
 // MODULES
 /////////////////////////////////////
 
-module bottom_piece() {
+module bottom_piece(material=material) {
     difference() {
         union() {
-            PELA_technic_block(l=l, w=w, h=h, knob_flexture_height=0, solid_first_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
+            PELA_technic_block(material=material, l=l, w=w, h=h, knob_flexture_height=0, solid_first_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
 
-            double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
+            double_end_connector_sheath_set(material=material, l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
         }
 
     
         union() {
             translate([(block_width(4)-grove_width)/2, side_shell, vertical_offset(block_height=block_height)]) {
                 rotate([0, -90, 270]) {
-                    grove();
+                    grove(material=material);
                 }
             }
 
-            double_end_connector_hole_set(l=l, w=w, hole_type=2, axle_hole_radius=axle_hole_radius, block_width=block_width);
+            double_end_connector_hole_set(material=material, l=l, w=w, hole_type=2, axle_hole_radius=axle_hole_radius, block_width=block_width);
 
             if (corner_bolt_holes) {
-                corner_corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
+                corner_corner_bolt_holes(material=material, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
             }
             
             skin();
@@ -147,16 +147,16 @@ module bottom_piece() {
 module top_piece() {
 
     translate([0, block_width(w + 0.5), 0]) {
-        main_top_piece();
+        main_top_piece(material=material);
 
         if (print_supports) {
             difference() {
                 union() {
-                    top_supports();
+                    top_supports(material=material);
 
                     difference() {
                         hull() {
-                            top_supports();
+                            top_supports(material=material);
                         }
 
                         translate([0, 0, support_connection_height]) {
@@ -165,7 +165,7 @@ module top_piece() {
                     }
                 }
 
-                main_top_piece_space();
+                main_top_piece_space(material=material);
             }
         }
     }
@@ -173,41 +173,41 @@ module top_piece() {
 
 
 // Primary shape of the top piece
-module main_top_piece() {
+module main_top_piece(material=material) {
     difference() {
         union() {
-            PELA_technic_block(l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0);
+            PELA_technic_block(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0);
         
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                double_end_connector_sheath_set(l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
+                double_end_connector_sheath_set(material=material, l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
             }
         }
         
         union() {
             translate([(block_width(l)-grove_width)/2, 1.2, block_height(-h, block_height=block_height)+vertical_offset()]) {
                 rotate([0,-90,270]) {
-                    grove();
+                    grove(material=material);
                 }
             }
             
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                double_end_connector_hole_set(l=l, w=w, hole_type=2, axle_hole_radius=axle_hole_radius, block_width=block_width);
+                double_end_connector_hole_set(material=material, l=l, w=w, hole_type=2, axle_hole_radius=axle_hole_radius, block_width=block_width);
             }
 
             if (corner_bolt_holes) {
-                corner_corner_bolt_holes(l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
+                corner_corner_bolt_holes(material=material, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
             }
             
-            skin(l=l, w=w, h=h);
+            skin(material=material, l=l, w=w, h=h);
         }
     }
 }
 
 
 // The negative space which supports should not enter to be too close to the top piece
-module main_top_piece_space() {
+module main_top_piece_space(material=material) {
     minkowski() {
-        main_top_piece();
+        main_top_piece(material=material);
 
         sphere(r=support_offset_from_part, $fn=8);
     }    
@@ -215,7 +215,7 @@ module main_top_piece_space() {
 
 
 // Supports to prevent the long overhangs from drooping
-module top_supports() {
+module top_supports(material=material) {
     support_side_length=4;
     height = block_height(h) - 1.95 - skin;
     h2 = 9.6;
@@ -224,28 +224,28 @@ module top_supports() {
     end_support_side_length=3;
 
     translate([block_width(2), block_width(0.5), 0])
-        support(height=height, support_side_length=support_side_length);
+        support(material=material, height=height, support_side_length=support_side_length);
     
     translate([block_width(2), block_width(1.5), 0])
-        support(height=height, support_side_length=support_side_length);
+        support(material=material, height=height, support_side_length=support_side_length);
     
     translate([block_width(1.5), block_width(1), 0])
-        support(height=height, support_side_length=support_side_length);
+        support(material=material, height=height, support_side_length=support_side_length);
     
     translate([block_width(2.5), block_width(1), 0])
-        support(height=height, support_side_length=support_side_length);
+        support(material=material, height=height, support_side_length=support_side_length);
 
     translate([block_width(1.5), block_width(1.9), 0])
-        support(height=h2, support_side_length=support_side_length);
+        support(material=material, height=h2, support_side_length=support_side_length);
 
     translate([block_width(2.5), block_width(1.9), 0])
-        support(height=h2, support_side_length=support_side_length);
+        support(material=material, height=h2, support_side_length=support_side_length);
 
     translate([end_x, block_width(1), 0])
-        support(height=end_h, support_side_length=end_support_side_length);
+        support(material=material, height=end_h, support_side_length=end_support_side_length);
 
     translate([block_width(l)-end_x, block_width(1), 0])
-        support(height=end_h, support_side_length=end_support_side_length);
+        support(material=material, height=end_h, support_side_length=end_support_side_length);
 }
     
 
@@ -256,8 +256,8 @@ module grove() {
     translate([0, 0, grove_y_shift]) {
         minkowski() {
             union() {
-                board();
-                negative_space();            
+                board(material=material);
+                negative_space(material=material);            
             }
             
             sphere(r=mink, $fn=8);
@@ -266,17 +266,17 @@ module grove() {
 }
 
 // Grove module main board (PCB with two screw mounts)
-module board() {
+module board(material=material) {
     translate([0, 0, bottom_space]) {
         cube([grove_width, grove_width, thickness]);
     }
 
     translate([0, grove_width/2,bottom_space]) {
-        eye();
+        eye(material=material);
     }
     
     translate([grove_width, grove_width/2, bottom_space]) {
-        eye();
+        eye(material=material);
     }
     
     translate([(grove_width-connector_width)/2, -(connector_length-grove_width)/2, bottom_space+thickness]) {
@@ -285,12 +285,12 @@ module board() {
 }
 
 // The bump on the side of a Grove module where a screw holder can be inserted. In this design, this is simply used for orienting the Grove module within another block (no screws are usually used)
-module eye() {
+module eye(material=material) {
     cylinder(r=eye_radius,h=thickness);
 }
 
 // Space for the board components and access to the Grove connector on the front of the board (no material is here)
-module negative_space() {
+module negative_space(material=material) {
     translate([edge_inset,edge_inset,0]) {
         cube([grove_width-2*edge_inset,grove_width-2*edge_inset,negative_space_height]);
     }
@@ -301,13 +301,13 @@ module negative_space() {
 // A PELA block with a Grove-sized hole in it. This block must be sliced into top and bottom halves
 // in order for you to be able to fit the Grove module inside.
 ////////////////////////////////
-module PELA_grove() {
+module PELA_grove(material=material) {
     difference() {
-        PELA(l, w, h);
+        PELA(material=material, l, w, h);
 
         translate([grove_width + (block_width(4)-grove_width)/2, block_width(2)-2*side_shell, (block_height(3)-grove_width)/2]) {
             rotate([90,0,90]) {
-                grove();       
+                grove(material=material);       
             }
         }
     }

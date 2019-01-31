@@ -56,14 +56,14 @@ pi3_corner();
 // MODULES
 ///////////////////////////////////
 
-module pi3_corner(l1=l1, l2=l2, angle=angle) {
+module pi3_corner(material=material, l1=l1, l2=l2, angle=angle) {
 
     assert(angle >= 65, "Angle must be at least 65 degrees");
     assert(angle <= 295, "Angle must be at least 65 degrees");
 
-    technic_bar(l=l1);
+    technic_bar(material=material, l=l1);
 
     rotate([0, 0, angle]) {
-        technic_bar(l=l2);
+        technic_bar(material=material, l=l2);
     }
 }

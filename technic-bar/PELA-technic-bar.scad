@@ -54,7 +54,7 @@ technic_bar();
 // MODULES
 ///////////////////////////////////
 
-module technic_bar(l=l, h=h, side_holes=2, block_width=block_width) {
+module technic_bar(material=material, l=l, h=h, side_holes=2, block_width=block_width) {
     assert(l > 0, "Technic bar length must be greater than zero");
 
     l2 = l + 1;
@@ -63,7 +63,7 @@ module technic_bar(l=l, h=h, side_holes=2, block_width=block_width) {
         intersection() {
             translate([0, block_width(1, block_width=block_width), 0]) {
                 rotate([90, 0, 0]) {
-                    PELA_technic_block(l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
+                    PELA_technic_block(material=material, l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
                 }
             }
 
@@ -82,7 +82,7 @@ module technic_bar(l=l, h=h, side_holes=2, block_width=block_width) {
 
 
 // The 2D profile of the bar (for rotations and other uses)
-module technic_bar_slice(l=l, block_width=block_width) {
+module technic_bar_slice(material=material, l=l, block_width=block_width) {
     l2 = l + 1;
 
     hull() {
@@ -98,7 +98,7 @@ module technic_bar_slice(l=l, block_width=block_width) {
 
 
 // The 2D profile of the negative space of the bar (for rotations and other uses)
-module technic_bar_slice_negative(l=l, block_width=block_width) {
+module technic_bar_slice_negative(material=material, l=l, block_width=block_width) {
     l2 = l + 1;
 
     union() {

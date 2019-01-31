@@ -54,7 +54,7 @@ technic_angle_connector();
 // MODULES
 ///////////////////////////////////
 
-module technic_angle_connector(angle=angle, l=l) {
+module technic_angle_connector(material=material, angle=angle, l=l) {
     assert(angle >= 0, "Angle connector must be 0-180 degrees")
     assert(angle <= 180, "Angle connector must be 0-180 degrees")
 
@@ -72,22 +72,22 @@ module technic_angle_connector(angle=angle, l=l) {
 
     increment = 5;
     for (theta = [0 : increment : angle]) {
-        pie_slice(theta=theta, increment=increment, l=l);
+        pie_slice(material=material, theta=theta, increment=increment, l=l);
     }
 }
 
 
 
 // theta-degree spacer between the two segments
-module pie_slice(theta=0, increment=5, l=l) {
+module pie_slice(material=material, theta=0, increment=5, l=l) {
     translate([0, 0, block_width(1)]) {
         rotate([theta, 0 , 0]) {
             difference() {
                 hull() {
-                    technic_bar_slice(l=l);
+                    technic_bar_slice(material=material, l=l);
 
                     rotate([increment, 0, 0]) {
-                        technic_bar_slice(l=l);
+                        technic_bar_slice(material=material, l=l);
                     }
                 }
 
@@ -95,12 +95,12 @@ module pie_slice(theta=0, increment=5, l=l) {
                     translate([block_width(n), 0, 0]) {
                         hull() {
                             translate([0, 0, -defeather]) {
-                                technic_bar_slice_negative(l=0);
+                                technic_bar_slice_negative(material=material, l=0);
                             }
 
                             rotate([increment, 0, 0]) {
                                 translate([0, 0, defeather]) {
-                                    technic_bar_slice_negative(l=0);
+                                    technic_bar_slice_negative(material=material, l=0);
                                 }
                             }
                         }

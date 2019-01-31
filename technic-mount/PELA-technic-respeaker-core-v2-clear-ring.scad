@@ -42,4 +42,4 @@ material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN 
 ///////////////////////////////
 
 translate([0, 0, block_height()])
-    clear_ring();
+    clear_ring(material=material);

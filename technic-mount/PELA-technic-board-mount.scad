@@ -79,7 +79,7 @@ technic_board_mount();
 // MODULES
 ///////////////////////////////////
 
-module technic_board_mount(length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+module technic_board_mount(material=material, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
 
     assert(twist_length == floor(twist_length), "twist_length must be an integer");
     assert(twist_width == floor(twist_width), "twist_width must be an integer");
@@ -111,42 +111,42 @@ module technic_board_mount(length=length, width=width, length_padding=length_pad
 
     difference() {
         union() {
-            technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
-            technic_rectangle_infill(l=l, w=w);
+            technic_rectangle(material=material, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+            technic_rectangle_infill(material=material, l=l, w=w);
         }
         
         union() {
-            main_board(l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
-            main_board_back(l=l, w=w, length=length, width=width, innercut=innercut, block_height=block_height);
+            main_board(material=material, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
+            main_board_back(material=material, l=l, w=w, length=length, width=width, innercut=innercut, block_height=block_height);
         }
     }
 }
 
 
-module technic_rectangle(l1, l2, l3, w1, w2, w3) {
+module technic_rectangle(material=material, l1, l2, l3, w1, w2, w3) {
 
     ll = l1+l2+l3;
     ww = w1+w2+w3;
 
-    technic_twist_bar(left=l1, center=l2, right=l3);
+    technic_twist_bar(material=material, left=l1, center=l2, right=l3);
 
     rotate([0, 0, 90]) {
-        technic_twist_bar(left=w1, center=w2, right=w3);
+        technic_twist_bar(material=material, left=w1, center=w2, right=w3);
     }
 
     translate([0, block_width(ww-1), 0]) {
-        technic_twist_bar(left=l1, center=l2, right=l3);
+        technic_twist_bar(material=material, left=l1, center=l2, right=l3);
     }
 
     rotate([0, 0, 90]) {
         translate([0, -block_width(ll-1), 0]) {
-            technic_twist_bar(left=w1, center=w2, right=w3);
+            technic_twist_bar(material=material, left=w1, center=w2, right=w3);
         }
     }
 }
 
 
-module technic_rectangle_infill(l, w) {
+module technic_rectangle_infill(material=material, l, w) {
     
     translate([block_width(0.5, block_width=block_width)-skin, block_width(0.5, block_width=block_width)-skin, 0]) {
         cube([block_width(l-2, block_width=block_width)+2*skin, block_width(w-2, block_width=block_width)+2*skin, block_height()]);
@@ -154,7 +154,7 @@ module technic_rectangle_infill(l, w) {
 }
 
 
-module main_board(l, w, length=length, width=width, thickness=thickness, block_height=block_height) {
+module main_board(material=material, l, w, length=length, width=width, thickness=thickness, block_height=block_height) {
     
     l2 = ((block_width(l, block_width=block_width) - length) / 2);
     w2 = ((block_width(w, block_width=block_width) - width) / 2);
@@ -165,7 +165,7 @@ module main_board(l, w, length=length, width=width, thickness=thickness, block_h
 }
 
 
-module main_board_back(l, w, length=length, width=width, innercut=innercut, block_height=block_height) {
+module main_board_back(material=material, l, w, length=length, width=width, innercut=innercut, block_height=block_height) {
     
     l2 = ((block_width(l - 0.25) - length) / 2);
     w2 = ((block_width(w - 0.25) - width) / 2);

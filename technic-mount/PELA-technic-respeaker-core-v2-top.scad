@@ -47,5 +47,5 @@ two_color_print = true;    // Optional local model override of print_style.scad
 ///////////////////////////////
 
 translate([0, 0, block_height()]) {
-    respeaker_core_v2_technic_top(two_color_print=two_color_print);
+    respeaker_core_v2_technic_top(material=material, two_color_print=two_color_print);
 }

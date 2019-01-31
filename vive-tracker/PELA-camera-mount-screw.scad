@@ -67,25 +67,28 @@ module thumbscrew() {
     translate([0, 0, height])
         us_bolt_thread(dInch=dInch, hInch=hInch, tpi=tpi);
 
-    thumbscrew_head(height=height);
+    thumbscrew_head(material=material, height=height);
 }
 
 
-module thumbscrew_head(height=height) {
+module thumbscrew_head(material=material, height=height) {
     cylinder(d=thumbscrew_border_d/2, h=height);
 
     difference() {
         difference() {
             cylinder(d=thumbscrew_border_d-0.2, h=height);
-            translate([-cut/2, 0])
+            translate([-cut/2, 0]) {
                 cube([cut, thumbscrew_border_d, cut]);
-            
+            }            
         }
+
         union() {
             for (i = [30:30:360]) {
-                rotate([0, 0, i])
-                    translate([-cut/2, 0])
+                rotate([0, 0, i]) {
+                    translate([-cut/2, 0]) {
                         cube([cut, thumbscrew_border_d, cut]);
+                    }
+                }
             }
         }
     }
