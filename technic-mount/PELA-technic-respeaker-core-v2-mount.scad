@@ -37,7 +37,7 @@ use <../knob-panel/PELA-knob-panel.scad>
 /* [Respeaker Core v2 Technic Mount] */
 
 // Printing material
-material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Prepare the model to print in two colors
 two_color_print = true;
@@ -277,7 +277,7 @@ module respeaker_core_v2_technic_mount(material=material) {
                                             rotate([0, 0, 60]) {
                                                 // Side 6
                                                 translate([0, 0, block_height()])
-                                                color("black") {
+                                                color("orange") {
                                                     technic_bar(material=material, l=side_length, h=2);
                                                 }
                                             }
@@ -294,7 +294,7 @@ module respeaker_core_v2_technic_mount(material=material) {
 }
 
 
-module board_mounts(rot=0, h=mount_h, pin=true) {
+module board_mounts(material=material, rot=0, h=mount_h, pin=true) {
         color("orange") board_mount(material=material, x1, y1, h=h, rot=rot, pin=pin);
         color("yellow") board_mount(material=material, x2, y2, h=h, rot=rot, pin=pin);
         color("pink") board_mount(material=material, x3, y3, h=h, rot=rot, pin=pin);
@@ -416,7 +416,7 @@ module respeaker_core_v2_technic_top_center(material=material) {
                                                 translate([block_width(side_length - 1), 0, 0]) {
                                                     rotate([0, 0, 60]) {
                                                         // Side 6
-                                                        color("black") {
+                                                        color("orange") {
                                                             technic_bar(material=material, l=8, h=top_thickness);
                                                         }
                                                     }
