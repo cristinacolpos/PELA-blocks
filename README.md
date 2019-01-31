@@ -16,9 +16,16 @@ These open source designs are brought to you by [Futurice](https://futurice.com)
 
 The software needed is free and open source, [OpenSCAD](http://www.openscad.org/). You can probably learn it in less than an hour.
 
+## Customizer
+
+Newer "development snapshot" versions of [OpenSCAD](http://www.openscad.org/) make tailoring designs to fit your project easy. Just enable "Customizer" in the "Preferences" menu. You can **customize the PELA design then print directly from OpenSCAD** using Octoprint. These features work well though they are still "beta".
+
+[OpenSCAD Customizer with PELA Technic Block](images/pela-customizer.jpg)
+
+
 ## Download
 
-**The STL files shown are examples only.** To get a good snap fit with your 3D print, you need to fine tune the size of top and bottom connectors. It is also easy to personalize PELA designs- start by turning on or off optional features.
+**The STL files shown are not calibrated for your printer.** To get a good snap fit with your 3D print, you need to fine tune the size of top and bottom connectors. It is also easy to personalize PELA designs- start by turning on or off optional features.
 
 1. **[DOWNLOAD](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the latest designs, or `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git --recurse-submodules`, then `git lfs install` in each git module
 1. **[Calibrate](#calibrate)** the PELA Block models for your material and printer
