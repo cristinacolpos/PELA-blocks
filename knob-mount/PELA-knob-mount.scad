@@ -90,10 +90,10 @@ board_y_offset = 0;
 board_z_offset = -thickness;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
-length_tightness = 1.5;
+length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Board surround ratio
-width_tightness = 1.5;
+width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
@@ -111,10 +111,10 @@ board_mount();
 // MODULES
 ///////////////////////////////////
 
-module board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, length_tightness=length_tightness, width_tightness=width_tightness, block_height=block_height) {
+module board_mount(length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, length_padding=length_padding, width_padding=width_padding, block_height=block_height) {
 
-    l = fit_mm_to_pela_blocks(length, tightness=length_tightness);
-    w = fit_mm_to_pela_blocks(width, tightness=width_tightness);
+    l = fit_mm_to_blocks(length, tightness=length_padding);
+    w = fit_mm_to_blocks(width, tightness=width_padding);
     echo("board mount l", l);
     echo("board mount w", w);
 

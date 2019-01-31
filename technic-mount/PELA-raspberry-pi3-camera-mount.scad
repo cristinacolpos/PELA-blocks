@@ -39,9 +39,9 @@ length = 39.5; // Board space length [mm]
 
 width = 39.5; // Board space width [mm]
 
-length_tightness = 1.5; // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
-width_tightness = 1.5; // Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
 twist_length = 2; // How many blocks in from length ends do the technic holes rotate 90 degrees [blocks]
 
@@ -66,7 +66,7 @@ pi_camera_technic_mount();
 // MODULES
 ///////////////////////////////////
 
-module pi_camera_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+module pi_camera_technic_mount(length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
 
-    technic_board_mount(length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_tightness=length_tightness, width_tightness=width_tightness, thickness=thickness, innercut=innercut);
+    technic_board_mount(length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, thickness=thickness, innercut=innercut);
 }

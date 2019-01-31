@@ -115,7 +115,7 @@ block_height = 9.6; // [8:technic and traditional blocks]
 ///////////////////////////////////
 
 // Find the optimum enclosing horizontal dimension in block units for an object of width/length i
-function fit_mm_to_pela_blocks(i, tightness) = ceil((i+(tightness*block_width())) / block_width());
+function fit_mm_to_blocks(i, tightness) = ceil((i + block_width(tightness + 1)) / block_width());
 
 // Find the optimum enclosing vertical dimension in block units for an object of height i
 function fit_mm_to_pela_block_height(i, tightness, block_height=block_height) = ceil((i+(tightness*block_height(1, block_height=block_height))) / block_height(1, block_height=block_height));

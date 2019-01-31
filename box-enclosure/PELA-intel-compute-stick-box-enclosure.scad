@@ -31,13 +31,13 @@ use <PELA-box-enclosure.scad>
 length = 114.5;
 
 // How close to the object ends should the walls be [ratio]
-length_tightness = 2; // [1:tight fit, 2:loose fit]
+length_padding = 2; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Width of the enclosed object [mm]
 width = 38.5;
 
 // How close to the object sides should the walls be [ratio]
-width_tightness = 2; // [1:tight fit, 2:loose fit]
+width_padding = 2; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Height of the enclosed object [mm]
 height = 12.5;
@@ -77,9 +77,9 @@ intel_compute_stick_box_enclosure();
 /////////////////////////////////////
 
 module intel_compute_stick_box_enclosure() {
-    l=fit_mm_to_pela_blocks(length, length_tightness);
-    w=fit_mm_to_pela_blocks(width, width_tightness);
-    h=2;
+    l = fit_mm_to_blocks(length, length_padding);
+    w = fit_mm_to_blocks(width, width_padding);
+    h = 2;
 
     difference() {
         PELA_box_enclosure(l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
@@ -149,8 +149,8 @@ module intel_compute_stick_descender(block_height=block_height) {
 
 
 module intel_compute_stick_box_lid(block_height=block_height) {
-    l=fit_mm_to_pela_blocks(length, length_tightness);
-    w=fit_mm_to_pela_blocks(width, width_tightness);
+    l=fit_mm_to_blocks(length, length_padding);
+    w=fit_mm_to_blocks(width, width_padding);
 
     socket_panel(l=l, w=w, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
 }
