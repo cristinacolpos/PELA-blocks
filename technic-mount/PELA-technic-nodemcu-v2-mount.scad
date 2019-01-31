@@ -50,8 +50,8 @@ board_mount();
 ///////////////////////////////////
 
 module board_mount() {
-  l = fit_mm_to_pela_blocks(length, length_tightness);
-  w = fit_mm_to_pela_blocks(width, width_tightness);
+  l = fit_mm_to_blocks(length, length_padding);
+  w = fit_mm_to_blocks(width, width_padding);
 
   difference() {
     union() {

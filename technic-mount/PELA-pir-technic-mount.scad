@@ -32,7 +32,7 @@ use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 include <PELA-technic-board-mount.scad>
 
-/* [Technic Pin Array Options] */
+/* [PIR Technic Mount Options] */
 
 // Board space length [mm]
 length = 20.1;
@@ -41,10 +41,10 @@ length = 20.1;
 width = 20.1;
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-length_tightness = 1.0;
+length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-width_tightness = 1.0;
+width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // 90 degree rotation from length ends [blocks]
 twist_length = 1;
@@ -72,7 +72,7 @@ pi_camera_technic_mount();
 // MODULES
 ///////////////////////////////////
 
-module pi_camera_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+module pi_camera_technic_mount(length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
 
-    technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut);
+    technic_board_mount(length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut);
 }

@@ -42,10 +42,10 @@ length = 39.5;
 width = 39.5;
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-length_tightness = 1.5;
+length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-width_tightness = 1.5;
+width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // How many blocks in from length ends do the technic holes rotate 90 degrees
 twist_length = 2;
@@ -74,22 +74,28 @@ technic_board_mount();
 // MODULES
 ///////////////////////////////////
 
-module technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+module technic_board_mount(length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
 
+    assert(twist_length == floor(twist_length), "twist_length must be an integer");
+    assert(twist_width == floor(twist_width), "twist_width must be an integer");
     assert(twist_length >= 0, "twist_length must be >= 0");
     assert(twist_width >= 0, "twist_length must be >= 0");
-    assert(length_tightness > 0, "length_tightness must be > 0 (usually 1 to 1.5)");
-    assert(width_tightness > 0, "WIDTH_TIGHTNESS must be > 0 (usually 1 to 1.5)");
-    assert(twist_length*2 <= l, "TWIST_LENGTH must <= l/2, please reduce TWIST_LENGTH or increate LENGTH");
-    assert(twist_width*2 <= w, "TWIST_WIDTH must <= w/2, please reduce TWIST_WIDTH or increate WIDTH");
+    assert(length_padding == floor(length_padding), "length_padding must be an integer");
+    assert(length_padding >= 0, "length_padding must be >= 0");
+    assert(length_padding <= 2, "length_padding must be <= 2");
+    assert(width_padding == floor(width_padding), "width_padding must be an integer");
+    assert(width_padding >= 0, "width_padding must be >= 0");
+    assert(width_padding <= 2, "width_padding must be <= 2");
+    assert(twist_length*2 <= l, "twist_length must <= l/2, please reduce twist_length or increate LENGTH");
+    assert(twist_width*2 <= w, "twist_width must <= w/2, please reduce twist_width or increate WIDTH");
 
-    l = fit_mm_to_pela_blocks(length, length_tightness);
-    w = fit_mm_to_pela_blocks(width, width_tightness);
+    l = fit_mm_to_blocks(length, length_padding);
+    w = fit_mm_to_blocks(width, width_padding);
     echo("l", l);
     echo("w", l);
 
-    assert(l - 2*twist_length, "The board length is quite small- consider decreasing twist_length or increasing length_tightness");
-    assert(w - 2*twist_width, "The board width is quite small- consider decreasing twist_width or increasing width_tightness");
+    assert(l - 2*twist_length, "The board length is quite small- consider decreasing twist_length or increasing length_padding");
+    assert(w - 2*twist_width, "The board width is quite small- consider decreasing twist_width or increasing width_padding");
 
     l1 = twist_length;
     l3 = l1;
@@ -97,12 +103,6 @@ module technic_board_mount(length=length, width=width, length_tightness=length_t
     w1 = twist_width;
     w3 = w1;
     w2 = w - w1 - w3;
-    echo("l1", l1);
-    echo("l2", l2);
-    echo("l3", l3);
-    echo("w1", w1);
-    echo("w2", w2);
-    echo("w3", w3);
 
     difference() {
         union() {

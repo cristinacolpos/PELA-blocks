@@ -39,9 +39,9 @@ length = 86.2; // Board space length [mm]
 
 width = 56.8; // Board space width [mm]
 
-length_tightness = 1.5; // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
-width_tightness = 1.5; // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
 twist_length = 2; // How many blocks in from  length ends do the technic holes rotate 90 degrees
 
@@ -69,11 +69,11 @@ pi3_technic_mount();
 // MODULES
 ///////////////////////////////////
 
-module pi3_technic_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width) {
+module pi3_technic_mount(length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width) {
 
     l_fit = 1;
-    l = fit_mm_to_pela_blocks(length, length_tightness) - l_fit;
-    w = fit_mm_to_pela_blocks(width, width_tightness);
+    l = fit_mm_to_blocks(length, length_padding) - l_fit;
+    w = fit_mm_to_blocks(width, width_padding);
     x=1;
     y=0.5;
     l1 = l - 2*twist_length;    
@@ -85,10 +85,10 @@ module pi3_technic_mount(length=length, width=width, length_tightness=length_tig
 
     difference() {
         union() {
-            technic_board_mount(length=length, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut, block_width=block_width);
+            technic_board_mount(length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut, block_width=block_width);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                technic_board_mount(length=length-block_width, width=width, length_tightness=length_tightness, width_tightness=width_tightness, twist_length=twist_length, twist_width=twist_width, thickness=0, innercut=0);
+                technic_board_mount(length=length-block_width, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=0, innercut=0);
 //                technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
             }
 

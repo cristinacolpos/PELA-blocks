@@ -41,9 +41,9 @@ length = 35; // Board space length [mm]
 
 width = 35; // Board space width [mm]
 
-length_tightness = 1.0; // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
-width_tightness = 1.0; // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
 twist_length = 1; // Distance from length ends to rotate 90 degrees [blocks]
 
@@ -63,17 +63,17 @@ technic_cover();
 // MODULES
 ///////////////////////////////////
 
-module technic_cover(length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_tightness=length_tightness, width_tightness=width_tightness) {
+module technic_cover(length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding) {
 
-    assert(twist_length >= 0, "TWIST_LENGTH must be >= 0");
-    assert(twist_width >= 0, "TWIST_LENGTH must be >= 0");
-    assert(length_tightness > 0, "LENGTH_TIGHTNESS must be > 0 (usually 1 to 1.5)");
-    assert(width_tightness > 0, "WIDTH_TIGHTNESS must be > 0 (usually 1 to 1.5)");
-    assert(twist_length*2 <= l, "TWIST_LENGTH must <= l/2, please reduce TWIST_LENGTH or increate LENGTH");
-    assert(twist_width*2 <= w, "TWIST_WIDTH must <= w/2, please reduce TWIST_WIDTH or increate WIDTH");
+    assert(twist_length >= 0, "twist_length must be >= 0");
+    assert(twist_width >= 0, "twist_length must be >= 0");
+    assert(length_padding > 0, "length_padding must be > 0 (usually 1 to 1.5)");
+    assert(width_padding > 0, "width_padding must be > 0 (usually 1 to 1.5)");
+    assert(twist_length*2 <= l, "twist_length must <= l/2, please reduce twist_length or increate LENGTH");
+    assert(twist_width*2 <= w, "twist_width must <= w/2, please reduce twist_width or increate WIDTH");
 
-    l = fit_mm_to_pela_blocks(length, length_tightness);
-    w = fit_mm_to_pela_blocks(width, width_tightness);
+    l = fit_mm_to_blocks(length, length_padding);
+    w = fit_mm_to_blocks(width, width_padding);
 
     l2 = max(0, l - 2*twist_length);
     w2 = max(0, w - 2*twist_width);
