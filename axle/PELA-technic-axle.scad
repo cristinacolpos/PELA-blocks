@@ -23,14 +23,14 @@ use <../PELA-block.scad>
 
 /* [Technic Axle Options] */
 
-// Axle length [mm]
-axle_length = block_width(3);
+// Axle length [blocks]
+l = 3;
 
 // An axle which fits loosely in a technic bearing hole [mm]
 axle_radius = 2.2;
 
 // Size of the hollow inside an axle [mm]
-axle_center_radius = axle_radius/2;
+center_radius = 1.1;
 
 
 
@@ -47,11 +47,14 @@ axle();
 // MODULES
 /////////////////////////////////////
 
-module axle(axle_radius=axle_radius, axle_center_radius=axle_center_radius, axle_length=axle_length) {
+module axle(l=l, axle_radius=axle_radius, center_radius=center_radius) {
+
+    axle_length = block_width(l);
 
     difference() {
         cylinder(r=axle_radius, h=axle_length);
+
         translate([0, 0, -defeather])
-            cylinder(r=axle_center_radius, h=axle_length+2*defeather);
+            cylinder(r=center_radius, h=axle_length + 2*defeather);
     }
 }
