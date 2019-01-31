@@ -31,7 +31,10 @@ use <PELA-technic-block.scad>
 use <knob-panel/PELA-knob-panel.scad>
 
 
-/* [PELA Velcro Mount Options] */
+/* [Velcro Mount] */
+
+// Printing material
+material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 l = 4; // Length of the mount [blocks]
 

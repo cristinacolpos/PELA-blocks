@@ -33,4 +33,4 @@ large_nozzle = true;
 // DISPLAY
 ///////////////////////////////
 
-PELA_calibration_set(flexible_material=flexible_material, large_nozzle=large_nozzle);
+PELA_calibration_set(material=material, large_nozzle=large_nozzle);
