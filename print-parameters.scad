@@ -105,12 +105,12 @@ tpu85_m = ["TPU85/NinjaFlex", true, 0.04, -0.02, 0.04];
 materials = [pla_m, abs_m, tpu95_m, tpu85_m];
 
 // Printing material
-material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Get a named property from the materials data structure
 function material_property(material, property) = materials[material][property];
 function material_name(material) = materials[material][name_index];
-function flexible_material(material) = materials[material][name_index];flex_index);
+function flexible_material(material) = materials[material][name_index];
 function material_top_tweak(material) = material_property(material, top_tweak_index);
 function material_bottom_tweak(material) = material_property(material, bottom_tweak_index);
 function material_axle_hole_tweak(material) = material_property(material, axle_hole_tweak_index);

@@ -28,16 +28,13 @@ use <PELA-technic-block.scad>
 /* [Socket Panel] */
 
 // Printing material
-material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Length of the block [blocks]
 l = 8; 
 
 // Width of the block [blocks]
 w = 8;
-
-// Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.6;
 
 // Add interior fill for the base layer
 solid_first_layer = false;
@@ -47,6 +44,9 @@ solid_first_layer = false;
 
 // Place holes in the corners for mountings screws
 corner_bolt_holes = false;
+
+// Size of corner holes for M3 mountings bolts
+bolt_hole_radius = 1.6;
 
 
 ///////////////////////////////
