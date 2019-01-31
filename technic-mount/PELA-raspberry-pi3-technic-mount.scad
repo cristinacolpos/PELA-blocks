@@ -74,13 +74,13 @@ pi3_technic_mount();
 // MODULES
 ///////////////////////////////////
 
-module pi3_technic_mount(length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width) {
+module pi3_technic_mount(material=material, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width) {
 
     l_fit = 1;
     l = fit_mm_to_blocks(length, length_padding) - l_fit;
     w = fit_mm_to_blocks(width, width_padding);
-    x=1;
-    y=0.5;
+    x = 1;
+    y = 0.5;
     l1 = l - 2*twist_length;    
     l3 = l1;
     l2 = l - l1 - l3;
@@ -90,38 +90,38 @@ module pi3_technic_mount(length=length, width=width, length_padding=length_paddi
 
     difference() {
         union() {
-            technic_board_mount(length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut, block_width=block_width);
+            technic_board_mount(material=material, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut, block_width=block_width);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                technic_board_mount(length=length-block_width, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=0, innercut=0);
-//                technic_rectangle(l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+                technic_board_mount(material=material, length=length-block_width, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=0, innercut=0);
+//                technic_rectangle(material=material, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
             }
 
-            retaining_ridge_sd_card_side();
+            retaining_ridge_sd_card_side(material=material);
         }
         
 #        union() {
-            main_board(l=l+2_fit, w=w, length=length, width=width, block_height=block_height);
-            sd_card_cutout();
-            front_connector_cutout();
-            ethernet_cutout();
-            daughterboard_cutout();
+            main_board(material=material, l=l+2_fit, w=w, length=length, width=width, block_height=block_height);
+            sd_card_cutout(material=material);
+            front_connector_cutout(material=material);
+            ethernet_cutout(material=material);
+            daughterboard_cutout(material=material);
         }
     }
 
-    bottom(x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height);
+    bottom(material=material, x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height);
 }
 
 
-module bottom(x, y, l, w, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
+module bottom(material=material, x, y, l, w, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
 
     translate([block_width(x) - skin, block_width(y), 0]) {
-        skinned_block(l=l, w=w, h=0.25, skin=0, ridge_width=0, ridge_depth=0, block_height=block_height);
+        skinned_block(material=material, l=l, w=w, h=0.25, skin=0, ridge_width=0, ridge_depth=0, block_height=block_height);
     }
 }
 
 
-module retaining_ridge_sd_card_side() {
+module retaining_ridge_sd_card_side(material=material) {
 
     translate([block_width(0.5), block_width(0.5), block_height(0.5, block_height=block_height)]) {
         cube([block_width(0.5), block_width(2), block_height(2.5, block_height=block_height)]);
@@ -133,7 +133,7 @@ module retaining_ridge_sd_card_side() {
 }
 
 
-module sd_card_cutout() {
+module sd_card_cutout(material=material) {
 
     translate([block_width(-1.6), block_width(1.5), 0]) {
         cube([block_width(3), block_width(6), block_height(3, block_height=block_height)]);
@@ -145,7 +145,7 @@ module sd_card_cutout() {
 }
 
 
-module ethernet_cutout() {
+module ethernet_cutout(material=material) {
 
     translate([block_width(10), block_width(0.5), block_height(1, block_height=block_height)]) {
         cube([block_width(3), block_width(8), block_height(3, block_height=block_height)]);
@@ -153,7 +153,7 @@ module ethernet_cutout() {
 }
 
 
-module front_connector_cutout() {
+module front_connector_cutout(material=material) {
 
     translate([block_width(1.5), block_width(-0.6), block_height(0.5, block_height=block_height)]) {
         cube([block_width(8), block_width(2), block_height(3, block_height=block_height)]);
@@ -161,7 +161,7 @@ module front_connector_cutout() {
 }
 
 
-module daughterboard_cutout() {
+module daughterboard_cutout(material=material) {
 
     translate([block_width(-0.5), block_width(-0.5), block_height(2, block_height=block_height)]) {
         cube([block_width(10), block_width(10), block_height(3, block_height=block_height)]);

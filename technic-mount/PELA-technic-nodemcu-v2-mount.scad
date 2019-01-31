@@ -37,7 +37,9 @@ use <../technic-bar/PELA-technic-twist-bar.scad>
 material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 length = 48.7;
+
 width = 26.2;
+
 thickness = 1.8;
 
 
@@ -54,7 +56,7 @@ board_mount();
 // MODULES
 ///////////////////////////////////
 
-module board_mount() {
+module board_mount(material=material) {
   l = fit_mm_to_blocks(length, length_padding);
   w = fit_mm_to_blocks(width, width_padding);
 
@@ -64,7 +66,7 @@ module board_mount() {
         color("red") cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, block_height()*2]);
       }
       color("gray", 0.3) union() {
-        technic_bar_frame(l, w);
+        technic_bar_frame(material=material, l, w);
         translate([0, 0, block_height()]) technic_bar_frame(l, w);
       }
     }
@@ -76,12 +78,12 @@ module board_mount() {
   }
 }
 
-module technic_bar_frame(l, w) {
+module technic_bar_frame(material=material, l, w) {
     union() {
-      technic_bar(l=l);
-      rotate([0, 0, 90]) technic_bar(l=w);
-      translate([0, block_width(w-1), 0]) technic_bar(l=l);
-      rotate([0, 0, 90]) translate([0, -block_width(l-1), 0]) technic_bar(l=w);
+      technic_bar(material=material, l=l);
+      rotate([0, 0, 90]) technic_bar(material=material, l=w);
+      translate([0, block_width(w-1), 0]) technic_bar(material=material, l=l);
+      rotate([0, 0, 90]) translate([0, -block_width(l-1), 0]) technic_bar(material=material, l=w);
     }
 }
 
@@ -96,7 +98,7 @@ usb_length = 40;
 usb_height = block_height() + 2.8 + 2;
 
 
-module board() {
+module board(material=material) {
   union() {
     cube([board_length, board_width, board_height]);
     color("green") translate([(board_length-header_length)/2, 0, -header_height]) cube([header_length, board_width, header_height]);

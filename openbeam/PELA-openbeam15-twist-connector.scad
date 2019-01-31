@@ -63,7 +63,7 @@ openbeam15();
 ///////////////////////////////////
 
 module openbeam15() {
-	PELA_knob_panel(l=l, w=w, corner_bolt_holes=false, sockets=false, block_height=block_height);
+	PELA_knob_panel(material=material, l=l, w=w, corner_bolt_holes=false, sockets=false, block_height=block_height);
 
 	translate([top_width/2, top_length/2, 0]) {
 		cylinder(r=block_width(1/3), h=top_height);
@@ -72,25 +72,25 @@ module openbeam15() {
 	translate([0, top_length, 0]) {
 		rotate([180, 0, 0]) {
 			hull() {
-				openbeam15_neck();
-				openbeam15_foot_back();
+				openbeam15_neck(material=material);
+				openbeam15_foot_back(material=material);
 			}
 
 			color("white") translate([0, block_width(1), 0])
-				openbeam15_insert();
+				openbeam15_insert(material=material);
 		}
 	}
 }
 
 
-module openbeam15_neck() {
+module openbeam15_neck(material=material) {
 	translate([(top_width - throat_width) / 2, 0, 0]) {
 		cube([throat_width, throat_length, throat_height]);
 	}
 }
 
 
-module openbeam15_foot_back() {
+module openbeam15_foot_back(material=material) {
 		translate([(top_width + throat_height/2) / 2, top_length / 2, throat_height*3/2]) {
 			rotate([90, 0, 0]) {
 				cylinder(h=throat_length, d=throat_height);
@@ -98,7 +98,7 @@ module openbeam15_foot_back() {
 		}
 }
 
-module openbeam15_insert() {
+module openbeam15_insert(material=material) {
 //	intersection() {
 		translate([top_width / 2, top_length / 2, throat_height]) {
 			cylinder(h=throat_height, d=foot_length);

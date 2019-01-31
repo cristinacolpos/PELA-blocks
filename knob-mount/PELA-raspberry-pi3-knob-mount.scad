@@ -115,15 +115,15 @@ pi3_board_mount();
 // MODULES
 ///////////////////////////////////
 
-module pi3_board_mount(length=length, width=width, h=h, thickness=thickness, innercut=innercut, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, length_padding=length_padding, width_padding=width_padding) {
+module pi3_board_mount(material=material, length=length, width=width, h=h, thickness=thickness, innercut=innercut, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, length_padding=length_padding, width_padding=width_padding) {
 
     difference() {
-        board_mount(length=length, width=width, h=h, thickness=thickness, innercut=innercut, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, length_padding=length_padding, width_padding=width_padding);
+        board_mount(material=material, length=length, width=width, h=h, thickness=thickness, innercut=innercut, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, length_padding=length_padding, width_padding=width_padding);
 
         union() {
-            sd_card_cutout();
+            sd_card_cutout(material=material);
 
-            front_connector_cutout();
+            front_connector_cutout(material=material);
             
             l = fit_mm_to_blocks(l=length, tightness=length_padding);
             w = fit_mm_to_blocks(l=width, tightness=width_padding);
@@ -133,14 +133,14 @@ module pi3_board_mount(length=length, width=width, h=h, thickness=thickness, inn
     }
 }
 
-module sd_card_cutout() {
+module sd_card_cutout(material=material) {
 
     translate([-0.01, block_width(3), block_height(0.5, block_height=block_height)]) {
         cube([block_width(2), block_width(3), block_height(1, block_height=block_height)]);
     }
 }
 
-module front_connector_cutout() {
+module front_connector_cutout(material=material) {
 
     translate([block_width(2), -0.01, block_height(0.5, block_height=block_height)]) {
         cube([block_width(8), block_width(2), block_height(2, block_height=block_height)]);
