@@ -23,7 +23,10 @@ include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 
-/* [PELA Panel Options] */
+/* [Knob Panel] */
+
+// Printing material
+material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Length of the block [blocks]
 l = 8; 

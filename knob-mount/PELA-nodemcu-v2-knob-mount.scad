@@ -28,9 +28,13 @@ use <../PELA-technic-block.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <PELA-knob-mount.scad>
 
-////////////////////
-// Parameters
-////////////////////
+
+
+/* [Node MCU v2 Knob Mount] */
+
+// Printing material
+material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+
 length = 49;
 
 width = 25.9;

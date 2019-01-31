@@ -22,6 +22,11 @@ Import this into other design files to set baseline constants:
 
 include <print-parameters.scad>
 
+/* [Printer] */
+
+// Minimum printable width of the printer-slicer combination has an effect on wall thickness and bottom socket gemoetry. When true, some features are larger. If set to false, printing is marginally faster and due to the reduction in material used.
+large_nozzle = true; // [true:nozzle >= 0.5mm, false:nozzle < 0.5mm]
+
 
 /* [Block] */
 
@@ -141,6 +146,9 @@ ridge_depth = 0.3;
 
 /* [Baked Print Supports] */
 
+// Generate print-time support aid structures for models which offer this. Turn this off if you will use slicer-generated print supports, but be aware that these may make the bottom connectors difficult to post process.
+print_supports = true;
+
 // Space between support/support.scad and the part)
 support_offset_from_part = 0.1;
 
@@ -161,6 +169,12 @@ support_max_rotation = 0;
 
 
 /* [Hidden] */
+
+// In some models, the user will load two STL files into the slicer for a dual-material printer, one for each material/color. If "false" then the user wants a simplified, single material model
+two_color_print = false; // WIP
+
+// Add a text label to models which support that. The two_color_print setting will also affect if these is raised or colored text
+text_labels = true; // WIP
 
 // Height of the connectors commercial blocks use
 official_knob_height = 1.8; // [1.8:traditional blocks]
@@ -201,10 +215,10 @@ function ring_thickness(large_nozzle=large_nozzle) = large_nozzle ? 1.2 : 0.8;
 function ring_radius(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak) = 2.75 + ring_thickness(large_nozzle=large_nozzle) + bottom_tweak;
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-function knob_flexture_radius(flexible_material=flexible_material) = flexible_material ? 0.6 : 0.8;
+function knob_flexture_radius(material) = flexible_material(material) ? 0.6 : 0.8;
 
 // Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
-function knob_bevel(flexible_material=flexible_material) = flexible_material ? 0.3 : 0.2;
+function knob_bevel(material) = flexible_material(material) ? 0.3 : 0.2;
 
 
 // Test if this is a corner block
@@ -217,7 +231,7 @@ function panel_height_ratio(block_height=block_height) = block_height < 9.6 ? 1/
 function panel_height(block_height=block_height) = block_height(1, block_height=block_height)*panel_height_ratio(block_height=block_height);
 
 // Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
-function side_lock_thickness(flexible_material=flexible_material) = flexible_material ? 0.06 : 0.02;
+function side_lock_thickness(material) = flexible_material(material) ? 0.06 : 0.02;
 
 // Horizontal width of each side of a support triangle
 function support_line_width(large_nozzle=large_nozzle) = large_nozzle ? 0.7 : 0.5;

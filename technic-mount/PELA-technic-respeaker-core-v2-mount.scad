@@ -32,7 +32,12 @@ use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 use <../knob-panel/PELA-knob-panel.scad>
 
-/* [Model Options] */
+
+
+/* [Respeaker Core v2 Technic Mount] */
+
+// Printing material
+material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Prepare the model to print in two colors
 two_color_print = true;

@@ -21,7 +21,10 @@ include <../style.scad>
 include <../print-parameters.scad>
 use <../PELA-block.scad>
 
-/* [Technic Axle Options] */
+/* [Technic Axle] */
+
+// Printing material
+material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Axle length [blocks]
 l = 3;

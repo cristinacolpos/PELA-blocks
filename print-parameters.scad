@@ -56,13 +56,67 @@ SUGGESTIONS
 - See 'SLICER.md' for more tips and settings that have worked for us on specific materials.
 */
 
+
+
+
+// ["name", flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
+name_index = 0;
+flex_index = 1;
+top_tweak_index = 2;
+bottom_tweak_index = 3;
+axle_hole_tweak_index = 4;
+
+// Please update the numbers below based on calibration tests on your printer and slicer 
+// These reference numbers are tested as a good starting point on Taz 6, Ultimaker 2+, Ultimaker 3 and Mass Portal ED printers
+// Tests were sliced with Simplify 3D, Cura and Lulzbot Cura
+// If you add new materials below, you need to do a global search and replace to update the customizer material list hints. (Yeah, we know.. Don't shoot the messenger)
+
+pla = 0; // Polymaker Polylite
+pla_m = ["PLA", false, -0.08, 0.04, 0.06];
+
+abs = 1; // Polymaker ABS
+abs_m = ["ABS", false, -0.06, -0.02, 0.06];
+
+pet = 2; // Innoflil3D rPET
+pet_m = ["PET", false, 0.04, 0.10, 0.04];
+
+bio_silk = 3; // Biofila Silk
+bio_silk_m = ["Biofila Silk", false, 0.0, 0.0, -0.04];
+
+pro1 = 4; // Innofil3D Pro1
+pro1_m = ["Pro1", false, -0.06, 0.08, 0.04];
+
+ngen = 5; // NGEN
+ngen_m = ["NGEN", false, -0.03, 0.08, 0.07];
+
+ngen_flex = 6; // NGEN Flex
+ngen_flex_m = ["NGEN Flex", false, 0.02, 0.02, 0.0];
+
+nylon = 7; // Taulman Bridge Nylon
+nylon_m = ["Nylon", true, -0.02, 0.15, 0.06];
+
+tpu95 = 8; // Polymaker TPU95 and Ultimaker TPU95
+tpu95_m = ["TPU95", true, -0.06, -0.02, 0.06];
+
+tpu85 = 9; // Ninjaflex and Innoflex TPU85
+tpu85_m = ["TPU85/NinjaFlex", true, 0.04, -0.02, 0.04];
+
+
+materials = [pla_m, abs_m, tpu95_m, tpu85_m];
+
+// Printing material
+material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+
+// Get a named property from the materials data structure
+function material_property(material, property) = materials[material][property];
+function material_name(material) = materials[material][name_index];
+function flexible_material(material) = materials[material][name_index];flex_index);
+function material_top_tweak(material) = material_property(material, top_tweak_index);
+function material_bottom_tweak(material) = material_property(material, bottom_tweak_index);
+function material_axle_hole_tweak(material) = material_property(material, axle_hole_tweak_index);
+
+
 /* [Print Calibration] */
-
-// Switch between flexible and rigid material geometry. Set 'true' for Nylon, TPU (TPU95, TPU85/Ninjaflex), NGEN Semiflex and other low durometer filaments. Subtle adjustments to part internal geometry will take advantage of this in flextures.
-flexible_material = true;
-
-// Set true if nozzle is >= 0.5mm. This simplifies the bottom gemoetry to create wider walls but at the cost of loosing the alternate bottom connector socket between every 4 other sockets. If not used with a large extruder the slicer may decimate features.
-large_nozzle = true;
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
 top_tweak = 0.08; // -0.06 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.08 for Polymaker Polylite PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon, 0.08 for TPU95A, 0.0 Biofila Silk
@@ -72,14 +126,3 @@ bottom_tweak = -0.04; // -0.02 for ABS (0.12 for thin), 0.10 for rPET, 0.08 for 
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
 axle_hole_tweak = 0.06; // 0.06 for ABS (0.12 for thin), 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker Polylite PLA, 0.07 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, 0.0 for TPU95A, -0.04 Biofila Silk
-
-bottom_centers_are_sockets = false; //!large_nozzle; // 0=false, 1=true (default is "true" if not "large_nozzle"). When "true", the space in the center of 4 bottom sockets is also a socket. When false, it is smaller axle hole to help allow the 4 bottom socket walls to be thicker and more printable. You may need to disable this (0=false) if printing the bottom sockets is too difficult due to material properties or when "bottom_tweak" is so large that the walls between sockets become too thin.
-
-// Generate print-time support aid structures for models which offer this. Turn this off if you will use slicer-generated print supports, but be aware that these may make the bottom connectors difficult to post process.
-print_supports = true;
-
-// In some models, the user will load two STL files into the slicer for a dual-material printer, one for each material/color. If "false" then the user wants a simplified, single material model
-two_color_print = false;
-
-// Add a text label to models which support that. The two_color_print setting will also affect if these is raised or colored text
-text_labels = true;

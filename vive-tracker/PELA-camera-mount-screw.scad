@@ -24,7 +24,12 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../threads/threads.scad>
 
-/* [Camera Mount Screw Options] */
+
+
+/* [Camera Mount Screw] */
+
+// Printing material
+material = pla; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Screwhole border
 thumbscrew_border_d=11;
