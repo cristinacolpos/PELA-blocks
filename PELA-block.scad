@@ -82,6 +82,8 @@ module PELA_block(material=material, l=l, w=w, h=h, knob_height=knob_height, kno
     assert(l >= 1, "Block length must be at least 1");
     assert(w >= 1, "Block width must be at last 1");
 
+    bt = override_bottom_tweak(material, bottom_tweak);
+    
     difference() {
         union() {
             outer_side_shell(material=material, l=l, w=w, h=h, side_shell=side_shell, top_shell=top_shell, block_height=block_height);
@@ -99,7 +101,6 @@ module PELA_block(material=material, l=l, w=w, h=h, knob_height=knob_height, kno
 
             if (sockets) {
                 length = block_height(min(1, h), block_height=block_height);
-                bt = override_bottom_tweak(material, bottom_tweak);
 
                 socket_set(material=material, l=l, w=w, length=length, sockets=sockets, material=material, large_nozzle=large_nozzle, bottom_tweak=bt);
 
@@ -135,7 +136,7 @@ module PELA_block(material=material, l=l, w=w, h=h, knob_height=knob_height, kno
                 
             length = block_height(h)-top_shell;
 
-            double_socket_hole_set(material=material, l=l, w=w, sockets=sockets, length=length, alternate_length=length, bevel_socket=true, material=material, socket_insert_bevel=socket_insert_bevel, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
+            double_socket_hole_set(material=material, l=l, w=w, sockets=sockets, length=length, alternate_length=length, bevel_socket=true, material=material, socket_insert_bevel=socket_insert_bevel, large_nozzle=large_nozzle, bottom_tweak=bt);
             
             if (corner_bolt_holes) {
                 corner_corner_bolt_holes(material=material, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
