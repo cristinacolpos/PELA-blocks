@@ -35,20 +35,25 @@ use <PELA-knob-mount.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Board space length [mm]
 length = 86.2;
 
+// Board space width [mm]
 width = 56.8;
 
+// Board space thickness [mm]
 thickness = 1.7;
 
+// Height of the edge walls [blocks]
 h = 1;
 
-// How far below the bottom of the board surface parts protude 
+// How far below the bottom of the board surface parts protude [mm]
 undercut = 12.3;
 
 // Step in from board space edges to support the board [mm]
 innercut = 0.8;
 
+// Type of enclosure bottom surface
 bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -62,22 +67,28 @@ side_sheaths = true;
 
 end_sheaths = true;
 
+// Include the left wall
 left_wall_enabled = true;
 
+// Include the right wall
 right_wall_enabled = true;
 
+// Include the front wall
 front_wall_enabled = true;
 
+// Include the back wall
 back_wall_enabled = true;
 
-knobs_on_top = true;
-
+// Include knobs on the top of the left wall
 left_wall_knobs = true;
 
+// Include knobs on the top of the right wall
 right_wall_knobs = false;
 
+// Include knobs on the top of the front wall
 front_wall_knobs = true;
 
+// Include knobs on the top of the back wall
 back_wall_knobs = true;
 
 // Add interior fill for the base layer
@@ -85,10 +96,13 @@ solid_first_layer = true;
 
 center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
+// Slide the board space left-right
 board_x_offset = 0;
 
+// Slide the board space front-back
 board_y_offset = 0;
 
+// Slide the board space up-down
 board_z_offset = -thickness;
 
 top_edge_height = 2;
@@ -99,7 +113,8 @@ length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 // Board surround ratio
 width_padding = 2.5;
 
-dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+// Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+dome = true;
 
 
 
@@ -128,7 +143,7 @@ module pi3_board_mount(material=material, length=length, width=width, h=h, thick
             l = fit_mm_to_blocks(l=length, tightness=length_padding);
             w = fit_mm_to_blocks(l=width, tightness=width_padding);
 
-//            bottom_connector_negative_space(l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets);
+            bottom_connector_negative_space(l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_width=block_width, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets);
         }
     }
 }

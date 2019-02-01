@@ -84,7 +84,7 @@ module PELA_knob_panel(material=material, l=l, w=w, top_vents=top_vents, solid_f
         echo("knob w", w);
         if (l>2 && w>2) {
             translate([block_width(skip_edge_knobs), block_width(skip_edge_knobs), 0]) {
-                top_knob_set(material=material, l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=hr, knob_radius=knob_radius, corner_bolt_holes=false, block_height=block_height);
+                top_knob_set(material=material, l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=hr, corner_bolt_holes=false, block_height=block_height);
             }
         }
     } else {

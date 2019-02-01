@@ -150,7 +150,9 @@ module PELA_stmf4discovery_box_enclosure(material=material, l=l, w=w, h=h, botto
             left_side_snap_cuts(material=material, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius);
 
             translate([0, 0, block_height(2, block_height=block_height)]) {
-                double_side_connector_hole_set(material=material, l=l, w=w, hole_type=side_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, block_height=block_height);
+                ahr = material_axle_hole_radius(material);
+
+                double_side_connector_hole_set(material=material, l=l, w=w, hole_type=side_holes, block_width=block_width, block_height=block_height, axle_hole_radius=ahr);
             }
         }
     }

@@ -145,9 +145,9 @@ module PELA_box_enclosure(material=material, l=l, w=w, h=h, bottom_type=bottom_t
         }
 
         union() {    
-            bottom_connector_negative_space(material=material, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=3, corner_bolt_holes=false, sockets=sockets, block_height=block_height);
+            bottom_connector_negative_space(material=material, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_width=block_width, hole_type=3, corner_bolt_holes=false, sockets=sockets, block_height=block_height);
 
-            edge_connector_negative_space(material=material, l=l, w=w, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
+            edge_connector_negative_space(material=material, l=l, w=w, h=h, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
         }
     }
 }
@@ -265,10 +265,10 @@ module bottom_negative_space(material=material, l=l, w=w, bottom_type=bottom_typ
 
 
 // Space for the edge connectors
-module edge_connector_negative_space(material=material, l=l, w=w, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, knob_radius=knob_radius, block_width=block_width, corner_bolt_holes=corner_bolt_holes, block_height=block_height) {
+module edge_connector_negative_space(material=material, l=l, w=w, h=h, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, block_width=block_width, hole_type=side_holes, block_width=block_width, corner_bolt_holes=corner_bolt_holes, block_height=block_height) {
 
     if (bottom_type > 0) {
-        bottom_connector_negative_space(material=material, l=l, w=w, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=side_holes, knob_radius=knob_radius, corner_bolt_holes=corner_bolt_holes, sockets=sockets, block_height=block_height);
+        bottom_connector_negative_space(material=material, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, block_height=block_height);
     }
 }
 

@@ -76,14 +76,18 @@ PELA_block();
 // MODULES
 /////////////////////////////////////
 
-module PELA_block(material=material, l=l, w=w, h=h, axle_hole_radius=axle_hole_radius, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, material=material, large_nozzle=large_nozzle,  bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak, socket_insert_bevel=socket_insert_bevel) {
+module PELA_block(material=material, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, socket_insert_bevel=socket_insert_bevel, material=material, large_nozzle=large_nozzle,  bottom_tweak=undef, top_tweak=undef) {
     
+    assert(h >= 1, "Block height must be at least 1");
+    assert(l >= 1, "Block length must be at least 1");
+    assert(w >= 1, "Block width must be at last 1");
+
     difference() {
         union() {
             outer_side_shell(material=material, l=l, w=w, h=h, side_shell=side_shell, top_shell=top_shell, block_height=block_height);
 
             if (knobs) {
-                top_knob_set(material=material, l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material);
+                top_knob_set(material=material, l=l, w=w, h=h, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material, top_tweak=top_tweak);
             }
 
             bar_h = h > 1 ? 1 : h;
@@ -95,14 +99,15 @@ module PELA_block(material=material, l=l, w=w, h=h, axle_hole_radius=axle_hole_r
 
             if (sockets) {
                 length = block_height(min(1, h), block_height=block_height);
-                
-                socket_set(material=material, l=l, w=w, length=length, sockets=sockets, material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
+                bt = override_bottom_tweak(material, bottom_tweak);
+
+                socket_set(material=material, l=l, w=w, length=length, sockets=sockets, material=material, large_nozzle=large_nozzle, bottom_tweak=bt);
 
                 translate([block_width(-0.5), block_width(-0.5)])
                     intersection() {
                         cube([block_width(l+1), block_width(w+1), length]);
 
-                        socket_set(material=material, l=l+1, w=w+1, length=length, sockets=sockets, material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
+                        socket_set(material=material, l=l+1, w=w+1, length=length, sockets=sockets, material=material, large_nozzle=large_nozzle, bottom_tweak=bt);
                     }
             }
 
@@ -125,7 +130,7 @@ module PELA_block(material=material, l=l, w=w, h=h, axle_hole_radius=axle_hole_r
             skin(material=material, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset,block_height=block_height);
             
             if (knobs) {
-                knob_flexture_set(material=material, l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material);
+                knob_flexture_set(material=material, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material);
             }
                 
             length = block_height(h)-top_shell;
@@ -140,7 +145,7 @@ module PELA_block(material=material, l=l, w=w, h=h, axle_hole_radius=axle_hole_r
 }
 
 
-module double_socket_hole_set(material=material, l=l, w=w, sockets=sockets, alternate_length, length, bevel_socket=true, material=material, socket_insert_bevel=socket_insert_bevel, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak) {
+module double_socket_hole_set(material=material, l=l, w=w, sockets=sockets, alternate_length, length, bevel_socket=true, material=material, socket_insert_bevel=socket_insert_bevel, large_nozzle=large_nozzle, bottom_tweak=undef) {
 
     if (sockets) {
         rr = ring_radius(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
@@ -155,19 +160,6 @@ module double_socket_hole_set(material=material, l=l, w=w, sockets=sockets, alte
 
         translate([block_width(0.5), block_width(0.5), -defeather]) {
             socket_hole_set(material=material, is_socket=true, l=l, w=w, radius=rr-rt, length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn, material=material, socket_insert_bevel=socket_insert_bevel);
-        }
-    }
-}
-
-
-// Show a shadow representing the knobs of a block below
-module shadow_knob_set(material=material, l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes) {
-    
-    translate([0, 0, -block_height(h, block_height=block_height)]) {
-        difference() {
-            top_knob_set(material=material, l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material);
-            
-            knob_flexture_set(material=material, l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, material=material);
         }
     }
 }
@@ -195,13 +187,13 @@ module fill_upper_layers(material=material, l=l, w=w, h=h, block_height=block_he
 
 
 // Several blocks in a grid, one knob per block
-module top_knob_set(material=material, l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material) {
+module top_knob_set(material=material, l=l, w=w, h=h, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, top_tweak=undef) {
     
     for (i = [0:1:l-1]) {
         for (j = [0:1:w-1]) {
             if (!(corner_bolt_holes && is_corner(x=i, y=j, l=l, w=w))) {
                 translate([block_width(i), block_width(j), 0]) {
-                    top_knob(material=material, h=h, knob_radius=knob_radius, knob_height=knob_height, block_height=block_height, material=material);
+                    top_knob(material=material, h=h, knob_height=knob_height, block_height=block_height, top_tweak=top_tweak);
                 }
             }
         }
@@ -210,18 +202,19 @@ module top_knob_set(material=material, l=l, w=w, h=h, knob_radius=knob_radius, k
 
 
 // The connector cylinder
-module top_knob(material=material, h=h, knob_radius=knob_radius, knob_height=knob_height, block_height=block_height, material=material) {
+module top_knob(material=material, h=h, knob_height=knob_height, block_height=block_height, top_tweak=undef) {
     
     translate([block_width(0.5), block_width(0.5), block_height(h, block_height=block_height)]) {
-        knob(material=material, knob_radius=knob_radius, knob_height=knob_height, material=material);
+        knob(material=material, knob_height=knob_height, top_tweak=top_tweak);
     }
 }
 
 
 // The cylinder on top of a PELA block
-module knob(material=material, knob_radius=knob_radius, knob_height=knob_height, material=material) {
+module knob(material=material, knob_height=knob_height, top_tweak=undef) {
     
     bevel = knob_bevel(material=material);
+    knob_radius = override_knob_radius(material, top_tweak);
 
     cylinder(r=knob_radius, h=knob_height-bevel);
 
@@ -236,13 +229,13 @@ module knob(material=material, knob_radius=knob_radius, knob_height=knob_height,
 }
 
 // An array of empty cylinders to fit inside a knob_set()
-module knob_flexture_set(material=material, l=l, w=w, h=h, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material) {
+module knob_flexture_set(material=material, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material) {
 
     for (i = [0:l-1]) {
         for (j = [0:w-1]) {
             if (!corner_bolt_holes || !is_corner(x=i, y=j, l=l, w=w)) {
                 translate([block_width(i+0.5), block_width(j+0.5), block_height(h, block_height=block_height)]) {
-                    knob_flexture(material=material, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, material=material);
+                    knob_flexture(material=material, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, material=material);
                 }
             }
         }
@@ -251,7 +244,7 @@ module knob_flexture_set(material=material, l=l, w=w, h=h, knob_radius=knob_radi
 
 
 // The negative space flexture inside a single knob
-module knob_flexture(material=material, knob_radius=knob_radius, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, material=material) {
+module knob_flexture(material=material, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, material=material) {
 
     if (knob_vent_radius > 0) {
         cylinder(r=knob_vent_radius, h=knob_height+defeather);
@@ -325,7 +318,7 @@ module bottom_stiffener_bar_set(material=material, l=l, w=w, h=h, start_l=1, end
 
 
 // Bottom connector rings positive space for multiple blocks
-module socket_set(material=material, l=l, w=w, length=block_height(), sockets=sockets, material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak) {
+module socket_set(material=material, l=l, w=w, length=block_height(), sockets=sockets, material=material, large_nozzle=large_nozzle, bottom_tweak=undef) {
     
     if (sockets && (l>1 && w>1)) {
         for (i = [1:l-1]) {
@@ -340,7 +333,7 @@ module socket_set(material=material, l=l, w=w, length=block_height(), sockets=so
 
 
 // The circular bottom insert for attaching knobs
-module socket_ring(material=material, length=block_height(1, block_height=block_height), large_nozzle=large_nozzle, material=material, bottom_tweak=bottom_tweak) {
+module socket_ring(material=material, length=block_height(1, block_height=block_height), large_nozzle=large_nozzle, material=material, bottom_tweak=undef) {
     
     rotate([0, 0, 180/ring_fn]) {
         cylinder(r=ring_radius(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak), h=length, $fn=ring_fn);
@@ -386,7 +379,7 @@ module socket_hole(material=material, is_socket=true, radius=ring_radius()-ring_
 // The thin negative space surrounding a PELA block so that two blocks can fit next to each other easily in a tight grid
 module skin(material=material, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, block_height=block_height) {
 
-    if (skin>0) {
+    if (skin > 0) {
         // Front skin
         cube([block_width(l), skin, block_height(h, block_height=block_height)]);
 

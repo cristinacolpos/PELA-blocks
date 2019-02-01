@@ -43,6 +43,7 @@ width = 53.4;
 // Thickness of the enclosed object [mm]
 thickness = 1.8;
 
+// Height of the edge walls
 h = 1;
 
 // How far in from the outside edges the board support can extend without hitting board bottom surface parts
@@ -132,6 +133,6 @@ module arduino_mega_board_mount(material=material, length=length, width=width, h
         l = fit_mm_to_blocks(i=length, tightness=length_padding);
         w = fit_mm_to_blocks(i=width, tightness=width_padding);
 
-        bottom_connector_negative_space(material=material, l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, block_width=block_width, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, block_height=block_height);
+        bottom_connector_negative_space(material=material, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_width=block_width, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, block_height=block_height);
     }
 }

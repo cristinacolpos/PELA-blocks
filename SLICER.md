@@ -9,23 +9,26 @@ Most designs are adjusted to print upright with any layer height. There is very 
 
 ![PELA block with slicer-generated supports](images/PELA-block-with-slicer-generated-supports.jpg)
 
-Look for `print_supports = true;` in the model to enable or disable print-time support generated into the model to minimize post-processing.
+In some models you can turn on `print_supports = true;` to enable pre-placed supports baked into the model. These may work better the slicer automatic supports to minimize post processing.
+
+# PLA
+
+Works surprisingly well if you use a premium PLA which has some flex to it. Some brands can be stiff and chip easily. That results in a more difficult part fit for knobs and sockets, but not so much problems with technic connector axle holes.
+
+Avoid or minimize bed heating- it can "elephant foot" the lower socket connectors resulting in a poor fit.
+
+# ABS
+
+This is a good material if you are familiar with handling ABS shinkage. This is not much of an issue if your parts are not too large or too tall. LEGO is made from ABS because it has many nice properties if you know how to minimize lift and delamination due to thermal contraction in larger parts.
+
+Not all brands of ABS are the same. Village Plastics ABS gives better results than some others.
+
 
 # Innofil rPET
 
-Made from recycled plastic bottles. Note that the overextrusion is for aesthetics- skip if you don't care about translucency.
+It works but is not ideal due to high stiffness and brittle failure. rPET is made from recycled plastic bottles. Like other transparent/translucent materials you can overextrude for more clarity. Just make sure you also print your calibration bar with the same overextrusion.
 
-## `print_style.scad`
-
-`large_nozzle = true;` (if nozzle >= 0.5mm)
-
-`flexible_filament = false;`
-
-`top_tweak = 0.04;`
-
-`bottom_tweak = 0.10;`
-
-`axle_hole_tweak = 0.04;`
+Other PETs which have more flex may be a good choice but have not been evaluated.
 
 ## Slicer Settings
 
@@ -63,18 +66,6 @@ Optional Finish: Lightly sand the outer surface and spray with a clear polimer.
 
 A nice engineering co-polimer with good gemetric stability and able to print fast and hold well to the print bed. It has good flexture- more than PET but still rigid.
 
-## `print_style.scad`
-
-`large_nozzle = true;` (if nozzle >= 0.5mm)
-
-`flexible_filament = false;`
-
-`top_tweak = -0.05;`
-
-`bottom_tweak = 0.08;`
-
-`axle_hole_tweak = 0.02;`
-
 ## Slicer Settings
 
 `Layer Height: 0.25`   (the manufacturer states lower layer heights are stronger and more aesthetic)
@@ -84,17 +75,7 @@ A nice engineering co-polimer with good gemetric stability and able to print fas
 
 # Colorfabb NGEN
 
-## `print_style.scad`
-
-`large_nozzle = true;` (if nozzle >= 0.5mm)
-
-`flexible_filament = false;`
-
-`top_tweak = -0.01;`
-
-`bottom_tweak = 0.08;`
-
-`axle_hole_tweak = 0.04;`
+A strong, glossy material with a brittle failure mode. It works but is slightly tricky to get a good fit with classic knobs and sockets. As with PET/other co-copolymer filaments, unless you seek transparency then do not overextude. Consider adding more fan if layer adhesion is sufficent. Due to brittle failure knobs are particularly sensitive to breaking off from delamination in which case you may want to anneal parts in an oven or lower the fan for better layer adhesion.
 
 ## Slicer Settings
 
@@ -126,49 +107,23 @@ A nice engineering co-polimer with good gemetric stability and able to print fas
 
 `Fill Gabs Between Walls: Nowhere`
 
-Works well despite a slightly slippery surface finish. As with other PET/co-copolymer filaments, unless you seek transparency then do not overextude. Consider more fan if layer adhesion is sufficent (knobs are particularly sensitive to delamination). Lower or disable the fan for better layer adhesion.
-
 # Colorfabb NGEN Flex
 
-Works well on Flexistruder with 0.6mm nozzle. Basically the same settings as NGEN. Better results due to the extra flexibility.
+Works well on Taz6 Flexistruder with an 0.6mm nozzle. Basically the same settings as NGEN but without the drawbacks of being brittle which is very nice. Like NGEN it is a rather low friction glossy finish so calibration is still slightly sticky.
 
-`flexible_filament = true;`   (this results in longer top knobs help it maintain grip while flexing)
-
-`Fan: 50%`  (or less for better inter-layer adhesion)
+`Fan: 50%` or less for better inter-layer adhesion
 
 # ColorFabb HT
 
-Avoid. It is quite stiff and has slippery finish. It takes a long time to clean this sticky stuff from your printer.
+Avoid. It is like NGEN but even more stiff, brittle failure and a slippery finish. It takes a long time to clean this sticky stuff from your printer.
 
-# NinjaTek NinjaFlex
+# TPU85/NinjaTek NinjaFlex
 
-Works well on Flexistruder with 0.6mm nozzle. . Gluestick acts as a release agent that protects the PEI print surface from damage, or better use plain glass with gluestick.
-
-`flexible_filament = true;`   (this results in longer top knobs help it maintain grip while flexing)
-
-# PLA
-
-OK if you don't have other choices. It is stiff and chips easily so part fit and lifetime are not as good as more flexible materials. Avoid bed heating as it can "elephant foot" the lower socket connectors.
-
-Not all brands of PLA are the same. Ultimaker brand PLA is more flexible than generics. Other companies also offer soft formulations.
-
-# ABS
-
-This is a good material if you are familiar with handling ABS shinkage. This is not much of an issue if your parts are not too large or too tall. LEGO is made from ABS because it has many nice properties if you know how to minimize lift and delamination due to thermal contraction in larger parts.
-
-Not all brands of ABS are the same. Village Plastics ABS gives better results than some others.
-
-## `print_style.scad`
-
-`flexible_filament = false;`
-
-`top_tweak = 0.04;`
-
-`bottom_tweak = -0.02;`
+Works well on a Taz6 Flexistruder with 0.6mm nozzle. Gluestick acts as a release agent that protects the PEI print surface from damage, or use tape or plain glass with gluestick.
 
 ## Slicer Settings
 
-`Adhesion: Brim`   (check the slicer's preview image. If the brim pollutes the inside of the bottom connectors that creates difficult post-processing. Consider alaternatives like `Adhesion: Raft` or `Adhesion: Skirt` with a PEI sheet, glue stick, or unscented extra hold hairspray. Minimize bed heating as it can "elephant foot" the lower socket connectors.)
+`Adhesion: Brim` Make sure the brim is only on the outside to avoid a difficult cleanup. Cura has an option for this. `Adhesion: Raft` also works but the bottom surface may be uneven. Minimize bed heating and use other adhesives during printing if needed to avoid "elephant foot" or "corner peel up" on the lower socket connectors.
 
 `Infill: 20%`   (minimal effect, most models this can be 50% without taking more time)
 
@@ -176,20 +131,12 @@ Not all brands of ABS are the same. Village Plastics ABS gives better results th
 
 `Fill Gaps Between Walls: Nowhere`
 
+`Keep Heating: No`
+
 
 # Taulman Bridge Nylon
 
-A very nice material for PELA blocks. Use a bed of watery PVA white glue. Amazing strength, but a bit slippery and and stringy requires cleanup unless the settings are right. Speed is your friend- print fast and retract fast and far, also "coast" at the end of prints to minimize stringing.
-
-## `print_style.scad`
-
-`flexible_material = true;`
-
-`top_tweak = -0.02;`
-
-`bottom_tweak = 0.15;`
-
-`axle_hole_tweak = 0.06;`
+A very nice material for PELA blocks, but also very slippery. Use a bed of watery PVA white glue and take care not to permanently stick to a PEI or similar sheet. Use a lot of retraction to avoid string cleanup. Speed is your friend- print fast and retract fast and far, and enable "coast".
 
 ## Slicer Settings
 
@@ -213,19 +160,11 @@ A very nice material for PELA blocks. Use a bed of watery PVA white glue. Amazin
 
 `Enable Coasting: Yes`    (Stop extrusion before the end of a segment to minimize oozing)
 
+`Keep Heating: No`
+
 # Biofila Silk
 
-This is one of the most attractive filaments and biodegradable. It is between PLA and ABS is flexability and durability. Make sure you have good bed adhesion and adjust the settings for quick long retraction to minimize stringing in the block bottom connector.
-
-## `print_style.scad`
-
-`flexible_material = true;`
-
-`top_tweak = -0.02;`
-
-`bottom_tweak = 0.15;`
-
-`axle_hole_tweak = 0.06;`
+This is one of the most attractive filaments and biodegradable. It is between PLA and ABS is flexability and durability. Make sure you have good bed adhesion and adjust the settings for quick, long retraction to minimize stringing.
 
 
 ## Slicer Settings
@@ -236,7 +175,7 @@ This is one of the most attractive filaments and biodegradable. It is between PL
 
 `Build Plate: 60C`
 
-`Keep Heating: No`      (Bed heater can be disabled after the print)
+`Keep Heating: No`
 
 `Infill: 50%`    (minimal impact on time)
 

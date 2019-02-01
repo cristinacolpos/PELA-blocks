@@ -120,7 +120,7 @@ module bottom_piece(material=material) {
         union() {
             PELA_technic_block(material=material, l=l, w=w, h=h, knob_flexture_height=0, solid_first_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
 
-            double_end_connector_sheath_set(material=material, l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
+            double_end_connector_sheath_set(material=material, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
         }
 
     
@@ -131,7 +131,7 @@ module bottom_piece(material=material) {
                 }
             }
 
-            double_end_connector_hole_set(material=material, l=l, w=w, hole_type=2, axle_hole_radius=axle_hole_radius, block_width=block_width);
+            double_end_connector_hole_set(material=material, l=l, w=w, hole_type=2, block_width=block_width);
 
             if (corner_bolt_holes) {
                 corner_corner_bolt_holes(material=material, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
@@ -179,7 +179,7 @@ module main_top_piece(material=material) {
             PELA_technic_block(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0);
         
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                double_end_connector_sheath_set(material=material, l=l, w=w, axle_hole_radius=axle_hole_radius, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
+                double_end_connector_sheath_set(material=material, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
             }
         }
         
@@ -191,7 +191,7 @@ module main_top_piece(material=material) {
             }
             
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                double_end_connector_hole_set(material=material, l=l, w=w, hole_type=2, axle_hole_radius=axle_hole_radius, block_width=block_width);
+                double_end_connector_hole_set(material=material, l=l, w=w, hole_type=2, block_width=block_width);
             }
 
             if (corner_bolt_holes) {
