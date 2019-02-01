@@ -213,7 +213,6 @@ function ring_thickness(large_nozzle=large_nozzle) = large_nozzle ? 1.2 : 0.8;
 
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 
-//TODO FIX BOTTOM_TWEAK
 function ring_radius(large_nozzle=large_nozzle, bottom_tweak=undef) = 2.75 + ring_thickness(large_nozzle=large_nozzle) + bottom_tweak;
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
