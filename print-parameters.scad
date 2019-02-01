@@ -60,7 +60,6 @@ SUGGESTIONS
 
 // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
 name_index = 0; // The "name" field is kept short for printing on calibration blocks
-
 flex_index = 1;
 top_tweak_index = 2;
 bottom_tweak_index = 3;
@@ -101,7 +100,7 @@ tpu95_m = ["TPU95", true, -0.06, -0.02, 0.06];
 tpu85 = 9; // Ninjaflex and Innoflex TPU85
 tpu85_m = ["TPU85", true, 0.04, -0.02, 0.04];
 
-materials = [pla_m, abs_m, bio_silk_m, pro1_m, ngen_m,, ngen_flex_m, nylon_m, tpu95_m, tpu85_m];
+materials = [pla_m, abs_m, pet_m, bio_silk_m, pro1_m, ngen_m, ngen_flex_m, nylon_m, tpu95_m, tpu85_m];
 
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -150,15 +149,3 @@ function material_knob_radius(material) = knb_rad(material_top_tweak(material));
 
 // Return knob radius based on top tweak (tt) if provided, otherwise based on the material
 function override_knob_radius(material, tt) = knb_rad(override_top_tweak(material, tt));
-
-
-/* [Print Calibration] */
-
-// Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-// top_tweak = 0.08; // -0.06 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.08 for Polymaker Polylite PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon, 0.08 for TPU95A, 0.0 Biofila Silk
-
-// Bottom connector size adjustment (smaller is tigher, add in multiples of 0.01mm as determined from your calibration-block print)
-// bottom_tweak = -0.04; // -0.02 for ABS (0.12 for thin), 0.10 for rPET, 0.08 for Pro1, 0.04 for Polymaker Polylite PLA, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon, -0.04 for TPU95, 0.0 Biofila Silk
-
-// Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-// axle_hole_tweak = 0.06; // 0.06 for ABS (0.12 for thin), 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker Polylite PLA, 0.07 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, 0.0 for TPU95A, -0.04 Biofila Silk
