@@ -147,13 +147,13 @@ module thumbscrew_hole_border(material=material, block_height=block_height) {
 }
 
 
-module alignment_pin(material=material, block_height=block_height) {
+module alignment_pin(material=material, block_height=block_height, large_nozzle=large_nozzle) {
     translate([thumscrew_offset_from_edge+alignment_pin_offset_from_screwhole, block_width(w/2), panel_height(0.5)]) {
         cylinder(d=alignment_pin_d, h=panel_height(0.5)+alignment_pin_h);
     }
 
     translate([block_width(5), block_width(3), 0.5*panel_height(block_height=block_height)]) {
-        cylinder(r=ring_radius(), h=0.5*panel_height(block_height=block_height));
+        cylinder(r=ring_radius(large_nozzle=large_nozzle), h=0.5*panel_height(block_height=block_height));
     }
 }
 

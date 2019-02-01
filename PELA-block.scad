@@ -342,7 +342,7 @@ module socket_ring(material=material, length=block_height(1, block_height=block_
 
 
 // Bottom connector- negative flexture space inside bottom rings for multiple blocks
-module socket_hole_set(material=material, is_socket=true, l=l, w=w, radius=ring_radius()-ring_thickness(large_nozzle=large_nozzle), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, material=material, socket_insert_bevel=socket_insert_bevel) {
+module socket_hole_set(material=material, is_socket=true, l=l, w=w, radius=undef, length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, material=material, socket_insert_bevel=socket_insert_bevel) {
     
     if (sockets && l>0 && w>0) {
         for (i = [0:l-1]) {
@@ -357,7 +357,7 @@ module socket_hole_set(material=material, is_socket=true, l=l, w=w, radius=ring_
 
 
 // Hole with side grip ridge flexture to grab any knob on a block inserted from below
-module socket_hole(material=material, is_socket=true, radius=ring_radius()-ring_thickness(), length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, material=material, socket_insert_bevel=socket_insert_bevel) {
+module socket_hole(material=material, is_socket=true, radius=undef, length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, material=material, socket_insert_bevel=socket_insert_bevel) {
 
     h2 = is_socket ? official_knob_height/2 : 0;
     bevel_h = bevel_socket ? socket_insert_bevel : 0;

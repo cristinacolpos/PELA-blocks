@@ -150,7 +150,7 @@ module PELA_technic_block(material=material, l=l, w=w, h=h, knob_height=knob_hei
                 double_socket_hole_set(material=material, l=l, w=w, sockets=sockets, length=length, alternate_length=alternate_length, bevel_socket=true, large_nozzle=large_nozzle, material=material);
             }
 
-            ahr = override_axle_hole_radius(material, axle_hole_tweak);
+            ahr = 6; // ###TODO override_axle_hole_radius(material, axle_hole_tweak);
 
             bottom_connector_negative_space(material=material, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_width=block_width, block_height=block_height, hole_type=side_holes, block_width=block_width, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=ahr);
             
