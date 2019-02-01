@@ -58,9 +58,9 @@ SUGGESTIONS
 
 
 
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
+name_index = 0; // The "name" field is kept short for printing on calibration blocks
 
-// ["name", flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
-name_index = 0;
 flex_index = 1;
 top_tweak_index = 2;
 bottom_tweak_index = 3;
@@ -81,7 +81,7 @@ pet = 2; // Innoflil3D rPET
 pet_m = ["PET", false, 0.04, 0.10, 0.04];
 
 bio_silk = 3; // Biofila Silk
-bio_silk_m = ["Biofila Silk", false, 0.0, 0.0, -0.04];
+bio_silk_m = ["Silk", false, 0.0, 0.0, -0.04];
 
 pro1 = 4; // Innofil3D Pro1
 pro1_m = ["Pro1", false, -0.06, 0.08, 0.04];
@@ -90,7 +90,7 @@ ngen = 5; // NGEN
 ngen_m = ["NGEN", false, -0.03, 0.08, 0.07];
 
 ngen_flex = 6; // NGEN Flex
-ngen_flex_m = ["NGEN Flex", false, 0.02, 0.02, 0.0];
+ngen_flex_m = ["NGEN-F", false, 0.02, 0.02, 0.0];
 
 nylon = 7; // Taulman Bridge Nylon
 nylon_m = ["Nylon", true, -0.02, 0.15, 0.06];
@@ -99,30 +99,66 @@ tpu95 = 8; // Polymaker TPU95 and Ultimaker TPU95
 tpu95_m = ["TPU95", true, -0.06, -0.02, 0.06];
 
 tpu85 = 9; // Ninjaflex and Innoflex TPU85
-tpu85_m = ["TPU85/NinjaFlex", true, 0.04, -0.02, 0.04];
+tpu85_m = ["TPU85", true, 0.04, -0.02, 0.04];
 
-
-materials = [pla_m, abs_m, tpu95_m, tpu85_m];
+materials = [pla_m, abs_m, bio_silk_m, pro1_m, ngen_m,, ngen_flex_m, nylon_m, tpu95_m, tpu85_m];
 
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Get a named property from the materials data structure
+// private function - get a named property from the materials data structure
 function material_property(material, property) = materials[material][property];
+
+// Return the short name string from the material
 function material_name(material) = materials[material][name_index];
+
+// Return true if this material is flexible
 function flexible_material(material) = materials[material][name_index];
+
+// Return top tweak from the material
 function material_top_tweak(material) = material_property(material, top_tweak_index);
+
+// Return top tweak="tt" if provided for calibration, otherwise use the material value
+function override_top_tweak(material, tt) = (tt == undef) ? material_bottom_tweak(material) : tt;
+
+// Return the bottom tweak from the material
 function material_bottom_tweak(material) = material_property(material, bottom_tweak_index);
+
+// Return bottom tweak="bt" if provided for calibration, otherwise use the material value
+function override_bottom_tweak(material, bt) = (bt == undef) ? material_bottom_tweak(material) : bt;
+
+// Return the axle hole tweak from the material
 function material_axle_hole_tweak(material) = material_property(material, axle_hole_tweak_index);
+
+// Return axle hole tweak="at" if provided for calibration, otherwise use the material
+function override_axle_hole_tweak(material, at) = (at == undef) ? material_axle_hole_tweak(material) : at;
+
+// Private function, axle hole radius
+function axle_hol_rad(at) = 2.45 + at;
+
+// Return the axle hole radius based on the material
+function material_axle_hole_radius(material) = axle_hol_rad(material_axle_hole_tweak(material));
+
+// Return axle hole radius based on the axle hole tweak (at) if provided, otherwise based on the material
+function override_axle_hole_radius(material, at) = axle_hol_rad(override_axle_hole_tweak(material, at));
+
+// Private function, knob radius
+function knb_rad(tt) = 2.45 + 0.12 + tt;
+
+// Return knob radius based on the material
+function material_knob_radius(material) = knb_rad(material_top_tweak(material));
+
+// Return knob radius based on top tweak (tt) if provided, otherwise based on the material
+function override_knob_radius(material, tt) = knb_rad(override_top_tweak(material, tt));
 
 
 /* [Print Calibration] */
 
 // Top knob size adjustment (larger is a stiffer fit, add in multiples of 0.01mm as determined from your calibration-block print)
-top_tweak = 0.08; // -0.06 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.08 for Polymaker Polylite PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon, 0.08 for TPU95A, 0.0 Biofila Silk
+// top_tweak = 0.08; // -0.06 for ABS, 0.04 for rPET, -0.06 for Pro1, -0.08 for Polymaker Polylite PLA, -0.03 for NGEN, 0.02 for NGEN Flex, 0.09 for Ninjaflex, -0.02 for Bridge Nylon, 0.08 for TPU95A, 0.0 Biofila Silk
 
 // Bottom connector size adjustment (smaller is tigher, add in multiples of 0.01mm as determined from your calibration-block print)
-bottom_tweak = -0.04; // -0.02 for ABS (0.12 for thin), 0.10 for rPET, 0.08 for Pro1, 0.04 for Polymaker Polylite PLA, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon, -0.04 for TPU95, 0.0 Biofila Silk
+// bottom_tweak = -0.04; // -0.02 for ABS (0.12 for thin), 0.10 for rPET, 0.08 for Pro1, 0.04 for Polymaker Polylite PLA, 0.08 for NGEN, 0.02 for NGEN Flex, -0.02 for Ninjaflex, 0.15 for Bridge Nylon, -0.04 for TPU95, 0.0 Biofila Silk
 
 // Side connector size adjustment (larger is a looser fit, add in multiples of 0.01mm as determined from your calibration-block print)
-axle_hole_tweak = 0.06; // 0.06 for ABS (0.12 for thin), 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker Polylite PLA, 0.07 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, 0.0 for TPU95A, -0.04 Biofila Silk
+// axle_hole_tweak = 0.06; // 0.06 for ABS (0.12 for thin), 0.04 for rPET, 0.04 for Pro1, 0.06 for Polymaker Polylite PLA, 0.07 for NGEN, 0 for NGEN Flex, 0.04 for Ninjaflex, 0.06 for Bridge Nylon, 0.0 for TPU95A, -0.04 Biofila Silk

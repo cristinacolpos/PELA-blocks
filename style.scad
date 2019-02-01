@@ -52,7 +52,7 @@ solid_upper_layers = false;
 /* [Knob] */
 
 // Size of the top connectors (slippery or brittle plastics negatively affect results and lifetime- the value below is roughly in the middle of various materials tested)
-knob_radius = 2.45 + 0.12 + top_tweak;
+// knob_radius = 2.45 + 0.12 + top_tweak;
 
 // Knob top surface strength
 knob_top_thickness = 0.8;
@@ -69,7 +69,7 @@ socket_insert_bevel = 0.1;
 /* [Technic] */
 
 // Technic connector hole
-axle_hole_radius = 2.45 + axle_hole_tweak;
+//axle_hole_radius = 2.45 + axle_hole_tweak;
 
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]

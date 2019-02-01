@@ -40,14 +40,13 @@ See the [Slicer Recommendations](SLICER.md) for settings recommendations and mat
 
 ## Calibrate
 
-To get a perfect LEGO-compatible and technic-compatible fit, do some test fits against a printed calibration block tune 3 numbers before generating the STL model for your plastic and printer.
-
-___
-
+**TL;DR** *: To get a nice snap fit for your printer, slicer settings and material, print a calibration bar and test the fit top, bottom and side connections against commercial bricks. Update these best `top_tweak` and `bottom_tweak` into [`print-parameters.scad`](print-parameters.scad). Now open any model in OpenSCAD, press `F6` to generate the model then `F7` to export as STL.*
 
 [![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master//PELA-calibration.stl)
 
-Print one of the 4 calibration blocks below. Test fit some LEGO on the top and bottom to find the perfect fit. Test fit a technic connector on the side. When you update those material settings in  [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad) then one time calibration is complete.
+There are 4 possible calibration bars linked below. Which one you want to print depends on (1) your printer nozzle diameter and (2) is the material flexible or not.
+
+Test fit the top, bottom and sides to get something which is tight but not too tight. Then update your settings in  [`print-parameters.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/print-parameters.scad) then one time calibration is complete.
 
 ___
 
@@ -82,7 +81,6 @@ ___
 
 Use either the [PELA Calibration Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration.stl) or [PELA Calibration Block Set](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-set.stl) to find the right settings for your printer setup.
 
-**TL;DR** *: To get a nice snap fit, print `PELA-calibration.stl` and test the fit with commercial LEGO. Type the best `top_tweak` and `bottom_tweak` into [`print-parameters.scad`](print-parameters.scad). Now open any model in OpenSCAD, press `F6` then `Export as STL`.*
 
 ### Calibration Instructions
 
