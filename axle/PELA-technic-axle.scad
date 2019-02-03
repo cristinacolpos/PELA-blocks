@@ -41,7 +41,7 @@ center_radius = 1.1;
 // DISPLAY
 ///////////////////////////////
 
-axle();
+axle(material=material, l=l, axle_radius=axle_radius, center_radius=center_radius);
   
 
 

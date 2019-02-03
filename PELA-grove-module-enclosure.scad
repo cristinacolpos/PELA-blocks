@@ -36,6 +36,12 @@ w = 2;
 // Height of HALF the enclosure [blocks]
 h = 2;
 
+// Render the lower section
+show_bottom_piece = true;
+
+// Render the upper section
+show_top_piece = true;
+
 // Add interior fill for upper layers
 solid_upper_layers = true;
 
@@ -82,10 +88,10 @@ mink = 0.25;
 negative_space_height=100;
 
 // Distance from the outside edge of the technic connector linking the top to the bottom
-offset_x=3.5;
+offset_x = 3.5;
 
 // Distance from the outside edge of the technic connector linking the top to the bottom
-offset_y=3.7;
+offset_y = 3.7;
 
 // Distance to slide the grove module forward
 grove_y_shift = 0.25;
@@ -99,8 +105,13 @@ print_supports = true;
 ///////////////////////////////
 
 rotate([0, 0, 180]) {
-    bottom_piece();
-    top_piece();
+    if (show_bottom_piece) {
+        bottom_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
+    }
+    
+    if (show_top_piece) {
+        top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
+    }
 }
 
 
@@ -115,7 +126,7 @@ function vertical_offset(block_height=block_height)=(block_height(2*h, block_hei
 // MODULES
 /////////////////////////////////////
 
-module bottom_piece(material=material) {
+module bottom_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
     difference() {
         union() {
             PELA_technic_block(material=material, l=l, w=w, h=h, knob_flexture_height=0, solid_first_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
@@ -137,17 +148,17 @@ module bottom_piece(material=material) {
                 corner_corner_bolt_holes(material=material, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
             }
             
-            skin();
+            skin(material=material, l=l, w=w, h=h, block_height=block_height);
         }
     }
 }
 
 
 // Top piece
-module top_piece() {
+module top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
 
     translate([0, block_width(w + 0.5), 0]) {
-        main_top_piece(material=material);
+        main_top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
 
         if (print_supports) {
             difference() {
@@ -165,7 +176,7 @@ module top_piece() {
                     }
                 }
 
-                main_top_piece_space(material=material);
+                main_top_piece_space(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
             }
         }
     }
@@ -173,7 +184,7 @@ module top_piece() {
 
 
 // Primary shape of the top piece
-module main_top_piece(material=material) {
+module main_top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
     difference() {
         union() {
             PELA_technic_block(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0);
@@ -205,9 +216,9 @@ module main_top_piece(material=material) {
 
 
 // The negative space which supports should not enter to be too close to the top piece
-module main_top_piece_space(material=material) {
+module main_top_piece_space(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
     minkowski() {
-        main_top_piece(material=material);
+        main_top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
 
         sphere(r=support_offset_from_part, $fn=8);
     }    
@@ -224,35 +235,35 @@ module top_supports(material=material) {
     end_support_side_length=3;
 
     translate([block_width(2), block_width(0.5), 0])
-        support(material=material, height=height, support_side_length=support_side_length);
+        support(height=height, support_side_length=support_side_length);
     
     translate([block_width(2), block_width(1.5), 0])
-        support(material=material, height=height, support_side_length=support_side_length);
+        support(height=height, support_side_length=support_side_length);
     
     translate([block_width(1.5), block_width(1), 0])
-        support(material=material, height=height, support_side_length=support_side_length);
+        support(height=height, support_side_length=support_side_length);
     
     translate([block_width(2.5), block_width(1), 0])
-        support(material=material, height=height, support_side_length=support_side_length);
+        support(height=height, support_side_length=support_side_length);
 
     translate([block_width(1.5), block_width(1.9), 0])
-        support(material=material, height=h2, support_side_length=support_side_length);
+        support(height=h2, support_side_length=support_side_length);
 
     translate([block_width(2.5), block_width(1.9), 0])
-        support(material=material, height=h2, support_side_length=support_side_length);
+        support(height=h2, support_side_length=support_side_length);
 
     translate([end_x, block_width(1), 0])
-        support(material=material, height=end_h, support_side_length=end_support_side_length);
+        support(height=end_h, support_side_length=end_support_side_length);
 
     translate([block_width(l)-end_x, block_width(1), 0])
-        support(material=material, height=end_h, support_side_length=end_support_side_length);
+        support(height=end_h, support_side_length=end_support_side_length);
 }
     
 
 ///////////////////////////////
     
 // A complete Grove module negative space assembly. These are all the areas where you do _not_ want material in order to be able to place a real Grove module embedded within another part
-module grove() {
+module grove(material=material) {
     translate([0, 0, grove_y_shift]) {
         minkowski() {
             union() {
@@ -286,29 +297,12 @@ module board(material=material) {
 
 // The bump on the side of a Grove module where a screw holder can be inserted. In this design, this is simply used for orienting the Grove module within another block (no screws are usually used)
 module eye(material=material) {
-    cylinder(r=eye_radius,h=thickness);
+    cylinder(r=eye_radius, h=thickness);
 }
 
 // Space for the board components and access to the Grove connector on the front of the board (no material is here)
 module negative_space(material=material) {
-    translate([edge_inset,edge_inset,0]) {
-        cube([grove_width-2*edge_inset,grove_width-2*edge_inset,negative_space_height]);
-    }
-}
-
-
-/////////////////////////////////
-// A PELA block with a Grove-sized hole in it. This block must be sliced into top and bottom halves
-// in order for you to be able to fit the Grove module inside.
-////////////////////////////////
-module PELA_grove(material=material) {
-    difference() {
-        PELA(material=material, l, w, h);
-
-        translate([grove_width + (block_width(4)-grove_width)/2, block_width(2)-2*side_shell, (block_height(3)-grove_width)/2]) {
-            rotate([90,0,90]) {
-                grove(material=material);       
-            }
-        }
+    translate([edge_inset, edge_inset, 0]) {
+        cube([grove_width-2*edge_inset, grove_width-2*edge_inset, negative_space_height]);
     }
 }
