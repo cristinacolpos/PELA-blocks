@@ -18,10 +18,10 @@ Import this into other design files:
     use <PELA-block.scad>
 */
 
-include <../print-parameters.scad>
-include <../style.scad>
-use <../PELA-block.scad>
-use <../PELA-technic-block.scad>
+include <print-parameters.scad>
+include <style.scad>
+use <PELA-block.scad>
+use <PELA-technic-block.scad>
 
 
 
@@ -64,7 +64,7 @@ skip_edge_knobs = 0;
 // DISPLAY
 ///////////////////////////////
 
-PELA_knob_panel();
+PELA_knob_panel(material=material, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
 
 
 

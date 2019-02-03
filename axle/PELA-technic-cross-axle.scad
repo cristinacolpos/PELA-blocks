@@ -44,7 +44,7 @@ axle_rounding = 0.63;
 ///////////////////////////////
 
 
-cross_axle();
+cross_axle(material=material, l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
     
 
 
