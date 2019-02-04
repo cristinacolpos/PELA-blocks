@@ -92,10 +92,10 @@ board_z_offset = -thickness;
 top_edge_height = 2;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
-length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+length_padding = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Board surround ratio
-width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+width_padding = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
@@ -123,7 +123,7 @@ module PELA_sparkfun_pro_micro_board_mount(material=material, length=length, wid
 
             bottom_connector_negative_space(material=material, l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, block_width=block_width, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets);
 
-            usb_cutout(material=material);
+            usb_cutout(material=material, w=w);
 
             bottom_header_space(material=material, l=l, w=w, width=width, block_height=block_height);
         }
@@ -131,8 +131,8 @@ module PELA_sparkfun_pro_micro_board_mount(material=material, length=length, wid
 }
 
 
-module usb_cutout() {
+module usb_cutout(material=material, w=undef) {
     translate([-defeather, block_width(1), block_height(0.5, block_height=block_height)]) {
-        cube([block_width(2), block_width(2), block_height(2, block_height=block_height)]);
+        cube([block_width(2), block_width(w-2), block_height(2, block_height=block_height)]);
     }
 }

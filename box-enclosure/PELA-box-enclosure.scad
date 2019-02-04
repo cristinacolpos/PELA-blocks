@@ -24,7 +24,7 @@ include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../PELA-socket-panel.scad>
-use <../knob-panel/PELA-knob-panel.scad>
+use <../PELA-knob-panel.scad>
 
 
 /* [PELA Box Enclosure] */
@@ -175,7 +175,7 @@ module walls(material=material, l=l, w=w, h=h, bottom_type=bottom_type, top_vent
         }
 
         if (bottom_type>0) {
-            bottom_negative_space(material=material, l=l, w=w, h=h, bottom_type=1, skin=0, solid_first_layer=solid_first_layer, block_height=block_height);
+            bottom_negative_space(material=material, l=l, w=w, bottom_type=1, skin=0, solid_first_layer=solid_first_layer, block_height=block_height);
         }
     }
 }
@@ -281,7 +281,7 @@ module enclosure_bottom(material=material, l=l, w=w, bottom_type=bottom_type, sk
             cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height(block_height=block_height)]);
         }
     } else if (bottom_type==2) {
-        socket_panel_one_sided(material=material, l=l, w=w, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);    
+        socket_panel_one_sided(material=material, l=l, w=w, skin=skin, block_height=block_height);    
     } else if (bottom_type==3) {
         PELA_knob_panel(material=material, l=l, w=w, top_vents=bottom_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skin=skin, skip_edge_knobs=skip_edge_knobs, block_height=block_height);
    }

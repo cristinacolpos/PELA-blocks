@@ -36,15 +36,19 @@ use <PELA-knob-mount.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Board space length [mm]
 length = 63;
 
+// Board space width [mm]
 width = 25.5;
 
-thickness = 1.7;
+// Board space thickness [mm]
+thickness = 1.8;
 
+// Enclosure height [blocks]
 h = 1;
 
-// How far below the bottom of the board surface parts protude 
+// How far below the bottom of the board surface parts protude [mm]
 undercut = 12.3;
 
 // Step in from board space edges to support the board [mm]
@@ -103,10 +107,10 @@ sd_card_cutout_offset = -block_width(1/2);
 top_edge_height = 2;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
-length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+length_padding = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Board surround ratio
-width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+width_padding = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
@@ -141,7 +145,7 @@ module pca9685_servo_board_mount(material=material, length=length, width=width, 
 }
 
 
-module end_cut() {
+module end_cut(material=material) {
     translate([-0.01, block_width(1.5), block_height(0.5, block_height=block_height)]) {
         cube([block_width(2), block_width(2), block_height(1, block_height=block_height)]);
     }

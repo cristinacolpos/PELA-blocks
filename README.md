@@ -177,15 +177,15 @@ ___
 
 ___
 
-[![PELA Technic Raspberry Pi 3B Mount](images/PELA-raspberry-pi3-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-mount.stl)
+[![PELA Raspberry Pi 3B Technic Mount](images/PELA-raspberry-pi3-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-mount.stl)
 
-[3D PELA Technic Raspberry Pi 3B Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-mount.stl) A Raspberry Pi 2/3 holder.
+[3D PELA Raspberry Pi 3B Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-mount.stl) A Raspberry Pi 2/3 holder.
 
 ___
 
-[![PELA Technic Raspberry Pi 3B Cover](images/PELA-raspberry-pi3-technic-cover.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-cover.stl)
+[![PELA Raspberry Pi 3B Technic Cover](images/PELA-raspberry-pi3-technic-cover.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-cover.stl)
 
-[3D PELA Technic Raspberry Pi 3B Cover](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-cover.stl) A Raspberry Pi 2/3 holder optional top cover.
+[3D PELA Raspberry Pi 3B Technic Cover](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-technic-cover.stl) A Raspberry Pi 2/3 holder top cover.
 
 ___
 
@@ -195,9 +195,9 @@ ___
 
 ___
 
-[![PELA Technic PIR Motion Sensor Mount](images/PELA-raspberry-technic-pir-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pir-technic-mount.stl)
+[![PELA Technic PIR Motion Sensor Mount](images/PELA-pir-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pir-technic-mount.stl)
 
-[3D PELA Technic PIR Motion Sensor Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pir-technic-mount.stl) A PIR motion sensor holder.
+[3D PELA PIR Motion Sensor Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pir-technic-mount.stl) A pulsed infra-red motion sensor holder.
 
 ___
 
