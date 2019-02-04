@@ -251,7 +251,9 @@ module knob_flexture_set(material=material, large_nozzle=large_nozzle, l=l, w=w,
 module knob_flexture(material=material, large_nozzle=large_nozzle, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, material=material) {
 
     if (knob_vent_radius > 0) {
-        cylinder(r=knob_vent_radius, h=knob_height+defeather);
+        translate([0, 0, -2*knob_height]) {
+            cylinder(r=knob_vent_radius, h=3*knob_height+defeather);
+        }
     } else {
         translate([0, 0, knob_height-knob_top_thickness-knob_flexture_height]) {
             cylinder(r=knob_flexture_radius(material=material), h=knob_flexture_height);

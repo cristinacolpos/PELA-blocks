@@ -51,9 +51,6 @@ solid_upper_layers = false;
 
 /* [Knob] */
 
-// Size of the top connectors (slippery or brittle plastics negatively affect results and lifetime- the value below is roughly in the middle of various materials tested)
-// knob_radius = 2.45 + 0.12 + top_tweak;
-
 // Knob top surface strength
 knob_top_thickness = 0.8;
 
@@ -101,11 +98,8 @@ top_shell = 1;
 
 /* [Advanced Block] */
 
-// Basic unit horizontal size of each block
-block_width = 8; // [8:technic and traditional blocks]
-
 // Basic unit vertical size of each block
-block_height = 8; // [8:technic and traditional blocks]
+block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid
 skin = 0.1;
@@ -169,6 +163,9 @@ support_max_rotation = 0;
 
 
 /* [Hidden] */
+
+// Basic unit horizontal size of each block
+block_width = 8; // [8:technic and traditional blocks]
 
 // In some models, the user will load two STL files into the slicer for a dual-material printer, one for each material/color. If "false" then the user wants a simplified, single material model
 two_color_print = false; // WIP
