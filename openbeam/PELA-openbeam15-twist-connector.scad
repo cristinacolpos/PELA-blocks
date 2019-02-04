@@ -21,7 +21,7 @@ include <../style.scad>
 include <../print-parameters.scad>
 use <../PELA-block.scad>
 use <../PELA-socket-panel.scad>
-use <../knob-panel/PELA-knob-panel.scad>
+use <../PELA-knob-panel.scad>
 
 
 /* [Openbeam 15 Twist Connector] */

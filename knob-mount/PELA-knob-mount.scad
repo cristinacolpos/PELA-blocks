@@ -75,7 +75,7 @@ left_wall_knobs = true;
 
 right_wall_knobs = true;
 
-front_wall_knobs = false;
+front_wall_knobs = true;
 
 back_wall_knobs = true;
 
@@ -172,7 +172,7 @@ module pcb_space(material=material, z, length=length, width=width, l, w, h=h, th
 }
 
 
-module pcb_space_skinned(material=material, z, pcb_skin=pcb_skin, length=length, l, w, h=h, width=width, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, block_height=block_height) {
+module pcb_space_skinned(material=material, z, pcb_skin=pcb_skin, length=length, l, w, h=h, width=width, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, dome=dome, block_height=block_height) {
 
     minkowski() {
         pcb_space(material=material, z=z, length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, block_height=block_height);
