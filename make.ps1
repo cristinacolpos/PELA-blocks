@@ -102,24 +102,6 @@ if ($png) {
     $extras += " -png"
 }
 
-
-if ($stl -OR $png -OR $clean) {
-    if ($png) {
-        Remove-Item $outdir\images\block-4-2-1.png 2> $null
-        Remove-Item $outdir\images\technic-block-4-4-2.png 2> $null
-    }
-
-    if ($stl) {
-        Move-Item .\technic-block-4-4-2.stl $outdir
-        Move-Item .\block-4-2-1.stl $outdir
-    }
-
-    if ($png) {
-        Move-Item .\block-4-2-1.png $outdir\images\
-        Move-Item .\technic-block-4-4-2.png $outdir\images\
-    }
-}
-
 render ".\" "PELA-block"
 render ".\" "PELA-technic-block"
 render ".\technic-mount\" "PELA-raspberry-pi3-technic-mount"
