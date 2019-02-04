@@ -33,4 +33,4 @@ large_nozzle = true;
 // DISPLAY
 ///////////////////////////////
 
-PELA_calibration_bar(material=material, large_nozzle=large_nozzle);
+PELA_calibration_bar(material=material, large_nozzle=large_nozzle, large_nozzle=large_nozzle);

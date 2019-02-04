@@ -30,6 +30,9 @@ use <../PELA-technic-block.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Add interior fill for upper layers
 solid_upper_layers = true;
 
@@ -116,7 +119,7 @@ translate([0, block_width(w + 0.5), 0]) {
 
 module motor_enclosure_bottom(material=material) {
     difference() {
-        PELA_technic_block(material=material, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, corner_bolt_holes=corner_bolt_holes);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, corner_bolt_holes=corner_bolt_holes);
         
         motor_cutouts(material=material);
     }
@@ -125,17 +128,17 @@ module motor_enclosure_bottom(material=material) {
 
 module motor_enclosure_top(material=material) {
     difference() {
-        PELA_technic_block(material=material, l=l, w=w, h=h_top, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=top_vents, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h_top, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=top_vents, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes);
 
         translate([0, 0, block_height(-h_top)]) {
-            motor_cutouts(material=material, ss=false);
+            motor_cutouts(material=material, large_nozzle=large_nozzle, ss=false);
         }
     }
 }
 
 
 // Space for the motor and connectors and shafts to be removed from the block
-module motor_cutouts(material=material, ms=true, ss=true, es=true) {
+module motor_cutouts(material=material, large_nozzle=large_nozzle, ms=true, ss=true, es=true) {
 
     translate([(block_width(l)-motor_round_length-motor_square_length)/2, (block_width(w)-motor_width)/2, motor_offset]) {
         if (ms) {
@@ -208,7 +211,7 @@ module motor_slot(material=material) {
 
 
 // For the shaft when the motor slides down into the bottom half of the enclosure
-module shaft_slot(material=material, block_height=block_height) {
+module shaft_slot(material=material, large_nozzle=large_nozzle, block_height=block_height) {
     hull() {
         translate([0, -(2*motor_radius-motor_width)/2, 0]) {
             motor_shaft(material=material);

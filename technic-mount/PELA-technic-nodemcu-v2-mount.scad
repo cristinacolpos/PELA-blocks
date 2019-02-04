@@ -36,6 +36,9 @@ use <../technic-bar/PELA-technic-twist-bar.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 length = 48.7;
 
 width = 26.2;
@@ -66,7 +69,7 @@ module board_mount(material=material) {
         color("red") cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, block_height()*2]);
       }
       color("gray", 0.3) union() {
-        technic_bar_frame(material=material, l, w);
+        technic_bar_frame(material=material, large_nozzle=large_nozzle, l, w);
         translate([0, 0, block_height()]) technic_bar_frame(l, w);
       }
     }
@@ -78,12 +81,12 @@ module board_mount(material=material) {
   }
 }
 
-module technic_bar_frame(material=material, l, w) {
+module technic_bar_frame(material=material, large_nozzle=large_nozzle, l, w) {
     union() {
-      technic_bar(material=material, l=l);
-      rotate([0, 0, 90]) technic_bar(material=material, l=w);
-      translate([0, block_width(w-1), 0]) technic_bar(material=material, l=l);
-      rotate([0, 0, 90]) translate([0, -block_width(l-1), 0]) technic_bar(material=material, l=w);
+      technic_bar(material=material, large_nozzle=large_nozzle, l=l);
+      rotate([0, 0, 90]) technic_bar(material=material, large_nozzle=large_nozzle, l=w);
+      translate([0, block_width(w-1), 0]) technic_bar(material=material, large_nozzle=large_nozzle, l=l);
+      rotate([0, 0, 90]) translate([0, -block_width(l-1), 0]) technic_bar(material=material, large_nozzle=large_nozzle, l=w);
     }
 }
 

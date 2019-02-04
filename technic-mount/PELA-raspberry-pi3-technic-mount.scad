@@ -40,6 +40,9 @@ include <PELA-technic-board-mount.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 length = 86.2; // Board space length [mm]
 
 width = 56.8; // Board space width [mm]
@@ -74,7 +77,7 @@ pi3_technic_mount();
 // MODULES
 ///////////////////////////////////
 
-module pi3_technic_mount(material=material, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width) {
+module pi3_technic_mount(material=material, large_nozzle=large_nozzle, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width) {
 
     l_fit = 1;
     l = fit_mm_to_blocks(length, length_padding) - l_fit;
@@ -90,18 +93,18 @@ module pi3_technic_mount(material=material, length=length, width=width, length_p
 
     difference() {
         union() {
-            technic_board_mount(material=material, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut, block_width=block_width);
+            technic_board_mount(material=material, large_nozzle=large_nozzle, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut, block_width=block_width);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                technic_board_mount(material=material, length=length-block_width, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=0, innercut=0);
-//                technic_rectangle(material=material, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+                technic_board_mount(material=material, large_nozzle=large_nozzle, length=length-block_width, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=0, innercut=0);
+//                technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
             }
 
             retaining_ridge_sd_card_side(material=material);
         }
         
 #        union() {
-            main_board(material=material, l=l+2_fit, w=w, length=length, width=width, block_height=block_height);
+            main_board(material=material, large_nozzle=large_nozzle, l=l+2_fit, w=w, length=length, width=width, block_height=block_height);
             sd_card_cutout(material=material);
             front_connector_cutout(material=material);
             ethernet_cutout(material=material);
@@ -109,14 +112,14 @@ module pi3_technic_mount(material=material, length=length, width=width, length_p
         }
     }
 
-    bottom(material=material, x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height);
+    bottom(material=material, large_nozzle=large_nozzle, x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height);
 }
 
 
-module bottom(material=material, x, y, l, w, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
+module bottom(material=material, large_nozzle=large_nozzle, x, y, l, w, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
 
     translate([block_width(x) - skin, block_width(y), 0]) {
-        skinned_block(material=material, l=l, w=w, h=0.25, skin=0, ridge_width=0, ridge_depth=0, block_height=block_height);
+        skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=0.25, skin=0, ridge_width=0, ridge_depth=0, block_height=block_height);
     }
 }
 

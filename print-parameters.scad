@@ -105,6 +105,9 @@ materials = [pla_m, abs_m, pet_m, bio_silk_m, pro1_m, ngen_m, ngen_flex_m, nylon
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // private function - get a named property from the materials data structure
 function material_property(material, property) = materials[material][property];
 
@@ -112,7 +115,7 @@ function material_property(material, property) = materials[material][property];
 function material_name(material) = materials[material][name_index];
 
 // Return true if this material is flexible
-function flexible_material(material) = materials[material][name_index];
+function is_flexible(material) = materials[material][name_index];
 
 // Return top tweak from the material
 function material_top_tweak(material) = material_property(material, top_tweak_index);

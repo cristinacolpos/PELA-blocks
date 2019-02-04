@@ -27,6 +27,9 @@ use <support/support.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Length of the enclosure [blocks]
 l = 4; 
 
@@ -106,11 +109,11 @@ print_supports = true;
 
 rotate([0, 0, 180]) {
     if (show_bottom_piece) {
-        bottom_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
+        bottom_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
     }
     
     if (show_top_piece) {
-        top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
+        top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
     }
 }
 
@@ -126,12 +129,12 @@ function vertical_offset(block_height=block_height)=(block_height(2*h, block_hei
 // MODULES
 /////////////////////////////////////
 
-module bottom_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
+module bottom_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
     difference() {
         union() {
-            PELA_technic_block(material=material, l=l, w=w, h=h, knob_flexture_height=0, solid_first_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
+            PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_flexture_height=0, solid_first_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
 
-            double_end_connector_sheath_set(material=material, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
+            double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
         }
 
     
@@ -142,23 +145,23 @@ module bottom_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_b
                 }
             }
 
-            double_end_connector_hole_set(material=material, l=l, w=w, hole_type=2, block_width=block_width);
+            double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=2, block_width=block_width);
 
             if (corner_bolt_holes) {
-                corner_corner_bolt_holes(material=material, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
+                corner_corner_bolt_holes(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
             }
             
-            skin(material=material, l=l, w=w, h=h, block_height=block_height);
+            skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
         }
     }
 }
 
 
 // Top piece
-module top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
+module top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
 
     translate([0, block_width(w + 0.5), 0]) {
-        main_top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
+        main_top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
 
         if (print_supports) {
             difference() {
@@ -176,7 +179,7 @@ module top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt
                     }
                 }
 
-                main_top_piece_space(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
+                main_top_piece_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
             }
         }
     }
@@ -184,13 +187,13 @@ module top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt
 
 
 // Primary shape of the top piece
-module main_top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
+module main_top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
     difference() {
         union() {
-            PELA_technic_block(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0);
+            PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0);
         
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                double_end_connector_sheath_set(material=material, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
+                double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
             }
         }
         
@@ -202,23 +205,23 @@ module main_top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner
             }
             
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                double_end_connector_hole_set(material=material, l=l, w=w, hole_type=2, block_width=block_width);
+                double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=2, block_width=block_width);
             }
 
             if (corner_bolt_holes) {
-                corner_corner_bolt_holes(material=material, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
+                corner_corner_bolt_holes(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius);
             }
             
-            skin(material=material, l=l, w=w, h=h);
+            skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h);
         }
     }
 }
 
 
 // The negative space which supports should not enter to be too close to the top piece
-module main_top_piece_space(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
+module main_top_piece_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
     minkowski() {
-        main_top_piece(material=material, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
+        main_top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
 
         sphere(r=support_offset_from_part, $fn=8);
     }    

@@ -30,6 +30,9 @@ use <PELA-technic-block.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Length of the block [blocks]
 l = 8; 
 
@@ -62,22 +65,22 @@ socket_panel();
 // MODULES
 ///////////////////////////////////
 
-module socket_panel(material=material, l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
+module socket_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
     
-    socket_panel_one_sided(material=material, l=l, w=w, solid_first_layer=solid_first_layer, knob_height=knob_height, skin=skin, block_height=block_height);
+    socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, solid_first_layer=solid_first_layer, knob_height=knob_height, skin=skin, block_height=block_height);
 
     translate([0, block_width(w), panel_height(block_height=block_height)]) {
         rotate([180, 0, 0]) {
-            socket_panel_one_sided(material=material, l=l, w=w, solid_first_layer=solid_first_layer, skin=skin, block_height=block_height);
+            socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, solid_first_layer=solid_first_layer, skin=skin, block_height=block_height);
         }
     }
 }
 
 
-module socket_panel_one_sided(material=material, l=l, w=w, solid_first_layer=solid_first_layer, knob_height=knob_height, skin=skin, block_height=block_height) {
+module socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, solid_first_layer=solid_first_layer, knob_height=knob_height, skin=skin, block_height=block_height) {
     
     intersection() {
-        PELA_technic_block(material=material, l=l, w=w, h=1, top_vents=false, solid_first_layer=solid_first_layer, corner_bolt_holes=false, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=1, top_vents=false, solid_first_layer=solid_first_layer, corner_bolt_holes=false, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height);
 
         translate([skin, skin, 0]) {
             cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height(block_height=block_height)]);

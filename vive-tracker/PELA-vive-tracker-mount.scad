@@ -39,6 +39,9 @@ use <../threads/threads.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Length of the block [blocks]
 l = 6; 
 
@@ -125,7 +128,7 @@ PELA_vive_tracker_mount();
 // MODULES
 ///////////////////////////////////
 
-module thumbscrew_hole(material=material, block_height=block_height) {
+module thumbscrew_hole(material=material, large_nozzle=large_nozzle, block_height=block_height) {
     translate([thumscrew_offset_from_edge, block_width(w/2)]) {
         cylinder(d=thumbscrew_hole_d, h=panel_height(block_height=block_height)+0.1);
     }
@@ -133,21 +136,21 @@ module thumbscrew_hole(material=material, block_height=block_height) {
 
 
 // The negative space to remove to make room for the thumbscrew head to flush mount inside the panel
-module thumbscrew_head_hole(material=material, block_height=block_height) {
+module thumbscrew_head_hole(material=material, large_nozzle=large_nozzle, block_height=block_height) {
     translate([thumscrew_offset_from_edge, block_width(w/2), -0.5*panel_height(block_height=block_height)+skin]) {
         cylinder(d=thumbscrew_border_d, h=panel_height(block_height=block_height));
     }
 }
 
 
-module thumbscrew_hole_border(material=material, block_height=block_height) {
+module thumbscrew_hole_border(material=material, large_nozzle=large_nozzle, block_height=block_height) {
     translate([thumscrew_offset_from_edge, block_width(w/2)]) {
         cylinder(d=thumbscrew_border_d, h=panel_height(block_height=block_height));
     }
 }
 
 
-module alignment_pin(material=material, block_height=block_height, large_nozzle=large_nozzle) {
+module alignment_pin(material=material, large_nozzle=large_nozzle, block_height=block_height, large_nozzle=large_nozzle) {
     translate([thumscrew_offset_from_edge+alignment_pin_offset_from_screwhole, block_width(w/2), panel_height(0.5)]) {
         cylinder(d=alignment_pin_d, h=panel_height(0.5)+alignment_pin_h);
     }
@@ -158,18 +161,18 @@ module alignment_pin(material=material, block_height=block_height, large_nozzle=
 }
 
 
-module PELA_vive_tracker_mount(material=material, block_height=block_height) {
+module PELA_vive_tracker_mount(material=material, large_nozzle=large_nozzle, block_height=block_height) {
     difference() {
         union() {
-            socket_panel(material=material, l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
+            socket_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
 
             translate([block_width(), 2.4+block_width(1.5), panel_height()]) {
                 vive_connector(material=material);
             }
             
-            thumbscrew_hole_border(material=material, block_height=block_height);
+            thumbscrew_hole_border(material=material, large_nozzle=large_nozzle, block_height=block_height);
             
-            alignment_pin(material=material, block_height=block_height);
+            alignment_pin(material=material, large_nozzle=large_nozzle, block_height=block_height);
 
             hull() {
                 translate([block_width(), block_width(1.81)]) {
@@ -246,7 +249,7 @@ module vive_connector(material=material) {
 
 
 // A set of pins
-module vive_pin_array(material=material, count=6) {
+module vive_pin_array(material=material, large_nozzle=large_nozzle, count=6) {
     for (i=[0:pin_spacing:pin_spacing*(count-1)]) {
         translate([0, i + (channel_l-(count-1)*pin_spacing)/2, pin_vertical_offset]) {
             rotate([180, 0, 0]) {
@@ -258,7 +261,7 @@ module vive_pin_array(material=material, count=6) {
 
 
 // A set of negative space for pins
-module vive_cutout_array(material=material, count=6) {
+module vive_cutout_array(material=material, large_nozzle=large_nozzle, count=6) {
     for (i=[0:pin_spacing:pin_spacing*(count-1)]) {
         translate([0, i + (channel_l-(count-1)*pin_spacing)/2, pin_vertical_offset]) {
             rotate([180, 0, 0]) {

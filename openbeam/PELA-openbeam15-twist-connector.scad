@@ -29,6 +29,9 @@ use <../PELA-knob-panel.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 w = 2;
 l = 2;
 block_height=9.6;
@@ -63,7 +66,7 @@ openbeam15();
 ///////////////////////////////////
 
 module openbeam15() {
-	PELA_knob_panel(material=material, l=l, w=w, corner_bolt_holes=false, sockets=false, block_height=block_height);
+	PELA_knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, corner_bolt_holes=false, sockets=false, block_height=block_height);
 
 	translate([top_width/2, top_length/2, 0]) {
 		cylinder(r=block_width(1/3), h=top_height);

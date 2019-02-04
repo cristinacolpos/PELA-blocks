@@ -209,17 +209,17 @@ function block_width(i=1, block_width=block_width) = i*block_width;
 function block_height(h=1, block_height=block_height) = h*block_height;
 
 // Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-function ring_thickness(large_nozzle=large_nozzle) = large_nozzle ? 1.2 : 0.8;
+function ring_thickness(large_nozzle) = large_nozzle ? 1.2 : 0.8;
 
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 
-function ring_radius(large_nozzle=large_nozzle, bottom_tweak=undef) = 2.75 + ring_thickness(large_nozzle=large_nozzle) + bottom_tweak;
+function ring_radius(large_nozzle, bottom_tweak=undef) = 2.75 + ring_thickness(large_nozzle=large_nozzle) + bottom_tweak;
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-function knob_flexture_radius(material) = flexible_material(material) ? 0.6 : 0.8;
+function knob_flexture_radius(material) = is_flexible(material) ? 0.6 : 0.8;
 
 // Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
-function knob_bevel(material) = flexible_material(material) ? 0.3 : 0.2;
+function knob_bevel(material) = is_flexible(material) ? 0.3 : 0.2;
 
 
 // Test if this is a corner block
@@ -232,7 +232,7 @@ function panel_height_ratio(block_height=block_height) = block_height < 9.6 ? 1/
 function panel_height(block_height=block_height) = block_height(1, block_height=block_height)*panel_height_ratio(block_height=block_height);
 
 // Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
-function side_lock_thickness(material) = flexible_material(material) ? 0.06 : 0.02;
+function side_lock_thickness(material) = is_flexible(material) ? 0.06 : 0.02;
 
 // Horizontal width of each side of a support triangle
-function support_line_width(large_nozzle=large_nozzle) = large_nozzle ? 0.7 : 0.5;
+function support_line_width(large_nozzle) = large_nozzle ? 0.7 : 0.5;

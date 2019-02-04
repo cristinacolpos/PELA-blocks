@@ -31,6 +31,9 @@ use <../threads/threads.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Screwhole border
 thumbscrew_border_d=11;
 
@@ -55,7 +58,7 @@ hInch=1/4;
 // DISPLAY
 ///////////////////////////////
 
-thumbscrew(material=material, thumbscrew_border_d=thumbscrew_border_d, cut=cut, tpi=tpi, height=height, dInch=dInch, hInch=hInch);
+thumbscrew(material=material, large_nozzle=large_nozzle, thumbscrew_border_d=thumbscrew_border_d, cut=cut, tpi=tpi, height=height, dInch=dInch, hInch=hInch);
 
 
 
@@ -63,16 +66,16 @@ thumbscrew(material=material, thumbscrew_border_d=thumbscrew_border_d, cut=cut, 
 // MODULES
 ///////////////////////////////////
 
-module thumbscrew(material=material, thumbscrew_border_d=thumbscrew_border_d, cut=cut, tpi=tpi, height=height, dInch=dInch, hInch=hInch) {    
+module thumbscrew(material=material, large_nozzle=large_nozzle, thumbscrew_border_d=thumbscrew_border_d, cut=cut, tpi=tpi, height=height, dInch=dInch, hInch=hInch) {    
     translate([0, 0, height]) {
         us_bolt_thread(dInch=dInch, hInch=hInch, tpi=tpi);
     }
 
-    thumbscrew_head(material=material, height=height);
+    thumbscrew_head(material=material, large_nozzle=large_nozzle, height=height);
 }
 
 
-module thumbscrew_head(material=material, height=height) {
+module thumbscrew_head(material=material, large_nozzle=large_nozzle, height=height) {
     cylinder(d=thumbscrew_border_d/2, h=height);
 
     difference() {

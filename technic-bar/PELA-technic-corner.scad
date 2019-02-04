@@ -34,6 +34,9 @@ use <../technic-bar/PELA-technic-bar.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Length of the first bar [blocks]
 l1 = 2;
 
@@ -56,14 +59,14 @@ pi3_corner();
 // MODULES
 ///////////////////////////////////
 
-module pi3_corner(material=material, l1=l1, l2=l2, angle=angle) {
+module pi3_corner(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, angle=angle) {
 
     assert(angle >= 65, "Angle must be at least 65 degrees");
     assert(angle <= 295, "Angle must be at least 65 degrees");
 
-    technic_bar(material=material, l=l1);
+    technic_bar(material=material, large_nozzle=large_nozzle, l=l1);
 
     rotate([0, 0, angle]) {
-        technic_bar(material=material, l=l2);
+        technic_bar(material=material, large_nozzle=large_nozzle, l=l2);
     }
 }

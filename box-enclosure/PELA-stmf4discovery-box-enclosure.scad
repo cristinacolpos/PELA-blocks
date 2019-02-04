@@ -33,6 +33,9 @@ use <PELA-box-enclosure.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Length of the enclosure including two for walls (PELA knob count)
 l = 14;
 
@@ -131,62 +134,62 @@ PELA_stmf4discovery_box_enclosure();
 // MODULES
 ///////////////////////////////////
 
-module PELA_stmf4discovery_box_enclosure(material=material, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_upper_layers=solid_upper_layers, retainer_tab_radius=retainer_tab_radius, center_type=center_type, block_height=block_height) {
+module PELA_stmf4discovery_box_enclosure(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_upper_layers=solid_upper_layers, retainer_tab_radius=retainer_tab_radius, center_type=center_type, block_height=block_height) {
 
     difference() {
         union() {
-            PELA_box_enclosure(material=material, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_upper_layers=solid_upper_layers, center_type=center_type, block_height=block_height);
+            PELA_box_enclosure(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_upper_layers=solid_upper_layers, center_type=center_type, block_height=block_height);
 
-            board_insertion_space_side_shell(material=material, l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height);
+            board_insertion_space_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height);
         }
 
         union() {
-            board_insertion_space(material=material, l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height);
+            board_insertion_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height);
             
             connector_holes(material=material);
             
-            right_side_snap_cuts(material=material, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius);
+            right_side_snap_cuts(material=material, large_nozzle=large_nozzle, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius);
 
-            left_side_snap_cuts(material=material, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius);
+            left_side_snap_cuts(material=material, large_nozzle=large_nozzle, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius);
 
             translate([0, 0, block_height(2, block_height=block_height)]) {
                 ahr = material_axle_hole_radius(material);
 
-                double_side_connector_hole_set(material=material, l=l, w=w, hole_type=side_holes, block_width=block_width, block_height=block_height, axle_hole_radius=ahr);
+                double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=side_holes, block_width=block_width, block_height=block_height, axle_hole_radius=ahr);
             }
         }
     }
 
-    right_side_retainer_tabs(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
+    right_side_retainer_tabs(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
 
-    left_side_retainer_tabs(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
+    left_side_retainer_tabs(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
 }
 
 
 // Two bumps on the two right side flextures to keep the board from moving upwards
-module right_side_retainer_tabs(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
+module right_side_retainer_tabs(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
 
-    side_snap_board_retainer_tab(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
+    side_snap_board_retainer_tab(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
 
     translate([block_width(l - flexture_width - 2*side_snap_end_inset), 0, 0]) {
-        side_snap_board_retainer_tab(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
+        side_snap_board_retainer_tab(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
     }        
 }
 
 
 // Two bumps on the left side to hold the board down
-module left_side_retainer_tabs(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
+module left_side_retainer_tabs(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
 
     translate([block_width(l), block_width(w), 0]) {
         rotate([0, 0, 180]) {
-            right_side_retainer_tabs(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
+            right_side_retainer_tabs(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
         }
     }
 }
 
 
 // A bump sticking inward from the side flexture- keeps the board down
-module side_snap_board_retainer_tab(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
+module side_snap_board_retainer_tab(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
 
     translate([block_width(side_snap_end_inset) + side_snap_cut_width, block_width(0.5) + 3, board_h + board_thickness + retainer_tab_radius]) {
 
@@ -198,7 +201,7 @@ module side_snap_board_retainer_tab(material=material, flexture_width=flexture_w
 
 
 // Access points in the back panel for parts of the board which have wires attached
-module connector_holes(material=material, block_height=block_height) {
+module connector_holes(material=material, large_nozzle=large_nozzle, block_height=block_height) {
     translate([0, block_width(w/2), block_height(h/2, block_height=block_height)]) {
         rotate([0, 90, 0]) {
             cylinder(r=connector_hole_radius, h=block_width(l));
@@ -208,7 +211,7 @@ module connector_holes(material=material, block_height=block_height) {
 
 
 // The shape of the board (excluding top and bottom coponents and connectors) which is being enclosed
-module board(material=material, l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
+module board(material=material, large_nozzle=large_nozzle, l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
     x = (block_width(l) - board_l)/2;
     y = (block_width(w) - board_w)/2;
 
@@ -219,76 +222,76 @@ module board(material=material, l=l, w=w, board_l=board_l, board_w=board_w, boar
 
 
 // The space needed to drop the board in from above (may cut into the side walls)
-module board_insertion_space(material=material, l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height) {
+module board_insertion_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height) {
 
     hull() {
-        board(material=material, l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
+        board(material=material, large_nozzle=large_nozzle, l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
 
         translate([0, 0, block_height(h, block_height=block_height) - board_h - board_thickness]) {
-            board(material=material, l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
+            board(material=material, large_nozzle=large_nozzle, l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness);
         }
     }
 }
 
 
 // A solid layer around the space removed to allow dropping the board in from above
-module board_insertion_space_side_shell(material=material, l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height) {
+module board_insertion_space_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness, block_height=block_height) {
 
-    board_insertion_space(material=material, l=l, w=w, h=h, board_l=board_l, board_w=board_w + 2*side_shell, board_h=board_h, board_thickness=board_thickness, block_height=block_height);
+    board_insertion_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, board_l=board_l, board_w=board_w + 2*side_shell, board_h=board_h, board_thickness=board_thickness, block_height=block_height);
 }
 
 
 // Four vertical cuts into the side for two flexture to move with the board retaining tab
-module right_side_snap_cuts(material=material, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
+module right_side_snap_cuts(material=material, large_nozzle=large_nozzle, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
 
-    side_snap_board_holder_cut(material=material, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
+    side_snap_board_holder_cut(material=material, large_nozzle=large_nozzle, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
 
     translate([block_width(l - 2*side_snap_end_inset - flexture_width), 0, 0]) {
 
-        side_snap_board_holder_cut(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
+        side_snap_board_holder_cut(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
     }
 }
 
 
 // Four vertical cuts into the left side
-module left_side_snap_cuts(material=material, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
+module left_side_snap_cuts(material=material, large_nozzle=large_nozzle, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
 
     translate([block_width(l), block_width(w), 0]) {
         rotate([0, 0, 180]) {
-            right_side_snap_cuts(material=material, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
+            right_side_snap_cuts(material=material, large_nozzle=large_nozzle, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
         }
     }
 }
 
 // Two vertical cuts in the side to hold a single board retaining tab
-module side_snap_board_holder_cut(material=material, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
+module side_snap_board_holder_cut(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
 
     translate([block_width(side_snap_end_inset), block_width(0.5), block_height(1, block_height=block_height)-block_width(0.5)]) {
         
-        side_snap_cut(material=material, side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height, block_height=block_height);
+        side_snap_cut(material=material, large_nozzle=large_nozzle, side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height, block_height=block_height);
 
         translate([block_width(flexture_width) - side_snap_cut_width, 0, 0]) {
 
-            side_snap_cut(material=material, side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height, block_height=block_height);
+            side_snap_cut(material=material, large_nozzle=large_nozzle, side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height, block_height=block_height);
         }
 
         translate([0, block_width(0.5 - side_snap_cut_depth) - retainer_tab_radius, 0]) {
 
-            side_snap_back_cut(material=material, flexture_width=flexture_width, retainer_tab_radius=retainer_tab_radius, side_fexture_cut_height=side_fexture_cut_height, block_height=block_height);
+            side_snap_back_cut(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, retainer_tab_radius=retainer_tab_radius, side_fexture_cut_height=side_fexture_cut_height, block_height=block_height);
         }
     }
 }
 
 
 // A vertical slice to allow the flexture to move inward as the board is inserted past the retaining tab
-module side_snap_cut(material=material, side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height) {
+module side_snap_cut(material=material, large_nozzle=large_nozzle, side_snap_cut_width=side_snap_cut_width, side_fexture_cut_height=side_fexture_cut_height) {
 
     cube([side_snap_cut_width, block_width(1), block_height(side_fexture_cut_height, block_height=block_height)]);
 }
 
 
 // A vertical slice to allow the flexture to move inward as the board is inserted past the retaining tab
-module side_snap_back_cut(material=material, flexture_width=flexture_width, retainer_tab_radius=retainer_tab_radius, side_fexture_cut_height=side_fexture_cut_height) {
+module side_snap_back_cut(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, retainer_tab_radius=retainer_tab_radius, side_fexture_cut_height=side_fexture_cut_height) {
 
     cube([block_width(flexture_width), retainer_tab_radius, block_height(side_fexture_cut_height, block_height=block_height)]);
 }
