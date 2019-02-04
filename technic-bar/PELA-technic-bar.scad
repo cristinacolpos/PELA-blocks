@@ -33,6 +33,9 @@ use <../PELA-technic-block.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Length [blocks]
 l = 15;
 
@@ -54,7 +57,7 @@ technic_bar();
 // MODULES
 ///////////////////////////////////
 
-module technic_bar(material=material, l=l, h=h, side_holes=2, block_width=block_width) {
+module technic_bar(material=material, large_nozzle=large_nozzle, l=l, h=h, side_holes=2, block_width=block_width) {
     assert(l > 0, "Technic bar length must be greater than zero");
 
     l2 = l + 1;
@@ -63,7 +66,7 @@ module technic_bar(material=material, l=l, h=h, side_holes=2, block_width=block_
         intersection() {
             translate([0, block_width(1, block_width=block_width), 0]) {
                 rotate([90, 0, 0]) {
-                    PELA_technic_block(material=material, l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
+                    PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
                 }
             }
 
@@ -82,7 +85,7 @@ module technic_bar(material=material, l=l, h=h, side_holes=2, block_width=block_
 
 
 // The 2D profile of the bar (for rotations and other uses)
-module technic_bar_slice(material=material, l=l, block_width=block_width) {
+module technic_bar_slice(material=material, large_nozzle=large_nozzle, l=l, block_width=block_width) {
     l2 = l + 1;
 
     hull() {
@@ -98,7 +101,7 @@ module technic_bar_slice(material=material, l=l, block_width=block_width) {
 
 
 // The 2D profile of the negative space of the bar (for rotations and other uses)
-module technic_bar_slice_negative(material=material, l=l, block_width=block_width) {
+module technic_bar_slice_negative(material=material, large_nozzle=large_nozzle, l=l, block_width=block_width) {
     l2 = l + 1;
 
     union() {

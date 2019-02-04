@@ -26,6 +26,9 @@ use <../PELA-block.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Axle length [blocks]
 l = 3;
 
@@ -41,7 +44,7 @@ center_radius = 1.1;
 // DISPLAY
 ///////////////////////////////
 
-axle(material=material, l=l, axle_radius=axle_radius, center_radius=center_radius);
+axle(material=material, large_nozzle=large_nozzle, l=l, axle_radius=axle_radius, center_radius=center_radius);
   
 
 
@@ -50,7 +53,7 @@ axle(material=material, l=l, axle_radius=axle_radius, center_radius=center_radiu
 // MODULES
 /////////////////////////////////////
 
-module axle(material=material, l=l, axle_radius=axle_radius, center_radius=center_radius) {
+module axle(material=material, large_nozzle=large_nozzle, l=l, axle_radius=axle_radius, center_radius=center_radius) {
 
     axle_length = block_width(l);
 

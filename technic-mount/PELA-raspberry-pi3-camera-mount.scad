@@ -38,6 +38,9 @@ include <PELA-technic-board-mount.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 length = 39.5; // Board space length [mm]
 
 width = 39.5; // Board space width [mm]
@@ -69,7 +72,7 @@ pi_camera_technic_mount();
 // MODULES
 ///////////////////////////////////
 
-module pi_camera_technic_mount(material=material, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+module pi_camera_technic_mount(material=material, large_nozzle=large_nozzle, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
 
-    technic_board_mount(material=material, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, thickness=thickness, innercut=innercut);
+    technic_board_mount(material=material, large_nozzle=large_nozzle, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, thickness=thickness, innercut=innercut);
 }

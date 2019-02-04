@@ -40,6 +40,9 @@ include <PELA-technic-cover.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 length = 85.9; // Board space length [mm]
 
 width = 56.4; // Board space width [mm]
@@ -57,4 +60,4 @@ twist_width = 2; // How many blocks in from width ends do the technic holes rota
 // DISPLAY
 ///////////////
 
-technic_cover(material=material, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width);
+technic_cover(material=material, large_nozzle=large_nozzle, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width);

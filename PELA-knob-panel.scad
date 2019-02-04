@@ -30,6 +30,9 @@ use <PELA-technic-block.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Length of the block [blocks]
 l = 8; 
 
@@ -64,7 +67,7 @@ skip_edge_knobs = 0;
 // DISPLAY
 ///////////////////////////////
 
-PELA_knob_panel(material=material, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
+PELA_knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
 
 
 
@@ -73,21 +76,21 @@ PELA_knob_panel(material=material, l=l, w=w, top_vents=top_vents, solid_first_la
 // MODULES
 ///////////////////////////////////
 
-module PELA_knob_panel(material=material, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
+module PELA_knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
 
     hr=panel_height_ratio(block_height=block_height);
 
     if (skip_edge_knobs > 0) {
-        PELA_technic_block(material=material, l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=false, sockets=sockets, block_height=block_height);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=false, sockets=sockets, block_height=block_height);
 
         echo("knob l", l);
         echo("knob w", w);
         if (l>2 && w>2) {
             translate([block_width(skip_edge_knobs), block_width(skip_edge_knobs), 0]) {
-                top_knob_set(material=material, l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=hr, corner_bolt_holes=false, block_height=block_height);
+                top_knob_set(material=material, large_nozzle=large_nozzle, l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=hr, corner_bolt_holes=false, block_height=block_height);
             }
         }
     } else {
-        PELA_technic_block(material=material, l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets, block_height=block_height);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=hr, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, bottom_stiffener_height=bottom_stiffener_height, knobs=knobs, sockets=sockets, block_height=block_height);
     }
 }

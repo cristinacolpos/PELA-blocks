@@ -40,6 +40,9 @@ include <PELA-technic-board-mount.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 length = 35; // Board space length [mm]
 
 width = 35; // Board space width [mm]
@@ -66,7 +69,7 @@ technic_cover();
 // MODULES
 ///////////////////////////////////
 
-module technic_cover(material=material, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding) {
+module technic_cover(material=material, large_nozzle=large_nozzle, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding) {
 
     assert(twist_length >= 0, "twist_length must be >= 0");
     assert(twist_width >= 0, "twist_length must be >= 0");
@@ -82,10 +85,10 @@ module technic_cover(material=material, length=length, width=width, twist_length
     w2 = max(0, w - 2*twist_width);
 
     union() {
-        technic_rectangle(material=material, l1=twist_length, l2=l2, l3=twist_length, w1=twist_width, w2=w2, w3=twist_width);
+        technic_rectangle(material=material, large_nozzle=large_nozzle, l1=twist_length, l2=l2, l3=twist_length, w1=twist_width, w2=w2, w3=twist_width);
         
         translate([block_width(0.5), block_width(0.5), 0]) {
-            socket_panel(material=material, l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height);
+            socket_panel(material=material, large_nozzle=large_nozzle, l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height);
         }
     }        
 }

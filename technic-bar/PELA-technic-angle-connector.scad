@@ -34,6 +34,9 @@ use <PELA-technic-bar.scad>
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
+// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+large_nozzle = true;
+
 // Angle between the top and bottom parts of the connector [degrees]
 angle = 30;
 
@@ -54,7 +57,7 @@ technic_angle_connector();
 // MODULES
 ///////////////////////////////////
 
-module technic_angle_connector(material=material, angle=angle, l=l) {
+module technic_angle_connector(material=material, large_nozzle=large_nozzle, angle=angle, l=l) {
     assert(angle >= 0, "Angle connector must be 0-180 degrees")
     assert(angle <= 180, "Angle connector must be 0-180 degrees")
 
@@ -72,22 +75,22 @@ module technic_angle_connector(material=material, angle=angle, l=l) {
 
     increment = 5;
     for (theta = [0 : increment : angle]) {
-        pie_slice(material=material, theta=theta, increment=increment, l=l);
+        pie_slice(material=material, large_nozzle=large_nozzle, theta=theta, increment=increment, l=l);
     }
 }
 
 
 
 // theta-degree spacer between the two segments
-module pie_slice(material=material, theta=0, increment=5, l=l) {
+module pie_slice(material=material, large_nozzle=large_nozzle, theta=0, increment=5, l=l) {
     translate([0, 0, block_width(1)]) {
         rotate([theta, 0 , 0]) {
             difference() {
                 hull() {
-                    technic_bar_slice(material=material, l=l);
+                    technic_bar_slice(material=material, large_nozzle=large_nozzle, l=l);
 
                     rotate([increment, 0, 0]) {
-                        technic_bar_slice(material=material, l=l);
+                        technic_bar_slice(material=material, large_nozzle=large_nozzle, l=l);
                     }
                 }
 
@@ -95,12 +98,12 @@ module pie_slice(material=material, theta=0, increment=5, l=l) {
                     translate([block_width(n), 0, 0]) {
                         hull() {
                             translate([0, 0, -defeather]) {
-                                technic_bar_slice_negative(material=material, l=0);
+                                technic_bar_slice_negative(material=material, large_nozzle=large_nozzle, l=0);
                             }
 
                             rotate([increment, 0, 0]) {
                                 translate([0, 0, defeather]) {
-                                    technic_bar_slice_negative(material=material, l=0);
+                                    technic_bar_slice_negative(material=material, large_nozzle=large_nozzle, l=0);
                                 }
                             }
                         }
