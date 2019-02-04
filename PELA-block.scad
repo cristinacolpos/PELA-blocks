@@ -146,7 +146,7 @@ module PELA_block(material=material, l=l, w=w, h=h, knob_height=knob_height, kno
 }
 
 
-module double_socket_hole_set(material=material, l=l, w=w, sockets=sockets, alternate_length, length, bevel_socket=true, material=material, socket_insert_bevel=socket_insert_bevel, large_nozzle=large_nozzle, bottom_tweak=undef) {
+module double_socket_hole_set(material=material, l=l, w=w, sockets=sockets, alternate_length=undef, length=undef, bevel_socket=true, socket_insert_bevel=socket_insert_bevel, large_nozzle=large_nozzle, bottom_tweak=undef) {
 
     if (sockets) {
         rr = ring_radius(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
