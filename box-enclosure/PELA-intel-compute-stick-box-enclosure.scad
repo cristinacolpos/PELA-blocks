@@ -94,9 +94,12 @@ module intel_compute_stick_box_enclosure(material=material) {
         PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
 
         union() {
-            intel_compute_stick_body(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, block_height=block_height);
-            intel_compute_stick_descender(material=material, large_nozzle=large_nozzle, block_height=block_height);
+            intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
+
+            intel_compute_stick_descender(material=material, large_nozzle=large_nozzle, w=w, l=l, block_height=block_height);
+
             end_access(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, block_height=block_height);
+
             side_access(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
         }
     }
@@ -104,7 +107,7 @@ module intel_compute_stick_box_enclosure(material=material) {
 
 
 // The space into which a compute stick is lowered from the top
-module intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l, w, h=h, block_height=block_height) {
+module intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l, w, h, block_height=block_height) {
     x = (block_width(l) - length) / 2;
     y = (block_width(w) - width) / 2;
     z = block_height(h, block_height=block_height) - height;
@@ -120,12 +123,12 @@ module end_access(material=material, large_nozzle=large_nozzle, l, w, h, length=
     y = 1.82;
     left = (block_width(l) - length)/2;
 
-    translate([0, block_width(y), z]) {
-        cube([block_width(l), block_width(w - 2*y), block_height(h, block_height=block_height)]);
+    translate([-defeather, block_width(y), z]) {
+        cube([block_width(l) + 2*defeather, block_width(w - 2*y), block_height(h, block_height=block_height)]);
     }
 
-    translate([0, block_width(y), 0]) {
-        cube([left, block_width(w - 2*y), block_height(h, block_height=block_height)]);
+    translate([-defeather, block_width(y), -defeather]) {
+        cube([left + 2*defeather, block_width(w - 2*y), block_height(h, block_height=block_height) + defeather]);
     }
 }
 
@@ -133,33 +136,36 @@ module end_access(material=material, large_nozzle=large_nozzle, l, w, h, length=
 module side_access(material=material, large_nozzle=large_nozzle, l, w, h, block_height=block_height) {
     z = block_height(1, block_height=block_height);
 
-    translate([block_width(2), 0, z]) {
-        cube([block_width(l - 4), block_width(w), block_height(h, block_height=block_height)]);
+    translate([block_width(2), -defeather, z]) {
+        cube([block_width(l - 4), block_width(w) + 2*defeather, block_height(h, block_height=block_height)]);
     }
     
-    translate([block_width(2), 0, z/2]) {
-        cube([block_width(4), block_width(w), block_height(h, block_height=block_height)]);
+    translate([block_width(2), -defeather, z/2]) {
+        cube([block_width(4), block_width(w) + 2*defeather, block_height(h, block_height=block_height)]);
     }
     
-    translate([block_width(12), 0, z/2]) {
-        cube([block_width(2), block_width(w), block_height(h, block_height=block_height)]);
+    translate([block_width(12), -defeather, z/2]) {
+        cube([block_width(2), block_width(w) + 2*defeather, block_height(h, block_height=block_height)]);
     }
 }
 
 
 // The open space below the stick for air ventilation
-module intel_compute_stick_descender(material=material, large_nozzle=large_nozzle, block_height=block_height) {
+module intel_compute_stick_descender(material=material, large_nozzle=large_nozzle, w, l, block_height=block_height) {
+
     descender_offset = 2;
 
-    translate([block_width() + descender_offset, block_width() + descender_offset, panel_height(block_height=block_height)]) {
-        cube([length - 2*descender_offset, width - 2*descender_offset, block_height(h, block_height=block_height)]);
+    translate([block_width() + descender_offset, block_width() + descender_offset, knob_height]) {
+
+        cube([block_width(l-2) - 2*descender_offset, block_width(w-2) - 2*descender_offset, panel_height(block_height=block_height)]);
     }
 }
 
 
-module intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, block_height=block_height) {
+module intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, block_height=block_height) {
+
     l=fit_mm_to_blocks(length, length_padding);
     w=fit_mm_to_blocks(width, width_padding);
 
-    socket_panel(l=l, w=w, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
+    socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, solid_first_layer=solid_first_layer, block_height=block_height);
 }

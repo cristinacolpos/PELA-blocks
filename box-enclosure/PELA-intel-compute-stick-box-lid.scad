@@ -37,9 +37,16 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
+// Basic unit vertical size of each block
+block_height = 8; // [8:technic, 9.6:traditional blocks]
+
+// Add interior fill for the base layer
+solid_first_layer = false;
+
+
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-intel_compute_stick_box_lid(material=material);
+intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, block_height=block_height);

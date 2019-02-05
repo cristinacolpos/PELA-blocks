@@ -71,7 +71,7 @@ horizontal_text_margin = 1;
 calibration_block_increment = 0.02;
 
 // Basic unit vertical size of each block
-block_height = 9.6; // [8:technic and traditional blocks]
+block_height = 9.6; // [8:technic, 9.6:traditional blocks]
 
 flexible_material = false;
 

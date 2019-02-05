@@ -104,10 +104,10 @@ board_z_offset = -thickness;
 top_edge_height = 2;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
-length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+length_padding = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Board surround ratio
-width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+width_padding = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
