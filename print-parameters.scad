@@ -125,19 +125,19 @@ function is_flexible(material) = materials[material][name_index];
 function material_top_tweak(material) = material_property(material, top_tweak_index);
 
 // Return top tweak="tt" if provided for calibration, otherwise use the material value
-function override_top_tweak(material, tt) = (tt == undef) ? material_bottom_tweak(material) : tt;
+function override_top_tweak(material, top_tweak) = (top_tweak == undef) ? material_bottom_tweak(material) : top_tweak;
 
 // Return the bottom tweak from the material
 function material_bottom_tweak(material) = material_property(material, bottom_tweak_index);
 
 // Return bottom tweak="bt" if provided for calibration, otherwise use the material value
-function override_bottom_tweak(material, bt) = (bt == undef) ? material_bottom_tweak(material) : bt;
+function override_bottom_tweak(material, bottom_tweak) = (bottom_tweak == undef) ? material_bottom_tweak(material) : bt;
 
 // Return the axle hole tweak from the material
 function material_axle_hole_tweak(material) = material_property(material, axle_hole_tweak_index);
 
 // Return axle hole tweak="at" if provided for calibration, otherwise use the material
-function override_axle_hole_tweak(material, at) = (at == undef) ? material_axle_hole_tweak(material) : at;
+function override_axle_hole_tweak(material, axle_hole_tweak) = (axle_hole_tweak == undef) ? material_axle_hole_tweak(material) : axle_hole_tweak;
 
 // Private function, axle hole radius
 function axle_hol_rad(at) = 2.45 + at;
@@ -146,13 +146,13 @@ function axle_hol_rad(at) = 2.45 + at;
 function material_axle_hole_radius(material) = axle_hol_rad(material_axle_hole_tweak(material));
 
 // Return axle hole radius based on the axle hole tweak (at) if provided, otherwise based on the material
-function override_axle_hole_radius(material, at) = axle_hol_rad(override_axle_hole_tweak(material, at));
+function override_axle_hole_radius(material, axle_hole_tweak) = axle_hol_rad(override_axle_hole_tweak(material, axle_hole_tweak));
 
 // Private function, knob radius
-function knb_rad(tt) = 2.45 + 0.12 + tt;
+function knb_rad(top_tweak) = 2.45 + 0.12 + top_tweak;
 
 // Return knob radius based on the material
 function material_knob_radius(material) = knb_rad(material_top_tweak(material));
 
 // Return knob radius based on top tweak (tt) if provided, otherwise based on the material
-function override_knob_radius(material, tt) = knb_rad(override_top_tweak(material, tt));
+function override_knob_radius(material, top_tweak) = knb_rad(override_top_tweak(material, top_tweak));
