@@ -23,10 +23,13 @@ use <../PELA-block.scad>
 
 /* [Technic Pin] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 // An axle which fits loosely in a technic bearing hole
@@ -68,7 +71,7 @@ function technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length
 //////////////////
 
 // A connector pin between two sockets
-module pin(material=material, large_nozzle=large_nozzle, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, 
+module pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, 
     pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
 
     assert(axle_radius > 0, "Technic pin axle radius must be positive");

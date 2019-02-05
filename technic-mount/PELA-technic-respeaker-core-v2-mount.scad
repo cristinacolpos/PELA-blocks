@@ -36,10 +36,13 @@ use <../PELA-knob-panel.scad>
 
 /* [Respeaker Core v2 Technic Mount] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 // Prepare the model to print in two colors
@@ -125,7 +128,7 @@ rotate([180, 0, 0]) {
 // MODULES
 ///////////////////////////////////
 
-module respeaker_core_v2_technic_top(material=material, large_nozzle=large_nozzle, two_color_print=two_color_print) { 
+module respeaker_core_v2_technic_top(material=material, large_nozzle=large_nozzle, cut_line=cut_line,two_color_print=two_color_print) { 
     difference() {
         union() {
             respeaker_core_v2_technic_top_edge(material=material);

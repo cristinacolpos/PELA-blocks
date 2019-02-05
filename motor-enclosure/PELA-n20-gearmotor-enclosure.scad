@@ -27,10 +27,13 @@ use <../PELA-technic-block.scad>
 
 /* [N20 Gearmotor Enclosure] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 // Add interior fill for upper layers
@@ -119,7 +122,7 @@ translate([0, block_width(w + 0.5), 0]) {
 
 module motor_enclosure_bottom(material=material) {
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, corner_bolt_holes=corner_bolt_holes);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, corner_bolt_holes=corner_bolt_holes);
         
         motor_cutouts(material=material);
     }

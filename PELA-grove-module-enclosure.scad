@@ -24,10 +24,13 @@ use <support/support.scad>
 
 /* [SEEED Grove Module Knob Enclosure] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 // Length of the enclosure [blocks]
@@ -109,11 +112,11 @@ print_supports = true;
 
 rotate([0, 0, 180]) {
     if (show_bottom_piece) {
-        bottom_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
+        bottom_piece(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
     }
     
     if (show_top_piece) {
-        top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
+        top_piece(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);
     }
 }
 
@@ -129,7 +132,7 @@ function vertical_offset(block_height=block_height)=(block_height(2*h, block_hei
 // MODULES
 /////////////////////////////////////
 
-module bottom_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
+module bottom_piece(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
     difference() {
         union() {
             PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_flexture_height=0, solid_first_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
@@ -158,7 +161,7 @@ module bottom_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h,
 
 
 // Top piece
-module top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
+module top_piece(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes) {
 
     translate([0, block_width(w + 0.5), 0]) {
         main_top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes);

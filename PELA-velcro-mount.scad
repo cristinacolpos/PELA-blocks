@@ -33,10 +33,13 @@ use <knob-panel/PELA-knob-panel.scad>
 
 /* [Velcro Mount] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 l = 4; // Length of the mount [blocks]
@@ -80,10 +83,10 @@ velcro_mount();
 // MODULES
 ///////////////////////////////////
 
-module velcro_mount(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
+module velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
 
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, sockets=false, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, sockets=false, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
 
         slot(l=l, w=w, block_height=block_height);
     }

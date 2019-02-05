@@ -27,10 +27,13 @@ use <PELA-box-enclosure.scad>
 
 /* [Intel Compute Stick Enclosure] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 // Length of the enclosed object [mm]
@@ -88,10 +91,10 @@ module intel_compute_stick_box_enclosure(material=material) {
     h = 2;
 
     difference() {
-        PELA_box_enclosure(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
+        PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
 
         union() {
-            intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
+            intel_compute_stick_body(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, block_height=block_height);
             intel_compute_stick_descender(material=material, large_nozzle=large_nozzle, block_height=block_height);
             end_access(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, block_height=block_height);
             side_access(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);

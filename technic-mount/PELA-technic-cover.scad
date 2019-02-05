@@ -37,10 +37,13 @@ include <PELA-technic-board-mount.scad>
 
 /* [Technic Cover] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 length = 35; // Board space length [mm]
@@ -55,13 +58,21 @@ twist_length = 1; // Distance from length ends to rotate 90 degrees [blocks]
 
 twist_width = 1; // Distance from width ends to rotate 90 degrees [blocks]
 
+// Presence of sockets as the center fill
+sockets = true;
+
+// Add extra fill to the sockets
+solid_first_layer = false;
+
+// Basic unit vertical size of each block
+block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-technic_cover();
+technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line,length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, sockets=sockets, solid_first_layer=solid_first_layer);
 
 
 
@@ -69,7 +80,7 @@ technic_cover();
 // MODULES
 ///////////////////////////////////
 
-module technic_cover(material=material, large_nozzle=large_nozzle, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding) {
+module technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line,length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, sockets=sockets, solid_first_layer=solid_first_layer) {
 
     assert(twist_length >= 0, "twist_length must be >= 0");
     assert(twist_width >= 0, "twist_length must be >= 0");
@@ -88,7 +99,7 @@ module technic_cover(material=material, large_nozzle=large_nozzle, length=length
         technic_rectangle(material=material, large_nozzle=large_nozzle, l1=twist_length, l2=l2, l3=twist_length, w1=twist_width, w2=w2, w3=twist_width);
         
         translate([block_width(0.5), block_width(0.5), 0]) {
-            socket_panel(material=material, large_nozzle=large_nozzle, l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height);
+            socket_panel(material=material, large_nozzle=large_nozzle, l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
         }
     }        
 }
