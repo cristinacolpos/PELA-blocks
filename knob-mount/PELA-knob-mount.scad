@@ -51,12 +51,10 @@ thickness = 1.7;
 h = 1;
 
 // How far below the bottom of the board surface parts protude 
-undercut = 2.3;
+undercut = 50;
 
 // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 innercut = 0.8;
-
-bottom_type = 2;
 
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
@@ -109,12 +107,16 @@ width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
 
+/* [Hidden] */
+
+bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-board_mount();
+board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line,length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, length_padding=length_padding, width_padding=width_padding, block_height=block_height);
 
 
 
@@ -172,7 +174,7 @@ module pcb_space(material=material, large_nozzle=large_nozzle, z, length=length,
     yu_inset = y_inset + innercut;
 
     u = center_type > 0 ? min(undercut, block_height(0.5, block_height=block_height) - thickness) : undercut;
-#    translate([xu_inset + board_x_offset, yu_inset + board_y_offset, block_height(h, block_height=block_height)+board_z_offset-u]) {
+    translate([xu_inset + board_x_offset, yu_inset + board_y_offset, block_height(h, block_height=block_height)+board_z_offset-u]) {
         cube([length - 2*innercut, width - 2*innercut, u]);
     }
 }
@@ -199,7 +201,7 @@ module bottom_header_space(material=material, large_nozzle=large_nozzle, l, w, w
     down_cut_width = max(width, block_width(w-2));
     w2 = (block_width(w) - down_cut_width) / 2;
 
-#    translate([block_width(1.5), w2, 0]) {
+    translate([block_width(1.5), w2, 0]) {
         cube([block_width(l-3), down_cut_width, block_height(2, block_height=block_height)]);
     }
 }

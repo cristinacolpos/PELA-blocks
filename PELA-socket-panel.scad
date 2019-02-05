@@ -65,7 +65,7 @@ bolt_hole_radius = 1.6;
 // DISPLAY
 ///////////////////////////////
 
-socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);
+socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);
 
 
 
@@ -76,12 +76,18 @@ socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l
 
 module socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
     
-    socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, knob_height=knob_height, skin=skin, block_height=block_height, half_height=true);
+    difference() {
+        union() {
+            socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, knob_height=knob_height, skin=skin, block_height=block_height, half_height=true);
 
-    translate([0, block_width(w), panel_height(block_height=block_height)]) {
-        rotate([180, 0, 0]) {
-            socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, skin=skin, block_height=block_height, half_height=true);
+            translate([0, block_width(w), panel_height(block_height=block_height)]) {
+                rotate([180, 0, 0]) {
+                    socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, skin=skin, block_height=block_height, half_height=true);
+                }
+            }
         }
+
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, cut_line=cut_line, h=1, block_height=block_height);
     }
 }
 

@@ -114,7 +114,7 @@ top_edge_height = 2;
 dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 
 // Basic unit vertical size of each block
-block_height = 9.6; // [8:technic and traditional blocks]
+block_height = 9.6; // [8:technic, 9.6:traditional blocks]
 
 
 

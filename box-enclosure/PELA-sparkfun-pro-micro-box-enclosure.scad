@@ -273,7 +273,7 @@ module side_snap_board_holder_cut(material=material, large_nozzle=large_nozzle, 
         side_snap_cut(material=material, large_nozzle=large_nozzle, side_snap_cut_width=side_snap_cut_width, cut_height=cut_height);
 
         translate([block_width(flexture_width) - side_snap_cut_width, 0, 0]) {
-            side_snap_cut(material=material, large_nozzle=large_nozzle, side_snap_cut_width=side_snap_cut_width, cut_height=cut_height, block_height=block_height);
+            side_snap_cut(material=material, large_nozzle=large_nozzle, side_snap_cut_width=side_snap_cut_width, cut_height=cut_height);
         }
 
         translate([0, block_width(0.5 - side_snap_cut_depth) - retainer_tab_radius, 0]) {
