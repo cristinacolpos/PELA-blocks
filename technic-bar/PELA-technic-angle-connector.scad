@@ -64,21 +64,29 @@ module technic_angle_connector(material=material, large_nozzle=large_nozzle, cut
     assert(angle >= 0, "Angle connector must be 0-180 degrees")
     assert(angle <= 180, "Angle connector must be 0-180 degrees")
 
-    translate([0, 0, block_height(1)]) {
-        rotate([angle, 0, 0]) {
+    difference() {
+        union() {
+            translate([0, 0, block_height(1)]) {
+                rotate([angle, 0, 0]) {
+                    translate([0, block_width(0.5), 0]) {
+                        technic_bar(l=l);
+                    }
+                }
+            }
+
             translate([0, block_width(0.5), 0]) {
-                technic_bar(l=l);
+                    technic_bar(l=l);
+            }
+
+            increment = 5;
+            for (theta = [0 : increment : angle]) {
+                pie_slice(material=material, large_nozzle=large_nozzle, theta=theta, increment=increment, l=l);
             }
         }
-    }
 
-    translate([0, block_width(0.5), 0]) {
-            technic_bar(l=l);
-    }
-
-    increment = 5;
-    for (theta = [0 : increment : angle]) {
-        pie_slice(material=material, large_nozzle=large_nozzle, theta=theta, increment=increment, l=l);
+        translate([block_width(-0.5, block_width=block_width), -sin(angle)*block_width(1, block_width=block_width), 0]) {
+           cut_space(material=material, large_nozzle=large_nozzle, w=l, l=l, cut_line=cut_line, h=3, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        }
     }
 }
 

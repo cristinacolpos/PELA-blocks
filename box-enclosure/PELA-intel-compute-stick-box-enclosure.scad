@@ -91,7 +91,7 @@ module intel_compute_stick_box_enclosure(material=material) {
     h = 2;
 
     difference() {
-        PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
+        PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
 
         union() {
             intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);

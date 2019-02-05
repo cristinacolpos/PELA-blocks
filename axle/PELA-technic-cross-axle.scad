@@ -22,9 +22,6 @@ use <PELA-technic-axle.scad>
 
 /* [Technic Cross Axle] */
 
-// Show the inside structure [mm]
-cut_line = 0;
-
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
@@ -50,7 +47,7 @@ axle_rounding = 0.63;
 ///////////////////////////////
 
 
-cross_axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+cross_axle(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
     
 
 
@@ -60,7 +57,7 @@ cross_axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, 
 // MODULES
 /////////////////////////////////////
 
-module cross_axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius) {
+module cross_axle(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius) {
 
     axle_length = block_width(l);
 

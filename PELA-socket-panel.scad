@@ -74,7 +74,7 @@ socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=
 // MODULES
 ///////////////////////////////////
 
-module socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
+module socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height) {
     
     difference() {
         union() {
@@ -87,7 +87,7 @@ module socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_l
             }
         }
 
-        cut_space(material=material, large_nozzle=large_nozzle, l=l, cut_line=cut_line, h=1, block_height=block_height);
+        cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=1, block_height=block_height);
     }
 }
 

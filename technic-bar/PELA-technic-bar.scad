@@ -60,28 +60,33 @@ technic_bar();
 // MODULES
 ///////////////////////////////////
 
-module technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, h=h, side_holes=2, block_width=block_width) {
+module technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2, block_width=block_width) {
     assert(l > 0, "Technic bar length must be greater than zero");
 
     l2 = l + 1;
 
     translate([block_width(-1, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
-        intersection() {
-            translate([0, block_width(1, block_width=block_width), 0]) {
-                rotate([90, 0, 0]) {
-                    PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
+
+        difference() {
+            intersection() {
+                translate([0, block_width(1, block_width=block_width), 0]) {
+                    rotate([90, 0, 0]) {
+                        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l2, w=h, h=1, sockets=false, knobs=false, panel=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
+                    }
+                }
+
+                hull() {
+                    translate([block_width(1), block_width(0.5), 0]) {
+                        cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height=block_height));
+                    }
+
+                    translate([block_width(l), block_width(0.5), 0]) {
+                        cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height=block_height));
+                    }
                 }
             }
 
-            hull() {
-                translate([block_width(1), block_width(0.5), 0]) {
-                    cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height=block_height));
-                }
-
-                translate([block_width(l), block_width(0.5), 0]) {
-                    cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height=block_height));
-                }
-            }
+            cut_space(material=material, large_nozzle=large_nozzle, w=l+1, l=l+1, cut_line=cut_line, h=1, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
     }
 }

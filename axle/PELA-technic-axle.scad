@@ -47,7 +47,7 @@ center_radius = 1.1;
 // DISPLAY
 ///////////////////////////////
 
-axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, axle_radius=axle_radius, center_radius=center_radius);
+axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, axle_radius=axle_radius, center_radius=center_radius);
   
 
 
@@ -56,14 +56,21 @@ axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, axle_r
 // MODULES
 /////////////////////////////////////
 
-module axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, axle_radius=axle_radius, center_radius=center_radius) {
+module axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, axle_radius=axle_radius, center_radius=center_radius) {
 
     axle_length = block_width(l);
 
     difference() {
         cylinder(r=axle_radius, h=axle_length);
 
-        translate([0, 0, -defeather])
-            cylinder(r=center_radius, h=axle_length + 2*defeather);
+        union() {
+            translate([0, 0, -defeather]) {
+                cylinder(r=center_radius, h=axle_length + 2*defeather);
+            }
+
+            translate([-axle_radius, -axle_radius, 0]) {
+                cut_space(material=material, large_nozzle=large_nozzle, l=2, cut_line=cut_line, h=l, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            }
+        }
     }
 }
