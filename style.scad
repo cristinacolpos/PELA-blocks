@@ -20,7 +20,7 @@ Import this into other design files to set baseline constants:
     include <style.scad>
 */
 
-include <print-parameters.scad>
+include <material.scad>
 
 /* [Printer] */
 
@@ -110,7 +110,7 @@ knob_flexture_height = 4.5;
 // Width of horizontal surface strengthening slats between the bottom rings
 bottom_stiffener_width = 2.6;
 
-// Height of horizontal surface strengthening slats (appears between the bottom rings, default is print-parameters.scad:knob_height)
+// Height of horizontal surface strengthening slats (appears between the bottom rings, default is material.scad:knob_height)
 bottom_stiffener_height = knob_height;
 
 

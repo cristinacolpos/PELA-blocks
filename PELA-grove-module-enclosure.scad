@@ -15,7 +15,7 @@ Although this file is parametric and designed for use with an online customizer,
 */
 
 include <style.scad>
-include <print-parameters.scad>
+include <material.scad>
 use <PELA-block.scad>
 use <PELA-technic-block.scad>
 use <support/support.scad>

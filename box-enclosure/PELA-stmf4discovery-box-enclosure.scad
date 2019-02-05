@@ -20,7 +20,7 @@ Import this into other design files:
 */
 
 include <../style.scad>
-include <../print-parameters.scad>
+include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../PELA-socket-panel.scad>
