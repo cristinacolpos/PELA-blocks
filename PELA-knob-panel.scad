@@ -18,7 +18,7 @@ Import this into other design files:
     use <PELA-block.scad>
 */
 
-include <print-parameters.scad>
+include <material.scad>
 include <style.scad>
 use <PELA-block.scad>
 use <PELA-technic-block.scad>

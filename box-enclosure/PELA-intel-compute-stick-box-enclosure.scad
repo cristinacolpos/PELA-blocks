@@ -16,7 +16,7 @@ Work sponsored by
     https://www.futurice.com/
 */
 
-include <../print-parameters.scad>
+include <../material.scad>
 include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>

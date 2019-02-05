@@ -50,7 +50,7 @@ Other PETs which have more flex may be a good choice but have not been evaluated
 
 `Bottom Speed: 40mm/s`
 
-`Support: None`   (see 'PEL-print-parameters.scad' where support can be added to some models)
+`Support: None`   (see 'PEL-material.scad' where support can be added to some models)
 
 `Adhesion: Skirt`
 

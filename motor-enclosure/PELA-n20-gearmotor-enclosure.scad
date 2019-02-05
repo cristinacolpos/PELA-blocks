@@ -19,7 +19,7 @@ Open source design, Powered By Futurice. Come work with the best.
 
 
 include <../style.scad>
-include <../print-parameters.scad>
+include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 
