@@ -48,9 +48,6 @@ large_nozzle = true;
 // Length of the block [blocks]
 l = 6; 
 
-// Width of the block [blocks]
-w = 6;
-
 // Add interior fill for the base layer
 solid_first_layer = false;
 
@@ -66,6 +63,9 @@ pin_spacing = 3.5;
 
 
 /* [Hidden] */
+
+// Width of the block [blocks]
+w = 6;
 
 // Vive pin dimensions
 d1 = 3.2;
@@ -122,7 +122,7 @@ cut = 0.8;
 // DISPLAY
 ///////////////////////////////
 
-PELA_vive_tracker_mount();
+PELA_vive_tracker_mount(material=material, large_nozzle=large_nozzle, block_height=block_height, w=w, l=l);
 
 
 
@@ -131,40 +131,10 @@ PELA_vive_tracker_mount();
 // MODULES
 ///////////////////////////////////
 
-module thumbscrew_hole(material=material, large_nozzle=large_nozzle, block_height=block_height) {
-    translate([thumscrew_offset_from_edge, block_width(w/2)]) {
-        cylinder(d=thumbscrew_hole_d, h=panel_height(block_height=block_height)+0.1);
-    }
-}
 
 
-// The negative space to remove to make room for the thumbscrew head to flush mount inside the panel
-module thumbscrew_head_hole(material=material, large_nozzle=large_nozzle, block_height=block_height) {
-    translate([thumscrew_offset_from_edge, block_width(w/2), -0.5*panel_height(block_height=block_height)+skin]) {
-        cylinder(d=thumbscrew_border_d, h=panel_height(block_height=block_height));
-    }
-}
+module PELA_vive_tracker_mount(material=material, large_nozzle=large_nozzle, block_height=block_height, w=w, l=l) {
 
-
-module thumbscrew_hole_border(material=material, large_nozzle=large_nozzle, block_height=block_height) {
-    translate([thumscrew_offset_from_edge, block_width(w/2)]) {
-        cylinder(d=thumbscrew_border_d, h=panel_height(block_height=block_height));
-    }
-}
-
-
-module alignment_pin(material=material, large_nozzle=large_nozzle, block_height=block_height, large_nozzle=large_nozzle) {
-    translate([thumscrew_offset_from_edge+alignment_pin_offset_from_screwhole, block_width(w/2), panel_height(0.5)]) {
-        cylinder(d=alignment_pin_d, h=panel_height(0.5)+alignment_pin_h);
-    }
-
-    translate([block_width(5), block_width(3), 0.5*panel_height(block_height=block_height)]) {
-        cylinder(r=ring_radius(large_nozzle=large_nozzle), h=0.5*panel_height(block_height=block_height));
-    }
-}
-
-
-module PELA_vive_tracker_mount(material=material, large_nozzle=large_nozzle, block_height=block_height) {
     difference() {
         union() {
             socket_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
@@ -173,9 +143,9 @@ module PELA_vive_tracker_mount(material=material, large_nozzle=large_nozzle, blo
                 vive_connector(material=material);
             }
             
-            thumbscrew_hole_border(material=material, large_nozzle=large_nozzle, block_height=block_height);
+            thumbscrew_hole_border(material=material, large_nozzle=large_nozzle, block_height=block_height, w=w, l=l);
             
-            alignment_pin(material=material, large_nozzle=large_nozzle, block_height=block_height);
+            alignment_pin(material=material, large_nozzle=large_nozzle, block_height=block_height, w=w, l=l);
 
             hull() {
                 translate([block_width(), block_width(1.81)]) {
@@ -200,8 +170,48 @@ module PELA_vive_tracker_mount(material=material, large_nozzle=large_nozzle, blo
             }
             
             thumbscrew_hole(material=material);
+
             thumbscrew_head_hole(material=material);
+
+            cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=2, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
+    }
+}
+
+
+module thumbscrew_hole(material=material, large_nozzle=large_nozzle, block_height=block_height, w=w, l=l) {
+    translate([thumscrew_offset_from_edge, block_width(w/2)]) {
+        cylinder(d=thumbscrew_hole_d, h=panel_height(block_height=block_height)+0.1);
+    }
+}
+
+
+// The negative space to remove to make room for the thumbscrew head to flush mount inside the panel
+module thumbscrew_head_hole(material=material, large_nozzle=large_nozzle, block_height=block_height, w=w, l=l) {
+
+    translate([thumscrew_offset_from_edge, block_width(w/2), -0.5*panel_height(block_height=block_height)+skin]) {
+
+        cylinder(d=thumbscrew_border_d, h=panel_height(block_height=block_height));
+    }
+}
+
+
+module thumbscrew_hole_border(material=material, large_nozzle=large_nozzle, block_height=block_height, w=w, l=l) {
+
+    translate([thumscrew_offset_from_edge, block_width(w/2)]) {
+        cylinder(d=thumbscrew_border_d, h=panel_height(block_height=block_height));
+    }
+}
+
+
+module alignment_pin(material=material, large_nozzle=large_nozzle, block_height=block_height, large_nozzle=large_nozzle, w=w, l=l) {
+
+    translate([thumscrew_offset_from_edge+alignment_pin_offset_from_screwhole, block_width(w/2), panel_height(0.5)]) {
+        cylinder(d=alignment_pin_d, h=panel_height(0.5) + alignment_pin_h);
+    }
+
+    translate([block_width(5), block_width(3), 0.5*panel_height(block_height=block_height)]) {
+        cylinder(r=ring_radius(large_nozzle=large_nozzle), h=0.5*panel_height(block_height=block_height));
     }
 }
 
@@ -219,7 +229,7 @@ module vive_connector_left(material=material) {
 }
 
 // For display of interenal function and pin position
-module vive_connector_right(material=material) {
+module vive_connector_right(material=material, w=w, l=l) {
     difference() {
         vive_connector(material=material);
         translate([0, -channel_d/2, 0]) {
@@ -227,12 +237,12 @@ module vive_connector_right(material=material) {
         }
     }
     
-%    vive_pin_array(material=material);    
+%    vive_pin_array(material=material, w=w, l=l);    
 }
 
 
 // 
-module vive_connector(material=material) {
+module vive_connector(material=material, w=w, l=l) {
     difference() {
         channel(material=material);
         union () {

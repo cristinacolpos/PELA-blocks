@@ -69,12 +69,21 @@ thumbscrew(material=material, large_nozzle=large_nozzle, cut_line=cut_line,thumb
 // MODULES
 ///////////////////////////////////
 
-module thumbscrew(material=material, large_nozzle=large_nozzle, cut_line=cut_line,thumbscrew_border_d=thumbscrew_border_d, cut=cut, tpi=tpi, height=height, dInch=dInch, hInch=hInch) {    
-    translate([0, 0, height]) {
-        us_bolt_thread(dInch=dInch, hInch=hInch, tpi=tpi);
-    }
+module thumbscrew(material=material, large_nozzle=large_nozzle, cut_line=cut_line,thumbscrew_border_d=thumbscrew_border_d, cut=cut, tpi=tpi, height=height, dInch=dInch, hInch=hInch) {
 
-    thumbscrew_head(material=material, large_nozzle=large_nozzle, height=height);
+    difference() {
+        union() {
+            translate([0, 0, height]) {
+                us_bolt_thread(dInch=dInch, hInch=hInch, tpi=tpi);
+            }
+
+            thumbscrew_head(material=material, large_nozzle=large_nozzle, height=height);
+        }
+
+        translate([-thumbscrew_border_d/2, -thumbscrew_border_d/2, 0]) {
+            cut_space(material=material, large_nozzle=large_nozzle, l=2, cut_line=cut_line, h=2, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        }
+    }
 }
 
 

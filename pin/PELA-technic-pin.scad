@@ -54,7 +54,7 @@ counterbore_holder_height = counterbore_inset_depth * 2;
 // DISPLAY
 ///////////////////////////////
 
-pin();
+pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height);
 
 
 
@@ -71,8 +71,7 @@ function technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length
 //////////////////
 
 // A connector pin between two sockets
-module pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, 
-    pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
+module pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
 
     assert(axle_radius > 0, "Technic pin axle radius must be positive");
     assert(pin_center_radius < axle_radius, "Technic pin center radius must be less than axle radius");
@@ -82,39 +81,46 @@ module pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_
 
     slot_length=3*length/5;
 
-    translate([0, 0, -length/2]) {
-        rotate([0, 0, 90]) {
-            difference() {
-                union() {
-                    cylinder(r=axle_radius, h=length);
-                    
-                    translate([0, 0, peg_length+pin_tip_length]) {
-                        cylinder(r=counterbore_holder_radius, h=counterbore_holder_height);
-                    }
-                    
-                    tip(material=material, large_nozzle=large_nozzle, axle_radius=axle_radius, pin_tip_length=pin_tip_length);
-                    
-                    translate([0, 0, length-pin_tip_length]) {
+    difference() {
+        translate([0, 0, -length/2]) {
+            rotate([0, 0, 90]) {
+                difference() {
+                    union() {
+                        cylinder(r=axle_radius, h=length);
+                        
+                        translate([0, 0, peg_length+pin_tip_length]) {
+                            cylinder(r=counterbore_holder_radius, h=counterbore_holder_height);
+                        }
+                        
                         tip(material=material, large_nozzle=large_nozzle, axle_radius=axle_radius, pin_tip_length=pin_tip_length);
+                        
+                        translate([0, 0, length-pin_tip_length]) {
+                            tip(material=material, large_nozzle=large_nozzle, axle_radius=axle_radius, pin_tip_length=pin_tip_length);
+                        }
                     }
-                }
-                
-                union() {
-                    translate([0, 0, -defeather]) {
-                        cylinder(r=pin_center_radius, h=length+2*defeather);
-                    }
+                    
+                    union() {
+                        translate([0, 0, -defeather]) {
+                            cylinder(r=pin_center_radius, h=length+2*defeather);
+                        }
 
-                    translate([0, 0, pin_slot_thickness]) {
-                        rounded_slot(material=material, large_nozzle=large_nozzle, thickness=pin_slot_thickness, slot_length=slot_length);
-                    }
-                    
-                    translate([0, 0, length-pin_slot_thickness]) {
-                        rounded_slot(material=material, large_nozzle=large_nozzle, thickness=pin_slot_thickness, slot_length=slot_length);
-                    }
-                    
-                    translate([0, 0, length/2]) {
-                        rotate([0, 0, 90])
-                        rounded_slot(material=material, large_nozzle=large_nozzle, thickness=pin_slot_thickness, slot_length=slot_length);
+                        translate([0, 0, pin_slot_thickness]) {
+                            rounded_slot(material=material, large_nozzle=large_nozzle, thickness=pin_slot_thickness, slot_length=slot_length);
+                        }
+                        
+                        translate([0, 0, length-pin_slot_thickness]) {
+                            rounded_slot(material=material, large_nozzle=large_nozzle, thickness=pin_slot_thickness, slot_length=slot_length);
+                        }
+                        
+                        translate([0, 0, length/2]) {
+                            rotate([0, 0, 90]) {
+                                rounded_slot(material=material, large_nozzle=large_nozzle, thickness=pin_slot_thickness, slot_length=slot_length);
+                            }
+                        }
+
+                        translate([-block_width(), -counterbore_holder_radius, 0]) {
+                            cut_space(material=material, large_nozzle=large_nozzle, l=4, cut_line=cut_line, h=4, block_width=block_width, block_height=block_height, knob_height=knob_height);
+                        }
                     }
                 }
             }
@@ -199,30 +205,34 @@ module pin_array(material=material, large_nozzle=large_nozzle, array_count, arra
 
     length = technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
 
-    intersection() {
-        translate([block_width(1/2), block_width(1/2), base_thickness]) {
-            difference() {
-                for (i = [0 : array_count-1]) {
-                    translate([i*array_spacing, 0, 0]) {
-                        pin(material=material, large_nozzle=large_nozzle, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height);
+    difference() {
+        intersection() {
+            translate([block_width(1/2), block_width(1/2), base_thickness]) {
+                difference() {
+                    for (i = [0 : array_count-1]) {
+                        translate([i*array_spacing, 0, 0]) {
+                            pin(material=material, large_nozzle=large_nozzle, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height);
+                        }
+                    }
+                    
+                    translate([-block_width(), -block_width(), -block_height(1, block_height=block_height)-skin]) {
+                        cube([block_width(array_count+1), block_width(2), block_height(1, block_height=block_height)]);
                     }
                 }
                 
-                translate([-block_width(), -block_width(), -block_height(1, block_height=block_height)-skin]) {
-                    cube([block_width(array_count+1), block_width(2), block_height(1, block_height=block_height)]);
-                }
+                pin_base(material=material, large_nozzle=large_nozzle, length=length, array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, peg_length=peg_length, counterbore_holder_radius=counterbore_holder_radius);
             }
-            
-            pin_base(material=material, large_nozzle=large_nozzle, length=length, array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, peg_length=peg_length, counterbore_holder_radius=counterbore_holder_radius);
+
+            if (minimum_base) {
+                translate([0, block_width(1/2), 0]) {
+                    pin_array_envelope(material=material, large_nozzle=large_nozzle, counterbore_holder_radius=counterbore_holder_radius, array_count=array_count, array_spacing=array_spacing, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
+                }
+            } else {
+                cube([block_width(array_count), block_width(), length]);
+            }
         }
 
-        if (minimum_base) {
-            translate([0, block_width(1/2), -skin]) {
-                 pin_array_envelope(material=material, large_nozzle=large_nozzle, counterbore_holder_radius=counterbore_holder_radius, array_count=array_count, array_spacing=array_spacing, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
-            }
-        } else {
-            cube([block_width(array_count), block_width(), length]);
-        }
+        cut_space(material=material, large_nozzle=large_nozzle, l=4, cut_line=cut_line, h=2, block_width=block_width, block_height=block_height, knob_height=knob_height);
     }
 }
 

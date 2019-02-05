@@ -52,6 +52,8 @@ length = 39.5;
 // Board space width [mm]
 width = 39.5;
 
+h = 2;
+
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
@@ -77,7 +79,7 @@ innercut = 1.0;
 // DISPLAY
 ///////////////////////////////
 
-technic_board_mount();
+technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut);
 
 
 
@@ -85,7 +87,7 @@ technic_board_mount();
 // MODULES
 ///////////////////////////////////
 
-module technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line,length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+module technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
 
     assert(twist_length == floor(twist_length), "twist_length must be an integer");
     assert(twist_width == floor(twist_width), "twist_width must be an integer");
@@ -118,12 +120,18 @@ module technic_board_mount(material=material, large_nozzle=large_nozzle, cut_lin
     difference() {
         union() {
             technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+
             technic_rectangle_infill(material=material, large_nozzle=large_nozzle, l=l, w=w);
         }
         
         union() {
-            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
+            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, block_height=block_height);
             main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, innercut=innercut, block_height=block_height);
+
+            translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
+                
+                cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, h=h, cut_line=cut_line, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            }
         }
     }
 }

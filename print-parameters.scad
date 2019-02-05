@@ -70,6 +70,7 @@ axle_hole_tweak_index = 4;
 // Tests were sliced with Simplify 3D, Cura and Lulzbot Cura
 // If you add new materials below, you need to do a global search and replace to update the customizer material list hints. (Yeah, we know.. Don't shoot the messenger)
 
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
 pla = 0; // Polymaker Polylite
 pla_m = ["PLA", false, -0.08, 0.04, 0.06];
 

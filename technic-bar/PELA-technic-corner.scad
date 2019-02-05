@@ -53,7 +53,7 @@ angle = 90;
 // DISPLAY
 ///////////////////////////////
 
-pi3_corner();
+pi3_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle);
 
 
 
@@ -62,14 +62,22 @@ pi3_corner();
 // MODULES
 ///////////////////////////////////
 
-module pi3_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l1=l1, l2=l2, angle=angle) {
+module pi3_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle) {
 
     assert(angle >= 65, "Angle must be at least 65 degrees");
     assert(angle <= 295, "Angle must be at least 65 degrees");
 
-    technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l1);
+    difference() {
+        union() {
+            technic_bar(material=material, large_nozzle=large_nozzle, l=l1);
 
-    rotate([0, 0, angle]) {
-        technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l2);
+            rotate([0, 0, angle]) {
+                technic_bar(material=material, large_nozzle=large_nozzle, l=l2);
+            }
+        }
+
+        translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
+            cut_space(material=material, large_nozzle=large_nozzle, w=l1, l=l1, cut_line=cut_line, h=1, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        }
     }
 }

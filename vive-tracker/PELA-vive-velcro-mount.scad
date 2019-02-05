@@ -99,21 +99,21 @@ vive_velcro_mount();
 // MODULES
 ///////////////////////////////////
 
-module vive_velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
+module vive_velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
 
     difference() {
-        velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
+        velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs);
 
         union() {
             translate([block_width(l/2-1), block_width(w/2-1), panel_height(block_height=block_height)]) {
                 cube([block_width(2), block_width(2), block_height(1, block_height=block_height)]);
             }
         
-#            translate([block_width(l/2-2), block_width(w/2-2), panel_height(block_height=block_height)]) {
+            translate([block_width(l/2-2), block_width(w/2-2), panel_height(block_height=block_height)]) {
                 cube([block_width(1), block_width(4), block_height(1, block_height=block_height)]);
             }
         
-#            translate([block_width(l/2-3), block_width(w/2-2), block_height(1, block_height=block_height)]) {
+            translate([block_width(l/2-3), block_width(w/2-2), block_height(1, block_height=block_height)]) {
                 cube([block_width(1), block_width(4), block_height(1, block_height=block_height)]);
             }
         }

@@ -83,10 +83,10 @@ velcro_mount();
 // MODULES
 ///////////////////////////////////
 
-module velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
+module velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
 
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, sockets=false, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, sockets=false, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
 
         slot(l=l, w=w, block_height=block_height);
     }

@@ -72,7 +72,7 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 // DISPLAY
 ///////////////////////////////
 
-technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line,length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, sockets=sockets, solid_first_layer=solid_first_layer);
+technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, sockets=sockets, solid_first_layer=solid_first_layer);
 
 
 
@@ -80,7 +80,7 @@ technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line,le
 // MODULES
 ///////////////////////////////////
 
-module technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line,length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, sockets=sockets, solid_first_layer=solid_first_layer) {
+module technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, sockets=sockets, solid_first_layer=solid_first_layer) {
 
     assert(twist_length >= 0, "twist_length must be >= 0");
     assert(twist_width >= 0, "twist_length must be >= 0");
