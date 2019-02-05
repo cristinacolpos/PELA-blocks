@@ -24,10 +24,13 @@ use <PELA-technic-pin.scad>
 
 /* [Technic Pin Array] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 // An axle which fits loosely in a technic bearing hole
@@ -64,4 +67,4 @@ minimum_base = true;
 // DISPLAY
 ///////////////////////////////
 
-pin_array(material=material, large_nozzle=large_nozzle, array_count=array_count, array_spacing=array_spacing, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, minimum_base=minimum_base,counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height, base_thickness=base_thickness, block_height=block_height);
+pin_array(material=material, large_nozzle=large_nozzle, cut_line=cut_line,array_count=array_count, array_spacing=array_spacing, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, minimum_base=minimum_base,counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height, base_thickness=base_thickness, block_height=block_height);

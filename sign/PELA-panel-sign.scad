@@ -30,10 +30,13 @@ use <../PELA-knob-panel.scad>
 
 /* [Panel Sign] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 // Length of the sign (PELA knob count)
@@ -116,7 +119,7 @@ color("green") PELA_flat_sign_extruded_text();
 // MODULES
 ///////////////////////////////////
 
-module PELA_flat_sign(material=material, large_nozzle=large_nozzle, l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
+module PELA_flat_sign(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
     
     if (extrude) {
         difference() {

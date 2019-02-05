@@ -233,3 +233,6 @@ function side_lock_thickness(material) = is_flexible(material) ? 0.06 : 0.02;
 
 // Horizontal width of each side of a support triangle
 function support_line_width(large_nozzle) = large_nozzle ? 0.7 : 0.5;
+
+// Force the cut visual line for seeing inside parts to be between 0 and 1mm short of the part width
+function visual_cut(cut_line=undef, w=undef, block_width=block_width) = max(min(cut_line, block_width(w, block_width=block_width) - 1), 0);

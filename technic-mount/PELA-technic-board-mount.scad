@@ -37,10 +37,13 @@ use <../technic-bar/PELA-technic-twist-bar.scad>
 
 /* [Technic Board Mount] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 // Board space length [mm]
@@ -82,7 +85,7 @@ technic_board_mount();
 // MODULES
 ///////////////////////////////////
 
-module technic_board_mount(material=material, large_nozzle=large_nozzle, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+module technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line,length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
 
     assert(twist_length == floor(twist_length), "twist_length must be an integer");
     assert(twist_width == floor(twist_width), "twist_width must be an integer");

@@ -34,10 +34,13 @@ use <../PELA-technic-block.scad>
 
 /* [Vertical Sign] */
 
+// Show the inside structure [mm]
+cut_line = 0;
+
 // Printing material
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features get larger to make printing easier (and slightly slower)
+// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
 
 // Length of the sign (PELA knob count)
@@ -115,7 +118,7 @@ corner_bolt_holes = false;
 // DISPLAY
 ///////////////////////////////
 
-PELA_vertical_sign(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes);
+PELA_vertical_sign(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes);
 
 
 
@@ -123,7 +126,7 @@ PELA_vertical_sign(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, 
 // MODULES
 ///////////////////////////////////
 
-module PELA_vertical_sign(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes) {
+module PELA_vertical_sign(material=material, large_nozzle=large_nozzle, cut_line=cut_line,l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes) {
     
     if (extrude) {
         PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes);
