@@ -4,9 +4,9 @@
 
 PELA blocks are designed for easy 3D printing, strength, and rapid customization using free software. One time calibration gives perfect snap-together objects in exotic materials and geometries to help you explore your ideas and build with exotic materials and any motors and electronics you like. Example enclosures with many options for custom sensors, actuators, computers and IoT devices are included, or create your own.
 
-These designs are not by the LEGO corporation. LEGO-compatible blocks are available from multiple manufacturers. Associated patents expired long ago in a forgotten age.
+These designs are not by the LEGO corporation. LEGO-compatible blocks are available from multiple manufacturers. Associated basic block patents expired long ago. Press-fit blocks existed before LEGO and we continue that tradition of adapt, evolve and improve as we provide these open source designs for 3D printing.
 
-The name PELA comes from the Finnish "pelataan" meaning "let's play". **Pelataan.**
+The name PELA comes from the Finnish "pelataan" meaning "let's play".
 
 ## Open source design, Powered By Futurice
 
@@ -14,33 +14,27 @@ The name PELA comes from the Finnish "pelataan" meaning "let's play". **Pelataan
 
 These open source designs are brought to you by [Futurice](https://futurice.com) and contributions from the community. Come work with the best.
 
-The software needed is free and open source, [OpenSCAD](http://www.openscad.org/). You can probably learn it in less than an hour.
-
 ## Customizer
 
-Newer "development snapshot" versions of [OpenSCAD](http://www.openscad.org/) make tailoring designs to fit your project easy. Just enable "Customizer" in the "Preferences" menu. You can **customize the PELA design then print directly from OpenSCAD** using Octoprint. These features work well though they are still "beta".
+The software needed is also free and open source, [OpenSCAD](http://www.openscad.org/). Newer "development snapshot" versions of [OpenSCAD](http://www.openscad.org/) make tailoring designs very easy. Enable `Edit | Preferences | Features | Customizer` and set `Edit | Preferences | Advanced | Turn off rendering at _1000000_` since some PELA models are quite large.
 
 ![OpenSCAD Customizer with PELA Technic Block](images/pela-customizer.jpg)
 
 
 ## Download
 
-**The STL files shown are not calibrated for your printer.** To get a good snap fit with your 3D print, you need to fine tune the size of top and bottom connectors. It is also easy to personalize PELA designs- start by turning on or off optional features.
+**The STL files shown are not calibrated for your printer.** To get a good snap fit with your 3D printer and different material, you need to fine tune the size of knobs, sockets and technic holes. Some starting values are 
 
 1. **[DOWNLOAD](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the latest designs, or `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git --recurse-submodules`, then `git lfs install` in each git module
 1. **[Calibrate](#calibrate)** the PELA Block models for your material and printer
 
-## Advanced Setup
+See [Advanced Setup](ADVANCED-SETUP.md) for additional tricks.
 
-See [Advanced Setup](ADVANCED-SETUP.md) for additional tricks sparse update to save you space and bandwidth, Raytraced image generation, command line STL cleanup and and batch file generation of all models when you change filaments.
-
-## Slicer Recommendations
-
-See the [Slicer Recommendations](SLICER.md) for settings recommendations and material information.
+See the [Slicer Recommendations](SLICER.md) for information about different printing materials we have tested.
 
 ## Calibrate
 
-**TL;DR** *: To get a nice snap fit for your printer, slicer settings and material, print a calibration bar and test the fit top, bottom and side connections against commercial bricks. Update these best `top_tweak` and `bottom_tweak` into [`print-parameters.scad`](print-parameters.scad). Now open any model in OpenSCAD, press `F6` to generate the model then `F7` to export as STL.*
+**TL;DR** *: To get a nice snap fit for your printer, slicer settings and material, print a calibration bar and test fit commercial bricks to the top knobs, bottom sockets and side technic holes. Update the best `top_tweak` and `bottom_tweak` into [`print-parameters.scad`](print-parameters.scad). Now open any model in OpenSCAD, press `F6` to generate the model then `F7` to export an STL.*
 
 [![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master//PELA-calibration.stl)
 
@@ -64,23 +58,15 @@ ___
 
 ___
 
-
 [![PELA Calibration Bar, Flexible Filament, Thin Sockets](images/PELA-calibration-flex-thin.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-thin.stl)
 
 [PELA Calibration Bar, Flexible Filament, Thin Sockets](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-thin.stl) PELA Calibration Bar for flexible filament (TPU etc) and a fine extruder (less than 0.5mm diameter- thin bottom socket walls)
-
 
 ___
 
 [![PELA Calibration Bar, Flexible Filament, Thick Sockets](images/PELA-calibration-flex-thick.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-thick.stl)
 
 [PELA Calibration Bar, Flexible Filament, Thick Sockets](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-flex-thick.stl) PELA Calibration Bar for flexible filament (TPU etc) and a large extruder (0.5mm diameter or geater, or if you prefer to avoid thin walls)
-
-___
-
-
-Use either the [PELA Calibration Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration.stl) or [PELA Calibration Block Set](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-calibration-set.stl) to find the right settings for your printer setup.
-
 
 ### Calibration Instructions
 
@@ -109,7 +95,6 @@ Edit `print-parameters.scad` and `style.scad` to adapt these models before print
 [3D PELA Block](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-block.stl)
 
 ___
-
 
 [![PELA Technic Block](images/PELA-technic-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-block.stl)
 
@@ -331,7 +316,6 @@ ___
 
 [3D PELA Arduino Mega Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-aruino-mega-knob-mount.stl) For holding an Arduino Mega within a PELA block
 
-
 ## FFF Printing Tips
 
 * Use a 0.4mm or smaller nozzle if possible to avoid decimation of some details (inside vertical side_shell bars..)
@@ -352,8 +336,6 @@ ___
 ## License
 
 [![License: CC BY-SA 4.0](https://licensebuttons.net/l/by-sa/3.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
-
-**Creative Commons Attribution-ShareAlike 4.0 International License**
 
 These designs are by PELA project contributors, not by the LEGO corporation. They are compatible with LEGO and similar blocks available from multiple manufacturers and online projects. The associated patents have expired. These designs are not identical to LEGO; they have been specially modified for easy 3D printing and offered in the spirit of open source collaborative innovation.
 
