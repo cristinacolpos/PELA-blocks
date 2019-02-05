@@ -55,7 +55,7 @@ solid_upper_layers = false;
 knob_top_thickness = 0.8;
 
 // Height of traditional connectors [mm] (taller gives a stronger hold especially for flexible materials, too tall can cause problems when connecting to thin panels)
-knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA improved 3D print fit]
+knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print fit]
 
 // Height of a small bottom knob insert easement, flaring the bottom edges to make assembly easier
 socket_insert_bevel = 0.1;

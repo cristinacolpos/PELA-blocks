@@ -67,7 +67,7 @@ sockets = true;
 knobs = true;
 
 // How tall are top connectors [mm]
-knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA improved 3D print fit]
+knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print fit]
 
 // Basic unit vertical size of each block
 block_height = 8; // [8:technic, 9.6:traditional blocks]
