@@ -46,13 +46,13 @@ bolt_hole_radius = 1.6;
 solid_first_layer = false;
 
 // Add interior fill for upper layers
-solid_upper_layers = false;
+solid_upper_layers = true;
 
 
 /* [Knob] */
 
 // Knob top surface strength
-knob_top_thickness = 0.8;
+knob_top_thickness = 1.0;
 
 // Height of traditional connectors [mm] (taller gives a stronger hold especially for flexible materials, too tall can cause problems when connecting to thin panels)
 knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print fit]
@@ -204,20 +204,6 @@ function block_width(i=1, block_width=block_width) = i*block_width;
 
 // Vertical size
 function block_height(h=1, block_height=block_height) = h*block_height;
-
-// Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-function ring_thickness(large_nozzle) = large_nozzle ? 1.2 : 0.8;
-
-// Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-
-function ring_radius(large_nozzle, bottom_tweak=undef) = 2.75 + ring_thickness(large_nozzle=large_nozzle) + bottom_tweak;
-
-// Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
-function knob_flexture_radius(material) = is_flexible(material) ? 0.6 : 0.8;
-
-// Height of the knob top slope to ease connections (helps compensate for top surface artifacts, 0 to disable)
-function knob_bevel(material) = is_flexible(material) ? 0.3 : 0.2;
-
 
 // Test if this is a corner block
 function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
