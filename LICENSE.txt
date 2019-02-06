@@ -1,4 +1,4 @@
-Copyright Paul Houghton and Futurice Oy, 2018
+Copyright Paul Houghton and Futurice Oy, 2019
 All rights reserved
 paul.houghton@futurice.com
 
