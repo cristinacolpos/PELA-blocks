@@ -181,28 +181,28 @@ module block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_h
 module double_socket_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, alternate_length=undef, length=undef, bevel_socket=true, socket_insert_bevel=socket_insert_bevel, bottom_tweak=undef) {
 
     if (sockets) {
-        rr = ring_radius(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
+        rr = override_ring_radius(material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
         rt = ring_thickness(large_nozzle=large_nozzle);
 
         alternating_radius = 2/3*(rr-rt);
         alternating_fn = axle_hole_fn;
+        alternating_length = alternate_length+2*defeather;
 
         translate([block_width(), block_width(), -defeather]) {
-            socket_hole_set(material=material, large_nozzle=large_nozzle, is_socket=false, l=l-1, w=w-1, radius=alternating_radius, length=alternate_length+2*defeather, bevel_socket=bevel_socket, ring_fn=alternating_fn, material=material, socket_insert_bevel=socket_insert_bevel);
+            socket_hole_set(material=material, large_nozzle=large_nozzle, is_socket=false, l=l-1, w=w-1, radius=alternating_radius, length=alternating_length, bevel_socket=bevel_socket, ring_fn=alternating_fn, material=material, socket_insert_bevel=socket_insert_bevel);
         }
 
         translate([block_width(0.5), block_width(0.5), -defeather]) {
-            socket_hole_set(material=material, large_nozzle=large_nozzle, is_socket=true, l=l, w=w, radius=rr-rt, length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn, material=material, socket_insert_bevel=socket_insert_bevel);
+            socket_hole_set(material=material, large_nozzle=large_nozzle, is_socket=true, l=l, w=w, radius=rr-rt, length=length+2*defeather, bevel_socket=bevel_socket, ring_fn=ring_fn, socket_insert_bevel=socket_insert_bevel);
         }
     }
 }
 
 
 // Make the bottom layer be solid instead of mostly open space
-module fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, knob_height=knob_height, block_height=block_height) {
+module fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height) {
 
-    hm = max(1, h);
-    fill_height = block_height(hm, block_height=block_height);
+    fill_height = block_height(max(1, h), block_height=block_height);
 
     cube([block_width(l), block_width(w), fill_height]);
 }
@@ -369,7 +369,7 @@ module socket_set(material=material, large_nozzle=large_nozzle, l=l, w=w, length
 module socket_ring(material=material, large_nozzle=large_nozzle, length=block_height(1, block_height=block_height), large_nozzle=large_nozzle, material=material, bottom_tweak=undef) {
     
     rotate([0, 0, 180/ring_fn]) {
-        cylinder(r=ring_radius(large_nozzle=large_nozzle, bottom_tweak=bottom_tweak), h=length, $fn=ring_fn);
+        cylinder(r=override_ring_radius(material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak), h=length, $fn=ring_fn);
     }
 }
 

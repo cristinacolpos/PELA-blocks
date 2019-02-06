@@ -79,7 +79,7 @@ corner_bolt_holes = false;
 bolt_hole_radius = 1.6;
 
 // Add interior fill for upper layers
-solid_upper_layers = false;
+solid_upper_layers = true;
 
 // Add interior fill for the base layer
 solid_first_layer = false;
@@ -163,12 +163,16 @@ module visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cu
         union() {
             if (side_holes || end_holes || top_vents) {
                 length = knob_height + skin;
-                alternate_length = top_vents ? block_height(h+0.1, block_height=block_height) + defeather : block_height(h-0.5, block_height=block_height);
+                
+                alternate_length = top_vents ? block_height(h+
+                defeather, block_height=block_height) + defeather : block_height(h-0.5, block_height=block_height);
 
                 double_socket_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, length=length, alternate_length=alternate_length, bevel_socket=true, large_nozzle=large_nozzle, material=material);
             }
 
             ahr = override_axle_hole_radius(material, axle_hole_tweak);
+
+            echo("override_axle_hole_radius", ahr);
 
             bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_width=block_width, block_height=block_height, hole_type=side_holes, block_width=block_width, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=ahr);
             
