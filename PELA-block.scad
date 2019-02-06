@@ -41,10 +41,10 @@ include <material.scad>
 // Show the inside structure [mm]
 cut_line = 0;
 
-// Printing material
+// Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
-// Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
+// Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
 // Length [blocks]
@@ -84,9 +84,6 @@ PELA_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l,
 
 module PELA_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, side_shell=side_shell, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, socket_insert_bevel=socket_insert_bevel, material=material, large_nozzle=large_nozzle, bottom_tweak=undef, top_tweak=undef) {
     
-    echo("top_tweak", top_tweak);
-    echo("bottom_tweak", bottom_tweak);
-
     difference() {
         block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, side_shell=side_shell, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, socket_insert_bevel=socket_insert_bevel, bottom_tweak=bottom_tweak, top_tweak=top_tweak);
 
@@ -374,7 +371,6 @@ module socket_ring(material=material, large_nozzle=large_nozzle, length=block_he
     rotate([0, 0, 180/ring_fn]) {
         r = override_ring_radius(material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
 
-        echo("r", r, " bottom_tweak", bottom_tweak);
         cylinder(r=r, h=length, $fn=ring_fn);
     }
 }

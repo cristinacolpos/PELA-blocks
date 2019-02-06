@@ -24,7 +24,7 @@ include <material.scad>
 
 /* [Printer] */
 
-// Minimum printable width of the printer-slicer combination has an effect on wall thickness and bottom socket gemoetry. When true, some features are larger. If set to false, printing is marginally faster and due to the reduction in material used.
+// Minimum printable width of the printer-slicer combination has an effect on wall thickness and bottom socket gemoetry. When true, some features are enlarged. If set to false, printing is marginally faster and due to the reduction in material used.
 large_nozzle = true; // [true:nozzle >= 0.5mm, false:nozzle < 0.5mm]
 
 
@@ -54,8 +54,8 @@ solid_upper_layers = true;
 // Knob top surface strength
 knob_top_thickness = 1.0;
 
-// Height of traditional connectors [mm] (taller gives a stronger hold especially for flexible materials, too tall can cause problems when connecting to thin panels)
-knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print fit]
+// Height of traditional connectors [mm] (taller gives a stronger hold)
+knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 
 // Height of a small bottom knob insert easement, flaring the bottom edges to make assembly easier
 socket_insert_bevel = 0.1;
