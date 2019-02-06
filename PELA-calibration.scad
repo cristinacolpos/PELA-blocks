@@ -15,14 +15,14 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 */
 
-include <../style.scad>
-include <../material.scad>
-use <../PELA-technic-block.scad>
-use <../PELA-block.scad>
+include <style.scad>
+include <material.scad>
+use <PELA-technic-block.scad>
+use <PELA-block.scad>
 
 
 
-/* [PELA Calibration Block] */
+/* [PELA Calibration] */
 
 // Is the nozzle >= 0.5mm? If so, some features are larger to make printing easier (and slightly slower)
 large_nozzle = true;
@@ -30,7 +30,7 @@ large_nozzle = true;
 // Generate a calibration bar (vs a set of individual calibration blocks)
 calibration_bar = true;
 
-// Number of calibration blocks in the bar
+// Number of blocks in the calibration bar
 bar_length = 9;
 
 // Length of each calibration block [blocks]
@@ -50,10 +50,10 @@ side_sheaths = true;
 text_extrusion_height = 0.4;
 
 // Inset from block edge for text (vertical and horizontal)
-vertical_text_margin = 0.2;
+vertical_text_margin = 4;
 
 // Inset from block edge for text (vertical and horizontal)
-horizontal_text_margin = 1;
+horizontal_text_margin = 0;
 
 // Size between calibration block test steps (0.02 or larger for a rough calibration, 0.01 to refine if already close)
 calibration_block_increment = 0.02;
@@ -79,10 +79,10 @@ end_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full wid
 font = "Arial";
 
 // Text size on calibration blocks
-font_size = 4.8 - (block_height < 9.6 ? 1.4 : 0);
+font_size = 5 - (block_height < 9.6 ? 1.5 : 0);
 
 // Text size on calibration blocks
-font_size2 = 4.2 - (block_height < 9.6 ? 1.4 : 0);
+font_size2 = 4 - (block_height < 9.6 ? 0.5 : 0);
 
 // Place holes in the corners of the panel for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
@@ -116,55 +116,46 @@ module PELA_calibration_bar(large_nozzle=large_nozzle, bar_length=bar_length, l=
         
         translate([i*block_width(l), 2*i, 0]) {
 
-            PELA_calibration_block(material=0, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
+            PELA_calibration_block(material=0, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
         }
     }
 }
 
 
 // A block with the top and bottom connector tweak parameters etched on the side
-module PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=undef, bottom_tweak=undef, axle_hole_tweak=undef, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs, block_height=block_height) {
+module PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=undef, bottom_tweak=undef, axle_hole_tweak=undef, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs, block_height=block_height) {
     
     difference() { 
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
 
         union() {
-            translate([skin+horizontal_text_margin, text_extrusion_height+skin-defeather, skin+block_height(h, block_height=block_height)-vertical_text_margin]) {
-                rotate([90 ,0, 0]) {
-                    calibration_text(txt=str(top_tweak), halign="left", valign="top");
+            translate([skin+horizontal_text_margin, skin+text_extrusion_height, skin+block_height(h, block_height=block_height)-vertical_text_margin]) {
 
-                    lower_label(material=material);
+                rotate([90 ,0, 0]) {
+                    translate([0, -0.5, 0]) {
+                        calibration_text(txt=material_name(material), halign="left", 
+                        valign="bottom", font_size=font_size2);
+                    }
+
+                    translate([0, -0.8, 0]) {
+                        calibration_text(txt=str(top_tweak), halign="left", valign="top", font_size=font_size);
+                    }
                 }
             }
             
-            translate([block_width(w)-skin-horizontal_text_margin, block_width(w)-text_extrusion_height-skin+defeather, skin+vertical_text_margin]) {
+            translate([block_width(w)-skin-horizontal_text_margin, block_width(w)-text_extrusion_height-skin, skin+vertical_text_margin]) {
+                
                 rotate([90, 0, 180]) {
-                    calibration_text(txt=str(bottom_tweak), halign="left", valign="bottom");
+                    translate([0, 0.8, 0]) {
+                        calibration_text(txt=str(bottom_tweak), halign="left", valign="bottom", font_size=font_size);
+                    }
 
-                    upper_label(large_nozzle=large_nozzle);
+                    translate([0, 0.5, 0]) {
+                        calibration_text(txt=material_name(material), halign="left", valign="top", font_size=font_size2);
+                    }
                 }
             }
         }
-    }
-}
-
-
-// Is this calibration block for flexible (TPU..) or normal (PLA..) plastic?
-module lower_label(material=material) {
-
-    txt = material_name(material);
-    translate([0, -5, 0]) {
-        calibration_text(txt=txt, halign="left", valign="top", font_size=font_size2);
-    }
-}
-
-
-// Is this calibration block for a large extruder (no thin walls because 0.5mm nozzle or larger) or small (< 0.5mm)? You can use the "large" setting with any extruder, but the parts are slightly heavier and the alternate line holes are not suitable for knob attachment because they must be smaller to leave room for thicker walls
-module upper_label(large_nozzle=large_nozzle) {
-    txt = large_nozzle ? "Thick" : "Thin";
-
-    translate([0, 5, 0]) {
-        calibration_text(txt=txt, halign="left", valign="bottom", font_size=font_size2);
     }
 }
 
@@ -172,7 +163,7 @@ module upper_label(large_nozzle=large_nozzle) {
 // Text for the front side of calibration block prints
 module calibration_text(txt="Text", halign="left", valign="top", font_size=font_size) {
     
-    linear_extrude(height=text_extrusion_height) {        
+    linear_extrude(height=text_extrusion_height*2) {        
         text(text=txt, font=font, size=font_size, halign=halign, valign=valign);
     }
 }
@@ -185,7 +176,7 @@ module PELA_calibration_set(l=l, w=w, h=h, side_hole=side_holes, end_holes=end_h
         cal = i*calibration_block_increment;
         
         translate([i*block_width(l+0.5), 0, 0]) {
-            PELA_calibration_block(large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
+            PELA_calibration_block(large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
         }
     }
     
@@ -195,7 +186,7 @@ module PELA_calibration_set(l=l, w=w, h=h, side_hole=side_holes, end_holes=end_h
         
         translate([(i-5)*block_width(l+0.5), -block_width(w+0.5), 0]) {
 
-            PELA_calibration_block(large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
+            PELA_calibration_block(large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
         }
     }
     
@@ -204,7 +195,7 @@ module PELA_calibration_set(l=l, w=w, h=h, side_hole=side_holes, end_holes=end_h
         cal = -i*calibration_block_increment;
         
         translate([i*block_width(l+0.5), block_width(w+0.5), 0]) {
-            PELA_calibration_block(large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, panel=false, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
+            PELA_calibration_block(large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_flexture_height=knob_flexture_height, skin=skin, side_shell=side_shell, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, block_height=block_height, knobs=knobs);
         }
     }
 }

@@ -131,7 +131,7 @@ function override_top_tweak(material, top_tweak) = (top_tweak == undef) ? materi
 function material_bottom_tweak(material) = material_property(material, bottom_tweak_index);
 
 // Return bottom tweak="bt" if provided for calibration, otherwise use the material value
-function override_bottom_tweak(material, bottom_tweak) = (bottom_tweak == undef) ? material_bottom_tweak(material) : bt;
+function override_bottom_tweak(material, bottom_tweak) = (bottom_tweak == undef) ? material_bottom_tweak(material) : bottom_tweak;
 
 // Return the axle hole tweak from the material
 function material_axle_hole_tweak(material) = material_property(material, axle_hole_tweak_index);
@@ -164,7 +164,7 @@ function override_knob_radius(material, top_tweak) = knb_rad(override_top_tweak(
 function ring_thickness(large_nozzle=undef) = large_nozzle ? 1.2 : 0.8;
 
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-function override_ring_radius(material=undef, large_nozzle=undef, bottom_tweak=undef) = ring_thickness(large_nozzle) + rng_rad(bottom_tweak=(material == undef ? bottom_tweak : material_property(material, bottom_tweak_index)));
+function override_ring_radius(material=undef, large_nozzle=undef, bottom_tweak=undef) = ring_thickness(large_nozzle) + rng_rad(bottom_tweak=(bottom_tweak==undef ? material_property(material, bottom_tweak_index) : bottom_tweak));
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
 function knob_flexture_radius(material=undef) = is_flexible(material) ? 0.6 : 0.8;
