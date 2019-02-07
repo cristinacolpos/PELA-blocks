@@ -167,7 +167,9 @@ module visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cu
                 alternate_length = top_vents ? block_height(h+
                 defeather, block_height=block_height) + defeather : block_height(h-0.5, block_height=block_height);
 
-                double_socket_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, length=length, alternate_length=alternate_length, bevel_socket=true, large_nozzle=large_nozzle, material=material);
+                bt = override_bottom_tweak(material=material, bottom_tweak=bottom_tweak);
+
+                double_socket_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, length=length, alternate_length=alternate_length, bevel_socket=true, bottom_tweak=bt);
             }
 
             ahr = override_axle_hole_radius(material, axle_hole_tweak);
