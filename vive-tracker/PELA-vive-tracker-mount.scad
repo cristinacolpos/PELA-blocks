@@ -211,7 +211,10 @@ module alignment_pin(material=material, large_nozzle=large_nozzle, block_height=
     }
 
     translate([block_width(5), block_width(3), 0.5*panel_height(block_height=block_height)]) {
-        cylinder(r=ring_radius(large_nozzle=large_nozzle), h=0.5*panel_height(block_height=block_height));
+
+        r = override_ring_radius(material=material, large_nozzle=large_nozzle);
+        
+        cylinder(r=r, h=0.5*panel_height(block_height=block_height));
     }
 }
 
