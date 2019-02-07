@@ -131,22 +131,22 @@ rotate([180, 0, 0]) {
 module respeaker_core_v2_technic_top(material=material, large_nozzle=large_nozzle, cut_line=cut_line,two_color_print=two_color_print) { 
     difference() {
         union() {
-            respeaker_core_v2_technic_top_edge(material=material);
-            respeaker_core_v2_technic_top_center(material=material);
+            respeaker_core_v2_technic_top_edge(material=material, large_nozzle=large_nozzle);
+            respeaker_core_v2_technic_top_center(material=material, large_nozzle=large_nozzle);
         }
         union() {
             clear_ring(material=material, large_nozzle=large_nozzle, two_color_print=two_color_print);
-            switch_access(material=material);
+            switch_access(material=material, large_nozzle=large_nozzle);
         }        
     }
 
     if (!two_color_print) {
-        board_mounts_top(material=material);
+        board_mounts_top(material=material, large_nozzle=large_nozzle);
     }
 }
 
 
-module board_mounts_top(material=material) {
+module board_mounts_top(material=material, large_nozzle=large_nozzle) {
     translate([ox, oy, -thickness - 0.1]) { 
         board_mounts(material=material, large_nozzle=large_nozzle, h=6, rot=180, pin=false);
     }
@@ -163,23 +163,23 @@ module clear_ring(material=material, large_nozzle=large_nozzle, two_color_print=
 
             union() {
                 cylinder(r=r2, h=center_height, $fn=256);
-                center_spokes(material=material);
+                center_spokes(material=material, large_nozzle=large_nozzle);
             }
         }
     }
 
     if (two_color_print) {
-    #    board_mounts_top(material=material);
+    #    board_mounts_top(material=material, large_nozzle=large_nozzle);
     }
 }
 
 
-module center_spokes(material=material) {
+module center_spokes(material=material, large_nozzle=large_nozzle) {
     if (center_support_spokes) {
         for (i=[0:30:180]) {
             rotate([0, 0, 15+i]) {
                 translate([-side, -spoke_width/2, 0]) {
-                cube([width*1.1, spoke_width, center_height]);
+                    cube([width*1.1, spoke_width, center_height]);
                 }
             }
         }
@@ -187,7 +187,7 @@ module center_spokes(material=material) {
 }
 
 
-module switch_access(material=material) {
+module switch_access(material=material, large_nozzle=large_nozzle) {
     translate([center_x - side + 29.85, center_y, -10]) {
         cylinder(r=4, h=15);
     }
@@ -195,6 +195,7 @@ module switch_access(material=material) {
 
 
 module respeaker_board(material=material, large_nozzle=large_nozzle, width=width, side=side, thickness=thickness) {
+    
     cube([width, side, thickness]);
 
     rotate([0, 0, -30]) {
@@ -209,7 +210,7 @@ module respeaker_board(material=material, large_nozzle=large_nozzle, width=width
 }
 
 
-module respeaker_base(material=material) {
+module respeaker_base(material=material, large_nozzle=large_nozzle) {
     m = 1.035;
     translate([2.7, 2.2, block_height(3) - base_thickness]) {
         respeaker_board(material=material, large_nozzle=large_nozzle, width=width*m, side=side*m, thickness=base_thickness);
@@ -223,20 +224,25 @@ module respeaker_base(material=material) {
 }
 
 
-module respeaker_core_v2_technic_mount(material=material) {
+module respeaker_core_v2_technic_mount(material=material, large_nozzle=large_nozzle) {
+    
     translate([ox, oy]) { 
         translate([0, 0, block_height(3) - mount_h - thickness]) {
-//           % color("gold") respeaker_board();    
+//           % color("gold") respeaker_board(material=material, large_nozzle=large_nozzle);    
         }
-        board_mounts(material=material);
+        board_mounts(material=material, large_nozzle=large_nozzle);
     }
 
-    color("silver") respeaker_base(material=material);
+    color("silver") respeaker_base(material=material, large_nozzle=large_nozzle);
 
     rotate([0, 0, -30]) {
         // Side 1
         color("red") {
-            technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=3);
+            technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=2);
+            
+            translate([0, 0, block_height(2, block_height=block_height)]) {
+                technic_twist_bar(material=material, large_nozzle=large_nozzle, left=2, right=2, center=side_length-4);
+                }
         }
         
         translate([block_width(side_length - 1), 0, 0]) {
@@ -249,7 +255,11 @@ module respeaker_core_v2_technic_mount(material=material) {
                     }
 
                     translate([0, 0, block_height(1)]) {
-                        technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=2);
+                        technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=1);
+
+                    translate([0, 0, block_height(1)]) {
+                        technic_twist_bar(material=material, large_nozzle=large_nozzle, left=2, right=2, center=side_length-4);
+                    }
                     }
                 }
                 
@@ -258,7 +268,7 @@ module respeaker_core_v2_technic_mount(material=material) {
                         // Side 3
                         color("blue") {
                             translate([0, 0, block_height(2)]) {
-                                technic_bar(material=material, large_nozzle=large_nozzle, l=side_length);
+                                technic_twist_bar(material=material, large_nozzle=large_nozzle, left=2, center=side_length-4, right=2);
                             }
                         }
                         
@@ -268,7 +278,11 @@ module respeaker_core_v2_technic_mount(material=material) {
                                 color("yellow") {
                                     technic_bar(material=material, large_nozzle=large_nozzle, l=4);
                                     translate([0, 0, block_height()]) {
-                                        technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=2);
+                                        technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=1);
+
+                                    translate([0, 0, block_height()]) {
+                                        technic_twist_bar(material=material, large_nozzle=large_nozzle, center=side_length-4, left=2, right=2);
+                                    }
                                     }
                                 }
                                 
@@ -276,7 +290,11 @@ module respeaker_core_v2_technic_mount(material=material) {
                                     rotate([0, 0, 60]) {
                                         // Side 5
                                         color("white") {
-                                            technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=3);
+                                            technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=2);
+                                            
+                                            translate([0, 0, block_height(2)]) {
+                                                technic_twist_bar(material=material, large_nozzle=large_nozzle, center=side_length-4, left=2, right=2);
+                                            }
                                         }
                                         
                                         translate([block_width(side_length - 1), 0, 0]) {
@@ -284,7 +302,11 @@ module respeaker_core_v2_technic_mount(material=material) {
                                                 // Side 6
                                                 translate([0, 0, block_height()])
                                                 color("orange") {
-                                                    technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=2);
+                                                    technic_bar(material=material, large_nozzle=large_nozzle, l=side_length, h=1);
+                                                    
+                                                    translate([0, 0, block_height()]) {
+                                                        technic_twist_bar(material=material, large_nozzle=large_nozzle, center=side_length-4, left=2, right=2);
+                                                    }
                                                 }
                                             }
                                         }
@@ -301,10 +323,10 @@ module respeaker_core_v2_technic_mount(material=material) {
 
 
 module board_mounts(material=material, large_nozzle=large_nozzle, rot=0, h=mount_h, pin=true) {
-        color("orange") board_mount(material=material, large_nozzle=large_nozzle, x1, y1, h=h, rot=rot, pin=pin);
-        color("yellow") board_mount(material=material, large_nozzle=large_nozzle, x2, y2, h=h, rot=rot, pin=pin);
-        color("pink") board_mount(material=material, large_nozzle=large_nozzle, x3, y3, h=h, rot=rot, pin=pin);
-        color("grey") board_mount(material=material, large_nozzle=large_nozzle, x4, y4, h=h, rot=rot, pin=pin);
+        color("orange") board_mount(material=material, large_nozzle=large_nozzle, x=x1, y=y1, h=h, rot=rot, pin=pin);
+        color("yellow") board_mount(material=material, large_nozzle=large_nozzle, x=x2, y=y2, h=h, rot=rot, pin=pin);
+        color("pink") board_mount(material=material, large_nozzle=large_nozzle, x=x3, y=y3, h=h, rot=rot, pin=pin);
+        color("grey") board_mount(material=material, large_nozzle=large_nozzle, x=x4, y=y4, h=h, rot=rot, pin=pin);
 }
 
 
@@ -381,7 +403,8 @@ module respeaker_core_v2_technic_top_edge(material=material, large_nozzle=large_
 }
 
 
-module respeaker_core_v2_technic_top_center(material=material) {
+module respeaker_core_v2_technic_top_center(material=material, large_nozzle=large_nozzle) {
+    
     top_thickness = 0.5;
     difference() {
         union() {

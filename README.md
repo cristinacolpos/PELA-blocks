@@ -214,12 +214,6 @@ ___
 
 ___
 
-[![PELA Sparkfun Pro Micro Box Enclosure](images/PELA-sparkfun-pro-micro-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-sparkfun-pro-micro-box-enclosure.stl)
-
-[3D PELA Sparkfun Pro Micro Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-sparkfun-pro-micro-box-enclosure.stl) Enclosure for the [Sparkfun Pro Micro](https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/introduction) board.
-
-___
-
 [![PELA Intel Compute Stick Box Enclosure](images/PELA-intel-compute-stick-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-box-enclosure.stl)
 
 [3D PELA Intel Compute Stick Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-intel-compute-stick-box-enclosure.stl) Enclosure for the [Intel Compute Stick](https://www.intel.com/content/www/us/en/products/boards-kits/compute-stick.html)
