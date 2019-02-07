@@ -161,9 +161,11 @@ module clear_ring(material=material, large_nozzle=large_nozzle, two_color_print=
         difference() {
             cylinder(r=r1, h=center_height, $fn=256);
 
-            union() {
-                cylinder(r=r2, h=center_height, $fn=256);
-                center_spokes(material=material, large_nozzle=large_nozzle);
+            translate([0, 0, -defeather]) {
+                union() {
+                    cylinder(r=r2, h=center_height+2*defeather, $fn=256);
+                    center_spokes(material=material, large_nozzle=large_nozzle);
+                }
             }
         }
     }
