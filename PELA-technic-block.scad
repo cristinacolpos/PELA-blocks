@@ -151,7 +151,7 @@ module visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cu
                 translate([0, 0, block_height(i, block_height=block_height)]) {
                     if (is_side_sheaths(side_sheaths=side_sheaths, side_holes=side_holes)) {
 
-                        double_side_connector_sheath_set(aterial=material, large_nozzle=large_nozzle, l=l, w=w, side_holes=side_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, skin=skin, block_height=block_height);
+                        double_side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, side_holes=side_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, skin=skin, block_height=block_height);
                     }
                     
                     if (is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes)) {
@@ -291,7 +291,7 @@ module sheath(material=material, large_nozzle=large_nozzle, sheath_radius=undef,
 
 
 // For use by extension routines
-module double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=end_holes, block_width=block_width, axle_hole_radius=undef) {
+module double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=undef, block_width=block_width, axle_hole_radius=undef) {
  
     translate([block_width(l), 0, 0]) {
         rotate([0, 0, 90]) {
@@ -302,11 +302,12 @@ module double_end_connector_hole_set(material=material, large_nozzle=large_nozzl
 
 
 // For use by extension routines
-module double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=side_holes, block_width=block_width, block_height=block_height, axle_hole_radius=undef) {
+module double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=undef, block_width=block_width, block_height=block_height, axle_hole_radius=undef) {
     
     side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, block_width=block_width, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
     
-    translate([block_width(l), block_width(w)]) {
+    translate([block_width(l, block_width=block_width), block_width(w, block_width=block_width)]) {
+
         rotate([0, 0, 180]) {
             side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, block_width=block_width, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
         }
@@ -315,21 +316,21 @@ module double_side_connector_hole_set(material=material, large_nozzle=large_nozz
 
 
 // A row of knob-size holes around the sides of row 1
-module side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, block_width=block_width, hole_type=side_holes, block_height=block_height, axle_hole_radius=undef) {
+module side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, block_width=block_width, hole_type=undef, block_height=block_height, axle_hole_radius=undef) {
     
-    length = (hole_type==1 || hole_type==3) ? block_width() : block_width(w);
+    length = hole_type==2 ? block_width(w, block_width=block_width) : block_width(1, block_width=block_width);
 
     if (l==1) {
         translate([block_width(0.5) - defeather, 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
             rotate([-90, 0, 0]) {
-                axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=counterbore_inset_depth+peg_length);
+                axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);
             }
         }        
     } else {
         for (i = [1:l-1]) {
             translate([block_width(i), -defeather, block_height(1, block_height=block_height)-block_width(0.5)]) {
                 rotate([-90, 0, 0]) {
-                    axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=counterbore_inset_depth+peg_length);
+                    axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);
                 }
             }
         }
