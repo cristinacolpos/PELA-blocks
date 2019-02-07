@@ -110,9 +110,9 @@ module cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_lin
 
 module block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, side_shell=side_shell, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, socket_insert_bevel=socket_insert_bevel, bottom_tweak=undef, top_tweak=undef) {
     
-    assert(h > 0, "Block height must be at least 1");
+    assert(h > 0, "Block height must be greater than 0");
     assert(l >= 1, "Block length must be at least 1");
-    assert(w >= 1, "Block width must be at last 1");
+    assert(w > 0, "Block width must be greater than 0");
 
     bt = override_bottom_tweak(material=material, bottom_tweak=bottom_tweak);
     

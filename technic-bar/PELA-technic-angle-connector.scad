@@ -69,13 +69,13 @@ module technic_angle_connector(material=material, large_nozzle=large_nozzle, cut
             translate([0, 0, block_height(1)]) {
                 rotate([angle, 0, 0]) {
                     translate([0, block_width(0.5), 0]) {
-                        technic_bar(l=l);
+                        technic_bar(material=material, large_nozzle=large_nozzle, l=l);
                     }
                 }
             }
 
             translate([0, block_width(0.5), 0]) {
-                    technic_bar(l=l);
+                    technic_bar(material=material, large_nozzle=large_nozzle, l=l);
             }
 
             increment = 5;

@@ -52,7 +52,7 @@ h = 1;
 // DISPLAY
 ///////////////////////////////
 
-technic_bar();
+technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2, block_width=block_width);
 
 
 
@@ -61,7 +61,9 @@ technic_bar();
 ///////////////////////////////////
 
 module technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2, block_width=block_width) {
+
     assert(l > 0, "Technic bar length must be greater than zero");
+    assert(h > 0, "Technic bar height must be greater than zero");
 
     l2 = l + 1;
 
