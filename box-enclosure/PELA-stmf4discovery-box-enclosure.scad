@@ -63,13 +63,13 @@ board_thickness = 1.8;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a wrapper around side holes (disable for extra ventilation, enable for connector lock notches)
+// Add a wrapper around side holes (disable for extra ventilation but loose pin lock notches)
 side_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a wrapper around end holes  (disable for extra ventilation, enable for connector lock notches)
+// Add a wrapper around end holes  (disable for extra ventilation but loose pin lock notches)
 end_sheaths = 1; // [0:disabled, 1:enabled]
 
 // Add holes in the top deck to improve airflow and reduce weight
