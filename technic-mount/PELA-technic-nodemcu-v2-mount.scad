@@ -48,13 +48,28 @@ width = 26.2;
 
 thickness = 1.8;
 
+board_length = 48.8;
+
+board_width = 26.5;
+
+board_height = 2 + block_height();
+
+header_length = 38.4;
+
+header_height = 2.8 + block_height();
+
+usb_width = 15;
+
+usb_length = 40;
+
+usb_height = block_height() + 4.8;
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-board_mount();
+board_mount(material=material, large_nozzle=large_nozzle, length=length, length_padding=length_padding, width=width, width_padding=width_padding);
 
 
 
@@ -62,52 +77,63 @@ board_mount();
 // MODULES
 ///////////////////////////////////
 
-module board_mount(material=material) {
+module board_mount(material=material, large_nozzle=large_nozzle, length=length, length_padding=length_padding, width=width, width_padding=width_padding) {
+
   l = fit_mm_to_blocks(length, length_padding);
   w = fit_mm_to_blocks(width, width_padding);
 
   difference() {
     union() {
       translate([block_width(0.5)-skin, block_width(0.5)-skin, 0]) {
+
         color("red") cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, block_height()*2]);
       }
+
       color("gray", 0.3) union() {
-        technic_bar_frame(material=material, large_nozzle=large_nozzle, l, w);
-        translate([0, 0, block_height()]) technic_bar_frame(l, w);
+        technic_bar_frame(material=material, large_nozzle=large_nozzle, l=l, w=w);
+
+        translate([0, 0, block_height()]) {
+          technic_bar_frame(material=material, large_nozzle=large_nozzle, l=l, w=w);
+        }
       }
     }
     translate([
       block_width(0.5) + (block_width(7) - board_length) / 2,
       block_width(0.5) + (block_width(4) - board_width) / 2,
       block_height()
-    ]) board();
+    ]) {
+      board(material=material, large_nozzle=large_nozzle, length=length);
+    }
   }
 }
 
-module technic_bar_frame(material=material, large_nozzle=large_nozzle, l, w) {
+module technic_bar_frame(material=material, large_nozzle=large_nozzle, l=undef, w=undef) {
     union() {
       technic_bar(material=material, large_nozzle=large_nozzle, l=l);
-      rotate([0, 0, 90]) technic_bar(material=material, large_nozzle=large_nozzle, l=w);
-      translate([0, block_width(w-1), 0]) technic_bar(material=material, large_nozzle=large_nozzle, l=l);
-      rotate([0, 0, 90]) translate([0, -block_width(l-1), 0]) technic_bar(material=material, large_nozzle=large_nozzle, l=w);
+
+      rotate([0, 0, 90]) {
+        technic_bar(material=material, large_nozzle=large_nozzle, l=w);
+      }
+      
+      translate([0, block_width(w-1), 0]) {
+        technic_bar(material=material, large_nozzle=large_nozzle, l=l, h=1);
+      }
+
+      rotate([0, 0, 90]) {
+        translate([0, -block_width(l-1), 0]) {
+          technic_bar(material=material, large_nozzle=large_nozzle, l=w);
+        }
+      }
     }
 }
 
 
-board_length = 48.8;
-board_width = 26.5;
-board_height = 2 + block_height();
-header_length = 38.4;
-header_height = 2.8 + block_height();
-usb_width = 15;
-usb_length = 40;
-usb_height = block_height() + 2.8 + 2;
-
-
-module board(material=material) {
+module board(material=material, large_nozzle=large_nozzle, length=length, board_length=board_length, board_width=board_width, board_height=board_height) {
   union() {
     cube([board_length, board_width, board_height]);
+
     color("green") translate([(board_length-header_length)/2, 0, -header_height]) cube([header_length, board_width, header_height]);
+
     // usb
     color("red") translate([-usb_length/2, (board_width-usb_width)/2, -2.8]) cube([usb_length, usb_width, usb_height]);
   }

@@ -128,14 +128,18 @@ rotate([180, 0, 0]) {
 // MODULES
 ///////////////////////////////////
 
-module respeaker_core_v2_technic_top(material=material, large_nozzle=large_nozzle, cut_line=cut_line,two_color_print=two_color_print) { 
+module respeaker_core_v2_technic_top(material=material, large_nozzle=large_nozzle, cut_line=cut_line, two_color_print=two_color_print) {
+    
     difference() {
         union() {
             respeaker_core_v2_technic_top_edge(material=material, large_nozzle=large_nozzle);
+            
             respeaker_core_v2_technic_top_center(material=material, large_nozzle=large_nozzle);
         }
+        
         union() {
             clear_ring(material=material, large_nozzle=large_nozzle, two_color_print=two_color_print);
+            
             switch_access(material=material, large_nozzle=large_nozzle);
         }        
     }
@@ -153,7 +157,7 @@ module board_mounts_top(material=material, large_nozzle=large_nozzle) {
 }
 
 
-module clear_ring(material=material, large_nozzle=large_nozzle, two_color_print=two_color_print) {
+module clear_ring(material=material, large_nozzle=large_nozzle, center_height=center_height, two_color_print=two_color_print) {
     r1 = side*.87;
     r2 = r1 - 8;
 
@@ -164,6 +168,7 @@ module clear_ring(material=material, large_nozzle=large_nozzle, two_color_print=
             translate([0, 0, -defeather]) {
                 union() {
                     cylinder(r=r2, h=center_height+2*defeather, $fn=256);
+                    
                     center_spokes(material=material, large_nozzle=large_nozzle);
                 }
             }
