@@ -53,7 +53,7 @@ right = 2;
 // DISPLAY
 ///////////////////////////////
 
-technic_twist_bar();
+technic_twist_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, left=left, center=center, right=right);
 
 
 

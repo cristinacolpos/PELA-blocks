@@ -149,7 +149,7 @@ module block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_h
             }
 
             if (solid_first_layer || !sockets) {
-                fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, knob_height=knob_height, block_height=block_height);
+                fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
             } else if (h>1) {
                 bottom_stiffener_bar_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=bar_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
             }

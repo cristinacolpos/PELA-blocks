@@ -28,7 +28,6 @@ include <style.scad>
 include <material.scad>
 use <PELA-block.scad>
 use <PELA-technic-block.scad>
-use <knob-panel/PELA-knob-panel.scad>
 
 
 /* [Velcro Mount] */

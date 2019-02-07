@@ -47,5 +47,6 @@ large_nozzle = true;
 // DISPLAY
 ///////////////////////////////
 
-translate([0, 0, block_height()])
+translate([0, 0, block_height()]) {
     clear_ring(material=material);
+}

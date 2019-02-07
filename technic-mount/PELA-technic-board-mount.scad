@@ -125,7 +125,7 @@ module technic_board_mount(material=material, large_nozzle=large_nozzle, cut_lin
         }
         
         union() {
-            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, block_height=block_height);
+            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
             main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, innercut=innercut, block_height=block_height);
 
             translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
