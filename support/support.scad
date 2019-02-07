@@ -113,7 +113,7 @@ module support_triangle(support_side_length=support_side_length, support_layer_h
 module support_set(material=material, large_nozzle=large_nozzle, corner_supports=true, l, w, height, support_max_rotation=support_max_rotation, support_side_length=support_side_length) {
     
     if (h>0 && support_side_length>0) {
-        support_side_length=override_ring_radius(material=material, large_nozzle=large_nozzle)*1.5;
+        support_side_length = 1.5*override_ring_radius(material=material, large_nozzle=large_nozzle);
         for (x=[0:1:l-1]) {
             for (y=[0:1:w-1]) {
                 if (corner_supports || !((x==0 || x==l-1) && (y==0 || y==w-1))) {
