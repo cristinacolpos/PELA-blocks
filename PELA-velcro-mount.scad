@@ -50,6 +50,9 @@ w = 4; // [1:1:20]
 // Model height [blocks]
 h = 1; // [1:1:20]
 
+// Fraction of a normal panel height for the center section where a stap holds the block in place
+panel_height_ratio = 1.0; // [0.1:0.1:2.0]
+
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
@@ -59,6 +62,7 @@ end_sheaths = false;
 // Presence of top connector knobs
 knobs = true;
 
+sockets = false;
 
 /* [Hidden] */
 
@@ -73,7 +77,7 @@ side_sheaths = true;
 // DISPLAY
 ///////////////////////////////
 
-velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, knobs=knobs, block_height=block_height);
+velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height);
 
 
 
@@ -81,19 +85,31 @@ velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=
 // MODULES
 ///////////////////////////////////
 
-module velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, knobs=knobs, block_height=block_height) {
+module velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
 
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=false, knobs=knobs, block_height=block_height);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height);
 
         slot(l=l, w=w, block_height=block_height);
+    }
+
+    if (sockets) {
+        height = max(knob_height + skin, panel_height_ratio*panel_height(block_height=block_height));
+
+        translate([block_width(1)- side_shell, 0, height]) {
+            cube([side_shell, block_width(w), block_height(h) - height]);
+        }
+
+        translate([block_width(l-1), 0, height]) {
+            cube([side_shell, block_width(w), block_height(h) - height]);
+        }
     }
 }
 
 
 module slot(material=material, large_nozzle=large_nozzle, l=l, w=w, block_height=block_height) {
     
-    translate([block_width(), -0.01, 0.5*panel_height(block_height=block_height)]) {
+    translate([block_width(), -0.01, panel_height_ratio*panel_height(block_height=block_height)]) {
         cube([block_width(l-2), block_width(w)+0.02, block_height(h+1, block_height=block_height)]);
     }
 }
