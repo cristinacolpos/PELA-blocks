@@ -32,13 +32,13 @@ large_nozzle = true;
 l = 3; // [1:1:20]
 
 // Outside radius of an axle which fits loosely in a technic bearing hole [mm]
-axle_radius = 2.2;
+axle_radius = 2.2; // [0.1:1:20]
 
 // Size of the axle solid center before rounding [mm]
-center_radius = (1/3)*axle_radius;
+center_radius = (1/3)*axle_radius; // [0.1:1:4]
 
 // Cross axle inside rounding radius [mm]
-axle_rounding = 0.63;
+axle_rounding = 0.63; // [0.2:0.01:4.0]
 
 
 
