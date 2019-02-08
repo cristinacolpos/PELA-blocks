@@ -18,6 +18,12 @@ Open source design, Powered By Futurice. Come work with the best.
 
 Import this into other design files to set baseline constants:
     include <style.scad>
+
+If the nozzle you normally use on your printer is 0.5mm or less, edit line 31 to read:
+    31:     large_nozzle = false; // [true:nozzle >= 0.5mm, false:nozzle < 0.5mm]
+
+There are many other parameters here which affect all generated PELA models. Any changes you make here affect all models unless that parameter is locally updated in a given model. Where models duplicate these settings, the local value will appear in the "Customizer" view of OpenSCAD. Think of those local overrides of these default style settings as a design decision: changing that parameter for that particular model is likely to be useful to you.
+
 */
 
 include <material.scad>

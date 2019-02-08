@@ -32,6 +32,8 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 
+
+
 /* [Vertical Sign] */
 
 // Show the inside structure [mm]
@@ -111,6 +113,11 @@ top_vents = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
+
+
+/* [Hidden] */
+
+
 
 
 

@@ -45,10 +45,6 @@ w = 8; // [1:1:20]
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
-// Add interior fill for upper layers
-// Add interior fill for the base layer
-solid_first_layer = false;
-
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = true;
 
@@ -63,6 +59,14 @@ bottom_stiffener_height = 0.0;
 
 // How many outside rows and columns on all edges to omit before adding knobs
 skip_edge_knobs = 0;
+
+
+
+/* [Hidden] */
+
+// Add interior fill for upper layers
+// Add interior fill for the base layer
+solid_first_layer = false;
 
 
 
