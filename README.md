@@ -250,9 +250,9 @@ ___
 
 ___
 
-[![PELA Velcro Mount](images/PELA-velcro-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-velcro-mount.stl)
+[![PELA Strap Mount](images/PELA-strap-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-strap-mount.stl)
 
-[3D PELA Velcro Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-velcro-mount.stl) For attaching using Velcro or similar straps through the bottom slot.
+[3D PELA Strap Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-strap-mount.stl) For attaching using strap or similar straps through the bottom slot.
 
 ___
 
