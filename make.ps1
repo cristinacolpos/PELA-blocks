@@ -136,7 +136,6 @@ render ".\" "PELA-knob-panel" ""
 render ".\" "PELA-socket-panel" ""
 render ".\" "PELA-velcro-mount" ""
 render ".\" "PELA-grove-module-enclosure" ""
-render ".\vive-tracker\" "PELA-vive-velcro-mount" ""
 render ".\vive-tracker\" "PELA-vive-tracker-mount" ""
 render ".\vive-tracker\" "PELA-camera-mount-screw" ""
 

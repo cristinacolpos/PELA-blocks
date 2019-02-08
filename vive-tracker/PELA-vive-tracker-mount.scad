@@ -64,7 +64,7 @@ pin_spacing = 3.5;
 
 /* [Hidden] */
 
-// Width of the model [blocks]
+// Model width [blocks]
 w = 6; // [1:1:20]
 
 // Vive pin dimensions

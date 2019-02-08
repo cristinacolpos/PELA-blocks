@@ -48,13 +48,13 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-// Length [blocks]
+// Model length [blocks]
 l = 4; // [1:1:20]
 
-// Width [blocks]
+// Model width [blocks]
 w = 4; // [1:1:20]
 
-// Height [blocks]
+// Model height [blocks]
 h = 2; // [1:1:20]
 
 
@@ -88,7 +88,7 @@ solid_first_layer = false;
 /* [Technic Features] */
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 3; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Add a wrapper around technic side holes (only used if there are side hole connectors, disable for extra ventilation but loose pin lock notches)
 side_sheaths = true;
@@ -222,9 +222,9 @@ module side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l
     
     sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material, axle_hole_tweak);
 
-    sheath_length = side_holes==2 ? block_width(l, block_width=block_width) : block_width(1, block_width=block_width);
+    sheath_length = side_holes == 2 ? block_width(w, block_width=block_width) : block_width(1, block_width=block_width);
     
-    if (l==1) {
+    if (l == 1) {
         translate([block_width(0.5), 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
             rotate([-90, 0, 0]) {
                 sheath(material=material, large_nozzle=large_nozzle, sheath_radius=sheath_radius, sheath_length=sheath_length, skin=skin);
@@ -260,9 +260,9 @@ module end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=
     
     sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material, axle_hole_tweak);
 
-    sheath_length = end_holes==2 ? block_width(l, block_width=block_width) : block_width(1, block_width=block_width);
+    sheath_length = end_holes == 2 ? block_width(l, block_width=block_width) : block_width(1, block_width=block_width);
 
-    if (w==1) {
+    if (w == 1) {
         translate([0, block_width(0.5), block_height(1)-block_width(0.5, block_width=block_width)]) {
 
             rotate([0, 90, 0]) {
@@ -318,9 +318,9 @@ module double_side_connector_hole_set(material=material, large_nozzle=large_nozz
 // A row of knob-size holes around the sides of row 1
 module side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, block_width=block_width, hole_type=undef, block_height=block_height, axle_hole_radius=undef) {
     
-    length = hole_type==2 ? block_width(w, block_width=block_width) : block_width(1, block_width=block_width);
+    length = hole_type == 2 ? block_width(w, block_width=block_width) : block_width(1, block_width=block_width);
 
-    if (l==1) {
+    if (l == 1) {
         translate([block_width(0.5) - defeather, 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
             rotate([-90, 0, 0]) {
                 axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);

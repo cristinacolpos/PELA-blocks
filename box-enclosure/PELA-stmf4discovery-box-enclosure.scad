@@ -75,7 +75,7 @@ end_sheaths = 1; // [0:disabled, 1:enabled]
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
-// Add holes in the bottom deck to improve airflow and reduce weight (only used with bottom_type==2, knob panel)
+// Add holes in the bottom deck to improve airflow and reduce weight (only used with bottom_type == 2, knob panel)
 bottom_vents = false;
 
 // Size of a hole in the top surface of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
