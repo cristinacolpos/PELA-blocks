@@ -262,12 +262,6 @@ ___
 
 ___
 
-[![PELA Raspberry Pi 3 Board Mount](images/PELA-raspberry-pi3-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-knob-mount.stl)
-
-[3D PELA Raspberry Pi 3 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-knob-mount.stl) A base allowing snap-in holding of the board with full connector access and optional top cover
-
-___
-
 [![PELA PCA9685 16 Channel Servo Board Mount](images/PELA-pca9685-servo-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-knob-mount.stl)
 
 [3D PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-pca9685-servo-knob-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end

@@ -29,7 +29,7 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Axle length [blocks]
-l = 3;
+l = 3; // [1:1:20]
 
 // Outside radius of an axle which fits loosely in a technic bearing hole [mm]
 axle_radius = 2.2;

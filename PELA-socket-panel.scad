@@ -28,7 +28,7 @@ use <PELA-technic-block.scad>
 /* [Socket Panel] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -37,10 +37,10 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the block [blocks]
-l = 8; 
+l = 8; // [1:1:20]
 
 // Width of the block [blocks]
-w = 8;
+w = 8; // [1:1:20]
 
 // Presence of sockets vs a plain panel
 sockets = true;
@@ -58,7 +58,7 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.6;
+bolt_hole_radius = 1.6; // [0.0:0.1:2.0]
 
 
 ///////////////////////////////
