@@ -41,40 +41,39 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
+// Model length [blocks]
 l = 4; // [1:1:20]
 
+// Model width [blocks]
 w = 4; // [1:1:20]
 
+// Model height [blocks]
 h = 1; // [1:1:20]
 
-// Add interior fill for upper layers
-// Add interior fill for the base layer
-solid_first_layer = true;
-
-// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-corner_bolt_holes = false;
-
-side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
-
-side_sheaths = true;
-
+// Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
+// Add a wrapper around technic side holes (only used if there are side hole connectors, disable for extra ventilation but loose pin lock notches)
 end_sheaths = false;
 
 // Presence of top connector knobs
 knobs = true;
 
-// Add holes in the top deck to improve airflow and reduce weight
-top_vents = true;
 
+/* [Hidden] */
+
+// Add full width through holes spaced along the length for PELA Techics connectors
+side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+
+// Add a wrapper around technic side holes (only used if there are side hole connectors, disable for extra ventilation but loose pin lock notches)
+side_sheaths = true;
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-velcro_mount();
+velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, knobs=knobs, block_height=block_height);
 
 
 
@@ -82,10 +81,10 @@ velcro_mount();
 // MODULES
 ///////////////////////////////////
 
-module velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height) {
+module velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, knobs=knobs, block_height=block_height) {
 
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, sockets=false, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, block_height=block_height);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=false, knobs=knobs, block_height=block_height);
 
         slot(l=l, w=w, block_height=block_height);
     }
@@ -95,6 +94,6 @@ module velcro_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_l
 module slot(material=material, large_nozzle=large_nozzle, l=l, w=w, block_height=block_height) {
     
     translate([block_width(), -0.01, 0.5*panel_height(block_height=block_height)]) {
-        cube([block_width(l-2), block_width(w)+0.02, panel_height(block_height=block_height)]);
+        cube([block_width(l-2), block_width(w)+0.02, block_height(h+1, block_height=block_height)]);
     }
 }
