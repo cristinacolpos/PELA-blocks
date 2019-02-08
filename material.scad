@@ -100,7 +100,7 @@ tpu85_m = ["TPU85", true, 0.04, -0.02, 0.04];
 materials = [pla_m, abs_m, pet_m, bio_silk_m, pro1_m, ngen_m, ngen_flex_m, nylon_m, tpu95_m, tpu85_m];
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]

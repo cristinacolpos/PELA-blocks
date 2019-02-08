@@ -40,7 +40,7 @@ knobs = true;
 corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.6;
+bolt_hole_radius = 1.6; // [0.0:0.1:2.0]
 
 // Add interior fill for the base layer
 solid_first_layer = false;
@@ -84,7 +84,7 @@ end_sheaths = true;
 top_vents = false;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
-knob_vent_radius = 0.0;
+knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 
 /* [Shell] */

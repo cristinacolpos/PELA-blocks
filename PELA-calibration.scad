@@ -40,13 +40,13 @@ calibration_bar = true;
 bar_length = 9;
 
 // Length of each calibration block [blocks]
-l = 2; 
+l = 2; // [1:1:20]
 
 // Width of each calibration block [blocks]
-w = 2;
+w = 2; // [1:1:20]
 
 // Height of the block (PELA unit count, use 1/3 for short calibration panel)
-h = 1;
+h = 1; // [1:1:20]
 
 // Height of traditional connectors [mm] (taller gives a stronger hold)
 knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]

@@ -28,7 +28,7 @@ use <../PELA-technic-block.scad>
 /* [N20 Gearmotor Enclosure] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -49,15 +49,15 @@ bottom_stiffener_height = 9.6;
 /* [Motor Enclosure Size] */
 
 // Length of the motor enclosure [blocks]
-l = 4; 
+l = 4; // [1:1:20]
 
 // Width of the motor enclosure [blocks]
-w = 2;
+w = 2; // [1:1:20]
 
 // Height of the bottom part of the motor enclosure (block count, the top part is always 1/3)
 h_bottom = 1;
 
-// Height of the bottom part of the motor enclosure (block count, the top part is always 1/3)
+// Height of the top part of the motor enclosure (block count, the top part is always 1/3)
 h_top = 1;
 
 
@@ -99,7 +99,7 @@ side_holes = 1; // [0:disabled, 1:short air vents, 2:short connectors, 3:full wi
 top_vents = true;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
-knob_vent_radius = 0.0;
+knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 
 

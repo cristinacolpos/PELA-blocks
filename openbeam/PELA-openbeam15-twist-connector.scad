@@ -27,7 +27,7 @@ use <../PELA-knob-panel.scad>
 /* [Openbeam 15 Twist Connector] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -35,20 +35,28 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-w = 2;
-l = 2;
+w = 2; // [1:1:20]
+
+l = 2; // [1:1:20]
+
 block_height=9.6;
 
 top_width = block_width(w);
+
 top_length = block_width(l);
+
 top_height = panel_height(block_height=block_height);
 
 throat_length = block_width();
+
 throat_width = 2.7;
+
 throat_height = 1.9;
 
 foot_width = throat_width;
+
 foot_length = throat_length + 2*1.6;
+
 foot_height = 2;
 
 toe_length = 1;

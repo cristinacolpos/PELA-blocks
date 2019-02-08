@@ -39,7 +39,7 @@ include <material.scad>
 /* [Block] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -48,13 +48,13 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length [blocks]
-l = 4; 
+l = 4; // [1:1:20]
 
 // Width [blocks]
-w = 2;
+w = 2; // [1:1:20]
 
 // Height [blocks]
-h = 1;
+h = 1; // [1:1:20]
 
 // Layer one starts as a solid block (removes some air holes)
 // Add interior fill for the base layer

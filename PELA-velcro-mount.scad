@@ -33,7 +33,7 @@ use <PELA-technic-block.scad>
 /* [Velcro Mount] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -41,11 +41,11 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-l = 4; // Length of the mount [blocks]
+l = 4; // [1:1:20]
 
-w = 4; // Width of the mount [blocks]
+w = 4; // [1:1:20]
 
-h = 1; // Height of the mount [blocks]
+h = 1; // [1:1:20]
 
 // Add interior fill for upper layers
 // Add interior fill for the base layer
