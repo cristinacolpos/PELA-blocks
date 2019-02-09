@@ -46,24 +46,40 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
+// Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+
+// Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+
+// How many blocks in from length ends do the technic holes rotate 90 degrees
+twist_length = 2;
+
+// How many blocks in from width ends do the technic holes rotate 90 degrees
+twist_width = 2;
+
+
+
+/* [Board] */
+
+// Board space length [mm]
 length = 86.2; // Board space length [mm]
 
+// Board space width [mm]
 width = 56.8; // Board space width [mm]
 
-length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-
-width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-
-twist_length = 2; // How many blocks in from  length ends do the technic holes rotate 90 degrees
-
-twist_width = 2; // How many blocks in from width ends do the technic holes rotate 90 degrees
-
+// Board space height [mm]
 thickness = 1.9; // Board space height [mm]
 
 // Step in from board space edges to support the board [mm]
 innercut = 0.8;
 
-bottom_corner_bolt_holes = true; // Mounting holes inset from the corners
+
+
+/* [Hidden] */
+
+ // Mounting holes inset from the corners
+bottom_corner_bolt_holes = true;
 
 
 
@@ -80,7 +96,7 @@ pi3_technic_mount();
 // MODULES
 ///////////////////////////////////
 
-module pi3_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width) {
+module pi3_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width) {
 
     l_fit = 1;
     l = fit_mm_to_blocks(length, length_padding) - l_fit;
@@ -96,22 +112,25 @@ module pi3_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=
 
     difference() {
         union() {
-            technic_board_mount(material=material, large_nozzle=large_nozzle, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut, block_width=block_width);
+            technic_board_mount(material=material, large_nozzle=large_nozzle, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
                 technic_board_mount(material=material, large_nozzle=large_nozzle, length=length-block_width, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=0, innercut=0);
-//                technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
             }
 
             retaining_ridge_sd_card_side(material=material);
         }
         
-#        union() {
-            main_board(material=material, large_nozzle=large_nozzle, l=l+2_fit, w=w, length=length, width=width, block_height=block_height);
-            sd_card_cutout(material=material);
-            front_connector_cutout(material=material);
-            ethernet_cutout(material=material);
-            daughterboard_cutout(material=material);
+        union() {
+            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
+
+            sd_card_cutout(material=material, large_nozzle=large_nozzle);
+
+            front_connector_cutout(material=material, large_nozzle=large_nozzle);
+
+            ethernet_cutout(material=material, large_nozzle=large_nozzle);
+
+            daughterboard_cutout(material=material, large_nozzle=large_nozzle);
         }
     }
 
@@ -119,7 +138,7 @@ module pi3_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=
 }
 
 
-module bottom(material=material, large_nozzle=large_nozzle, x, y, l, w, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
+module bottom(material=material, large_nozzle=large_nozzle, x=undef, y=undef, l=undef, w=undef, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
 
     translate([block_width(x) - skin, block_width(y), 0]) {
         skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=0.25, skin=0, ridge_width=0, ridge_depth=0, block_height=block_height);
@@ -127,7 +146,7 @@ module bottom(material=material, large_nozzle=large_nozzle, x, y, l, w, bottom_c
 }
 
 
-module retaining_ridge_sd_card_side(material=material) {
+module retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle) {
 
     translate([block_width(0.5), block_width(0.5), block_height(0.5, block_height=block_height)]) {
         cube([block_width(0.5), block_width(2), block_height(2.5, block_height=block_height)]);
@@ -139,37 +158,37 @@ module retaining_ridge_sd_card_side(material=material) {
 }
 
 
-module sd_card_cutout(material=material) {
+module sd_card_cutout(material=material, large_nozzle=large_nozzle) {
 
     translate([block_width(-1.6), block_width(1.5), 0]) {
-        cube([block_width(3), block_width(6), block_height(3, block_height=block_height)]);
+        cube([block_width(3), block_width(6), block_height(4, block_height=block_height)]);
     }
     
     translate([block_width(0.5), block_width(1.5), 0]) {
-        cube([block_width(3), block_width(6), block_height(3, block_height=block_height)]);
+        cube([block_width(3), block_width(6), block_height(4, block_height=block_height)]);
     }
 }
 
 
-module ethernet_cutout(material=material) {
+module ethernet_cutout(material=material, large_nozzle=large_nozzle) {
 
     translate([block_width(10), block_width(0.5), block_height(1, block_height=block_height)]) {
-        cube([block_width(3), block_width(8), block_height(3, block_height=block_height)]);
+        cube([block_width(3), block_width(8), block_height(4, block_height=block_height)]);
     }
 }
 
 
-module front_connector_cutout(material=material) {
+module front_connector_cutout(material=material, large_nozzle=large_nozzle) {
 
     translate([block_width(1.5), block_width(-0.6), block_height(0.5, block_height=block_height)]) {
-        cube([block_width(8), block_width(2), block_height(3, block_height=block_height)]);
+        cube([block_width(8), block_width(2), block_height(4, block_height=block_height)]);
     }
 }
 
 
-module daughterboard_cutout(material=material) {
+module daughterboard_cutout(material=material, large_nozzle=large_nozzle) {
 
     translate([block_width(-0.5), block_width(-0.5), block_height(2, block_height=block_height)]) {
-        cube([block_width(10), block_width(10), block_height(3, block_height=block_height)]);
+        cube([block_width(10), block_width(10), block_height(4, block_height=block_height)]);
     }
 }

@@ -52,6 +52,9 @@ length = 39.5;
 // Board space width [mm]
 width = 39.5;
 
+// Board space height [mm]
+thickness = 1.8;
+
 h = 2;
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
@@ -65,9 +68,6 @@ twist_length = 2;
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees
 twist_width = 2;
-
-// Board space height [mm]
-thickness = 1.8;
 
 // Step in from board space edges to support the board [mm]
 innercut = 1.0;
