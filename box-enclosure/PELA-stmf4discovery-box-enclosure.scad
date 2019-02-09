@@ -31,7 +31,7 @@ use <PELA-box-enclosure.scad>
 /* [STM F4 Discovery Box Enclosure] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -40,10 +40,10 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the enclosure including two for walls (PELA knob count)
-l = 14;
+l = 14; // [1:1:20]
 
 // Width of the enclosure including two for walls (PELA knob count)
-w = 10;
+w = 10; // [1:1:20]
 
 // Height of the enclosure including one for floor (PELA block layer count)
 h = 3.2;
@@ -75,11 +75,11 @@ end_sheaths = 1; // [0:disabled, 1:enabled]
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
-// Add holes in the bottom deck to improve airflow and reduce weight (only used with bottom_type==2, knob panel)
+// Add holes in the bottom deck to improve airflow and reduce weight (only used with bottom_type == 2, knob panel)
 bottom_vents = false;
 
 // Size of a hole in the top surface of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
-knob_vent_radius = 0.0;
+knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // There is usually no need or room for corner mounting M3 bolt holes
 corner_bolt_holes = true;

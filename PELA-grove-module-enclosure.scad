@@ -25,7 +25,7 @@ use <support/support.scad>
 /* [SEEED Grove Module Knob Enclosure] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -34,13 +34,13 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the enclosure [blocks]
-l = 4; 
+l = 4; // [1:1:20]
 
 // Width of the enclosure [blocks]
-w = 2;
+w = 2; // [1:1:20]
 
 // Height of HALF the enclosure [blocks]
-h = 2;
+h = 2; // [1:1:20]
 
 // Render the lower section
 show_bottom_piece = true;
