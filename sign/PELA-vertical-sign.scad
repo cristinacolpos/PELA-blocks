@@ -32,10 +32,12 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 
+
+
 /* [Vertical Sign] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -44,13 +46,13 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the sign (PELA knob count)
-l = 9; 
+l = 9; // [1:1:20]
 
 // Width of the sign (PELA knob count)
-w = 1;
+w = 1; // [1:1:20]
 
 // Height of the sign (PELA block layers)
-h = 2;
+h = 2; // [1:1:20]
 
 // The top line of text. Set to "" to not have any top line
 line_1 = "Rapid Prototyping";
@@ -111,6 +113,11 @@ top_vents = true;
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
+
+
+/* [Hidden] */
+
+
 
 
 

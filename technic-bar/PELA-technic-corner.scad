@@ -32,7 +32,7 @@ use <../technic-bar/PELA-technic-bar.scad>
 /* [Technic Corner] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -76,8 +76,8 @@ module pi3_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_lin
             }
         }
 
-        translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, w=l1, l=l1, cut_line=cut_line, h=1, block_width=block_width, block_height=block_height, knob_height=knob_height);
+#        translate([block_width(-0.5, block_width=block_width) + cos(angle)*block_width(l1, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
+            cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=1, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
     }
 }

@@ -40,7 +40,7 @@ use <PELA-block.scad>
 /* [Technic Block] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -48,14 +48,14 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-// Length [blocks]
-l = 4;
+// Model length [blocks]
+l = 4; // [1:1:20]
 
-// Width [blocks]
-w = 4;
+// Model width [blocks]
+w = 4; // [1:1:20]
 
-// Height [blocks]
-h = 2;
+// Model height [blocks]
+h = 2; // [1:1:20]
 
 
 /* [Block Features] */
@@ -76,7 +76,7 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.6;
+bolt_hole_radius = 1.6; // [0.0:0.1:2.0]
 
 // Add interior fill for upper layers
 solid_upper_layers = true;
@@ -88,7 +88,7 @@ solid_first_layer = false;
 /* [Technic Features] */
 
 // Add full width through holes spaced along the length for PELA Techics connectors
-side_holes = 3; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Add a wrapper around technic side holes (only used if there are side hole connectors, disable for extra ventilation but loose pin lock notches)
 side_sheaths = true;
@@ -103,7 +103,7 @@ end_sheaths = true;
 top_vents = false;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
-knob_vent_radius = 0.0;
+knob_vent_radius = 0.0; // [0.0:0.1:3.9] // [0.0:0.1:3.9]
 
 
 
@@ -222,9 +222,9 @@ module side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l
     
     sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material, axle_hole_tweak);
 
-    sheath_length = side_holes==2 ? block_width(l, block_width=block_width) : block_width(1, block_width=block_width);
+    sheath_length = side_holes == 2 ? block_width(w, block_width=block_width) : block_width(1, block_width=block_width);
     
-    if (l==1) {
+    if (l == 1) {
         translate([block_width(0.5), 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
             rotate([-90, 0, 0]) {
                 sheath(material=material, large_nozzle=large_nozzle, sheath_radius=sheath_radius, sheath_length=sheath_length, skin=skin);
@@ -260,9 +260,9 @@ module end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=
     
     sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material, axle_hole_tweak);
 
-    sheath_length = end_holes==2 ? block_width(w, block_width=block_width) : block_width(1, block_width=block_width);
+    sheath_length = end_holes == 2 ? block_width(l, block_width=block_width) : block_width(1, block_width=block_width);
 
-    if (w==1) {
+    if (w == 1) {
         translate([0, block_width(0.5), block_height(1)-block_width(0.5, block_width=block_width)]) {
 
             rotate([0, 90, 0]) {
@@ -318,9 +318,9 @@ module double_side_connector_hole_set(material=material, large_nozzle=large_nozz
 // A row of knob-size holes around the sides of row 1
 module side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, block_width=block_width, hole_type=undef, block_height=block_height, axle_hole_radius=undef) {
     
-    length = hole_type==2 ? block_width(w, block_width=block_width) : block_width(1, block_width=block_width);
+    length = hole_type == 2 ? block_width(w, block_width=block_width) : block_width(1, block_width=block_width);
 
-    if (l==1) {
+    if (l == 1) {
         translate([block_width(0.5) - defeather, 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
             rotate([-90, 0, 0]) {
                 axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);

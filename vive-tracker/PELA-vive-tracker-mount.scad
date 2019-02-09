@@ -37,7 +37,7 @@ use <../threads/threads.scad>
 /* [HTC Vive Tracker Mount] */
 
 // Show the inside structure [mm]
-cut_line = 0;
+cut_line = 0; // [0:1:100] // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -46,7 +46,7 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the block [blocks]
-l = 6; 
+l = 6; // [1:1:20]
 
 // Add interior fill for the base layer
 solid_first_layer = false;
@@ -55,7 +55,7 @@ solid_first_layer = false;
 corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.5;
+bolt_hole_radius = 1.6; // [0.0:0.1:2.0]
 
 // Distance between Vive connector pins
 pin_spacing = 3.5;
@@ -64,8 +64,8 @@ pin_spacing = 3.5;
 
 /* [Hidden] */
 
-// Width of the block [blocks]
-w = 6;
+// Model width [blocks]
+w = 6; // [1:1:20]
 
 // Vive pin dimensions
 d1 = 3.2;

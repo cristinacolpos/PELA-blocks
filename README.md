@@ -250,21 +250,9 @@ ___
 
 ___
 
-[![PELA Velcro Mount](images/PELA-velcro-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-velcro-mount.stl)
+[![PELA Strap Mount](images/PELA-strap-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-strap-mount.stl)
 
-[3D PELA Velcro Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-velcro-mount.stl) For attaching using Velcro or similar straps through the bottom slot.
-
-___
-
-[![PELA Vive Velcro Mount](images/PELA-vive-velcro-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vive-velcro-mount.stl)
-
-[3D PELA Velcro Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vive-velcro-mount.stl) For attaching the HTC Vive Tracker or other sensors using Velcro or similar straps. Use this for example to attach position sensors to your shoes.
-
-___
-
-[![PELA Raspberry Pi 3 Board Mount](images/PELA-raspberry-pi3-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-knob-mount.stl)
-
-[3D PELA Raspberry Pi 3 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-raspberry-pi3-knob-mount.stl) A base allowing snap-in holding of the board with full connector access and optional top cover
+[3D PELA Strap Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-strap-mount.stl) For attaching using strap or similar straps through the bottom slot.
 
 ___
 
