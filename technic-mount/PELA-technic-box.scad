@@ -27,7 +27,7 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../technic-bar/PELA-technic-bar.scad>
-use <../technic-bar/PELA-technic-bar.scad>
+use <../technic-bar/PELA-technic-twist-bar.scad>
 
 
 /* [Technic Corner] */
@@ -41,24 +41,23 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-// Length of the first bar [blocks]
-l1 = 4; // [1:1:20]
+// Total width [blocks]
+w = 4; // [2:1:20]
 
-// Length of the second bar [blocks]
-l2 = 4; // [1:1:20]
+// Distance from width ends of connector twist [blocks]
+twist_w = 1; // [1 : 18]
+
+// Total length [blocks]
+l = 4; // [2:1:20]
+
+// Distance from length ends of connector twist [blocks]
+twist_l = 1; // [1 : 18]
 
 // Length of the bars [blocks]
 h = 1; // [1:1:20]
 
-// Fill the block interior
-solid_center = false;
-
-
-
-/* [Technic Corner] */
-
-// Angle between the front and sides
-angle = 90;
+// Interior fill style
+center = 2; // [0:empty, 1:solid, 2:cheese holes]
 
 
 
@@ -67,7 +66,7 @@ angle = 90;
 // DISPLAY
 ///////////////////////////////
 
-technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h);
+technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, twist_w=twist_w, l=l, twist_l=twist_l, h=h, center=center);
 
 
 
@@ -76,58 +75,127 @@ technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=
 // MODULES
 ///////////////////////////////////
 
-module technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h) {
+module technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, twist_w=twist_w, l=l, twist_l=twist_l, h=h, center=center) {
 
-/*    technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h);
+    echo("w", w);
+    echo("twist_w", twist_w);
+    echo("l", l);
+    echo("twist_l", twist_l);
+    echo("h", h);
+
+    assert(w >= 2, "w must be at least 2");
+    assert(twist_w > 0, "twist_w must be at least 1");
+    assert(l >= 2, "l must be at least 2");
+    assert(twist_l > 0, "twist_l must be at least 1");
+    assert(center >= 0, "center must be at least 0");
+    assert(center <= 2, "center must be at most 2");
+
+    tl = min(twist_l, ceil(l/2));
+    l1 = tl;
+    l3 = l1;
+    l2 = max(0, l - l1 - l3);
+    tw = min(twist_w, ceil(w/2));
+    w1 = tw;
+    w3 = w1;
+    w2 = max(0, w - w1 - w3);
 
     difference() {
         union() {
-            translate([block_width(l1 - 1, block_width=block_width), block_width(l2 - 1, block_width=block_width), 0]) {
-                rotate([0, 0, 180]) {
-                    technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h);
+            for (i = [1:h]) {
+                translate([0, 0, block_height(i-1, block_height=block_height)]) {
+                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
+                }
+            }
+            
+            if (center > 0) {
+                difference() {
+                    translate([block_width(0.5, block_width=block_width), block_width(0.5, block_width=block_width), 0]) {
+                        cube([block_width(l-2, block_width=block_width), block_width(w-2, block_width=block_width), block_height(h, block_height=block_height)]);
+                    }
+                        
+                    if (center == 2) {
+                        cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, l1=l1, l2=l2, w1=w1, w2=w2);
+                    }
                 }
             }
         }
-
-        translate([block_width(-0.5, block_width=block_width) + cos(angle)*block_width(l1, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        
+        translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
+            cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
     }
-*/
-
-    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef);
 }
 
 
-module technic_rectangle(material=material, large_nozzle=large_nozzle, l1, l2, l3, w1, w2, w3) {
+module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef) {
 
-    assert(twist_length >= 0, "twist_length must be >= 0");
-    assert(twist_width >= 0, "twist_length must be >= 0");
-    assert(length_padding >= 0, "length_padding must be >= 0");
-    assert(length_padding <= 2, "length_padding must be <= 2");
-    assert(width_padding >= 0, "width_padding must be >= 0");
-    assert(width_padding <= 2, "width_padding must be <= 2");
-    assert(twist_length*2 <= l, "twist_length must <= l/2, please reduce twist_length or increate LENGTH");
-    assert(twist_width*2 <= w, "twist_width must <= w/2, please reduce twist_width or increate WIDTH");
+    echo("w1", w1);
+    echo("w2", w2);
+    echo("w3", w3);
+    echo("l1", l1);
+    echo("l2", l2);
+    echo("l3", l3);
+
+    assert(l1 > 0, "increase first l section to 1");
+    assert(l2 >= 0, "increase second l section to 0");
+    assert(l3 > 0,"increase third l section to 1");
+    assert(w1 > 0, "increase first w section to 1");
+    assert(w2 >= 0, "increase second w section to 0");
+    assert(w3 > 0, "increase third w section to at least 1");
 
     ll = l1+l2+l3;
     ww = w1+w2+w3;
 
-color("red")    technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
+    technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
 
     rotate([0, 0, 90]) {
-color("yellow")        technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
+        technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
     }
 
     translate([0, block_width(ww-1), 0]) {
-color("silver")        technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
+        technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
     }
 
     rotate([0, 0, 90]) {
         translate([0, -block_width(ll-1), 0]) {
-color("orange")            technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
+            technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
         }
     }
 }
 
+
+module cheese_holes(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, l1=undef, l2=undef, w1=undef, w2=undef) {
+    
+    if (l2 > 0) {
+        side_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l1=l1, l2=l2, h=h, block_width=block_width, block_height=block_height);
+    }
+    
+    if (w2 > 0) {
+        end_cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w1=w1, w2=w2, h=h, block_width=block_width, block_height=block_height);
+    }
+}
+
+
+module side_cheese_holes(material=undef, large_nozzle=undef, w=undef, l1=undef, l2=undef, h=undef, block_width=block_width, block_height=block_height) {
+    
+    for (i = [0:l2-1]) {
+        for (j = [0:h-1]) {
+            translate([block_width(l1+i, block_width=block_width), block_width(-0.5, block_width=block_width), block_height(0.5+j, block_height=block_height)]) {
+                rotate([-90, 0, 0]) {
+                    axle_hole(material=material, large_nozzle=large_nozzle, hole_type=2, radius=override_axle_hole_radius(material), length=block_width(w, block_width=block_width));
+                }
+
+            }
+        }
+    }    
+}
+
+
+module end_cheese_holes(material=undef, large_nozzle=undef, l=undef, w1=undef, w2=undef, h=undef, block_width=undef, block_height=undef) {
+
+    translate([block_width(l-1), 0, 0]) {
+        rotate([0, 0, 90]) {
+            side_cheese_holes(material=material, large_nozzle=large_nozzle, w=l, l1=w1, l2=w2, h=h, block_width=block_width, block_height=block_height);
+        }
+    }
 }

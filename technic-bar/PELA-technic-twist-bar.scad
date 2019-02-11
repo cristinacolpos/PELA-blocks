@@ -94,7 +94,8 @@ module technic_twist_bar(material=material, large_nozzle=large_nozzle, cut_line=
 }
 
 
-module square_end_bar(material=material, large_nozzle=large_nozzle, l=4) {
+module square_end_bar(material=material, large_nozzle=large_nozzle, l=undef) {
+
     intersection() {
         translate([-block_width(1), 0, 0]) {
             technic_bar(material=material, large_nozzle=large_nozzle, l=l+2);
@@ -105,7 +106,8 @@ module square_end_bar(material=material, large_nozzle=large_nozzle, l=4) {
 }
 
 
-module right_square_end_bar(material=material, large_nozzle=large_nozzle, l=4) {
+module right_square_end_bar(material=material, large_nozzle=large_nozzle, l=undef) {
+
     intersection() {
         translate([-block_width(1), 0, 0]) {
             technic_bar(material=material, large_nozzle=large_nozzle, l=l+1);
@@ -116,7 +118,8 @@ module right_square_end_bar(material=material, large_nozzle=large_nozzle, l=4) {
 }
 
 
-module left_square_end_bar(material=material, large_nozzle=large_nozzle, l=4) {
+module left_square_end_bar(material=material, large_nozzle=large_nozzle, l=undef) {
+
     translate([block_width(l-1), 0, block_height()]) {
         rotate([0, 180, 0]) {
             right_square_end_bar(material=material, large_nozzle=large_nozzle, l=l);
@@ -125,7 +128,8 @@ module left_square_end_bar(material=material, large_nozzle=large_nozzle, l=4) {
 }
 
 
-module bar_space(material=material, large_nozzle=large_nozzle, l=4) {
+module bar_space(material=material, large_nozzle=large_nozzle, l=undef) {
+
     translate([block_width(-0.5), block_width(-0.5), 0]) {
         skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=1, h=1, skin=0, block_height=8);
     }
