@@ -137,29 +137,6 @@ module technic_board_mount(material=material, large_nozzle=large_nozzle, cut_lin
 }
 
 
-module technic_rectangle(material=material, large_nozzle=large_nozzle, l1, l2, l3, w1, w2, w3) {
-
-    ll = l1+l2+l3;
-    ww = w1+w2+w3;
-
-    technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
-
-    rotate([0, 0, 90]) {
-        technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
-    }
-
-    translate([0, block_width(ww-1), 0]) {
-        technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
-    }
-
-    rotate([0, 0, 90]) {
-        translate([0, -block_width(ll-1), 0]) {
-            technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
-        }
-    }
-}
-
-
 module technic_rectangle_infill(material=material, large_nozzle=large_nozzle, l, w) {
     
     translate([block_width(0.5, block_width=block_width)-skin, block_width(0.5, block_width=block_width)-skin, 0]) {

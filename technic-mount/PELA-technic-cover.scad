@@ -32,7 +32,7 @@ use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 use <../PELA-socket-panel.scad>
 use <PELA-raspberry-pi3-technic-mount.scad>
-include <PELA-technic-board-mount.scad>
+include <PELA-technic-box.scad>
 
 
 /* [Technic Cover] */
@@ -68,6 +68,13 @@ solid_first_layer = false;
 block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 
+
+/* [Hidden] */
+
+
+
+
+
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
@@ -82,13 +89,6 @@ technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l
 
 module technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, sockets=sockets, solid_first_layer=solid_first_layer) {
 
-    assert(twist_length >= 0, "twist_length must be >= 0");
-    assert(twist_width >= 0, "twist_length must be >= 0");
-    assert(length_padding > 0, "length_padding must be > 0 (usually 1 to 1.5)");
-    assert(width_padding > 0, "width_padding must be > 0 (usually 1 to 1.5)");
-    assert(twist_length*2 <= l, "twist_length must <= l/2, please reduce twist_length or increate LENGTH");
-    assert(twist_width*2 <= w, "twist_width must <= w/2, please reduce twist_width or increate WIDTH");
-
     l = fit_mm_to_blocks(length, length_padding);
     w = fit_mm_to_blocks(width, width_padding);
 
@@ -98,8 +98,9 @@ module technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_
     union() {
         technic_rectangle(material=material, large_nozzle=large_nozzle, l1=twist_length, l2=l2, l3=twist_length, w1=twist_width, w2=w2, w3=twist_width);
         
-        translate([block_width(0.5), block_width(0.5), 0]) {
+/*        translate([block_width(0.5), block_width(0.5), 0]) {
             socket_panel(material=material, large_nozzle=large_nozzle, l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
         }
+*/        
     }        
 }
