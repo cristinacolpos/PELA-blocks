@@ -40,13 +40,13 @@ large_nozzle = true;
 length = 114.5;
 
 // How close to the object ends should the walls be [ratio]
-length_padding = 2; // [0:tight, 1:+1 block, 2:+2 blocks]
+l_pad = 2; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Width of the enclosed object [mm]
 width = 38.5;
 
 // How close to the object sides should the walls be [ratio]
-width_padding = 2; // [0:tight, 1:+1 block, 2:+2 blocks]
+w_pad = 2; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Height of the enclosed object [mm]
 height = 12.5;
@@ -86,8 +86,8 @@ intel_compute_stick_box_enclosure();
 /////////////////////////////////////
 
 module intel_compute_stick_box_enclosure(material=material) {
-    l = fit_mm_to_blocks(length, length_padding);
-    w = fit_mm_to_blocks(width, width_padding);
+    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
+    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
     h = 2;
 
     difference() {
@@ -133,7 +133,7 @@ module end_access(material=material, large_nozzle=large_nozzle, l, w, h, length=
 }
 
 
-module side_access(material=material, large_nozzle=large_nozzle, l, w, h, block_height=block_height) {
+module side_access(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, block_height=block_height) {
     z = block_height(1, block_height=block_height);
 
     translate([block_width(2), -defeather, z]) {
@@ -151,7 +151,7 @@ module side_access(material=material, large_nozzle=large_nozzle, l, w, h, block_
 
 
 // The open space below the stick for air ventilation
-module intel_compute_stick_descender(material=material, large_nozzle=large_nozzle, w, l, block_height=block_height) {
+module intel_compute_stick_descender(material=undef, large_nozzle=undef, w=undef, l=undef, block_width=block_width, block_height=block_height) {
 
     descender_offset = 2;
 
@@ -162,10 +162,10 @@ module intel_compute_stick_descender(material=material, large_nozzle=large_nozzl
 }
 
 
-module intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, block_height=block_height) {
+module intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, block_width=block_width, block_height=block_height) {
 
-    l=fit_mm_to_blocks(length, length_padding);
-    w=fit_mm_to_blocks(width, width_padding);
+    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
+    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
-    socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, solid_first_layer=solid_first_layer, block_height=block_height);
+    socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, solid_first_layer=solid_first_layer, block_width=block_width, block_height=block_height);
 }

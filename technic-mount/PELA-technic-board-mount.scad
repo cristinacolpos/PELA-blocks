@@ -29,9 +29,9 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
-use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
+use <PELA-technic-box.scad>
 
 
 
@@ -55,19 +55,23 @@ width = 39.5;
 // Board space height [mm]
 thickness = 1.8;
 
-h = 2;
+// Closeness of board fit lengthwise [blocks]
+l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
-// Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+// Closeness of board fit widthwise [blocks]
+w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
-// Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+// Height of the model [blocks]
+h = 1; // [1:1:20]
 
-// How many blocks in from length ends do the technic holes rotate 90 degrees
-twist_length = 2;
+// Interior fill style
+center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
 
-// How many blocks in from width ends do the technic holes rotate 90 degrees
-twist_width = 2;
+// Distance from length ends of connector twist [blocks]
+twist_l = 2;
+
+// Distance from width ends of connector twist [blocks]
+twist_w = 2;
 
 // Step in from board space edges to support the board [mm]
 innercut = 1.0;
@@ -79,7 +83,7 @@ innercut = 1.0;
 // DISPLAY
 ///////////////////////////////
 
-technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut);
+technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut);
 
 
 
@@ -87,46 +91,34 @@ technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_l
 // MODULES
 ///////////////////////////////////
 
-module technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+module technic_board_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, thickness=undef, innercut=undef) {
 
-    assert(twist_length == floor(twist_length), "twist_length must be an integer");
-    assert(twist_width == floor(twist_width), "twist_width must be an integer");
-    assert(twist_length >= 0, "twist_length must be >= 0");
-    assert(twist_width >= 0, "twist_length must be >= 0");
-    assert(length_padding == floor(length_padding), "length_padding must be an integer");
-    assert(length_padding >= 0, "length_padding must be >= 0");
-    assert(length_padding <= 2, "length_padding must be <= 2");
-    assert(width_padding == floor(width_padding), "width_padding must be an integer");
-    assert(width_padding >= 0, "width_padding must be >= 0");
-    assert(width_padding <= 2, "width_padding must be <= 2");
-    assert(twist_length*2 <= l, "twist_length must <= l/2, please reduce twist_length or increate LENGTH");
-    assert(twist_width*2 <= w, "twist_width must <= w/2, please reduce twist_width or increate WIDTH");
+    assert(l_pad == floor(l_pad), "l_pad must be an integer");
+    assert(l_pad >= 0, "l_pad must be >= 0");
+    assert(l_pad <= 2, "l_pad must be <= 2");
+    assert(w_pad == floor(w_pad), "w_pad must be an integer");
+    assert(w_pad >= 0, "w_pad must be >= 0");
+    assert(w_pad <= 2, "w_pad must be <= 2");
 
-    l = fit_mm_to_blocks(length, length_padding);
-    w = fit_mm_to_blocks(width, width_padding);
+    echo("length", length);
+    echo("l_pad", l_pad);
+    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
+    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
     echo("l", l);
     echo("w", l);
 
-    assert(l - 2*twist_length, "The board length is quite small- consider decreasing twist_length or increasing length_padding");
-    assert(w - 2*twist_width, "The board width is quite small- consider decreasing twist_width or increasing width_padding");
-
-    l1 = twist_length;
-    l3 = l1;
-    l2 = l - l1 - l3;
-    w1 = twist_width;
-    w3 = w1;
-    w2 = w - w1 - w3;
+    assert(l - 2*twist_l, "The board length is quite small- consider decreasing twist_l or increasing l_pad");
+    assert(w - 2*twist_w, "The board width is quite small- consider decreasing twist_w or increasing w_pad");
 
     difference() {
-        union() {
-            technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3);
-
-            technic_rectangle_infill(material=material, large_nozzle=large_nozzle, l=l, w=w);
-        }
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, twist_w=twist_w, l=l, twist_l=twist_l, h=h, center=center);
         
         union() {
-            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
-            main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, innercut=innercut, block_height=block_height);
+            color("green") main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, block_height=block_height);
+
+            translate([innercut, innercut, 0]) {            
+                main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length-2*innercut, width=width-2*innercut, block_height=block_height);
+            }
 
             translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
                 
@@ -137,31 +129,25 @@ module technic_board_mount(material=material, large_nozzle=large_nozzle, cut_lin
 }
 
 
-module technic_rectangle_infill(material=material, large_nozzle=large_nozzle, l, w) {
+module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef, block_height=undef) {
     
-    translate([block_width(0.5, block_width=block_width)-skin, block_width(0.5, block_width=block_width)-skin, 0]) {
-        cube([block_width(l-2, block_width=block_width)+2*skin, block_width(w-2, block_width=block_width)+2*skin, block_height()]);
+    l2 = block_width(l, block_width=block_width);
+    w2 = block_width(w, block_width=block_width);
+
+    translate([block_width(-2.5) + (l2-l)/2, block_width(-2.5) + (w2-w)/2, block_height(h, block_height=block_height) - thickness]) {
+        
+        cube([length, width, thickness + defeather]);
     }
 }
 
 
-module main_board(material=material, large_nozzle=large_nozzle, l, w, length=length, width=width, thickness=thickness, block_height=block_height) {
-    
-    l2 = ((block_width(l, block_width=block_width) - length) / 2);
-    w2 = ((block_width(w, block_width=block_width) - width) / 2);
+module main_board_back(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, block_height=undef) {
 
-    translate([l2-block_width(0.5), w2-block_width(0.5), block_height(1, block_height=block_height) - thickness]) {
-        color("blue") cube([length, width, thickness*2]);
-    }
-}
+    l2 = block_width(l, block_width=block_width);
+    w2 = block_width(w, block_width=block_width);
 
-
-module main_board_back(material=material, large_nozzle=large_nozzle, l, w, length=length, width=width, innercut=innercut, block_height=block_height) {
-    
-    l2 = ((block_width(l - 0.25) - length) / 2);
-    w2 = ((block_width(w - 0.25) - width) / 2);
-
-    translate([l2, w2, -block_height(block_height=block_height)]) {
-        color("green") cube([length-2*innercut-block_width(0.25), width-2*innercut-block_width(0.25), block_height(2, block_height=block_height)]);
+    translate([block_width(-2.5) + (l2-l)/2, block_width(-2.5) + (w2-w)/2, -defeather]) {
+        
+        cube([length, width, block_height(h, block_height=block_height) + defeather]);
     }
 }

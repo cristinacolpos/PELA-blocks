@@ -25,15 +25,12 @@ include <../style.scad>
 include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
-use <../pin/PELA-technic-pin.scad>
-use <../box-enclosure/PELA-box-enclosure.scad>
-use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 use <../PELA-socket-panel.scad>
 use <PELA-raspberry-pi3-technic-mount.scad>
-include <PELA-technic-board-mount.scad>
-include <PELA-technic-cover.scad>
+use <PELA-technic-board-mount.scad>
+use <PELA-technic-cover.scad>
 
 /* [Raspberry Pi Technic Cover] */
 
@@ -50,13 +47,13 @@ length = 85.9; // Board space length [mm]
 
 width = 56.4; // Board space width [mm]
 
-length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
-width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
-twist_length = 4; // How many blocks in from  length ends do the technic holes rotate 90 degrees
+twist_l = 4; // How many blocks in from  length ends do the technic holes rotate 90 degrees
 
-twist_width = 3; // How many blocks in from width ends do the technic holes rotate 90 degrees
+twist_w = 3; // How many blocks in from width ends do the technic holes rotate 90 degrees
 
 // Presence of sockets as the center fill
 sockets = true;
@@ -76,4 +73,4 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 // DISPLAY
 ///////////////
 
-technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, sockets=sockets, solid_first_layer=solid_first_layer);
+technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=sockets, solid_first_layer=solid_first_layer);

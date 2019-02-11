@@ -26,11 +26,10 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
-use <../box-enclosure/PELA-box-enclosure.scad>
-use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
-include <PELA-technic-board-mount.scad>
+use <PELA-technic-box.scad>
+use <PELA-technic-board-mount.scad>
 
 
 /* [PIR Technic Mount] */
@@ -50,17 +49,20 @@ length = 20.1;
 // Board space width [mm]
 width = 20.1;
 
+// Height of the model [blocks]
+h = 1; // [1:1:20]
+
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // 90 degree rotation from length ends [blocks]
-twist_length = 1;
+twist_l = 1;
 
 // 90 degree rotation from width ends [blocks]
-twist_width = 2;
+twist_w = 2;
 
 // Board space thickness [mm]
 thickness = 1.8;
@@ -74,7 +76,7 @@ innercut = 2;
 // DISPLAY
 ///////////////////////////////
 
-pir_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut);
+pir_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, innercut=innercut);
 
 
 
@@ -82,7 +84,7 @@ pir_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_lin
 // MODULES
 ///////////////////////////////////
 
-module pir_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut) {
+module pir_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, innercut=undef) {
 
-    technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, length_padding=length_padding, width_padding=width_padding, twist_length=twist_length, twist_width=twist_width, thickness=thickness, innercut=innercut);
+    technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, innercut=innercut);
 }
