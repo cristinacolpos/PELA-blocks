@@ -46,14 +46,20 @@ l1 = 2;
 // Length of the second bar [blocks]
 l2 = 2;
 
+// Length of the bars [blocks]
+h = 1;
+
 // Angle between the two bars
 angle = 90;
+
+
+
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-pi3_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle);
+technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h);
 
 
 
@@ -62,22 +68,22 @@ pi3_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l
 // MODULES
 ///////////////////////////////////
 
-module pi3_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle) {
+module technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h) {
 
     assert(angle >= 65, "Angle must be at least 65 degrees");
     assert(angle <= 295, "Angle must be at least 65 degrees");
 
     difference() {
         union() {
-            technic_bar(material=material, large_nozzle=large_nozzle, l=l1);
+            technic_bar(material=material, large_nozzle=large_nozzle, l=l1, h=h);
 
             rotate([0, 0, angle]) {
-                technic_bar(material=material, large_nozzle=large_nozzle, l=l2);
+                technic_bar(material=material, large_nozzle=large_nozzle, l=l2, h=h);
             }
         }
 
-#        translate([block_width(-0.5, block_width=block_width) + cos(angle)*block_width(l1, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=1, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        translate([block_width(-0.5, block_width=block_width) + cos(angle)*block_width(l1, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
+            cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
     }
 }
