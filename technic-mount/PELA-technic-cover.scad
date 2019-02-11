@@ -31,8 +31,7 @@ use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 use <../PELA-socket-panel.scad>
-use <PELA-raspberry-pi3-technic-mount.scad>
-include <PELA-technic-box.scad>
+use <PELA-technic-box.scad>
 
 
 /* [Technic Cover] */
@@ -50,13 +49,15 @@ length = 35; // Board space length [mm]
 
 width = 35; // Board space width [mm]
 
-length_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
-width_padding = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
-twist_length = 1; // Distance from length ends to rotate 90 degrees [blocks]
+// Distance from length ends of connector twist [blocks]
+twist_l = 2; // [1 : 18]
 
-twist_width = 1; // Distance from width ends to rotate 90 degrees [blocks]
+// Distance from width ends to rotate 90 degrees [blocks]
+twist_w = 2; // [1 : 18]
 
 // Presence of sockets as the center fill
 sockets = true;
@@ -67,9 +68,10 @@ solid_first_layer = false;
 // Basic unit vertical size of each block
 block_height = 8; // [8:technic, 9.6:traditional blocks]
 
+// Height of the model [blocks]
+h = 1; // [1:1:20]
 
 
-/* [Hidden] */
 
 
 
@@ -79,7 +81,7 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 // DISPLAY
 ///////////////////////////////
 
-technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, sockets=sockets, solid_first_layer=solid_first_layer);
+technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_l=twist_l, twist_w=twist_w, l_pad=l_pad, w_pad=w_pad, sockets=sockets, solid_first_layer=solid_first_layer);
 
 
 
@@ -87,20 +89,17 @@ technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l
 // MODULES
 ///////////////////////////////////
 
-module technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_length=twist_length, twist_width=twist_width, length_padding=length_padding, width_padding=width_padding, sockets=sockets, solid_first_layer=solid_first_layer) {
+module technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_l=twist_l, twist_w=twist_w, l_pad=l_pad, w_pad=w_pad, sockets=sockets, solid_first_layer=solid_first_layer) {
 
-    l = fit_mm_to_blocks(length, length_padding);
-    w = fit_mm_to_blocks(width, width_padding);
-
-    l2 = max(0, l - 2*twist_length);
-    w2 = max(0, w - 2*twist_width);
+    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
+    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
     union() {
-        technic_rectangle(material=material, large_nozzle=large_nozzle, l1=twist_length, l2=l2, l3=twist_length, w1=twist_width, w2=w2, w3=twist_width);
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, twist_w=twist_w, l=l, twist_l=twist_l, h=h, center=0);
         
-/*        translate([block_width(0.5), block_width(0.5), 0]) {
+        translate([block_width(0.5), block_width(0.5), 0]) {
             socket_panel(material=material, large_nozzle=large_nozzle, l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
         }
-*/        
+        
     }        
 }

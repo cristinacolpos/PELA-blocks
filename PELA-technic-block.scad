@@ -124,6 +124,12 @@ function is_side_sheaths(side_sheaths=side_sheaths, side_holes=side_holes) = sid
 // Indicates a solid cylinder around end hole connectors
 function is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes) = end_holes > 1 && end_sheaths;
 
+// Find the optimum enclosing horizontal dimension in block units
+function fit_mm_to_blocks(i=undef, padding=undef, block_width=block_width) = ceil((i + block_width(padding+1, block_width=block_width))/block_width);
+
+// Find the optimum enclosing vertical dimension in block units
+function fit_mm_to_height_blocks(i=undef, padding=undef, block_height=block_height) = ceil((i + block_height(padding+1, block_height=block_height))/block_height);
+
 
 
 

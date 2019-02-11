@@ -52,7 +52,7 @@ corner_bolt_holes = true;
 knobs = true;
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly manifold shape). 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
-knob_vent_radius = 1.8; // [0.0:0.1:3.9]
+knob_vent_radius = 0; // [0.0:0.1:3.9]
 
 // Presence of bottom socket connectors (vs flat)
 sockets = true;
@@ -77,7 +77,7 @@ solid_first_layer = false;
 // DISPLAY
 ///////////////////////////////
 
-PELA_knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height, knob_vent_radius=knob_vent_radius);
+PELA_knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height, knob_vent_radius=knob_vent_radius, skin=skin);
 
 
 
@@ -86,7 +86,7 @@ PELA_knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line,
 // MODULES
 ///////////////////////////////////
 
-module PELA_knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height, knob_vent_radius=knob_vent_radius) {
+module PELA_knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skip_edge_knobs=skip_edge_knobs, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height, knob_vent_radius=knob_vent_radius, skin=skin) {
 
     hr=panel_height_ratio(block_height=block_height);
 
@@ -97,7 +97,8 @@ module PELA_knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cu
         echo("knob w", w);
         if (l>2 && w>2) {
             translate([block_width(skip_edge_knobs), block_width(skip_edge_knobs), 0]) {
-                top_knob_set(material=material, large_nozzle=large_nozzle, l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=hr, corner_bolt_holes=false, block_height=block_height, knob_vent_radius=knob_vent_radius);
+                
+                top_knob_set(material=material, large_nozzle=large_nozzle, l=l-2*skip_edge_knobs, w=w-2*skip_edge_knobs, h=hr, corner_bolt_holes=false, block_height=block_height);
             }
         }
     } else {

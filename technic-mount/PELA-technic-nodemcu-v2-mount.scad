@@ -69,7 +69,7 @@ usb_height = block_height() + 4.8;
 // DISPLAY
 ///////////////////////////////
 
-board_mount(material=material, large_nozzle=large_nozzle, length=length, length_padding=length_padding, width=width, width_padding=width_padding);
+board_mount(material=material, large_nozzle=large_nozzle, length=length, l_pad=l_pad, width=width, w_pad=w_pad);
 
 
 
@@ -77,10 +77,10 @@ board_mount(material=material, large_nozzle=large_nozzle, length=length, length_
 // MODULES
 ///////////////////////////////////
 
-module board_mount(material=material, large_nozzle=large_nozzle, length=length, length_padding=length_padding, width=width, width_padding=width_padding) {
+module board_mount(material=undef, large_nozzle=undef, length=undef, l_pad=undef, width=undef, w_pad=undef) {
 
-  l = fit_mm_to_blocks(length, length_padding);
-  w = fit_mm_to_blocks(width, width_padding);
+  l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
+  w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
   difference() {
     union() {
