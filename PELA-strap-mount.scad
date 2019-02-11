@@ -77,7 +77,7 @@ side_sheaths = true;
 // DISPLAY
 ///////////////////////////////
 
-strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height);
+strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, l=l, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height);
 
 
 
@@ -85,24 +85,31 @@ strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l
 // MODULES
 ///////////////////////////////////
 
-module strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
+module strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, l=l, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
 
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height);
+        union() {
+            difference() {
+                PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height);
 
-        slot(l=l, w=w, block_height=block_height);
-    }
+                slot(l=l, w=w, block_height=block_height);
+            }
 
-    if (sockets) {
-        height = max(knob_height + skin, panel_height_ratio*panel_height(block_height=block_height));
+            if (sockets) {
+                height = max(knob_height + skin, panel_height_ratio*panel_height(block_height=block_height));
 
-        translate([block_width(1)- side_shell, 0, height]) {
-            cube([side_shell, block_width(w), block_height(h) - height]);
+                translate([block_width(1)- side_shell, 0, height]) {
+                    cube([side_shell, block_width(w), block_height(h) - height]);
+                }
+
+                translate([block_width(l-1), 0, height]) {
+                    cube([side_shell, block_width(w), block_height(h) - height]);
+                }
+            }
         }
+        
+        cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
 
-        translate([block_width(l-1), 0, height]) {
-            cube([side_shell, block_width(w), block_height(h) - height]);
-        }
     }
 }
 
