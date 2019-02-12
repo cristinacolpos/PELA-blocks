@@ -61,7 +61,7 @@ bottom_stiffener_height = 9.6;
 top_vents = false;
 
 
-/* [Grove Module Options] */
+/* [Grove Module] */
 
 // Grove sensor board size
 grove_width = 20;
@@ -87,8 +87,8 @@ connector_height = 5;
 // USB conncector negative space length (to push some distance beyond the enclosure)
 connector_length = 50;
 
-// Additional space around the module for easly slotting the module into a surrounding case (make this bigger if the board fits too tightly)
-mink = 0.25;
+// Additional space around the module for easly slotting the module into a surrounding case [mm]
+mink = 0.25; // [0:.05:1]
 
 // Length of the negative space exclusion zone in front of the module
 negative_space_height=100;
@@ -139,10 +139,9 @@ module bottom_piece(material=material, large_nozzle=large_nozzle, cut_line=cut_l
 
             double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
         }
-
     
         union() {
-            translate([(block_width(4)-grove_width)/2, side_shell, vertical_offset(block_height=block_height)]) {
+            translate([(block_width(4)-grove_width)/2, side_shell(large_nozzle), vertical_offset(block_height=block_height)]) {
                 rotate([0, -90, 270]) {
                     grove(material=material);
                 }
@@ -177,7 +176,7 @@ module top_piece(material=material, large_nozzle=large_nozzle, cut_line=cut_line
                         }
 
                         translate([0, 0, support_connection_height]) {
-                            cube([block_width(l), block_width(w+1), block_height(h, block_height=block_height)]);
+                            cube([block_width(l), block_width(w+1), block_height(h, block_height)]);
                         }
                     }
                 }
@@ -234,7 +233,7 @@ module main_top_piece_space(material=material, large_nozzle=large_nozzle, l=l, w
 // Supports to prevent the long overhangs from drooping
 module top_supports(material=material) {
     support_side_length=4;
-    height = block_height(h) - 1.95 - skin;
+    height = block_height(h, block_height) - 1.95 - skin;
     h2 = 9.6;
     end_h = 4.68;
     end_x = 1;

@@ -41,7 +41,7 @@ l = 2; // [1:1:20]
 
 block_height=9.6;
 
-top_width = block_width(w);
+top_width = block_width(w, block_width);
 
 top_length = block_width(l);
 

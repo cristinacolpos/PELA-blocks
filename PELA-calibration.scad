@@ -65,10 +65,10 @@ calibration_block_increment = 0.02;
 text_extrusion_height = 0.4;
 
 // Inset from block edge for text (vertical and horizontal)
-vertical_text_margin = 4;
+vertical_text_margin = 3.8;
 
 // Inset from block edge for text (vertical and horizontal)
-horizontal_text_margin = 0;
+horizontal_text_margin = 1;
 
 side_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
@@ -76,10 +76,10 @@ side_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full wi
 font = "Arial";
 
 // Text size on calibration blocks
-font_size = 5 - (block_height < 9.6 ? 1.5 : 0);
+font_size = 4.8 - (block_height < 9.6 ? 1.5 : 0);
 
 // Text size on calibration blocks
-font_size2 = 4 - (block_height < 9.6 ? 0.5 : 0);
+font_size2 = 3.8 - (block_height < 9.6 ? 0.5 : 0);
 
 
 ///////////////////////////////
@@ -108,7 +108,7 @@ module PELA_calibration_bar(material=material, large_nozzle=large_nozzle, bar_le
     for (i = [from:to]) {
         cal = i*calibration_block_increment;
         
-        translate([i*block_width(l), 2*i, 0]) {
+        translate([i*(block_width(l)-side_shell(large_nozzle)), 2*i, 0]) {
 
             PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, side_holes=side_holes, block_height=block_height);
         }
@@ -123,7 +123,7 @@ module PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l,
         PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, side_holes=side_holes, side_sheaths=true, end_holes=0, block_height=block_height, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
 
         union() {
-            translate([skin+horizontal_text_margin, skin+text_extrusion_height, skin+block_height(h, block_height=block_height)-vertical_text_margin]) {
+            translate([skin+horizontal_text_margin, skin+text_extrusion_height, skin+block_height(h, block_height)-vertical_text_margin]) {
 
                 rotate([90 ,0, 0]) {
                     translate([0, -0.5, 0]) {
@@ -137,7 +137,7 @@ module PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l,
                 }
             }
             
-            translate([block_width(w)-skin-horizontal_text_margin, block_width(w)-text_extrusion_height-skin, skin+vertical_text_margin]) {
+            translate([block_width(w, block_width)-skin-horizontal_text_margin, block_width(w, block_width)-text_extrusion_height-skin, skin+vertical_text_margin]) {
                 
                 rotate([90, 0, 180]) {
                     translate([0, 0.8, 0]) {

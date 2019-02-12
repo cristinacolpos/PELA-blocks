@@ -132,9 +132,9 @@ module technic_board_mount(material=undef, large_nozzle=undef, cut_line=undef, l
 module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef, block_height=undef) {
     
     l2 = block_width(l, block_width=block_width);
-    w2 = block_width(w, block_width=block_width);
+    w2 = block_width(w, block_width);
 
-    translate([block_width(-2.5) + (l2-l)/2, block_width(-2.5) + (w2-w)/2, block_height(h, block_height=block_height) - thickness]) {
+    translate([block_width(-2.5) + (l2-l)/2, block_width(-2.5) + (w2-w)/2, block_height(h, block_height) - thickness]) {
         
         cube([length, width, thickness + defeather]);
     }
@@ -144,10 +144,10 @@ module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef,
 module main_board_back(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, block_height=undef) {
 
     l2 = block_width(l, block_width=block_width);
-    w2 = block_width(w, block_width=block_width);
+    w2 = block_width(w, block_width);
 
     translate([block_width(-2.5) + (l2-l)/2, block_width(-2.5) + (w2-w)/2, -defeather]) {
         
-        cube([length, width, block_height(h, block_height=block_height) + defeather]);
+        cube([length, width, block_height(h, block_height) + defeather]);
     }
 }
