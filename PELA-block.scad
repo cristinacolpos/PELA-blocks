@@ -260,13 +260,14 @@ module knob(material=material, large_nozzle=large_nozzle, knob_height=knob_heigh
 }
 
 // An array of empty cylinders to fit inside a knob_set()
-module knob_flexture_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material) {
+module knob_flexture_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height) {
 
     for (i = [0:l-1]) {
         for (j = [0:w-1]) {
             if (!corner_bolt_holes || !is_corner(x=i, y=j, l=l, w=w)) {
                 translate([block_width(i+0.5), block_width(j+0.5), block_height(h, block_height)]) {
-                    knob_flexture(material=material, large_nozzle=large_nozzle, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, material=material);
+                    
+                    knob_flexture(material=material, large_nozzle=large_nozzle, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius);
                 }
             }
         }
@@ -275,7 +276,7 @@ module knob_flexture_set(material=material, large_nozzle=large_nozzle, l=l, w=w,
 
 
 // The negative space flexture inside a single knob
-module knob_flexture(material=material, large_nozzle=large_nozzle, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, material=material) {
+module knob_flexture(material=material, large_nozzle=large_nozzle, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius) {
 
     if (knob_vent_radius > 0) {
         translate([0, 0, -2*knob_height]) {

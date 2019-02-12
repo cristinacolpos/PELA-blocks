@@ -225,7 +225,7 @@ module respeaker_base(material=material, large_nozzle=large_nozzle) {
 
     translate([block_width(11), block_width(1), block_height(3)]) {
         rotate([0, 180, 0]) {
-            PELA_knob_panel(material=material, large_nozzle=large_nozzle, l=10, w=5, top_vents=false, solid_first_layer=true, corner_bolt_holes=false, knobs=true, sockets=false);
+            knob_panel(material=material, large_nozzle=large_nozzle, l=10, w=5, top_vents=false, solid_first_layer=true, corner_bolt_holes=false, knobs=true, sockets=false);
         }
     }
 }
