@@ -56,7 +56,7 @@ panel_height_ratio = 1.0; // [0.1:0.1:2.0]
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a wrapper around technic side holes (only used if there are side hole connectors, disable for extra ventilation but loose pin lock notches)
+// Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
 end_sheaths = false;
 
 // Presence of top connector knobs
@@ -69,7 +69,7 @@ sockets = false;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a wrapper around technic side holes (only used if there are side hole connectors, disable for extra ventilation but loose pin lock notches)
+// Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
 side_sheaths = true;
 
 

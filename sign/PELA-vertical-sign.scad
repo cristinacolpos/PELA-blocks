@@ -99,13 +99,13 @@ ridge_depth = 0.3;
 // Add full width through holes spaced along the length for PELA Techics connectors
 side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
-// Add a wrapper around Technic side holes (only used if there are side hole connectors, disable for extra ventilation but loose pin lock notches)
+// Add a wrapper around side holes (disable for extra ventilation but loose lock notches)
 side_sheaths = true;
 
 // Add short end holes spaced along the width for PELA Techics connectors
 end_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
-// Add a wrapper around end holes  (only used if there are end hole connectors, disable for extra ventilation but loose pin lock notches)
+// Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
 end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -114,8 +114,6 @@ top_vents = true;
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 corner_bolt_holes = false;
 
-
-/* [Hidden] */
 
 
 
