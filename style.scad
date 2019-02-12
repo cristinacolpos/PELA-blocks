@@ -89,7 +89,7 @@ end_sheaths = true;
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
-// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
+// Size of a hole in the top of each knob. Set 0 to disable for best flexture or enable for air circulation/aesthetics/drain resin
 knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 

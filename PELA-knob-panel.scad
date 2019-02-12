@@ -51,8 +51,8 @@ corner_bolt_holes = true;
 // Presence of top connector knobs (vs flat)
 knobs = true;
 
-// Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly manifold shape). 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well.
-knob_vent_radius = 0; // [0.0:0.1:3.9]
+// Size of a hole in the top of each knob. Set 0 to disable for best flexture or enable for air circulation/aesthetics/drain resin
+knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // Presence of bottom socket connectors (vs flat)
 sockets = true;
