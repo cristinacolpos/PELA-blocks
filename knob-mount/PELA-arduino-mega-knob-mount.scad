@@ -58,8 +58,10 @@ innercut = 1;
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
 
+// Add full width through holes spaced along the length for techic connectors
 side_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
+// Add full width through holes spaced along the width for techic connectors
 end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 side_sheaths = true;
