@@ -36,6 +36,9 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
+// Add interior fill for first layer
+solid_first_layer = true;
+
 // Add interior fill for upper layers
 solid_upper_layers = true;
 
@@ -95,11 +98,14 @@ electric_length = 20.0;
 // Heat ventilation holes in the sides
 side_holes = 1; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
+// Heat ventilation holes in the ends
+end_holes = 1; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors] 
+
 // Heat ventilation holes in the top surface
 top_vents = true;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
-knob_vent_radius = 0.0; // [0.0:0.1:3.9]
+knob_vent_radius = 1.8; // [0.0:0.1:3.9]
 
 
 
@@ -122,7 +128,7 @@ translate([0, block_width(w + 0.5), 0]) {
 
 module motor_enclosure_bottom(material=material) {
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=0, side_holes=side_holes, side_sheaths=0, end_holes=end_holes, knob_vent_radius=0, corner_bolt_holes=corner_bolt_holes);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=knob_vent_radius, side_holes=side_holes, end_holes=end_holes, corner_bolt_holes=corner_bolt_holes);
         
         motor_cutouts(material=material);
     }
@@ -172,7 +178,7 @@ module motor() {
             }
         }
         
-        translate([0, (2*motor_radius-motor_width)/2], 0) {
+        translate([0, (2*motor_radius-motor_width)/2, 0]) {
             cube([motor_round_length+motor_square_length, motor_width, motor_radius*2]);
         }
     }    
