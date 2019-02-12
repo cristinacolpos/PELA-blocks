@@ -77,7 +77,7 @@ openbeam15();
 ///////////////////////////////////
 
 module openbeam15() {
-	PELA_knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, corner_bolt_holes=false, sockets=false, block_height=block_height);
+	knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, corner_bolt_holes=false, sockets=false, block_height=block_height);
 
 	translate([top_width/2, top_length/2, 0]) {
 		cylinder(r=block_width(1/3), h=top_height);

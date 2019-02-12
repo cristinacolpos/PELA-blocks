@@ -119,13 +119,13 @@ module PELA_flat_sign(material=material, large_nozzle=large_nozzle, cut_line=cut
         union() {
             if (extrude) {
                 difference() {
-                    PELA_knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, block_height=block_height);
+                    knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, block_height=block_height);
 
                     PELA_flat_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=0, end_holes=0, corner_bolt_holes=corner_bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height);
                 }
             } else {
                 difference() {
-                    PELA_knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, block_height=block_height);
+                    knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, block_height=block_height);
                     
                     translate([skin, 0, -extrusion_height])
                         PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, block_height=block_height);
