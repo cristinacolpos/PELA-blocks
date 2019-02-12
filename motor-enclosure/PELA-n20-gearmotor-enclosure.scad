@@ -25,7 +25,7 @@ use <../PELA-technic-block.scad>
 
 
 
-/* [N20 Gearmotor Enclosure] */
+/* [Motor Enclosure] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
