@@ -178,18 +178,6 @@ ___
 
 ___
 
-[![PELA Technic Seeed Respeaker Core v2 Top](images/PELA-respeaker-core-v2-top.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-top.stl)
-
-[3D PELA Technic Seeed Respeaker Core v2 Top](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-top.stl) The opaque part of the lid for the Respeaker Core v2 microphone array. Change "two color print" to "true" if you have a dual extruder and the second material is translucent.
-
-___
-
-[![PELA Technic Seeed Respeaker Core v2 Clear Ring](images/PELA-respeaker-core-v2-clear-ring.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-clear-ring.stl)
-
-[3D PELA Technic Seeed Respeaker Core v2 Clear Ring](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-clear-ring.stl) The clear part of the top lid to for the Respeaker Core v2 microphone array. Part of a two color print with the "top" part above. In a two_color_print, the top board mounts are included in this clear material since some overlap these LED viewports.
-
-___
-
 [![PELA Sign](images/PELA-vertical-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vertical-sign.stl)
 
 [3D PELA Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vertical-sign.stl) Change the text to label your designs. Options include front and back text with either etched for raised text.

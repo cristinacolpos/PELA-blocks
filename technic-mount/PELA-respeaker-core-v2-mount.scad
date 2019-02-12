@@ -49,10 +49,12 @@ base_model = true;
 board_model = true;
 
 // Show the top (printed upside down)
-top_model = 0; // [0:disabled, 1:single material, 2:opaque material (1/2), 3:translucent material (2/2)]
+top_model = 1; // [0:disabled, 1:single material, 2:opaque material (1/2), 3:translucent material (2/2)]
 
 // Show the center base piece
 interior_model = true;
+
+
 
 /* [Respeaker Core v2 Technic Mount] */
 
