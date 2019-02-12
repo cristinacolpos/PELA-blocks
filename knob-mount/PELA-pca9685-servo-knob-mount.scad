@@ -60,6 +60,7 @@ undercut = 2.3; // [0:0.1:32]
 // Step in from board space edges to support the board [mm]
 innercut = 1;
 
+// Bottom of enclosure
 bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 // Add holes in the top deck to improve airflow and reduce weight

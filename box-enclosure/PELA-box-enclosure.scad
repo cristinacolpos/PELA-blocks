@@ -50,13 +50,13 @@ h = 2; // [1:1:20]
 // Presence of bottom connector sockets
 sockets = true;
 
-// Add full width through holes spaced along the length for PELA Techics connectors
+// Add full width through holes spaced along the length for techic connectors
 side_holes = 2;  // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Add a wrapper around side holes (disable for extra ventilation, enable for lock notch fit)
 side_sheaths = true;
 
-// Add short end holes spaced along the width for PELA Techics connectors
+// Add short end holes spaced along the width for techic connectors
 end_holes = 3;  // [0:disabled, 1:short air vents, 2:full length connectors, 3:short connectors]
 
 // Add a wrapper around end holes  (disable for extra ventilation but loose lock notches)

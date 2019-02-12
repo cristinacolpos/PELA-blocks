@@ -60,13 +60,13 @@ board_h = 12;
 // Thickness, including some extra for insertion
 board_thickness = 1.8;
 
-// Add full width through holes spaced along the length for PELA Techics connectors
+// Add full width through holes spaced along the length for techic connectors
 side_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a wrapper around side holes (disable for extra ventilation but loose lock notches)
 side_sheaths = true;
 
-// Add short end holes spaced along the width for PELA Techics connectors
+// Add short end holes spaced along the width for techic connectors
 end_holes = 3;  // [0:disabled, 1:short air vents, 2:short connectors, 3:full length connectors]
 
 // Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
