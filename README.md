@@ -190,12 +190,6 @@ ___
 
 ___
 
-[![PELA Openbeam 15 Twist Connector](images/PELA-openbeam15-twist-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-openbeam15-twist-connector.stl)
-
-[3D PELA Openbeam 15 Twist Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-openbeam15-twist-connector.stl) Insert into Openbeam 15 aluminum extrusion and twist 90 degrees to lock. This has the advantage over some other connection types that you do not need access to the ends of the beam which may require disassembly.
-
-___
-
 [![PELA Sign](images/PELA-vertical-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vertical-sign.stl)
 
 [3D PELA Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-vertical-sign.stl) Change the text to label your designs. Options include front and back text with either etched for raised text.
