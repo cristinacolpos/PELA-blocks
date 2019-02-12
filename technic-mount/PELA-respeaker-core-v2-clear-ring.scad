@@ -29,11 +29,10 @@ use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
-use <PELA-technic-respeaker-core-v2-mount.scad>
+use <PELA-respeaker-core-v2-mount.scad>
 
 
-
-/* [Respeaker Core v2 Technic Top] */
+/* [Respeaker Core v2 Technic Cover Clear Ring] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
@@ -44,14 +43,10 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-two_color_print = true;    // Optional local model override of print_style.scad
-
-
-
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
 translate([0, 0, block_height()]) {
-    respeaker_core_v2_technic_top(material=material, large_nozzle=large_nozzle, cut_line=cut_line, two_color_print=two_color_print);
+    clear_ring(material=material);
 }

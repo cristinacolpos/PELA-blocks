@@ -166,27 +166,27 @@ ___
 
 ___
 
-[![PELA Technic NodeMCU v2 Mount](images/PELA-technic-nodemcu-v2-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-knob-mount.stl)
+[![PELA Technic NodeMCU v2 Mount](images/PELA-nodemcu-v2-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-technic-knob-mount.stl)
 
-[3D PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-nodemcu-v2-mount.stl) A technic mount for NodeMCU v2.
-
-___
-
-[![PELA Technic Seeed Respeaker Core v2 Mount](images/PELA-technic-respeaker-core-v2-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respeaker-core-v2-mount.stl)
-
-[3D PELA Technic Seeed Respeaker Core v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respeaker-core-v2-mount.stl) A technic mount for the Respeaker Core v2 microphone array.
+[3D PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-nodemcu-v2-technic-mount.stl) A technic mount for NodeMCU v2.
 
 ___
 
-[![PELA Technic Seeed Respeaker Core v2 Top](images/PELA-technic-respeaker-core-v2-top.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respeaker-core-v2-top.stl)
+[![PELA Technic Seeed Respeaker Core v2 Mount](images/PELA-respeaker-core-v2-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-mount.stl)
 
-[3D PELA Technic Seeed Respeaker Core v2 Top](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respeaker-core-v2-top.stl) The opaque part of the lid for the Respeaker Core v2 microphone array. Change "two_color_print=false" in "material.scad" or two color print this with the "clear ring" part below.
+[3D PELA Technic Seeed Respeaker Core v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-mount.stl) A technic mount for the Respeaker Core v2 microphone array.
 
 ___
 
-[![PELA Technic Seeed Respeaker Core v2 Clear Ring](images/PELA-technic-respeaker-core-v2-clear-ring.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respeaker-core-v2-clear-ring.stl)
+[![PELA Technic Seeed Respeaker Core v2 Top](images/PELA-respeaker-core-v2-top.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-top.stl)
 
-[3D PELA Technic Seeed Respeaker Core v2 Clear Ring](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-technic-respeaker-core-v2-clear-ring.stl) The clear part of the top lid to for the Respeaker Core v2 microphone array. Part of a two color print with the "top" part above. In a two_color_print, the top board mounts are included in this clear material since some overlap these LED viewports.
+[3D PELA Technic Seeed Respeaker Core v2 Top](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-top.stl) The opaque part of the lid for the Respeaker Core v2 microphone array. Change "two_color_print=false" in "material.scad" or two color print this with the "clear ring" part below.
+
+___
+
+[![PELA Technic Seeed Respeaker Core v2 Clear Ring](images/PELA-respeaker-core-v2-clear-ring.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-clear-ring.stl)
+
+[3D PELA Technic Seeed Respeaker Core v2 Clear Ring](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-clear-ring.stl) The clear part of the top lid to for the Respeaker Core v2 microphone array. Part of a two color print with the "top" part above. In a two_color_print, the top board mounts are included in this clear material since some overlap these LED viewports.
 
 ___
 
