@@ -143,7 +143,7 @@ module PELA_vertical_sign(material=material, large_nozzle=large_nozzle, cut_line
         }
 
         if (copy_to_back) {
-            color("green") translate([block_width(l), block_width(w)-skin, 0]) {
+            color("green") translate([block_width(l), block_width(w, block_width)-skin, 0]) {
                 rotate([0, 0, 180]) {
                     PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
                 }
@@ -158,7 +158,7 @@ module PELA_vertical_sign(material=material, large_nozzle=large_nozzle, cut_line
                     PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
 
                 if (copy_to_back) {
-                    translate([block_width(l)-skin, block_width(w)-skin, 0]) {
+                    translate([block_width(l)-skin, block_width(w, block_width)-skin, 0]) {
                         rotate([0, 0, 180]) {
                             PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
                         }
@@ -173,7 +173,7 @@ module PELA_vertical_sign(material=material, large_nozzle=large_nozzle, cut_line
 // Two lines of text extruded out from the surface
 module PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
-    translate([left_margin, 0, block_height(h)-vertical_margin]) {
+    translate([left_margin, 0, block_height(h, block_height)-vertical_margin]) {
         PELA_text(material=material, large_nozzle=large_nozzle, text=line_1, lang=lang, font=f1, font_size=fs1, vertical_alignment="top");
     }
     
@@ -186,7 +186,7 @@ module PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l
 // Two lines of text etched into the surface
 module PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
     
-    translate([left_margin, extrusion_height, block_height(h)-vertical_margin]) {
+    translate([left_margin, extrusion_height, block_height(h, block_height)-vertical_margin]) {
         PELA_text(material=material, large_nozzle=large_nozzle, text=line_1, lang=lang, extrusion_height=extrusion_height, font=f1, font_size=fs1, vertical_alignment="top");
     }
     

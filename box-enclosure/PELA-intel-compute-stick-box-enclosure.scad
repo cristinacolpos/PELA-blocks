@@ -109,11 +109,11 @@ module intel_compute_stick_box_enclosure(material=material) {
 // The space into which a compute stick is lowered from the top
 module intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l, w, h, block_height=block_height) {
     x = (block_width(l) - length) / 2;
-    y = (block_width(w) - width) / 2;
-    z = block_height(h, block_height=block_height) - height;
+    y = (block_width(w, block_width) - width) / 2;
+    z = block_height(h, block_height) - height;
 
     translate([x, y, z]) {
-        cube([length, width, block_height(h, block_height=block_height)]);
+        cube([length, width, block_height(h, block_height)]);
     }
 }
 
@@ -124,11 +124,11 @@ module end_access(material=material, large_nozzle=large_nozzle, l, w, h, length=
     left = (block_width(l) - length)/2;
 
     translate([-defeather, block_width(y), z]) {
-        cube([block_width(l) + 2*defeather, block_width(w - 2*y), block_height(h, block_height=block_height)]);
+        cube([block_width(l) + 2*defeather, block_width(w - 2*y), block_height(h, block_height)]);
     }
 
     translate([-defeather, block_width(y), -defeather]) {
-        cube([left + 2*defeather, block_width(w - 2*y), block_height(h, block_height=block_height) + defeather]);
+        cube([left + 2*defeather, block_width(w - 2*y), block_height(h, block_height) + defeather]);
     }
 }
 
@@ -137,15 +137,15 @@ module side_access(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef
     z = block_height(1, block_height=block_height);
 
     translate([block_width(2), -defeather, z]) {
-        cube([block_width(l - 4), block_width(w) + 2*defeather, block_height(h, block_height=block_height)]);
+        cube([block_width(l - 4), block_width(w, block_width) + 2*defeather, block_height(h, block_height)]);
     }
     
     translate([block_width(2), -defeather, z/2]) {
-        cube([block_width(4), block_width(w) + 2*defeather, block_height(h, block_height=block_height)]);
+        cube([block_width(4), block_width(w, block_width) + 2*defeather, block_height(h, block_height)]);
     }
     
     translate([block_width(12), -defeather, z/2]) {
-        cube([block_width(2), block_width(w) + 2*defeather, block_height(h, block_height=block_height)]);
+        cube([block_width(2), block_width(w, block_width) + 2*defeather, block_height(h, block_height)]);
     }
 }
 

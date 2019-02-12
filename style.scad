@@ -95,9 +95,6 @@ knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 /* [Shell] */
 
-// Thickness of the solid outside surface of the block
-side_shell = large_nozzle ? 1.2 : 1.0;
-
 // Thickness of the solid top surface of the block
 top_shell = 1;
 
@@ -173,19 +170,13 @@ support_max_rotation = 0;
 // Basic unit horizontal size of each block
 block_width = 8; // [8:technic and traditional blocks]
 
-// In some models, the user will load two STL files into the slicer for a dual-material printer, one for each material/color. If "false" then the user wants a simplified, single material model
-two_color_print = false; // WIP
-
-// Add a text label to models which support that. The two_color_print setting will also affect if these is raised or colored text
-text_labels = true; // WIP
-
-// Height of the connectors commercial blocks use
+// Height of the connectors commercial blocks use [mm]
 official_knob_height = 1.8; // [1.8:traditional blocks]
 
-// How far up or down for artistic purposes to move the ridge which marks each layer
+// How far up or down for artistic purposes to move the ridge which marks each layer [mm]
 ridge_z_offset = 0;
 
-// Slight visual offset to work around prevent goldfeather rendering bugs in OpenSCAD (visual, not affecting final print geometry)
+// Slight visual offset to work around prevent goldfeather rendering bugs in OpenSCAD (visual, not affecting final print geometry) [mm]
 defeather = 0.01;
 
 // Roundness of bottom connector rings (Use 8 for octagonal sockets- many parts of the geomoetry must be adjusted if you change this)
@@ -208,7 +199,7 @@ $fs = 0.5;
 // Horizontal size
 function block_width(i=1, block_width=block_width) = i*block_width;
 
-// Vertical size
+// Vertical size [mm]
 function block_height(h=1, block_height=block_height) = h*block_height;
 
 // Test if this is a corner block
@@ -217,14 +208,17 @@ function is_corner(x, y, l=l, w=w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 // Ratio of a flat panel thickness to a regular block thickness (1/2 for PELA 8mm tall blocks, 1/3 for LEGO 9.6mm block_height blocks)
 function panel_height_ratio(block_height=block_height) = block_height < 9.6 ? 1/2 : 1/3;
 
-// Thickness of a flat panel
+// Thickness of a flat panel [mm]
 function panel_height(block_height=block_height) = block_height(1, block_height=block_height)*panel_height_ratio(block_height=block_height);
 
-// Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit
+// Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit [mm]
 function side_lock_thickness(material) = is_flexible(material) ? 0.06 : 0.02;
 
-// Horizontal width of each side of a support triangle
+// Horizontal width of each side of a support triangle [mm]
 function support_line_width(large_nozzle) = large_nozzle ? 0.7 : 0.5;
 
-// Force the cut visual line for seeing inside parts to be between 0 and 1mm short of the part width
-function visual_cut(cut_line=undef, w=undef, block_width=block_width) = max(min(cut_line, block_width(w, block_width=block_width) - 1), 0);
+// Force the cut visual line for seeing inside parts to be between 0 and 1mm short of the part width [mm]
+function visual_cut(cut_line=undef, w=undef, block_width=block_width) = max(min(cut_line, block_width(w, block_width) - 1), 0);
+
+// Thickness of the solid outside surface of the block [mm]
+function side_shell(large_nozzle=undef) = large_nozzle ? 1.2 : 1.0;

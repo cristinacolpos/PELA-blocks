@@ -79,11 +79,11 @@ module technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_li
 
                 hull() {
                     translate([block_width(1), block_width(0.5), 0]) {
-                        cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height=block_height));
+                        cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height));
                     }
 
                     translate([block_width(l), block_width(0.5), 0]) {
-                        cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height=block_height));
+                        cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height));
                     }
                 }
             }

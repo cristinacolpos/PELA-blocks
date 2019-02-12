@@ -180,7 +180,7 @@ ___
 
 [![PELA Technic Seeed Respeaker Core v2 Top](images/PELA-respeaker-core-v2-top.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-top.stl)
 
-[3D PELA Technic Seeed Respeaker Core v2 Top](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-top.stl) The opaque part of the lid for the Respeaker Core v2 microphone array. Change "two_color_print=false" in "material.scad" or two color print this with the "clear ring" part below.
+[3D PELA Technic Seeed Respeaker Core v2 Top](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render/blob/master/PELA-respeaker-core-v2-top.stl) The opaque part of the lid for the Respeaker Core v2 microphone array. Change "two color print" to "true" if you have a dual extruder and the second material is translucent.
 
 ___
 
@@ -280,7 +280,7 @@ ___
 
 ## FFF Printing Tips
 
-* Use a 0.4mm or smaller nozzle if possible to avoid decimation of some details (inside vertical side_shell bars..)
+* Use a 0.4mm or smaller nozzle if possible to avoid decimation of some socket details
 * If slicing with Simplify 3D with 0.5mm or larger nozzle, you may want to set Simplify 3D to `Advanced | External Thing Wall Type | Allow single extrusion walls`
 * Be aware that slicers may in some cases not be able to correct OpenSCAD STL export errors. These errors should be visible in layer preview as for example extra excursions back to origin. If this happens, open and clean the STL files first with for example Microsoft 3D Builder, Meshmixer or MeshLab. MeshLab command line examples can be found in `build.ps1`.
 * Best results are achieved with durable materials that are not too stiff (PET, co-polymers like NGEN, semi-flexible and "engineering" materials instead of PLA and  carbon filled).
