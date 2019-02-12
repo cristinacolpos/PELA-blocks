@@ -50,8 +50,11 @@ thickness = 1.7;
 
 h = 1;
 
-// How far below the bottom of the board surface parts protude 
-undercut = 8; // [0:0.1:32]
+// Bottom of enclosure
+bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+
+// How far below the bottom of the board to carve empty space 
+undercut = 2.3; // [0:0.1:32]
 
 // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 innercut = 0.8;
@@ -90,13 +93,13 @@ solid_first_layer = true;
 
 solid_upper_layers = true;
 
+// Filler for the model center space
 center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
+
 
 board_x_offset = 0;
 
 board_y_offset = 0;
-
-board_z_offset = -thickness;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
 l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
@@ -104,12 +107,15 @@ l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 // Board surround ratio
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
-dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+// Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+dome = true;
 
 
 /* [Hidden] */
 
-bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+board_z_offset = -thickness;
+
+
 
 
 ///////////////////////////////
@@ -132,7 +138,7 @@ module board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_li
     echo("board mount w", w);
 
     difference() {
-        pcb_holder(material=material, large_nozzle=large_nozzle, length=length, width=width, l=l, w=w, h=h, thickness=thickness, innercut=innercut, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height);
+        pcb_holder(material=material, large_nozzle=large_nozzle, length=length, width=width, l=l, w=w, h=h, thickness=thickness, center_type=center_type, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, board_z_offset=board_z_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height);
 
         z1 = block_height(h, block_height)+board_z_offset;
         z2 = board_z_offset;

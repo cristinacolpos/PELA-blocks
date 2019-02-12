@@ -54,6 +54,7 @@ height = 12.5;
 // How close to the object top and bottom should the walls be [ratio]
 height_tightness = 0.8;
 
+// Bottom of enclosure
 bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -69,7 +70,7 @@ end_sheaths = true;
 
 solid_upper_layers = true;
 
-// Should the middle of the box be a solid block or empty. Other designs will typically then cut from this solid block to support something inside the enclosure.
+// Filler for the model center space
 center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
 

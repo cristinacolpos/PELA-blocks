@@ -59,12 +59,13 @@ w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 // Enclosure height [blocks]
 h = 1;
 
-// How far below the bottom of the board surface parts protude 
-undercut = 12.3; // [0:0.1:32]
+// How far below the bottom of the board to carve empty space 
+undercut = 2.3; // [0:0.1:32]
 
 // Step in from board space edges to support the board [mm]
 innercut = 1;
 
+// Bottom of enclosure
 bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 // Add holes in the top deck to improve airflow and reduce weight
@@ -74,8 +75,10 @@ side_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full wi
 
 end_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
+// Add a wrapper around side holes (disable for extra ventilation but loose lock notches)
 side_sheaths = true;
 
+// Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
 end_sheaths = false;
 
 left_wall_enabled = true;
@@ -101,6 +104,7 @@ solid_upper_layers = false;
 // Add interior fill for the base layer
 solid_first_layer = true;
 
+// Filler for the model center space
 center_type = 2; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
 board_x_offset = 0;
@@ -111,7 +115,8 @@ board_z_offset = -thickness;
 
 top_edge_height = 2;
 
-dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+// Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+dome = true;
 
 // Basic unit vertical size of each block
 block_height = 9.6; // [8:technic, 9.6:traditional blocks]

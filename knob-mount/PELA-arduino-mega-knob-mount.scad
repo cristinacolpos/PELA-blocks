@@ -86,6 +86,7 @@ back_wall_knobs = true;
 
 solid_upper_layers = false;
 
+// Filler for the model center space
 center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
 board_x_offset = -2;
@@ -108,7 +109,8 @@ l_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 // Board surround ratio
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
-dome = true;  // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+// Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+dome = true;
 
 // Basic unit vertical size of each block
 block_height = 9.6; // [8:technic, 9.6:traditional blocks]
@@ -119,6 +121,7 @@ block_height = 9.6; // [8:technic, 9.6:traditional blocks]
 // Add interior fill for the base layer
 solid_first_layer = false;
 
+// Bottom of enclosure
 bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
 
 ///////////////////////////////

@@ -54,8 +54,8 @@ thickness = 1.8;
 // Enclosure height [blocks]
 h = 1;
 
-// How far below the bottom of the board surface parts protude [mm]
-undercut = 12.3; // [0:0.1:32]
+// How far below the bottom of the board to carve empty space [mm]
+undercut = 2.3; // [0:0.1:32]
 
 // Step in from board space edges to support the board [mm]
 innercut = 1;
@@ -69,8 +69,10 @@ side_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full wi
 
 end_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
+// Add a wrapper around side holes (disable for extra ventilation but loose lock notches)
 side_sheaths = true;
 
+// Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
 end_sheaths = false;
 
 left_wall_enabled = true;
@@ -96,6 +98,7 @@ solid_upper_layers = false;
 // Add interior fill for the base layer
 solid_first_layer = true;
 
+// Filler for the model center space
 center_type = 2; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
 board_x_offset = -2;
