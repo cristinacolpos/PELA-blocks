@@ -82,9 +82,9 @@ ___
 
 ___
 
-[![PELA Technic Bar](/PELA-technic-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-bar.stl)
+[![PELA Technic Bar](/technic-bar/PELA-technic-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-bar.stl)
 
-[3D PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-bar.stl) A minimalist technic bar.
+[3D PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-bar.stl) A minimalist technic bar.
 
 ___
 
