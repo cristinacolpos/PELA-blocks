@@ -8,7 +8,7 @@
 # The parameters turn on generation of various features. Note that STLs are .gitignore so you can create them
 # locally without impacting publishing. Published PNGs are generated in this project. They must be here because of
 # how github pages markdown works). Published STLs for the website are generated in the sister project
-# https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks-render to minimize your pain of large file
+# https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks to minimize your pain of large file
 # gitthrashing as the project evolves. The $outdir parameter is used by this sister project when updating generated
 # STLs so you can safely ignore it.
 
