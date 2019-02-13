@@ -27,6 +27,9 @@ use <../PELA-technic-block.scad>
 
 /* [Motor Enclosure] */
 
+// Model pieces to render
+show = 0; // [0:top and bottom, 1:top, 2:bottom]
+
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
 
@@ -74,6 +77,9 @@ end_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full wid
 // Heat ventilation holes in the top surface
 top_vents = true;
 
+// Open the upper surface of the top holder
+top_access = true;
+
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
 knob_vent_radius = 1.8; // [0.0:0.1:3.9]
 
@@ -108,22 +114,25 @@ shaft_l = 10;
 // DISPLAY
 ///////////////////////////////
 
-motor_enclosure_bottom(material=material, large_nozzle=large_nozzle);
-
-translate([0, block_width(w + 0.5), 0]) {
-    motor_enclosure_top(material=material, large_nozzle=large_nozzle);
+if (show == 0 || show == 2) {
+    motor_enclosure_bottom(material=material, large_nozzle=large_nozzle, cut_line=cut_line);
 }
 
+if (show == 0 || show == 1) {
+    translate([0, block_width(w + 0.5), 0]) {
+        motor_enclosure_top(material=material, large_nozzle=large_nozzle, cut_line=cut_line);
+    }
+}
 
 
 ///////////////////////////////////
 // MODULES
 ///////////////////////////////////
 
-module motor_enclosure_bottom(material=material, large_nozzle=large_nozzle) {
+module motor_enclosure_bottom(material=material, large_nozzle=large_nozzle, cut_line=cut_line) {
     
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=knob_vent_radius, side_holes=side_holes, end_holes=end_holes, corner_bolt_holes=corner_bolt_holes);
+        motor_enclosure(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=knob_vent_radius, side_holes=side_holes, end_holes=end_holes, corner_bolt_holes=corner_bolt_holes);
         
         translate([0, 0, block_height(h_bottom, block_height)]) {
             motor(material=material, large_nozzle=large_nozzle);
@@ -132,14 +141,44 @@ module motor_enclosure_bottom(material=material, large_nozzle=large_nozzle) {
 }
 
 
-module motor_enclosure_top(material=material, large_nozzle=large_nozzle) {
+module motor_enclosure_top(material=material, large_nozzle=large_nozzle, cut_line=cut_line) {
     
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h_top, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=top_vents, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes);
+        motor_enclosure(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h_top, side_holes=side_holes, end_holes=end_holes, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=top_vents, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes);
 
-        motor(material=material, large_nozzle=large_nozzle);
+        union() {
+            motor(material=material, large_nozzle=large_nozzle);
+            
+            if (top_access) {
+                translate([block_width(1, block_width), block_width(1, block_width), block_height(1, block_height)]) {
+                    cube([block_width(l-2, block_width), block_width(w-2, block_width), block_height(2, block_height)]);
+                }
+            }
+        }
     }
 }
+
+
+module motor_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=knob_vent_radius, side_holes=side_holes, end_holes=end_holes, corner_bolt_holes=corner_bolt_holes) {
+
+    difference() {
+        union() {
+            PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=knob_vent_radius, side_holes=side_holes, end_holes=end_holes, corner_bolt_holes=corner_bolt_holes);
+
+            translate([block_width(l, block_width)-skin-side_shell(large_nozzle), block_width((w-1)/2, block_width), 0]) {
+                cube([side_shell(large_nozzle), block_width(1, block_width), block_height(h, block_height)]);
+            }
+
+            translate([skin, block_width((w-1)/2, block_width), 0]) {
+                cube([side_shell(large_nozzle), block_width(1, block_width), block_height(h, block_height)]);
+            }
+        }
+        
+        cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+    }
+}
+        
+
 
 
 // Shape of the motor body
