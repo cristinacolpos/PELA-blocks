@@ -29,12 +29,13 @@ use <Yet_another_thread_library_for_OpenSCAD/quickthread.scad>
 
 extrusionNudge = 0.001;
 
+/*
 us_bolt_thread();
 
 translate([10, 0]) {
     us_nut_thread();
 }
-
+*/
 
 ///////////////////////////////////
 // MODULES
