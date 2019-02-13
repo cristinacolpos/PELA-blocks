@@ -31,20 +31,20 @@ use <../PELA-block.scad>
 // DISPLAY
 ///////////////////////////////
 
-support_set(material=material, large_nozzle=large_nozzle, l=4, w=3, height=10);
+// support_set(material=material, large_nozzle=large_nozzle, l=4, w=3, height=10);
 
 
 // Limit twisting to +/- 20 degrees so the support will be strong but not iminge on any nearby structures
-translate([4, -4, 0]) {
+/*translate([4, -4, 0]) {
     smr = 40;
     rotate([0, 0, -smr/2])
     support(support_side_length=3, support_max_rotation=smr, height=10);
-}
+}*/
 
 // Show an example of limited twisting when support_max_rotation is >0 
-translate([12, -4, 0]) {
+/*translate([12, -4, 0]) {
     support(support_side_length=3, support_max_rotation=1, height=10);
-}
+}*/
 
 
 ////////////////////////////
