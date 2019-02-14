@@ -57,7 +57,7 @@ Before you print the calibration bar, be sure to set the `flexible_material` and
 After you print the clibration bar, you update three settings to get a tight fit: `top_tweak`, `bottom_tweak` and `axle_hole_tweak`. These can be read from the side of the calibration bar.
 
 1. Print the Calibration Bar and test fit the top knobs and bottom sockets against commercial LEGO. Put the `top_tweak` (on the side, near the top) and `bottom_tweak` (on the side, near the bottom) values that you can read from the side of the bar into `material.scad`.
-1. Use OpenSCAD to generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press `F6` to render, and `Export` as `.STL`. Windows command line scripts are provided: `.\block.ps1 2 2 1` or `.\technic-block.ps1 2 2 1`
+1. Use OpenSCAD to generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press `F6` to render, and `Export` as `.STL`.
 1. Confirm a good fit with both commercial blocks and other PELA Blocks.
 1. If you find you also need to adjust the technic connector hole size, print the Calibration Block Set. `axle_hole_tweak` numbers change along with `top_tweak` numbers.
 1. Repeat this process as needed when you change material, nozzle size or and slicer settings which affect geometry.
@@ -76,9 +76,9 @@ Edit `material.scad` and `style.scad` to adapt these models before printing them
 
 ___
 
-[![PELA Technic Block](/PELA-technic-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl)
+[![PELA Technic Block](/PELA-technic-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl) An old style simple block. All models derive from this.
 
-[PELA Block with technic connectors](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl) Optional vents help to dissipate heat. There are several types you can select from.
+[PELA Block with technic connectors](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl) A blending of traditional and technic features which extends the basic block. All other models are extensions and vaiants from this.
 
 ___
 
