@@ -190,14 +190,14 @@ ___
 
 ___
 
-[![PELA Box Enclosure](/box-enclosure/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-box-enclosure.stl)
+[![PELA Box Enclosure](/box-enclosure/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/enclosure/PELA-box-enclosure.stl)
 
 [PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
 ___
 
-[![PELA STMF4 Discovery Box Enclosure](/box-enclosure/PELA-stmf4discovery-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-stmf4discovery-box-enclosure.stl)
+[![PELA STMF4 Discovery Box Enclosure](/box-enclosure/PELA-stmf4discovery-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-stmf4discovery-box-enclosure.stl)
 
-[PELA STMF4 Discovery Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-stmf4discovery-box-enclosure.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
+[PELA STMF4 Discovery Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/box-enclosure/PELA-stmf4discovery-box-enclosure.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
 ___
 
