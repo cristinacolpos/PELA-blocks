@@ -28,6 +28,8 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
+use <PELA-technic-box.scad>
+use <PELA-technic-board-mount.scad>
 
 
 
@@ -48,32 +50,42 @@ width = 26.2; // [0:1:100]
 
 thickness = 1.8; // [0:1:100]
 
-board_length = 48.8; // [0:1:100]
-
-board_width = 26.5; // [0:1:100]
-
-board_height = 2 + block_height();
-
-// Header cutout space length [mm]
-header_length = 38.4;
-
-// Header cutout space height [mm]
-header_height = 10.8;
-
-// USB cutout space width [mm]
-usb_width = 15; // [0:1:100]
+// Height of the model [blocks]
+h = 1; // [1:1:20]
 
 // USB cutout space length [mm]
-usb_length = 40; // [0:1:100]
+usb_length = 2; // [0:1:100]
 
-usb_height = block_height() + 4.8;
+// USB cutout space width [mm]
+usb_width = 2; // [0:1:100]
+
+// USB cutout height
+usb_height = 0.5; // [0:0.5:20]
+
+// Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+l_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
+
+// Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
+w_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
+
+// 90 degree rotation from length ends [blocks]
+twist_l = 2; // [1:18]
+
+// 90 degree rotation from width ends [blocks]
+twist_w = 1; // [1:18]
+
+// Step in from board space edges to support the board [mm]
+innercut = 1;
+
+// Interior fill style
+center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-board_mount(material=material, large_nozzle=large_nozzle, length=length, l_pad=l_pad, width=width, w_pad=w_pad);
+nodemcu_v2_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
 
 
 
@@ -81,65 +93,24 @@ board_mount(material=material, large_nozzle=large_nozzle, length=length, l_pad=l
 // MODULES
 ///////////////////////////////////
 
-module board_mount(material=undef, large_nozzle=undef, length=undef, l_pad=undef, width=undef, w_pad=undef) {
+module nodemcu_v2_board_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, l_pad=undef, w_pad=undef, h=undef, twist_l=undef, twist_w=undef, thickness=undef, innercut=undef, center=undef) {
 
   l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
   w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
   difference() {
-    union() {
-      translate([block_width(0.5)-skin, block_width(0.5)-skin, 0]) {
+    technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
 
-        color("red") cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, block_height()*2]);
-      }
-
-      color("gray", 0.3) union() {
-        technic_bar_frame(material=material, large_nozzle=large_nozzle, l=l, w=w);
-
-        translate([0, 0, block_height()]) {
-          technic_bar_frame(material=material, large_nozzle=large_nozzle, l=l, w=w);
-        }
-      }
-    }
-    translate([
-      block_width(0.5) + (block_width(7) - board_length) / 2,
-      block_width(0.5) + (block_width(4) - board_width) / 2,
-      block_height()
-    ]) {
-      board(material=material, large_nozzle=large_nozzle, length=length);
-    }
+    cutouts(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h);
   }
 }
 
-module technic_bar_frame(material=material, large_nozzle=large_nozzle, l=undef, w=undef) {
-    union() {
-      technic_bar(material=material, large_nozzle=large_nozzle, l=l);
 
-      rotate([0, 0, 90]) {
-        technic_bar(material=material, large_nozzle=large_nozzle, l=w);
-      }
-      
-      translate([0, block_width(w-1), 0]) {
-        technic_bar(material=material, large_nozzle=large_nozzle, l=l, h=1);
-      }
+module cutouts(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h) {
 
-      rotate([0, 0, 90]) {
-        translate([0, -block_width(l-1), 0]) {
-          technic_bar(material=material, large_nozzle=large_nozzle, l=w);
-        }
-      }
-    }
-}
+  color("yellow") translate([-block_width(usb_length/2, block_width), (block_width(w-usb_width-1, block_width))/2, block_height(0.5, block_height)]) {
 
-
-module board(material=material, large_nozzle=large_nozzle, length=length, board_length=board_length, board_width=board_width, board_height=board_height) {
-  union() {
-    cube([board_length, board_width, board_height]);
-
-    color("green") translate([(board_length-header_length)/2, 0, -header_height]) cube([header_length, board_width, header_height]);
-
-    // usb
-    color("red") translate([-usb_length/2, (board_width-usb_width)/2, -2.8]) cube([usb_length, usb_width, usb_height]);
+    cube([block_width(usb_length, block_width), block_width(usb_width, block_width), block_height(1, block_height)]);
   }
 }
 
