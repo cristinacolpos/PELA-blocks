@@ -249,9 +249,9 @@ ___
 
 ___
 
-[![PELA PCA9685 16 Channel Servo Board Mount](/PELA-pca9685-servo-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-knob-mount.stl)
+[![PELA PCA9685 16 Channel Servo Board Mount](/knob-mount/PELA-pca9685-servo-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/knob-mount/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-knob-mount.stl)
 
-[PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-knob-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](http://www.donkeycar.com/).
+[PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-pca9685-servo-knob-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](http://www.donkeycar.com/).
 
 ___
 
