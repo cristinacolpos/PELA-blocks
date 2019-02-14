@@ -41,13 +41,13 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the enclosed object [mm]
-length = 101.6;
+length = 101.6; // [0.1:0.1:300]
 
 // Width of the enclosed object [mm]
-width = 53.4;
+width = 53.4; // [0.1:0.1:300]
 
 // Thickness of the enclosed object [mm]
-thickness = 1.8;
+thickness = 1.8; // [0.1:0.1:300]
 
 // Height of the edge walls
 h = 1;

@@ -42,25 +42,29 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-length = 48.7;
+length = 48.7; // [0:1:100]
 
-width = 26.2;
+width = 26.2; // [0:1:100]
 
-thickness = 1.8;
+thickness = 1.8; // [0:1:100]
 
-board_length = 48.8;
+board_length = 48.8; // [0:1:100]
 
-board_width = 26.5;
+board_width = 26.5; // [0:1:100]
 
 board_height = 2 + block_height();
 
+// Header cutout space length [mm]
 header_length = 38.4;
 
-header_height = 2.8 + block_height();
+// Header cutout space height [mm]
+header_height = 10.8;
 
-usb_width = 15;
+// USB cutout space width [mm]
+usb_width = 15; // [0:1:100]
 
-usb_length = 40;
+// USB cutout space length [mm]
+usb_length = 40; // [0:1:100]
 
 usb_height = block_height() + 4.8;
 

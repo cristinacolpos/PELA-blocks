@@ -98,7 +98,7 @@ module cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_lin
     vc = visual_cut(cut_line=cut_line, w=w, block_width=block_width);
     
     if (vc > 0) {
-        cw = block_width(l, block_width=block_width) ;
+        cw = block_width(l, block_width) ;
         ch = block_height(h, block_height) + knob_height;
     
         color("red") translate([-defeather, -defeather, -defeather]) {

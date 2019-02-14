@@ -115,7 +115,7 @@ module technic_bar_slice_negative(material=material, large_nozzle=large_nozzle, 
     l2 = l + 1;
 
     union() {
-        for (i = [0:block_width(1, block_width=block_width):block_width(l, block_width=block_width)]) {
+        for (i = [0:block_width(1, block_width=block_width):block_width(l, block_width)]) {
             translate([i, block_width(0.5, block_width=block_width), -defeather]) {
                 cylinder(r=counterbore_inset_radius, h=0.01 + defeather);
             }

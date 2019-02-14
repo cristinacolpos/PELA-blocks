@@ -47,13 +47,13 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Board space length [mm]
-length = 39.5; 
+length = 39.5; // [0:0.1:300]
 
 // Board space width [mm]
-width = 39.5;
+width = 39.5; // [0:0.1:300]
 
 // Board space height [mm]
-thickness = 1.8;
+thickness = 1.8; // [0:0.1:300]
 
 // Closeness of board fit lengthwise [blocks]
 l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
@@ -68,13 +68,13 @@ h = 1; // [1:1:20]
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
 
 // Distance from length ends of connector twist [blocks]
-twist_l = 2;
+twist_l = 2; // [1:18]
 
 // Distance from width ends of connector twist [blocks]
-twist_w = 2;
+twist_w = 2; // [1:18]
 
 // Step in from board space edges to support the board [mm]
-innercut = 1.0;
+innercut = 1.0; // [0:0.1:100]
 
 
 
@@ -131,7 +131,7 @@ module technic_board_mount(material=undef, large_nozzle=undef, cut_line=undef, l
 
 module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef, block_height=undef) {
     
-    l2 = block_width(l, block_width=block_width);
+    l2 = block_width(l, block_width);
     w2 = block_width(w, block_width);
 
     translate([block_width(-2.5) + (l2-l)/2, block_width(-2.5) + (w2-w)/2, block_height(h, block_height) - thickness]) {
@@ -143,7 +143,7 @@ module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef,
 
 module main_board_back(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, block_height=undef) {
 
-    l2 = block_width(l, block_width=block_width);
+    l2 = block_width(l, block_width);
     w2 = block_width(w, block_width);
 
     translate([block_width(-2.5) + (l2-l)/2, block_width(-2.5) + (w2-w)/2, -defeather]) {

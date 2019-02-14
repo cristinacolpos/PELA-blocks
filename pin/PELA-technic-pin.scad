@@ -33,16 +33,16 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // An axle which fits loosely in a technic bearing hole
-axle_radius = 2.2;
+axle_radius = 2.2; // [0.1:0.1:4]
 
 // Size of the hollow inside a pin
 pin_center_radius=axle_radius/3;
 
 // Size of the connector lock-in bump at the ends of a Pin
-pin_tip_length = 0.7;
+pin_tip_length = 0.7; // [0.1:0.1:4]
 
 // Width of the long vertical flexture slots in the side of a pin
-pin_slot_thickness = 0.4;
+pin_slot_thickness = 0.4; // [0.1:0.1:4]
 
 counterbore_holder_radius = counterbore_inset_radius - skin;
 

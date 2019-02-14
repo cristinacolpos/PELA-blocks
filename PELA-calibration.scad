@@ -37,7 +37,7 @@ flexible_material = false;
 calibration_bar = true;
 
 // Number of blocks in the calibration bar
-bar_length = 9;
+bar_length = 9; // [1:1:20]
 
 // Length of each calibration block [blocks]
 l = 2; // [1:1:20]

@@ -37,7 +37,7 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the enclosed object [mm]
-length = 114.5;
+length = 114.5; // [0.1:0.1:300]
 
 // How close to the object ends should the walls be [ratio]
 l_pad = 2; // [0:tight, 1:+1 block, 2:+2 blocks]

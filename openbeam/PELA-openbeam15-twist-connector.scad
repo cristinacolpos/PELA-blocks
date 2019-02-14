@@ -39,8 +39,6 @@ w = 2; // [1:1:20]
 
 l = 2; // [1:1:20]
 
-block_height=9.6;
-
 top_width = block_width(w, block_width);
 
 top_length = block_width(l);
@@ -49,19 +47,22 @@ top_height = panel_height(block_height=block_height);
 
 throat_length = block_width();
 
-throat_width = 2.7;
+throat_width = 2.7; // [0.1:0.1:300]
 
-throat_height = 1.9;
+throat_height = 1.9; // [0.1:0.1:300]
 
 foot_width = throat_width;
 
 foot_length = throat_length + 2*1.6;
 
-foot_height = 2;
+foot_height = 2; // [0.1:0.1:300]
 
-toe_length = 1;
+toe_length = 1; // [0.1:0.1:300]
 
 
+/* [Hidden] */
+
+block_height=9.6;
 
 
 ///////////////////////////////

@@ -42,13 +42,13 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Board space length [mm]
-length = 49;
+length = 49; // [0.1:0.1:300]
 
 // Board space width [mm]
-width = 25.9;
+width = 25.9; // [0.1:0.1:300]
 
 // Board space height [mm]
-thickness = 1.8;
+thickness = 1.8; // [0.1:0.1:300]
 
 // Board length fit [blocks]
 l_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]

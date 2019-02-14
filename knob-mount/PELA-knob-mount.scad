@@ -42,11 +42,11 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-length = 30;
+length = 30; // [0.1:0.1:300]
 
-width = 20;
+width = 20; // [0.1:0.1:300]
 
-thickness = 1.7;
+thickness = 1.7; // [0.1:0.1:300]
 
 h = 1;
 
