@@ -71,6 +71,9 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 // Height of the model [blocks]
 h = 1; // [1:1:20]
 
+// Interior fill style
+center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
+
 
 
 

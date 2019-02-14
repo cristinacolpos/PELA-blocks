@@ -56,6 +56,9 @@ twist_l = 2; // [1:18]
 // How many blocks in from width ends do the technic holes rotate 90 degrees
 twist_w = 2; // [1:18]
 
+// Interior fill style
+center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
+
 
 
 /* [Board] */
@@ -110,17 +113,17 @@ module pi3_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, len
 
     difference() {
         union() {
-            technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=1, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, innercut=innercut);
+            technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
 
-/*            translate([0, 0, block_height(1, block_height=block_height)]) {
-                technic_board_mount(material=material, large_nozzle=large_nozzle, length=length-block_width, width=width, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, thickness=0, innercut=0);
-            } */
+            translate([0, 0, block_height(1, block_height=block_height)]) {
+                technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=0, innercut=0, center=0);
+            }
 
             retaining_ridge_sd_card_side(material=material);
         }
         
         union() {
-/*            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height); */
+            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
 
             sd_card_cutout(material=material, large_nozzle=large_nozzle);
 
@@ -132,16 +135,16 @@ module pi3_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, len
         }
     }
 
-/*    bottom(material=material, large_nozzle=large_nozzle, x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height); */
+    bottom(material=material, large_nozzle=large_nozzle, x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height);
 }
 
 
-/*module bottom(material=material, large_nozzle=large_nozzle, x=undef, y=undef, l=undef, w=undef, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
+module bottom(material=material, large_nozzle=large_nozzle, x=undef, y=undef, l=undef, w=undef, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
 
     translate([block_width(x) - skin, block_width(y), 0]) {
         skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=0.25, skin=0, ridge_width=0, ridge_depth=0, block_height=block_height);
     }
-}*/
+}
 
 
 module retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle) {
