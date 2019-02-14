@@ -83,7 +83,7 @@ innercut = 1.0; // [0:0.1:100]
 // DISPLAY
 ///////////////////////////////
 
-technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut);
+technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
 
 
 
@@ -91,7 +91,7 @@ technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_l
 // MODULES
 ///////////////////////////////////
 
-module technic_board_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, thickness=undef, innercut=undef) {
+module technic_board_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, thickness=undef, innercut=undef, center=undef) {
 
     assert(l_pad == floor(l_pad), "l_pad must be an integer");
     assert(l_pad >= 0, "l_pad must be >= 0");
@@ -117,7 +117,7 @@ module technic_board_mount(material=undef, large_nozzle=undef, cut_line=undef, l
             color("green") main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, block_height=block_height);
 
             translate([innercut, innercut, 0]) {            
-                main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length-2*innercut, width=width-2*innercut, block_height=block_height);
+                main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, innercut=innercut, block_height=block_height);
             }
 
             translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
@@ -131,23 +131,27 @@ module technic_board_mount(material=undef, large_nozzle=undef, cut_line=undef, l
 
 module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef, block_height=undef) {
     
-    l2 = block_width(l, block_width);
-    w2 = block_width(w, block_width);
+    l2 = block_width(l-1, block_width);
+    w2 = block_width(w-1, block_width);
+    hl = l2/2 - length/2;
+    hw = w2/2 - width/2;
 
-    translate([block_width(-2.5) + (l2-l)/2, block_width(-2.5) + (w2-w)/2, block_height(h, block_height) - thickness]) {
+    translate([hl, hw, block_height(h, block_height) - thickness]) {
         
         cube([length, width, thickness + defeather]);
     }
 }
 
 
-module main_board_back(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, block_height=undef) {
+module main_board_back(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, innercut=undef, block_height=undef) {
 
-    l2 = block_width(l, block_width);
-    w2 = block_width(w, block_width);
+    l2 = block_width(l-1, block_width);
+    w2 = block_width(w-1, block_width);
+    hl = l2/2 - length/2 - innercut;
+    hw = w2/2 - width/2 - innercut;
 
-    translate([block_width(-2.5) + (l2-l)/2, block_width(-2.5) + (w2-w)/2, -defeather]) {
+    translate([hl+innercut, hw+innercut, -defeather]) {
         
-        cube([length, width, block_height(h, block_height) + defeather]);
+        cube ([length-2*innercut, width-2*innercut, block_height(h, block_height) + defeather]);
     }
 }

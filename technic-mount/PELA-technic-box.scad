@@ -78,8 +78,8 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, w=undef, 
 
     assert(w >= 2, "w must be at least 2");
     assert(twist_w > 0, "twist_w must be at least 1");
-    assert(l >= 2, "l must be at least 2");
     assert(twist_l > 0, "twist_l must be at least 1");
+    assert(l >= twist_w+twist_l, "l must be at least as large as the twist lengths");
     assert(center >= 0, "center must be at least 0");
     assert(center <= 4, "center must be at most 4");
 
@@ -106,9 +106,7 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, w=undef, 
                         cube([block_width(l-2, block_width=block_width), block_width(w-2, block_width=block_width), block_height(h, block_height)]);
                     }
                     
-                    if (center > 1) {
-                        cheese_holes(material=material, large_nozzle=large_nozzle, center=center, l=l, w=w, h=h, l1=l1, l2=l2, w1=w1, w2=w2);
-                    }
+                    cheese_holes(material=material, large_nozzle=large_nozzle, center=center, l=l, w=w, h=h, l1=l1, l2=l2, w1=w1, w2=w2);
                 }
             }
         }
@@ -151,19 +149,26 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
 
 
 module cheese_holes(material=undef, large_nozzle=undef, center=undef, l=undef, w=undef, h=undef, l1=undef, l2=undef, w1=undef, w2=undef) {
-    
-    if (l2 > 0 && center != 3) {
-        side_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l1=l1, l2=l2, h=h, block_width=block_width, block_height=block_height);
-    }
-    
-    if (w2 > 0 && center != 3) {
-        end_cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w1=w1, w2=w2, h=h, block_width=block_width, block_height=block_height);
-    }
-    
-    if (w > 2 && l > 2 && center !=2) {
-        bottom_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l=l, h=h, block_width=block_width, block_height=block_height);
+
+    assert(l >= l1+l2, "l must be at least l1+l2");
+    assert(w >= w1+w2, "l must be at least l1+l2");
+    assert(center >= 0, "center must be at least 0");
+    assert(center <= 4, "center must be at most 4");
+
+    if (center > 1) {
+        if (l2 > 0 && center != 3) {
+            side_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l1=l1, l2=l2, h=h, block_width=block_width, block_height=block_height);
+        }
         
-        top_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l=l, h=h, block_width=block_width, block_height=block_height);
+        if (w2 > 0 && center != 3) {
+            end_cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w1=w1, w2=w2, h=h, block_width=block_width, block_height=block_height);
+        }
+        
+        if (w > 2 && l > 2 && center !=2) {
+            bottom_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l=l, h=h, block_width=block_width, block_height=block_height);
+            
+            top_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l=l, h=h, block_width=block_width, block_height=block_height);
+        }
     }
 }
 
