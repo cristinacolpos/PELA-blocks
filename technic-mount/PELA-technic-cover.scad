@@ -59,6 +59,9 @@ twist_l = 2; // [1:18]
 // Distance from width ends to rotate 90 degrees [blocks]
 twist_w = 2; // [1:18]
 
+// Interior fill style (will override "sockets")
+center = 0; // [0:socket panel, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
+
 // Presence of sockets as the center fill
 sockets = true;
 
@@ -71,11 +74,6 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 // Height of the model [blocks]
 h = 1; // [1:1:20]
 
-// Interior fill style
-center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
-
-
-
 
 
 
@@ -84,7 +82,7 @@ center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all
 // DISPLAY
 ///////////////////////////////
 
-technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_l=twist_l, twist_w=twist_w, l_pad=l_pad, w_pad=w_pad, sockets=sockets, solid_first_layer=solid_first_layer);
+technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_l=twist_l, twist_w=twist_w, l_pad=l_pad, w_pad=w_pad, sockets=sockets, solid_first_layer=solid_first_layer, center=center);
 
 
 
@@ -92,17 +90,18 @@ technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l
 // MODULES
 ///////////////////////////////////
 
-module technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_l=twist_l, twist_w=twist_w, l_pad=l_pad, w_pad=w_pad, sockets=sockets, solid_first_layer=solid_first_layer) {
+module technic_cover(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, twist_l=undef, twist_w=undef, l_pad=undef, w_pad=undef, sockets=undef, solid_first_layer=undef, center=undef) {
 
     l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
     w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
     union() {
-        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, twist_w=twist_w, l=l, twist_l=twist_l, h=h, center=0);
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, twist_w=twist_w, l=l, twist_l=twist_l, h=h, center=center);
         
-        translate([block_width(0.5), block_width(0.5), 0]) {
-            socket_panel(material=material, large_nozzle=large_nozzle, l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
+        if (center == 0) {
+            translate([block_width(0.5), block_width(0.5), 0]) {
+                socket_panel(material=material, large_nozzle=large_nozzle, l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
+            }
         }
-        
-    }        
+    }    
 }
