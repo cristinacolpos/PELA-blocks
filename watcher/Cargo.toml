@@ -1,7 +1,0 @@
-[package]
-name = "watcher"
-version = "0.1.0"
-authors = ["Paul Houghton <paulirotta@gmail.com>"]
-
-[dependencies]
-notify = "4.0.3"
