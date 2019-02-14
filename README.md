@@ -142,9 +142,9 @@ ___
 
 ___
 
-[![PELA Raspberry Pi 3B Technic Mount](/PELA-raspberry-pi3-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-raspberry-pi3-technic-mount.stl)
+[![PELA Raspberry Pi 3B Technic Mount](/technic-mount/PELA-raspberry-pi3-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-technic-mount.stl)
 
-[PELA Raspberry Pi 3B Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-raspberry-pi3-technic-mount.stl) A Raspberry Pi 2/3 holder.
+[PELA Raspberry Pi 3B Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-technic-mount.stl) A Raspberry Pi 2/3 holder.
 
 ___
 
