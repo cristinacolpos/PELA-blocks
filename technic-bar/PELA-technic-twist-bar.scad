@@ -39,13 +39,13 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Left side length of upward facing connectors [blocks]
-left = 2;
+left = 2; // [1:20]
 
 // Center length of sideways facing connectors [blocks]
-center = 4;
+center = 4; // [0:20]
 
 // Right side length of upward facing connectors [blocks]
-right = 2;
+right = 2; // [1:20]
 
 
 
