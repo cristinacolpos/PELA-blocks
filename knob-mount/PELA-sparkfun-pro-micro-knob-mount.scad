@@ -35,13 +35,17 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-length = 33.3; // Board length, including some extra
+// Board space length [mm]
+length = 33.3; // [0.1:0.1:300]
 
-width = 18.3; // Board width, including some extra
+// Board pace width [mm]
+width = 18.3; // [0.1:0.1:300]
 
-height = 3.2; // Distance from box bottom to mount the board
+// Distance from bottom [mm]
+height = 3.2; // [0.1:0.1:300]
 
-thickness = 1.7; // Thickness, including some extra for insertion
+// Board thickness [mm]
+thickness = 1.7; // [0.1:0.1:300]
 
 h = 1;
 

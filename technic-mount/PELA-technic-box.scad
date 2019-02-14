@@ -44,13 +44,13 @@ large_nozzle = true;
 w = 4; // [2:1:20]
 
 // Distance from width ends of connector twist [blocks]
-twist_w = 1; // [1 : 18]
+twist_w = 1; // [1:18]
 
 // Total length [blocks]
 l = 4; // [2:1:20]
 
 // Distance from length ends of connector twist [blocks]
-twist_l = 1; // [1 : 18]
+twist_l = 1; // [1:18]
 
 // Height of the model [blocks]
 h = 1; // [1:1:20]

@@ -43,17 +43,21 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-length = 85.9; // Board space length [mm]
+// Board space length [mm]
+length = 85.9; 
 
-width = 56.4; // Board space width [mm]
+// Board space width [mm]
+width = 56.4; 
 
 l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
-twist_l = 4; // How many blocks in from  length ends do the technic holes rotate 90 degrees
+// How many blocks in from  length ends do the technic holes rotate 90 degrees
+twist_l = 4; // [1:18]
 
-twist_w = 3; // How many blocks in from width ends do the technic holes rotate 90 degrees
+// How many blocks in from width ends do the technic holes rotate 90 degrees
+twist_w = 3; // [1:18]
 
 // Presence of sockets as the center fill
 sockets = true;

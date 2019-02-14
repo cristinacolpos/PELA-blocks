@@ -51,10 +51,10 @@ l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // How many blocks in from length ends do the technic holes rotate 90 degrees
-twist_l = 2;
+twist_l = 2; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees
-twist_w = 2;
+twist_w = 2; // [1:18]
 
 
 

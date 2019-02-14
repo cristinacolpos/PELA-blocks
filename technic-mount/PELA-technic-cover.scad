@@ -54,10 +54,10 @@ l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengt
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 
 // Distance from length ends of connector twist [blocks]
-twist_l = 2; // [1 : 18]
+twist_l = 2; // [1:18]
 
 // Distance from width ends to rotate 90 degrees [blocks]
-twist_w = 2; // [1 : 18]
+twist_w = 2; // [1:18]
 
 // Presence of sockets as the center fill
 sockets = true;

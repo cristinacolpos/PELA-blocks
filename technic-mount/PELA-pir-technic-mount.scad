@@ -59,10 +59,10 @@ l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // 90 degree rotation from length ends [blocks]
-twist_l = 1;
+twist_l = 1; // [1:18]
 
 // 90 degree rotation from width ends [blocks]
-twist_w = 2;
+twist_w = 2; // [1:18]
 
 // Board space thickness [mm]
 thickness = 1.8;

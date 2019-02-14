@@ -120,25 +120,25 @@ bottom_stiffener_height = knob_height;
 /* [Advanced Technic] */
 
 // Technic connector hole inset radius
-counterbore_inset_radius = 3.1;
+counterbore_inset_radius = 3.1; // [0.1:0.1:4]
 
 // Technic connector hole inset depth
-counterbore_inset_depth = 0.8;
+counterbore_inset_depth = 0.8; // [0.1:0.1:4]
 
 // Contact length of axle to block (not including inset length and end snap fit flexture in pin connectors)
-peg_length = 6.5;
+peg_length = 6.5; // [0.1:0.1:16]
 
 // Size of the cylinder wrapped around the technic holes
-bearing_sheath_thickness = 0.9;
+bearing_sheath_thickness = 0.9; // [0.1:0.1:4]
 
 
 /* [Block Aesthetics] */
 
 // Width of a line etched in the side of multi-layer block sets (0 to disable)
-ridge_width = 0.15;
+ridge_width = 0.15; // [0.1:0.05:4]
 
 // Depth of a line etched in the side of multi-layer block sets
-ridge_depth = 0.3;
+ridge_depth = 0.3; // [0.1:0.05:4]
 
 
 /* [Baked Print Supports] */
@@ -147,22 +147,22 @@ ridge_depth = 0.3;
 print_supports = true;
 
 // Space between support/support.scad and the part)
-support_offset_from_part = 0.1;
+support_offset_from_part = 0.1; // [0.0:0.01:1]
 
 // Thickness of each rotating layer in a twisting support [mm]
-support_layer_height = 2;
+support_layer_height = 2; // [0.1:0.1:8]
 
 // Thickness of a base panel for holding supports together [mm]
-support_connection_height = 0.5;
+support_connection_height = 0.5; // [0.1:0.1:8]
 
 // Length of sides of a support equilateral triangle [mm]
-support_side_length = 4;
+support_side_length = 4; // [0.1:0.1:16]
 
 // Per layer support rotation for strength [degrees]
-support_layer_rotation = 6;
+support_layer_rotation = 6; // [1:179]
 
 // Reverse direction of support rotation periodically to constrain size [degrees] (0 to disable)
-support_max_rotation = 0;
+support_max_rotation = 0; // [0:360]
 
 
 /* [Hidden] */

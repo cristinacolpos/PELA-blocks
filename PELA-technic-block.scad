@@ -266,7 +266,7 @@ module end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=
     
     sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material, axle_hole_tweak);
 
-    sheath_length = end_holes == 2 ? block_width(l, block_width=block_width) : block_width(1, block_width=block_width);
+    sheath_length = end_holes == 2 ? block_width(l, block_width) : block_width(1, block_width=block_width);
 
     if (w == 1) {
         translate([0, block_width(0.5), block_height(1)-block_width(0.5, block_width=block_width)]) {
@@ -312,7 +312,7 @@ module double_side_connector_hole_set(material=material, large_nozzle=large_nozz
     
     side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, block_width=block_width, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
     
-    translate([block_width(l, block_width=block_width), block_width(w, block_width)]) {
+    translate([block_width(l, block_width), block_width(w, block_width)]) {
 
         rotate([0, 0, 180]) {
             side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, block_width=block_width, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
