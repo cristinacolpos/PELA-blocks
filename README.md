@@ -102,6 +102,12 @@ ___
 
 [![PELA Technic Angle Connector](/technic-bar/PELA-technic-angle-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-angle-connector.stl)
 
+[PELA Technic Angle Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-angle-connector.stl) Two bars joined at an angle.
+
+___
+
+[![PELA Technic Angle Connector](/technic-bar/PELA-technic-angle-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-angle-connector.stl)
+
 [PELA Technic Angle Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-angle-connector.stl) Two technic bar connected vertically at an angle.
 
 ___

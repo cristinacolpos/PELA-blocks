@@ -41,7 +41,7 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Angle between the top and bottom parts of the connector [degrees]
-angle = 30;
+angle = 30; // [0:180]
 
 // Length of the connector [blocks]
 l = 7; // [1:1:20]
