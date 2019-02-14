@@ -43,7 +43,7 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Show the case walls
-base_model = true;
+wall_model = true;
 
 // Show where the board is mounted;
 board_model = true;
@@ -61,29 +61,35 @@ interior_model = true;
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
 
-width = 88;
+// Hexagonal board width [mm]
+width = 88; // [1:0.1:200]
 
-thickness = 1.9;
+// Board thickness
+thickness = 1.8; // [0.0:0.1:10.0]
 
-// Step in from board space edges to support the board [mm]
-innercut = 0.5;
-
-side_length = 8; // Blocks
+// Length of hexagonal model sides [blocks]
+side_length = 8; // [1:1:20]
 
 // Mounting hole centers
 side = (width/2) / sin(60);
 
 top = side + side*sin(30);
 
-mount_d = 5.5;
+// Diamter of the columns which hold the board in place at mount points [mm]
+mount_d = 5.5; // [0.0:0.1:15]
 
 mount_h = block_height(3) - 2;
 
-mount_pin_d = 2.7;
+// Include a small centering pin to go into board mount holes
+board_mount_pin = false;
 
-center_height = 4;
+// Diameter for board mount centering pin [mm]
+mount_pin_d = 2.4; // [0.0:0.1:3]
 
-spoke_width=6;
+top_height = 4;
+
+// Top spokes to connect center and sides in single material prints
+spoke_width = 6; // [0.0:0.5:20]
 
 // Origin for the board model and board mounting holes
 outer_width = 2*block_width(side_length + 0.25)*sin(30);
@@ -119,7 +125,7 @@ x4 = width - 29.1;
 y4 = y3 - 47.9;
 
 // Base
-base_thickness = 0.9; // [0:0.1:8]
+base_thickness = 1.0; // [0:0.1:8]
 
 
 
@@ -127,7 +133,7 @@ base_thickness = 0.9; // [0:0.1:8]
 // DISPLAY
 ///////////////////////////////
 
-if (base_model && top_model < 2) {
+if (wall_model && top_model < 2) {
     rotate([180, 0, 0]) {
         respeaker_core_v2_technic_mount();
     }
@@ -149,6 +155,7 @@ if (top_model > 0) {
 
 if (interior_model && top_model < 2) {
     rotate([180, 0, 0]) {
+        
         respeaker_core_interior(material=material, large_nozzle=large_nozzle);
     }
 }
@@ -159,7 +166,7 @@ if (interior_model && top_model < 2) {
 // MODULES
 ///////////////////////////////////
 
-module respeaker_core_v2_technic_top(material=material, large_nozzle=large_nozzle, cut_line=cut_line, two_color_print=two_color_print) {
+module respeaker_core_v2_technic_top(material=material, large_nozzle=large_nozzle, cut_line=cut_line, two_color_print=undef) {
     
     difference() {
         union() {
@@ -182,18 +189,27 @@ module respeaker_core_v2_technic_top(material=material, large_nozzle=large_nozzl
 
 
 module respeaker_core_interior(material=material, large_nozzle=large_nozzle) {
-    respeaker_base(material=material, large_nozzle=large_nozzle);
+    
+    m = 1.035;
+    translate([2.7, 2.2, block_height(3) - base_thickness]) {
+        respeaker_board(material=material, large_nozzle=large_nozzle, width=width*m, side=side*m, thickness=base_thickness);
+    }
+
+    translate([ox, oy]) {
+            board_mounts(material=material, large_nozzle=large_nozzle);
+    }
 }
 
 
 module board_mounts_top(material=material, large_nozzle=large_nozzle) {
+    
     translate([ox, oy, -thickness - 0.1]) { 
         board_mounts(material=material, large_nozzle=large_nozzle, h=6, rot=180, pin=false);
     }
 }
 
 
-module clear_ring(material=material, large_nozzle=large_nozzle, center_height=center_height, two_color_print=two_color_print) {
+module clear_ring(material=material, large_nozzle=large_nozzle, top_height=top_height, two_color_print=two_color_print) {
     r1 = side*0.87;
     r2 = r1 - 8;
 
@@ -201,12 +217,12 @@ module clear_ring(material=material, large_nozzle=large_nozzle, center_height=ce
         difference() {
             z = defeather;
             translate([0, 0, -z]) {
-                cylinder(r=r1, h=center_height+2*z, $fn=256);
+                cylinder(r=r1, h=top_height+2*z, $fn=256);
             }
 
             union() {
                 translate([0, 0, -2*z]) {
-                    cylinder(r=r2, h=center_height+4*z, $fn=256);
+                    cylinder(r=r2, h=top_height+4*z, $fn=256);
                 }
 
                 if (!two_color_print) {
@@ -226,7 +242,7 @@ module center_spokes(material=material, large_nozzle=large_nozzle) {
     for (i=[0:30:180]) {
         rotate([0, 0, 15+i]) {
             translate([-side, -spoke_width/2, 0]) {
-                cube([width*1.1, spoke_width, center_height]);
+                cube([width*1.1, spoke_width, top_height]);
             }
         }
     }
@@ -252,18 +268,6 @@ module respeaker_board(material=material, large_nozzle=large_nozzle, width=width
         rotate([0, 0, 120]) {
             cube([width, side, thickness]);            
         }
-    }
-}
-
-
-module respeaker_base(material=material, large_nozzle=large_nozzle) {
-    m = 1.035;
-    translate([2.7, 2.2, block_height(3) - base_thickness]) {
-        respeaker_board(material=material, large_nozzle=large_nozzle, width=width*m, side=side*m, thickness=base_thickness);
-    }
-
-    translate([ox, oy]) {
-            board_mounts(material=material, large_nozzle=large_nozzle);
     }
 }
 
@@ -374,6 +378,7 @@ module board_mounts(material=material, large_nozzle=large_nozzle, rot=0, h=mount
 
 
 module board_mount(material=material, large_nozzle=large_nozzle, x, y, h, rot, pin) {
+    
     d_multiplier = 1.5;
     d2 = d_multiplier*mount_d;
     h2 = min(h, d2);
@@ -381,10 +386,12 @@ module board_mount(material=material, large_nozzle=large_nozzle, x, y, h, rot, p
     translate([x, y, block_height(3) - mount_h]) {
         rotate([rot, 0, 0]) {
             cylinder(d1=mount_d, d2=d2, h=h2);
+            
             translate([0, 0, h2]) {
                 cylinder(d=d2, h=h-h2);
             }
-            if (pin) {
+            
+            if (pin && board_mount_pin) {
                 rotate([180, 0, 0]){
                     cylinder(d=mount_pin_d, h=thickness - 0.1);
                 }
