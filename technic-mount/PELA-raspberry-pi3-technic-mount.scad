@@ -99,33 +99,36 @@ pi3_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_lin
 
 module pi3_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, thickness=undef, innercut=undef) {
 
-//    l_fit = 1;
-    l = fit_mm_to_blocks(length, l_pad, block_width=block_width); // - l_fit;
+    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
     w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
-/*    x = 1;
-    y = 0.5;
-    l1 = l - 2*twist_l;    
-    l3 = l1;
-    l2 = l - l1 - l3;
-    w1 = w - 2*twist_w;
-    w3 = w1;
-    w2 = w - w1 - w3; */
 
     difference() {
         union() {
             technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=0, innercut=0, center=0);
+
+                tl = min(twist_l, ceil(l/2));
+                l1 = tl;
+                l3 = l1;
+                l2 = max(0, l - l1 - l3);
+                tw = min(twist_w, ceil(w/2));
+                w1 = tw;
+                w3 = w1;
+                w2 = max(0, w - w1 - w3);
+
+                technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2-1, l3=l3, w1=w1, w2=w2, w3=w3);
+                
+/*                technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=0, innercut=0, center=0); */
             }
 
             retaining_ridge_sd_card_side(material=material);
         }
         
         union() {
-            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
-
-            sd_card_cutout(material=material, large_nozzle=large_nozzle);
+ /*           main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
+*/
+#            sd_card_cutout(material=material, large_nozzle=large_nozzle);
 
             front_connector_cutout(material=material, large_nozzle=large_nozzle);
 
@@ -133,16 +136,6 @@ module pi3_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, len
 
             daughterboard_cutout(material=material, large_nozzle=large_nozzle);
         }
-    }
-
-    bottom(material=material, large_nozzle=large_nozzle, x=x, y=y, l=l-x-0.5-l_fit, w=w-y-1.5, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height);
-}
-
-
-module bottom(material=material, large_nozzle=large_nozzle, x=undef, y=undef, l=undef, w=undef, bottom_corner_bolt_holes=bottom_corner_bolt_holes, block_height=block_height) {
-
-    translate([block_width(x) - skin, block_width(y), 0]) {
-        skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=0.25, skin=0, ridge_width=0, ridge_depth=0, block_height=block_height);
     }
 }
 
@@ -161,12 +154,12 @@ module retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle
 
 module sd_card_cutout(material=material, large_nozzle=large_nozzle) {
 
-    translate([block_width(-1.6), block_width(1.5), 0]) {
-        cube([block_width(3), block_width(6), block_height(4, block_height=block_height)]);
+    translate([block_width(-1.6), block_width(1.5, block_width), 0]) {
+        cube([block_width(3), block_width(6), block_height(4, block_height)]);
     }
     
-    translate([block_width(0.5), block_width(1.5), 0]) {
-        cube([block_width(3), block_width(6), block_height(4, block_height=block_height)]);
+    translate([block_width(0.5, block_width), block_width(1.5, block_width), 0]) {
+        cube([block_width(3, block_width), block_width(6, block_width), block_height(4, block_height)]);
     }
 }
 

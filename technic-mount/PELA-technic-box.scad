@@ -112,6 +112,7 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, w=undef, 
         }
         
         translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
+            
             cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
     }
