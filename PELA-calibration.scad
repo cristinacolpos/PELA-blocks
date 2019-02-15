@@ -54,8 +54,8 @@ knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 // Basic unit vertical size of each block
 block_height = 9.6; // [8:technic, 9.6:traditional blocks]
 
-// Size between calibration block test steps (0.02 or larger for a rough calibration, 0.01 to refine if already close)
-calibration_block_increment = 0.02;
+// Size between calibration block test steps (0.04 if you need a wider size range, 0.02 for finer adjustment close to nomanal values)
+calibration_block_increment = 0.04;
 
 
 
