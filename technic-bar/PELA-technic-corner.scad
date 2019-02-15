@@ -41,10 +41,10 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the first bar [blocks]
-l1 = 2;
+l1 = 3;
 
 // Length of the second bar [blocks]
-l2 = 2;
+l2 = 3;
 
 // Length of the bars [blocks]
 h = 1;
