@@ -146,7 +146,7 @@ module retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle
         cube([block_width(0.5), block_width(2), block_height(1, block_height)]);
     }
 
-    translate([block_width(0.5), block_width(6.5), block_height(0.5, block_height)]) {
+    translate([block_width(0.5), block_width(6.5), block_height(1, block_height)]) {
         cube([block_width(0.5), block_width(2), block_height(1.5, block_height)]);
     }
 }
@@ -156,10 +156,6 @@ module sd_card_cutout(material=material, large_nozzle=large_nozzle) {
 
     translate([block_width(-1.6), block_width(1.5, block_width), -defeather]) {
         cube([block_width(3), block_width(6), block_height(4, block_height)]);
-    }
-    
-    translate([block_width(0.5, block_width), block_width(1.5, block_width), 0]) {
-        cube([block_width(3, block_width), block_width(6, block_width), block_height(4, block_height)]);
     }
 }
 
