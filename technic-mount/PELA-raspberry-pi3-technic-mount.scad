@@ -29,7 +29,8 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../PELA-socket-panel.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
-include <PELA-technic-board-mount.scad>
+use <PELA-technic-box.scad>
+use <PELA-technic-board-mount.scad>
 
 
 
@@ -70,10 +71,13 @@ length = 86.2; // Board space length [mm]
 width = 56.8; // Board space width [mm]
 
 // Board space height [mm]
-thickness = 1.9; // Board space height [mm]
+thickness = 1.9; // [0:0.1:4]
 
 // Step in from board space edges to support the board [mm]
-innercut = 0.8;
+innercut = 1;
+
+// Step down from board bottom to give room board components [mm]
+undercut = 3; // [0:0.1:100]
 
 
 
@@ -89,7 +93,7 @@ bottom_corner_bolt_holes = true;
 // DISPLAY
 ///////////////////////////////
 
-pi3_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut);
+pi3_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, undercut=undercut, center=center);
 
 
 
@@ -97,14 +101,14 @@ pi3_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_lin
 // MODULES
 ///////////////////////////////////
 
-module pi3_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, thickness=undef, innercut=undef) {
+module pi3_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, thickness=undef, innercut=undef, undercut=undef, center=undef) {
 
     l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
     w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
     difference() {
         union() {
-            technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
+            technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=1, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, undercut=undercut, center=center);
 
             translate([0, 0, block_height(1, block_height=block_height)]) {
 
@@ -118,17 +122,13 @@ module pi3_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, len
                 w2 = max(0, w - w1 - w3);
 
                 technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2-1, l3=l3, w1=w1, w2=w2, w3=w3);
-                
-/*                technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=0, innercut=0, center=0); */
             }
 
             retaining_ridge_sd_card_side(material=material);
         }
         
         union() {
- /*           main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, width=width, thickness=thickness, block_height=block_height);
-*/
-#            sd_card_cutout(material=material, large_nozzle=large_nozzle);
+            sd_card_cutout(material=material, large_nozzle=large_nozzle);
 
             front_connector_cutout(material=material, large_nozzle=large_nozzle);
 
@@ -142,19 +142,19 @@ module pi3_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, len
 
 module retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle) {
 
-    translate([block_width(0.5), block_width(0.5), block_height(0.5, block_height=block_height)]) {
-        cube([block_width(0.5), block_width(2), block_height(2.5, block_height=block_height)]);
+    translate([block_width(0.5), block_width(0.5), block_height(1, block_height)]) {
+        cube([block_width(0.5), block_width(2), block_height(1, block_height)]);
     }
 
-    translate([block_width(0.5), block_width(6.5), block_height(0.5, block_height=block_height)]) {
-        cube([block_width(0.5), block_width(2), block_height(2.5, block_height=block_height)]);
+    translate([block_width(0.5), block_width(6.5), block_height(0.5, block_height)]) {
+        cube([block_width(0.5), block_width(2), block_height(1.5, block_height)]);
     }
 }
 
 
 module sd_card_cutout(material=material, large_nozzle=large_nozzle) {
 
-    translate([block_width(-1.6), block_width(1.5, block_width), 0]) {
+    translate([block_width(-1.6), block_width(1.5, block_width), -defeather]) {
         cube([block_width(3), block_width(6), block_height(4, block_height)]);
     }
     
@@ -166,23 +166,23 @@ module sd_card_cutout(material=material, large_nozzle=large_nozzle) {
 
 module ethernet_cutout(material=material, large_nozzle=large_nozzle) {
 
-    translate([block_width(10), block_width(0.5), block_height(1, block_height=block_height)]) {
-        cube([block_width(3), block_width(8), block_height(4, block_height=block_height)]);
+    translate([block_width(10), block_width(0.5), block_height(1, block_height)]) {
+        cube([block_width(3), block_width(8), block_height(4, block_height)]);
     }
 }
 
 
 module front_connector_cutout(material=material, large_nozzle=large_nozzle) {
 
-    translate([block_width(1.5), block_width(-0.6), block_height(0.5, block_height=block_height)]) {
-        cube([block_width(8), block_width(2), block_height(4, block_height=block_height)]);
+    translate([block_width(1.5), block_width(-0.6), block_height(0.5, block_height)]) {
+        cube([block_width(8), block_width(2), block_height(4, block_height)]);
     }
 }
 
 
 module daughterboard_cutout(material=material, large_nozzle=large_nozzle) {
 
-    translate([block_width(-0.5), block_width(-0.5), block_height(2, block_height=block_height)]) {
-        cube([block_width(10), block_width(10), block_height(4, block_height=block_height)]);
+    translate([block_width(-0.5), block_width(-0.5), block_height(2, block_height)]) {
+        cube([block_width(10), block_width(10), block_height(4, block_height)]);
     }
 }
