@@ -40,7 +40,6 @@ fn make(scad_path: &str) -> String {
         .expect("Failed to execute OpenSCAD STL render command");
 
     if output.status.success() {
-        // clean(&mute);
         render_image(&path, &part);
 
         String::from(scad_path)
@@ -55,38 +54,13 @@ fn make(scad_path: &str) -> String {
     }
 }
 
-// Clean the .STL errors and resave as binary .STL
-fn clean(stl_path: &str) {
-    println!("Clean {:?}", stl_path);
-
-    let output = Command::new("meshlabserver")
-        .arg("-i")
-        .arg(stl_path)
-        .arg("-o")
-        .arg(stl_path)
-        .arg("-s")
-        .arg("clean1.mlx")
-        .output()
-        .expect("Failed to execute meshlab STL clean command");
-
-    if output.status.success() {
-        println!("STL clean complete: {:?}", &stl_path);
-    } else {
-        eprintln!(
-            "{:?}: {:?}",
-            stl_path,
-            String::from_utf8(output.stderr).expect("Can not convert stdout")
-        );
-    }
-}
-
 // Render the SCAD file as a PNG image
 fn render_image(scad_path: &String, root: &str) {
     println!("Render image {:?}", scad_path);
     let png = String::with_capacity(scad_path.len()).add(root).add(".png");
 
     let output = Command::new("openscad")
-        .arg("--render")
+        //        .arg("--render")
         .arg("-o")
         .arg(&png)
         .arg(scad_path)
