@@ -113,7 +113,7 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, w=undef, 
         
         translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
             
-            cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
     }
 }
@@ -166,9 +166,9 @@ module cheese_holes(material=undef, large_nozzle=undef, center=undef, l=undef, w
         }
         
         if (w > 2 && l > 2 && center !=2) {
-            bottom_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l=l, h=h, block_width=block_width, block_height=block_height);
+            bottom_cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_width=block_width, block_height=block_height);
             
-            top_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l=l, h=h, block_width=block_width, block_height=block_height);
+            top_cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_width=block_width, block_height=block_height);
         }
     }
 }
@@ -215,7 +215,7 @@ module top_cheese_holes(material=undef, large_nozzle=undef, w=undef, l=undef, h=
     translate([block_width(0, block_width=block_width), block_width(w-1, block_width=block_width), block_height(h, block_height)]) {
         
         rotate([180, 0, 0]) {
-            bottom_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l=l, h=h, block_width=block_width, block_height=block_height);
+            bottom_cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_width=block_width, block_height=block_height);
         }
     }
 }

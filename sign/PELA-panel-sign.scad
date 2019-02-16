@@ -135,7 +135,7 @@ module PELA_flat_sign(material=material, large_nozzle=large_nozzle, cut_line=cut
             color("green") PELA_flat_sign_extruded_text();
         }
 
-        cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=2, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=2, block_width=block_width, block_height=block_height, knob_height=knob_height);
     }
 }
 

@@ -137,12 +137,41 @@ function fit_mm_to_height_blocks(i=undef, padding=undef, block_height=block_heig
 // MODULES
 ///////////////////////////////////
 
-module PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, block_height=block_height, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef) {
+module PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef) {
+
+    assert(material != undef);
+    assert(large_nozzle != undef);
+    assert(cut_line != undef);
+    assert(l != undef);
+    assert(w != undef);
+    assert(h != undef);
+    assert(knob_height != undef);
+    assert(knob_flexture_height != undef);
+//    assert(sockets != undef);
+    assert(knobs != undef);
+//    assert(knob_vent_radius != undef);
+    assert(skin != undef);
+    assert(top_shell != undef);
+    assert(bottom_stiffener_width != undef);
+    assert(bottom_stiffener_height != undef);
+    assert(corner_bolt_holes != undef);
+    assert(bolt_hole_radius != undef);
+    assert(ridge_width != undef);
+    assert(ridge_depth != undef);
+    assert(ridge_z_offset != undef);
+    assert(top_vents != undef);
+    assert(side_holes != undef);
+    assert(side_sheaths != undef);
+    assert(end_holes != undef);
+    assert(end_sheaths != undef);
+    assert(solid_first_layer != undef);
+    assert(solid_upper_layers != undef);
+    assert(block_height != undef);
 
     difference() {
         visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
 
-        cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
     }
 }
 

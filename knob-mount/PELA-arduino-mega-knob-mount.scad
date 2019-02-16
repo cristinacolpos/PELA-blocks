@@ -124,7 +124,7 @@ block_height = 9.6; // [8:technic, 9.6:traditional blocks]
 solid_first_layer = false;
 
 // Bottom of enclosure
-bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
 
 ///////////////////////////////
 // DISPLAY

@@ -85,7 +85,7 @@ knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 corner_bolt_holes = true;
 
 // Bottom of enclosure
-bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
 
 // Create the left wall
 left_wall_enabled = false;
