@@ -75,7 +75,7 @@ knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 corner_bolt_holes = true;
 
 // Bottom of enclosure
-bottom_type = 3; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 3; // [0:open bottom, 1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
 
 // Create the left wall
 left_wall_enabled = true;
@@ -122,7 +122,7 @@ block_height = 9.6; // [8:technic, 9.6:traditional blocks]
 // DISPLAY
 ///////////////////////////////
 
-PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
+PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, bottom_vents=bottom_vents, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
 
 
 
@@ -130,65 +130,65 @@ PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_li
 // MODULES
 ///////////////////////////////////
 
-module PELA_box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, bottom_type=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, ridge_z_offset=undef, center_type=undef, block_height=undef, knob_vent_radius=undef) {
+module PELA_box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, bottom_type=undef, sockets=undef, top_vents=undef, bottom_vents=bottom_vents, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, ridge_z_offset=undef, center_type=undef, block_height=undef, knob_vent_radius=undef) {
 
     difference() {
-        box_enclosure_positive_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
+        box_enclosure_positive_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
 
         union() {    
             bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_width=block_width, hole_type=3, corner_bolt_holes=false, sockets=sockets, block_height=block_height);
 
             edge_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
 
-            cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
     }
 }
 
 
-module box_enclosure_positive_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius) {
+module box_enclosure_positive_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius) {
 
-    walls(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
+    walls(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
 
-    enclosure_bottom(material=material, large_nozzle=large_nozzle, l=l, w=w, bottom_type=bottom_type, skin=skin, solid_first_layer=solid_first_layer, block_height=block_height, knob_vent_radius=knob_vent_radius);
+    enclosure_bottom(material=material, large_nozzle=large_nozzle, l=l, w=w, bottom_type=bottom_type, sockets=sockets, skin=skin, solid_first_layer=solid_first_layer, block_height=block_height, knob_vent_radius=knob_vent_radius);
 
     box_center(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, center_type=center_type, side_holes=side_holes, end_holes=end_holes, block_height=block_height);
 }
 
 
-module walls(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius) {
+module walls(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius) {
 
     difference() {
         union() {
             if (left_wall_enabled) {
-                left_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=left_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+                left_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=left_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
             }
 
             if (right_wall_enabled) {
-                right_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=right_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+                right_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=right_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
             }
 
             if (front_wall_enabled) {
-                front_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=front_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+                front_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=front_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
             }
 
             if (back_wall_enabled) {
-                back_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=back_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+                back_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=back_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
             }
         }
 
-        if (bottom_type>0) {
-            bottom_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, bottom_type=1, skin=0, solid_first_layer=solid_first_layer, block_height=block_height);
+        hull() {
+            bottom_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, bottom_type=bottom_type, skin=0, solid_first_layer=solid_first_layer, block_height=block_height);
         }
     }
 }
 
 
 // Left side of the box with corner cuts
-module left_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=left_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius) {
+module left_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=left_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius) {
 
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=1, w=w, h=h, top_vents=top_vents, side_holes=0, side_sheaths=0, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, knobs=knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=1, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=0, side_sheaths=0, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, knobs=knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
 
         union() {
             if (front_wall_enabled) {
@@ -216,21 +216,21 @@ module corner_cut(material=material, large_nozzle=large_nozzle, angle, h=h, bloc
 
 
 // Mirror image of the left side
-module right_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=right_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius) {
+module right_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=right_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius) {
 
     translate([block_width(l), block_width(w, block_width), 0]) {
         rotate([0, 0, 180]) {
-            left_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=back_wall_enabled, back_wall_enabled=front_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+            left_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=back_wall_enabled, back_wall_enabled=front_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
         }
     }
 }
 
 
 // Front side of the box with corner cuts
-module front_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=front_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius) {
+module front_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=front_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius) {
 
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=1, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=0, end_sheaths=0, skin=skin, knobs=knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=1, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=0, end_sheaths=0, skin=skin, knobs=knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
 
         union() {
             if (left_wall_enabled) {
@@ -248,27 +248,27 @@ module front_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, t
 
 
 // Mirror image of the front wall
-module back_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=back_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius) {
+module back_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=back_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius) {
 
     translate([block_width(l), block_width(w, block_width), 0]) {
         rotate([0, 0, 180]) {
-            front_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=right_wall_enabled, right_wall_enabled=left_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+            front_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=right_wall_enabled, right_wall_enabled=left_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
         }
     }
 }
 
 
 // Cutout for the box bottom
-module bottom_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, bottom_type=bottom_type, skin=skin, solid_first_layer=solid_first_layer, block_height=block_height) {
+module bottom_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, bottom_type=bottom_type, skin=skin, solid_first_layer=solid_first_layer, block_height=block_height) {
     
     if (bottom_type > 0) {
-        enclosure_bottom(material=material, large_nozzle=large_nozzle, l=l, w=w, bottom_type=bottom_type, skin=skin, solid_first_layer=solid_first_layer, block_height=block_height);
+        enclosure_bottom(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, bottom_type=1, skin=skin, solid_first_layer=solid_first_layer, block_height=block_height);
     }
 }
 
 
 // Space for the edge connectors
-module edge_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, block_width=block_width, hole_type=side_holes, block_width=block_width, corner_bolt_holes=corner_bolt_holes, block_height=block_height) {
+module edge_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, block_width=block_width, hole_type=side_holes, block_width=block_width, corner_bolt_holes=corner_bolt_holes, block_height=block_height) {
 
     if (bottom_type > 0) {
         bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, block_height=block_height);
@@ -277,16 +277,14 @@ module edge_connector_negative_space(material=material, large_nozzle=large_nozzl
 
 
 // The optional bottom layer of the box
-module enclosure_bottom(material=material, large_nozzle=large_nozzle, l=l, w=w, bottom_type=bottom_type, skin=skin, skip_edge_knobs=skip_edge_knobs, solid_first_layer=solid_first_layer, block_height=block_height, knob_vent_radius=knob_vent_radius) {
+module enclosure_bottom(material=material, large_nozzle=large_nozzle, l=l, w=w, bottom_type=bottom_type, sockets=sockets, bottom_vents=bottom_vents, skin=skin, skip_edge_knobs=skip_edge_knobs, solid_first_layer=solid_first_layer, block_height=block_height, knob_vent_radius=knob_vent_radius) {
 
     if (bottom_type == 1) {
         translate([block_width(1, block_width)-skin, block_width(1, block_width)-skin, 0]) {
             cube([block_width(l-2)+2*skin, block_width(w-2, block_width)+2*skin, panel_height(block_height=block_height)]);
         }
     } else if (bottom_type == 2) {
-        translate([block_width(1, block_width)-skin, block_width(1, block_width)-skin, 0]) {
-            socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l-2, w=w-2, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=-skin, block_height=block_height);
-        }
+        socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=0, block_height=block_height);
     } else if (bottom_type == 3) {
         knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, top_vents=bottom_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=knobs, sockets=sockets, skin=skin, skip_edge_knobs=skip_edge_knobs, block_height=block_height, knob_vent_radius=knob_vent_radius);
    }

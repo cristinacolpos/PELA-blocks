@@ -55,7 +55,7 @@ height = 12.5;
 height_tightness = 0.8;
 
 // Bottom of enclosure
-bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket-panel bottom, 3:knob-panel bottom]
+bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
 
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = true;
@@ -99,7 +99,7 @@ module intel_compute_stick_box_enclosure(material=material) {
         union() {
             intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
 
-            intel_compute_stick_descender(material=material, large_nozzle=large_nozzle, w=w, l=l, block_height=block_height);
+            intel_compute_stick_descender(material=material, large_nozzle=large_nozzle, l=l, w=w, block_height=block_height);
 
             end_access(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, block_height=block_height);
 

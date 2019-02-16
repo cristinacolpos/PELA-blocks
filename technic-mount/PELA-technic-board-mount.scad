@@ -125,7 +125,7 @@ module technic_board_mount(material=undef, large_nozzle=undef, cut_line=undef, l
 
             translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
                 
-                cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, h=h, cut_line=cut_line, block_width=block_width, block_height=block_height, knob_height=knob_height);
+                cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_width=block_width, block_height=block_height, knob_height=knob_height);
             }
         }
     }

@@ -87,7 +87,7 @@ module socket_panel(material=undef, large_nozzle=undef, cut_line=0, l=undef, w=u
             }
         }
 
-        cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l, cut_line=cut_line, h=1, block_height=block_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=1, block_height=block_height);
     }
 }
 
