@@ -25,11 +25,13 @@ include <../style.scad>
 include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
+use <../PELA-socket-panel.scad>
+use <../PELA-knob-panel.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 
 
-/* [Technic Corner] */
+/* [Technic Box] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
@@ -39,6 +41,9 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
+
+// Select parts to render
+render_modules = 2; // [0:technic box, 1:technic cover, 2:technic box and cover]
 
 // Total width [blocks]
 w = 4; // [2:1:20]
@@ -56,8 +61,32 @@ twist_l = 1; // [1:18]
 h = 1; // [1:1:20]
 
 // Interior fill style
-center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
+center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
+// Presence of sockets if center is "socket panel"
+center_sockets = true;
+
+// Presence of knobs if center is "knob panel"
+center_knobs = true;
+
+// Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
+knob_vent_radius = 0.0; // [0.0:0.1:3.9]
+
+
+
+/* [Technic Cover] */
+
+// Interior fill style
+cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+
+// Height of the cover [blocks]
+cover_h = 1; // [1:1:20]
+
+// Presence of sockets if "cover center" is "socket panel"
+cover_sockets = true;
+
+// Presence of knobs if "cover center" is "knob panel"
+cover_knobs = true;
 
 
 
@@ -65,8 +94,26 @@ center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all
 // DISPLAY
 ///////////////////////////////
 
-technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, twist_w=twist_w, l=l, twist_l=twist_l, h=h, center=center);
+if (render_modules != 0) {
+    color("pink") translate([0, -block_width(w + 0.5, block_width), 0]) {
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center);
+    }
+}
 
+if (render_modules != 1) {
+    technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=center);
+}
+
+
+
+
+///////////////////////////////////
+// FUNCTIONS
+///////////////////////////////////
+
+function first_l(twist_l=undef, l=undef) = min(twist_l, ceil(l/2));
+
+function mid_l(l=undef, l1=undef, l3=undef) = max(0, l - l1 - l3);
 
 
 
@@ -74,23 +121,43 @@ technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w
 // MODULES
 ///////////////////////////////////
 
-module technic_box(material=undef, large_nozzle=undef, cut_line=undef, w=undef, twist_w=undef, l=undef, twist_l=undef, h=undef, center=undef) {
 
-    assert(w >= 2, "w must be at least 2");
-    assert(twist_w > 0, "twist_w must be at least 1");
-    assert(twist_l > 0, "twist_l must be at least 1");
-    assert(l >= twist_w+twist_l, "l must be at least as large as the twist lengths");
-    assert(center >= 0, "center must be at least 0");
-    assert(center <= 4, "center must be at most 4");
+module technic_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, center=undef) {
 
-    tl = min(twist_l, ceil(l/2));
+    assert(w >= 2);
+    assert(twist_w > 0);
+    assert(twist_l > 0);
+    assert(l >= twist_w + twist_l);
+    assert(center >= 0);
+    assert(center <= 6);
+
+    technic_only_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, center=center);
+    
+    lc = l - 2;
+    wc = w - 2;
+
+    if (center == 5 && lc > 0 && wc > 0) {
+        translate([block_width(0.5), block_width(0.5), 0]) {
+            socket_panel(material=material, large_nozzle=large_nozzle, l=lc, w=wc, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
+        }
+    } else if (center == 6 && lc > 0 && wc > 0) {
+        translate([block_width(0.5), block_width(0.5), 0]) {
+            knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=lc, w=wc, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=false, knobs=knobs, sockets=sockets, skip_edge_knobs=0, bottom_stiffener_height=0, block_height=block_height, knob_vent_radius=knob_vent_radius, skin=0);
+        }
+    }
+}
+
+
+module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, twist_l=undef, twist_w=undef, center=undef) {
+
+    tl = first_l(twist_l, l);
     l1 = tl;
-    l3 = l1;
-    l2 = max(0, l - l1 - l3);
-    tw = min(twist_w, ceil(w/2));
+    l2 = mid_l(l, l1, l1);
+    l3 = l - l1 - l2;
+    tw = first_l(twist_w, w);
     w1 = tw;
-    w3 = w1;
-    w2 = max(0, w - w1 - w3);
+    w2 = mid_l(w, w1, w1);
+    w3 = w - w1 - w2;
 
     difference() {
         union() {
@@ -100,7 +167,7 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, w=undef, 
                 }
             }
             
-            if (center > 0) {
+            if (center > 0 && center < 5) {
                 difference() {
                     translate([block_width(0.5, block_width=block_width), block_width(0.5, block_width=block_width), 0]) {
                         cube([block_width(l-2, block_width=block_width), block_width(w-2, block_width=block_width), block_height(h, block_height)]);

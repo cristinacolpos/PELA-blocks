@@ -32,6 +32,7 @@ use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 use <../PELA-socket-panel.scad>
 use <PELA-technic-box.scad>
+use <PELA-technic-mount.scad>
 
 
 /* [Technic Cover] */
@@ -84,24 +85,3 @@ h = 1; // [1:1:20]
 
 technic_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, twist_l=twist_l, twist_w=twist_w, l_pad=l_pad, w_pad=w_pad, sockets=sockets, solid_first_layer=solid_first_layer, center=center);
 
-
-
-///////////////////////////////////
-// MODULES
-///////////////////////////////////
-
-module technic_cover(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, twist_l=undef, twist_w=undef, l_pad=undef, w_pad=undef, sockets=undef, solid_first_layer=undef, center=undef) {
-
-    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
-    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
-
-    union() {
-        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, w=w, twist_w=twist_w, l=l, twist_l=twist_l, h=h, center=center);
-        
-        if (center == 0) {
-            translate([block_width(0.5), block_width(0.5), 0]) {
-                socket_panel(material=material, large_nozzle=large_nozzle, l=l-2, w=w-2, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
-            }
-        }
-    }    
-}

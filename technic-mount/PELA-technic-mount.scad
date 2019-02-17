@@ -65,7 +65,7 @@ w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 h = 1; // [1:1:20]
 
 // Interior fill style
-center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
+center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 // Distance from length ends of connector twist [blocks]
 twist_l = 2; // [1:18]

@@ -29,7 +29,7 @@ use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 use <../PELA-socket-panel.scad>
 use <PELA-raspberry-pi3-technic-mount.scad>
-use <PELA-technic-board-mount.scad>
+use <PELA-technic-mount.scad>
 use <PELA-technic-cover.scad>
 
 /* [Raspberry Pi Technic Cover] */
