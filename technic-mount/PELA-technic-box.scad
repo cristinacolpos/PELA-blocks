@@ -72,7 +72,11 @@ center_knobs = true;
 // Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
 knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
-
+// Text label
+text = "PELA";
+ 
+// Depth of text etching into top surface
+text_depth = 0.5; // [0.0:0.1:2]
 
 /* [Technic Cover] */
 
@@ -95,7 +99,7 @@ cover_knobs = true;
 ///////////////////////////////
 
 if (render_modules != 0) {
-    color("pink") translate([0, -block_width(w + 0.5, block_width), 0]) {
+    translate([0, -block_width(w + 0.5, block_width), 0]) {
         technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center);
     }
 }
@@ -169,8 +173,8 @@ module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=un
             
             if (center > 0 && center < 5) {
                 difference() {
-                    translate([block_width(0.5, block_width=block_width), block_width(0.5, block_width=block_width), 0]) {
-                        cube([block_width(l-2, block_width=block_width), block_width(w-2, block_width=block_width), block_height(h, block_height)]);
+                    translate([block_width(0.5, block_width), block_width(0.5, block_width), 0]) {
+                        cube([block_width(l-2, block_width), block_width(w-2, block_width), block_height(h, block_height)]);
                     }
                     
                     cheese_holes(material=material, large_nozzle=large_nozzle, center=center, l=l, w=w, h=h, l1=l1, l2=l2, w1=w1, w2=w2);
@@ -178,9 +182,19 @@ module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=un
             }
         }
         
-        translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
-            
-            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        union() {
+            translate([block_width(-0.5, block_width), block_width(-0.5, block_width), 0]) {
+                
+                cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            }
+
+            translate([block_width((l-1)/2, block_width), block_width(w-1, block_width), block_height(h, block_height) - text_depth]) {
+                font = "Liberation Sans:style=Bold";
+
+                linear_extrude(height = text_depth + defeather) {
+                    text(text, font = font, size = 5, valign = "center", halign = "center");
+                }
+            }
         }
     }
 }
