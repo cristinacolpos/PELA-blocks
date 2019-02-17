@@ -99,7 +99,7 @@ module nodemcu_v2_board_mount(material=undef, large_nozzle=undef, cut_line=undef
   w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
   difference() {
-    technic_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
+    technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
 
     cutouts(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h);
   }
