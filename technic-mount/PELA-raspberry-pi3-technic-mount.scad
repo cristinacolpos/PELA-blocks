@@ -30,7 +30,7 @@ use <../PELA-socket-panel.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
 use <PELA-technic-box.scad>
-use <PELA-technic-board-mount.scad>
+use <PELA-technic-mount.scad>
 
 
 
@@ -58,7 +58,7 @@ twist_l = 2; // [1:18]
 twist_w = 2; // [1:18]
 
 // Interior fill style
-center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
+center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 
 

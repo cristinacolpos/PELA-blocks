@@ -30,7 +30,7 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-bar/PELA-technic-bar.scad>
 use <../technic-bar/PELA-technic-twist-bar.scad>
-include <PELA-technic-board-mount.scad>
+include <PELA-technic-mount.scad>
 
 
 /* [Raspberry Pi3 Camera Mount] */
@@ -69,7 +69,7 @@ thickness = 1.8; // Board space height [mm]
 innercut = 2;
 
 // Interior fill style
-center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes]
+center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 
 
