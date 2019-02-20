@@ -6,7 +6,7 @@ PELA blocks are designed for easy 3D printing, strength, and rapid customization
 
 These designs are not by the LEGO corporation. LEGO-compatible blocks are available from multiple manufacturers. Associated basic block patents expired long ago. Press-fit blocks existed before LEGO and we continue that tradition of adapt, evolve and improve as we provide these open source designs for 3D printing.
 
-The name PELA comes from the Finnish "pelataan" meaning "let's play".
+The name PELA comes from the Finnish "pelataan" meaning "let's play". This [blog post](https://medium.com/@futurice/rapid-hardware-prototyping-turbocharge-your-process-with-pela-blocks-58d0fcff63c5) on how we use these to build a self-driving 1:10 drift car is a good example of rapid prototyping "play".
 
 ## Open source design, Powered By Futurice
 
