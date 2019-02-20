@@ -8,12 +8,6 @@ These designs are not by the LEGO corporation. LEGO-compatible blocks are availa
 
 The name PELA comes from the Finnish "pelataan" meaning "let's play". This [blog post](https://medium.com/@futurice/rapid-hardware-prototyping-turbocharge-your-process-with-pela-blocks-58d0fcff63c5) on how we use these to build a self-driving 1:10 drift car is a good example of rapid prototyping "play".
 
-## Open source design, Powered By Futurice
-
-[![Futurice](images/futurice-logo.jpg)](https://futurice.com)
-
-These open source designs are brought to you by [Futurice](https://futurice.com) and contributions from the community. Come work with the best.
-
 ## Customizer
 
 The software needed is also free and open source, [OpenSCAD](http://www.openscad.org/). Newer "development snapshot" versions of [OpenSCAD](http://www.openscad.org/) make tailoring designs very easy. Enable `Edit | Preferences | Features | Customizer` and set `Edit | Preferences | Advanced | Turn off rendering at _1000000_` since some PELA models are quite large.
@@ -301,6 +295,10 @@ ___
 These designs are by PELA project contributors, not by the LEGO corporation. They are compatible with LEGO and similar blocks available from multiple manufacturers and online projects. The associated patents have expired. These designs are not identical to LEGO; they have been specially modified for easy 3D printing and offered in the spirit of open source collaborative innovation.
 
 If what you want is available as injection molded plastic, buy it for the higher quality and durability. These model are helpful when you want something customized, a special color, an unusual material, and for replacement parts when you just can't wait.
+
+[![Futurice](images/futurice-logo.jpg)](https://futurice.com)
+
+These open source designs are brought to you by [Futurice](https://futurice.com) and contributions from the community. Come work with the best.
 
 ## Projects Using PELA Blocks
 
