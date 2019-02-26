@@ -150,7 +150,7 @@ module PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line
 //    assert(sockets != undef);
     assert(knobs != undef);
 //    assert(knob_vent_radius != undef);
-    assert(skin != undef);
+//    assert(skin != undef);
     assert(top_shell != undef);
     assert(bottom_stiffener_width != undef);
     assert(bottom_stiffener_height != undef);

@@ -54,7 +54,7 @@ h = 1; // [1:1:20]
 // Bottom of enclosure
 bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
 
-// Use sockets in the bottom panel
+// Presence of bottom connector sockets
 sockets = true;
 
 // How far below the bottom of the board to carve empty space 
@@ -72,26 +72,37 @@ side_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full wi
 // Add full width through holes spaced along the width for techic connectors
 end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
+// Add a wrapper around side holes (disable for extra ventilation, enable for lock notch fit)
 side_sheaths = true;
 
+// Add a wrapper around end holes  (disable for extra ventilation but loose lock notches)
 end_sheaths = true;
 
+// Create the left wall
 left_wall_enabled = true;
 
-right_wall_enabled = true;
-
-front_wall_enabled = true;
-
-back_wall_enabled = true;
-
+// Shoud there be knobs on top of the left wall
 left_wall_knobs = true;
 
+// Create the right wall
+right_wall_enabled = true;
+
+// Shoud there be knobs on top of the right wall
 right_wall_knobs = true;
 
+// Create the front wall
+front_wall_enabled = true;
+
+// Shoud there be knobs on top of the front wall
 front_wall_knobs = true;
 
+// Create the back wall
+back_wall_enabled = true;
+
+// Shoud there be knobs on top of the back wall
 back_wall_knobs = true;
 
+// Additional space added in every direction around the printed circuit board
 pcb_skin = 0.1;
 
 // Add interior fill for the base layer
@@ -103,9 +114,10 @@ solid_upper_layers = true;
 // Filler for the model center space
 center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
-
+// Distance to shift the PCB in the X direction
 board_x_offset = 0;
 
+// Distance to shift the PCB in the Y direction
 board_y_offset = 0;
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.

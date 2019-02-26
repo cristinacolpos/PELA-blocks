@@ -62,6 +62,7 @@ end_sheaths = false;
 // Presence of top connector knobs
 knobs = true;
 
+// Presence of bottom connector sockets
 sockets = false;
 
 /* [Hidden] */

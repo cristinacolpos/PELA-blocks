@@ -64,8 +64,10 @@ side_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full wi
 // Add full width through holes spaced along the width for techic connectors
 end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
+// Add a wrapper around side holes (disable for extra ventilation, enable for lock notch fit)
 side_sheaths = true;
 
+// Add a wrapper around end holes  (disable for extra ventilation but loose lock notches)
 end_sheaths = true;
 
 left_wall_enabled = true;
