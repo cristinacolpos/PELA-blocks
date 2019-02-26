@@ -89,9 +89,9 @@ module isoThread(d=undef, dInch=undef, pitch=1, tpi=undef, h=1, hInch=undef, lea
 
 //rawThread([[0,0],[1.5,1.5],[0,3]], d=50, h=91, pitch=3);
 //rawThread([[0,0],[0,3],[3,3],[3,0]], d=50, h=50, pitch=6, $fn=80);
-render(convexity=5)
+/*render(convexity=5)
 difference() {
     isoThread(d=50,h=30,pitch=3,angle=40,internal=false,$fn=60);
     translate([0,0,-extrusionNudge]) isoThread(d=42,h=30+2*extrusionNudge,pitch=3,angle=40,internal=true,$fn=60);
-}
+}*/
 //rawThread([[0,0],[1,0],[.5,.5],[1,1],[0,1]],r=20,h=10,lead=1.5);
