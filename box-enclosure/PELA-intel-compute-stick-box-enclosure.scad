@@ -63,17 +63,26 @@ top_vents = true;
 // Add full width through holes spaced along the length for techic connectors
 side_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
+// Add a wrapper around side holes (disable for extra ventilation, enable for lock notch fit)
 side_sheaths = true;
 
 // Add full width through holes spaced along the width for techic connectors
 end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
+// Add a wrapper around end holes  (disable for extra ventilation but loose lock notches)
 end_sheaths = true;
 
+// Add interior fill for upper layers
 solid_upper_layers = true;
+
+// Add interior fill for the base layer
+solid_first_layer = true;
 
 // Filler for the model center space
 center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
+
+// Height of the enclosure [mm]
+h = 2; // [1:1:20]
 
 
 
@@ -81,20 +90,20 @@ center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end 
 // DISPLAY
 ///////////////////////////////
 
-intel_compute_stick_box_enclosure();
+intel_compute_stick_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer);
 
 
 /////////////////////////////////////
 // MODULES
 /////////////////////////////////////
 
-module intel_compute_stick_box_enclosure(material=material) {
+module intel_compute_stick_box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=undef, bottom_type=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, center_type=undef, solid_upper_layers=undef, solid_first_layer=undef) {
+
     l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
     w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
-    h = 2;
 
     difference() {
-        PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers);
+        PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height);
 
         union() {
             intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);

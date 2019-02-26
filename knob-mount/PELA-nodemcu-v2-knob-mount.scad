@@ -86,22 +86,28 @@ side_sheaths = true;
 // Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
 end_sheaths = false;
 
+// Include the left wall in the model
 left_wall_enabled = true;
 
+// Include the right wall in the model
 right_wall_enabled = true;
 
+// Include the front wall in the model
 front_wall_enabled = true;
 
+// Include the back wall in the model
 back_wall_enabled = true;
 
-knobs_on_top = true;
-
+// Add top connector knobs to the left wall
 left_wall_knobs = false;
 
+// Add top connector knobs to the right wall
 right_wall_knobs = true;
 
+// Add top connector knobs to the front wall
 front_wall_knobs = true;
 
+// Add top connector knobs to the back wall
 back_wall_knobs = true;
 
 solid_upper_layers = false;
