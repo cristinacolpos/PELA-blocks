@@ -81,7 +81,10 @@ innercut = 1;
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 // Basic unit vertical size of each block
-block_height = 9.6; // [8:technic, 9.6:traditional blocks]
+block_height = 8; // [8:technic, 9.6:traditional blocks]
+
+// Text label
+text = "Node MCUv2";
 
 
 ///////////////////////////////

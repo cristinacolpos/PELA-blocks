@@ -97,10 +97,6 @@ cover_sockets = true;
 // Presence of knobs if "cover center" is "knob panel"
 cover_knobs = true;
 
-
-
-/* [Technic Cover] */
-
 // Basic unit vertical size of each block
 block_height = 8; // [8:technic, 9.6:traditional blocks]
 
@@ -149,6 +145,7 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, 
     assert(center <= 6);
     assert(text != undef);
     assert(text_depth != undef);
+    assert(block_height != undef);
 
     technic_only_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, center=center, text=text, text_depth=text_depth, block_height=block_height);
     
@@ -182,7 +179,7 @@ module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=un
         union() {
             for (i = [1:h]) {
                 translate([0, 0, block_height(i-1, block_height)]) {
-                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3, block_height=block_height);
+                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3, h=h, text=text, text_depth=text_depth, block_height=block_height);
                 }
             }
             
@@ -197,13 +194,9 @@ module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=un
             }
         }
         
-        union() {
-            translate([block_width(-0.5, block_width), block_width(-0.5, block_width), 0]) {
-                
-                cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
-            }
-
-            edge_text(l=l, w=w, h=h, text=text, text_depth=text_depth);
+        translate([block_width(-0.5, block_width), block_width(-0.5, block_width), 0]) {
+            
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
     }
 }
@@ -221,7 +214,7 @@ module edge_text(l=undef, w=undef, h=undef, text=undef, text_depth=undef) {
 }
 
 
-module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef, block_height=undef) {
+module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef, h=undef, text=undef, text_depth=undef, block_height=undef) {
 
     assert(l1 > 0, "increase first l section to 1");
     assert(l2 >= 0, "increase second l section to 0");
@@ -234,20 +227,27 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
     ll = l1+l2+l3;
     ww = w1+w2+w3;
 
-    technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
+    difference() {
+        union() {
+            technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
 
-    rotate([0, 0, 90]) {
-        technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
-    }
+            rotate([0, 0, 90]) {
+                technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
+            }
 
-    translate([0, block_width(ww-1), 0]) {
-        technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
-    }
+            translate([0, block_width(ww-1), 0]) {
+                technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
+            }
 
-    rotate([0, 0, 90]) {
-        translate([0, -block_width(ll-1), 0]) {
-            technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
+            rotate([0, 0, 90]) {
+                translate([0, -block_width(ll-1), 0]) {
+                    technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
+                }
+            }
         }
+
+        
+        edge_text(l=ll, w=ww, h=h, text=text, text_depth=text_depth);
     }
 }
 

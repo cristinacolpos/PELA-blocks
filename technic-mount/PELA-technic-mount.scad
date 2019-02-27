@@ -92,10 +92,13 @@ center_knobs = true;
 knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // Text label
-text = "PCB Mount";
- 
+text = "PCB";
+
 // Depth of text etching into top surface
 text_depth = 0.5; // [0.0:0.1:2]
+
+// Basic unit vertical size of each block
+block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 
 
@@ -123,24 +126,30 @@ cover_knobs = true;
 // DISPLAY
 ///////////////////////////////
 
-if (render_modules != 0) {
-    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
-    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
-
-    translate([0, -block_width(w + 0.5, block_width), 0]) {
-        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
-    }
-}
-
-if (render_modules != 1) {
-    technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, block_height=block_height);
-}
+technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, block_height=block_height);
 
 
 
 ///////////////////////////////////
 // MODULES
 ///////////////////////////////////
+
+module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, cover_text=undef, text_depth=undef, block_height=undef) {
+
+    if (render_modules != 0) {
+        l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
+        w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
+
+        translate([0, -block_width(w + 0.5, block_width), 0]) {
+            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
+        }
+    }
+
+    if (render_modules != 1) {
+        technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=center_sockets, knobs=center_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, block_height=block_height);
+    }
+}
+
 
 module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
 
@@ -150,6 +159,10 @@ module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=
     assert(w_pad == floor(w_pad), "w_pad must be an integer");
     assert(w_pad >= 0);
     assert(w_pad <= 2);
+    assert(text != undef);
+    assert(text_depth != undef);
+    assert(sockets != undef);
+    assert(knobs != undef);
 
     l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
     w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
