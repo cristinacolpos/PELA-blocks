@@ -73,13 +73,19 @@ innercut = 2;
 // Interior fill style
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
+// Text label
+text = "PIR";
+
+// Basic unit vertical size of each block
+block_height = 8; // [8:technic, 9.6:traditional blocks]
+
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-pir_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
+pir_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, block_height=block_height);
 
 
 
@@ -87,7 +93,7 @@ pir_technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_lin
 // MODULES
 ///////////////////////////////////
 
-module pir_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, l_pad=undef, w_pad=undef, h=undef, twist_l=undef, twist_w=undef, thickness=undef, innercut=undef, center=undef) {
+module pir_technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
 
-    technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
+    technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, block_height=block_height);
 }

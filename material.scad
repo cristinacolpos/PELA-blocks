@@ -72,7 +72,7 @@ pla_m = ["PLA", false, -0.08, 0.04, 0.06];
 
 abs = 1; // Polymaker ABS
 //large nozzle abs_m = ["ABS", false, -0.06, -0.02, 0.06];
-abs_m = ["ABS", false, -0.16, 0.14, 0.06];
+abs_m = ["ABS", false, -0.18, 0.13, 0.08];
 
 pet = 2; // Innoflil3D rPET
 pet_m = ["PET", false, 0.04, 0.10, 0.04];
