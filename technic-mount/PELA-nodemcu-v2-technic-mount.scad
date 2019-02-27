@@ -80,12 +80,15 @@ innercut = 1;
 // Interior fill style
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
+// Basic unit vertical size of each block
+block_height = 9.6; // [8:technic, 9.6:traditional blocks]
+
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-nodemcu_v2_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
+nodemcu_v2_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, usb_length=usb_length, usb_width=usb_width, usb_height=usb_height, block_height=block_height);
 
 
 
@@ -93,20 +96,20 @@ nodemcu_v2_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cu
 // MODULES
 ///////////////////////////////////
 
-module nodemcu_v2_board_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, l_pad=undef, w_pad=undef, h=undef, twist_l=undef, twist_w=undef, thickness=undef, innercut=undef, center=undef) {
+module nodemcu_v2_board_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, l_pad=undef, w_pad=undef, h=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, text_depth=undef, usb_length=undef, usb_width=undef, usb_height=undef, block_height=undef) {
 
   l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
   w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
   difference() {
-    technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, twist_l=twist_l, twist_w=twist_w, thickness=thickness, innercut=innercut, center=center);
+    technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, block_height=block_height);
 
-    cutouts(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h);
+    cutouts(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, usb_length=usb_length, usb_width=usb_width, usb_height=usb_height, block_height=block_height);
   }
 }
 
 
-module cutouts(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h) {
+module cutouts(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, usb_length=undef, usb_width=undef, usb_height=undef, block_height=undef) {
 
   color("yellow") translate([-block_width(usb_length/2, block_width), (block_width(w-usb_width-1, block_width))/2, block_height(0.5, block_height)]) {
 

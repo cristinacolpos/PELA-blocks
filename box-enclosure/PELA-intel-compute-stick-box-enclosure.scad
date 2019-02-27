@@ -39,20 +39,17 @@ large_nozzle = true;
 // Length of the enclosed object [mm]
 length = 114.5; // [0.1:0.1:300]
 
-// How close to the object ends should the walls be [ratio]
-l_pad = 2; // [0:tight, 1:+1 block, 2:+2 blocks]
-
 // Width of the enclosed object [mm]
 width = 38.5;
+
+// How close to the object ends should the walls be [ratio]
+l_pad = 2; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // How close to the object sides should the walls be [ratio]
 w_pad = 2; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Height of the enclosed object [mm]
 height = 12.5;
-
-// How close to the object top and bottom should the walls be [ratio]
-height_tightness = 0.8;
 
 // Bottom of enclosure
 bottom_type = 2; // [0:open bottom, 1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
@@ -90,23 +87,23 @@ h = 2; // [1:1:20]
 // DISPLAY
 ///////////////////////////////
 
-intel_compute_stick_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer);
+intel_compute_stick_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, height=height, l_pad=l_pad, w_pad=w_pad, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer);
 
 
 /////////////////////////////////////
 // MODULES
 /////////////////////////////////////
 
-module intel_compute_stick_box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, length=length, width=width, l_pad=l_pad, w_pad=w_pad, h=undef, bottom_type=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, center_type=undef, solid_upper_layers=undef, solid_first_layer=undef) {
+module intel_compute_stick_box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, height=undef, l_pad=undef, w_pad=undef, h=undef, bottom_type=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, center_type=undef, solid_upper_layers=undef, solid_first_layer=undef) {
 
     l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
     w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
     difference() {
-        PELA_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height);
+        box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height);
 
         union() {
-            intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
+            intel_compute_stick_body(material=material, large_nozzle=large_nozzle, length=length, width=width, height=height, l=l, w=w, h=h, block_height=block_height);
 
             intel_compute_stick_descender(material=material, large_nozzle=large_nozzle, l=l, w=w, block_height=block_height);
 
@@ -119,7 +116,7 @@ module intel_compute_stick_box_enclosure(material=undef, large_nozzle=undef, cut
 
 
 // The space into which a compute stick is lowered from the top
-module intel_compute_stick_body(material=material, large_nozzle=large_nozzle, l, w, h, block_height=block_height) {
+module intel_compute_stick_body(material=undef, large_nozzle=undef, length=undef, width=undef, height=undef, l=undef, w=undef, h=undef, block_height=block_height) {
     x = (block_width(l) - length) / 2;
     y = (block_width(w, block_width) - width) / 2;
     z = block_height(h, block_height) - height;
