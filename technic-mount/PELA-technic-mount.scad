@@ -92,7 +92,7 @@ center_knobs = true;
 knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // Text label
-text = "PCB";
+text = "Mount";
 
 // Depth of text etching into top surface
 text_depth = 0.5; // [0.0:0.1:2]
