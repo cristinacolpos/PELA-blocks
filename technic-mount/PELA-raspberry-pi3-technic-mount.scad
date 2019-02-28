@@ -122,9 +122,6 @@ cover_knobs = true;
 
 /* [Hidden] */
 
- // Mounting holes inset from the corners
-bottom_corner_bolt_holes = true;
-
 // Height of the model [blocks]
 h = 1; // [1:1:20]
 
