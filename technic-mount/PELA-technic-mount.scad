@@ -140,7 +140,7 @@ module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzl
         l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
         w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
 
-        translate([0, -block_width(w + 0.5, block_width), 0]) {
+        translate([0, -block_width(w + 1, block_width), 0]) {
             technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
         }
     }
