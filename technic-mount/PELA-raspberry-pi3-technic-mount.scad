@@ -151,7 +151,7 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
             technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, block_height=block_height);
 
             if (render_modules != 1) {
-                translate([0, 0, block_height(1, block_height=block_height)]) {
+                translate([0, 0, block_height(1, block_height)]) {
 
                     tl = min(twist_l, ceil(l/2));
                     l1 = tl;
@@ -162,7 +162,7 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
                     w3 = w1;
                     w2 = max(0, w - w1 - w3);
 
-                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2-1, l3=l3, w1=w1, w2=w2, w3=w3, h=h, text=text, text_depth=text_depth, block_height=block_height);
+                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2-1, l3=l3, w1=w1, w2=w2, w3=w3, text=text, text_depth=text_depth, block_height=block_height);
                 }
 
                 retaining_ridge_sd_card_side(material=material);

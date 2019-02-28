@@ -73,7 +73,7 @@ center_knobs = true;
 knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // Text label
-text = "PELA Box";
+text = "Box";
  
 // Depth of text etching into top surface
 text_depth = 0.5; // [0.0:0.1:2]
@@ -108,7 +108,7 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 ///////////////////////////////
 
 if (render_modules != 0) {
-    translate([0, -block_width(w + 0.5, block_width), 0]) {
+    translate([0, -block_width(w + 1, block_width), 0]) {
         technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
     }
 }
@@ -147,18 +147,26 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, 
     assert(text_depth != undef);
     assert(block_height != undef);
 
-    technic_only_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, center=center, text=text, text_depth=text_depth, block_height=block_height);
-    
-    lc = l - 2;
-    wc = w - 2;
+    difference() {
+        union() {
+            technic_only_box(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, center=center, text=text, text_depth=text_depth, block_height=block_height);
+            
+            lc = l - 2;
+            wc = w - 2;
 
-    if (center == 5 && lc > 0 && wc > 0) {
-        translate([block_width(0.5), block_width(0.5), 0]) {
-            socket_panel(material=material, large_nozzle=large_nozzle, l=lc, w=wc, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
+            if (center == 5 && lc > 0 && wc > 0) {
+                translate([block_width(0.5), block_width(0.5), 0]) {
+                    socket_panel(material=material, large_nozzle=large_nozzle, l=lc, w=wc, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
+                }
+            } else if (center == 6 && lc > 0 && wc > 0) {
+                translate([block_width(0.5), block_width(0.5), 0]) {
+                    knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=lc, w=wc, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=false, knobs=knobs, sockets=sockets, skip_edge_knobs=0, bottom_stiffener_height=0, block_height=block_height, knob_vent_radius=knob_vent_radius, skin=0);
+                }
+            }
         }
-    } else if (center == 6 && lc > 0 && wc > 0) {
-        translate([block_width(0.5), block_width(0.5), 0]) {
-            knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=lc, w=wc, top_vents=top_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=false, knobs=knobs, sockets=sockets, skip_edge_knobs=0, bottom_stiffener_height=0, block_height=block_height, knob_vent_radius=knob_vent_radius, skin=0);
+
+        translate([-block_width(0.5, block_width), -block_width(0.5, block_width), 0]) {
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
         }
     }
 }
@@ -179,10 +187,12 @@ module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=un
         union() {
             for (i = [1:h]) {
                 translate([0, 0, block_height(i-1, block_height)]) {
-                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3, h=h, text=text, text_depth=text_depth, block_height=block_height);
-                }
+                    t = (i==h) ? text : "";
+                    
+                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3, text=t, text_depth=text_depth, block_height=block_height);
+               }
             }
-            
+
             if (center > 0 && center < 5) {
                 difference() {
                     translate([block_width(0.5, block_width), block_width(0.5, block_width), 0]) {
@@ -214,7 +224,7 @@ module edge_text(l=undef, w=undef, h=undef, text=undef, text_depth=undef) {
 }
 
 
-module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef, h=undef, text=undef, text_depth=undef, block_height=undef) {
+module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef, text=undef, text_depth=undef, block_height=undef) {
 
     assert(l1 > 0, "increase first l section to 1");
     assert(l2 >= 0, "increase second l section to 0");
@@ -245,9 +255,8 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
                 }
             }
         }
-
         
-        edge_text(l=ll, w=ww, h=h, text=text, text_depth=text_depth);
+        edge_text(l=ll, w=ww, h=1, text=text, text_depth=text_depth);
     }
 }
 
