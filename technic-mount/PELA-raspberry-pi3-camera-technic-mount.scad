@@ -77,9 +77,6 @@ undercut = 7.0; // [0:0.1:100]
 // Interior fill style
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
-// Basic unit vertical size of each block
-block_height = 8; // [8:technic, 9.6:traditional blocks]
-
 // Text label
 text = "Pi Cam";
 
@@ -94,7 +91,7 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 /* [Technic Cover] */
 
 // Text label
-cover_text = "Cover";
+cover_text = "Pi Cov";
 
 // Interior fill style
 cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
