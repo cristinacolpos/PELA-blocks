@@ -68,7 +68,7 @@ center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all
 /* [Board] */
 
 // Board space length [mm]
-length = 86.2; // Board space length [mm]
+length = 86.4; // Board space length [mm]
 
 // Board space width [mm]
 width = 56.8; // Board space width [mm]
@@ -77,7 +77,7 @@ width = 56.8; // Board space width [mm]
 thickness = 1.9; // [0:0.1:4]
 
 // Step in from board space edges to support the board [mm]
-innercut = 1;
+innercut = 1.5; // [0:0.1:8]
 
 // Step down from board bottom to give room board components [mm]
 undercut = 3; // [0:0.1:100]
