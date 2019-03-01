@@ -102,16 +102,16 @@ module strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_li
                 ss = side_shell(large_nozzle);
 
                 translate([block_width(1)- ss, 0, height]) {
-                    cube([ss, block_width(w, block_width), block_height(h, block_height) - height]);
+                    cube([ss, block_width(w), block_height(h, block_height) - height]);
                 }
 
                 translate([block_width(l-1), 0, height]) {
-                    cube([ss, block_width(w, block_width), block_height(h, block_height) - height]);
+                    cube([ss, block_width(w), block_height(h, block_height) - height]);
                 }
             }
         }
         
-        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
 
     }
 }
@@ -120,6 +120,6 @@ module strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_li
 module slot(material=material, large_nozzle=large_nozzle, l=l, w=w, block_height=block_height) {
     
     translate([block_width(), -0.01, panel_height_ratio*panel_height(block_height=block_height)]) {
-        cube([block_width(l-2), block_width(w, block_width)+0.02, block_height(h+1, block_height=block_height)]);
+        cube([block_width(l-2), block_width(w)+0.02, block_height(h+1, block_height=block_height)]);
     }
 }

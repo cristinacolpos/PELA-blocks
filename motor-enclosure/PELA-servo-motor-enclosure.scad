@@ -150,8 +150,8 @@ module motor_enclosure_top(material=material, large_nozzle=large_nozzle, cut_lin
             motor(material=material, large_nozzle=large_nozzle);
             
             if (top_access) {
-                translate([block_width(1, block_width), block_width(1, block_width), block_height(1, block_height)]) {
-                    cube([block_width(l-2, block_width), block_width(w-2, block_width), block_height(2, block_height)]);
+                translate([block_width(1), block_width(1), block_height(1, block_height)]) {
+                    cube([block_width(l-2), block_width(w-2), block_height(2, block_height)]);
                 }
             }
         }
@@ -165,16 +165,16 @@ module motor_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cu
         union() {
             PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h_bottom, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=0, knob_vent_radius=knob_vent_radius, side_holes=side_holes, end_holes=end_holes, corner_bolt_holes=corner_bolt_holes);
 
-            translate([block_width(l, block_width)-skin-side_shell(large_nozzle), block_width((w-1)/2, block_width), 0]) {
-                cube([side_shell(large_nozzle), block_width(1, block_width), block_height(h, block_height)]);
+            translate([block_width(l)-skin-side_shell(large_nozzle), block_width((w-1)/2), 0]) {
+                cube([side_shell(large_nozzle), block_width(1), block_height(h, block_height)]);
             }
 
-            translate([skin, block_width((w-1)/2, block_width), 0]) {
-                cube([side_shell(large_nozzle), block_width(1, block_width), block_height(h, block_height)]);
+            translate([skin, block_width((w-1)/2), 0]) {
+                cube([side_shell(large_nozzle), block_width(1), block_height(h, block_height)]);
             }
         }
         
-        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
     }
 }
         
@@ -183,7 +183,7 @@ module motor_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cu
 
 // Shape of the motor body
 module motor(material=material, large_nozzle=large_nozzle) {
-    translate([motor_x, block_width(w/2, block_width), 0]) {
+    translate([motor_x, block_width(w/2), 0]) {
         rotate([0, 90, 0]) {
             cylinder(d=motor_d, h=motor_length);
             

@@ -138,8 +138,8 @@ nodemcu_v2_technic_mount_and_cover(material=material, large_nozzle=large_nozzle,
 
 module nodemcu_v2_technic_mount_and_cover(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, h=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, cover_center=undef, text=undef, cover_text=undef, text_depth=undef, usb_length=undef, usb_width=undef, usb_height=undef, block_height=undef) {
 
-  l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
-  w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
+  l = fit_mm_to_blocks(length, l_pad);
+  w = fit_mm_to_blocks(width, w_pad);
 
   difference() {
     technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, block_height=block_height);
@@ -151,9 +151,9 @@ module nodemcu_v2_technic_mount_and_cover(material=undef, large_nozzle=undef, cu
 
 module cutouts(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, usb_length=undef, usb_width=undef, usb_height=undef, block_height=undef) {
 
-  color("yellow") translate([-block_width(usb_length/2, block_width), (block_width(w-usb_width-1, block_width))/2, block_height(0.5, block_height)]) {
+  color("yellow") translate([-block_width(usb_length/2), (block_width(w-usb_width-1))/2, block_height(0.5, block_height)]) {
 
-    cube([block_width(usb_length, block_width), block_width(usb_width, block_width), block_height(1, block_height)]);
+    cube([block_width(usb_length), block_width(usb_width), block_height(1, block_height)]);
   }
 }
 

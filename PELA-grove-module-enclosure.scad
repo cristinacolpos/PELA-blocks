@@ -137,7 +137,7 @@ module bottom_piece(material=material, large_nozzle=large_nozzle, cut_line=cut_l
         union() {
             PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_flexture_height=0, solid_first_layer=true, solid_upper_layers=true, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0, block_height=block_height);
 
-            double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width, block_height=block_height);
+            double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_height=block_height);
         }
     
         union() {
@@ -147,7 +147,7 @@ module bottom_piece(material=material, large_nozzle=large_nozzle, cut_line=cut_l
                 }
             }
 
-            double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=2, block_width=block_width);
+            double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=2);
 
             if (corner_bolt_holes) {
                 corner_corner_bolt_holes(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bolt_hole_radius=bolt_hole_radius, block_height=block_height);
@@ -195,7 +195,7 @@ module main_top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=
             PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes, side_holes=0, end_holes=0);
         
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, block_width=block_width);
+                double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness);
             }
         }
         
@@ -207,7 +207,7 @@ module main_top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=
             }
             
             translate([0, 0, block_height(1, block_height=block_height)]) {
-                double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=2, block_width=block_width);
+                double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=2);
             }
 
             if (corner_bolt_holes) {

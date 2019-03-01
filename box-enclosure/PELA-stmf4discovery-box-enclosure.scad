@@ -159,7 +159,7 @@ module PELA_stmf4discovery_box_enclosure(material=material, large_nozzle=large_n
             translate([0, 0, block_height(2, block_height=block_height)]) {
                 ahr = material_axle_hole_radius(material);
 
-                double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=side_holes, block_width=block_width, block_height=block_height, axle_hole_radius=ahr);
+                double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=side_holes, block_height=block_height, axle_hole_radius=ahr);
             }
         }
     }
@@ -184,7 +184,7 @@ module right_side_retainer_tabs(material=material, large_nozzle=large_nozzle, fl
 // Two bumps on the left side to hold the board down
 module left_side_retainer_tabs(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
 
-    translate([block_width(l), block_width(w, block_width), 0]) {
+    translate([block_width(l), block_width(w), 0]) {
         rotate([0, 0, 180]) {
             right_side_retainer_tabs(material=material, large_nozzle=large_nozzle, flexture_width=flexture_width, side_snap_end_inset=side_snap_end_inset, side_snap_cut_width=side_snap_cut_width, board_h=board_h, board_thickness=board_thickness, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
         }
@@ -217,7 +217,7 @@ module connector_holes(material=material, large_nozzle=large_nozzle, block_heigh
 // The shape of the board (excluding top and bottom coponents and connectors) which is being enclosed
 module board(material=material, large_nozzle=large_nozzle, l=l, w=w, board_l=board_l, board_w=board_w, board_h=board_h, board_thickness=board_thickness) {
     x = (block_width(l) - board_l)/2;
-    y = (block_width(w, block_width) - board_w)/2;
+    y = (block_width(w) - board_w)/2;
 
     translate([x, y, board_h]) {
         cube([board_l, board_w, board_thickness]);
@@ -260,7 +260,7 @@ module right_side_snap_cuts(material=material, large_nozzle=large_nozzle, side_s
 // Four vertical cuts into the left side
 module left_side_snap_cuts(material=material, large_nozzle=large_nozzle, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height) {
 
-    translate([block_width(l), block_width(w, block_width), 0]) {
+    translate([block_width(l), block_width(w), 0]) {
         rotate([0, 0, 180]) {
             right_side_snap_cuts(material=material, large_nozzle=large_nozzle, side_snap_end_inset=side_snap_end_inset, flexture_width=flexture_width, side_snap_cut_width=side_snap_cut_width, side_snap_cut_depth=side_snap_cut_depth, retainer_tab_radius=retainer_tab_radius, block_height=block_height);
         }

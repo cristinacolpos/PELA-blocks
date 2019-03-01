@@ -140,7 +140,7 @@ if (wall_model && top_model < 2) {
 }
 
 if (top_model > 0) {
-    translate([block_width(10, block_width), block_width(3, block_width), block_height(-2, block_height)]) {
+    translate([block_width(10), block_width(3), block_height(-2, block_height)]) {
 
         two_color_print = top_model >= 2;
         top_ring = top_model == 3;
@@ -370,14 +370,14 @@ module respeaker_core_v2_technic_mount(material=material, large_nozzle=large_noz
 
 
 module board_mounts(material=material, large_nozzle=large_nozzle, rot=0, h=mount_h, pin=true) {
-        color("orange") board_mount(material=material, large_nozzle=large_nozzle, x=x1, y=y1, h=h, rot=rot, pin=pin);
-        color("yellow") board_mount(material=material, large_nozzle=large_nozzle, x=x2, y=y2, h=h, rot=rot, pin=pin);
-        color("pink") board_mount(material=material, large_nozzle=large_nozzle, x=x3, y=y3, h=h, rot=rot, pin=pin);
-        color("grey") board_mount(material=material, large_nozzle=large_nozzle, x=x4, y=y4, h=h, rot=rot, pin=pin);
+        color("orange") knob_mount(material=material, large_nozzle=large_nozzle, x=x1, y=y1, h=h, rot=rot, pin=pin);
+        color("yellow") knob_mount(material=material, large_nozzle=large_nozzle, x=x2, y=y2, h=h, rot=rot, pin=pin);
+        color("pink") knob_mount(material=material, large_nozzle=large_nozzle, x=x3, y=y3, h=h, rot=rot, pin=pin);
+        color("grey") knob_mount(material=material, large_nozzle=large_nozzle, x=x4, y=y4, h=h, rot=rot, pin=pin);
 }
 
 
-module board_mount(material=material, large_nozzle=large_nozzle, x, y, h, rot, pin) {
+module knob_mount(material=material, large_nozzle=large_nozzle, x, y, h, rot, pin) {
     
     d_multiplier = 1.5;
     d2 = d_multiplier*mount_d;

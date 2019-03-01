@@ -75,23 +75,23 @@ module technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut
     rotate([90, 0, 0]) {
         difference() {
             union() {
-                translate([block_width(0.5, block_width), 0, 0]) {
+                translate([block_width(0.5), 0, 0]) {
                     right_square_end_bar(material=material, large_nozzle=large_nozzle, l=l1);
                 }
 
                 rotate([0, 180-angle, 0]) {
-                    translate([block_width(0.5, block_width), 0, block_height(-1, block_height)]) {
+                    translate([block_width(0.5), 0, block_height(-1, block_height)]) {
                         right_square_end_bar(material=material, large_nozzle=large_nozzle, l=l2);
 
-                        translate([block_width(-0.5, block_width), 0,  block_width(1, block_width)])
+                        translate([block_width(-0.5), 0,  block_width(1)])
                         for (n = [90:1:90+angle-1]) {
                             rotate([0, n, 0]) {
                                 hull() {
-                                    translate([0, block_width(-0.5, block_width), 0]) {
-                                        cube([block_width(1, block_width), block_width(1, block_width), defeather]);
+                                    translate([0, block_width(-0.5), 0]) {
+                                        cube([block_width(1), block_width(1), defeather]);
 
                                         rotate([0, 1, 0]) {
-                                            cube([block_width(1, block_width), block_width(1, block_width), defeather]);
+                                            cube([block_width(1), block_width(1), defeather]);
                                         }
                                     }
                                 }
@@ -101,8 +101,8 @@ module technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut
                 }
             }
 
-            translate([block_width(-0.5, block_width=block_width) + cos(angle)*block_width(l1, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
-                cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            translate([block_width(-0.5) + cos(angle)*block_width(l1), block_width(-0.5), 0]) {
+                cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
             }
         }
     }

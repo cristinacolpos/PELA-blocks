@@ -86,8 +86,8 @@ module technic_twist_bar(material=material, large_nozzle=large_nozzle, cut_line=
                 }
             }
 
-            translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
-                cut_space(material=material, large_nozzle=large_nozzle, w=left+center+right, l=left+center+right, cut_line=cut_line, h=1, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            translate([block_width(-0.5), block_width(-0.5), 0]) {
+                cut_space(material=material, large_nozzle=large_nozzle, w=left+center+right, l=left+center+right, cut_line=cut_line, h=1, block_height=block_height, knob_height=knob_height);
             }
         }
     }

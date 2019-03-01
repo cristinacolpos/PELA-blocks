@@ -87,18 +87,18 @@ module PELA_block(material=material, large_nozzle=large_nozzle, cut_line=cut_lin
     difference() {
         block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, socket_insert_bevel=socket_insert_bevel, bottom_tweak=bottom_tweak, top_tweak=top_tweak);
 
-        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
     }
 }
 
 
 // Negative space used to display the interior of a model
-module cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height) {
+module cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height) {
 
-    vc = visual_cut(cut_line=cut_line, w=w, block_width=block_width);
+    vc = visual_cut(cut_line=cut_line, w=w);
     
     if (vc > 0) {
-        cw = block_width(l, block_width) ;
+        cw = block_width(l) ;
         ch = block_height(h, block_height) + knob_height;
     
         color("red") translate([-defeather, -defeather, -defeather]) {
@@ -204,7 +204,7 @@ module fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, 
 
     fill_height = block_height(max(1, h), block_height=block_height);
 
-    cube([block_width(l), block_width(w, block_width), fill_height]);
+    cube([block_width(l), block_width(w), fill_height]);
 }
 
 
@@ -212,7 +212,7 @@ module fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, 
 module fill_upper_layers(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height) {
 
     translate([0, 0, block_height(1, block_height=block_height)]) {
-        cube([block_width(l), block_width(w, block_width), block_height(h-1, block_height=block_height)]);
+        cube([block_width(l), block_width(w), block_height(h-1, block_height=block_height)]);
     }
 }
 
@@ -296,10 +296,10 @@ module outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, 
     ss = side_shell(large_nozzle);
 
     difference() {
-        cube([block_width(l), block_width(w, block_width), block_height(h, block_height)]);
+        cube([block_width(l), block_width(w), block_height(h, block_height)]);
 
         translate([ss, ss, -top_shell]) {
-            cube([block_width(l) - 2*ss, block_width(w, block_width) - 2*ss, block_height(h, block_height)]);
+            cube([block_width(l) - 2*ss, block_width(w) - 2*ss, block_height(h, block_height)]);
         }
     }
 }
@@ -326,10 +326,10 @@ module bottom_stiffener_bar_set(material=material, large_nozzle=large_nozzle, l=
             for (i = [start_l:end_l]) {            
                 translate([block_width(i)-(bottom_stiffener_width)/2, 0, 0]) {
                     difference() {
-                        cube([bottom_stiffener_width, block_width(w, block_width), bottom_stiffener_height]);
+                        cube([bottom_stiffener_width, block_width(w), bottom_stiffener_height]);
                     
                         translate([(bottom_stiffener_width-cut_width)/2, 0, -defeather]) {
-                            cube([cut_width, block_width(w, block_width), bottom_stiffener_height+defeather]);
+                            cube([cut_width, block_width(w), bottom_stiffener_height+defeather]);
                         }
                     }
                 }
@@ -422,16 +422,16 @@ module skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=sk
         cube([block_width(l), skin, block_height(h, block_height)]);
 
         // Back skin
-        translate([0, block_width(w, block_width)-skin, 0]) {
+        translate([0, block_width(w)-skin, 0]) {
             cube([block_width(l), skin, block_height(h, block_height)]);
         }
 
         // Left skin
-        cube([skin, block_width(w, block_width), block_height(h, block_height)]);
+        cube([skin, block_width(w), block_height(h, block_height)]);
         
         // Right skin
         translate([block_width(l)-skin, 0, 0]) {
-            cube([skin, block_width(w, block_width), block_height(h, block_height)]);
+            cube([skin, block_width(w), block_height(h, block_height)]);
         }
     }
     
@@ -443,18 +443,18 @@ module skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=sk
             }
                 
             // Back layer ridge
-            translate([0, block_width(w, block_width)-skin-ridge_depth, i]) {
+            translate([0, block_width(w)-skin-ridge_depth, i]) {
                 cube([block_width(l), ridge_depth, ridge_width]);
             }
 
             // Left layer ridge
             translate([skin, 0, i]) {
-                cube([ridge_depth, block_width(w, block_width), ridge_width]);
+                cube([ridge_depth, block_width(w), ridge_width]);
             }
 
             // Right layer ridge
             translate([block_width(l) - skin - ridge_depth, 0, i]) {
-                cube([ridge_depth, block_width(w, block_width), ridge_width]);
+                cube([ridge_depth, block_width(w), ridge_width]);
             }
         }
     }

@@ -142,8 +142,8 @@ pi3_technic_mount_and_cover(render_modules=render_modules, material=material, la
 
 module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, cover_text=undef, text_depth=undef, block_height=undef) {
 
-    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
-    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
+    l = fit_mm_to_blocks(length, l_pad);
+    w = fit_mm_to_blocks(width, w_pad);
     assert(text != undef);
 
     difference() {
@@ -196,7 +196,7 @@ module retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle
 
 module sd_card_cutout(material=material, large_nozzle=large_nozzle) {
 
-    translate([block_width(-1.6), block_width(1.5, block_width), -defeather]) {
+    translate([block_width(-1.6), block_width(1.5), -defeather]) {
         cube([block_width(3), block_width(6), block_height(4, block_height)]);
     }
 }

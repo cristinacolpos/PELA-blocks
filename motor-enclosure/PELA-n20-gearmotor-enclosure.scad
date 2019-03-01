@@ -149,7 +149,7 @@ module motor_enclosure_top(material=material) {
 // Space for the motor and connectors and shafts to be removed from the block
 module motor_cutouts(material=material, large_nozzle=large_nozzle, ms=true, ss=true, es=true) {
 
-    translate([(block_width(l)-motor_round_length-motor_square_length)/2, (block_width(w, block_width)-motor_width)/2, motor_offset]) {
+    translate([(block_width(l)-motor_round_length-motor_square_length)/2, (block_width(w)-motor_width)/2, motor_offset]) {
         if (ms) {
             motor_slot(material=material);
         }

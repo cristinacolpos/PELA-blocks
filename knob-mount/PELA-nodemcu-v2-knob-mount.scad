@@ -139,7 +139,7 @@ block_height = 9.6; // [8:technic, 9.6:traditional blocks]
 // DISPLAY
 ///////////////////////////////
 
-nodemcu_v2_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, sockets=sockets, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, l_pad=l_pad, w_pad=w_pad, solid_first_layer=solid_first_layer, block_height=block_height);
+nodemcu_v2_knob_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, sockets=sockets, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, l_pad=l_pad, w_pad=w_pad, solid_first_layer=solid_first_layer, block_height=block_height);
 
 
 
@@ -147,24 +147,24 @@ nodemcu_v2_board_mount(material=material, large_nozzle=large_nozzle, cut_line=cu
 // MODULES
 ///////////////////////////////////
 
-module nodemcu_v2_board_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, h=undef, thickness=undef, undercut=undef, innercut=undef, bottom_type=undef, sockets=undef, center_type=undef, top_vents=undef, side_holes=undef, end_holes=undef, side_sheaths=undef, end_sheaths=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, board_x_offset=undef, board_y_offset=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, dome=undef, l_pad=undef, w_pad=undef, solid_first_layer=undef, olid_upper_layers=undef, block_height=undef) {
+module nodemcu_v2_knob_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, h=undef, thickness=undef, undercut=undef, innercut=undef, bottom_type=undef, sockets=undef, center_type=undef, top_vents=undef, side_holes=undef, end_holes=undef, side_sheaths=undef, end_sheaths=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, board_x_offset=undef, board_y_offset=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, dome=undef, l_pad=undef, w_pad=undef, solid_first_layer=undef, olid_upper_layers=undef, block_height=undef) {
     
     difference() {
-        board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, sockets=sockets, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, l_pad=l_pad, w_pad=w_pad, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height);
+        knob_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, undercut=undercut, innercut=innercut, bottom_type=bottom_type, sockets=sockets, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, l_pad=l_pad, w_pad=w_pad, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height);
 
         union() {
-            l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
-            w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
+            l = fit_mm_to_blocks(length, l_pad);
+            w = fit_mm_to_blocks(width, w_pad);
 
-            usb_cutout(material=material, large_nozzle=large_nozzle, w=w, innercut=innercut, block_width=block_width, block_height=block_height);
+            usb_cutout(material=material, large_nozzle=large_nozzle, w=w, innercut=innercut, block_height=block_height);
         }
     }
 }
 
 
-module usb_cutout(material=undef, large_nozzle=undef, w=undef, innercut=undef, block_width=block_width, block_height=undef) {
+module usb_cutout(material=undef, large_nozzle=undef, w=undef, innercut=undef, block_height=undef) {
     
-    translate([-defeather, block_width(1.5, block_width), block_height(0.5, block_height)]) {
-        cube([block_width(1, block_width) + innercut + 2*defeather, block_width(w-3, block_width), block_height(h+1, block_height)]);
+    translate([-defeather, block_width(1.5), block_height(0.5, block_height)]) {
+        cube([block_width(1) + innercut + 2*defeather, block_width(w-3), block_height(h+1, block_height)]);
     }
 }

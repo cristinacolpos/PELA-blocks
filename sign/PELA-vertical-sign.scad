@@ -142,7 +142,7 @@ module PELA_vertical_sign(material=material, large_nozzle=large_nozzle, cut_line
             }
 
             if (copy_to_back) {
-                color("green") translate([block_width(l), block_width(w, block_width)-skin, 0]) {
+                color("green") translate([block_width(l), block_width(w)-skin, 0]) {
                     rotate([0, 0, 180]) {
                         PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
                     }
@@ -157,7 +157,7 @@ module PELA_vertical_sign(material=material, large_nozzle=large_nozzle, cut_line
                         PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
 
                     if (copy_to_back) {
-                        translate([block_width(l)-skin, block_width(w, block_width)-skin, 0]) {
+                        translate([block_width(l)-skin, block_width(w)-skin, 0]) {
                             rotate([0, 0, 180]) {
                                 PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
                             }
@@ -168,7 +168,7 @@ module PELA_vertical_sign(material=material, large_nozzle=large_nozzle, cut_line
         }
 
         translate([0, -extrusion_height, 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
         }
     }
 }
