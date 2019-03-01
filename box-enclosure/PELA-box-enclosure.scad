@@ -135,12 +135,44 @@ box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l
 
 module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, bottom_type=undef, sockets=undef, top_vents=undef, bottom_vents=bottom_vents, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, bottom_knobs=undef, skip_edge_knobs=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, ridge_z_offset=undef, center_type=undef, block_height=undef, knob_vent_radius=undef) {
 
+    assert(material != undef);
+    assert(large_nozzle != undef);
+    assert(cut_line != undef);
+    assert(l != undef);
+    assert(w != undef);
+    assert(h != undef);
+    assert(bottom_type != undef);
+    assert(sockets != undef);
+    assert(top_vents != undef);
+    assert(bottom_vents != undef);
+    assert(side_holes != undef);
+    assert(side_sheaths != undef);
+    assert(end_holes != undef);
+    assert(end_sheaths != undef);
+    assert(skin != undef);
+    assert(bottom_knobs != undef);
+    assert(skip_edge_knobs != undef);
+    assert(left_wall_enabled != undef);
+    assert(right_wall_enabled != undef);
+    assert(front_wall_enabled != undef);
+    assert(back_wall_enabled != undef);
+    assert(left_wall_knobs != undef);
+    assert(right_wall_knobs != undef);
+    assert(front_wall_knobs != undef);
+    assert(back_wall_knobs != undef);
+    assert(solid_first_layer != undef);
+    assert(solid_upper_layers != undef);
+    assert(ridge_z_offset != undef);
+    assert(center_type != undef);
+    assert(block_height != undef);
+    assert(knob_vent_radius != undef);
+
     difference() {
         box_enclosure_positive_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, bottom_knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
 
         union() {
             axle_hole_radius = material_axle_hole_radius(material);
-            bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, axle_hole_radius=axle_hole_radius, hole_type=3, corner_bolt_holes=false, sockets=sockets, skin=skin, block_height=block_height);
+            bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_height=block_height, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=axle_hole_radius);
 
             edge_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
 
@@ -275,7 +307,8 @@ module bottom_negative_space(material=material, large_nozzle=large_nozzle, l=l, 
 module edge_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, sockets=sockets, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, block_height=block_height) {
 
     if (bottom_type > 0) {
-        bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, block_height=block_height);
+        axle_hole_radius = material_axle_hole_radius(material);
+        bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_height=block_height, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=axle_hole_radius);
     }
 }
 

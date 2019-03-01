@@ -76,6 +76,18 @@ socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=
 
 module socket_panel(material=undef, large_nozzle=undef, cut_line=0, l=undef, w=undef, sockets=undef, solid_first_layer=undef, corner_bolt_holes=undef, bolt_hole_radius=undef, skin=undef, block_height=undef) {
     
+    assert(material != undef);
+    assert(large_nozzle != undef);
+    assert(cut_line != undef);
+    assert(l != undef);
+    assert(w != undef);
+    assert(sockets != undef);
+    assert(solid_first_layer != undef);
+    assert(corner_bolt_holes != undef);
+    assert(bolt_hole_radius != undef);
+    assert(skin != undef);
+    assert(block_height != undef);
+
     difference() {
         union() {
             socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, knob_height=knob_height, skin=skin, block_height=block_height, half_height=true);
