@@ -81,6 +81,10 @@ center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end 
 // Height of the enclosure [mm]
 h = 2; // [1:1:20]
 
+// Use sockets for the lid base
+sockets = true;
+
+
 
 
 ///////////////////////////////
@@ -171,10 +175,10 @@ module intel_compute_stick_descender(material=undef, large_nozzle=undef, w=undef
 }
 
 
-module intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, block_height=block_height) {
+module intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, sockets=sockets, block_height=block_height) {
 
     l = fit_mm_to_blocks(length, l_pad);
     w = fit_mm_to_blocks(width, w_pad);
 
-    socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, solid_first_layer=solid_first_layer, block_height=block_height);
+    socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, skin=skin, block_height=block_height);
 }
