@@ -51,12 +51,6 @@ l = 6; // [1:1:20]
 // Add interior fill for the base layer
 solid_first_layer = false;
 
-// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-corner_bolt_holes = false;
-
-// Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.6; // [0.0:0.1:2.0]
-
 // Distance between Vive connector pins
 pin_spacing = 3.5;
 
@@ -137,7 +131,7 @@ module PELA_vive_tracker_mount(material=material, large_nozzle=large_nozzle, blo
 
     difference() {
         union() {
-            socket_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, block_height=block_height, sockets=true);
+            socket_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, solid_first_layer=solid_first_layer, bolt_hole_radius=bolt_hole_radius, block_height=block_height, sockets=true);
 
             translate([block_width(), 2.4+block_width(1.5), panel_height()]) {
                 vive_connector(material=material);
