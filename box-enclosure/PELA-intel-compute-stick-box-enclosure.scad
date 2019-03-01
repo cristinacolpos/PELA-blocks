@@ -96,8 +96,8 @@ intel_compute_stick_box_enclosure(material=material, large_nozzle=large_nozzle, 
 
 module intel_compute_stick_box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, height=undef, l_pad=undef, w_pad=undef, h=undef, bottom_type=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, center_type=undef, solid_upper_layers=undef, solid_first_layer=undef) {
 
-    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
-    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
+    l = fit_mm_to_blocks(length, l_pad);
+    w = fit_mm_to_blocks(width, w_pad);
 
     difference() {
         box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, center_type=center_type, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height);
@@ -118,7 +118,7 @@ module intel_compute_stick_box_enclosure(material=undef, large_nozzle=undef, cut
 // The space into which a compute stick is lowered from the top
 module intel_compute_stick_body(material=undef, large_nozzle=undef, length=undef, width=undef, height=undef, l=undef, w=undef, h=undef, block_height=block_height) {
     x = (block_width(l) - length) / 2;
-    y = (block_width(w, block_width) - width) / 2;
+    y = (block_width(w) - width) / 2;
     z = block_height(h, block_height) - height;
 
     translate([x, y, z]) {
@@ -146,21 +146,21 @@ module side_access(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef
     z = block_height(1, block_height=block_height);
 
     translate([block_width(2), -defeather, z]) {
-        cube([block_width(l - 4), block_width(w, block_width) + 2*defeather, block_height(h, block_height)]);
+        cube([block_width(l - 4), block_width(w) + 2*defeather, block_height(h, block_height)]);
     }
     
     translate([block_width(2), -defeather, z/2]) {
-        cube([block_width(4), block_width(w, block_width) + 2*defeather, block_height(h, block_height)]);
+        cube([block_width(4), block_width(w) + 2*defeather, block_height(h, block_height)]);
     }
     
     translate([block_width(12), -defeather, z/2]) {
-        cube([block_width(2), block_width(w, block_width) + 2*defeather, block_height(h, block_height)]);
+        cube([block_width(2), block_width(w) + 2*defeather, block_height(h, block_height)]);
     }
 }
 
 
 // The open space below the stick for air ventilation
-module intel_compute_stick_descender(material=undef, large_nozzle=undef, w=undef, l=undef, block_width=block_width, block_height=block_height) {
+module intel_compute_stick_descender(material=undef, large_nozzle=undef, w=undef, l=undef, block_height=block_height) {
 
     descender_offset = 2;
 
@@ -171,10 +171,10 @@ module intel_compute_stick_descender(material=undef, large_nozzle=undef, w=undef
 }
 
 
-module intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, block_width=block_width, block_height=block_height) {
+module intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, block_height=block_height) {
 
-    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
-    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
+    l = fit_mm_to_blocks(length, l_pad);
+    w = fit_mm_to_blocks(width, w_pad);
 
-    socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, solid_first_layer=solid_first_layer, block_width=block_width, block_height=block_height);
+    socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, solid_first_layer=solid_first_layer, block_height=block_height);
 }

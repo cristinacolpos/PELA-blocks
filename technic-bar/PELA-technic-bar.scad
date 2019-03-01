@@ -52,7 +52,7 @@ h = 1; // [1:1:20]
 // DISPLAY
 ///////////////////////////////
 
-technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2, block_width=block_width);
+technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2);
 
 
 
@@ -60,18 +60,18 @@ technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l
 // MODULES
 ///////////////////////////////////
 
-module technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2, block_width=block_width) {
+module technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2) {
 
     assert(l > 0, "Technic bar length must be greater than zero");
     assert(h > 0, "Technic bar height must be greater than zero");
 
     l2 = l + 1;
 
-    translate([block_width(-1, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
+    translate([block_width(-1), block_width(-0.5), 0]) {
 
         difference() {
             intersection() {
-                translate([0, block_width(1, block_width=block_width), 0]) {
+                translate([0, block_width(1), 0]) {
                     rotate([90, 0, 0]) {
                         PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l2, w=h, h=1, sockets=false, knobs=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
                     }
@@ -79,44 +79,44 @@ module technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_li
 
                 hull() {
                     translate([block_width(1), block_width(0.5), 0]) {
-                        cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height));
+                        cylinder(d=block_width(1), h=block_height(h, block_height));
                     }
 
                     translate([block_width(l), block_width(0.5), 0]) {
-                        cylinder(d=block_width(1, block_width=block_width), h=block_height(h, block_height));
+                        cylinder(d=block_width(1), h=block_height(h, block_height));
                     }
                 }
             }
 
-            cut_space(material=material, large_nozzle=large_nozzle, w=l+1, l=l+1, cut_line=cut_line, h=1, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, w=l+1, l=l+1, cut_line=cut_line, h=1, block_height=block_height, knob_height=knob_height);
         }
     }
 }
 
 
 // The 2D profile of the bar (for rotations and other uses)
-module technic_bar_slice(material=material, large_nozzle=large_nozzle, l=l, block_width=block_width) {
+module technic_bar_slice(material=material, large_nozzle=large_nozzle, l=l) {
     l2 = l + 1;
 
     hull() {
         translate([0, block_width(0.5), 0]) {
-            cylinder(d=block_width(1, block_width=block_width), h=0.01);
+            cylinder(d=block_width(1), h=0.01);
         }
 
         translate([block_width(l-1), block_width(0.5), 0]) {
-            cylinder(d=block_width(1, block_width=block_width), h=0.01);
+            cylinder(d=block_width(1), h=0.01);
         }
     }
 }
 
 
 // The 2D profile of the negative space of the bar (for rotations and other uses)
-module technic_bar_slice_negative(material=material, large_nozzle=large_nozzle, l=l, block_width=block_width) {
+module technic_bar_slice_negative(material=material, large_nozzle=large_nozzle, l=l) {
     l2 = l + 1;
 
     union() {
-        for (i = [0:block_width(1, block_width=block_width):block_width(l, block_width)]) {
-            translate([i, block_width(0.5, block_width=block_width), -defeather]) {
+        for (i = [0:block_width(1):block_width(l)]) {
+            translate([i, block_width(0.5), -defeather]) {
                 cylinder(r=counterbore_inset_radius, h=0.01 + defeather);
             }
         }

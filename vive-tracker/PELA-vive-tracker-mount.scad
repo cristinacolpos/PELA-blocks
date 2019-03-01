@@ -173,7 +173,7 @@ module PELA_vive_tracker_mount(material=material, large_nozzle=large_nozzle, blo
 
             thumbscrew_head_hole(material=material);
 
-            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=2, block_width=block_width, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=2, block_height=block_height, knob_height=knob_height);
         }
     }
 }

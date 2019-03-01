@@ -137,10 +137,10 @@ technic_mount_and_cover(render_modules=render_modules, material=material, large_
 module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, cover_text=undef, text_depth=undef, block_height=undef) {
 
     if (render_modules != 0) {
-        l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
-        w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
+        l = fit_mm_to_blocks(length, l_pad);
+        w = fit_mm_to_blocks(width, w_pad);
 
-        translate([0, -block_width(w + 1, block_width), 0]) {
+        translate([0, -block_width(w + 1), 0]) {
             technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
         }
     }
@@ -164,8 +164,8 @@ module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=
     assert(sockets != undef);
     assert(knobs != undef);
 
-    l = fit_mm_to_blocks(length, l_pad, block_width=block_width);
-    w = fit_mm_to_blocks(width, w_pad, block_width=block_width);
+    l = fit_mm_to_blocks(length, l_pad);
+    w = fit_mm_to_blocks(width, w_pad);
     echo("l", l);
     echo("w", l);
 
@@ -182,9 +182,9 @@ module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=
                 main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, innercut=innercut, undercut=undercut, block_height=block_height);
             }
 
-            translate([block_width(-0.5, block_width=block_width), block_width(-0.5, block_width=block_width), 0]) {
+            translate([block_width(-0.5), block_width(-0.5), 0]) {
                 
-                cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_width=block_width, block_height=block_height, knob_height=knob_height);
+                cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_height=block_height, knob_height=knob_height);
             }
         }
     }
@@ -193,8 +193,8 @@ module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=
 
 module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef, block_height=undef) {
     
-    l2 = block_width(l-1, block_width);
-    w2 = block_width(w-1, block_width);
+    l2 = block_width(l-1);
+    w2 = block_width(w-1);
     hl = l2/2 - length/2;
     hw = w2/2 - width/2;
 
@@ -207,8 +207,8 @@ module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef,
 
 module main_board_back(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef, innercut=undef, undercut=undef, block_height=undef) {
 
-    l2 = block_width(l-1, block_width);
-    w2 = block_width(w-1, block_width);
+    l2 = block_width(l-1);
+    w2 = block_width(w-1);
     hl = l2/2 - length/2 - innercut;
     hw = w2/2 - width/2 - innercut;
 

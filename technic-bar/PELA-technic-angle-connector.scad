@@ -84,8 +84,8 @@ module technic_angle_connector(material=material, large_nozzle=large_nozzle, cut
             }
         }
 
-        translate([block_width(-0.5, block_width=block_width), -sin(angle)*block_width(1, block_width=block_width), 0]) {
-           cut_space(material=material, large_nozzle=large_nozzle, w=l, l=l, cut_line=cut_line, h=3, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        translate([block_width(-0.5), -sin(angle)*block_width(1), 0]) {
+           cut_space(material=material, large_nozzle=large_nozzle, w=l, l=l, cut_line=cut_line, h=3, block_height=block_height, knob_height=knob_height);
         }
     }
 }

@@ -61,7 +61,7 @@ bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket panel bottom, 3:kno
 sockets = true;
 
 // How far below the bottom of the board to carve empty space 
-undercut = 2.3; // [0:0.1:32]
+undercut = 7; // [0:0.1:20]
 
 // How far in from the outside edges the board support can extend without hitting board bottom surface parts
 innercut = 0.8;
@@ -139,7 +139,7 @@ dome = true;
 // DISPLAY
 ///////////////////////////////
 
-board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, innercut=innercut, undercut=undercut, center_type=center_type, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, l_pad=l_pad, w_pad=w_pad, block_height=block_height);
+knob_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, innercut=innercut, undercut=undercut, center_type=center_type, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, l_pad=l_pad, w_pad=w_pad, block_height=block_height);
 
 
 
@@ -147,10 +147,44 @@ board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, len
 // MODULES
 ///////////////////////////////////
 
-module board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, innercut=innercut, undercut=undercut, center_type=center_type, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, l_pad=l_pad, w_pad=w_pad, block_height=block_height) {
+module knob_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, h=undef, thickness=undef, innercut=undef, undercut=undef, center_type=undef, bottom_type=undef, sockets=undef, top_vents=undef, side_holes=undef, end_holes=undef, side_sheaths=undef, end_sheaths=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, board_x_offset=undef, board_y_offset=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, dome=undef, solid_first_layer=undef, solid_upper_layers=undef, l_pad=undef, w_pad=undef, block_height=undef) {
 
-    l = fit_mm_to_blocks(length, l_pad, block_width);
-    w = fit_mm_to_blocks(width, w_pad, block_width);
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(length!=undef);
+    assert(width!=undef);
+    assert(h!=undef);
+    assert(thickness!=undef);
+    assert(innercut!=undef);
+    assert(undercut!=undef);
+    assert(center_type!=undef);
+    assert(bottom_type!=undef);
+    assert(sockets!=undef);
+    assert(top_vents!=undef);
+    assert(side_holes!=undef);
+    assert(end_holes!=undef);
+    assert(side_sheaths!=undef);
+    assert(end_sheaths!=undef);
+    assert(left_wall_enabled!=undef);
+    assert(right_wall_enabled!=undef);
+    assert(front_wall_enabled!=undef);
+    assert(back_wall_enabled!=undef);
+    assert(board_x_offset!=undef);
+    assert(board_y_offset!=undef);
+    assert(left_wall_knobs!=undef);
+    assert(right_wall_knobs!=undef);
+    assert(front_wall_knobs!=undef);
+    assert(back_wall_knobs!=undef);
+    assert(dome!=undef);
+    assert(solid_first_layer!=undef);
+    assert(solid_upper_layers!=undef);
+    assert(l_pad!=undef);
+    assert(w_pad!=undef);
+    assert(block_height!=undef);
+
+    l = fit_mm_to_blocks(length, l_pad);
+    w = fit_mm_to_blocks(width, w_pad);
     echo("board mount l", l);
     echo("board mount w", w);
 
@@ -163,10 +197,9 @@ module board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_li
         union() {
             pcb_space_skinned(material=material, large_nozzle=large_nozzle, z=z1, length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, dome=dome, block_height=block_height);
 
-/*            if (bottom_type == 0) {
+            if (bottom_type == 0) {
                 pcb_space_skinned(material=material, large_nozzle=large_nozzle, z=z2, length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, dome=dome, block_height=block_height);
             }
-*/            
         }
     }    
 }
@@ -176,7 +209,7 @@ module board_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_li
 module pcb_space(material=material, large_nozzle=large_nozzle, z=undef, length=length, width=width, l=undef, w=undef, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, dome=dome, block_height=block_height) {
 
     x_inset = (block_width(l) - length)/2;
-    y_inset = (block_width(w, block_width) - width)/2;
+    y_inset = (block_width(w) - width)/2;
 
     translate([x_inset + board_x_offset, y_inset + board_y_offset, z]) {
         if (dome) {
@@ -225,7 +258,7 @@ module pcb_holder(material=material, large_nozzle=large_nozzle, length=length, w
 module bottom_header_space(material=material, large_nozzle=large_nozzle, l, w, width=width, block_height=block_height) {
 
     down_cut_width = max(width, block_width(w-2));
-    w2 = (block_width(w, block_width) - down_cut_width) / 2;
+    w2 = (block_width(w) - down_cut_width) / 2;
 
     translate([block_width(1.5), w2, 0]) {
         cube([block_width(l-3), down_cut_width, block_height(2, block_height=block_height)]);

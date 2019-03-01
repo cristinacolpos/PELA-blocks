@@ -137,7 +137,7 @@ module PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l,
                 }
             }
             
-            translate([block_width(w, block_width)-skin-horizontal_text_margin, block_width(w, block_width)-text_extrusion_height-skin, skin+vertical_text_margin]) {
+            translate([block_width(w)-skin-horizontal_text_margin, block_width(w)-text_extrusion_height-skin, skin+vertical_text_margin]) {
                 
                 rotate([90, 0, 180]) {
                     translate([0, 0.8, 0]) {

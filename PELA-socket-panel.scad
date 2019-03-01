@@ -80,7 +80,7 @@ module socket_panel(material=undef, large_nozzle=undef, cut_line=0, l=undef, w=u
         union() {
             socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, knob_height=knob_height, skin=skin, block_height=block_height, half_height=true);
 
-            translate([0, block_width(w, block_width), panel_height(block_height=block_height)]) {
+            translate([0, block_width(w), panel_height(block_height=block_height)]) {
                 rotate([180, 0, 0]) {
                     socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, skin=skin, block_height=block_height, half_height=true);
                 }
@@ -99,7 +99,7 @@ module socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l,
 
             denom = half_height ? 2 : 1;
             
-            cube([block_width(l), block_width(w, block_width), panel_height(block_height=block_height)/denom]);
+            cube([block_width(l), block_width(w), panel_height(block_height=block_height)/denom]);
     }
 }
 

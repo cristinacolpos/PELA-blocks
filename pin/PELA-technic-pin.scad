@@ -119,7 +119,7 @@ module pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_
                         }
 
                         translate([-block_width(), -counterbore_holder_radius, 0]) {
-                            cut_space(material=material, large_nozzle=large_nozzle, l=4, cut_line=cut_line, h=4, block_width=block_width, block_height=block_height, knob_height=knob_height);
+                            cut_space(material=material, large_nozzle=large_nozzle, l=4, cut_line=cut_line, h=4, block_height=block_height, knob_height=knob_height);
                         }
                     }
                 }
@@ -232,7 +232,7 @@ module pin_array(material=material, large_nozzle=large_nozzle, array_count, arra
             }
         }
 
-        cut_space(material=material, large_nozzle=large_nozzle, l=4, cut_line=cut_line, h=2, block_width=block_width, block_height=block_height, knob_height=knob_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=4, cut_line=cut_line, h=2, block_height=block_height, knob_height=knob_height);
     }
 }
 
