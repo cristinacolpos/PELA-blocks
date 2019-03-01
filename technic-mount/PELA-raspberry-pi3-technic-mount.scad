@@ -97,9 +97,6 @@ center_knobs = true;
 // Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
 knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
-// Basic unit vertical size of each block
-block_height = 8; // [8:technic, 9.6:traditional blocks]
-
 
 
 /* [Technic Cover] */
@@ -121,6 +118,9 @@ cover_knobs = true;
 
 
 /* [Hidden] */
+
+// Basic unit vertical size of each block
+block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 // Height of the model [blocks]
 h = 1; // [1:1:20]

@@ -38,22 +38,22 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Screwhole border
-thumbscrew_border_d=11;
+thumbscrew_head_diameter=11; // [0:0.1:30]
 
 // Thumbscrew cut for finger tension [mm]
-cut = 0.8;
+cut = 0.8; // [0:0.1:4]
 
-// Thumbscrew turns per inch
-tpi = 20;
+// Thumbscrew pitch [turns per inch]
+tpi = 20; // [1:1:60]
 
 // Thumbscrew head height [mm]
-height = 0.5*panel_height(block_height=block_height) - skin;
+head_thickness = 1.9; // [0:0.1:8]
 
 // Thumscrew diameter of shaft [inches]
-dInch=1/4;
+diameter_in = 0.25; // [0:0.05:4]
 
 // Thumbscrew total height [inches]
-hInch=1/4;
+height_in = 0.25; // [0:0.05:4]
 
 
 
@@ -61,7 +61,7 @@ hInch=1/4;
 // DISPLAY
 ///////////////////////////////
 
-thumbscrew(material=material, large_nozzle=large_nozzle, cut_line=cut_line,thumbscrew_border_d=thumbscrew_border_d, cut=cut, tpi=tpi, height=height, dInch=dInch, hInch=hInch);
+thumbscrew(material=material, large_nozzle=large_nozzle, cut_line=cut_line, thumbscrew_head_diameter=thumbscrew_head_diameter, cut=cut, tpi=tpi, head_thickness=head_thickness, diameter_in=diameter_in, height_in=height_in);
 
 
 
@@ -69,32 +69,35 @@ thumbscrew(material=material, large_nozzle=large_nozzle, cut_line=cut_line,thumb
 // MODULES
 ///////////////////////////////////
 
-module thumbscrew(material=material, large_nozzle=large_nozzle, cut_line=cut_line,thumbscrew_border_d=thumbscrew_border_d, cut=cut, tpi=tpi, height=height, dInch=dInch, hInch=hInch) {
+module thumbscrew(material=material, large_nozzle=large_nozzle, cut_line=cut_line,thumbscrew_head_diameter=thumbscrew_head_diameter, cut=cut, tpi=tpi, head_thickness=head_thickness, diameter_in=diameter_in, height_in=height_in) {
 
     difference() {
         union() {
-            translate([0, 0, height]) {
-                us_bolt_thread(dInch=dInch, hInch=hInch, tpi=tpi);
+            translate([0, 0, head_thickness]) {
+                us_bolt_thread(dInch=diameter_in, hInch
+            =height_in
+            , tpi=tpi);
             }
 
-            thumbscrew_head(material=material, large_nozzle=large_nozzle, height=height);
+            thumbscrew_head(material=material, large_nozzle=large_nozzle, head_thickness=head_thickness);
         }
 
-        translate([-thumbscrew_border_d/2, -thumbscrew_border_d/2, 0]) {
+        translate([-thumbscrew_head_diameter/2, -thumbscrew_head_diameter/2, 0]) {
             cut_space(material=material, large_nozzle=large_nozzle, l=2, cut_line=cut_line, h=2, block_height=block_height, knob_height=knob_height);
         }
     }
 }
 
 
-module thumbscrew_head(material=material, large_nozzle=large_nozzle, height=height) {
-    cylinder(d=thumbscrew_border_d/2, h=height);
+module thumbscrew_head(material=material, large_nozzle=large_nozzle, head_thickness=head_thickness) {
+
+    cylinder(d=thumbscrew_head_diameter/2, h=head_thickness);
 
     difference() {
         difference() {
-            cylinder(d=thumbscrew_border_d-0.2, h=height);
+            cylinder(d=thumbscrew_head_diameter-0.2, h=head_thickness);
             translate([-cut/2, 0, 0]) {
-                cube([cut, thumbscrew_border_d, cut]);
+                cube([cut, thumbscrew_head_diameter, cut]);
             }            
         }
 
@@ -102,7 +105,7 @@ module thumbscrew_head(material=material, large_nozzle=large_nozzle, height=heig
             for (i = [30:30:360]) {
                 rotate([0, 0, i]) {
                     translate([-cut/2, 0, -defeather]) {
-                        cube([cut, thumbscrew_border_d, cut]);
+                        cube([cut, thumbscrew_head_diameter, cut]);
                     }
                 }
             }
