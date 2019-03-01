@@ -149,7 +149,8 @@ module pca9685_servo_knob_mount(material=undef, large_nozzle=undef, cut_line=und
             l = fit_mm_to_blocks(length, l_pad);
             w = fit_mm_to_blocks(width, w_pad);
 
-            bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=1, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets);
+            axle_hole_radius = material_axle_hole_radius(material);
+            bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_height=block_height, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=axle_hole_radius);
         }
     }
 }
