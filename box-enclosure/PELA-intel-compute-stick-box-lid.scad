@@ -43,10 +43,12 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 // Add interior fill for the base layer
 solid_first_layer = false;
 
+// Use sockets for the lid base
+sockets = true;
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, block_height=block_height);
+intel_compute_stick_box_lid(material=material, large_nozzle=large_nozzle, cut_line=cut_line, solid_first_layer=solid_first_layer, sockets=sockets, block_height=block_height);
