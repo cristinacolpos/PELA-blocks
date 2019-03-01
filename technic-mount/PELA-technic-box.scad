@@ -156,7 +156,7 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, 
 
             if (center == 5 && lc > 0 && wc > 0) {
                 translate([block_width(0.5), block_width(0.5), 0]) {
-                    socket_panel(material=material, large_nozzle=large_nozzle, l=lc, w=wc, corner_bolt_holes=false, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
+                    socket_panel(material=material, large_nozzle=large_nozzle, l=lc, w=wc, skin=0, block_height=block_height, sockets=sockets, solid_first_layer=solid_first_layer);
                 }
             } else if (center == 6 && lc > 0 && wc > 0) {
                 translate([block_width(0.5), block_width(0.5), 0]) {

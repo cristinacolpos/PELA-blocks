@@ -52,20 +52,11 @@ solid_first_layer = false;
 block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 
-/* [Hidden] */
-
-// Place holes in the corners for mountings screws
-corner_bolt_holes = false;
-
-// Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.6; // [0.0:0.1:2.0]
-
-
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);
+socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, skin=skin, block_height=block_height);
 
 
 
@@ -74,7 +65,7 @@ socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=
 // MODULES
 ///////////////////////////////////
 
-module socket_panel(material=undef, large_nozzle=undef, cut_line=0, l=undef, w=undef, sockets=undef, solid_first_layer=undef, corner_bolt_holes=undef, bolt_hole_radius=undef, skin=undef, block_height=undef) {
+module socket_panel(material=undef, large_nozzle=undef, cut_line=0, l=undef, w=undef, sockets=undef, solid_first_layer=undef, skin=undef, block_height=undef) {
     
     assert(material != undef);
     assert(large_nozzle != undef);
@@ -83,8 +74,6 @@ module socket_panel(material=undef, large_nozzle=undef, cut_line=0, l=undef, w=u
     assert(w != undef);
     assert(sockets != undef);
     assert(solid_first_layer != undef);
-    assert(corner_bolt_holes != undef);
-    assert(bolt_hole_radius != undef);
     assert(skin != undef);
     assert(block_height != undef);
 
