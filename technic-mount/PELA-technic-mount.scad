@@ -102,6 +102,21 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 
 
+/* [Left Side Cut] */
+
+// Distance of the front of left side hole [mm]
+left_cutout_y = 8; // [0:0.1:50]
+
+// Width of the left side hole [mm]
+left_cutout_width = 0; // [0:0.1:50]
+
+// Height of bottom of the left side hole [mm]
+left_cutout_z = 4; // [0:0.1:50]
+
+// Height of the left side hole [mm]
+left_cutout_height = 8; // [0:0.1:50]
+
+
 /* [Technic Cover] */
 
 // Text label
@@ -126,7 +141,7 @@ cover_knobs = true;
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, block_height=block_height);
+technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, block_height=block_height, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height);
 
 
 
@@ -134,7 +149,22 @@ technic_mount_and_cover(render_modules=render_modules, material=material, large_
 // MODULES
 ///////////////////////////////////
 
-module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, cover_text=undef, text_depth=undef, block_height=undef) {
+module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, cover_text=undef, text_depth=undef, block_height=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_z=undef, left_cutout_height=undef) {
+
+    assert(l_pad == floor(l_pad), "l_pad must be an integer");
+    assert(l_pad >= 0);
+    assert(l_pad <= 2);
+    assert(w_pad == floor(w_pad), "w_pad must be an integer");
+    assert(w_pad >= 0);
+    assert(w_pad <= 2);
+    assert(text != undef);
+    assert(text_depth != undef);
+    assert(sockets != undef);
+    assert(knobs != undef);
+    assert(left_cutout_y != undef);
+    assert(left_cutout_width != undef);
+    assert(left_cutout_z != undef);
+    assert(left_cutout_height != undef);
 
     if (render_modules != 0) {
         l = fit_mm_to_blocks(length, l_pad);
@@ -152,17 +182,6 @@ module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzl
 
 
 module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
-
-    assert(l_pad == floor(l_pad), "l_pad must be an integer");
-    assert(l_pad >= 0);
-    assert(l_pad <= 2);
-    assert(w_pad == floor(w_pad), "w_pad must be an integer");
-    assert(w_pad >= 0);
-    assert(w_pad <= 2);
-    assert(text != undef);
-    assert(text_depth != undef);
-    assert(sockets != undef);
-    assert(knobs != undef);
 
     l = fit_mm_to_blocks(length, l_pad);
     w = fit_mm_to_blocks(width, w_pad);
@@ -186,7 +205,18 @@ module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=
                 
                 cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_height=block_height, knob_height=knob_height);
             }
+
+            color("yellow") left_cutout(left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, length=length);
         }
+    }
+}
+
+
+module left_cutout(left_cutout_y=undef, left_cutout_width=undef, left_cutout_z=undef, left_cutout_height=undef, length=undef) {
+
+    left_cutout_length = length/2;
+    translate([block_width(-0.5)-defeather, left_cutout_y, left_cutout_z-defeather]) {
+        cube([left_cutout_length, left_cutout_width, left_cutout_height]);
     }
 }
 
