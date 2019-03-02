@@ -2,6 +2,8 @@
 
 ![ESP8266 d1 miniPro PELA Blocks enclosure](images/d1-miniPro-pela-blocks-enclosure.jpg)
 
+We measured the length, width and thickness of this board and used the customizer graphical interface to create this functional prototype enclosure. It took about 30 minutes including printing.
+
 ## LEGO-compatible Parametric 3D Printed Blocks
 
 PELA blocks are designed for easy 3D printing, strength, and rapid customization using free software. One time calibration gives perfect snap-together objects in exotic materials and geometries to help you explore your ideas and build with exotic materials and any motors and electronics you like. Example enclosures with many options for custom sensors, actuators, computers and IoT devices are included, or create your own.
