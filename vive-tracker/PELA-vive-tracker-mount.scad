@@ -131,7 +131,7 @@ module PELA_vive_tracker_mount(material=material, large_nozzle=large_nozzle, blo
 
     difference() {
         union() {
-            socket_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, solid_first_layer=solid_first_layer, bolt_hole_radius=bolt_hole_radius, block_height=block_height, sockets=true);
+            socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=true, solid_first_layer=solid_first_layer, skin=skin, block_height=block_height);
 
             translate([block_width(), 2.4+block_width(1.5), panel_height()]) {
                 vive_connector(material=material);

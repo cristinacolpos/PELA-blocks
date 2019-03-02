@@ -101,9 +101,6 @@ text = "NodeMCUv2";
 // Depth of text etching into top surface
 text_depth = 0.5; // [0.0:0.1:2]
 
-// Basic unit vertical size of each block
-block_height = 8; // [8:technic, 9.6:traditional blocks]
-
 
 
 /* [Technic Cover] */
@@ -122,6 +119,14 @@ cover_sockets = true;
 
 // Presence of knobs if "cover center" is "knob panel"
 cover_knobs = true;
+
+
+
+/* [Hidden] */
+
+// Basic unit vertical size of each block
+block_height = 8; // [8:technic, 9.6:traditional blocks]
+
 
 
 ///////////////////////////////
