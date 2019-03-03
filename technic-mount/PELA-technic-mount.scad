@@ -35,7 +35,7 @@ use <PELA-technic-box.scad>
 
 
 
-/* [Technic Board Mount] */
+/* [Render] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
@@ -49,6 +49,10 @@ large_nozzle = true;
 // Select parts to render
 render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and cover]
 
+
+
+/* [Board] */
+
 // Board space length [mm]
 length = 39.5; // [0:0.1:300]
 
@@ -57,6 +61,10 @@ width = 39.5; // [0:0.1:300]
 
 // Board space height [mm]
 thickness = 1.8; // [0:0.1:300]
+
+
+
+/* [Enclosure] */
 
 // Distance from length ends of connector twist [blocks]
 twist_l = 1; // [1:18]
@@ -70,7 +78,7 @@ l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 // Closeness of board fit widthwise [blocks]
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
-// Height of the model [blocks]
+// Height of the enclosure [blocks]
 h = 1; // [1:1:20]
 
 // Interior fill style
@@ -107,14 +115,63 @@ left_cutout_y = 8; // [0:0.1:50]
 // Width of the left side hole [mm]
 left_cutout_width = 0; // [0:0.1:50]
 
-// Height of bottom of the left side hole [mm]
+// Distance from bottom of the left side hole [mm]
 left_cutout_z = 4; // [0:0.1:50]
 
 // Height of the left side hole [mm]
 left_cutout_height = 8; // [0:0.1:50]
 
 
-/* [Technic Cover] */
+
+/* [Right Side Cut] */
+
+// Distance of the front of right side hole [mm]
+right_cutout_y = 8; // [0:0.1:50]
+
+// Width of the right side hole [mm]
+right_cutout_width = 0; // [0:0.1:50]
+
+// Distance from bottom of the right side hole [mm]
+right_cutout_z = 4; // [0:0.1:50]
+
+// Height of the right side hole [mm]
+right_cutout_height = 8; // [0:0.1:50]
+
+
+
+/* [Front Side Cut] */
+
+// Distance of the left of front side hole [mm]
+front_cutout_x = 8; // [0:0.1:50]
+
+// Width of the front side hole [mm]
+front_cutout_width = 0; // [0:0.1:50]
+
+// Distance from bottom of the front side hole [mm]
+front_cutout_z = 4; // [0:0.1:50]
+
+// Height of the front side hole [mm]
+front_cutout_height = 8; // [0:0.1:50]
+
+
+
+/* [Back Side Cut] */
+
+// Distance of the left of back side hole [mm]
+back_cutout_x = 8; // [0:0.1:50]
+
+// Width of the back side hole [mm]
+back_cutout_width = 0; // [0:0.1:50]
+
+// Distance from bottom of the back side hole [mm]
+back_cutout_z = 4; // [0:0.1:50]
+
+// Height of the back side hole [mm]
+back_cutout_height = 8; // [0:0.1:50]
+
+
+
+/* [Cover] */
 
 // Text label
 cover_text = "Cover";
@@ -137,7 +194,7 @@ cover_knobs = true;
 /* [Hidden] */
 
 // Basic unit vertical size of each block
-block_height = 8; // [8:technic, 9.6:traditional blocks]
+block_height = 8; // This is not adjuestable due to twist bar technic hole rotation
 
 
 
@@ -145,7 +202,7 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, block_height=block_height, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height);
+technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height);
 
 
 
@@ -153,7 +210,7 @@ technic_mount_and_cover(render_modules=render_modules, material=material, large_
 // MODULES
 ///////////////////////////////////
 
-module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, cover_text=undef, text_depth=undef, block_height=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_z=undef, left_cutout_height=undef) {
+module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, cover_text=undef, text_depth=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_z=undef, left_cutout_height=undef) {
 
     assert(l_pad == floor(l_pad), "l_pad must be an integer");
     assert(l_pad >= 0);
@@ -169,6 +226,18 @@ module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzl
     assert(left_cutout_width != undef);
     assert(left_cutout_z != undef);
     assert(left_cutout_height != undef);
+    assert(right_cutout_y != undef);
+    assert(right_cutout_width != undef);
+    assert(right_cutout_z != undef);
+    assert(right_cutout_height != undef);
+    assert(front_cutout_x != undef);
+    assert(front_cutout_width != undef);
+    assert(front_cutout_z != undef);
+    assert(front_cutout_height != undef);
+    assert(back_cutout_x != undef);
+    assert(back_cutout_width != undef);
+    assert(back_cutout_z != undef);
+    assert(back_cutout_height != undef);
 
     if (render_modules != 0) {
         l = fit_mm_to_blocks(length, l_pad);
@@ -218,7 +287,7 @@ module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=
 
 module left_cutout(left_cutout_y=undef, left_cutout_width=undef, left_cutout_z=undef, left_cutout_height=undef, length=undef) {
 
-    left_cutout_length = length/2;
+    left_cutout_length = length/2 + block_width(1);
     translate([block_width(-0.5)-defeather, left_cutout_y, left_cutout_z-defeather]) {
         cube([left_cutout_length, left_cutout_width, left_cutout_height]);
     }

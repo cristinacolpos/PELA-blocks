@@ -57,7 +57,7 @@ twist_l = 1; // [1:18]
 // Distance from width ends of connector twist [blocks]
 twist_w = 2; // [1:18]
 
-// Height of the model [blocks]
+// Height of the enclosure [blocks]
 h = 2; // [1:1:20]
 
 // Interior fill style
@@ -80,7 +80,7 @@ text_depth = 0.5; // [0.0:0.1:2]
 
 
 
-/* [Technic Cover] */
+/* [Cover] */
 
 // Text label
 cover_text = "Cover";
