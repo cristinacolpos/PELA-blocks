@@ -110,64 +110,76 @@ text_depth = 0.5; // [0.0:0.1:2]
 /* [Left Side Cut] */
 
 // Distance of the front of left side hole [mm]
-left_cutout_y = 8; // [0:0.1:50]
+left_cutout_y = 4; // [0:0.1:200]
 
 // Width of the left side hole [mm]
-left_cutout_width = 0; // [0:0.1:50]
+left_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the left side hole [mm]
+left_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-left_cutout_z = 4; // [0:0.1:50]
+left_cutout_z = 4; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-left_cutout_height = 8; // [0:0.1:50]
+left_cutout_height = 8; // [0:0.1:200]
 
 
 
 /* [Right Side Cut] */
 
 // Distance of the front of right side hole [mm]
-right_cutout_y = 8; // [0:0.1:50]
+right_cutout_y = 4; // [0:0.1:200]
 
 // Width of the right side hole [mm]
-right_cutout_width = 0; // [0:0.1:50]
+right_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the right side hole [mm]
+right_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the right side hole [mm]
-right_cutout_z = 4; // [0:0.1:50]
+right_cutout_z = 4; // [0:0.1:200]
 
 // Height of the right side hole [mm]
-right_cutout_height = 8; // [0:0.1:50]
+right_cutout_height = 8; // [0:0.1:200]
 
 
 
 /* [Front Side Cut] */
 
 // Distance of the left of front side hole [mm]
-front_cutout_x = 8; // [0:0.1:50]
+front_cutout_x = 4; // [0:0.1:200]
 
 // Width of the front side hole [mm]
-front_cutout_width = 0; // [0:0.1:50]
+front_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the depth side hole [mm]
+front_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-front_cutout_z = 4; // [0:0.1:50]
+front_cutout_z = 4; // [0:0.1:200]
 
 // Height of the front side hole [mm]
-front_cutout_height = 8; // [0:0.1:50]
+front_cutout_height = 8; // [0:0.1:200]
 
 
 
 /* [Back Side Cut] */
 
 // Distance of the left of back side hole [mm]
-back_cutout_x = 8; // [0:0.1:50]
+back_cutout_x = 4; // [0:0.1:200]
 
 // Width of the back side hole [mm]
-back_cutout_width = 0; // [0:0.1:50]
+back_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the back side hole [mm]
+back_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
-back_cutout_z = 4; // [0:0.1:50]
+back_cutout_z = 4; // [0:0.1:200]
 
 // Height of the back side hole [mm]
-back_cutout_height = 8; // [0:0.1:50]
+back_cutout_height = 8; // [0:0.1:200]
 
 
 
@@ -202,7 +214,7 @@ block_height = 8; // This is not adjuestable due to twist bar technic hole rotat
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height);
+technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
 
 
 
@@ -210,7 +222,7 @@ technic_mount_and_cover(render_modules=render_modules, material=material, large_
 // MODULES
 ///////////////////////////////////
 
-module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, cover_text=undef, text_depth=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_z=undef, left_cutout_height=undef) {
+module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, cover_text=undef, text_depth=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef) {
 
     assert(l_pad == floor(l_pad), "l_pad must be an integer");
     assert(l_pad >= 0);
@@ -224,77 +236,116 @@ module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzl
     assert(knobs != undef);
     assert(left_cutout_y != undef);
     assert(left_cutout_width != undef);
+    assert(left_cutout_depth != undef);
     assert(left_cutout_z != undef);
     assert(left_cutout_height != undef);
     assert(right_cutout_y != undef);
     assert(right_cutout_width != undef);
+    assert(right_cutout_depth != undef);
     assert(right_cutout_z != undef);
     assert(right_cutout_height != undef);
     assert(front_cutout_x != undef);
     assert(front_cutout_width != undef);
+    assert(front_cutout_depth != undef);
     assert(front_cutout_z != undef);
     assert(front_cutout_height != undef);
     assert(back_cutout_x != undef);
     assert(back_cutout_width != undef);
+    assert(back_cutout_depth != undef);
     assert(back_cutout_z != undef);
     assert(back_cutout_height != undef);
 
-    if (render_modules != 0) {
-        l = fit_mm_to_blocks(length, l_pad);
-        w = fit_mm_to_blocks(width, w_pad);
+    l = fit_mm_to_blocks(length, l_pad);
+    w = fit_mm_to_blocks(width, w_pad);
+    assert(l - 2*twist_l, "Board length is quite small- decrease twist_l or increase l_pad");
+    assert(w - 2*twist_w, "Board width is quite small- decrease twist_w or increase w_pad");
 
+    if (render_modules != 0) {
         translate([0, -block_width(w + 1), 0]) {
             technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
         }
     }
 
     if (render_modules != 1) {
-        technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=center_sockets, knobs=center_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, block_height=block_height);
+        technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, l=l, w=w, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=center_sockets, knobs=center_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
     }
 }
 
 
-module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
-
-    l = fit_mm_to_blocks(length, l_pad);
-    w = fit_mm_to_blocks(width, w_pad);
-    echo("l", l);
-    echo("w", l);
-
-    assert(l - 2*twist_l, "Board length is quite small- decrease twist_l or increase l_pad");
-    assert(w - 2*twist_w, "Board width is quite small- decrease twist_w or increase w_pad");
+module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, l=undef, w=undef, h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, text=undef, text_depth=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef) {
 
     difference() {
+        echo("l", l);
+        echo("w", l);
+
         technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=center, text=text, text_depth=text_depth, block_height=block_height);
         
         union() {
-            color("green") main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, block_height=block_height);
+            color("green") main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness);
 
             translate([innercut, innercut, 0]) {            
-                main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, innercut=innercut, undercut=undercut, block_height=block_height);
+                main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, innercut=innercut, undercut=undercut);
             }
+
+            color("yellow") left_cutout(l=l, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, length=length);
+
+            color("gold") right_cutout(l=l, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, length=length);
+
+            color("moccasin") front_cutout(w=w, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, width=width);
+
+            color("khaki") back_cutout(l=l, w=w, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, width=width);
 
             translate([block_width(-0.5), block_width(-0.5), 0]) {
                 
                 cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_height=block_height, knob_height=knob_height);
             }
+        }
+    }
 
-            color("yellow") left_cutout(left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, length=length);
+    % color("green", 0.2) difference() {
+        main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness);
+
+        translate([block_width(-0.5), block_width(-0.5), 0]) {
+                
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_height=block_height, knob_height=knob_height);
         }
     }
 }
 
 
-module left_cutout(left_cutout_y=undef, left_cutout_width=undef, left_cutout_z=undef, left_cutout_height=undef, length=undef) {
+module left_cutout(l=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef, length=undef) {
 
-    left_cutout_length = length/2 + block_width(1);
     translate([block_width(-0.5)-defeather, left_cutout_y, left_cutout_z-defeather]) {
-        cube([left_cutout_length, left_cutout_width, left_cutout_height]);
+        cube([left_cutout_depth, left_cutout_width, left_cutout_height]);
     }
 }
 
 
-module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef, block_height=undef) {
+module right_cutout(l=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef, length=undef) {
+
+    translate([block_width(l - 0.5) - right_cutout_depth + defeather, right_cutout_y, right_cutout_z-defeather]) {
+        cube([right_cutout_depth, right_cutout_width, right_cutout_height]);
+    }
+}
+
+
+module front_cutout(w=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef, width=undef) {
+
+    translate([front_cutout_x, block_width(-0.5)-defeather, front_cutout_z-defeather]) {
+        cube([front_cutout_width, front_cutout_depth, front_cutout_height]);
+    }
+}
+
+
+module back_cutout(l=undef, w=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef, width=undef) {
+
+    translate([back_cutout_x, block_width(l - 0.5) - back_cutout_depth + defeather, back_cutout_z-defeather]) {
+        cube([back_cutout_width, back_cutout_depth, back_cutout_height]);
+    }
+}
+
+
+module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef) {
     
     l2 = block_width(l-1);
     w2 = block_width(w-1);
@@ -308,7 +359,7 @@ module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef,
 }
 
 
-module main_board_back(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef, innercut=undef, undercut=undef, block_height=undef) {
+module main_board_back(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, length=undef, width=undef, thickness=undef, innercut=undef, undercut=undef) {
 
     l2 = block_width(l-1);
     w2 = block_width(w-1);
