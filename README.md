@@ -155,6 +155,11 @@ ___
 [![PELA Raspberry Pi Camera Technic Mount](/technic-mount/PELA-raspberry-pi3-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl)
 
 [PELA Raspberry Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl) A Raspberry Pi 3 camera holder.
+___
+
+[![PELA STMF4 Discovery Technic Mount](/technic-mount/PELA-stmf4discovery-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-stmf4discovery-technic-mount.stl)
+
+[PELA STMF4 Discovery Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/box-enclosure/PELA-stmf4discovery-technic-mount.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
 ___
 
@@ -191,23 +196,12 @@ ___
 [![PELA Box Enclosure](/box-enclosure/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/enclosure/PELA-box-enclosure.stl)
 
 [PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
-___
-
-[![PELA STMF4 Discovery Box Enclosure](/box-enclosure/PELA-stmf4discovery-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-stmf4discovery-box-enclosure.stl)
-
-[PELA STMF4 Discovery Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/box-enclosure/PELA-stmf4discovery-box-enclosure.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
 ___
 
 [![PELA Intel Compute Stick Box Enclosure](/box-enclosure/PELA-intel-compute-stick-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-intel-compute-stick-box-enclosure.stl)
 
 [PELA Intel Compute Stick Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-intel-compute-stick-box-enclosure.stl) Enclosure for the [Intel Compute Stick](https://www.intel.com/content/www/us/en/products/boards-kits/compute-stick.html)
-
-___
-
-[![PELA Intel Compute Stick Box Lid](/box-enclosure/PELA-intel-compute-stick-box-lid.png)](https://github.com/LEGO-compatible-gadgets/box-enclosure/PELA-parametric-blocks/blob/master/PELA-intel-compute-stick-box-lid.stl)
-
-[PELA Intel Compute Stick Box Lid](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-intel-compute-stick-box-lid.stl) Enclosure cover. You may prefer a knobbed or flat panel, but ensure proper ventilation.
 
 ___
 
@@ -247,15 +241,21 @@ ___
 
 ___
 
-[![PELA PCA9685 16 Channel Servo Board Mount](/knob-mount/PELA-pca9685-servo-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/knob-mount/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-knob-mount.stl)
-
-[PELA PCA9685 16 Channel Servo Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-pca9685-servo-knob-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](http://www.donkeycar.com/).
-
-___
-
 [![PELA Knob Mount](/knob-mount/PELA-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-knob-mount.stl)
 
 [PELA Knob Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl) For holding relatively flat objects like a microcontroller within a PELA block that has knobs on top
+
+___
+
+[![PELA Sparkfun Pro Micro Knob Mount](/knob-mount/PELA-sparkfun-pro-micro-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/knob-mount/PELA-parametric-blocks/blob/master/PELA-sparkfun-pro-micro-knob-mount.stl)
+
+[PELA SparkFun Pro Micro Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-sparkfun-pro-micro-knob-mount.stl) For holding a small Aruino-compatible microcontroller board.
+
+___
+
+[![PELA PCA9685 16 Channel Servo Drive Knob Mount](/knob-mount/PELA-pca9685-servo-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/knob-mount/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-knob-mount.stl)
+
+[PELA PCA9685 16 Channel Servo Drive Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-pca9685-servo-knob-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](http://www.donkeycar.com/).
 
 ___
 
@@ -271,9 +271,9 @@ ___
 
 ___
 
-[![PELA Arduino Mega Board Mount](/knob-mount/PELA-arduino-mega-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-arduino-mega-knob-mount.stl)
+[![PELA Arduino Mega Knob Mount](/knob-mount/PELA-arduino-mega-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-arduino-mega-knob-mount.stl)
 
-[PELA Arduino Mega Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-aruino-mega-knob-mount.stl) For holding an Arduino Mega within a PELA block
+[PELA Arduino Mega Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-aruino-mega-knob-mount.stl) For holding an Arduino Mega within a PELA block
 
 ## FFF Printing Tips
 

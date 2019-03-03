@@ -1,5 +1,5 @@
 /*
-Raspberry Pi3 Camera Mount - 3D Printed LEGO-compatible PCB mount with the board held in place by technic bars
+STMF4 Discovery Mount - 3D Printed LEGO-compatible mount for a printed cricuit board
 
 Published at https://PELAblocks.org
 
@@ -48,10 +48,13 @@ large_nozzle = true;
 render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and cover]
 
 // Board space length [mm]
-length = 39.5; // [0:1:300] 
+length = 97.3; // [0:1:300] 
 
 // Board space width [mm]
-width = 39.5; // [0:1:300]
+width = 66.3; // [0:1:300]
+
+// Board space thickness [mm]
+thickness = 1.8; // [0:0.1:8]
 
 l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
@@ -66,8 +69,6 @@ twist_l = 2; // [1:18]
 // How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
 twist_w = 2; // [1:18]
 
-thickness = 1.8; // Board space height [mm]
-
 // Step in from board space edges to support the board [mm]
 innercut = 2;
 
@@ -78,7 +79,7 @@ undercut = 7.0; // [0:0.1:100]
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 // Text label
-text = "Pi Cam";
+text = "STMF4 Discovery";
 
 // Depth of text etching into top surface
 text_depth = 0.5; // [0.0:0.1:2]
@@ -152,7 +153,7 @@ back_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-cover_text = "Pi Cov";
+cover_text = "STMF4 Cover";
 
 // Interior fill style
 cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
