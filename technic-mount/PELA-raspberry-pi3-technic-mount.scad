@@ -99,13 +99,16 @@ knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 
 
-/* [Left Side Cut] */
+/* [Left Cut] */
 
 // Distance of the front of left side hole [mm]
 left_cutout_y = 4; // [0:0.1:200]
 
 // Width of the left side hole [mm]
 left_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the left side hole [mm]
+left_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
 left_cutout_z = 4; // [0:0.1:200]
@@ -115,13 +118,16 @@ left_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Right Side Cut] */
+/* [Right Cut] */
 
 // Distance of the front of right side hole [mm]
 right_cutout_y = 4; // [0:0.1:200]
 
 // Width of the right side hole [mm]
 right_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the right side hole [mm]
+right_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the right side hole [mm]
 right_cutout_z = 4; // [0:0.1:200]
@@ -131,13 +137,16 @@ right_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Front Side Cut] */
+/* [Front Cut] */
 
 // Distance of the left of front side hole [mm]
 front_cutout_x = 4; // [0:0.1:200]
 
 // Width of the front side hole [mm]
 front_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the depth side hole [mm]
+front_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
 front_cutout_z = 4; // [0:0.1:200]
@@ -147,13 +156,16 @@ front_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Back Side Cut] */
+/* [Back Cut] */
 
 // Distance of the left of back side hole [mm]
 back_cutout_x = 4; // [0:0.1:200]
 
 // Width of the back side hole [mm]
 back_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the back side hole [mm]
+back_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
 back_cutout_z = 4; // [0:0.1:200]
@@ -166,7 +178,7 @@ back_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-cover_text = "Raspberry Pi Cover";
+cover_text = "Raspberry Pi 3B+ Cover";
 
 // Interior fill style
 cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]

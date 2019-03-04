@@ -107,24 +107,101 @@ front_wall_knobs = true;
 back_wall_knobs = true;
 
 
+
+
+/* [Left Cut] */
+
+// Distance of the front of left side hole [mm]
+left_cutout_y = 4; // [0:0.1:200]
+
+// Width of the left side hole [mm]
+left_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the left side hole [mm]
+left_cutout_depth = 24; // [0:0.1:200]
+
+// Distance from bottom of the left side hole [mm]
+left_cutout_z = 4; // [0:0.1:200]
+
+// Height of the left side hole [mm]
+left_cutout_height = 8; // [0:0.1:200]
+
+
+
+/* [Right Cut] */
+
+// Distance of the front of right side hole [mm]
+right_cutout_y = 4; // [0:0.1:200]
+
+// Width of the right side hole [mm]
+right_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the right side hole [mm]
+right_cutout_depth = 24; // [0:0.1:200]
+
+// Distance from bottom of the right side hole [mm]
+right_cutout_z = 4; // [0:0.1:200]
+
+// Height of the right side hole [mm]
+right_cutout_height = 8; // [0:0.1:200]
+
+
+
+/* [Front Cut] */
+
+// Distance of the left of front side hole [mm]
+front_cutout_x = 4; // [0:0.1:200]
+
+// Width of the front side hole [mm]
+front_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the depth side hole [mm]
+front_cutout_depth = 24; // [0:0.1:200]
+
+// Distance from bottom of the front side hole [mm]
+front_cutout_z = 4; // [0:0.1:200]
+
+// Height of the front side hole [mm]
+front_cutout_height = 8; // [0:0.1:200]
+
+
+
+/* [Back Cut] */
+
+// Distance of the left of back side hole [mm]
+back_cutout_x = 4; // [0:0.1:200]
+
+// Width of the back side hole [mm]
+back_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the back side hole [mm]
+back_cutout_depth = 24; // [0:0.1:200]
+
+// Distance from bottom of the back side hole [mm]
+back_cutout_z = 4; // [0:0.1:200]
+
+// Height of the back side hole [mm]
+back_cutout_height = 8; // [0:0.1:200]
+
+
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-intel_compute_stick_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, h=h, bottom_type=bottom_type, sockets=sockets, bottom_vents=bottom_vents, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, bottom_knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
+intel_compute_stick_box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, h=h, bottom_type=bottom_type, sockets=sockets, bottom_vents=bottom_vents, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, bottom_knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
 
 
 /////////////////////////////////////
 // MODULES
 /////////////////////////////////////
 
-module intel_compute_stick_box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, h=undef, bottom_type=undef, sockets=undef, top_vents=undef, bottom_vents=bottom_vents, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, bottom_knobs=undef, skip_edge_knobs=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, ridge_z_offset=undef, center_type=undef, block_height=undef, knob_vent_radius=undef) {
+module intel_compute_stick_box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, h=undef, bottom_type=undef, sockets=undef, top_vents=undef, bottom_vents=bottom_vents, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, bottom_knobs=undef, skip_edge_knobs=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, ridge_z_offset=undef, center_type=undef, block_height=undef, knob_vent_radius=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef) {
 
     l = fit_mm_to_blocks(length, l_pad);
     w = fit_mm_to_blocks(width, w_pad);
 
     difference() {
-        box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, bottom_vents=bottom_vents, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, bottom_knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
+        box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, bottom_vents=bottom_vents, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, bottom_knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
 
         union() {
             intel_compute_stick_body(material=material, large_nozzle=large_nozzle, length=length, width=width, height=height, l=l, w=w, h=h, block_height=block_height);

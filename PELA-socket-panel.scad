@@ -37,10 +37,10 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the block [blocks]
-l = 4; // [1:1:20]
+l = 8; // [1:1:20]
 
 // Width of the block [blocks]
-w = 4; // [1:1:20]
+w = 8; // [1:1:20]
 
 // Presence of sockets vs a plain panel
 sockets = true;

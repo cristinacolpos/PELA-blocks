@@ -86,7 +86,7 @@ text_depth = 0.5; // [0.0:0.1:2]
 
 
 
-/* [Left Side Cut] */
+/* [Left Cut] */
 
 // Distance of the front of left side hole [mm]
 left_cutout_y = 4; // [0:0.1:200]
@@ -102,7 +102,7 @@ left_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Right Side Cut] */
+/* [Right Cut] */
 
 // Distance of the front of right side hole [mm]
 right_cutout_y = 4; // [0:0.1:200]
@@ -118,7 +118,7 @@ right_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Front Side Cut] */
+/* [Front Cut] */
 
 // Distance of the left of front side hole [mm]
 front_cutout_x = 4; // [0:0.1:200]
@@ -134,7 +134,7 @@ front_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Back Side Cut] */
+/* [Back Cut] */
 
 // Distance of the left of back side hole [mm]
 back_cutout_x = 4; // [0:0.1:200]
