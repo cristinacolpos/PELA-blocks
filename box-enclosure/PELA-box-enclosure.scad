@@ -253,26 +253,6 @@ module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef
     assert(center_type != undef);
     assert(block_height != undef);
     assert(knob_vent_radius != undef);
-    assert(left_cutout_y != undef);
-    assert(left_cutout_width != undef);
-    assert(left_cutout_depth != undef);
-    assert(left_cutout_z != undef);
-    assert(left_cutout_height != undef);
-    assert(right_cutout_y != undef);
-    assert(right_cutout_width != undef);
-    assert(right_cutout_depth != undef);
-    assert(right_cutout_z != undef);
-    assert(right_cutout_height != undef);
-    assert(front_cutout_x != undef);
-    assert(front_cutout_width != undef);
-    assert(front_cutout_depth != undef);
-    assert(front_cutout_z != undef);
-    assert(front_cutout_height != undef);
-    assert(back_cutout_x != undef);
-    assert(back_cutout_width != undef);
-    assert(back_cutout_depth != undef);
-    assert(back_cutout_z != undef);
-    assert(back_cutout_height != undef);
 
     difference() {
         box_enclosure_positive_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, bottom_knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius);
@@ -283,13 +263,7 @@ module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef
 
             edge_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
 
-            color("yellow") left_cutout(l=l, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, length=length);
-
-            color("gold") right_cutout(l=l, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, length=length);
-
-            color("moccasin") front_cutout(w=w, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, width=width);
-
-            color("khaki") back_cutout(l=l, w=w, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, width=width);
+            wall_cutouts(l=l, w=w, length=length, width=width, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
 
             cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
         }
@@ -453,6 +427,39 @@ module box_center(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, c
             cube([l2, w2, block_height(h, block_height) - panel_height(block_height=block_height)]);
         }
     }
+}
+
+
+module wall_cutouts(l=undef, w=undef, length=undef, width=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef) {
+
+    assert(left_cutout_y != undef);
+    assert(left_cutout_width != undef);
+    assert(left_cutout_depth != undef);
+    assert(left_cutout_z != undef);
+    assert(left_cutout_height != undef);
+    assert(right_cutout_y != undef);
+    assert(right_cutout_width != undef);
+    assert(right_cutout_depth != undef);
+    assert(right_cutout_z != undef);
+    assert(right_cutout_height != undef);
+    assert(front_cutout_x != undef);
+    assert(front_cutout_width != undef);
+    assert(front_cutout_depth != undef);
+    assert(front_cutout_z != undef);
+    assert(front_cutout_height != undef);
+    assert(back_cutout_x != undef);
+    assert(back_cutout_width != undef);
+    assert(back_cutout_depth != undef);
+    assert(back_cutout_z != undef);
+    assert(back_cutout_height != undef);
+
+    color("yellow") left_cutout(l=l, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, length=length);
+
+    color("gold") right_cutout(l=l, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, length=length);
+
+    color("moccasin") front_cutout(w=w, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, width=width);
+
+    color("khaki") back_cutout(l=l, w=w, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, width=width);
 }
 
 
