@@ -217,7 +217,7 @@ ___
 
 ___
 
-[![PELA N20 Gearmotor Enclosure](/PELA-n20-gearmotor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-n20-gearmotor-enclosure.stl)
+[![PELA N20 Gearmotor Enclosure](/motor-enclosure/PELA-n20-gearmotor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-n20-gearmotor-enclosure.stl)
 
 [PELA N20 Gearmotor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-n20-gearmotor-enclosure.stl) Add a commonly available small gear motor to your design. Adjust the model parameters to fit other motor sizes.
 
