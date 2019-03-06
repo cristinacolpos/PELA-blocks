@@ -1,4 +1,4 @@
-/*
+/*-------------------------------------
 Parametric PELA Box Enclosure Generator
 
 Create a bottom and 4 walls of a rectangle for enclosing objects
@@ -107,7 +107,7 @@ top_vents = false;
 knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // There is usually no need or room for corner mounting M3 bolt holes
-corner_bolt_holes = true;
+corner_bolt_holes = false;
 
 // Add interior fill for upper layers
 solid_upper_layers = true;
@@ -263,7 +263,7 @@ module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef
 
             edge_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
 
-            wall_cutouts(l=l, w=w, length=length, width=width, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
+            wall_cutouts(l=l, w=w, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
 
             cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
         }
@@ -430,7 +430,7 @@ module box_center(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, c
 }
 
 
-module wall_cutouts(l=undef, w=undef, length=undef, width=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef) {
+module wall_cutouts(l=undef, w=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef) {
 
     assert(left_cutout_y != undef);
     assert(left_cutout_width != undef);
@@ -453,18 +453,18 @@ module wall_cutouts(l=undef, w=undef, length=undef, width=undef, left_cutout_y=u
     assert(back_cutout_z != undef);
     assert(back_cutout_height != undef);
 
-    color("yellow") left_cutout(l=l, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, length=length);
+    color("yellow") left_cutout(l=l, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height);
 
-    color("gold") right_cutout(l=l, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, length=length);
+    color("gold") right_cutout(l=l, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height);
 
-    color("moccasin") front_cutout(w=w, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, width=width);
+    color("moccasin") front_cutout(w=w, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height);
 
-    color("khaki") back_cutout(l=l, w=w, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, width=width);
+    color("khaki") back_cutout(l=l, w=w, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
 }
 
 
 // Left side access hole
-module left_cutout(l=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef, length=undef) {
+module left_cutout(l=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef) {
 
     if (left_cutout_width > 0 && left_cutout_depth > 0 && left_cutout_height > 0) {
         translate([block_width(-0.5)-defeather, left_cutout_y, left_cutout_z-defeather]) {
@@ -475,7 +475,7 @@ module left_cutout(l=undef, left_cutout_y=undef, left_cutout_width=undef, left_c
 
 
 // Right side access hole
-module right_cutout(l=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef, length=undef) {
+module right_cutout(l=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef) {
 
     if (right_cutout_width > 0 && right_cutout_depth > 0 && right_cutout_height > 0) {
         translate([block_width(l - 0.5) - right_cutout_depth + defeather, right_cutout_y, right_cutout_z-defeather]) {
@@ -486,7 +486,7 @@ module right_cutout(l=undef, right_cutout_y=undef, right_cutout_width=undef, rig
 
 
 // Front access hole
-module front_cutout(w=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef, width=undef) {
+module front_cutout(w=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef) {
 
     if (front_cutout_width > 0 && front_cutout_depth > 0 && front_cutout_height > 0) {
         translate([front_cutout_x, block_width(-0.5)-defeather, front_cutout_z-defeather]) {
@@ -497,7 +497,7 @@ module front_cutout(w=undef, front_cutout_x=undef, front_cutout_width=undef, fro
 
 
 // Back access hole
-module back_cutout(l=undef, w=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef, width=undef) {
+module back_cutout(l=undef, w=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef) {
 
     if (back_cutout_width > 0 && back_cutout_depth > 0 && back_cutout_height > 0) {
         translate([back_cutout_x, block_width(l - 0.5) - back_cutout_depth + defeather, back_cutout_z-defeather]) {
