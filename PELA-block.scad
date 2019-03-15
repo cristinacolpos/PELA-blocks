@@ -306,7 +306,8 @@ module outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, 
 
 
 // A solid block, no knobs or connectors. This is provided as a convenience for constructive solid geometry designs based on this block
-module skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height) {
+module skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height, skin=skin) {
+    
     difference() {
         hull() {
             outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_shell=1);
@@ -419,22 +420,25 @@ module skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=sk
 
     if (skin > 0) {
         // Front skin
-        cube([block_width(l), skin, block_height(h, block_height)]);
+        translate([0, -defeather, -defeather]) {
+            cube([block_width(l), skin, block_height(h, block_height)+2*defeather]);
+        }
 
         // Back skin
-        translate([0, block_width(w)-skin, 0]) {
-            cube([block_width(l), skin, block_height(h, block_height)]);
+        translate([0, block_width(w)-skin+defeather, -defeather]) {
+            cube([block_width(l), skin, block_height(h, block_height)+2*defeather]);
         }
 
         // Left skin
-        cube([skin, block_width(w), block_height(h, block_height)]);
+        translate([-defeather, 0, -defeather]) {
+            cube([skin, block_width(w), block_height(h, block_height)+2*defeather]);
+        }
         
         // Right skin
-        translate([block_width(l)-skin, 0, 0]) {
-            cube([skin, block_width(w), block_height(h, block_height)]);
+        translate([block_width(l)-skin+defeather, 0, -defeather]) {
+            cube([skin, block_width(w), block_height(h, block_height)+2*defeather]);
         }
-    }
-    
+    }    
     if (ridge_width>0 && ridge_depth>0 && h>1) {
         for (i = [block_height(1, block_height=block_height):block_height():block_height(h, block_height)]) {
             // Front layer ridge
