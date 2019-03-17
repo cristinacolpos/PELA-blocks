@@ -120,7 +120,7 @@ module block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_h
     assert(l >= 1, "Block length must be at least 1");
     assert(w > 0, "Block width must be greater than 0");
 
-    bt = override_bottom_tweak(material=material, bottom_tweak=bottom_tweak);
+    bt = override_bottom_tweak(material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
     
     difference() {
         union() {
@@ -251,7 +251,7 @@ module top_knob(material=material, large_nozzle=large_nozzle, h=h, knob_height=k
 module knob(material=material, large_nozzle=large_nozzle, knob_height=knob_height, top_tweak=undef) {
     
     bevel = knob_bevel(material=material);
-    knob_radius = override_knob_radius(material, top_tweak);
+    knob_radius = override_knob_radius(material=material, large_nozzle=large_nozzle, top_tweak=top_tweak);
 
     cylinder(r=knob_radius, h=knob_height-bevel);
 

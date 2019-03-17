@@ -204,12 +204,12 @@ module visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cu
                 alternate_length = top_vents ? block_height(h+
                 defeather, block_height=block_height) + defeather : block_height(h-0.5, block_height=block_height);
 
-                bt = override_bottom_tweak(material=material, bottom_tweak=bottom_tweak);
+                bt = override_bottom_tweak(material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
 
                 double_socket_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, length=length, alternate_length=alternate_length, bevel_socket=true, bottom_tweak=bt);
             }
 
-            ahr = override_axle_hole_radius(material, axle_hole_tweak);
+            ahr = override_axle_hole_radius(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak);
 
             bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=ahr);
             
@@ -269,7 +269,7 @@ module double_side_connector_sheath_set(material=material, large_nozzle=large_no
 // A row of sheaths surrounding holes along the length
 module side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, side_holes=side_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height, axle_hole_tweak=undef) {
     
-    sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material, axle_hole_tweak);
+    sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak);
 
     sheath_length = side_holes == 2 ? block_width(w) : block_width(1);
     
@@ -307,7 +307,7 @@ module double_end_connector_sheath_set(material=material, large_nozzle=large_noz
 // A row of sheaths surrounding holes along the width
 module end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, end_holes=end_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height, axle_hole_tweak=undef) {
     
-    sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material, axle_hole_tweak);
+    sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak);
 
     sheath_length = end_holes == 2 ? block_width(l) : block_width(1);
 
