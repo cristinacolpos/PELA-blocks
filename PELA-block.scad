@@ -36,7 +36,7 @@ include <material.scad>
 
 
 
-/* [Block] */
+/* [Render] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
@@ -47,6 +47,10 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
+
+
+/* [Block] */
+
 // Model length [blocks]
 l = 4; // [1:1:20]
 
@@ -56,15 +60,17 @@ w = 2; // [1:1:20]
 // Model height [blocks]
 h = 1; // [1:1:20]
 
-// Layer one starts as a solid block (removes some air holes)
 // Add interior fill for the base layer
 solid_first_layer = false;
+
+// Add interior fill for upper layers
+solid_upper_layers = false;
 
 // Presence of top connector knobs
 knobs = true;
 
-// How tall are top connectors [mm] (1.8-2.9)
-knob_height=1.8;
+// Basic unit vertical size of each block
+block_height = 9.6; // This is not adjuestable due to twist bar technic hole rotation
 
 // Add connectors to the bottom of the block
 sockets = true;
@@ -121,7 +127,7 @@ module block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_h
             outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_shell=top_shell, block_height=block_height);
 
             if (knobs) {
-                top_knob_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, material=material, top_tweak=top_tweak);
+                top_knob_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, top_tweak=top_tweak);
             }
 
             bar_h = h > 1 ? 1 : h;
@@ -134,13 +140,13 @@ module block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_h
             if (sockets) {
                 length = block_height(min(1, h), block_height=block_height);
 
-                socket_set(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, sockets=sockets, material=material, large_nozzle=large_nozzle, bottom_tweak=bt);
+                socket_set(material=material, large_nozzle=large_nozzle, l=l, w=w, length=length, sockets=sockets, bottom_tweak=bt);
 
                 translate([block_width(-0.5), block_width(-0.5)])
                     intersection() {
                         cube([block_width(l+1), block_width(w+1), length]);
 
-                        socket_set(material=material, large_nozzle=large_nozzle, l=l+1, w=w+1, length=length, sockets=sockets, material=material, large_nozzle=large_nozzle, bottom_tweak=bt);
+                        socket_set(material=material, large_nozzle=large_nozzle, l=l+1, w=w+1, length=length, sockets=sockets, bottom_tweak=bt);
                     }
             }
 
@@ -189,7 +195,7 @@ module double_socket_hole_set(material=material, large_nozzle=large_nozzle, l=l,
         alternating_length = alternate_length+2*defeather;
 
         translate([block_width(), block_width(), -defeather]) {
-            socket_hole_set(material=material, large_nozzle=large_nozzle, is_socket=false, l=l-1, w=w-1, radius=alternating_radius, length=alternating_length, bevel_socket=bevel_socket, ring_fn=alternating_fn, material=material, socket_insert_bevel=socket_insert_bevel);
+            socket_hole_set(material=material, large_nozzle=large_nozzle, is_socket=false, l=l-1, w=w-1, radius=alternating_radius, length=alternating_length, bevel_socket=bevel_socket, ring_fn=alternating_fn, socket_insert_bevel=socket_insert_bevel);
         }
 
         translate([block_width(0.5), block_width(0.5), -defeather]) {
@@ -361,7 +367,7 @@ module socket_set(material=material, large_nozzle=large_nozzle, l=l, w=w, length
         for (i = [1:l-1]) {
             for (j = [1:w-1]) {
                 translate([block_width(i), block_width(j), 0]) {
-                    socket_ring(material=material, large_nozzle=large_nozzle, length=length, large_nozzle=large_nozzle, material=material, bottom_tweak=bottom_tweak);
+                    socket_ring(material=material, large_nozzle=large_nozzle, length=length, bottom_tweak=bottom_tweak);
                 }
             }
         }
@@ -387,7 +393,7 @@ module socket_hole_set(material=material, large_nozzle=large_nozzle, is_socket=t
         for (i = [0:l-1]) {
             for (j = [0:w-1]) {
                 translate([block_width(i), block_width(j), 0]) {
-                    socket_hole(material=material, large_nozzle=large_nozzle, is_socket=is_socket, radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, material=material, socket_insert_bevel=socket_insert_bevel);
+                    socket_hole(material=material, large_nozzle=large_nozzle, is_socket=is_socket, radius=radius, length=length, bevel_socket=bevel_socket, ring_fn=ring_fn, socket_insert_bevel=socket_insert_bevel);
                 }
             }
         }
@@ -396,7 +402,7 @@ module socket_hole_set(material=material, large_nozzle=large_nozzle, is_socket=t
 
 
 // Hole with side grip ridge flexture to grab any knob on a block inserted from below
-module socket_hole(material=material, large_nozzle=large_nozzle, is_socket=true, radius=undef, length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, material=material, socket_insert_bevel=socket_insert_bevel) {
+module socket_hole(material=material, large_nozzle=large_nozzle, is_socket=true, radius=undef, length=block_height(1, block_height=block_height), bevel_socket=false, ring_fn=ring_fn, socket_insert_bevel=socket_insert_bevel) {
 
     h2 = is_socket ? official_knob_height/2 : 0;
     bevel_h = bevel_socket ? socket_insert_bevel : 0;
