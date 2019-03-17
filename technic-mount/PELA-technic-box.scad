@@ -296,7 +296,7 @@ module side_cheese_holes(material=undef, large_nozzle=undef, w=undef, l1=undef, 
         for (j = [0:h-1]) {
             translate([block_width(l1+i), block_width(-0.5), block_height(0.5+j, block_height=block_height)]) {
                 rotate([-90, 0, 0]) {
-                    axle_hole(material=material, large_nozzle=large_nozzle, hole_type=2, radius=override_axle_hole_radius(material), length=block_width(w));
+                    axle_hole(material=material, large_nozzle=large_nozzle, hole_type=2, radius=material_axle_hole_radius(material=material, large_nozzle=large_nozzle), length=block_width(w));
                 }
             }
         }
@@ -319,7 +319,7 @@ module bottom_cheese_holes(material=undef, large_nozzle=undef, w=undef, l=undef,
     for (i = [1:l-2]) {
         for (j = [1:w-2]) {
             translate([block_width(i), block_width(j), -defeather]) {
-                 axle_hole(material=material, large_nozzle=large_nozzle, hole_type=2, radius=override_axle_hole_radius(material), length=block_height(h, block_height)+2*defeather);
+                 axle_hole(material=material, large_nozzle=large_nozzle, hole_type=2, radius=material_axle_hole_radius(material=material, large_nozzle=large_nozzle), length=block_height(h, block_height)+2*defeather);
             }
         }
     }    
