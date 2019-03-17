@@ -52,6 +52,13 @@ SUGGESTIONS
 */
 
 
+/* [README] */
+
+// Unfortunately the customizer does not yet support changing parameters which are then used in other files. Please 
+
+/* [Hidden] */
+
+
 // The following fields make up a simple data structure for each printing material
 // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
 name_index = 0; // The "name" field is kept short for printing on calibration blocks
@@ -66,45 +73,74 @@ axle_hole_tweak_index = 4;
 // If you add new materials below, do a global search and replace to update the customizer material list at the top of each file.
 // (Yeah, we know.. This is not a real programming language. Don't shoot the messenger.)
 
-// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
 pla = 0; // Polymaker Polylite
+// PLA, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 pla_m = ["PLA", false, -0.08, 0.04, 0.06];
+// PLA, large nozzle (>= 0.5mm) calibration settings
 pla_lm = ["PLA", false, -0.08, 0.04, 0.06];
 
 abs = 1; // Polymaker ABS
+// ABS, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 abs_m = ["ABS", false, -0.18, 0.13, 0.13];
+// ABS, large nozzle (>= 0.5mm) calibration settings
 abs_lm = ["ABS", false, -0.06, 0.0, 0.08];
 
 pet = 2; // Innoflil3D rPET
+// PET, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 pet_m = ["PET", false, 0.04, 0.10, 0.04];
+// PET, large nozzle (>= 0.5mm) calibration settings
 pet_lm = ["PET", false, 0.04, 0.10, 0.04];
 
 bio_silk = 3; // Biofila Silk
+// BIO SILK, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 bio_silk_m = ["Silk", false, 0.0, 0.0, -0.04];
+// BIO SILK, large nozzle (>= 0.5mm) calibration settings
 bio_silk_lm = ["Silk", false, 0.0, 0.0, -0.04];
 
 pro1 = 4; // Innofil3D Pro1
+// PRO1, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 pro1_m = ["Pro1", false, -0.06, 0.08, 0.04];
+// PRO1, large nozzle (>= 0.5mm) calibration settings
 pro1_lm = ["Pro1", false, -0.06, 0.08, 0.04];
 
 ngen = 5; // NGEN
+// NGEN, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 ngen_m = ["NGEN", false, -0.03, 0.08, 0.07];
+// NGEN, large nozzle (>= 0.5mm) calibration settings
 ngen_lm = ["NGEN", false, -0.03, 0.08, 0.07];
 
 ngen_flex = 6; // NGEN Flex
+// NGEN FLEX, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 ngen_flex_m = ["NGEN-F", false, 0.02, 0.02, 0.0];
+// NGEN FLEX, large nozzle (>= 0.5mm) calibration settings
 ngen_flex_lm = ["NGEN-F", false, 0.02, 0.02, 0.0];
 
 nylon = 7; // Taulman Bridge Nylon
+// NYLON, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 nylon_m = ["Nylon", true, -0.02, 0.15, 0.06];
+// NYLON, large nozzle (>= 0.5mm) calibration settings
 nylon_lm = ["Nylon", true, -0.02, 0.15, 0.06];
 
 tpu95 = 8; // Polymaker TPU95 and Ultimaker TPU95
+// TPU95, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 tpu95_m = ["TPU95", true, -0.06, -0.02, 0.06];
+// TPU95, large nozzle (>= 0.5mm) calibration settings
 tpu95_lm = ["TPU95", true, -0.06, -0.02, 0.06];
 
 tpu85 = 9; // Ninjaflex and Innoflex TPU85
+// TPU85, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 tpu85_m = ["TPU85", true, 0.04, -0.02, 0.04];
+// TPU85, large nozzle (>= 0.5mm) calibration settings
 tpu85_lm = ["TPU85", true, 0.04, -0.02, 0.04];
 
 materials = [pla_m, abs_m, pet_m, bio_silk_m, pro1_m, ngen_m, ngen_flex_m, nylon_m, tpu95_m, tpu85_m];
