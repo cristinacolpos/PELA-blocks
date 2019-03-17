@@ -29,7 +29,7 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <PELA-knob-mount.scad>
 
 
-/* [Arduino Mega Knob Mount] */
+/* [Render] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
@@ -40,6 +40,9 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
+
+/* [Board] */
+
 // Length of the enclosed object [mm]
 length = 101.6; // [0.1:0.1:300]
 
@@ -48,6 +51,9 @@ width = 53.4; // [0.1:0.1:300]
 
 // Thickness of the enclosed object [mm]
 thickness = 1.8; // [0.1:0.1:300]
+
+
+/* [Mount] */
 
 // Height of the edge walls
 h = 1;
