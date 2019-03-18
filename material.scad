@@ -52,6 +52,13 @@ SUGGESTIONS
 */
 
 
+/* [README] */
+
+// Unfortunately the customizer does not yet support changing parameters which are then used in other files. Please 
+
+/* [Hidden] */
+
+
 // The following fields make up a simple data structure for each printing material
 // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
 name_index = 0; // The "name" field is kept short for printing on calibration blocks
@@ -66,39 +73,78 @@ axle_hole_tweak_index = 4;
 // If you add new materials below, do a global search and replace to update the customizer material list at the top of each file.
 // (Yeah, we know.. This is not a real programming language. Don't shoot the messenger.)
 
-// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
 pla = 0; // Polymaker Polylite
+// PLA, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 pla_m = ["PLA", false, -0.08, 0.04, 0.06];
+// PLA, large nozzle (>= 0.5mm) calibration settings
+pla_lm = ["PLA", false, -0.08, 0.04, 0.06];
 
 abs = 1; // Polymaker ABS
-//large nozzle abs_m = ["ABS", false, -0.06, 0.0, 0.08];
+// ABS, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 abs_m = ["ABS", false, -0.18, 0.13, 0.13];
+// ABS, large nozzle (>= 0.5mm) calibration settings
+abs_lm = ["ABS", false, -0.06, 0.0, 0.08];
 
 pet = 2; // Innoflil3D rPET
+// PET, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 pet_m = ["PET", false, 0.04, 0.10, 0.04];
+// PET, large nozzle (>= 0.5mm) calibration settings
+pet_lm = ["PET", false, 0.04, 0.10, 0.04];
 
 bio_silk = 3; // Biofila Silk
+// BIO SILK, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 bio_silk_m = ["Silk", false, 0.0, 0.0, -0.04];
+// BIO SILK, large nozzle (>= 0.5mm) calibration settings
+bio_silk_lm = ["Silk", false, 0.0, 0.0, -0.04];
 
 pro1 = 4; // Innofil3D Pro1
+// PRO1, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 pro1_m = ["Pro1", false, -0.06, 0.08, 0.04];
+// PRO1, large nozzle (>= 0.5mm) calibration settings
+pro1_lm = ["Pro1", false, -0.06, 0.08, 0.04];
 
 ngen = 5; // NGEN
+// NGEN, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 ngen_m = ["NGEN", false, -0.03, 0.08, 0.07];
+// NGEN, large nozzle (>= 0.5mm) calibration settings
+ngen_lm = ["NGEN", false, -0.03, 0.08, 0.07];
 
 ngen_flex = 6; // NGEN Flex
+// NGEN FLEX, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 ngen_flex_m = ["NGEN-F", false, 0.02, 0.02, 0.0];
+// NGEN FLEX, large nozzle (>= 0.5mm) calibration settings
+ngen_flex_lm = ["NGEN-F", false, 0.02, 0.02, 0.0];
 
 nylon = 7; // Taulman Bridge Nylon
+// NYLON, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 nylon_m = ["Nylon", true, -0.02, 0.15, 0.06];
+// NYLON, large nozzle (>= 0.5mm) calibration settings
+nylon_lm = ["Nylon", true, -0.02, 0.15, 0.06];
 
 tpu95 = 8; // Polymaker TPU95 and Ultimaker TPU95
+// TPU95, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 tpu95_m = ["TPU95", true, -0.06, -0.02, 0.06];
+// TPU95, large nozzle (>= 0.5mm) calibration settings
+tpu95_lm = ["TPU95", true, -0.06, -0.02, 0.06];
 
 tpu85 = 9; // Ninjaflex and Innoflex TPU85
+// TPU85, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
 tpu85_m = ["TPU85", true, 0.04, -0.02, 0.04];
+// TPU85, large nozzle (>= 0.5mm) calibration settings
+tpu85_lm = ["TPU85", true, 0.04, -0.02, 0.04];
 
 materials = [pla_m, abs_m, pet_m, bio_silk_m, pro1_m, ngen_m, ngen_flex_m, nylon_m, tpu95_m, tpu85_m];
+large_nozzle_materials = [pla_lm, abs_lm, pet_lm, bio_silk_lm, pro1_lm, ngen_lm, ngen_flex_lm, nylon_lm, tpu95_lm, tpu85_lm];
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
@@ -110,7 +156,7 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // private function - get a named property from the materials data structure
-function material_property(material, property) = materials[material][property];
+function material_property(material, large_nozzle, property) = large_nozzle ? large_nozzle_materials[material][property] : materials[material][property];
 
 // Return the short name string from the material
 function material_name(material) = materials[material][name_index];
@@ -118,32 +164,26 @@ function material_name(material) = materials[material][name_index];
 // Return true if this material is flexible
 function is_flexible(material) = materials[material][name_index];
 
-// Return top tweak from the material
-function material_top_tweak(material) = material_property(material, top_tweak_index);
-
-// Return top tweak="tt" if provided for calibration, otherwise use the material value
-function override_top_tweak(material, top_tweak=undef) = (top_tweak == undef) ? material_bottom_tweak(material) : top_tweak;
-
 // Return the bottom tweak from the material
-function material_bottom_tweak(material) = material_property(material, bottom_tweak_index);
+function material_bottom_tweak(material, large_nozzle) = material_property(material=material, large_nozzle=large_nozzle, property=bottom_tweak_index);
 
 // Return bottom tweak="bt" if provided for calibration, otherwise use the material value
-function override_bottom_tweak(material, bottom_tweak=undef) = (bottom_tweak == undef) ? material_bottom_tweak(material) : bottom_tweak;
+function override_bottom_tweak(material, large_nozzle, bottom_tweak=undef) = (bottom_tweak == undef) ? material_bottom_tweak(material=material, large_nozzle=large_nozzle) : bottom_tweak;
 
 // Return the axle hole tweak from the material
-function material_axle_hole_tweak(material) = material_property(material, axle_hole_tweak_index);
+function material_axle_hole_tweak(material, large_nozzle) = material_property(material=material, large_nozzle=large_nozzle, property=axle_hole_tweak_index);
 
 // Return axle hole tweak="at" if provided for calibration, otherwise use the material
-function override_axle_hole_tweak(material, axle_hole_tweak=undef) = (axle_hole_tweak == undef) ? material_axle_hole_tweak(material) : axle_hole_tweak;
+function override_axle_hole_tweak(material, large_nozzle, axle_hole_tweak=undef) = (axle_hole_tweak == undef) ? material_axle_hole_tweak(material=material, large_nozzle=large_nozzle) : axle_hole_tweak;
 
 // Private function, axle hole radius
 function axle_hol_rad(at) = 2.45 + at;
 
 // Return the axle hole radius based on the material
-function material_axle_hole_radius(material) = axle_hol_rad(material_axle_hole_tweak(material));
+function material_axle_hole_radius(material, large_nozzle) = axle_hol_rad(material_axle_hole_tweak(material=material, large_nozzle=large_nozzle));
 
 // Return axle hole radius based on the axle hole tweak (at) if provided, otherwise based on the material
-function override_axle_hole_radius(material, axle_hole_tweak=undef) = axle_hol_rad(override_axle_hole_tweak(material, axle_hole_tweak));
+function override_axle_hole_radius(material, large_nozzle, axle_hole_tweak=undef) = axle_hol_rad(override_axle_hole_tweak(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak));
 
 // Private function, knob radius
 function knb_rad(top_tweak=undef) = 2.45 + 0.12 + top_tweak;
@@ -151,17 +191,20 @@ function knb_rad(top_tweak=undef) = 2.45 + 0.12 + top_tweak;
 // Private function, knob radius
 function rng_rad(bottom_tweak=undef) = 2.75 + bottom_tweak;
 
-// Return knob radius based on the material
-function material_knob_radius(material) = knb_rad(material_top_tweak(material));
+// Return top tweak from the material
+function material_top_tweak(material, large_nozzle) = material_property(material=material, large_nozzle=large_nozzle, property=top_tweak_index);
+
+// Return top tweak="tt" if provided for calibration, otherwise use the material value
+function override_top_tweak(material, large_nozzle, top_tweak=undef) = (top_tweak == undef) ? material_top_tweak(material, large_nozzle) : top_tweak;
 
 // Return knob radius based on top tweak (tt) if provided, otherwise based on the material
-function override_knob_radius(material, top_tweak) = knb_rad(override_top_tweak(material, top_tweak));
+function override_knob_radius(material, large_nozzle, top_tweak) = knb_rad(override_top_tweak(material, large_nozzle, top_tweak));
 
 // Bottom connector flexture ring wall thickness (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
 function ring_thickness(large_nozzle=undef) = large_nozzle ? 1.2 : 0.8;
 
 // Bottom connector flexture ring size (note that some plastics are more slippery or brittle than ABS and this may negatively affect results or part lifetime, the value below is tuned for Taz 6 with 0.5 nozzle, Lulzbot Cura default and NGEN)
-function override_ring_radius(material=undef, large_nozzle=undef, bottom_tweak=undef) = ring_thickness(large_nozzle) + rng_rad(bottom_tweak=(bottom_tweak==undef ? material_property(material, bottom_tweak_index) : bottom_tweak));
+function override_ring_radius(material, large_nozzle, bottom_tweak=undef) = ring_thickness(large_nozzle) + rng_rad(bottom_tweak=(bottom_tweak==undef ? material_property(material=material, large_nozzle=large_nozzle, property=bottom_tweak_index) : bottom_tweak));
 
 // Size of the small flexture cavity inside each knob (set to 0 for flexible materials, if the knobs delaminate and detach, or to avoid holes if the knobs are removed)
 function knob_flexture_radius(material=undef) = is_flexible(material) ? 0.6 : 0.8;

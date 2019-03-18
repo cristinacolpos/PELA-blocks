@@ -143,7 +143,7 @@ module nodemcu_32s_knob_mount(material=undef, large_nozzle=undef, cut_line=undef
             l = fit_mm_to_blocks(length, l_pad);
             w = fit_mm_to_blocks(width, w_pad);
 
-            axle_hole_radius = material_axle_hole_radius(material);
+            axle_hole_radius = material_axle_hole_radius(material=material, large_nozzle=large_nozzle);
             bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_height=block_height, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=axle_hole_radius);
 
             bottom_header_space(material=material, large_nozzle=large_nozzle, l=l, w=w, width=width, block_height=block_height);
