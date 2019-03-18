@@ -259,7 +259,7 @@ module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef
 
         union() {
             axle_hole_radius = material_axle_hole_radius(material=material, large_nozzle=large_nozzle);
-            bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, block_height=block_height, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=axle_hole_radius);
+            bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=axle_hole_radius);
 
             edge_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
 
@@ -410,7 +410,7 @@ module enclosure_bottom(material=material, large_nozzle=large_nozzle, l=l, w=w, 
             cube([block_width(l-2)+2*skin, block_width(w-2)+2*skin, panel_height(block_height=block_height)]);
         }
     } else if (bottom_type == 2) {
-        socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=0, block_height=block_height);
+        socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, skin=skin, block_height=block_height);
     } else if (bottom_type == 3) {
         knob_panel(material=material, large_nozzle=large_nozzle, l=l, w=w, top_vents=bottom_vents, solid_first_layer=solid_first_layer, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, knobs=bottom_knobs, sockets=sockets, skin=skin, skip_edge_knobs=skip_edge_knobs, block_height=block_height, knob_vent_radius=knob_vent_radius);
    }
