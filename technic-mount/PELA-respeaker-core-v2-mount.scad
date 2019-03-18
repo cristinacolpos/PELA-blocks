@@ -209,9 +209,11 @@ module board_mounts_top(material=material, large_nozzle=large_nozzle) {
 }
 
 
-module clear_ring(material=material, large_nozzle=large_nozzle, top_height=top_height, two_color_print=two_color_print) {
+module clear_ring(material=material, large_nozzle=large_nozzle, top_height=top_height, two_color_print=undef) {
     r1 = side*0.87;
     r2 = r1 - 8;
+
+    assert(two_color_print != undef);
 
     translate([center_x, center_y, -8]) {
         difference() {
