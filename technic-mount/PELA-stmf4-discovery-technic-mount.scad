@@ -33,7 +33,7 @@ use <../technic-bar/PELA-technic-twist-bar.scad>
 include <PELA-technic-mount.scad>
 
 
-/* [Raspberry Pi3 Camera Mount] */
+/* [Render] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100] 
@@ -47,6 +47,9 @@ large_nozzle = true;
 // Select parts to render
 render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and cover]
 
+
+/* [Board] */
+
 // Board space length [mm]
 length = 97.3; // [0:1:300] 
 
@@ -56,12 +59,24 @@ width = 66.3; // [0:1:300]
 // Board space thickness [mm]
 thickness = 1.8; // [0:0.1:8]
 
+
+/* [Enclosure] */
+
 l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
 // Height of the enclosure [blocks]
 h = 1; // [1:20]
+
+// Presence of sockets if center is "socket panel"
+center_sockets = true;
+
+// Presence of knobs if center is "knob panel"
+center_knobs = true;
+
+// Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
+knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // How many blocks in from length ends do the technic holes rotate 90 degrees [blocks]
 twist_l = 2; // [1:18]
@@ -173,4 +188,4 @@ cover_knobs = true;
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
+technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
