@@ -224,6 +224,20 @@ technic_mount_and_cover(render_modules=render_modules, material=material, large_
 
 module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, thickness=undef, h=undef, cover_h=undef, l_pad=undef, w_pad=undef, twist_l=undef, twist_w=undef, center_sockets=undef, center_knobs=undef, cover_sockets=undef, cover_knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, innercut=undef, undercut=undef, center=undef, cover_center=undef, text=undef, cover_text=undef, text_depth=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef) {
 
+    assert(render_modules != undef);
+    assert(material != undef);
+    assert(large_nozzle != undef);
+    assert(cut_line != undef);
+    assert(length != undef);
+    assert(width != undef);
+    assert(thickness != undef);
+    assert(h != undef);
+    assert(cover_h != undef);
+    assert(render_modules != undef);
+    assert(render_modules != undef);
+    assert(render_modules != undef);
+    assert(render_modules != undef);
+    assert(render_modules != undef);
     assert(l_pad == floor(l_pad), "l_pad must be an integer");
     assert(l_pad >= 0);
     assert(l_pad <= 2);

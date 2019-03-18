@@ -54,11 +54,8 @@ render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and co
 
 /* [Board] */
 
-// Board space length [mm]
-length = 70.3; // [0:0.1:300]
-
-// Board space width [mm]
-width = 70.3; // [0:0.1:300]
+// Board space diameter [mm]
+diameter = 70.8; // [0:0.1:300]
 
 // Board space height [mm]
 thickness = 0; // [0:0.1:300]
@@ -215,22 +212,22 @@ block_height = 8; // This is not adjuestable due to twist bar technic hole rotat
 // DISPLAY
 ///////////////////////////////
 
-l = fit_mm_to_blocks(length, l_pad);
+l = fit_mm_to_blocks(diameter, l_pad);
 
 difference() {
-    technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
+    technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=diameter, width=diameter, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
 
     union() {
         translate([block_width(-0.5+l/2), block_width(-0.5+l/2), block_height(h) - 1.5]) {
-            cylinder(d=length, h=block_height()/2+skin, $fn=256);
+            cylinder(d=diameter, h=block_height()/2+skin, $fn=256);
         }
 
         color("orange") translate([block_width(-0.5+l/2), block_width(-0.5+l/2), -skin]) {
-            cylinder(d=length-2*innercut, h=block_height(h)+2*skin, $fn=256);
+            cylinder(d=diameter-2*innercut, h=block_height(h)+2*skin, $fn=256);
         }
 
         color("white") translate([block_width(-0.5+l/2), block_width(-1.5-l/2), -skin]) {
-            cylinder(d=length-innercut, h=block_height(h/4), $fn=256);
+            cylinder(d=diameter-innercut, h=block_height(h/4), $fn=256);
         }
 
         color("pink") translate([block_width(-0.5+3), block_width(-1.5-10)-skin, -skin]) {
@@ -241,6 +238,6 @@ difference() {
 
 if (render_modules == 0 || render_modules == 2) {
     color("black") translate([block_width(-0.5+l/2), block_width(-0.5+l/2), 0]) {
-        cylinder(d=length-2*innercut, h=2, $fn=256);
+        cylinder(d=diameter-2*innercut, h=2, $fn=256);
     }
 }
