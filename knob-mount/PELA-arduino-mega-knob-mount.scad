@@ -53,19 +53,57 @@ width = 53.4; // [0.1:0.1:300]
 thickness = 1.8; // [0.1:0.1:300]
 
 
-/* [Mount] */
 
-// Height of the edge walls
-h = 1;
+/* [Enclosure] */
+
+// A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
+l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+
+// Board surround ratio
+w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+
+// Enclosure height
+h = 1; // [1:1:20]
+
+// Create the left wall
+left_wall_enabled = true;
+
+// Shoud there be knobs on top of the left wall
+left_wall_knobs = false;
+
+// Create the right wall
+right_wall_enabled = true;
+
+// Shoud there be knobs on top of the right wall
+right_wall_knobs = true;
+
+// Create the front wall
+front_wall_enabled = true;
+
+// Shoud there be knobs on top of the front wall
+front_wall_knobs = true;
+
+// Create the back wall
+back_wall_enabled = true;
+
+// Shoud there be knobs on top of the back wall
+back_wall_knobs = true;
+
+
+
+/* [Enclosure Features] */
+
+// Filler for the model center space
+center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
 
 // Presence of bottom connector sockets
 sockets = true;
 
-// How far in from the outside edges the board support can extend without hitting board bottom surface parts
-innercut = 1;
-
 // How far below the bottom of the board to carve empty space 
-undercut = 10; // [0:0.1:20]
+undercut = 7; // [0:0.1:20]
+
+// How far in from the outside edges the board support can extend without hitting board bottom surface parts
+innercut = 0.8;
 
 // Add holes in the top deck to improve airflow and reduce weight
 top_vents = false;
@@ -82,82 +120,122 @@ side_sheaths = true;
 // Add a wrapper around end holes  (disable for extra ventilation but loose lock notches)
 end_sheaths = true;
 
-// Show the left wall
-left_wall_enabled = true;
-
-// Show the right wall
-right_wall_enabled = true;
-
-// Show the front wall
-front_wall_enabled = true;
-
-// Show the back wall
-back_wall_enabled = true;
-
-// Knobs on the left wall
-left_wall_knobs = false;
-
-// Knobs on the right wall
-right_wall_knobs = true;
-
-// Knobs on the front wall
-front_wall_knobs = true;
-
-// Knobs on the back wall
-back_wall_knobs = true;
-
-// Add interior fill for upper layers
-solid_upper_layers = true;
+// Additional space added in every direction around the printed circuit board
+pcb_skin = 0.1; // [0:0.01:1]
 
 // Add interior fill for the base layer
 solid_first_layer = false;
 
-// Filler for the model center space
-center_type = 4; //[0:empty, 1:solid, 2:solid with side holes, 3:solid with end holes, 4:solid with both side and end holes]
-
-// Bottom of enclosure
-bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
+// Add interior fill for the upper layers
+solid_upper_layers = true;
 
 // Shift the PCB board relative to the enclosure on the X axis [mm]
-board_x_offset = -2; // [-8:0.1:8]
+board_x_offset = 0; // [-8:0.1:8]
 
-// Shift the PCB board relative to the enclosure on the Y axis [mm]
+// Shift the PCB board relative to the enclosure on the X axis [mm]
 board_y_offset = 0; // [-8:0.1:8]
-
-sd_card_cutout_width = block_width(3);
-
-sd_card_cutout_depth = 3.8;
-
-sd_card_cutout_offset = -block_width(1/2);
-
-top_edge_height = 2;
-
-// A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
-l_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
-
-// Board surround ratio
-w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 dome = true;
 
-// Basic unit vertical size of each block
-block_height = 9.6; // [8:technic, 9.6:traditional blocks]
+// Number of knobs at the edge of a bottom panel to omit (this will leave space for example for a nearby top wall or technic connectors)
+skip_edge_knobs = 1;
+
+
+
+/* [Bottom Features] */
+
+
+// Bottom of enclosure
+bottom_type = 0; // [1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
+
+// Enable knobs in the bottom (if knob panel bottom)
+bottom_knobs = true;
+
+// Add holes in the bottom deck to improve airflow and reduce weight (only used with bottom_type == 3, knob panel)
+bottom_vents = true;
+
+
+
+
+/* [Left Cut] */
+
+// Distance of the front of left side hole [mm]
+left_cutout_y = 4; // [0:0.1:200]
+
+// Width of the left side hole [mm]
+left_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the left side hole [mm]
+left_cutout_depth = 24; // [0:0.1:200]
+
+// Distance from bottom of the left side hole [mm]
+left_cutout_z = 4; // [0:0.1:200]
+
+// Height of the left side hole [mm]
+left_cutout_height = 8; // [0:0.1:200]
+
+
+
+/* [Right Cut] */
+
+// Distance of the front of right side hole [mm]
+right_cutout_y = 4; // [0:0.1:200]
+
+// Width of the right side hole [mm]
+right_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the right side hole [mm]
+right_cutout_depth = 24; // [0:0.1:200]
+
+// Distance from bottom of the right side hole [mm]
+right_cutout_z = 4; // [0:0.1:200]
+
+// Height of the right side hole [mm]
+right_cutout_height = 8; // [0:0.1:200]
+
+
+
+/* [Front Cut] */
+
+// Distance of the left of front side hole [mm]
+front_cutout_x = 4; // [0:0.1:200]
+
+// Width of the front side hole [mm]
+front_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the depth side hole [mm]
+front_cutout_depth = 24; // [0:0.1:200]
+
+// Distance from bottom of the front side hole [mm]
+front_cutout_z = 4; // [0:0.1:200]
+
+// Height of the front side hole [mm]
+front_cutout_height = 8; // [0:0.1:200]
+
+
+
+/* [Back Cut] */
+
+// Distance of the left of back side hole [mm]
+back_cutout_x = 4; // [0:0.1:200]
+
+// Width of the back side hole [mm]
+back_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the back side hole [mm]
+back_cutout_depth = 24; // [0:0.1:200]
+
+// Distance from bottom of the back side hole [mm]
+back_cutout_z = 4; // [0:0.1:200]
+
+// Height of the back side hole [mm]
+back_cutout_height = 8; // [0:0.1:200]
+
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-arduino_mega_knob_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, innercut=innercut, undercut=undercut, bottom_type=bottom_type, sockets=sockets, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, l_pad=l_pad, w_pad=w_pad, solid_first_layer=solid_first_layer, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height);
-
-
-
-///////////////////////////////////
-// MODULES
-///////////////////////////////////
-
-module arduino_mega_knob_mount(material=undef, large_nozzle=undef, cut_line=undef, length=undef, width=undef, h=undef, thickness=undef, innercut=undef, undercut=undef, bottom_type=undef, sockets=undef, center_type=undef, top_vents=undef, side_holes=undef, end_holes=undef, side_sheaths=undef, end_sheaths=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, board_x_offset=undef, board_y_offset=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, dome=undef, l_pad=undef, w_pad=undef, solid_first_layer=undef, solid_upper_layers=undef, block_height=undef) {
-    
-    knob_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, innercut=innercut, undercut=undercut, bottom_type=bottom_type, sockets=sockets, center_type=center_type, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, l_pad=l_pad, w_pad=w_pad, solid_first_layer=solid_first_layer, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height);
-}
+knob_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, h=h, thickness=thickness, innercut=innercut, undercut=undercut, center_type=center_type, bottom_type=bottom_type, sockets=sockets, top_vents=top_vents, side_holes=side_holes, end_holes=end_holes, side_sheaths=side_sheaths, end_sheaths=end_sheaths, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, board_x_offset=board_x_offset, board_y_offset=board_y_offset, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, dome=dome, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, l_pad=l_pad, w_pad=w_pad, block_height=block_height);

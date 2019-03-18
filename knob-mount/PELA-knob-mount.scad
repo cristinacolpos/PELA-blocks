@@ -45,7 +45,7 @@ large_nozzle = true;
 
 
 
-/* [Enclosure] */
+/* [Board] */
 
 // PCB length [mm]
 length = 30; // [0.1:0.1:300]
@@ -54,7 +54,11 @@ length = 30; // [0.1:0.1:300]
 width = 20; // [0.1:0.1:300]
 
 // PCB thickness [mm]
-thickness = 1.7; // [0.1:0.1:300]
+thickness = 1.8; // [0.1:0.1:300]
+
+
+
+/* [Enclosure] */
 
 // A number from 1 to 2. This is a ratio of 1 block width for the board surround. Smaller numbers mean less space horizontally around the board (it can eat into the surrounding wall knobs). Larger numbers may bump you up by 1 knob, resulting in a wider or longer enclosure.
 l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
@@ -121,7 +125,7 @@ side_sheaths = true;
 end_sheaths = true;
 
 // Additional space added in every direction around the printed circuit board
-pcb_skin = 0.1;
+pcb_skin = 0.1; // [0:0.01:1]
 
 // Add interior fill for the base layer
 solid_first_layer = false;
@@ -147,7 +151,7 @@ skip_edge_knobs = 1;
 
 
 // Bottom of enclosure
-bottom_type = 0; // [0:open bottom, 1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
+bottom_type = 1; // [1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
 
 // Enable knobs in the bottom (if knob panel bottom)
 bottom_knobs = true;
@@ -259,6 +263,7 @@ module knob_mount(material=undef, large_nozzle=undef, cut_line=undef, length=und
     assert(undercut!=undef);
     assert(center_type!=undef);
     assert(bottom_type!=undef);
+    assert(bottom_type!=0);
     assert(sockets!=undef);
     assert(top_vents!=undef);
     assert(side_holes!=undef);
@@ -290,19 +295,9 @@ module knob_mount(material=undef, large_nozzle=undef, cut_line=undef, length=und
     difference() {
         box_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, sockets=sockets, bottom_vents=bottom_vents, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, bottom_knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
 
-        z1 = block_height(h, block_height) - thickness;
-        z2 = -thickness;
+        z = block_height(h, block_height) - thickness;
 
-        union() {
-            if (bottom_type != 0) {
-                pcb_space_skinned(material=material, large_nozzle=large_nozzle, z=z1, length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, dome=dome, block_height=block_height);
-            }
-
-/*            if (bottom_type == 0) {
-                pcb_space_skinned(material=material, large_nozzle=large_nozzle, z=z2, length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, dome=dome, block_height=block_height);
-            }
-*/            
-        }
+        pcb_space_skinned(material=material, large_nozzle=large_nozzle, z=z, length=length, width=width, thickness=thickness, l=l, w=w, h=h, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, dome=dome, block_height=block_height);
     }
 }
 
@@ -340,7 +335,11 @@ module pcb_space(material=material, large_nozzle=large_nozzle, z=undef, length=l
 }
 
 
-module pcb_space_skinned(material=material, large_nozzle=large_nozzle, z, pcb_skin=pcb_skin, length=length, l, w, h=h, width=width, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, dome=dome, block_height=block_height) {
+module pcb_space_skinned(material=material, large_nozzle=large_nozzle, z=undef, pcb_skin=pcb_skin, length=length, width=width, thickness=thickness, l=undef, w=undef, h=h, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, dome=dome, block_height=block_height) {
+
+    assert(l != undef);
+    assert(w != undef);
+    assert(z != undef);
 
     minkowski() {
         pcb_space(material=material, large_nozzle=large_nozzle, z=z, length=length, width=width, l=l, w=w, h=h, thickness=thickness, undercut=undercut, innercut=innercut, board_x_offset=board_x_offset, board_y_offset=board_y_offset, block_height=block_height);
