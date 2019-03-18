@@ -372,14 +372,14 @@ module respeaker_core_v2_technic_mount(material=material, large_nozzle=large_noz
 
 
 module board_mounts(material=material, large_nozzle=large_nozzle, rot=0, h=mount_h, pin=true) {
-        color("orange") knob_mount(material=material, large_nozzle=large_nozzle, x=x1, y=y1, h=h, rot=rot, pin=pin);
-        color("yellow") knob_mount(material=material, large_nozzle=large_nozzle, x=x2, y=y2, h=h, rot=rot, pin=pin);
-        color("pink") knob_mount(material=material, large_nozzle=large_nozzle, x=x3, y=y3, h=h, rot=rot, pin=pin);
-        color("grey") knob_mount(material=material, large_nozzle=large_nozzle, x=x4, y=y4, h=h, rot=rot, pin=pin);
+        color("orange") knob_holder(material=material, large_nozzle=large_nozzle, x=x1, y=y1, h=h, rot=rot, pin=pin);
+        color("yellow") knob_holder(material=material, large_nozzle=large_nozzle, x=x2, y=y2, h=h, rot=rot, pin=pin);
+        color("pink") knob_holder(material=material, large_nozzle=large_nozzle, x=x3, y=y3, h=h, rot=rot, pin=pin);
+        color("grey") knob_holder(material=material, large_nozzle=large_nozzle, x=x4, y=y4, h=h, rot=rot, pin=pin);
 }
 
 
-module knob_mount(material=material, large_nozzle=large_nozzle, x, y, h, rot, pin) {
+module knob_holder(material=material, large_nozzle=large_nozzle, x, y, h, rot, pin) {
     
     d_multiplier = 1.5;
     d2 = d_multiplier*mount_d;

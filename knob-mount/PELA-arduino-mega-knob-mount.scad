@@ -147,7 +147,7 @@ skip_edge_knobs = 1;
 
 
 // Bottom of enclosure
-bottom_type = 0; // [1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
+bottom_type = 1; // [1:solid bottom, 2:socket panel bottom, 3:knob panel bottom]
 
 // Enable knobs in the bottom (if knob panel bottom)
 bottom_knobs = true;
