@@ -187,7 +187,7 @@ back_cutout_height = 8; // [0:0.1:200]
 cover_text = "Futurice";
 
 // Interior fill style
-cover_center = 4; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
 // Height of the cover [blocks]
 cover_h = 1; // [1:1:20]
@@ -226,12 +226,8 @@ difference() {
             cylinder(d=diameter-2*innercut, h=block_height(h)+2*skin, $fn=256);
         }
 
-        color("white") translate([block_width(-0.5+l/2), block_width(-1.5-l/2), -skin]) {
-            cylinder(d=diameter-innercut, h=block_height(h/4), $fn=256);
-        }
-
-        color("pink") translate([block_width(-0.5+3), block_width(-1.5-10)-skin, -skin]) {
-            cube([block_width(4), block_width(2), block_height(cover_h-0.25)]);
+        color("pink") translate([block_width(-0.5+3), block_width(-1.5-10)-skin, block_height(0.5)]) {
+            cube([block_width(4), block_width(1)+skin, block_height(cover_h-0.25)]);
         }
     }
 }
