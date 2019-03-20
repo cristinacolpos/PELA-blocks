@@ -244,6 +244,8 @@ module pi3_technic_mount_and_cover() {
         }
         
         union() {
+            color("green") main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness);
+            
             sd_card_cutout(material=material, large_nozzle=large_nozzle);
 
             front_connector_cutout(material=material, large_nozzle=large_nozzle);
