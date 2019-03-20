@@ -55,7 +55,7 @@ render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and co
 /* [Board] */
 
 // Board space diameter [mm]
-diameter = 70.8; // [0:0.1:300]
+diameter = 71.2; // [0:0.1:300]
 
 // Board space height [mm]
 thickness = 0; // [0:0.1:300]
