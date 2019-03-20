@@ -419,3 +419,25 @@ module counterbore_inset(material=material, large_nozzle=large_nozzle, counterbo
         cylinder(r=counterbore_inset_radius, h=counterbore_inset_depth + 2*defeather);
     }
 }
+
+
+// A rectangle with optional 45 degree sloped roof for use as negative space with printable overhangs
+module dome(dome=undef, length=undef, width=undef, thickness=undef) {
+    assert(dome != undef);
+    assert(length != undef);
+    assert(width != undef);
+    assert(thickness != undef);
+
+    if (dome) {
+        hull() {
+            cube([length, width, thickness]);
+
+            i = block_width(0.5);
+            translate([i, i, 0]) {
+                cube([length-2*i, width-2*i, 1.5*i]);
+            }
+        }
+    } else {
+        cube([length, width, thickness]);
+    }
+}

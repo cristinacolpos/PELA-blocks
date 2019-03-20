@@ -309,18 +309,7 @@ module pcb_space(material=material, large_nozzle=large_nozzle, z=undef, length=l
     y_inset = (block_width(w) - width)/2;
 
     translate([x_inset + board_x_offset, y_inset + board_y_offset, z]) {
-        if (dome) {
-            hull() {
-                cube([length, width, thickness]);
-
-                i = block_width(0.5);
-                translate([i, i, 0]) {
-                    cube([length-2*i, width-2*i, 1.5*i]);
-                }
-            }
-        } else {
-            cube([length, width, thickness]);
-        }
+        dome(dome=dome, length=length, width=width, thickness=thickness);
     }
 
     // Undercut space for board bottom

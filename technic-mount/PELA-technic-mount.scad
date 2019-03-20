@@ -275,7 +275,9 @@ module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=
         technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=center, text=text, text_depth=text_depth, block_height=block_height);
         
         union() {
-            color("green") main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness);
+            if (thickness > 0) {
+                color("green") main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness);
+            }
 
             translate([innercut, innercut, 0]) {            
                 main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, innercut=innercut, undercut=undercut);
@@ -309,8 +311,8 @@ module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef,
     hw = w2/2 - width/2;
 
     translate([hl, hw, block_height(h, block_height) - thickness]) {
-        
-        cube([length, width, thickness + defeather]);
+        dome(dome=true, length=length, width=width, thickness=thickness+defeather);
+//        cube([length, width, thickness + defeather]);
     }
 }
 
