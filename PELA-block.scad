@@ -316,7 +316,7 @@ module skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h
     
     difference() {
         hull() {
-            outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_shell=1);
+            outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_shell=1, block_height=block_height);
         }
 
         skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height);
