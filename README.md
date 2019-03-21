@@ -2,7 +2,9 @@
 
 ![ESP8266 d1 miniPro PELA Blocks enclosure](images/d1-miniPro-pela-blocks-enclosure.jpg)
 
-We measured the length, width and thickness of this board and used the customizer graphical interface to create this functional prototype enclosure. It took about 30 minutes including printing.
+We measured the length, width and thickness of this board and used the customizer graphical interface to create this functional prototype enclosure with snap fit connectors. Now we can rapidly iterate our models in the field. The design took about 5 minutes plus 30 minutes for printing. This model is saved as a drop down preset of the `PELA Technic Mount` model.
+
+Now you can design models without coding and snap them together!
 
 ## LEGO-compatible Parametric 3D Printed Blocks
 
@@ -11,13 +13,6 @@ PELA blocks are designed for easy 3D printing, strength, and rapid customization
 These designs are not by the LEGO corporation. LEGO-compatible blocks are available from multiple manufacturers. Associated basic block patents expired long ago. Press-fit blocks existed before LEGO and we continue that tradition of adapt, evolve and improve as we provide these open source designs for 3D printing.
 
 The name PELA comes from the Finnish "pelataan" meaning "let's play". This [blog post](https://medium.com/@futurice/rapid-hardware-prototyping-turbocharge-your-process-with-pela-blocks-58d0fcff63c5) on how we use these to build a self-driving 1:10 drift car is a good example of rapid prototyping "play".
-
-## Customizer
-
-The software needed is also free and open source, [OpenSCAD](http://www.openscad.org/). Newer "development snapshot" versions of [OpenSCAD](http://www.openscad.org/) make tailoring designs very easy. Enable `Edit | Preferences | Features | Customizer` and set `Edit | Preferences | Advanced | Turn off rendering at _1000000_` since some PELA models are quite large.
-
-![OpenSCAD Customizer with PELA Technic Block](images/pela-customizer.jpg)
-
 
 ## Download
 
@@ -39,6 +34,16 @@ See the [Slicer Recommendations](SLICER.md) for information about different prin
 There are several possible calibration bars. Most users will want the one linked below unless they are printing with flexible filament.
 
 Test fit the top, bottom and sides to get something which is tight but not too tight. Then update your settings in  [`material.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/material.scad) then one time calibration is complete.
+
+## OpenSCAD Settings
+
+The software needed is also free and open source, [OpenSCAD](http://www.openscad.org/). Newer versions of [OpenSCAD](http://www.openscad.org/)  (currently PR4) make tailoring designs very easy, but you need to enable the Customizer. Enable `Edit | Preferences | Features | Customizer`.
+
+PELA models are quite large. To see them properly, `Edit | Preferences | Advanced | Turn off rendering at _1000000_`. Also turn off `OpenGL 1.0` compatability as that is mostly for very old computers. 
+
+You can also configure slicing and printing directly from OpenSCAD. See their website for details.
+
+![OpenSCAD Customizer with PELA Technic Block](images/pela-customizer.jpg)
 
 ___
 
