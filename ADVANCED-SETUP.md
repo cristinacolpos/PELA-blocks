@@ -18,7 +18,7 @@ Copy your calibration files and any .json parameter adjustment files you have cr
 
 This saves time when the models have been updated through multiple iterations on the server. You may need to install git lfs separately.
 
-1. `git lfs init`
+1. `git lfs install`
 1. `git config core.sparcecheckout true`
 1. Create `.git\info\sparce-checkout` with the following 3 lines:
 
