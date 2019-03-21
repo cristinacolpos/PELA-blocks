@@ -55,10 +55,10 @@ l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // How many blocks in from length ends do the technic holes rotate 90 degrees
-twist_l = 2; // [1:18]
+twist_l = 3; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees
-twist_w = 2; // [1:18]
+twist_w = 3; // [1:18]
 
 // Interior fill style
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
@@ -105,19 +105,19 @@ knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 /* [Left Cut] */
 
 // Distance of the front of left side hole [mm]
-left_cutout_y = 4; // [0:0.1:200]
+left_cutout_y = 20; // [0:0.1:200]
 
 // Width of the left side hole [mm]
-left_cutout_width = 0; // [0:0.1:200]
+left_cutout_width = 32; // [0:0.1:200]
 
 // Depth of the left side hole [mm]
 left_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-left_cutout_z = 4; // [0:0.1:200]
+left_cutout_z = -1; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-left_cutout_height = 8; // [0:0.1:200]
+left_cutout_height = 24; // [0:0.1:200]
 
 
 
@@ -181,7 +181,7 @@ back_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-cover_text = "Raspberry Pi 3B+ Cover";
+cover_text = "Raspberry Pi 3B+";
 
 // Interior fill style
 cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
@@ -249,7 +249,7 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
         union() {
             color("green") main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, dome=dome);
 
-            sd_card_cutout(material=material, large_nozzle=large_nozzle);
+            //color("red") sd_card_cutout(material=material, large_nozzle=large_nozzle);
 
             front_connector_cutout(material=material, large_nozzle=large_nozzle);
 
