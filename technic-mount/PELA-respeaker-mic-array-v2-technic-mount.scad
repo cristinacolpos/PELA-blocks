@@ -155,7 +155,7 @@ front_cutout_width = 32; // [0:0.1:200]
 front_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-front_cutout_z = 12; // [0:0.1:200]
+front_cutout_z = 10; // [0:0.1:200]
 
 // Height of the front side hole [mm]
 front_cutout_height = 8; // [0:0.1:200]
@@ -226,8 +226,8 @@ difference() {
             cylinder(d=diameter-2*innercut, h=block_height(h)+2*skin, $fn=256);
         }
 
-        color("pink") translate([block_width(-0.5+3), block_width(-1.5-10)-skin, block_height(0.5)]) {
-            cube([block_width(4), block_width(1)+skin, block_height(cover_h-0.25)]);
+        color("pink") translate([block_width(-0.5+3), block_width(-1.5-10)-skin, 2]) {
+            cube([block_width(4), block_width(3), block_height(cover_h)]);
         }
     }
 }
