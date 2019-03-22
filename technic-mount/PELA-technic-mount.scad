@@ -296,8 +296,10 @@ module technic_mount(material=undef, large_nozzle=undef, cut_line=undef, length=
         }
     }
 
-    % color("green", 0.2) difference() {
-        main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, dome=dome);
+    if (thickness > 0) {
+        % color("green", 0.2) difference() {
+            main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, dome=dome);
+        }
 
         translate([block_width(-0.5), block_width(-0.5), 0]) {
                 
