@@ -40,7 +40,7 @@ use <PELA-technic-mount.scad>
 cut_line = 0; // [0:1:100]
 
 // Select parts to render
-render_modules = 4; // [0:pi mount, 1:pi cover, 2:middle layer, 3:usb gap fill bar, 4:all]
+render_modules = 3; // [0:pi mount, 1:pi cover, 2:middle layer, 3:all]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
@@ -88,7 +88,7 @@ twist_w = 4; // [1:18]
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 // Text label
-text = "Raspberry Pi 3B+";
+text = "Pi 3B+";
 
 // Depth of text etching into top surface
 text_depth = 0.5; // [0.0:0.1:2]
@@ -107,13 +107,13 @@ knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 /* [Left Cut] */
 
 // Distance of the front of left side hole [mm]
-left_cutout_y = 19.9; // [0:0.1:200]
+left_cutout_y = 27.9; // [0:0.1:200]
 
 // Width of the left side hole [mm]
-left_cutout_width = 32.2; // [0:0.1:200]
+left_cutout_width = 16.2; // [0:0.1:200]
 
 // Depth of the left side hole [mm]
-left_cutout_depth = 12; // [0:0.1:200]
+left_cutout_depth = 13; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
 left_cutout_z = -1; // [0:0.1:200]
@@ -183,7 +183,7 @@ back_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-cover_text = "Raspberry Pi 3B+";
+cover_text = "Pi 3B+";
 
 // Interior fill style
 cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
@@ -226,7 +226,7 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
 
     difference() {
         union() {
-            rm = render_modules == 4 ? 2 : render_modules == 2 ? 3 : render_modules;
+            rm = render_modules == 3 ? 2 : render_modules == 2 ? 3 : render_modules;
             
             technic_mount_and_cover(render_modules=rm, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, dome=dome);
 
@@ -239,7 +239,7 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
             w3 = w1;
             w2 = max(0, w - w1 - w3);
 
-            if (render_modules == 0 || render_modules == 4) {
+            if (render_modules == 0 || render_modules == 3) {
                 translate([0, 0, block_height(1, block_height)]) {
 
                     difference() {
@@ -251,18 +251,10 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
                     }
                 }
 
-                retaining_ridge_sd_card_side(material=material);
-            }
-
-            if (render_modules == 3 || render_modules == 4) {
-                translate([block_width(-1.5), block_width(3), 0]) {
-                    rotate([0, 0, 90]) {
-                        technic_twist_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, left=1, center=2, right=1);
-                    }
-                }
+                retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle, w=w);
             }
             
-            if (render_modules == 2 || render_modules == 4) {
+            if (render_modules == 2 || render_modules == 3) {
                 translate([0, block_width(w+1), 0]) {
 
                     difference() {
@@ -273,6 +265,12 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
                                 cube([block_width(2), block_width(7), block_height(2)]);
                             }
                         }
+                    }
+                }
+
+                translate([block_height(-0.5), block_width(w+5), block_height(1.5)]) {
+                    rotate([90, 0, 90]) {
+                        square_end_bar(material=material, large_nozzle=large_nozzle, l=2);
                     }
                 }
             }
@@ -287,14 +285,14 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
 }
 
 
-module retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle) {
+module retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle, w=w) {
 
-    translate([block_width(0.5), block_width(0.5), block_height(1, block_height)]) {
-        cube([block_width(0.5), block_width(2), block_height(1, block_height)]);
-    }
+    difference() {
+        translate([block_width(0.5), block_width(0.5), block_height(1, block_height)]) {
+            cube([block_width(0.5), block_width(w-2), block_height(1, block_height)]);
+        }
 
-    translate([block_width(0.5), block_width(6.5), block_height(1, block_height)]) {
-        cube([block_width(0.5), block_width(2), block_height(1, block_height)]);
+        color("yellow") left_cutout(l=l, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height);
     }
 }
 
