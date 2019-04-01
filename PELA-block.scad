@@ -312,7 +312,7 @@ module outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, 
 
 
 // A solid block, no knobs or connectors. This is provided as a convenience for constructive solid geometry designs based on this block
-module skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height, skin=skin) {
+module skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height, skin=skin) {
     
     difference() {
         hull() {
