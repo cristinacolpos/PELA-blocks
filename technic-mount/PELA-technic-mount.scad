@@ -255,8 +255,6 @@ module technic_mount_and_cover(render_modules=undef, material=undef, large_nozzl
 
     l = fit_mm_to_blocks(length, l_pad);
     w = fit_mm_to_blocks(width, w_pad);
-//    assert(l - 2*twist_l, "Board length is quite small- decrease twist_l or increase l_pad");
-//    assert(w - 2*twist_w, "Board width is quite small- decrease twist_w or increase w_pad");
 
     if (render_modules == 1 || render_modules == 2) {
         translate([0, -block_width(w + 1), 0]) {
