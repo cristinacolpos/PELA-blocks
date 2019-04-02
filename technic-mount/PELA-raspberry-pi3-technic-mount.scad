@@ -27,8 +27,8 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <../PELA-socket-panel.scad>
-use <../technic-bar/PELA-technic-bar.scad>
-use <../technic-bar/PELA-technic-twist-bar.scad>
+use <../technic-beam/PELA-technic-beam.scad>
+use <../technic-beam/PELA-technic-twist-beam.scad>
 use <PELA-technic-box.scad>
 use <PELA-technic-mount.scad>
 
@@ -270,7 +270,7 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
 
                 translate([block_height(-0.5), block_width(w+5), block_height(1.5)]) {
                     rotate([90, 0, 90]) {
-                        square_end_bar(material=material, large_nozzle=large_nozzle, l=2);
+                        square_end_beam(material=material, large_nozzle=large_nozzle, l=2);
                     }
                 }
             }

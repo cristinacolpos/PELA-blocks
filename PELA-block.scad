@@ -70,7 +70,7 @@ solid_upper_layers = false;
 knobs = true;
 
 // Basic unit vertical size of each block
-block_height = 9.6; // This is not adjuestable due to twist bar technic hole rotation
+block_height = 9.6; // This is not adjuestable due to twist beam technic hole rotation
 
 // Add connectors to the bottom of the block
 sockets = true;
@@ -130,11 +130,11 @@ module block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_h
                 top_knob_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, top_tweak=top_tweak);
             }
 
-            bar_h = h > 1 ? 1 : h;
+            beam_h = h > 1 ? 1 : h;
 
             if (h >= block_height(2/3, block_height=block_height)) {
                 translate([0, 0, block_height(h-1, block_height=block_height)])
-                    bottom_stiffener_bar_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=bar_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
+                    bottom_stiffener_beam_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=beam_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
             }
 
             if (sockets) {
@@ -157,7 +157,7 @@ module block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_h
             if (solid_first_layer || !sockets) {
                 fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
             } else if (h>1) {
-                bottom_stiffener_bar_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=bar_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
+                bottom_stiffener_beam_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=beam_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
             }
             
             if (h>1 && solid_upper_layers) {
@@ -325,7 +325,7 @@ module skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h
 
 
 // Bars layed below a horizontal surface to make it stronger
-module bottom_stiffener_bar_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
+module bottom_stiffener_beam_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
     
     cut_width = bottom_stiffener_width/6;
     translate([0, 0, block_height(h, block_height)-bottom_stiffener_height]) {

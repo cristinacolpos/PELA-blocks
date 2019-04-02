@@ -25,7 +25,7 @@ include <../material.scad>
 include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
-use <PELA-technic-bar.scad>
+use <PELA-technic-beam.scad>
 
 
 
@@ -52,7 +52,7 @@ l = 7; // [1:1:20]
 // DISPLAY
 ///////////////////////////////
 
-technic_angle_connector();
+technic_angle_connector(material=material, large_nozzle=large_nozzle, cut_line=cut_line,angle=angle, l=l);
 
 
 
@@ -60,7 +60,8 @@ technic_angle_connector();
 // MODULES
 ///////////////////////////////////
 
-module technic_angle_connector(material=material, large_nozzle=large_nozzle, cut_line=cut_line,angle=angle, l=l) {
+module technic_angle_connector(material=undef, large_nozzle=undef, cut_line=undef,angle=undef, l=undef) {
+    
     assert(angle >= 0, "Angle connector must be 0-180 degrees")
     assert(angle <= 180, "Angle connector must be 0-180 degrees")
 
@@ -69,13 +70,13 @@ module technic_angle_connector(material=material, large_nozzle=large_nozzle, cut
             translate([0, 0, block_height(1)]) {
                 rotate([angle, 0, 0]) {
                     translate([0, block_width(0.5), 0]) {
-                        technic_bar(material=material, large_nozzle=large_nozzle, l=l);
+                        technic_beam(material=material, large_nozzle=large_nozzle, l=l);
                     }
                 }
             }
 
             translate([0, block_width(0.5), 0]) {
-                    technic_bar(material=material, large_nozzle=large_nozzle, l=l);
+                    technic_beam(material=material, large_nozzle=large_nozzle, l=l);
             }
 
             increment = 5;
@@ -98,10 +99,10 @@ module pie_slice(material=material, large_nozzle=large_nozzle, theta=0, incremen
         rotate([theta, 0 , 0]) {
             difference() {
                 hull() {
-                    technic_bar_slice(material=material, large_nozzle=large_nozzle, l=l);
+                    technic_beam_slice(material=material, large_nozzle=large_nozzle, l=l);
 
                     rotate([increment, 0, 0]) {
-                        technic_bar_slice(material=material, large_nozzle=large_nozzle, l=l);
+                        technic_beam_slice(material=material, large_nozzle=large_nozzle, l=l);
                     }
                 }
 
@@ -109,12 +110,12 @@ module pie_slice(material=material, large_nozzle=large_nozzle, theta=0, incremen
                     translate([block_width(n), 0, 0]) {
                         hull() {
                             translate([0, 0, -defeather]) {
-                                technic_bar_slice_negative(material=material, large_nozzle=large_nozzle, l=0);
+                                technic_beam_slice_negative(material=material, large_nozzle=large_nozzle, l=0);
                             }
 
                             rotate([increment, 0, 0]) {
                                 translate([0, 0, defeather]) {
-                                    technic_bar_slice_negative(material=material, large_nozzle=large_nozzle, l=0);
+                                    technic_beam_slice_negative(material=material, large_nozzle=large_nozzle, l=0);
                                 }
                             }
                         }

@@ -1,5 +1,5 @@
 /*
-PELA Technic Bent Bar - 3D Printed LEGO-compatible bar with an angle
+PELA Technic Bent Beam - 3D Printed LEGO-compatible beam with an angle
 
 Published at https://PELAblocks.org
 
@@ -26,8 +26,8 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
-use <../technic-bar/PELA-technic-bar.scad>
-use <../technic-bar/PELA-technic-twist-bar.scad>
+use <../technic-beam/PELA-technic-beam.scad>
+use <../technic-beam/PELA-technic-twist-beam.scad>
 
 
 /* [Technic Corner] */
@@ -41,14 +41,14 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-// Length of the first bar [blocks]
+// Length of the first beam [blocks]
 l1 = 2; // [1:20]
 
-// Length of the second bar [blocks]
+// Length of the second beam [blocks]
 l2 = 2; // [1:20]
 
 
-// Angle between the two bars
+// Angle between the two beams
 angle = 90; // [0:180]
 
 
@@ -67,7 +67,7 @@ technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, 
 // MODULES
 ///////////////////////////////////
 
-module technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h) {
+module technic_corner(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, angle=undef, h=undef) {
 
     assert(angle >= 0, "Angle must be at least 180 degrees");
     assert(angle <= 180, "Angle must be at most 360 degrees");
@@ -76,12 +76,12 @@ module technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut
         difference() {
             union() {
                 translate([block_width(0.5), 0, 0]) {
-                    right_square_end_bar(material=material, large_nozzle=large_nozzle, l=l1);
+                    right_square_end_beam(material=material, large_nozzle=large_nozzle, l=l1);
                 }
 
                 rotate([0, 180-angle, 0]) {
                     translate([block_width(0.5), 0, block_height(-1, block_height)]) {
-                        right_square_end_bar(material=material, large_nozzle=large_nozzle, l=l2);
+                        right_square_end_beam(material=material, large_nozzle=large_nozzle, l=l2);
 
                         translate([block_width(-0.5), 0,  block_width(1)])
                         for (n = [90:1:90+angle-1]) {

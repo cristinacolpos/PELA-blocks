@@ -26,7 +26,7 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
-use <../technic-bar/PELA-technic-bar.scad>
+use <../technic-beam/PELA-technic-beam.scad>
 
 
 /* [Technic Corner] */
@@ -40,16 +40,16 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-// Length of the first bar [blocks]
+// Length of the first beam [blocks]
 l1 = 3;
 
-// Length of the second bar [blocks]
+// Length of the second beam [blocks]
 l2 = 3;
 
-// Length of the bars [blocks]
+// Length of the beams [blocks]
 h = 1;
 
-// Angle between the two bars
+// Angle between the two beams
 angle = 90;
 
 
@@ -75,10 +75,10 @@ module technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut
 
     difference() {
         union() {
-            technic_bar(material=material, large_nozzle=large_nozzle, l=l1, h=h);
+            technic_beam(material=material, large_nozzle=large_nozzle, l=l1, h=h);
 
             rotate([0, 0, angle]) {
-                technic_bar(material=material, large_nozzle=large_nozzle, l=l2, h=h);
+                technic_beam(material=material, large_nozzle=large_nozzle, l=l2, h=h);
             }
         }
 

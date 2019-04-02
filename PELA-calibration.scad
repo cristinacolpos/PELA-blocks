@@ -1,5 +1,5 @@
 /*
-PELA Blocks 3D Print Calibration Bar
+PELA Blocks 3D Print Calibration Beam
 
 Published at https://PELAblocks.org
 
@@ -37,11 +37,11 @@ flexible_material = false;
 
 /* [Calibration] */
 
-// Generate a calibration bar (vs a set of individual calibration blocks)
-calibration_bar = true;
+// Generate a calibration beam (vs a set of individual calibration blocks)
+calibration_beam = true;
 
-// Number of blocks in the calibration bar
-bar_length = 9; // [1:1:20]
+// Number of blocks in the calibration beam
+beam_length = 9; // [1:1:20]
 
 // Length of each calibration block [blocks]
 l = 2; // [1:1:20]
@@ -93,8 +93,8 @@ font_size2 = 3.8 - (block_height < 9.6 ? 0.5 : 0);
 // DISPLAY
 ///////////////////////////////
 
-if (calibration_bar) {
-    PELA_calibration_bar(material=material, large_nozzle=large_nozzle, bar_length=bar_length, l=l, w=w, h=h, calibration_increment=calibration_increment, knob_height=knob_height, block_height=block_height);
+if (calibration_beam) {
+    PELA_calibration_beam(material=material, large_nozzle=large_nozzle, beam_length=beam_length, l=l, w=w, h=h, calibration_increment=calibration_increment, knob_height=knob_height, block_height=block_height);
 } else {
     PELA_calibration_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=end_holes, calibration_increment=calibration_increment, knob_height=knob_height, block_height=block_height);
 }
@@ -104,12 +104,12 @@ if (calibration_bar) {
 // MODULES
 ///////////////////////////////////
 
-module PELA_calibration_bar(material=material, large_nozzle=large_nozzle, bar_length=bar_length, l=l, w=w, h=h, calibration_increment=calibration_increment, knob_height=knob_height, block_height=block_height) {
+module PELA_calibration_beam(material=material, large_nozzle=large_nozzle, beam_length=beam_length, l=l, w=w, h=h, calibration_increment=calibration_increment, knob_height=knob_height, block_height=block_height) {
 
-    assert(bar_length > 1, "Bar length must be at least 2");
+    assert(beam_length > 1, "Beam length must be at least 2");
 
-    from = -floor((bar_length - 1)/2);
-    to = ceil((bar_length - 1)/2);
+    from = -floor((beam_length - 1)/2);
+    to = ceil((beam_length - 1)/2);
     
     // Tighter top, looser bottom
     for (i = [from:to]) {

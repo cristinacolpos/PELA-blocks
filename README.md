@@ -27,11 +27,11 @@ See the [Slicer Recommendations](SLICER.md) for information about different prin
 
 ## Calibrate
 
-**TL;DR** *: To get a nice snap fit for your printer, slicer settings and material, print a calibration bar and test fit commercial bricks to the top knobs, bottom sockets and side technic holes. Update the best `top_tweak` and `bottom_tweak` into [`material.scad`](material.scad). Now open any model in OpenSCAD, press `F6` to generate the model then `F7` to export an STL.*
+**TL;DR** *: To get a nice snap fit for your printer, slicer settings and material, print a calibration beam and test fit commercial bricks to the top knobs, bottom sockets and side technic holes. Update the best `top_tweak` and `bottom_tweak` into [`material.scad`](material.scad). Now open any model in OpenSCAD, press `F6` to generate the model then `F7` to export an STL.*
 
 [![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master//PELA-calibration.stl)
 
-There are several possible calibration bars. Most users will want the one linked below unless they are printing with flexible filament.
+There are several possible calibration beams. Most users will want the one linked below unless they are printing with flexible filament.
 
 Test fit the top, bottom and sides to get something which is tight but not too tight. Then update your settings in  [`material.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/material.scad) then one time calibration is complete.
 
@@ -47,19 +47,19 @@ You can also configure slicing and printing directly from OpenSCAD. See their we
 
 ___
 
-[![PELA Calibration Bar, Normal Filament](/PELA-calibration.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-calibration.stl)
+[![PELA Calibration Beam, Normal Filament](/PELA-calibration.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-calibration.stl)
 
-[PELA Calibration Bar, Normal Filament](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-calibration.stl) PELA Calibration Bar for standard filament (non-flexible).
+[PELA Calibration Beam, Normal Filament](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-calibration.stl) PELA Calibration Beam for standard filament (non-flexible).
 
 ### Calibration Instructions
 
 Your printer, slicer settings, and plastic effect the precise fit. To correct for this, we adjust the models slightly for your printing process. Calibration is a one time process for each material. It is as simple as fitting two blocks together and editing a text file, [`material.scad`](material.scad) to indicate which test block fits best.
 
-Before you print the calibration bar, be sure to set the `flexible_material` and `large_nozzle` settings in [`material.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/material.scad).
+Before you print the calibration beam, be sure to set the `flexible_material` and `large_nozzle` settings in [`material.scad`](https://github.com/PELA-Prototypes/parametric-PELA/blob/master/material.scad).
 
-After you print the clibration bar, you update three settings to get a tight fit: `top_tweak`, `bottom_tweak` and `axle_hole_tweak`. These can be read from the side of the calibration bar.
+After you print the clibration beam, you update three settings to get a tight fit: `top_tweak`, `bottom_tweak` and `axle_hole_tweak`. These can be read from the side of the calibration beam.
 
-1. Print the Calibration Bar and test fit the top knobs and bottom sockets against commercial LEGO. Put the `top_tweak` (on the side, near the top) and `bottom_tweak` (on the side, near the bottom) values that you can read from the side of the bar into `material.scad`.
+1. Print the Calibration Beam and test fit the top knobs and bottom sockets against commercial LEGO. Put the `top_tweak` (on the side, near the top) and `bottom_tweak` (on the side, near the bottom) values that you can read from the side of the beam into `material.scad`.
 1. Use OpenSCAD to generate a new 2x2x1 `PELA Block` in OpenSCAD using these new settings, press `F6` to render, and `Export` as `.STL`.
 1. Confirm a good fit with both commercial blocks and other PELA Blocks.
 1. If you find you also need to adjust the technic connector hole size, print the Calibration Block Set. `axle_hole_tweak` numbers change along with `top_tweak` numbers.
@@ -79,39 +79,39 @@ Edit `material.scad` and `style.scad` to adapt these models before printing them
 
 ___
 
-[![PELA Technic Block](/PELA-technic-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl) An old style simple block. All models derive from this.
+[![PELA Technic Block](/PELA-technic-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl)
 
-[PELA Block with technic connectors](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl) A blending of traditional and technic features which extends the basic block. All other models are extensions and vaiants from this.
-
-___
-
-[![PELA Technic Bar](/technic-bar/PELA-technic-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-bar.stl)
-
-[PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-bar.stl) A minimalist technic bar.
+[PELA Technic Block](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl) A blending of traditional and technic features which extends the basic block. All other models are extensions and variants of this.
 
 ___
 
-[![PELA Technic Bar](/technic-bar/PELA-technic-twist-bar.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-twist-bar.stl)
+[![PELA Technic Beam](/technic-beam/PELA-technic-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-beam.stl)
 
-[PELA Technic Bar](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-twist-bar.stl) A technic bar with a center section of holes rotated 90 degrees.
-
-___
-
-[![PELA Technic Corner](/technic-bar/PELA-technic-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-corner.stl)
-
-[PELA Technic Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-corner.stl) Two bars joined at an angle.
+[PELA Technic Beam](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-beam.stl) A minimalist technic beam.
 
 ___
 
-[![PELA Technic Angle Connector](/technic-bar/PELA-technic-angle-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-angle-connector.stl)
+[![PELA Technic Beam](/technic-beam/PELA-technic-twist-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl)
 
-[PELA Technic Angle Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-angle-connector.stl) Two bars joined at an angle.
+[PELA Technic Beam](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl) A technic beam with a center section of holes rotated 90 degrees.
 
 ___
 
-[![PELA Technic Angle Connector](/technic-bar/PELA-technic-angle-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-angle-connector.stl)
+[![PELA Technic Corner](/technic-beam/PELA-technic-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-corner.stl)
 
-[PELA Technic Angle Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-bar/PELA-technic-angle-connector.stl) Two technic bar connected vertically at an angle.
+[PELA Technic Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-corner.stl) Two beams joined at an angle co-axial to the technic holes.
+
+___
+
+[![PELA Technic Bent Beam](/technic-beam/PELA-technic-bent-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-bent-beam.stl)
+
+[PELA Technic Bent Beam](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-bent-beam.stl) Two beams joined at an angle normal to the technic holes.
+
+___
+
+[![PELA Technic Angle Connector](/technic-beam/PELA-technic-angle-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-angle-connector.stl)
+
+[PELA Technic Angle Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-angle-connector.stl) Two beams joined lengthwise at an angle.
 
 ___
 

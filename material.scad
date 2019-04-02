@@ -20,11 +20,11 @@ Imported automatically into other design files when you include parameters:
 
 INSTRUCTIONS
 ============
-1. Print a calibration bar for your desired material.
+1. Print a calibration beam for your desired material.
 
 2. Test fit the (a) top knobs, (b) bottom sockets, (c) technic holes on the side. Write down those three numbers.
 
-3. Update those numbers in this file. Example: print a "PLA" calibration bar with your favorite PLA and slicer settings. After testing, your PELA top knob best fit to LEGO sockets is -0.08, PELA bottom socket best fit to LEGO knobs is 0.04, and PELA side hole best fit with a technic pin is 0.06. So you edit the "pla_m" material line 71 to look like:
+3. Update those numbers in this file. Example: print a "PLA" calibration beam with your favorite PLA and slicer settings. After testing, your PELA top knob best fit to LEGO sockets is -0.08, PELA bottom socket best fit to LEGO knobs is 0.04, and PELA side hole best fit with a technic pin is 0.06. So you edit the "pla_m" material line 71 to look like:
     69:    // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak];
     70:    pla = 0; // Polymaker Polylite
     71:    pla_m = ["PLA", false, -0.08, 0.04, 0.06];

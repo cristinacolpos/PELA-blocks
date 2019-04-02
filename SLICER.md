@@ -26,7 +26,7 @@ Not all brands of ABS are the same. Village Plastics ABS gives better results th
 
 # Innofil rPET
 
-It works but is not ideal due to high stiffness and brittle failure. rPET is made from recycled plastic bottles. Like other transparent/translucent materials you can overextrude for more clarity. Just make sure you also print your calibration bar with the same overextrusion.
+It works but is not ideal due to high stiffness and brittle failure. rPET is made from recycled plastic bottles. Like other transparent/translucent materials you can overextrude for more clarity. Just make sure you also print your calibration beam with the same overextrusion.
 
 Other PETs which have more flex may be a good choice but have not been evaluated.
 

@@ -25,9 +25,9 @@ include <../material.scad>
 include <../style.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
-use <PELA-technic-bar.scad>
+use <PELA-technic-beam.scad>
 
-/* [Technic Twist Bar] */
+/* [Technic Twist Beam] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
@@ -53,7 +53,7 @@ right = 2; // [1:20]
 // DISPLAY
 ///////////////////////////////
 
-technic_twist_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, left=left, center=center, right=right);
+technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, left=left, center=center, right=right);
 
 
 
@@ -61,27 +61,27 @@ technic_twist_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_lin
 // MODULES
 ///////////////////////////////////
 
-module technic_twist_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, left=left, center=center, right=right) {
-    assert(left > 0, "Left side of twist bar must be at least 1")
-    assert(center >= 0, "Center of twist bar must be at least 0")
-    assert(right > 0, "Right side of twist bar must be at least 1")
+module technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, left=left, center=center, right=right) {
+    assert(left > 0, "Left side of twist beam must be at least 1")
+    assert(center >= 0, "Center of twist beam must be at least 0")
+    assert(right > 0, "Right side of twist beam must be at least 1")
 
     if (center == 0) {
-        technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=left+right);
+        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=left+right);
     } else {
         difference() {
             union() {
-                left_square_end_bar(material=material, large_nozzle=large_nozzle, l=left);
+                left_square_end_beam(material=material, large_nozzle=large_nozzle, l=left);
 
                 translate([block_width(left), 0, 0]) {
                     translate([0, block_width(0.5), block_width(0.5)]) {
                         rotate([90, 0, 0]) {
-                            square_end_bar(material=material, large_nozzle=large_nozzle, l=center);
+                            square_end_beam(material=material, large_nozzle=large_nozzle, l=center);
                         }
                     }
 
                     translate([block_width(center), 0, 0]) {
-                        right_square_end_bar(material=material, large_nozzle=large_nozzle, l=right);
+                        right_square_end_beam(material=material, large_nozzle=large_nozzle, l=right);
                     }
                 }
             }
@@ -94,41 +94,41 @@ module technic_twist_bar(material=material, large_nozzle=large_nozzle, cut_line=
 }
 
 
-module square_end_bar(material=material, large_nozzle=large_nozzle, l=undef) {
+module square_end_beam(material=material, large_nozzle=large_nozzle, l=undef) {
 
     intersection() {
         translate([-block_width(1), 0, 0]) {
-            technic_bar(material=material, large_nozzle=large_nozzle, l=l+2);
+            technic_beam(material=material, large_nozzle=large_nozzle, l=l+2);
         }
 
-       bar_space(material=material, large_nozzle=large_nozzle, l=l);
+       beam_space(material=material, large_nozzle=large_nozzle, l=l);
     }
 }
 
 
-module right_square_end_bar(material=material, large_nozzle=large_nozzle, l=undef) {
+module right_square_end_beam(material=material, large_nozzle=large_nozzle, l=undef) {
 
     intersection() {
         translate([-block_width(1), 0, 0]) {
-            technic_bar(material=material, large_nozzle=large_nozzle, l=l+1);
+            technic_beam(material=material, large_nozzle=large_nozzle, l=l+1);
         }
 
-       bar_space(material=material, large_nozzle=large_nozzle, l=l);
+       beam_space(material=material, large_nozzle=large_nozzle, l=l);
     }
 }
 
 
-module left_square_end_bar(material=material, large_nozzle=large_nozzle, l=undef) {
+module left_square_end_beam(material=material, large_nozzle=large_nozzle, l=undef) {
 
     translate([block_width(l-1), 0, block_height()]) {
         rotate([0, 180, 0]) {
-            right_square_end_bar(material=material, large_nozzle=large_nozzle, l=l);
+            right_square_end_beam(material=material, large_nozzle=large_nozzle, l=l);
         }
     }
 }
 
 
-module bar_space(material=material, large_nozzle=large_nozzle, l=undef) {
+module beam_space(material=material, large_nozzle=large_nozzle, l=undef) {
 
     translate([block_width(-0.5), block_width(-0.5), 0]) {
         skinned_block(material=material, large_nozzle=large_nozzle, l=l, w=1, h=1, skin=0, block_height=8);
