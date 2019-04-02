@@ -29,8 +29,8 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
-use <../technic-bar/PELA-technic-bar.scad>
-use <../technic-bar/PELA-technic-twist-bar.scad>
+use <../technic-beam/PELA-technic-beam.scad>
+use <../technic-beam/PELA-technic-twist-beam.scad>
 use <../box-enclosure/PELA-box-enclosure.scad>
 use <PELA-technic-box.scad>
 use <PELA-technic-mount.scad>
@@ -206,7 +206,7 @@ cover_knobs = true;
 /* [Hidden] */
 
 // Basic unit vertical size of each block
-block_height = 8; // This is not adjuestable due to twist bar technic hole rotation
+block_height = 8; // This is not adjuestable due to twist beam technic hole rotation
 
 
 

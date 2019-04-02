@@ -27,8 +27,8 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../PELA-socket-panel.scad>
 use <../PELA-knob-panel.scad>
-use <../technic-bar/PELA-technic-bar.scad>
-use <../technic-bar/PELA-technic-twist-bar.scad>
+use <../technic-beam/PELA-technic-beam.scad>
+use <../technic-beam/PELA-technic-twist-beam.scad>
 
 
 /* [Technic Box] */
@@ -243,19 +243,19 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
 
     difference() {
         union() {
-            technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
+            technic_twist_beam(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
 
             rotate([0, 0, 90]) {
-                technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
+                technic_twist_beam(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
             }
 
             translate([0, block_width(ww-1), 0]) {
-                technic_twist_bar(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
+                technic_twist_beam(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
             }
 
             rotate([0, 0, 90]) {
                 translate([0, -block_width(ll-1), 0]) {
-                    technic_twist_bar(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
+                    technic_twist_beam(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
                 }
             }
         }

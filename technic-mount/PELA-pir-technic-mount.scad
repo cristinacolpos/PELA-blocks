@@ -1,5 +1,5 @@
 /*
-PELA PIR (pulsed infra-red) Technic Mount - 3D Printed LEGO-compatible PCB mount with the board held in place by technic bars
+PELA PIR (pulsed infra-red) Technic Mount - 3D Printed LEGO-compatible PCB mount with the board held in place by technic beams
 
 Published at https://PELAblocks.org
 
@@ -26,8 +26,8 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
-use <../technic-bar/PELA-technic-bar.scad>
-use <../technic-bar/PELA-technic-twist-bar.scad>
+use <../technic-beam/PELA-technic-beam.scad>
+use <../technic-beam/PELA-technic-twist-beam.scad>
 use <PELA-technic-box.scad>
 use <PELA-technic-mount.scad>
 

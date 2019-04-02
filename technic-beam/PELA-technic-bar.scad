@@ -28,7 +28,7 @@ use <../PELA-technic-block.scad>
 
 
 
-/* [Technic Bar] */
+/* [Technic Beam] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
@@ -52,7 +52,7 @@ h = 1; // [1:1:20]
 // DISPLAY
 ///////////////////////////////
 
-technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2);
+technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2);
 
 
 
@@ -60,10 +60,10 @@ technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l
 // MODULES
 ///////////////////////////////////
 
-module technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2) {
+module technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2) {
 
-    assert(l > 0, "Technic bar length must be greater than zero");
-    assert(h > 0, "Technic bar height must be greater than zero");
+    assert(l > 0, "Technic beam length must be greater than zero");
+    assert(h > 0, "Technic beam height must be greater than zero");
 
     l2 = l + 1;
 
@@ -94,8 +94,8 @@ module technic_bar(material=material, large_nozzle=large_nozzle, cut_line=cut_li
 }
 
 
-// The 2D profile of the bar (for rotations and other uses)
-module technic_bar_slice(material=material, large_nozzle=large_nozzle, l=l) {
+// The 2D profile of the beam (for rotations and other uses)
+module technic_beam_slice(material=material, large_nozzle=large_nozzle, l=l) {
     l2 = l + 1;
 
     hull() {
@@ -110,8 +110,8 @@ module technic_bar_slice(material=material, large_nozzle=large_nozzle, l=l) {
 }
 
 
-// The 2D profile of the negative space of the bar (for rotations and other uses)
-module technic_bar_slice_negative(material=material, large_nozzle=large_nozzle, l=l) {
+// The 2D profile of the negative space of the beam (for rotations and other uses)
+module technic_beam_slice_negative(material=material, large_nozzle=large_nozzle, l=l) {
     l2 = l + 1;
 
     union() {
