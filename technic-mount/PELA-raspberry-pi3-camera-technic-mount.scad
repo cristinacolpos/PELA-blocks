@@ -176,7 +176,7 @@ back_cutout_height = 8; // [0:0.1:200]
 cover_text = "Pi Cam";
 
 // Interior fill style
-cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+cover_center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
 // Height of the cover [blocks]
 cover_h = 1; // [1:1:20]
