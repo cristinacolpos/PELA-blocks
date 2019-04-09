@@ -251,7 +251,7 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
                     }
                 }
 
-                retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle, w=w);
+                retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle, l=l, w=w);
             }
             
             if (render_modules == 2 || render_modules == 3) {
@@ -285,7 +285,12 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
 }
 
 
-module retaining_ridge_sd_card_side(material=material, large_nozzle=large_nozzle, w=w) {
+module retaining_ridge_sd_card_side(material=undef, large_nozzle=undef, l=undef, w=undef) {
+
+    assert(material != undef);
+    assert(large_nozzle != undef);
+    assert(l != undef);
+    assert(w != undef);
 
     difference() {
         translate([block_width(0.5), block_width(0.5), block_height(1, block_height)]) {
