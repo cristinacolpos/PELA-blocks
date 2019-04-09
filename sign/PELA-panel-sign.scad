@@ -163,7 +163,7 @@ module PELA_panel_sign(material=undef, large_nozzle=undef, cut_line=undef, l=und
 
 
 // A PELA block with text on the top
-module PELA_flat_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrude=extrude,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
+module PELA_flat_sign_extruded_text(material=undef, large_nozzle=undef, l=undef, w=undef, line_1=undef, line_2=undef, lang=undef, extrude=undef,  extrusion_height=undef, f1=undef, f2=undef, fs1=undef, fs2=undef, left_margin=undef, vertical_margin=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, corner_bolt_holes=undef, sockets=undef, knobs=undef, block_height=undef) {
     
     if (extrude) {
         translate([skin, skin, 0])
@@ -173,7 +173,7 @@ module PELA_flat_sign_extruded_text(material=material, large_nozzle=large_nozzle
 
 
 // Two lines of text extruded out from the surface
-module PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, line_1=line_1, line_2=line_2, lang=lang, extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, block_height=block_height) {
+module PELA_sign_extruded_text(material=undef, large_nozzle=undef, l=undef, w=undef, line_1=undef, line_2=undef, lang=undef, extrusion_height=undef, f1=undef, f2=undef, fs1=undef, fs2=undef, left_margin=undef, vertical_margin=undef, block_height=undef) {
     
     translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_height(block_height=block_height)-extrusion_height]) {
         PELA_text(material=material, large_nozzle=large_nozzle, text=line_1, lang=lang, font=f1, font_size=fs1, vertical_alignment="top", extrusion_height=extrusion_height*2);
@@ -186,7 +186,7 @@ module PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l
 
 
 // Two lines of text etched into the surface
-module PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang,  extrusion_height=extrusion_height, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, block_height=block_height) {
+module PELA_sign_etched_text(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, line_1=undef, line_2=undef, lang=undef,  extrusion_height=undef, f1=undef, f2=undef, fs1=undef, fs2=undef, left_margin=undef, vertical_margin=undef, block_height=undef) {
     
     translate([left_margin+skin, -vertical_margin+block_width(w)-skin, panel_height(block_height=block_height)]) {
         PELA_text(material=material, large_nozzle=large_nozzle, text=line_1, lang=lang, extrusion_height=extrusion_height, font=f1, font_size=fs1, vertical_alignment="top");
@@ -199,7 +199,16 @@ module PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, 
 
 
 // Text for the top of blocks
-module PELA_text(material=material, large_nozzle=large_nozzle, text=line_1, lang=lang, extrusion_height=extrusion_height, font=f1, font_size=fs1, vertical_alignment="bottom") {
+module PELA_text(material=undef, large_nozzle=undef, text=undef, lang=undef, extrusion_height=undef, font=undef, font_size=undef, vertical_alignment=undef) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(text!=undef);
+    assert(lang!=undef);
+    assert(extrusion_height!=undef);
+    assert(font!=undef);
+    assert(font_size!=undef);
+    assert(vertical_alignment!=undef);
 
    linear_extrude(height=extrusion_height) {
         text(text=text, language=lang, font=font, size=font_size, halign="left", valign=vertical_alignment);
