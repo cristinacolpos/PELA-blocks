@@ -162,9 +162,9 @@ ___
 [PELA Raspberry Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl) A Raspberry Pi 3 camera holder.
 ___
 
-[![PELA STMF4 Discovery Technic Mount](/technic-mount/PELA-stmf4discovery-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-stmf4discovery-technic-mount.stl)
+[![PELA STMF4 Discovery Technic Mount](/technic-mount/PELA-stmf4-discovery-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-stmf4-discovery-technic-mount.stl)
 
-[PELA STMF4 Discovery Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/box-enclosure/PELA-stmf4discovery-technic-mount.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
+[PELA STMF4 Discovery Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/box-enclosure/PELA-stmf4-discovery-technic-mount.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
 ___
 
