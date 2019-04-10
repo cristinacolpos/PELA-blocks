@@ -58,7 +58,7 @@ angle = 90; // [0:180]
 // DISPLAY
 ///////////////////////////////
 
-technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h);
+bent_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h);
 
 
 
@@ -67,7 +67,7 @@ technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, 
 // MODULES
 ///////////////////////////////////
 
-module technic_corner(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, angle=undef, h=undef) {
+module bent_beam(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, angle=undef, h=undef) {
 
     assert(angle >= 0, "Angle must be at least 180 degrees");
     assert(angle <= 180, "Angle must be at most 360 degrees");
