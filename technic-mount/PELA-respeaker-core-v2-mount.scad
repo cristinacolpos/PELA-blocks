@@ -217,7 +217,7 @@ module clear_ring(material=material, large_nozzle=large_nozzle, top_height=top_h
 
     translate([center_x, center_y, -8]) {
         difference() {
-            z = defeather;
+            z = _defeather;
             translate([0, 0, -z]) {
                 cylinder(r=r1, h=top_height+2*z, $fn=256);
             }

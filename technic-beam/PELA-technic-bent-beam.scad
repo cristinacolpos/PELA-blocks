@@ -88,10 +88,10 @@ module bent_beam(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l
                             rotate([0, n, 0]) {
                                 hull() {
                                     translate([0, block_width(-0.5), 0]) {
-                                        cube([block_width(1), block_width(1), defeather]);
+                                        cube([block_width(1), block_width(1), _defeather]);
 
                                         rotate([0, 1, 0]) {
-                                            cube([block_width(1), block_width(1), defeather]);
+                                            cube([block_width(1), block_width(1), _defeather]);
                                         }
                                     }
                                 }

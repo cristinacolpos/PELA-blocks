@@ -221,7 +221,7 @@ module edge_text(l=undef, w=undef, h=undef, text=undef, text_depth=undef) {
     translate([block_width((l-1)/2), block_width(w-1), block_height(h, block_height) - text_depth]) {
         font = "Liberation Sans";
 
-        color("black") linear_extrude(height = text_depth + defeather) {
+        color("black") linear_extrude(height = text_depth + _defeather) {
             text(text, font = font, size = 4.8, valign = "center", halign = "center");
         }
     }
@@ -318,8 +318,8 @@ module bottom_cheese_holes(material=undef, large_nozzle=undef, w=undef, l=undef,
 
     for (i = [1:l-2]) {
         for (j = [1:w-2]) {
-            translate([block_width(i), block_width(j), -defeather]) {
-                 axle_hole(material=material, large_nozzle=large_nozzle, hole_type=2, radius=material_axle_hole_radius(material=material, large_nozzle=large_nozzle), length=block_height(h, block_height)+2*defeather);
+            translate([block_width(i), block_width(j), -_defeather]) {
+                 axle_hole(material=material, large_nozzle=large_nozzle, hole_type=2, radius=material_axle_hole_radius(material=material, large_nozzle=large_nozzle), length=block_height(h, block_height)+2*_defeather);
             }
         }
     }    

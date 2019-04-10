@@ -28,23 +28,28 @@ use <../PELA-technic-block.scad>
 
 
 
-/* [Technic Beam] */
+/* [Render] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:16]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
+
+
+/* [Technic Beam] */
 
 // Model length [blocks]
-l = 15; // [1:1:20]
+_l = 15; // [1:1:30]
 
 // Model height [blocks]
-h = 1; // [1:1:20]
+_h = 1; // [1:1:30]
 
+// Add full width through holes spaced along the length for techic connectors
+_side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 
 
@@ -52,7 +57,7 @@ h = 1; // [1:1:20]
 // DISPLAY
 ///////////////////////////////
 
-technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2);
+technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, h=_h, side_holes=_side_holes);
 
 
 
@@ -60,10 +65,14 @@ technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=
 // MODULES
 ///////////////////////////////////
 
-module technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, h=h, side_holes=2) {
+module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef, h=undef, side_holes=undef) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
     assert(l > 0, "Technic beam length must be greater than zero");
     assert(h > 0, "Technic beam height must be greater than zero");
+    assert(side_holes>=0 && side_holes<=4);
 
     l2 = l + 1;
 
@@ -95,7 +104,7 @@ module technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_l
 
 
 // The 2D profile of the beam (for rotations and other uses)
-module technic_beam_slice(material=material, large_nozzle=large_nozzle, l=l) {
+module technic_beam_slice(material=undef, large_nozzle=undef, l=undef) {
     l2 = l + 1;
 
     hull() {
@@ -111,13 +120,13 @@ module technic_beam_slice(material=material, large_nozzle=large_nozzle, l=l) {
 
 
 // The 2D profile of the negative space of the beam (for rotations and other uses)
-module technic_beam_slice_negative(material=material, large_nozzle=large_nozzle, l=l) {
+module technic_beam_slice_negative(material=undef, large_nozzle=undef, l=undef) {
     l2 = l + 1;
 
     union() {
         for (i = [0:block_width(1):block_width(l)]) {
-            translate([i, block_width(0.5), -defeather]) {
-                cylinder(r=counterbore_inset_radius, h=0.01 + defeather);
+            translate([i, block_width(0.5), -_defeather]) {
+                cylinder(r=counterbore_inset_radius, h=0.01 + _defeather);
             }
         }
     }

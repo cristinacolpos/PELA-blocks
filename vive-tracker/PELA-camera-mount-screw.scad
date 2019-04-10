@@ -104,7 +104,7 @@ module thumbscrew_head(material=material, large_nozzle=large_nozzle, head_thickn
         union() {
             for (i = [30:30:360]) {
                 rotate([0, 0, i]) {
-                    translate([-cut/2, 0, -defeather]) {
+                    translate([-cut/2, 0, -_defeather]) {
                         cube([cut, thumbscrew_head_diameter, cut]);
                     }
                 }

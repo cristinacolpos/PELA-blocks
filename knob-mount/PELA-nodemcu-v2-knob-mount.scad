@@ -164,7 +164,7 @@ module nodemcu_v2_knob_mount(material=undef, large_nozzle=undef, cut_line=undef,
 
 module usb_cutout(material=undef, large_nozzle=undef, w=undef, innercut=undef, block_height=undef) {
     
-    translate([-defeather, block_width(1.5), block_height(0.5, block_height)]) {
-        cube([block_width(1) + innercut + 2*defeather, block_width(w-3), block_height(h+1, block_height)]);
+    translate([-_defeather, block_width(1.5), block_height(0.5, block_height)]) {
+        cube([block_width(1) + innercut + 2*_defeather, block_width(w-3), block_height(h+1, block_height)]);
     }
 }

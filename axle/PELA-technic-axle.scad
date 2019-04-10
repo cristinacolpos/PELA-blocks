@@ -64,8 +64,8 @@ module axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l
         cylinder(r=axle_radius, h=axle_length);
 
         union() {
-            translate([0, 0, -defeather]) {
-                cylinder(r=center_radius, h=axle_length + 2*defeather);
+            translate([0, 0, -_defeather]) {
+                cylinder(r=center_radius, h=axle_length + 2*_defeather);
             }
 
             translate([-axle_radius, -axle_radius, 0]) {
