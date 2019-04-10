@@ -153,7 +153,7 @@ module PELA_sparkfun_pro_micro_knob_mount(material=undef, large_nozzle=undef, cu
 
 module usb_cutout(material=undef, large_nozzle=undef, w=undef) {
 
-    translate([-defeather, block_width(1), block_height(0.5, block_height=block_height)]) {
+    translate([-_defeather, block_width(1), block_height(0.5, block_height=block_height)]) {
         cube([block_width(2), block_width(w-2), block_height(2, block_height=block_height)]);
     }
 }

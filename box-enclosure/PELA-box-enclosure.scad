@@ -332,9 +332,9 @@ module left_wall(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, so
 
 // A slice removed so that two wall fit together as a single whole
 module corner_cut(material=material, large_nozzle=large_nozzle, angle, h=h, block_height=block_height) {
-    translate([0, 0, -defeather]) {
+    translate([0, 0, -_defeather]) {
         rotate([0, 0, angle]) {
-            cube([block_width(2), block_width(2), block_height(h, block_height) + defeather]);
+            cube([block_width(2), block_width(2), block_height(h, block_height) + _defeather]);
         }
     }
 }
@@ -467,7 +467,7 @@ module wall_cutouts(l=undef, w=undef, left_cutout_y=undef, left_cutout_width=und
 module left_cutout(l=undef, left_cutout_y=undef, left_cutout_width=undef, left_cutout_depth=undef, left_cutout_z=undef, left_cutout_height=undef) {
 
     if (left_cutout_width > 0 && left_cutout_depth > 0 && left_cutout_height > 0) {
-        translate([block_width(-0.5)-defeather, left_cutout_y, left_cutout_z-defeather]) {
+        translate([block_width(-0.5)-_defeather, left_cutout_y, left_cutout_z-_defeather]) {
             cube([left_cutout_depth, left_cutout_width, left_cutout_height]);
         }
     }
@@ -478,7 +478,7 @@ module left_cutout(l=undef, left_cutout_y=undef, left_cutout_width=undef, left_c
 module right_cutout(l=undef, right_cutout_y=undef, right_cutout_width=undef, right_cutout_depth=undef, right_cutout_z=undef, right_cutout_height=undef) {
 
     if (right_cutout_width > 0 && right_cutout_depth > 0 && right_cutout_height > 0) {
-        translate([block_width(l - 0.5) - right_cutout_depth + defeather, right_cutout_y, right_cutout_z-defeather]) {
+        translate([block_width(l - 0.5) - right_cutout_depth + _defeather, right_cutout_y, right_cutout_z-_defeather]) {
             cube([right_cutout_depth, right_cutout_width, right_cutout_height]);
         }
     }
@@ -489,7 +489,7 @@ module right_cutout(l=undef, right_cutout_y=undef, right_cutout_width=undef, rig
 module front_cutout(w=undef, front_cutout_x=undef, front_cutout_width=undef, front_cutout_depth=undef, front_cutout_z=undef, front_cutout_height=undef) {
 
     if (front_cutout_width > 0 && front_cutout_depth > 0 && front_cutout_height > 0) {
-        translate([front_cutout_x, block_width(-0.5)-defeather, front_cutout_z-defeather]) {
+        translate([front_cutout_x, block_width(-0.5)-_defeather, front_cutout_z-_defeather]) {
             cube([front_cutout_width, front_cutout_depth, front_cutout_height]);
         }
     }
@@ -500,7 +500,7 @@ module front_cutout(w=undef, front_cutout_x=undef, front_cutout_width=undef, fro
 module back_cutout(l=undef, w=undef, back_cutout_x=undef, back_cutout_width=undef, back_cutout_depth=undef, back_cutout_z=undef, back_cutout_height=undef) {
 
     if (back_cutout_width > 0 && back_cutout_depth > 0 && back_cutout_height > 0) {
-        translate([back_cutout_x, block_width(l - 0.5) - back_cutout_depth + defeather, back_cutout_z-defeather]) {
+        translate([back_cutout_x, block_width(l - 0.5) - back_cutout_depth + _defeather, back_cutout_z-_defeather]) {
             cube([back_cutout_width, back_cutout_depth, back_cutout_height]);
         }
     }

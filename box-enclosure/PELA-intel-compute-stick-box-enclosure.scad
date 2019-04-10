@@ -233,12 +233,12 @@ module end_access(material=material, large_nozzle=large_nozzle, l, w, h, length=
     y = 1.82;
     left = (block_width(l) - length)/2;
 
-    translate([-defeather, block_width(y), z]) {
-        cube([block_width(l) + 2*defeather, block_width(w - 2*y), block_height(h, block_height)]);
+    translate([-_defeather, block_width(y), z]) {
+        cube([block_width(l) + 2*_defeather, block_width(w - 2*y), block_height(h, block_height)]);
     }
 
-    translate([-defeather, block_width(y), -defeather]) {
-        cube([left + 2*defeather, block_width(w - 2*y), block_height(h, block_height) + defeather]);
+    translate([-_defeather, block_width(y), -_defeather]) {
+        cube([left + 2*_defeather, block_width(w - 2*y), block_height(h, block_height) + _defeather]);
     }
 }
 
@@ -246,16 +246,16 @@ module end_access(material=material, large_nozzle=large_nozzle, l, w, h, length=
 module side_access(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, block_height=block_height) {
     z = block_height(1, block_height=block_height);
 
-    translate([block_width(2), -defeather, z]) {
-        cube([block_width(l - 4), block_width(w) + 2*defeather, block_height(h, block_height)]);
+    translate([block_width(2), -_defeather, z]) {
+        cube([block_width(l - 4), block_width(w) + 2*_defeather, block_height(h, block_height)]);
     }
     
-    translate([block_width(2), -defeather, z/2]) {
-        cube([block_width(4), block_width(w) + 2*defeather, block_height(h, block_height)]);
+    translate([block_width(2), -_defeather, z/2]) {
+        cube([block_width(4), block_width(w) + 2*_defeather, block_height(h, block_height)]);
     }
     
-    translate([block_width(12), -defeather, z/2]) {
-        cube([block_width(2), block_width(w) + 2*defeather, block_height(h, block_height)]);
+    translate([block_width(12), -_defeather, z/2]) {
+        cube([block_width(2), block_width(w) + 2*_defeather, block_height(h, block_height)]);
     }
 }
 

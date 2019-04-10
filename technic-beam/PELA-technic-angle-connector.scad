@@ -109,12 +109,12 @@ module pie_slice(material=material, large_nozzle=large_nozzle, theta=0, incremen
                 for (n = [0:1:l-1]) {
                     translate([block_width(n), 0, 0]) {
                         hull() {
-                            translate([0, 0, -defeather]) {
+                            translate([0, 0, -_defeather]) {
                                 technic_beam_slice_negative(material=material, large_nozzle=large_nozzle, l=0);
                             }
 
                             rotate([increment, 0, 0]) {
-                                translate([0, 0, defeather]) {
+                                translate([0, 0, _defeather]) {
                                     technic_beam_slice_negative(material=material, large_nozzle=large_nozzle, l=0);
                                 }
                             }

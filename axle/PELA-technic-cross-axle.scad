@@ -77,15 +77,15 @@ module axle_cross_negative_space(material=material, large_nozzle=large_nozzle, a
     for (rot=[0:90:270]) {
         rotate([0, 0, rot]) {
             hull() {
-                translate([axle_rounding*2, axle_rounding*2, -defeather]) {
-                    cylinder(r=axle_rounding, h=axle_length+2*defeather);
+                translate([axle_rounding*2, axle_rounding*2, -_defeather]) {
+                    cylinder(r=axle_rounding, h=axle_length+2*_defeather);
 
                     translate([axle_radius, 0, 0]) {
-                        cylinder(r=axle_rounding, h=axle_length+2*defeather);
+                        cylinder(r=axle_rounding, h=axle_length+2*_defeather);
                     }
 
                     translate([0, axle_radius, 0]) {
-                        cylinder(r=axle_rounding, h=axle_length+2*defeather);
+                        cylinder(r=axle_rounding, h=axle_length+2*_defeather);
                     }
                 }
             }

@@ -315,7 +315,7 @@ module main_board(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef,
     hw = w2/2 - width/2;
 
     translate([hl, hw, block_height(h, block_height) - thickness]) {
-        dome(dome=dome, length=length, width=width, thickness=thickness+defeather);
+        dome(dome=dome, length=length, width=width, thickness=thickness+_defeather);
     }
 }
 
@@ -329,6 +329,6 @@ module main_board_back(material=undef, large_nozzle=undef, l=undef, w=undef, h=u
 
     translate([hl+innercut, hw+innercut, block_height(h, block_height) - thickness - undercut]) {
         
-        cube ([length-2*innercut, width-2*innercut, undercut + 2*defeather]);
+        cube ([length-2*innercut, width-2*innercut, undercut + 2*_defeather]);
     }
 }

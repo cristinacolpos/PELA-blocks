@@ -40,70 +40,70 @@ use <PELA-block.scad>
 /* [Technic Block] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
 
 // Model length [blocks]
-l = 4; // [1:1:20]
+_l = 4; // [1:1:30]
 
 // Model width [blocks]
-w = 4; // [1:1:20]
+_w = 4; // [1:1:30]
 
 // Model height [blocks]
-h = 2; // [1:1:20]
+_h = 2; // [1:1:30]
 
 
 /* [Block Features] */
 
 // Presence of bottom connector sockets
-sockets = true;
+_sockets = true;
 
 // Presence of top connector knobs
-knobs = true;
+_knobs = true;
 
 // How tall are top connectors [mm]
-knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
+_knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 
 // Basic unit vertical size of each block
-block_height = 8; // [8:technic, 9.6:traditional blocks]
+_block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-corner_bolt_holes = false;
+_corner_bolt_holes = false;
 
 // Size of corner holes for M3 mountings bolts
-bolt_hole_radius = 1.6; // [0.0:0.1:2.0]
+_bolt_hole_radius = 1.6; // [0.0:0.1:2.0]
 
 // Add interior fill for upper layers
-solid_upper_layers = true;
+_solid_upper_layers = true;
 
 // Add interior fill for the base layer
-solid_first_layer = false;
+_solid_first_layer = false;
 
 
 /* [Technic Features] */
 
 // Add full width through holes spaced along the length for techic connectors
-side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+_side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Add a wrapper around side holes (disable for extra ventilation but loose lock notches)
-side_sheaths = true;
+_side_sheaths = true;
 
 // Add short end holes spaced along the width for techic connectors
-end_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+_end_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
-end_sheaths = true;
+_end_sheaths = true;
 
 // Add holes in the top deck to improve airflow and reduce weight
-top_vents = false;
+_top_vents = false;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
-knob_vent_radius = 0; // [0.0:0.1:3.9]
+_knob_vent_radius = 0; // [0.0:0.1:3.9]
 
 
 
@@ -111,7 +111,7 @@ knob_vent_radius = 0; // [0.0:0.1:3.9]
 // DISPLAY
 /////////////////////////////////////
 
-PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, block_height=block_height, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef);
+PELA_technic_block(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, knob_height=_knob_height, knob_flexture_height=_knob_flexture_height, sockets=_sockets, socket_insert_bevel=_socket_insert_bevel, knobs=_knobs, knob_vent_radius=_knob_vent_radius, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius, ridge_width=_ridge_width, ridge_depth=_ridge_depth, ridge_z_offset=_ridge_z_offset, solid_upper_layers=_solid_upper_layers, top_vents=_top_vents, side_holes=_side_holes, side_sheaths=_side_sheaths, end_holes=_end_holes, end_sheaths=_end_sheaths, solid_first_layer=_solid_first_layer, block_height=_block_height, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef);
 
 
 /////////////////////////////////////
@@ -119,16 +119,16 @@ PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_li
 /////////////////////////////////////
 
 // Indicates a solid cylinder around side hole connectors
-function is_side_sheaths(side_sheaths=side_sheaths, side_holes=side_holes) = side_sheaths && side_holes > 1;
+function is_side_sheaths(side_sheaths=undef, side_holes=undef) = side_sheaths && side_holes > 1;
 
 // Indicates a solid cylinder around end hole connectors
-function is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes) = end_holes > 1 && end_sheaths;
+function is_end_sheaths(end_sheaths=undef, end_holes=undef) = end_holes > 1 && end_sheaths;
 
 // Find the optimum enclosing horizontal dimension in block units
 function fit_mm_to_blocks(i=undef, padding=undef) = ceil((i + block_width(padding+1))/block_width);
 
 // Find the optimum enclosing vertical dimension in block units
-function fit_mm_to_height_blocks(i=undef, padding=undef, block_height=block_height) = ceil((i + block_height(padding+1, block_height=block_height))/block_height);
+function fit_mm_to_height_blocks(i=undef, padding=undef, block_height=undef) = ceil((i + block_height(padding+1, block_height=block_height))/block_height);
 
 
 
@@ -137,7 +137,7 @@ function fit_mm_to_height_blocks(i=undef, padding=undef, block_height=block_heig
 // MODULES
 ///////////////////////////////////
 
-module PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef) {
+module PELA_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, knob_height=undef, knob_flexture_height=undef, sockets=undef, socket_insert_bevel=undef, knobs=undef, knob_vent_radius=undef, skin=undef, top_shell=undef, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=undef, bolt_hole_radius=undef, ridge_width=undef, ridge_depth=undef, ridge_z_offset=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, solid_first_layer=undef, solid_upper_layers=undef, block_height=undef, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef) {
 
     assert(material != undef);
     assert(large_nozzle != undef);
@@ -148,6 +148,7 @@ module PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line
     assert(knob_height != undef);
     assert(knob_flexture_height != undef);
 //    assert(sockets != undef);
+    assert(socket_insert_bevel!=undef);
     assert(knobs != undef);
 //    assert(knob_vent_radius != undef);
 //    assert(skin != undef);
@@ -169,29 +170,29 @@ module PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line
     assert(block_height != undef);
 
     difference() {
-        visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
+        visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, socket_insert_bevel=socket_insert_bevel, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
 
         cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
     }
 }
 
 
-module visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, block_height=block_height, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef) {
+module visual_cut_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, knob_height=undef, knob_flexture_height=undef, sockets=undef, socket_insert_bevel=undef, knobs=undef, knob_vent_radius=undef, skin=undef, top_shell=undef, bottom_stiffener_width=undef, bottom_stiffener_height=undef, corner_bolt_holes=undef, bolt_hole_radius=undef, ridge_width=undef, ridge_depth=undef, ridge_z_offset=undef, solid_upper_layers=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, solid_first_layer=undef, block_height=undef, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef) {
 
     difference() {
         union() {
-            PELA_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak);
+            PELA_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, socket_insert_bevel=socket_insert_bevel, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak);
             
             for (i = [0:h-1]) {
                 translate([0, 0, block_height(i, block_height=block_height)]) {
                     if (is_side_sheaths(side_sheaths=side_sheaths, side_holes=side_holes)) {
 
-                        double_side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, side_holes=side_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height);
+                        double_side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, side_holes=side_holes, skin=skin, block_height=block_height);
                     }
                     
                     if (is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes)) {
 
-                        double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, end_holes=end_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height, axle_hole_tweak=axle_hole_tweak);
+                        double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, end_holes=end_holes, skin=skin, block_height=block_height, axle_hole_tweak=axle_hole_tweak);
                     }
                 }
             }
@@ -202,11 +203,11 @@ module visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cu
                 length = knob_height + skin;
                 
                 alternate_length = top_vents ? block_height(h+
-                defeather, block_height=block_height) + defeather : block_height(h-0.5, block_height=block_height);
+                _defeather, block_height=block_height) + _defeather : block_height(h-0.5, block_height=block_height);
 
                 bt = override_bottom_tweak(material=material, large_nozzle=large_nozzle, bottom_tweak=bottom_tweak);
 
-                double_socket_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, length=length, alternate_length=alternate_length, bevel_socket=true, bottom_tweak=bt);
+                double_socket_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, length=length, alternate_length=alternate_length, bevel_socket=true, socket_insert_bevel=_socket_insert_bevel, bottom_tweak=bt);
             }
 
             ahr = override_axle_hole_radius(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak);
@@ -243,7 +244,7 @@ module bottom_connector_negative_space(material=undef, large_nozzle=undef, l=und
             }
             
             if (end_holes > 0) {
-                double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=end_holes, axle_hole_radius=axle_hole_radius);
+                double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=end_holes, axle_hole_radius=axle_hole_radius, block_height=block_height);
             }
         }
     }
@@ -254,7 +255,7 @@ module bottom_connector_negative_space(material=undef, large_nozzle=undef, l=und
 }
 
 
-module double_side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, side_holes=side_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height) {
+module double_side_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, side_holes=undef, peg_length=_peg_length, bearing_sheath_thickness=_bearing_sheath_thickness, skin=undef, block_height=undef) {
 
     side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, side_holes=side_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height);
 
@@ -267,7 +268,7 @@ module double_side_connector_sheath_set(material=material, large_nozzle=large_no
 
 
 // A row of sheaths surrounding holes along the length
-module side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, side_holes=side_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height, axle_hole_tweak=undef) {
+module side_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, side_holes=undef, peg_length=_peg_length, bearing_sheath_thickness=undef, skin=undef, block_height=undef, axle_hole_tweak=undef) {
     
     sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak);
 
@@ -292,7 +293,7 @@ module side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l
 
 
 // Two rows of end connector enclosing cylinders
-module double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, end_holes=end_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height, axle_hole_tweak=undef) {
+module double_end_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, end_holes=undef, peg_length=undef, bearing_sheath_thickness=undef, skin=undef, block_height=undef, axle_hole_tweak=undef) {
 
     end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, end_holes=end_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height, axle_hole_tweak=axle_hole_tweak);
 
@@ -305,7 +306,7 @@ module double_end_connector_sheath_set(material=material, large_nozzle=large_noz
 
 
 // A row of sheaths surrounding holes along the width
-module end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, end_holes=end_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height, axle_hole_tweak=undef) {
+module end_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, end_holes=undef, peg_length=_peg_length, bearing_sheath_thickness=_bearing_sheath_thickness, skin=undef, block_height=undef, axle_hole_tweak=undef) {
     
     sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak);
 
@@ -331,7 +332,7 @@ module end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=
 
 
 // The solid cylinder around a bearing hole
-module sheath(material=material, large_nozzle=large_nozzle, sheath_radius=undef, sheath_length=block_width(0.5), skin=skin) {
+module sheath(material=undef, large_nozzle=undef, sheath_radius=undef, sheath_length=undef, skin=undef) {
 
     translate([0, 0, skin]) {  
         cylinder(r=sheath_radius, h=sheath_length - 2*skin);
@@ -340,7 +341,7 @@ module sheath(material=material, large_nozzle=large_nozzle, sheath_radius=undef,
 
 
 // For use by extension routines
-module double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=undef, axle_hole_radius=undef) {
+module double_end_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=undef, hole_type=undef, axle_hole_radius=undef, block_height=undef) {
  
     translate([block_width(l), 0, 0]) {
         rotate([0, 0, 90]) {
@@ -351,7 +352,7 @@ module double_end_connector_hole_set(material=material, large_nozzle=large_nozzl
 
 
 // For use by extension routines
-module double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=undef, block_height=block_height, axle_hole_radius=undef) {
+module double_side_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=undef, hole_type=undef, block_height=undef, axle_hole_radius=undef) {
     
     side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
     
@@ -365,19 +366,19 @@ module double_side_connector_hole_set(material=material, large_nozzle=large_nozz
 
 
 // A row of knob-size holes around the sides of row 1
-module side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=undef, block_height=block_height, axle_hole_radius=undef) {
+module side_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=undef, hole_type=undef, block_height=undef, axle_hole_radius=undef) {
     
     length = hole_type == 2 ? block_width(w) : block_width(1);
 
     if (l == 1) {
-        translate([block_width(0.5) - defeather, 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
+        translate([block_width(0.5) - _defeather, 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
             rotate([-90, 0, 0]) {
                 axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);
             }
         }        
     } else {
         for (i = [1:l-1]) {
-            translate([block_width(i), -defeather, block_height(1, block_height=block_height)-block_width(0.5)]) {
+            translate([block_width(i), -_defeather, block_height(1, block_height=block_height)-block_width(0.5)]) {
                 rotate([-90, 0, 0]) {
                     axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);
                 }
@@ -388,24 +389,24 @@ module side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l
 
 
 // Hole for an axle
-module rotation_hole(material=material, large_nozzle=large_nozzle, radius=undef, length=block_height()) {
+module rotation_hole(material=undef, large_nozzle=undef, radius=undef, length=undef) {
     
-    cylinder(r=radius, h=length, $fn=axle_hole_fn);
+    cylinder(r=radius, h=length, $fn=_axle_hole_fn);
 }
 
 
 // The rotation and connector hole for a technic connector
-module axle_hole(material=material, large_nozzle=large_nozzle, hole_type=side_holes, radius=undef, length=counterbore_inset_depth+peg_length) {
+module axle_hole(material=undef, large_nozzle=undef, hole_type=undef, radius=undef, length=_counterbore_inset_depth+_peg_length) {
     
     rotation_hole(material=material, large_nozzle=large_nozzle, radius=radius, length=length);
 
     if (hole_type>1) {
-        counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius);
+        counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius);
 
-        depth=2*(block_width()-peg_length-counterbore_inset_depth);
-        inset_radius=counterbore_inset_radius-bearing_sheath_thickness/2;
+        depth=2*(block_width()-length);
+        inset_radius=_counterbore_inset_radius-_bearing_sheath_thickness/2;
             
-        translate([0, 0, counterbore_inset_depth+peg_length]) {
+        translate([0, 0, length]) {
             counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=depth, counterbore_inset_radius=inset_radius);
         }
     }
@@ -413,10 +414,10 @@ module axle_hole(material=material, large_nozzle=large_nozzle, hole_type=side_ho
 
 
 // The connector inset for a technic side connector
-module counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=counterbore_inset_depth, counterbore_inset_radius=counterbore_inset_radius) {
+module counterbore_inset(material=undef, large_nozzle=undef, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius) {
     
-    translate([0, 0, -defeather]) {
-        cylinder(r=counterbore_inset_radius, h=counterbore_inset_depth + 2*defeather);
+    translate([0, 0, -_defeather]) {
+        cylinder(r=counterbore_inset_radius, h=counterbore_inset_depth + 2*_defeather);
     }
 }
 

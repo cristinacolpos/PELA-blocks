@@ -100,8 +100,8 @@ module pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_
                     }
                     
                     union() {
-                        translate([0, 0, -defeather]) {
-                            cylinder(r=pin_center_radius, h=length+2*defeather);
+                        translate([0, 0, -_defeather]) {
+                            cylinder(r=pin_center_radius, h=length+2*_defeather);
                         }
 
                         translate([0, 0, pin_slot_thickness]) {
@@ -134,14 +134,14 @@ module axle_cross_negative_space(material=material, large_nozzle=large_nozzle, a
     for (rot=[0:90:270]) {
         rotate([0, 0, rot]) {
             hull() {
-                translate([axle_rounding*2, axle_rounding*2, -defeather]) {
-                    cylinder(r=axle_rounding, h=length+2*defeather);
+                translate([axle_rounding*2, axle_rounding*2, -_defeather]) {
+                    cylinder(r=axle_rounding, h=length+2*_defeather);
 
                     translate([axle_radius, 0, 0])
-                        cylinder(r=axle_rounding, h=length+2*defeather);
+                        cylinder(r=axle_rounding, h=length+2*_defeather);
 
                     translate([0, axle_radius, 0])
-                        cylinder(r=axle_rounding, h=length+2*defeather);
+                        cylinder(r=axle_rounding, h=length+2*_defeather);
                 }
             }
         }
@@ -159,7 +159,7 @@ module tip(material=material, large_nozzle=large_nozzle, axle_radius=axle_radius
 module rounded_disc(material=material, large_nozzle=large_nozzle, radius=10, thickness=1) {
     translate([0, 0, thickness/2])
         minkowski() {
-            cylinder(r=radius-thickness, h=defeather);
+            cylinder(r=radius-thickness, h=_defeather);
         
             sphere(r=thickness/2, $fn=16);
         }
