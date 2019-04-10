@@ -1,7 +1,5 @@
 [![PELA Drift Car](/images/driftcar-banner.jpg)](https://driftcar.pelablocks.org)
 
-![PELA Blocks enclosure](images/d1-miniPro-pela-blocks-enclosure.jpg)
-
 
 # PELA Blocks
 
