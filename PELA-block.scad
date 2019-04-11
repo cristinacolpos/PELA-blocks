@@ -88,7 +88,7 @@ PELA_block(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l
 // MODULES
 /////////////////////////////////////
 
-module PELA_block(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, knob_height=undef, knob_flexture_height=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, skin=undef, top_shell=undef, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=undef, bolt_hole_radius=undef, ridge_width=undef, ridge_depth=undef, ridge_z_offset=undef, solid_upper_layers=undef, solid_first_layer=undef, block_height=undef, socket_insert_bevel=undef, bottom_tweak=undef, top_tweak=undef) {
+module PELA_block(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, knob_height=undef, knob_flexture_height=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=undef, bolt_hole_radius=undef, ridge_width=undef, ridge_depth=undef, ridge_z_offset=undef, solid_upper_layers=undef, solid_first_layer=undef, block_height=undef, socket_insert_bevel=undef, bottom_tweak=undef, top_tweak=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -96,11 +96,13 @@ module PELA_block(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w
     assert(l!=undef);
     assert(w!=undef);
     assert(h!=undef);
-    assert(knob_height!=undef);
-    assert(knob_flexture_height!=undef);
     assert(sockets!=undef);
     assert(knobs!=undef);
-    assert(knob_vent_radius!=undef);
+    if (knobs) {
+        assert(knob_vent_radius!=undef);
+        assert(knob_height!=undef);
+        assert(knob_flexture_height!=undef);
+    }
     assert(skin!=undef);
     assert(top_shell!=undef);
     assert(corner_bolt_holes!=undef);
@@ -505,16 +507,17 @@ module corner_corner_bolt_holes(material=undef, large_nozzle=undef, l=undef, w=u
 
 
 // A hole for a mounting bolt in the corners of a panel or block
-module bolt_hole(material=undef, large_nozzle=undef, x=undef, y=undef, bolt_hole_radius=undef, h=undef, block_height=block_height) {
+module bolt_hole(material=undef, large_nozzle=undef, x=undef, y=undef, bolt_hole_radius=undef, h=undef, block_height=undef) {
     
     translate([block_width(x-0.5), block_width(y-0.5), 0]) {
-        cylinder(r=bolt_hole_radius, h=block_height(h, block_height) + skin);
+        cylinder(r=bolt_hole_radius, h=block_height(h, block_height) + _defeather);
     }
 }
     
 
 // Mounting hole support blocks
-module corner_bolt_hole_supports(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_shell=top_shell, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
+module corner_bolt_hole_supports(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, top_shell=undef, bottom_stiffener_height=undef, block_height=undef) {
+
     bolt_hole_support(x=1, y=1, h=h, top_shell=top_shell, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
     bolt_hole_support(x=1, y=w, h=h, top_shell=top_shell, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
     bolt_hole_support(x=l, y=1, h=h, top_shell=top_shell, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
@@ -523,7 +526,7 @@ module corner_bolt_hole_supports(material=material, large_nozzle=large_nozzle, l
 
 
 // A solid block under the bolt hole to give extra support to the bolt head
-module bolt_hole_support(material=material, large_nozzle=large_nozzle, x=1, y=1, h=h, top_shell=top_shell, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height) {
+module bolt_hole_support(material=undef, large_nozzle=undef, x=undef, y=undef, h=undef, top_shell=undef, bottom_stiffener_height=undef, block_height=undef) {
     
     depth = top_shell+bottom_stiffener_height;
     

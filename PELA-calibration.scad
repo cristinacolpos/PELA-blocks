@@ -55,6 +55,9 @@ h = 1; // [1:1:20]
 // Height of traditional connectors [mm] (taller gives a stronger hold)
 knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 
+// Size of a hole in the top of each knob. Set 0 to disable for best flexture or enable for air circulation/aesthetics/drain resin
+knob_vent_radius = 0.0; // [0.0:0.1:4]
+
 // Basic unit vertical size of each block
 block_height = 9.6; // [8:technic, 9.6:traditional blocks]
 
@@ -104,7 +107,7 @@ if (calibration_beam) {
 // MODULES
 ///////////////////////////////////
 
-module PELA_calibration_beam(material=material, large_nozzle=large_nozzle, beam_length=beam_length, l=l, w=w, h=h, calibration_increment=calibration_increment, knob_height=knob_height, block_height=block_height) {
+module PELA_calibration_beam(material=undef, large_nozzle=undef, beam_length=undef, l=undef, w=undef, h=undef, calibration_increment=undef, knob_height=undef, block_height=undef) {
 
     assert(beam_length > 1, "Beam length must be at least 2");
 
@@ -124,13 +127,13 @@ module PELA_calibration_beam(material=material, large_nozzle=large_nozzle, beam_
 
 
 // A block with the top and bottom connector tweak parameters etched on the side
-module PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=undef, bottom_tweak=undef, axle_hole_tweak=undef, knob_height=knob_height, top_vents=top_vents, side_holes=side_holes, block_height=block_height, block_height=block_height) {
+module PELA_calibration_block(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, top_tweak=undef, bottom_tweak=undef, axle_hole_tweak=undef, knob_height=knob_height, side_holes=undef, block_height=undef) {
     
     difference() { 
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, side_holes=side_holes, side_sheaths=true, end_holes=0, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=true, knobs=true, knob_height=knob_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=false, side_holes=side_holes, side_sheaths=true, end_holes=0, end_sheaths=false, top_vents=false, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
 
         union() {
-            translate([skin+horizontal_text_margin, skin+text_extrusion_height, skin+block_height(h, block_height)-vertical_text_margin]) {
+            translate([_skin+horizontal_text_margin, _skin+text_extrusion_height, _skin+block_height(h, block_height)-vertical_text_margin]) {
 
                 rotate([90 ,0, 0]) {
                     translate([0, -0.5, 0]) {
@@ -144,7 +147,7 @@ module PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l,
                 }
             }
             
-            translate([block_width(w)-skin-horizontal_text_margin, block_width(w)-text_extrusion_height-skin, skin+vertical_text_margin]) {
+            translate([block_width(w)-_skin-horizontal_text_margin, block_width(w)-text_extrusion_height-_skin, _skin+vertical_text_margin]) {
                 
                 rotate([90, 0, 180]) {
                     translate([0, 0.5, 0]) {

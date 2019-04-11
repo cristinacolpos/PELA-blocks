@@ -82,7 +82,7 @@ side_sheaths = true;
 // DISPLAY
 ///////////////////////////////
 
-strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height);
+strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, knob_height=knob_height, block_height=block_height);
 
 
 
@@ -90,7 +90,7 @@ strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l
 // MODULES
 ///////////////////////////////////
 
-module strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height) {
+module strap_mount(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, panel_height_ratio=undef, side_holes=undef, end_holes=undef, sockets=undef, knobs=undef, knob_height=undef, block_height=undef) {
 
     difference() {
         union() {
