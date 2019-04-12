@@ -285,6 +285,12 @@ ___
 
 ___
 
+[![PELA Arduino Uno Board Mount](/knob-mount/PELA-arduino-uno-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-arduino-uno-technic-mount.stl)
+
+[PELA Arduino Uno Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-arduino-uno-technic-mount.stl) For holding an Arduino Uno microcontroller board within a PELA block
+
+___
+
 [![PELA Arduino Mega Knob Mount](/knob-mount/PELA-arduino-mega-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-arduino-mega-knob-mount.stl)
 
 [PELA Arduino Mega Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-aruino-mega-knob-mount.stl) For holding an Arduino Mega within a PELA block
