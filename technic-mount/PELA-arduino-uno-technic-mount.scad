@@ -48,10 +48,10 @@ large_nozzle = true;
 render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and cover]
 
 // Board space length [mm]
-length = 68.8; // [0:1:300] 
+length = 69; // [0:1:300] 
 
 // Board space width [mm]
-width = 53.8; // [0:1:300]
+width = 54; // [0:1:300]
 
 // Board space thickness [mm]
 thickness = 12.9; // [0:1:300]
