@@ -75,7 +75,7 @@ side = (width/2) / sin(60);
 
 top = side + side*sin(30);
 
-// Diamter of the columns which hold the board in place at mount points [mm]
+// Diameter of the columns which hold the board in place at mount points [mm]
 mount_d = 5.5; // [0.0:0.1:15]
 
 mount_h = block_height(3) - 2;
