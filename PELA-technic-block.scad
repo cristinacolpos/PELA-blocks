@@ -200,7 +200,7 @@ module visual_cut_technic_block(material=undef, large_nozzle=undef, cut_line=und
                     
                     if (is_end_sheaths(end_sheaths=end_sheaths, end_holes=end_holes)) {
 
-                        double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, end_holes=end_holes, skin=skin, block_height=block_height, axle_hole_tweak=axle_hole_tweak);
+                        double_end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, end_holes=end_holes, skin=skin, block_height=block_height, peg_length=_peg_length, bearing_sheath_thickness=_bearing_sheath_thickness, axle_hole_tweak=axle_hole_tweak);
                     }
                 }
             }
@@ -519,7 +519,6 @@ module counterbore_inset(material=undef, large_nozzle=undef, counterbore_inset_d
 
 // A rectangle with optional 45 degree sloped roof for use as negative space with printable overhangs
 module dome(dome=undef, length=undef, width=undef, thickness=undef) {
-
     assert(dome != undef);
     assert(length != undef);
     assert(width != undef);
