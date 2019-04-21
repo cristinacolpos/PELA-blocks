@@ -52,6 +52,9 @@ h = 1;
 // Angle between the two beams
 angle = 90;
 
+// Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
+_skin = 0.1; // [0:0.02:0.5]
+
 
 
 
@@ -59,7 +62,7 @@ angle = 90;
 // DISPLAY
 ///////////////////////////////
 
-technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h);
+technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h, skin=_skin);
 
 
 
@@ -68,22 +71,29 @@ technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, 
 // MODULES
 ///////////////////////////////////
 
-module technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h) {
+module technic_corner(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, angle=undef, h=undef, skin=undef) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(l1!=undef);
+    assert(l2!=undef);
     assert(angle >= 65, "Angle must be at least 65 degrees");
     assert(angle <= 295, "Angle must be at least 65 degrees");
+    assert(h!=undef);
+    assert(skin!=undef);
 
     difference() {
         union() {
-            technic_beam(material=material, large_nozzle=large_nozzle, l=l1, h=h);
+            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, h=h, side_holes=2, skin=skin);
 
             rotate([0, 0, angle]) {
-                technic_beam(material=material, large_nozzle=large_nozzle, l=l2, h=h);
+                technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, h=h, side_holes=2, skin=skin);
             }
         }
 
         translate([block_width(-0.5) + cos(angle)*block_width(l1), block_width(-0.5), 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=h, block_height=_block_height, knob_height=0);
         }
     }
 }

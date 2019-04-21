@@ -51,13 +51,20 @@ _h = 1; // [1:1:30]
 // Add full width through holes spaced along the length for techic connectors
 _side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
+// Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
+_skin = 0.1; // [0:0.02:0.5]
+
+
+/* [Hidden] */
+
+_block_height = 8;
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, h=_h, side_holes=_side_holes);
+technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, h=_h, side_holes=_side_holes, skin=_skin);
 
 
 
@@ -65,11 +72,12 @@ technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line,
 // MODULES
 ///////////////////////////////////
 
-module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef, h=undef, side_holes=undef) {
+module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef, h=undef, side_holes=undef, skin=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(cut_line!=undef);
+    assert(skin!=undef);
     assert(l > 0, "Technic beam length must be greater than zero");
     assert(h > 0, "Technic beam height must be greater than zero");
     assert(side_holes>=0 && side_holes<=4);
@@ -82,22 +90,22 @@ module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef,
             intersection() {
                 translate([0, block_width(1), 0]) {
                     rotate([90, 0, 0]) {
-                        PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l2, w=h, h=1, sockets=false, knobs=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, skin=0, block_height=block_height);
+                        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l2, w=h, h=1, sockets=false, knobs=false, top_vents=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, side_sheaths=true, skin=skin, block_height=_block_height);
                     }
                 }
 
                 hull() {
                     translate([block_width(1), block_width(0.5), 0]) {
-                        cylinder(d=block_width(1), h=block_height(h, block_height));
+                        cylinder(d=block_width(1), h=block_height(h, _block_height));
                     }
 
                     translate([block_width(l), block_width(0.5), 0]) {
-                        cylinder(d=block_width(1), h=block_height(h, block_height));
+                        cylinder(d=block_width(1), h=block_height(h, _block_height));
                     }
                 }
             }
 
-            cut_space(material=material, large_nozzle=large_nozzle, w=l+1, l=l+1, cut_line=cut_line, h=1, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, w=l+1, l=l+1, cut_line=cut_line, h=1, block_height=_block_height, knob_height=0);
         }
     }
 }
@@ -126,7 +134,7 @@ module technic_beam_slice_negative(material=undef, large_nozzle=undef, l=undef) 
     union() {
         for (i = [0:block_width(1):block_width(l)]) {
             translate([i, block_width(0.5), -_defeather]) {
-                cylinder(r=counterbore_inset_radius, h=0.01 + _defeather);
+                cylinder(r=_counterbore_inset_radius, h=0.01 + _defeather);
             }
         }
     }
