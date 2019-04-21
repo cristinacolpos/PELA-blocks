@@ -47,8 +47,14 @@ _l1 = 2; // [1:20]
 // Length of the second beam [blocks]
 _l2 = 2; // [1:20]
 
-// Model height [blocks]
-_h = 1; // [1:1:30]
+// Beam width [blocks]
+_w = 1; // [1:1:30]
+
+// Left beam height [blocks]
+_h1 = 1; // [1:1:30]
+
+// Right beam height [blocks]
+_h2 = 1; // [1:1:30]
 
 // Angle between the two beams
 _angle = 90; // [0:180]
@@ -68,7 +74,7 @@ _block_height=8;
 // DISPLAY
 ///////////////////////////////
 
-bent_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1=_l1, l2=_l2, angle=_angle, h=_h, side_holes=_side_holes, skin=_skin);
+bent_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1=_l1, l2=_l2, angle=_angle, w=_w, h1=_h1, h2=_h2, side_holes=_side_holes, skin=_skin);
 
 
 
@@ -77,44 +83,44 @@ bent_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1
 // MODULES
 ///////////////////////////////////
 
-module bent_beam(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, angle=undef, h=undef, side_holes=undef, skin=undef) {
+module bent_beam(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, angle=undef, w=undef, h1=undef, h2=undef, side_holes=undef, skin=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(cut_line!=undef);
     assert(l1!=undef);
     assert(l2!=undef);
+    assert(w!=undef);
     assert(angle >= 0, "Angle must be at least 180 degrees");
     assert(angle <= 180, "Angle must be at most 360 degrees");
-    assert(h!=undef);
+    assert(h1!=undef);
+    assert(h2!=undef);
     assert(side_holes!=undef);
     assert(skin!=undef);
     
-    w=1;
-
     rotate([90, 0, 0]) {
         difference() {
             union() {
                 translate([block_width(0.5), 0, -skin]) {
-                    right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, w=w, h=h, side_holes=side_holes, skin=skin);
+                    right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, w=w, h=h1, side_holes=side_holes, skin=skin);
                 }
 
                 rotate([0, 180-angle, 0]) {
                     translate([block_width(0.5), 0, block_height(-1, _block_height)]) {
-                        translate([0, 0, block_width(-h+1)+skin]) {
-                            right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, w=w, h=h, side_holes=side_holes, skin=skin);
+                        translate([0, 0, block_width(-h2+1)+skin]) {
+                            right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, w=w, h=h2, side_holes=side_holes, skin=skin);
                         }
 
-                        translate([block_width(-0.5), skin,  block_width(1)]) {
+                        if (angle < 180) translate([block_width(-0.5), skin,  block_width(1)]) {
                             increment = 1;
-                            for (n = [0:increment:angle-increment]) {
+                            for (n = [0:increment:angle]) {
                                 rotate([0, 90+n, 0]) {
                                     hull() {
                                         translate([0, block_width(-0.5), 0]) {
-                                            cube([block_width(h)-2*skin, block_width(1)-2*skin, _defeather]);
+                                            cube([block_width(1)-2*skin, block_width(w)-2*skin, _defeather]);
 
                                             rotate([0, increment, 0]) {
-                                                cube([block_width(h)-2*skin, block_width(1)-2*skin, _defeather]);
+                                                cube([block_width(1)-2*skin, block_width(w)-2*skin, _defeather]);
                                             }
                                         }
                                     }
@@ -125,8 +131,8 @@ module bent_beam(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l
                 }
             }
 
-            translate([block_width(-0.5) + cos(angle)*block_width(l1), block_width(-0.5), 0]) {
-                cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=h, block_height=_block_height, knob_height=0);
+#            translate([block_width(-0.5) - cos(angle)*block_width(h2+2), block_width(-0.5), 0]) {
+                cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l1+l2+h2, cut_line=cut_line, h=max(h1, h2), block_height=_block_height, knob_height=0);
             }
         }
     }
