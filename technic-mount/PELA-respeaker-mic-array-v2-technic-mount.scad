@@ -55,10 +55,10 @@ render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and co
 /* [Board] */
 
 // Board space diameter [mm]
-diameter = 71.2; // [0:0.1:300]
+diameter = 71.4; // [0:0.1:300]
 
-// Board space height [mm]
-thickness = 1.5; // [0:0.1:300]
+// Board space height (1.7, 11.5 with one daughter board) [mm]
+thickness = 1.7; // [0:0.1:300]
 
 
 
@@ -80,7 +80,7 @@ w_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 h = 2; // [1:1:20]
 
 // Interior fill style
-center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
+center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
 // Step in from board space edges to support the board [mm]
 innercut = 4; // [0:0.1:100]
@@ -157,10 +157,10 @@ front_cutout_width = 32; // [0:0.1:200]
 front_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-front_cutout_z = 10; // [0:0.1:200]
+front_cutout_z = 8; // [0:0.1:200]
 
 // Height of the front side hole [mm]
-front_cutout_height = 8; // [0:0.1:200]
+front_cutout_height = 16; // [0:0.1:200]
 
 
 
@@ -221,7 +221,7 @@ difference() {
 
     union() {
         translate([block_width(-0.5+l/2), block_width(-0.5+l/2), block_height(h) - thickness]) {
-            cylinder(d=diameter, h=block_height()/2+skin, $fn=256);
+            cylinder(d=diameter, h=block_height(h), $fn=256);
         }
 
         color("orange") translate([block_width(-0.5+l/2), block_width(-0.5+l/2), -skin]) {
@@ -263,7 +263,7 @@ module anechoic_cylinder_negative_space() {
 
 
 if (render_modules == 0 || render_modules == 2) {
-    color("black") translate([block_width(-0.5+l/2), block_width(-0.5+l/2), 0]) {
+    color("blue") translate([block_width(-0.5+l/2), block_width(-0.5+l/2), 0]) {
         cylinder(d=diameter-2*innercut, h=2, $fn=256);
     }
 }
