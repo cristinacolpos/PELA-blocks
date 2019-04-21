@@ -69,8 +69,8 @@ _solid_upper_layers = false;
 // Presence of top connector knobs
 _knobs = true;
 
-// Basic unit vertical size of each block
-_block_height = 9.6; // This is not adjuestable due to twist beam technic hole rotation
+// How tall are top connectors [mm]
+_knob_height = 1.8; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 
 // Add connectors to the bottom of the block
 _sockets = true;

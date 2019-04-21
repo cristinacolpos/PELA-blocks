@@ -53,7 +53,13 @@ use <../PELA-block.scad>
 
 
 // A twisted triangular column to aid in additive manufacturing print-time strength
-module support(support_side_length=support_side_length, support_layer_height=support_layer_height, height, support_max_rotation=support_max_rotation) {
+module support(height=undef, support_side_length=_support_side_length, support_layer_height=_support_layer_height, support_layer_rotation=_support_layer_rotation, support_max_rotation=_support_max_rotation) {
+
+    assert(height!=undef);
+    assert(support_side_length!=undef);
+    assert(support_layer_height!=undef);
+    assert(support_layer_rotation!=undef);
+    assert(support_max_rotation!=undef);
 
     layer_count = ceil(height/support_layer_height);
 
@@ -77,7 +83,11 @@ module support(support_side_length=support_side_length, support_layer_height=sup
 
 
 // One side of one layer of a support triangle
-module support_line(support_side_length=support_side_length, support_layer_height=support_layer_height) {
+module support_line(support_side_length=undef, support_layer_height=undef) {
+
+    assert(support_side_length!=undef);
+    assert(support_layer_height!=undef);
+
     hull() {
         cylinder(d=support_line_width(), h=support_layer_height, $fn=6);
 
@@ -88,7 +98,11 @@ module support_line(support_side_length=support_side_length, support_layer_heigh
 }
 
 // One layer of a support made up of three lines
-module support_triangle(support_side_length=support_side_length, support_layer_height=support_layer_height, angle=0) {
+module support_triangle(support_side_length=undef, support_layer_height=undef, angle=undef) {
+
+    assert(support_side_length!=undef);
+    assert(support_layer_height!=undef);
+    assert(angle!=undef);
 
     support_side_length = support_side_length-support_line_width();
 
@@ -110,8 +124,17 @@ module support_triangle(support_side_length=support_side_length, support_layer_h
 
 
 // Add support columns above each bottom socket to hold up the roof of a PELA block which has been hollowed out
-module support_set(material=material, large_nozzle=large_nozzle, corner_supports=true, l, w, height, support_max_rotation=support_max_rotation, support_side_length=support_side_length) {
-    
+module support_set(material=undef, large_nozzle=undef, corner_supports=true, l=undef, w=undef, height=undef, support_max_rotation=undef, support_side_length=undef) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(corner_supports!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(height!=undef);
+    assert(support_max_rotation!=undef);
+    assert(support_side_length!=undef);
+
     if (h>0 && support_side_length>0) {
         support_side_length = 1.5*override_ring_radius(material=material, large_nozzle=large_nozzle);
         for (x=[0:1:l-1]) {
