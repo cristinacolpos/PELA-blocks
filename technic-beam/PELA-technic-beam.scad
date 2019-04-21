@@ -95,12 +95,12 @@ module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef,
                 }
 
                 hull() {
-                    translate([block_width(1), block_width(0.5), 0]) {
-                        cylinder(d=block_width(1), h=block_height(h, _block_height));
+                    translate([block_width(1), block_width(0.5), skin]) {
+                        cylinder(d=block_width(1)-skin, h=block_height(h, _block_height)-2*skin);
                     }
 
-                    translate([block_width(l), block_width(0.5), 0]) {
-                        cylinder(d=block_width(1), h=block_height(h, _block_height));
+                    translate([block_width(l), block_width(0.5), skin]) {
+                        cylinder(d=block_width(1)-skin, h=block_height(h, _block_height)-2*skin);
                     }
                 }
             }
@@ -112,16 +112,22 @@ module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef,
 
 
 // The 2D profile of the beam (for rotations and other uses)
-module technic_beam_slice(material=undef, large_nozzle=undef, l=undef) {
+module technic_beam_slice(material=undef, large_nozzle=undef, l=undef, skin=undef) {
+    
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(skin!=undef);
+    
     l2 = l + 1;
 
     hull() {
         translate([0, block_width(0.5), 0]) {
-            cylinder(d=block_width(1), h=0.01);
+            cylinder(d=block_width(1)-2*skin, h=0.01);
         }
 
         translate([block_width(l-1), block_width(0.5), 0]) {
-            cylinder(d=block_width(1), h=0.01);
+            cylinder(d=block_width(1)-2*skin, h=0.01);
         }
     }
 }
@@ -129,6 +135,7 @@ module technic_beam_slice(material=undef, large_nozzle=undef, l=undef) {
 
 // The 2D profile of the negative space of the beam (for rotations and other uses)
 module technic_beam_slice_negative(material=undef, large_nozzle=undef, l=undef) {
+    
     l2 = l + 1;
 
     union() {
