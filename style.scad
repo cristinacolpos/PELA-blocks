@@ -102,8 +102,8 @@ _top_shell = 1;
 // Basic unit vertical size of each block
 _block_height = 8; // [8:technic, 9.6:traditional blocks]
 
-// Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid
-_skin = 0.1;
+// Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
+_skin = 0.1; // [0:0.02:0.5]
 
 // Height of the hole beneath each knob which facilitates click lock in low-flex materials by variable side pressure on any block above
 _knob_flexture_height = 4.5;

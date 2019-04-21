@@ -24,29 +24,29 @@ use <../PELA-block.scad>
 /* [Technic Pin] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
 
 // An axle which fits loosely in a technic bearing hole
-axle_radius = 2.2; // [0.1:0.1:4]
+_axle_radius = 2.2; // [0.1:0.1:4]
 
 // Size of the hollow inside a pin
-pin_center_radius=axle_radius/3;
+_pin_center_radius=axle_radius/3;
 
 // Size of the connector lock-in bump at the ends of a Pin
-pin_tip_length = 0.7; // [0.1:0.1:4]
+_pin_tip_length = 0.7; // [0.1:0.1:4]
 
 // Width of the long vertical flexture slots in the side of a pin
-pin_slot_thickness = 0.4; // [0.1:0.1:4]
+_pin_slot_thickness = 0.4; // [0.1:0.1:4]
 
-counterbore_holder_radius = counterbore_inset_radius - skin;
+_counterbore_holder_radius = _counterbore_inset_radius - skin;
 
-counterbore_holder_height = counterbore_inset_depth * 2;
+_counterbore_holder_height = _counterbore_inset_depth * 2;
 
 
 
@@ -54,7 +54,7 @@ counterbore_holder_height = counterbore_inset_depth * 2;
 // DISPLAY
 ///////////////////////////////
 
-pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height);
+pin(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, axle_radius=_axle_radius, pin_center_radius=_pin_center_radius, peg_length=_peg_length, pin_tip_length=_pin_tip_length, counterbore_holder_height=_counterbore_holder_height);
 
 
 
@@ -62,7 +62,7 @@ pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_radius=
 // Functions
 //////////////////
 
-function technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height) = (peg_length+pin_tip_length)*2 + counterbore_holder_height;
+function technic_pin_length(pin_tip_length, peg_length, counterbore_holder_height) = (peg_length + pin_tip_length)*2 + counterbore_holder_height;
 
 
 
@@ -71,11 +71,15 @@ function technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length
 //////////////////
 
 // A connector pin between two sockets
-module pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line,axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, counterbore_holder_height=counterbore_holder_height) {
+module pin(material=undef, large_nozzle=undef, cut_line=undef, axle_radius=undef, pin_center_radius=undef, peg_length=undef, pin_tip_length=undef, counterbore_holder_height=undef) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
     assert(axle_radius > 0, "Technic pin axle radius must be positive");
     assert(pin_center_radius < axle_radius, "Technic pin center radius must be less than axle radius");
-    assert(peg_length > 0, "Technic pin peg length must be positive");
+    assert(peg_length > 0);
+    assert(pin_tip_length>=0);
     
     length = technic_pin_length(pin_tip_length=pin_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
 

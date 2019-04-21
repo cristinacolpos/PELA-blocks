@@ -33,23 +33,23 @@ use <../technic-beam/PELA-technic-twist-beam.scad>
 /* [Technic Corner] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
 
 // Length of the first beam [blocks]
-l1 = 2; // [1:20]
+_l1 = 2; // [1:20]
 
 // Length of the second beam [blocks]
-l2 = 2; // [1:20]
+_l2 = 2; // [1:20]
 
 
 // Angle between the two beams
-angle = 90; // [0:180]
+_angle = 90; // [0:180]
 
 
 
@@ -58,7 +58,7 @@ angle = 90; // [0:180]
 // DISPLAY
 ///////////////////////////////
 
-bent_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h);
+bent_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1=_l1, l2=_l2, angle=_angle, h=_h);
 
 
 
@@ -69,8 +69,14 @@ bent_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1
 
 module bent_beam(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, angle=undef, h=undef) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(l1!=undef);
+    assert(l2!=undef);
     assert(angle >= 0, "Angle must be at least 180 degrees");
     assert(angle <= 180, "Angle must be at most 360 degrees");
+    assert(h!=undef);
 
     rotate([90, 0, 0]) {
         difference() {
