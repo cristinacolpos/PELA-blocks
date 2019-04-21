@@ -216,7 +216,7 @@ function side_lock_thickness(material=undef) = is_flexible(_material) ? 0.06 : 0
 function support_line_width(large_nozzle=undef) = large_nozzle ? 0.7 : 0.5;
 
 // Force the cut visual line for seeing inside parts to be between 0 and 1mm short of the part width [mm]
-function visual_cut(cut_line=undef, w=undef) = max(min(cut_line, block_width(w) - 1), 0);
+function visual_cut(cut_line=undef, w=undef) = max(min(cut_line, block_width(w)), 0);
 
 // Thickness of the solid outside surface of the block [mm]
 function side_shell(large_nozzle=undef) = large_nozzle ? 1.2 : 1.0;

@@ -29,32 +29,39 @@ use <../pin/PELA-technic-pin.scad>
 use <../technic-beam/PELA-technic-beam.scad>
 
 
-/* [Technic Corner] */
+/* [Render] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
+
+/* [Technic Corner] */
 
 // Length of the first beam [blocks]
-l1 = 3;
+_l1 = 3; // [1:1:30]
 
 // Length of the second beam [blocks]
-l2 = 3;
+_l2 = 3; // [1:1:30]
 
 // Length of the beams [blocks]
-h = 1;
+_h = 1; // [1:1:30]
 
 // Angle between the two beams
-angle = 90;
+_angle = 90; // [65:1:295]
 
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
 _skin = 0.1; // [0:0.02:0.5]
 
+
+/* [Hidden] */
+
+// Width of the beams [blocks]
+_w = 1; // [1:1:30]
 
 
 
@@ -62,7 +69,7 @@ _skin = 0.1; // [0:0.02:0.5]
 // DISPLAY
 ///////////////////////////////
 
-technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l1=l1, l2=l2, angle=angle, h=h, skin=_skin);
+technic_corner(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1=_l1, l2=_l2, w=_w, h=_h, angle=_angle, skin=_skin);
 
 
 
@@ -71,13 +78,14 @@ technic_corner(material=material, large_nozzle=large_nozzle, cut_line=cut_line, 
 // MODULES
 ///////////////////////////////////
 
-module technic_corner(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, angle=undef, h=undef, skin=undef) {
+module technic_corner(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, w=undef, h=undef, angle=undef, skin=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(cut_line!=undef);
     assert(l1!=undef);
     assert(l2!=undef);
+    assert(w!=undef);
     assert(angle >= 65, "Angle must be at least 65 degrees");
     assert(angle <= 295, "Angle must be at least 65 degrees");
     assert(h!=undef);
@@ -85,10 +93,10 @@ module technic_corner(material=undef, large_nozzle=undef, cut_line=undef, l1=und
 
     difference() {
         union() {
-            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, h=h, side_holes=2, skin=skin);
+            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, w=w, h=h, side_holes=2, skin=skin);
 
             rotate([0, 0, angle]) {
-                technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, h=h, side_holes=2, skin=skin);
+                technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, w=w, h=h, side_holes=2, skin=skin);
             }
         }
 

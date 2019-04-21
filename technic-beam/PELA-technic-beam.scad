@@ -42,10 +42,13 @@ _large_nozzle = true;
 
 /* [Technic Beam] */
 
-// Model length [blocks]
+// Beam length [blocks]
 _l = 15; // [1:1:30]
 
-// Model height [blocks]
+// Beam width [blocks]
+_w = 1; // [1:1:30]
+
+// Beam height [blocks]
 _h = 1; // [1:1:30]
 
 // Add full width through holes spaced along the length for techic connectors
@@ -64,7 +67,7 @@ _block_height = 8;
 // DISPLAY
 ///////////////////////////////
 
-technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, h=_h, side_holes=_side_holes, skin=_skin);
+technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, side_holes=_side_holes, skin=_skin);
 
 
 
@@ -72,13 +75,14 @@ technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line,
 // MODULES
 ///////////////////////////////////
 
-module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef, h=undef, side_holes=undef, skin=undef) {
+module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, side_holes=undef, skin=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(cut_line!=undef);
     assert(skin!=undef);
     assert(l > 0, "Technic beam length must be greater than zero");
+    assert(w > 0, "Technic beam width must be greater than zero");
     assert(h > 0, "Technic beam height must be greater than zero");
     assert(side_holes>=0 && side_holes<=4);
 
@@ -88,19 +92,23 @@ module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef,
 
         difference() {
             intersection() {
-                translate([0, block_width(1), 0]) {
-                    rotate([90, 0, 0]) {
-                        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l2, w=h, h=1, sockets=false, knobs=false, top_vents=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, side_sheaths=true, skin=skin, block_height=_block_height);
+                for (i=[0:1:w]) {
+                    translate([0, block_width(i), 0]) {
+                        rotate([90, 0, 0]) {
+                            PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l2, w=h, h=1, sockets=false, knobs=false, top_vents=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, side_sheaths=true, skin=skin, block_height=_block_height);
+                        }
                     }
                 }
 
                 hull() {
-                    translate([block_width(1), block_width(0.5), skin]) {
-                        cylinder(d=block_width(1)-skin, h=block_height(h, _block_height)-2*skin);
-                    }
+                    for (i=[0:1:w-1]) {
+                        translate([block_width(1), block_width(0.5+i), skin]) {
+                            cylinder(d=block_width(1)-2*skin, h=block_height(h, _block_height)-2*skin);
+                        }
 
-                    translate([block_width(l), block_width(0.5), skin]) {
-                        cylinder(d=block_width(1)-skin, h=block_height(h, _block_height)-2*skin);
+                        translate([block_width(l), block_width(0.5+i), skin]) {
+                            cylinder(d=block_width(1)-2*skin, h=block_height(h, _block_height)-2*skin);
+                        }
                     }
                 }
             }
@@ -134,12 +142,17 @@ module technic_beam_slice(material=undef, large_nozzle=undef, l=undef, skin=unde
 
 
 // The 2D profile of the negative space of the beam (for rotations and other uses)
-module technic_beam_slice_negative(material=undef, large_nozzle=undef, l=undef) {
+module technic_beam_slice_negative(material=undef, large_nozzle=undef, l=undef, w=undef) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
     
     l2 = l + 1;
 
     union() {
-        for (i = [0:block_width(1):block_width(l)]) {
+        for (i = [0:block_width(w):block_width(l)]) {
             translate([i, block_width(0.5), -_defeather]) {
                 cylinder(r=_counterbore_inset_radius, h=0.01 + _defeather);
             }

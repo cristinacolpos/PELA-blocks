@@ -91,16 +91,26 @@ module technic_twist_beam(material=undef, large_nozzle=undef, cut_line=undef, le
     w=1;
 
     if (center == 0) {
-        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=left+right, side_holes=side_holes, h=h, skin=skin);
+        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=left+right, side_holes=side_holes, w=w, h=h, skin=skin);
     } else {
         difference() {
             union() {
-                left_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=left, w=w, h=h, side_holes=side_holes, skin=skin);
+                translate([0, 0, block_height(h-1, _block_height)]) {
+                    left_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=left, w=w, h=h, side_holes=side_holes, skin=skin);
+                }
 
                 translate([block_width(left), 0, 0]) {
-                    translate([0, block_width(0.5), block_width(0.5)]) {
-                        rotate([90, 0, 0]) {
-                            square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=center, w=w, h=h, side_holes=side_holes, skin=skin);
+                    intersection() {
+                        translate([block_width(-0.5), block_width(-0.5)+skin, skin]) {
+                            cube([block_width(center), block_width(w)-2*skin, block_height(h, _block_height)-2*skin]);
+                        }
+                        
+                        for (i=[0:1:h-1]) {
+                            translate([0, block_width(0.5), block_width(0.5+i)]) {
+                                rotate([90, 0, 0]) {
+                                    square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=center, w=w, h=1, side_holes=side_holes, skin=0);
+                                }
+                            }
                         }
                     }
 
@@ -131,7 +141,7 @@ module square_end_beam(material=undef, large_nozzle=undef, cut_line=undef, l=und
 
     intersection() {
         translate([-block_width(1), 0, 0]) {
-            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l+2, h=h, side_holes=side_holes, skin=skin);
+            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l+2, w=w, h=h, side_holes=side_holes, skin=skin);
         }
 
        beam_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin);
@@ -152,7 +162,7 @@ module right_square_end_beam(material=undef, large_nozzle=undef, cut_line=undef,
 
     intersection() {
         translate([-block_width(1), 0, 0]) {
-            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l+1, h=h, side_holes=side_holes, skin=skin);
+            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l+1, w=w, h=h, side_holes=side_holes, skin=skin);
         }
 
        beam_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin);
