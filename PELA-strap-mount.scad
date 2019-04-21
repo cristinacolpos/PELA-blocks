@@ -33,56 +33,72 @@ use <PELA-technic-block.scad>
 /* [Render] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
 
 
 
 /* [Strap Mount] */
 
 // Model length [blocks]
-l = 4; // [1:1:20]
+_l = 4; // [1:1:20]
 
 // Model width [blocks]
-w = 4; // [1:1:20]
+_w = 4; // [1:1:20]
 
 // Model height [blocks]
-h = 1; // [1:1:20]
+_h = 1; // [1:1:20]
 
 // Fraction of a normal panel height for the center section where a stap holds the block in place
-panel_height_ratio = 1.0; // [0.1:0.1:2.0]
+_panel_height_ratio = 1.0; // [0.1:0.1:2.0]
 
 // Add short end holes spaced along the width for techic connectors
-end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+_end_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
-end_sheaths = false;
+_end_sheaths = false;
 
 // Presence of top connector knobs
-knobs = true;
+_knobs = true;
 
 // Presence of bottom connector sockets
-sockets = false;
+_sockets = false;
+
+// How tall are top connectors [mm]
+_knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
+
+// Basic unit vertical size of each block
+_block_height = 8; // [8:technic, 9.6:traditional blocks]
+
+// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
+_corner_bolt_holes = false;
+
+// Add holes in the top deck to improve airflow and reduce weight
+_top_vents = false;
+
+// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
+_knob_vent_radius = 0; // [0.0:0.1:3.9]
+
 
 /* [Hidden] */
 
 // Add full width through holes spaced along the length for techic connectors
-side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+_side_holes = 0; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
-side_sheaths = true;
+_side_sheaths = true;
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, panel_height_ratio=panel_height_ratio, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, knob_height=knob_height, block_height=block_height);
+strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, panel_height_ratio=_panel_height_ratio, side_holes=_side_holes, end_holes=_end_holes, sockets=_sockets, knobs=_knobs, corner_bolt_holes=_corner_bolt_holes, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, block_height=_block_height);
 
 
 
@@ -90,14 +106,14 @@ strap_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l
 // MODULES
 ///////////////////////////////////
 
-module strap_mount(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, panel_height_ratio=undef, side_holes=undef, end_holes=undef, sockets=undef, knobs=undef, knob_height=undef, block_height=undef) {
+module strap_mount(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, panel_height_ratio=undef, side_holes=undef, end_holes=undef, sockets=undef, knobs=undef, knob_height=undef, knob_vent_radius=undef, top_vents=undef, corner_bolt_holes=undef, block_height=undef) {
 
     difference() {
         union() {
             difference() {
-                PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, block_height=block_height);
+                PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, corner_bolt_holes=corner_bolt_holes, end_sheaths=true, block_height=block_height);
 
-                slot(l=l, w=w, block_height=block_height);
+                slot(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
             }
 
             if (sockets) {
@@ -121,9 +137,16 @@ module strap_mount(material=undef, large_nozzle=undef, cut_line=undef, l=undef, 
 }
 
 
-module slot(material=material, large_nozzle=large_nozzle, l=l, w=w, block_height=block_height) {
+module slot(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, block_height=undef) {
     
-    translate([block_width(), -0.01, panel_height_ratio*panel_height(block_height=block_height)]) {
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(h!=undef);
+    assert(block_height!=undef);
+    
+    translate([block_width(), -0.01, _panel_height_ratio*panel_height(block_height=block_height)]) {
         cube([block_width(l-2), block_width(w)+0.02, block_height(h+1, block_height=block_height)]);
     }
 }

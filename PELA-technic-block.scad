@@ -266,6 +266,16 @@ module bottom_connector_negative_space(material=undef, large_nozzle=undef, l=und
 
 module double_side_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, side_holes=undef, peg_length=_peg_length, bearing_sheath_thickness=_bearing_sheath_thickness, skin=undef, block_height=undef) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(side_holes!=undef);
+    assert(peg_length!=undef);
+    assert(bearing_sheath_thickness!=undef);
+    assert(skin!=undef);
+    assert(block_height!=undef);
+
     side_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, side_holes=side_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height);
 
     translate([block_width(l), block_width(w)]) {
@@ -278,7 +288,17 @@ module double_side_connector_sheath_set(material=undef, large_nozzle=undef, l=un
 
 // A row of sheaths surrounding holes along the length
 module side_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, side_holes=undef, peg_length=_peg_length, bearing_sheath_thickness=undef, skin=undef, block_height=undef, axle_hole_tweak=undef) {
-    
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(side_holes!=undef);
+    assert(peg_length!=undef);
+    assert(bearing_sheath_thickness!=undef);
+    assert(skin!=undef);
+    assert(block_height!=undef);
+
     sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak);
 
     sheath_length = side_holes == 2 ? block_width(w) : block_width(1);
@@ -304,6 +324,16 @@ module side_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=
 // Two rows of end connector enclosing cylinders
 module double_end_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, end_holes=undef, peg_length=undef, bearing_sheath_thickness=undef, skin=undef, block_height=undef, axle_hole_tweak=undef) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(end_holes!=undef);
+    assert(peg_length!=undef);
+    assert(bearing_sheath_thickness!=undef);
+    assert(skin!=undef);
+    assert(block_height!=undef);
+
     end_connector_sheath_set(material=material, large_nozzle=large_nozzle, l=l, w=w, end_holes=end_holes, peg_length=peg_length, bearing_sheath_thickness=bearing_sheath_thickness, skin=skin, block_height=block_height, axle_hole_tweak=axle_hole_tweak);
 
     translate([block_width(l), block_width(w)]) {
@@ -317,6 +347,16 @@ module double_end_connector_sheath_set(material=undef, large_nozzle=undef, l=und
 // A row of sheaths surrounding holes along the width
 module end_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, end_holes=undef, peg_length=_peg_length, bearing_sheath_thickness=_bearing_sheath_thickness, skin=undef, block_height=undef, axle_hole_tweak=undef) {
     
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(end_holes!=undef);
+    assert(peg_length!=undef);
+    assert(bearing_sheath_thickness!=undef);
+    assert(skin!=undef);
+    assert(block_height!=undef);
+
     sheath_radius = bearing_sheath_thickness + override_axle_hole_radius(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak);
 
     sheath_length = end_holes == 2 ? block_width(l) : block_width(1);
@@ -343,6 +383,12 @@ module end_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=u
 // The solid cylinder around a bearing hole
 module sheath(material=undef, large_nozzle=undef, sheath_radius=undef, sheath_length=undef, skin=undef) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(sheath_radius!=undef);
+    assert(sheath_length!=undef);
+    assert(skin!=undef);
+
     translate([0, 0, skin]) {  
         cylinder(r=sheath_radius, h=sheath_length - 2*skin);
     }
@@ -352,6 +398,14 @@ module sheath(material=undef, large_nozzle=undef, sheath_radius=undef, sheath_le
 // For use by extension routines
 module double_end_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=undef, hole_type=undef, axle_hole_radius=undef, block_height=undef) {
  
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(hole_type!=undef);
+    assert(axle_hole_radius!=undef);
+    assert(block_height!=undef);
+
     translate([block_width(l), 0, 0]) {
         rotate([0, 0, 90]) {
             double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=w, w=l, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
@@ -362,7 +416,15 @@ module double_end_connector_hole_set(material=undef, large_nozzle=undef, l=undef
 
 // For use by extension routines
 module double_side_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=undef, hole_type=undef, block_height=undef, axle_hole_radius=undef) {
-    
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(hole_type!=undef);
+    assert(block_height!=undef);
+    assert(axle_hole_radius!=undef);
+
     side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
     
     translate([block_width(l), block_width(w)]) {
@@ -376,7 +438,15 @@ module double_side_connector_hole_set(material=undef, large_nozzle=undef, l=unde
 
 // A row of knob-size holes around the sides of row 1
 module side_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=undef, hole_type=undef, block_height=undef, axle_hole_radius=undef) {
-    
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(hole_type!=undef);
+    assert(block_height!=undef);
+    assert(axle_hole_radius!=undef);
+
     length = hole_type == 2 ? block_width(w) : block_width(1);
 
     if (l == 1) {
@@ -399,14 +469,25 @@ module side_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=un
 
 // Hole for an axle
 module rotation_hole(material=undef, large_nozzle=undef, radius=undef, length=undef) {
-    
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(radius!=undef);
+    assert(length!=undef);
+
     cylinder(r=radius, h=length, $fn=_axle_hole_fn);
 }
 
 
 // The rotation and connector hole for a technic connector
 module axle_hole(material=undef, large_nozzle=undef, hole_type=undef, radius=undef, length=_counterbore_inset_depth+_peg_length) {
-    
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(hole_type!=undef);
+    assert(radius!=undef);
+    assert(length!=undef);
+
     rotation_hole(material=material, large_nozzle=large_nozzle, radius=radius, length=length);
 
     if (hole_type>1) {
@@ -425,6 +506,11 @@ module axle_hole(material=undef, large_nozzle=undef, hole_type=undef, radius=und
 // The connector inset for a technic side connector
 module counterbore_inset(material=undef, large_nozzle=undef, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius) {
     
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(counterbore_inset_depth!=undef);
+    assert(counterbore_inset_radius!=undef);
+
     translate([0, 0, -_defeather]) {
         cylinder(r=counterbore_inset_radius, h=counterbore_inset_depth + 2*_defeather);
     }
@@ -433,6 +519,7 @@ module counterbore_inset(material=undef, large_nozzle=undef, counterbore_inset_d
 
 // A rectangle with optional 45 degree sloped roof for use as negative space with printable overhangs
 module dome(dome=undef, length=undef, width=undef, thickness=undef) {
+
     assert(dome != undef);
     assert(length != undef);
     assert(width != undef);
