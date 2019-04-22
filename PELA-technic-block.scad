@@ -150,20 +150,20 @@ module PELA_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=
         assert(knob_height != undef);
         assert(knob_vent_radius != undef);
     }
-//    assert(knob_flexture_height != undef);
+    assert(knob_flexture_height != undef);
     assert(sockets != undef);
-//    assert(socket_insert_bevel!=undef);
-//    assert(skin != undef);
-//    assert(top_shell != undef);
+    assert(socket_insert_bevel!=undef);
+    assert(skin != undef);
+    assert(top_shell != undef);
     assert(bottom_stiffener_width != undef);
     assert(bottom_stiffener_height != undef);
     assert(corner_bolt_holes != undef);
     if (corner_bolt_holes) {
         assert(bolt_hole_radius != undef);
     }
-//    assert(ridge_width != undef);
-//    assert(ridge_depth != undef);
-//    assert(ridge_z_offset != undef);
+    assert(ridge_width != undef);
+    assert(ridge_depth != undef);
+    assert(ridge_z_offset != undef);
     assert(top_vents != undef);
     assert(side_holes != undef);
     if (side_holes > 0) {
@@ -173,8 +173,8 @@ module PELA_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=
     if (end_holes > 0) {
         assert(end_sheaths != undef);
     }
-//    assert(solid_first_layer != undef);
-//    assert(solid_upper_layers != undef);
+    assert(solid_first_layer != undef);
+    assert(solid_upper_layers != undef);
     assert(block_height != undef);
 
     difference() {
@@ -186,6 +186,36 @@ module PELA_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=
 
 
 module visual_cut_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, knob_height=undef, knob_flexture_height=undef, sockets=undef, socket_insert_bevel=undef, knobs=undef, knob_vent_radius=undef, skin=undef, top_shell=undef, bottom_stiffener_width=undef, bottom_stiffener_height=undef, corner_bolt_holes=undef, bolt_hole_radius=undef, ridge_width=undef, ridge_depth=undef, ridge_z_offset=undef, solid_upper_layers=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, solid_first_layer=undef, block_height=undef, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(h!=undef);
+    assert(knob_height!=undef);
+    assert(knob_flexture_height!=undef);
+    assert(sockets!=undef);
+    assert(socket_insert_bevel!=undef);
+    assert(knobs!=undef);
+    assert(knob_vent_radius!=undef);
+    assert(skin!=undef);
+    assert(top_shell!=undef);
+    assert(bottom_stiffener_width!=undef);
+    assert(bottom_stiffener_height!=undef);
+    assert(corner_bolt_holes!=undef);
+    assert(bolt_hole_radius!=undef);
+    assert(ridge_width!=undef);
+    assert(ridge_depth!=undef);
+    assert(ridge_z_offset!=undef);
+    assert(solid_upper_layers!=undef);
+    assert(top_vents!=undef);
+    assert(side_holes!=undef);
+    assert(side_sheaths!=undef);
+    assert(end_holes!=undef);
+    assert(end_sheaths!=undef);
+    assert(solid_first_layer!=undef);
+    assert(block_height!=undef);
 
     difference() {
         union() {
@@ -519,6 +549,7 @@ module counterbore_inset(material=undef, large_nozzle=undef, counterbore_inset_d
 
 // A rectangle with optional 45 degree sloped roof for use as negative space with printable overhangs
 module dome(dome=undef, length=undef, width=undef, thickness=undef) {
+
     assert(dome != undef);
     assert(length != undef);
     assert(width != undef);
