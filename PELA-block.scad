@@ -280,7 +280,7 @@ module fill_first_layer(material=undef, large_nozzle=undef, l=undef, w=undef, h=
     assert(h!=undef);
     assert(block_height!=undef);
 
-    fill_height = block_height(max(1, h), block_height=block_height);
+    fill_height = block_height(min(1, h), block_height=block_height);
 
     cube([block_width(l), block_width(w), fill_height]);
 }

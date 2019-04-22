@@ -37,7 +37,7 @@ use <PELA-block.scad>
 
 
 
-/* [Technic Block] */
+/* [Render] */
 
 // Show the inside structure [mm]
 _cut_line = 0; // [0:1:100]
@@ -47,6 +47,9 @@ _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
+
+
+/* [Technic Block] */
 
 // Model length [blocks]
 _l = 4; // [1:1:30]
@@ -146,10 +149,8 @@ module PELA_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=
     assert(w != undef);
     assert(h != undef);
     assert(knobs != undef);
-    if (knobs) {
-        assert(knob_height != undef);
-        assert(knob_vent_radius != undef);
-    }
+    assert(knob_height != undef);
+    assert(knob_vent_radius != undef);
     assert(knob_flexture_height != undef);
     assert(sockets != undef);
     assert(socket_insert_bevel!=undef);
@@ -158,21 +159,15 @@ module PELA_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=
     assert(bottom_stiffener_width != undef);
     assert(bottom_stiffener_height != undef);
     assert(corner_bolt_holes != undef);
-    if (corner_bolt_holes) {
-        assert(bolt_hole_radius != undef);
-    }
+    assert(bolt_hole_radius != undef);
     assert(ridge_width != undef);
     assert(ridge_depth != undef);
     assert(ridge_z_offset != undef);
     assert(top_vents != undef);
     assert(side_holes != undef);
-    if (side_holes > 0) {
-        assert(side_sheaths != undef);
-    }
+    assert(side_sheaths != undef);
     assert(end_holes != undef);
-    if (end_holes > 0) {
-        assert(end_sheaths != undef);
-    }
+    assert(end_sheaths != undef);
     assert(solid_first_layer != undef);
     assert(solid_upper_layers != undef);
     assert(block_height != undef);
