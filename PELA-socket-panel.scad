@@ -87,7 +87,7 @@ module socket_panel(material=undef, large_nozzle=undef, cut_line=cut_line, l=und
             }
         }
 
-        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=1, block_height=block_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=1, block_height=block_height, knob_height=0);
     }
 }
 
@@ -95,7 +95,7 @@ module socket_panel(material=undef, large_nozzle=undef, cut_line=cut_line, l=und
 module socket_panel_one_sided(material=undef, large_nozzle=undef, l=undef, w=undef, sockets=undef, solid_first_layer=undef, knob_height=undef, skin=undef, block_height=undef, half_height=false) {
     
     intersection() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=1, top_vents=false, solid_first_layer=solid_first_layer, corner_bolt_holes=false, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height, sockets=sockets);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=1, top_vents=false, solid_first_layer=solid_first_layer, corner_bolt_holes=false, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height, sockets=sockets, side_sheaths=false, end_sheaths=false, knob_height=0, knob_vent_radius=0);
 
             denom = half_height ? 2 : 1;
             

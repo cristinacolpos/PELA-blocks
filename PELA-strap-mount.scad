@@ -98,7 +98,7 @@ _side_sheaths = true;
 // DISPLAY
 ///////////////////////////////
 
-strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, panel_height_ratio=_panel_height_ratio, side_holes=_side_holes, end_holes=_end_holes, sockets=_sockets, knobs=_knobs, corner_bolt_holes=_corner_bolt_holes, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, block_height=_block_height);
+strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, panel_height_ratio=_panel_height_ratio, side_holes=_side_holes, end_holes=_end_holes, sockets=_sockets, knobs=_knobs, corner_bolt_holes=_corner_bolt_holes, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, block_height=_block_height, side_sheaths=_side_sheaths, end_sheaths=_end_sheaths);
 
 
 
@@ -106,12 +106,12 @@ strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, 
 // MODULES
 ///////////////////////////////////
 
-module strap_mount(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, panel_height_ratio=undef, side_holes=undef, end_holes=undef, sockets=undef, knobs=undef, knob_height=undef, knob_vent_radius=undef, top_vents=undef, corner_bolt_holes=undef, block_height=undef) {
+module strap_mount(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, panel_height_ratio=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, sockets=undef, knobs=undef, knob_height=undef, knob_vent_radius=undef, top_vents=undef, corner_bolt_holes=undef, block_height=undef) {
 
     difference() {
         union() {
             difference() {
-                PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, corner_bolt_holes=corner_bolt_holes, end_sheaths=true, block_height=block_height);
+                PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, corner_bolt_holes=corner_bolt_holes, end_sheaths=end_sheaths, block_height=block_height, side_sheaths=side_sheaths);
 
                 slot(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
             }
