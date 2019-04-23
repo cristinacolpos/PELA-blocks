@@ -128,7 +128,7 @@ function is_side_sheaths(side_sheaths=undef, side_holes=undef) = side_sheaths &&
 function is_end_sheaths(end_sheaths=undef, end_holes=undef) = end_holes > 1 && end_sheaths;
 
 // Find the optimum enclosing horizontal dimension in block units
-function fit_mm_to_blocks(i=undef, padding=undef) = ceil((i + block_width(padding+1))/block_width);
+function fit_mm_to_blocks(i=undef, padding=undef) = ceil((i + block_width(padding+1))/block_width(1));
 
 // Find the optimum enclosing vertical dimension in block units
 function fit_mm_to_height_blocks(i=undef, padding=undef, block_height=undef) = ceil((i + block_height(padding+1, block_height=block_height))/block_height);
