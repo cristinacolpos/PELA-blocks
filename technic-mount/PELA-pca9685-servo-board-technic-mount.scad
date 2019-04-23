@@ -25,7 +25,7 @@ include <../style.scad>
 include <../material.scad>
 use <../PELA-technic-block.scad>
 use <PELA-technic-mount.scad>
-use <../technic-beam/PELA-technic-twist-beam.scad>
+use <../technic-beam/PELA-technic-beam.scad>
 
 
 /* [Render] */
@@ -43,10 +43,10 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Board space length [mm]
-length = 63.5; // [0.1:0.1:300]
+length = 63.8; // [0.1:0.1:300]
 
 // Board space width [mm]
-width = 25.9; // [0.1:0.1:300]
+width = 26.2; // [0.1:0.1:300]
 
 // Board space thickness [mm]
 thickness = 1.8; // [0:0.1:100]
@@ -67,7 +67,7 @@ w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 twist_l = 3; // [1:18]
 
 // 90 degree rotation from width ends [blocks]
-twist_w = 2; // [1:18]
+twist_w = 3; // [1:18]
 
 // Step in from board space edges to support the board [mm]
 innercut = 1;
@@ -211,16 +211,12 @@ module pca_9685_mount_and_cover(render_modules=render_modules, material=material
         center = max(0, w - 2*twist_w);
 
         translate([0, block_width(-2), block_height(h)]) {
-            rotate([0, 0, -90]) {
-                technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, left=twist_w, center=center, right=twist_w);
-            }
+            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l);
         }    
 
 
-        translate([block_width(l-1), block_width(-2), block_height(h)]) {
-            rotate([0, 0, -90]) {
-                technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, left=twist_w, center=center, right=twist_w);
-            }
+        translate([0, block_width(-1-w), block_height(h)]) {
+                technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l);
         }    
     }
 }
