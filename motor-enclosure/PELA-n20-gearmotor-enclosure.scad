@@ -71,7 +71,7 @@ motor_radius = 6.1 + skin;
 // Shaft-axis ditance of the rounded part of the motor body (motor_width may reduce this)
 motor_round_length = 15.5 + skin;
 
-// Shaft-axis distance of the square part of the motor body (motor_width may reduce this)
+// Shaft-axis Distance from the square part of the motor body (motor_width may reduce this)
 motor_square_length = 9.5 + skin;
 
 // Width of the motor slot body (may reduce rounding, add space to more easily insert the motor)
