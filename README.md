@@ -171,6 +171,18 @@ ___
 
 ___
 
+[![PELA Powerbank Technic Mount](/technic-mount/PELA-powerbank-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-powerbank-technic-mount.stl)
+
+[PELA Powerbank Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-powerbank-technic-mount.stl) A container for a Clas Ohlson 38-3456 USB battery.
+
+___
+
+[![PELA Sparkfun BigEasyDriver Technic Mount](/technic-mount/PELA-sparkfun-bigeasydriver-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-sparkfun-bigeasydriver-technic-mount.stl)
+
+[PELA Sparkfun BigEasyDriver Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-sparkfun-bigeasydriver-technic-mount.stl) A pulsed infra-red motion sensor holder.
+
+___
+
 [![PELA Technic PIR Motion Sensor Mount](/technic-mount/PELA-pir-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pir-technic-mount.stl)
 
 [PELA PIR Motion Sensor Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pir-technic-mount.stl) A pulsed infra-red motion sensor holder.
@@ -251,7 +263,7 @@ ___
 
 [![PELA Knob Mount](/knob-mount/PELA-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-knob-mount.stl)
 
-[PELA Knob Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl) For holding relatively flat objects like a microcontroller within a PELA block that has knobs on top
+[PELA Knob Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl) For holding relatively flat objects like a microcontroller within a PELA block that has knobs on top
 
 ___
 
@@ -273,21 +285,21 @@ ___
 
 ___
 
-[![PELA NodeMCU-32s Board Mount](/knob-mount/PELA-nodemcu-32s-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl)
+[![PELA NodeMCU-32s Knob Mount](/knob-mount/PELA-nodemcu-32s-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl)
 
-[PELA NodeMCU-32s Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl) For holding an NodeMCU-32s microcontroller board within a PELA block
-
-___
-
-[![PELA NodeMCU v2 Board Mount](/knob-mount/PELA-nodemcu-v2-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-v2-knob-mount.stl)
-
-[PELA NodeMCU v2 Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-v2-knob-mount.stl) For holding an NodeMCU v2 microcontroller board within a PELA block
+[PELA NodeMCU-32s Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-32s-knob-mount.stl) For holding an NodeMCU-32s microcontroller board within a PELA block
 
 ___
 
-[![PELA Arduino Uno Board Mount](/technic-mount/PELA-arduino-uno-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl)
+[![PELA NodeMCU v2 Knob Mount](/knob-mount/PELA-nodemcu-v2-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-v2-knob-mount.stl)
 
-[PELA Arduino Uno Board Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl) For holding an Arduino Uno microcontroller board within a PELA block
+[PELA NodeMCU v2 Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-v2-knob-mount.stl) For holding an NodeMCU v2 microcontroller board within a PELA block
+
+___
+
+[![PELA Arduino Uno Knob Mount](/technic-mount/PELA-arduino-uno-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl)
+
+[PELA Arduino Uno Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl) For holding an Arduino Uno microcontroller board within a PELA block
 
 ___
 
