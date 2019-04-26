@@ -1,5 +1,5 @@
 /*
-Raspberry Pi3 Camera Mount - 3D Printed LEGO-compatible PCB mount with the board held in place by technic beams
+Clas Ohlson 38-3456 Power Bank Mount - 3D Printed LEGO-compatible battery holder
 
 Published at https://PELAblocks.org
 
@@ -33,7 +33,7 @@ use <../technic-beam/PELA-technic-twist-beam.scad>
 include <PELA-technic-mount.scad>
 
 
-/* [Raspberry Pi3 Camera Mount] */
+/* [Render] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100] 
@@ -47,32 +47,27 @@ large_nozzle = true;
 // Select parts to render
 render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and cover]
 
+
+/* [Board] */
+
 // Board space length [mm]
-length = 39.5; // [0:1:300] 
+length = 104; // [0:1:300] 
 
 // Board space width [mm]
-width = 39.5; // [0:1:300]
+width = 62.5; // [0:1:300]
+
+// Board space thickness [mm]
+thickness = 22.2; // [0:0.1:8]
+
+
+/* [Enclosure] */
 
 l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
 // Height of the enclosure [blocks]
-h = 1; // [1:20]
-
-// How many blocks in from length ends do the technic holes rotate 90 degrees [blocks]
-twist_l = 2; // [1:18]
-
-// How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
-twist_w = 2; // [1:18]
-
-thickness = 1.8; // Board space height [mm]
-
-// Step in from board space edges to support the board [mm]
-innercut = 2;
-
-// Step down from board bottom to give room board components [mm]
-undercut = 7.0; // [0:0.1:100]
+h = 3; // [1:20]
 
 // Presence of sockets if center is "socket panel"
 center_sockets = true;
@@ -80,36 +75,48 @@ center_sockets = true;
 // Presence of knobs if center is "knob panel"
 center_knobs = true;
 
+// Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
+knob_vent_radius = 0.0; // [0.0:0.1:3.9]
+
+// How many blocks in from length ends do the technic holes rotate 90 degrees [blocks]
+twist_l = 6; // [1:18]
+
+// How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
+twist_w = 5; // [1:18]
+
+// Step in from board space edges to support the board [mm]
+innercut = 8;
+
+// Step down from board bottom to give room board components [mm]
+undercut = 7.0; // [0:0.1:100]
+
 // Interior fill style
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 // Text label
-text = "Pi Cam";
+text = "Power";
 
 // Depth of text etching into top surface
 text_depth = 0.5; // [0.0:0.1:2]
 
 // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
-dome = true;
+dome = false;
 
 
 
 /* [Left Cut] */
 
 // Distance from the front of left side hole [mm]
-left_cutout_y = 4; // [0:0.1:200]
+left_cutout_y = 8; // [0:0.1:200]
 
 // Width of the left side hole [mm]
-left_cutout_width = 0; // [0:0.1:200]
-
-// Depth of the left side hole [mm]
-left_cutout_depth = 24; // [0:0.1:200]
+left_cutout_width = 56; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
 left_cutout_z = 4; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-left_cutout_height = 8; // [0:0.1:200]
+left_cutout_height = 32; // [0:0.1:200]
 
 
 
@@ -120,9 +127,6 @@ right_cutout_y = 4; // [0:0.1:200]
 
 // Width of the right side hole [mm]
 right_cutout_width = 0; // [0:0.1:200]
-
-// Depth of the right side hole [mm]
-right_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the right side hole [mm]
 right_cutout_z = 4; // [0:0.1:200]
@@ -140,9 +144,6 @@ front_cutout_x = 4; // [0:0.1:200]
 // Width of the front side hole [mm]
 front_cutout_width = 0; // [0:0.1:200]
 
-// Depth of the depth side hole [mm]
-front_cutout_depth = 24; // [0:0.1:200]
-
 // Distance from bottom of the front side hole [mm]
 front_cutout_z = 4; // [0:0.1:200]
 
@@ -159,9 +160,6 @@ back_cutout_x = 4; // [0:0.1:200]
 // Width of the back side hole [mm]
 back_cutout_width = 0; // [0:0.1:200]
 
-// Depth of the back side hole [mm]
-back_cutout_depth = 24; // [0:0.1:200]
-
 // Distance from bottom of the back side hole [mm]
 back_cutout_z = 4; // [0:0.1:200]
 
@@ -173,10 +171,10 @@ back_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-cover_text = "Pi Cam";
+cover_text = "Power";
 
 // Interior fill style
-cover_center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
 // Height of the cover [blocks]
 cover_h = 1; // [1:1:20]
