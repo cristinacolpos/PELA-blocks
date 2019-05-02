@@ -348,9 +348,11 @@ The generated 3D models displayed here are hosted in a separate GitHub project t
 
 If you don't find what you need, consider adding it, contact us or check out the many other excellent design available.
 
+[marian42's excellent online technic part generator](https://marian42.de/partdesigner/) can help you make custom connectors and fixture easily. 
+
 [Yeggi search for LEGO](http://www.yeggi.com/q/lego/)
 
-[Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) are alternate source of these and other block designs.
+[Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) is an alternate source for these block designs. These designs don't work with the online customizer (speed and complexity, multiple files), so the best path is still to install the newest [OpenSCAD](http://www.openscad.org/) and **[download](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the models.
 
 ## Contact
 
