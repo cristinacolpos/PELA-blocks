@@ -1,5 +1,5 @@
 /*
-Raspberry Pi3 Camera Mount - 3D Printed LEGO-compatible PCB mount with the board held in place by technic beams
+Sparkfun BigEasyDriver Mount - 3D Printed LEGO-compatible PCB mount for stepper driver
 
 Published at https://PELAblocks.org
 
@@ -30,10 +30,10 @@ use <../box-enclosure/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-beam/PELA-technic-beam.scad>
 use <../technic-beam/PELA-technic-twist-beam.scad>
-include <PELA-technic-mount.scad>
+use <PELA-technic-mount.scad>
 
 
-/* [Raspberry Pi3 Camera Mount] */
+/* [Render] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100] 
@@ -47,13 +47,22 @@ large_nozzle = true;
 // Select parts to render
 render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and cover]
 
-// Board space length [mm]
-length = 39.5; // [0:1:300] 
+
+/* [Board] */
 
 // Board space width [mm]
-width = 39.5; // [0:1:300]
+length = 36.5; // [0:1:300]
 
-l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+// Board space length [mm]
+width = 31.5; // [0:1:300] 
+
+// Board space thickness [mm]
+thickness = 1.9; // [0:1:300]
+
+
+/* [Enclosure] */
+
+l_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
 w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
@@ -64,15 +73,15 @@ h = 1; // [1:20]
 twist_l = 2; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
-twist_w = 2; // [1:18]
+twist_w = 1; // [1:18]
 
-thickness = 1.8; // Board space height [mm]
+
 
 // Step in from board space edges to support the board [mm]
-innercut = 2;
+innercut = 1.6;
 
 // Step down from board bottom to give room board components [mm]
-undercut = 7.0; // [0:0.1:100]
+undercut = 3.0; // [0:0.1:100]
 
 // Presence of sockets if center is "socket panel"
 center_sockets = true;
@@ -81,35 +90,35 @@ center_sockets = true;
 center_knobs = true;
 
 // Interior fill style
-center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
+center = 4; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 // Text label
-text = "Pi Cam";
+text = "BigEasy";
 
 // Depth of text etching into top surface
-text_depth = 0.5; // [0.0:0.1:2]
+text_depth = 0.4; // [0.0:0.1:2]
 
 // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
-dome = true;
+dome = false;
 
 
 
 /* [Left Cut] */
 
 // Distance from the front of left side hole [mm]
-left_cutout_y = 4; // [0:0.1:200]
+left_cutout_y = 5; // [0:0.1:200]
 
 // Width of the left side hole [mm]
 left_cutout_width = 0; // [0:0.1:200]
 
 // Depth of the left side hole [mm]
-left_cutout_depth = 24; // [0:0.1:200]
+left_cutout_depth = 10; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-left_cutout_z = 4; // [0:0.1:200]
+left_cutout_z = 5; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-left_cutout_height = 8; // [0:0.1:200]
+left_cutout_height = 20; // [0:0.1:200]
 
 
 
@@ -173,13 +182,13 @@ back_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-cover_text = "Pi Cam";
+cover_text = "BigEasy";
 
 // Interior fill style
-cover_center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
 // Height of the cover [blocks]
-cover_h = 1; // [1:1:20]
+cover_h = 2; // [1:1:20]
 
 // Presence of sockets if "cover center" is "socket panel"
 cover_sockets = true;
@@ -193,4 +202,13 @@ cover_knobs = true;
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, dome=dome);
+l = fit_mm_to_blocks(length, l_pad);
+w = fit_mm_to_blocks(width, w_pad);
+
+difference() {
+    technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, dome=dome);
+
+    color("red") translate([block_width(-1), block_width(-0.5-w), block_width(1)]) {
+        cube([block_width(l+2), block_width(w-2), block_width(cover_h)]);
+    }
+}
