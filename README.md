@@ -40,7 +40,7 @@ Test fit the top, bottom and sides to get something which is tight but not too t
 
 ## OpenSCAD Settings
 
-The software needed is also free and open source, [OpenSCAD](http://www.openscad.org/). Newer versions of [OpenSCAD](http://www.openscad.org/)  (currently PR4) make tailoring designs very easy, but you need to enable the Customizer. Enable `Edit | Preferences | Features | Customizer`.
+The software needed is also free and open source, [OpenSCAD](https://www.openscad.org/). Newer versions of [OpenSCAD](https://www.openscad.org/)  (currently PR4) make tailoring designs very easy, but you need to enable the Customizer. Enable `Edit | Preferences | Features | Customizer`.
 
 PELA models are quite large. To see them properly, `Edit | Preferences | Advanced | Turn off rendering at _1000000_`. Also turn off `OpenGL 1.0` compatability as that is mostly for very old computers. 
 
@@ -167,7 +167,7 @@ ___
 
 [![PELA STMF4 Discovery Technic Mount](/technic-mount/PELA-stmf4-discovery-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-stmf4-discovery-technic-mount.stl)
 
-[PELA STMF4 Discovery Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/box-enclosure/PELA-stmf4-discovery-technic-mount.stl) Enclosure for the [STMF4 Discovery](http://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
+[PELA STMF4 Discovery Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-stmf4-discovery-technic-mount.stl) Enclosure for the [STMF4 Discovery](https://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
 ___
 
@@ -281,7 +281,7 @@ ___
 
 [![PELA PCA9685 16 Channel Servo Board Technic Mount](/knob-mount/PELA-pca9685-servo-board-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/knob-mount/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-board-technic-mount.stl)
 
-[PELA PCA9685 16 Channel Servo Board Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-pca9685-servo-board-technic-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](http://www.donkeycar.com/).
+[PELA PCA9685 16 Channel Servo Board Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-pca9685-servo-board-technic-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](https://www.donkeycar.com/).
 
 ___
 
@@ -340,7 +340,7 @@ These open source designs are brought to you by [Futurice](https://futurice.com)
 
 PELA has been used to create a self-driving car: [![3D Printed LEGO-compatible Parametric 1:10 Scale RC Drift Car Based On PELA Blocks](https://driftcar.pelablocks.org/images/pela-drift-car.jpg)](https://driftcar.pelablocks.org)
 
-PELA is also used to create robot parts: [![3D Printed LEGO-compatible Parametric Robot Hand](http://robothand.pelablocks.org/PELA-robot-hand.png)](https://robothand.pelablocks.org)
+PELA is also used to create robot parts: [![3D Printed LEGO-compatible Parametric Robot Hand](https://robothand.pelablocks.org/PELA-robot-hand.png)](https://robothand.pelablocks.org)
 
 The generated 3D models displayed here are hosted in a separate GitHub project to minimize the size of pulling changes in this repo: [PELA-parametric-blocks](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks)
 
@@ -350,9 +350,9 @@ If you don't find what you need, consider adding it, contact us or check out the
 
 [marian42's excellent online technic part generator](https://marian42.de/partdesigner/) can help you make custom connectors and fixture easily. 
 
-[Yeggi search for LEGO](http://www.yeggi.com/q/lego/)
+[Yeggi search for LEGO](https://www.yeggi.com/q/lego/)
 
-[Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) is an alternate source for these block designs. These designs don't work with the online customizer (speed and complexity, multiple files), so the best path is still to install the newest [OpenSCAD](http://www.openscad.org/) and **[download](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the models.
+[Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) is an alternate source for these block designs. These designs don't work with the online customizer (speed and complexity, multiple files), so the best path is still to install the newest [OpenSCAD](https://www.openscad.org/) and **[download](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the models.
 
 ## Contact
 
