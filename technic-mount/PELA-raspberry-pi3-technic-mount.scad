@@ -243,7 +243,7 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
                 translate([0, 0, block_height(1, block_height)]) {
 
                     difference() {
-                        technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2-1, l3=l3, w1=w1, w2=w2, w3=w3, text=text, text_depth=text_depth, block_height=block_height);
+                        technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2-1, l3=l3, w1=w1, w2=w2, w3=w3, text=text, text_depth=text_depth, block_height=block_height, etch_top_text=true, etch_bottom_text=false);
                         
                         translate([0, 0, block_height(-1)]) {
                             wall_cutouts(l=l, w=w, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
@@ -258,7 +258,7 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
                 translate([0, block_width(w+1), 0]) {
 
                     difference() {
-                        technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2-1, l3=l3, w1=w1, w2=w2, w3=w3, text=text, text_depth=text_depth, block_height=block_height);
+                        technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2-1, l3=l3, w1=w1, w2=w2, w3=w3, text=text, text_depth=text_depth, block_height=block_height, etch_top_text=true, etch_bottom_text=false, etch_top_text=true, etch_bottom_text=true);
 
                         union() {
                             translate([block_width(w), block_width(1), -skin]) {
