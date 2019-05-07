@@ -163,6 +163,18 @@ ___
 [![PELA Raspberry Pi Camera Technic Mount](/technic-mount/PELA-raspberry-pi3-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl)
 
 [PELA Raspberry Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl) A Raspberry Pi 3 camera holder.
+
+___
+
+[![PELA Jetson Nano Technic Mount](/technic-mount/PELA-jetson-nano-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-technic-mount.stl)
+
+[PELA Jetson Nano Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-technic-mount.stl) An NVIDEA Jetson Nano enclousure.
+
+___
+
+[![PELA Raspberry Pi Camera Technic Mount](/technic-mount/PELA-raspberry-pi3-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl)
+
+[PELA Raspberry Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl) A Raspberry Pi 3 camera holder.
 ___
 
 [![PELA STMF4 Discovery Technic Mount](/technic-mount/PELA-stmf4-discovery-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-stmf4-discovery-technic-mount.stl)
