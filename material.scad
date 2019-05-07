@@ -83,7 +83,7 @@ pla_lm = ["PLA", false, -0.08, 0.04, 0.06];
 abs = 1; // Polymaker ABS
 // ABS, fine nozzle (< 0.5mm) calibration settings
 // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
-abs_m = ["ABS", false, -0.18, 0.16, 0.13];
+abs_m = ["ABS", false, -0.18, 0.16, 0.14];
 // ABS, large nozzle (>= 0.5mm) calibration settings
 abs_lm = ["ABS", false, -0.06, 0.0, 0.08];
 
@@ -186,7 +186,7 @@ function material_axle_hole_radius(material, large_nozzle) = axle_hol_rad(materi
 function override_axle_hole_radius(material, large_nozzle, axle_hole_tweak=undef) = axle_hol_rad(override_axle_hole_tweak(material=material, large_nozzle=large_nozzle, axle_hole_tweak=axle_hole_tweak));
 
 // Private function, knob radius
-function knb_rad(top_tweak=undef) = 2.45 + 0.12 + top_tweak;
+function knb_rad(top_tweak=undef) = 2.57 + top_tweak;
 
 // Private function, knob radius
 function rng_rad(bottom_tweak=undef) = 2.75 + bottom_tweak;
