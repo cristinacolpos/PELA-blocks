@@ -31,7 +31,7 @@ use <../technic-beam/PELA-technic-beam.scad>
 use <../technic-beam/PELA-technic-twist-beam.scad>
 
 
-/* [Technic Box] */
+/* [Render] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
@@ -44,6 +44,9 @@ large_nozzle = true;
 
 // Select parts to render
 render_modules = 2; // [0:technic box, 1:technic cover, 2:technic box and cover]
+
+
+/* [Technic Box] */
 
 // Total length [blocks]
 l = 6; // [2:1:20]
@@ -193,7 +196,7 @@ module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=un
                 translate([0, 0, block_height(i-1, block_height)]) {
                     t = (i==h) ? text : "";
                     
-                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3, text=t, text_depth=text_depth, block_height=block_height);
+                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3, text=t, text_depth=text_depth, block_height=block_height, etch_top_text=(i==h), etch_bottom_text=(i==1));
                }
             }
 
@@ -228,7 +231,7 @@ module edge_text(l=undef, w=undef, h=undef, text=undef, text_depth=undef) {
 }
 
 
-module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef, text=undef, text_depth=undef, block_height=undef) {
+module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef, text=undef, text_depth=undef, block_height=undef, etch_top_text=undef, etch_bottom_text=undef) {
 
     assert(l1 > 0, "increase first l section to 1");
     assert(l2 >= 0, "increase second l section to 0");
@@ -237,6 +240,8 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
     assert(w2 >= 0, "increase second w section to 0");
     assert(w3 > 0, "increase third w section to at least 1");
     assert(block_height == 8);
+    assert(etch_top_text != undef);
+    assert(etch_bottom_text != undef);
 
     ll = l1+l2+l3;
     ww = w1+w2+w3;
@@ -260,7 +265,18 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
             }
         }
         
-        edge_text(l=ll, w=ww, h=1, text=text, text_depth=text_depth);
+        union() {
+            if (etch_top_text) {
+                edge_text(l=ll, w=ww, h=1, text=text, text_depth=text_depth);
+            }
+            if (etch_bottom_text) {
+                translate([block_width(ll-1), 0, block_height(1, block_height)]) {
+                    rotate([180, 0, 180]) {
+                        edge_text(l=ll, w=ww, h=1, text=text, text_depth=text_depth);
+                    }
+                }
+            }
+        }
     }
 }
 
