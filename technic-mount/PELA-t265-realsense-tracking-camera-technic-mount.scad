@@ -107,10 +107,10 @@ dome = false;
 /* [Left Cut] */
 
 // Distance of the front of left side hole [mm]
-left_cutout_y = 8; // [0:0.1:200]
+left_cutout_y = 4; // [0:0.1:200]
 
 // Width of the left side hole [mm]
-left_cutout_width = 8; // [0:0.1:200]
+left_cutout_width = 12; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
 left_cutout_z = 8; // [0:0.1:200]
