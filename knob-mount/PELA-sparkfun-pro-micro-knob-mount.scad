@@ -20,7 +20,7 @@ include <../style.scad>
 include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
-use <../box-enclosure/PELA-box-enclosure.scad>
+use <../knob-mount/PELA-box-enclosure.scad>
 use <PELA-knob-mount.scad>
 
 
