@@ -238,15 +238,15 @@ ___
 
 ___
 
-[![PELA Box Enclosure](/box-enclosure/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/enclosure/PELA-box-enclosure.stl)
+[![PELA Box Enclosure](/knob-mount/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/enclosure/PELA-box-enclosure.stl)
 
-[PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
+[PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
 
 ___
 
-[![PELA Intel Compute Stick Box Enclosure](/box-enclosure/PELA-intel-compute-stick-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-intel-compute-stick-box-enclosure.stl)
+[![PELA Intel Compute Stick Box Enclosure](/knob-mount/PELA-intel-compute-stick-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-intel-compute-stick-box-enclosure.stl)
 
-[PELA Intel Compute Stick Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-intel-compute-stick-box-enclosure.stl) Enclosure for the [Intel Compute Stick](https://www.intel.com/content/www/us/en/products/boards-kits/compute-stick.html)
+[PELA Intel Compute Stick Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-intel-compute-stick-box-enclosure.stl) Enclosure for the [Intel Compute Stick](https://www.intel.com/content/www/us/en/products/boards-kits/compute-stick.html)
 
 ___
 
