@@ -163,6 +163,25 @@ ___
 [![PELA Raspberry Pi Camera Technic Mount](/technic-mount/PELA-raspberry-pi3-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl)
 
 [PELA Raspberry Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl) A Raspberry Pi 3 camera holder.
+
+___
+
+[![PELA Jetson Nano Technic Mount](/technic-mount/PELA-jetson-nano-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-technic-mount.stl)
+
+[PELA Jetson Nano Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-technic-mount.stl) An NVIDEA Jetson Nano enclousure.
+
+___
+
+[![PELA Raspberry Pi Camera Technic Mount](/technic-mount/PELA-raspberry-pi3-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl)
+
+[PELA Raspberry Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl) A Raspberry Pi 3 camera holder.
+
+___
+
+[![PELA Intel T265 Realsense Tracking Camera Technic Mount](/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.stl)
+
+[PELA Intel T265 Realsense Tracking Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.stl) An enclosure for an [Intel T265](https://www.intelrealsense.com/tracking-camera-t265/) AI SLAM camera.
+
 ___
 
 [![PELA STMF4 Discovery Technic Mount](/technic-mount/PELA-stmf4-discovery-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-stmf4-discovery-technic-mount.stl)
@@ -195,6 +214,12 @@ ___
 
 ___
 
+[![PELA Arduino Uno Technic Mount](/technic-mount/PELA-arduino-uno-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl)
+
+[PELA Arduino Uno Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl) For holding an Arduino Uno microcontroller board within a PELA block
+
+___
+
 [![PELA Technic Seeed Respeaker Core v2 Mount](/technic-mount/PELA-respeaker-core-v2-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-respeaker-core-v2-mount.stl)
 
 [PELA Technic Seeed Respeaker Core v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-respeaker-core-v2-mount.stl) A technic mount for the Respeaker Core v2 microphone array.
@@ -213,15 +238,15 @@ ___
 
 ___
 
-[![PELA Box Enclosure](/box-enclosure/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/enclosure/PELA-box-enclosure.stl)
+[![PELA Box Enclosure](/knob-mount/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/enclosure/PELA-box-enclosure.stl)
 
-[PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
+[PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
 
 ___
 
-[![PELA Intel Compute Stick Box Enclosure](/box-enclosure/PELA-intel-compute-stick-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-intel-compute-stick-box-enclosure.stl)
+[![PELA Intel Compute Stick Box Enclosure](/knob-mount/PELA-intel-compute-stick-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-intel-compute-stick-box-enclosure.stl)
 
-[PELA Intel Compute Stick Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/box-enclosure/PELA-intel-compute-stick-box-enclosure.stl) Enclosure for the [Intel Compute Stick](https://www.intel.com/content/www/us/en/products/boards-kits/compute-stick.html)
+[PELA Intel Compute Stick Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-intel-compute-stick-box-enclosure.stl) Enclosure for the [Intel Compute Stick](https://www.intel.com/content/www/us/en/products/boards-kits/compute-stick.html)
 
 ___
 
@@ -279,9 +304,9 @@ ___
 
 ___
 
-[![PELA PCA9685 16 Channel Servo Board Technic Mount](/knob-mount/PELA-pca9685-servo-board-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/knob-mount/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-board-technic-mount.stl)
+[![PELA PCA9685 16 Channel Servo Board Technic Mount](/technic-mount/PELA-pca9685-servo-board-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/technic-mount/PELA-parametric-blocks/blob/master/PELA-pca9685-servo-board-technic-mount.stl)
 
-[PELA PCA9685 16 Channel Servo Board Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-pca9685-servo-board-technic-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](https://www.donkeycar.com/).
+[PELA PCA9685 16 Channel Servo Board Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pca9685-servo-board-technic-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](https://www.donkeycar.com/).
 
 ___
 
@@ -294,12 +319,6 @@ ___
 [![PELA NodeMCU v2 Knob Mount](/knob-mount/PELA-nodemcu-v2-knob-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-v2-knob-mount.stl)
 
 [PELA NodeMCU v2 Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-nodemcu-v2-knob-mount.stl) For holding an NodeMCU v2 microcontroller board within a PELA block
-
-___
-
-[![PELA Arduino Uno Knob Mount](/technic-mount/PELA-arduino-uno-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl)
-
-[PELA Arduino Uno Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl) For holding an Arduino Uno microcontroller board within a PELA block
 
 ___
 

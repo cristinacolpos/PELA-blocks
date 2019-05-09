@@ -109,24 +109,6 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 
 
-
-///////////////////////////////
-// DISPLAY
-///////////////////////////////
-
-if (render_modules != 0) {
-    translate([0, -block_width(w + 1), 0]) {
-        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
-    }
-}
-
-if (render_modules != 1) {
-    technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=center, text=text, text_depth=text_depth, block_height=block_height);
-}
-
-
-
-
 ///////////////////////////////////
 // FUNCTIONS
 ///////////////////////////////////
@@ -137,10 +119,30 @@ function mid_l(l=undef, l1=undef, l3=undef) = max(0, l - l1 - l3);
 
 
 
+///////////////////////////////
+// DISPLAY
+///////////////////////////////
+
+technic_box_and_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, cover_h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
+
+
 ///////////////////////////////////
 // MODULES
 ///////////////////////////////////
 
+
+module technic_box_and_cover(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, cover_h=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
+
+    if (render_modules != 0) {
+        translate([0, -block_width(w + 1), 0]) {
+            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
+        }
+    }
+
+    if (render_modules != 1) {
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=center, text=text, text_depth=text_depth, block_height=block_height);
+    }
+}
 
 module technic_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
 
@@ -179,7 +181,20 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, 
 }
 
 
-module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, twist_l=undef, twist_w=undef, center=undef, text=undef, text_depth=undef, block_height=block_height) {
+module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, twist_l=undef, twist_w=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(h!=undef);
+    assert(twist_l!=undef);
+    assert(twist_w!=undef);
+    assert(center!=undef);
+    assert(text!=undef);
+    assert(text_depth!=undef);
+    assert(block_height!=undef);
 
     tl = first_l(twist_l, l);
     l1 = tl;
@@ -194,9 +209,7 @@ module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=un
         union() {
             for (i = [1:h]) {
                 translate([0, 0, block_height(i-1, block_height)]) {
-                    t = (i==h) ? text : "";
-                    
-                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3, text=t, text_depth=text_depth, block_height=block_height, etch_top_text=(i==h), etch_bottom_text=(i==1));
+                    technic_rectangle(material=material, large_nozzle=large_nozzle, l1=l1, l2=l2, l3=l3, w1=w1, w2=w2, w3=w3, text=text, text_depth=text_depth, block_height=block_height, etch_top_text=(i==h), etch_bottom_text=(i==1), h=h);
                }
             }
 
@@ -231,7 +244,7 @@ module edge_text(l=undef, w=undef, h=undef, text=undef, text_depth=undef) {
 }
 
 
-module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef, text=undef, text_depth=undef, block_height=undef, etch_top_text=undef, etch_bottom_text=undef) {
+module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef, text=undef, text_depth=undef, block_height=undef, etch_top_text=undef, etch_bottom_text=undef, h=undef) {
 
     assert(l1 > 0, "increase first l section to 1");
     assert(l2 >= 0, "increase second l section to 0");
@@ -239,6 +252,7 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
     assert(w1 > 0, "increase first w section to 1");
     assert(w2 >= 0, "increase second w section to 0");
     assert(w3 > 0, "increase third w section to at least 1");
+    assert(h >= 1);
     assert(block_height == 8);
     assert(etch_top_text != undef);
     assert(etch_bottom_text != undef);
@@ -269,10 +283,11 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
             if (etch_top_text) {
                 edge_text(l=ll, w=ww, h=1, text=text, text_depth=text_depth);
             }
+            
             if (etch_bottom_text) {
-                translate([block_width(ll-1), 0, block_height(1, block_height)]) {
+                translate([block_width(ll-1), 0, block_height(h, block_height)]) {
                     rotate([180, 0, 180]) {
-                        edge_text(l=ll, w=ww, h=1, text=text, text_depth=text_depth);
+                        edge_text(l=ll, w=ww, h=h, text=text, text_depth=text_depth);
                     }
                 }
             }
