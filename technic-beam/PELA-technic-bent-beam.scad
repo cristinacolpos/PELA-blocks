@@ -42,11 +42,12 @@ material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FL
 large_nozzle = true;
 
 // Length of the first beam [blocks]
-l1 = 2; // [1:20]
+l1 = 2; // [1:1:20]
 
 // Length of the second beam [blocks]
-l2 = 2; // [1:20]
+l2 = 2; // [1:1:20]
 
+h = 1;; // [1:1:20]
 
 // Angle between the two beams
 angle = 90; // [0:180]
