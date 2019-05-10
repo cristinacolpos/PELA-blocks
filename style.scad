@@ -123,7 +123,7 @@ bottom_stiffener_height = knob_height;
 counterbore_inset_radius = 3.1; // [0.1:0.1:4]
 
 // Technic connector hole inset depth
-counterbore_inset_depth = 0.8; // [0.1:0.1:4]
+counterbore_inset_depth = 1.0; // [0.1:0.1:4]
 
 // Contact length of axle to block (not including inset length and end snap fit flexture in pin connectors)
 peg_length = 6.5; // [0.1:0.1:16]
