@@ -79,7 +79,7 @@ center_knobs = true;
 knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // How many blocks in from length ends do the technic holes rotate 90 degrees [blocks]
-twist_l = 6; // [1:18]
+twist_l = 8; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
 twist_w = 5; // [1:18]
@@ -94,7 +94,7 @@ undercut = 7.0; // [0:0.1:100]
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 // Text label
-text = "Power";
+text = "";
 
 // Depth of text etching into top surface
 text_depth = 0.5; // [0.0:0.1:2]
@@ -171,7 +171,7 @@ back_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-cover_text = "Power";
+cover_text = "";
 
 // Interior fill style
 cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
