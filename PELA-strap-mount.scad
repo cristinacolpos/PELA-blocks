@@ -36,12 +36,7 @@ use <PELA-technic-block.scad>
 _cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-<<<<<<< HEAD
-_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
-=======
-material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
->>>>>>> master
-
+_material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
 
@@ -111,6 +106,25 @@ strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, 
 ///////////////////////////////////
 
 module strap_mount(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, panel_height_ratio=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, sockets=undef, knobs=undef, knob_height=undef, knob_vent_radius=undef, top_vents=undef, corner_bolt_holes=undef, block_height=undef) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(h!=undef);
+    assert(panel_height_ratio!=undef);
+    assert(side_holes!=undef);
+    assert(side_sheaths!=undef);
+    assert(end_holes!=undef);
+    assert(end_sheaths!=undef);
+    assert(sockets!=undef);
+    assert(knobs!=undef);
+    assert(knob_height!=undef);
+    assert(knob_vent_radius!=undef);
+    assert(top_vents!=undef);
+    assert(corner_bolt_holes!=undef);
+    assert(block_height!=undef);
 
     difference() {
         union() {
