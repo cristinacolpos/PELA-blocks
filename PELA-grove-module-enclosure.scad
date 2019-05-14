@@ -305,8 +305,8 @@ module grove(material=undef) {
     translate([0, 0, _grove_y_shift]) {
         minkowski() {
             union() {
-                board(material=material);
-                negative_space(material=material);            
+                board();
+                negative_space();            
             }
             
             sphere(r=_mink, $fn=8);
@@ -315,20 +315,18 @@ module grove(material=undef) {
 }
 
 // Grove module main board (PCB with two screw mounts)
-module board(material=undef) {
-    
-    assert(material != undef);
+module board() {
     
     translate([0, 0, _bottom_space]) {
         cube([_grove_width, _grove_width, _thickness]);
     }
 
     translate([0, _grove_width/2, _bottom_space]) {
-        eye(material=material);
+        eye();
     }
     
     translate([_grove_width, _grove_width/2, _bottom_space]) {
-        eye(material=material);
+        eye();
     }
     
     translate([(_grove_width-_connector_width)/2, -(_connector_length-_grove_width)/2, _bottom_space+_thickness]) {
@@ -337,12 +335,13 @@ module board(material=undef) {
 }
 
 // The bump on the side of a Grove module where a screw holder can be inserted. In this design, this is simply used for orienting the Grove module within another block (no screws are usually used)
-module eye(material=material) {
+module eye() {
     cylinder(r=_eye_radius, h=_thickness);
 }
 
 // Space for the board components and access to the Grove connector on the front of the board (no material is here)
-module negative_space(material=material) {
+module negative_space() {
+
     translate([_edge_inset, _edge_inset, 0]) {
         cube([_grove_width-2*_edge_inset, _grove_width-2*_edge_inset, _negative_space_height]);
     }
