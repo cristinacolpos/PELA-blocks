@@ -36,12 +36,17 @@ use <../technic-beam/PELA-technic-twist-beam.scad>
 _cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
+<<<<<<< HEAD
 _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+=======
+material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+>>>>>>> master
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
 
 // Length of the first beam [blocks]
+<<<<<<< HEAD
 _l1 = 2; // [1:20]
 
 // Length of the second beam [blocks]
@@ -55,6 +60,14 @@ _h1 = 1; // [1:1:30]
 
 // Right beam height [blocks]
 _h2 = 1; // [1:1:30]
+=======
+l1 = 2; // [1:1:20]
+
+// Length of the second beam [blocks]
+l2 = 2; // [1:1:20]
+
+h = 1;; // [1:1:20]
+>>>>>>> master
 
 // Angle between the two beams
 _angle = 90; // [0:180]

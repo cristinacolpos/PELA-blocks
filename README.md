@@ -160,6 +160,12 @@ ___
 
 ___
 
+[![PELA Raspberry Pi Zero W Technic Mount](/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-technic-mount.stl)
+
+[PELA Raspberry Pi Zero W Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.stl) A Raspberry Pi Zero W holder.
+
+___
+
 [![PELA Raspberry Pi Camera Technic Mount](/technic-mount/PELA-raspberry-pi3-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl)
 
 [PELA Raspberry Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-camera-technic-mount.stl) A Raspberry Pi 3 camera holder.
@@ -234,7 +240,13 @@ ___
 
 [![PELA Panel Sign](/sign/PELA-panel-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl)
 
-[PELA Panel Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl) Change the text to label your design either edtched for raised text.
+[PELA Panel Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl) Change the text to label your design either etched for raised text.
+
+___
+
+[![PELA Technic Sign](/sign/PELA-technic-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-technic-sign.stl)
+
+[PELA Technic Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-technic-sign.stl) Change the text to label your design.
 
 ___
 
@@ -256,15 +268,15 @@ ___
 
 ___
 
-[![PELA Servo Motor Enclosure](/motor-enclosure/PELA-servo-motor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-servo-motor-enclosure.stl)
+[![PELA Servo Motor Enclosure](/motor/PELA-servo-motor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-servo-motor-enclosure.stl)
 
-[PELA Servo Motor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-servo-motor-enclosure.stl) Add a round servo motor holder for 1:10 electric cars
+[PELA Servo Motor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-servo-motor-enclosure.stl) Add a round servo motor holder for 1:10 electric cars
 
 ___
 
-[![PELA N20 Gearmotor Enclosure](/motor-enclosure/PELA-n20-gearmotor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-n20-gearmotor-enclosure.stl)
+[![PELA N20 Gearmotor Enclosure](/motor/PELA-n20-gearmotor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-n20-gearmotor-enclosure.stl)
 
-[PELA N20 Gearmotor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor-enclosure/PELA-n20-gearmotor-enclosure.stl) Add a commonly available small gear motor to your design. Adjust the model parameters to fit other motor sizes.
+[PELA N20 Gearmotor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-n20-gearmotor-enclosure.stl) Add a commonly available small gear motor to your design. Adjust the model parameters to fit other motor sizes.
 
 ___
 
