@@ -28,35 +28,35 @@ use <PELA-technic-block.scad>
 /* [Socket Panel] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
 
 // Length of the block [blocks]
-l = 8; // [1:1:20]
+_l = 8; // [1:1:20]
 
 // Width of the block [blocks]
-w = 8; // [1:1:20]
+_w = 8; // [1:1:20]
 
 // Presence of sockets vs a plain panel
-sockets = true;
+_sockets = true;
 
 // Add interior fill for the base layer
-solid_first_layer = false;
+_solid_first_layer = false;
 
 // Basic unit vertical size of each block
-block_height = 8; // [8:technic, 9.6:traditional blocks]
+_block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-socket_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, sockets=sockets, solid_first_layer=solid_first_layer, skin=_skin, block_height=block_height);
+socket_panel(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, sockets=_sockets, solid_first_layer=_solid_first_layer, skin=_skin, block_height=_block_height);
 
 
 
