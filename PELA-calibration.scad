@@ -25,7 +25,7 @@ use <PELA-block.scad>
 /* [Render] */
 
 // Printing material. Set to label your calibration blocks and indicate if the material is flexible. Print to measure the best fit for knobs, sockets and axle holes and put those measures in "material.scad"
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
@@ -72,7 +72,7 @@ calibration_increment = 0.04;
 /* [Hidden] */
 
 // Depth of text labels on calibration blocks
-text_extrusion_height = 0.4;
+text_text_depth = 0.4;
 
 // Inset from block edge for text (vertical and horizontal)
 vertical_text_margin = 3.8;
@@ -133,7 +133,11 @@ module PELA_calibration_block(material=undef, large_nozzle=undef, l=undef, w=und
         PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=true, knobs=true, knob_height=knob_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=false, side_holes=side_holes, side_sheaths=true, end_holes=0, end_sheaths=false, top_vents=false, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
 
         union() {
+<<<<<<< HEAD
             translate([_skin+horizontal_text_margin, _skin+text_extrusion_height, _skin+block_height(h, block_height)-vertical_text_margin]) {
+=======
+            translate([skin+horizontal_text_margin, skin+text_text_depth, skin+block_height(h, block_height)-vertical_text_margin]) {
+>>>>>>> master
 
                 rotate([90 ,0, 0]) {
                     translate([0, -0.5, 0]) {
@@ -147,7 +151,11 @@ module PELA_calibration_block(material=undef, large_nozzle=undef, l=undef, w=und
                 }
             }
             
+<<<<<<< HEAD
             translate([block_width(w)-_skin-horizontal_text_margin, block_width(w)-text_extrusion_height-_skin, _skin+vertical_text_margin]) {
+=======
+            translate([block_width(w)-skin-horizontal_text_margin, block_width(w)-text_text_depth-skin, skin+vertical_text_margin]) {
+>>>>>>> master
                 
                 rotate([90, 0, 180]) {
                     translate([0, 0.5, 0]) {
@@ -167,7 +175,7 @@ module PELA_calibration_block(material=undef, large_nozzle=undef, l=undef, w=und
 // Text for the front side of calibration block prints
 module calibration_text(txt="Text", halign="left", valign="top", font_size=font_size) {
     
-    linear_extrude(height=text_extrusion_height*2) {        
+    linear_extrude(height=text_text_depth*2) {        
         text(text=txt, font=font, size=font_size, halign=halign, valign=valign);
     }
 }

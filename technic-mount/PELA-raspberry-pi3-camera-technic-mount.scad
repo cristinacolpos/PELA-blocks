@@ -33,13 +33,13 @@ use <../technic-beam/PELA-technic-twist-beam.scad>
 include <PELA-technic-mount.scad>
 
 
-/* [Raspberry Pi3 Camera Mount] */
+/* [Render] */
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100] 
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
@@ -47,11 +47,13 @@ large_nozzle = true;
 // Select parts to render
 render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and cover]
 
+/* [Raspberry Pi3 Camera Mount] */
+
 // Board space length [mm]
-length = 39.5; // [0:1:300] 
+length = 25.4; // [0:1:300] 
 
 // Board space width [mm]
-width = 39.5; // [0:1:300]
+width = 25.4; // [0:1:300]
 
 l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 

@@ -150,7 +150,7 @@ large_nozzle_materials = [pla_lm, abs_lm, pet_lm, bio_silk_lm, pro1_lm, ngen_lm,
 cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;

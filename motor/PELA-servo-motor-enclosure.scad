@@ -31,7 +31,7 @@ use <../technic-mount/PELA-technic-box.scad>
 cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
@@ -107,9 +107,6 @@ top_vents = true;
 // Open the upper surface of the top holder
 top_access = true;
 
-// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
-knob_vent_radius = 1.8; // [0.0:0.1:3.9]
-
 // Motor offset on the X axis
 motor_x = 8; // [0.1:0.1:16]
 
@@ -129,9 +126,9 @@ mount_hole_d = 2.7; // [0.1:0.1:8]
 /* [Hidden] */
 
 // Height of the top part of the motor enclosure (block count, the top part is always 1/3)
-h_top = h/2;
+top_h = h/2;
 
-h_bottom = h - h_top;
+bottom_h = h - top_h;
 
 shaft_l = 10;
 
@@ -141,8 +138,7 @@ shaft_l = 10;
 // DISPLAY
 ///////////////////////////////
 
-motor_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, render_modules=render_modules);
-
+motor_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, render_modules=render_modules, l=l, w=w, h=h, top_h=top_h, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=top_vents, knob_vent_radius=knob_vent_radius, side_holes=side_holes, end_holes=end_holes, corner_bolt_holes=corner_bolt_holes);
 
 ///////////////////////////////////
 // MODULES
@@ -179,7 +175,23 @@ module motor_enclosure_top(material=undef, large_nozzle=undef, cut_line=undef) {
 }
 */
 
-module motor_enclosure(material=undef, large_nozzle=undef, cut_line=undef, rende_modules=render_modules, l=undef, w=undef, h=undef, top_h=undef, solid_first_layer=undef, solid_upper_layers=undef, top_vents=undef, knob_vent_radius=undef, side_holes=undef, end_holes=undef, corner_bolt_holes=undef) {
+module motor_enclosure(material=undef, large_nozzle=undef, cut_line=undef, render_modules=undef, l=undef, w=undef, h=undef, top_h=undef, solid_first_layer=undef, solid_upper_layers=undef, top_vents=undef, knob_vent_radius=undef, side_holes=undef, end_holes=undef, corner_bolt_holes=undef) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(render_modules!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(h!=undef);
+    assert(top_h!=undef);
+    assert(solid_first_layer!=undef);
+    assert(solid_upper_layers!=undef);
+    assert(top_vents!=undef);
+    assert(knob_vent_radius!=undef);
+    assert(side_holes!=undef);
+    assert(end_holes!=undef);
+    assert(corner_bolt_holes!=undef);
 
     difference() {
         union() {
