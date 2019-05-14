@@ -139,7 +139,7 @@ function fit_mm_to_height_blocks(i=undef, padding=undef, block_height=undef) = c
 // MODULES
 ///////////////////////////////////
 
-module PELA_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, knob_height=undef, knob_flexture_height=_knob_flexture_height, sockets=undef, socket_insert_bevel=_socket_insert_bevel, knobs=undef, knob_vent_radius=undef, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius, ridge_width=_ridge_width, ridge_depth=_ridge_depth, ridge_z_offset=_ridge_z_offset, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, solid_first_layer=_solid_first_layer, solid_upper_layers=_solid_upper_layers, block_height=undef, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef) {
+module PELA_technic_block(material, large_nozzle, cut_line, l, w, h, knob_height, knob_flexture_height=_knob_flexture_height, sockets, socket_insert_bevel=_socket_insert_bevel, knobs, knob_vent_radius, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius, ridge_width=_ridge_width, ridge_depth=_ridge_depth, ridge_z_offset=_ridge_z_offset, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, solid_first_layer=_solid_first_layer, solid_upper_layers=_solid_upper_layers, block_height, bottom_tweak, top_tweak, axle_hole_tweak) {
 
     assert(material != undef);
     assert(large_nozzle != undef);
@@ -179,7 +179,7 @@ module PELA_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=
 }
 
 
-module visual_cut_technic_block(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, knob_height=undef, knob_flexture_height=undef, sockets=undef, socket_insert_bevel=undef, knobs=undef, knob_vent_radius=undef, skin=undef, top_shell=undef, bottom_stiffener_width=undef, bottom_stiffener_height=undef, corner_bolt_holes=undef, bolt_hole_radius=undef, ridge_width=undef, ridge_depth=undef, ridge_z_offset=undef, solid_upper_layers=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, solid_first_layer=undef, block_height=undef, bottom_tweak=undef, top_tweak=undef, axle_hole_tweak=undef) {
+module visual_cut_technic_block(material, large_nozzle, cut_line, l, w, h, knob_height, knob_flexture_height, sockets, socket_insert_bevel, knobs, knob_vent_radius, skin, top_shell, bottom_stiffener_width, bottom_stiffener_height, corner_bolt_holes, bolt_hole_radius, ridge_width, ridge_depth, ridge_z_offset, solid_upper_layers, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, solid_first_layer, block_height, bottom_tweak, top_tweak, axle_hole_tweak) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -253,7 +253,7 @@ module visual_cut_technic_block(material=undef, large_nozzle=undef, cut_line=und
 
 
 // Holes cut into the sides for the block on layer 1 to allow technic pins and axles to be inserted
-module bottom_connector_negative_space(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, side_holes=undef, end_holes=undef, hole_type=undef, corner_bolt_holes=undef, bolt_hole_radius=undef, sockets=undef, skin=undef, block_height=undef, axle_hole_radius=undef) {
+module bottom_connector_negative_space(material, large_nozzle, l, w, h, side_holes, end_holes, hole_type, corner_bolt_holes, bolt_hole_radius, sockets, skin, block_height, axle_hole_radius) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -288,7 +288,7 @@ module bottom_connector_negative_space(material=undef, large_nozzle=undef, l=und
 }
 
 
-module double_side_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, side_holes=undef, peg_length=_peg_length, bearing_sheath_thickness=_bearing_sheath_thickness, skin=undef, block_height=undef) {
+module double_side_connector_sheath_set(material, large_nozzle, l, w, side_holes, peg_length=_peg_length, bearing_sheath_thickness=_bearing_sheath_thickness, skin, block_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -311,7 +311,7 @@ module double_side_connector_sheath_set(material=undef, large_nozzle=undef, l=un
 
 
 // A row of sheaths surrounding holes along the length
-module side_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, side_holes=undef, peg_length=_peg_length, bearing_sheath_thickness=undef, skin=undef, block_height=undef, axle_hole_tweak=undef) {
+module side_connector_sheath_set(material, large_nozzle, l, w, side_holes, peg_length=_peg_length, bearing_sheath_thickness, skin, block_height, axle_hole_tweak) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -346,7 +346,7 @@ module side_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=
 
 
 // Two rows of end connector enclosing cylinders
-module double_end_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, end_holes=undef, peg_length=undef, bearing_sheath_thickness=undef, skin=undef, block_height=undef, axle_hole_tweak=undef) {
+module double_end_connector_sheath_set(material, large_nozzle, l, w, end_holes, peg_length, bearing_sheath_thickness, skin, block_height, axle_hole_tweak) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -369,7 +369,7 @@ module double_end_connector_sheath_set(material=undef, large_nozzle=undef, l=und
 
 
 // A row of sheaths surrounding holes along the width
-module end_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=undef, end_holes=undef, peg_length=_peg_length, bearing_sheath_thickness=_bearing_sheath_thickness, skin=undef, block_height=undef, axle_hole_tweak=undef) {
+module end_connector_sheath_set(material, large_nozzle, l, w, end_holes, peg_length=_peg_length, bearing_sheath_thickness=_bearing_sheath_thickness, skin, block_height, axle_hole_tweak) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -405,7 +405,7 @@ module end_connector_sheath_set(material=undef, large_nozzle=undef, l=undef, w=u
 
 
 // The solid cylinder around a bearing hole
-module sheath(material=undef, large_nozzle=undef, sheath_radius=undef, sheath_length=undef, skin=undef) {
+module sheath(material, large_nozzle, sheath_radius, sheath_length, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -420,7 +420,7 @@ module sheath(material=undef, large_nozzle=undef, sheath_radius=undef, sheath_le
 
 
 // For use by extension routines
-module double_end_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=undef, hole_type=undef, axle_hole_radius=undef, block_height=undef) {
+module double_end_connector_hole_set(material, large_nozzle, l, w, hole_type, axle_hole_radius, block_height) {
  
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -439,7 +439,7 @@ module double_end_connector_hole_set(material=undef, large_nozzle=undef, l=undef
 
 
 // For use by extension routines
-module double_side_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=undef, hole_type=undef, block_height=undef, axle_hole_radius=undef) {
+module double_side_connector_hole_set(material, large_nozzle, l, w, hole_type, block_height, axle_hole_radius) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -461,7 +461,7 @@ module double_side_connector_hole_set(material=undef, large_nozzle=undef, l=unde
 
 
 // A row of knob-size holes around the sides of row 1
-module side_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=undef, hole_type=undef, block_height=undef, axle_hole_radius=undef) {
+module side_connector_hole_set(material, large_nozzle, l, w, hole_type, block_height, axle_hole_radius) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -492,7 +492,7 @@ module side_connector_hole_set(material=undef, large_nozzle=undef, l=undef, w=un
 
 
 // Hole for an axle
-module rotation_hole(material=undef, large_nozzle=undef, radius=undef, length=undef) {
+module rotation_hole(material, large_nozzle, radius, length) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -504,7 +504,7 @@ module rotation_hole(material=undef, large_nozzle=undef, radius=undef, length=un
 
 
 // The rotation and connector hole for a technic connector
-module axle_hole(material=undef, large_nozzle=undef, hole_type=undef, radius=undef, length=_counterbore_inset_depth+_peg_length) {
+module axle_hole(material, large_nozzle, hole_type, radius, length=_counterbore_inset_depth+_peg_length) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -528,7 +528,7 @@ module axle_hole(material=undef, large_nozzle=undef, hole_type=undef, radius=und
 
 
 // The connector inset for a technic side connector
-module counterbore_inset(material=undef, large_nozzle=undef, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius) {
+module counterbore_inset(material, large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -542,7 +542,7 @@ module counterbore_inset(material=undef, large_nozzle=undef, counterbore_inset_d
 
 
 // A rectangle with optional 45 degree sloped roof for use as negative space with printable overhangs
-module dome(dome=undef, length=undef, width=undef, thickness=undef) {
+module dome(dome, length, width, thickness) {
 
     assert(dome != undef);
     assert(length != undef);

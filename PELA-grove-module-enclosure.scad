@@ -129,7 +129,7 @@ _print_supports = true;
 grove_module_enclosure(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, knobs=_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, sockets=_sockets, corner_bolt_holes=_corner_bolt_holes, block_height=_block_height, show_bottom_piece=_show_bottom_piece, show_top_piece=_show_top_piece);
 
 
-module grove_module_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, knobs=undef, knob_height=undef, knob_vent_radius=undef, sockets=undef, corner_bolt_holes=undef, block_height=undef, show_bottom_piece=undef, show_top_piece=undef) {
+module grove_module_enclosure(material, large_nozzle, cut_line, l, w, h, knobs, knob_height, knob_vent_radius, sockets, corner_bolt_holes, block_height, show_bottom_piece, show_top_piece) {
 
     axle_hole_radius=material_axle_hole_radius(material=material, large_nozzle=large_nozzle);
 
@@ -156,7 +156,7 @@ function vertical_offset(block_height, h)=(block_height(2*h, block_height=block_
 // MODULES
 /////////////////////////////////////
 
-module bottom_piece(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, corner_bolt_holes=undef, knobs=undef,knob_height=undef, knob_vent_radius=undef, sockets=undef, block_height=undef, axle_hole_radius=undef) {
+module bottom_piece(material, large_nozzle, cut_line, l, w, h, corner_bolt_holes, knobs,knob_height, knob_vent_radius, sockets, block_height, axle_hole_radius) {
 
     difference() {
         union() {
@@ -185,7 +185,7 @@ module bottom_piece(material=undef, large_nozzle=undef, cut_line=undef, l=undef,
 
 
 // Top piece
-module top_piece(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, corner_bolt_holes=undef, knobs=undef, knob_height=undef, knob_vent_radius=undef, sockets=undef, block_height=undef, axle_hole_radius=undef) {
+module top_piece(material, large_nozzle, cut_line, l, w, h, corner_bolt_holes, knobs, knob_height, knob_vent_radius, sockets, block_height, axle_hole_radius) {
 
     translate([0, block_width(w + 0.5), 0]) {
         main_top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, sockets=sockets, block_height=block_height, axle_hole_radius=axle_hole_radius);
@@ -214,7 +214,7 @@ module top_piece(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=
 
 
 // Primary shape of the top piece
-module main_top_piece(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, corner_bolt_holes=undef, knobs=undef, knob_height=undef, knob_vent_radius=undef, sockets=undef, block_height=undef, axle_hole_radius=undef) {
+module main_top_piece(material, large_nozzle, l, w, h, corner_bolt_holes, knobs, knob_height, knob_vent_radius, sockets, block_height, axle_hole_radius) {
 
     difference() {
         union() {
@@ -247,7 +247,7 @@ module main_top_piece(material=undef, large_nozzle=undef, l=undef, w=undef, h=un
 
 
 // The negative space which supports should not enter to be too close to the top piece
-module main_top_piece_space(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, knobs=undef, knob_height=undef, knob_vent_radius=undef, sockets=undef, axle_hole_radius=undef, corner_bolt_holes=undef, block_height=undef) {
+module main_top_piece_space(material, large_nozzle, l, w, h, knobs, knob_height, knob_vent_radius, sockets, axle_hole_radius, corner_bolt_holes, block_height) {
     
     minkowski() {
         main_top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, sockets=sockets, axle_hole_radius=axle_hole_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
@@ -258,7 +258,7 @@ module main_top_piece_space(material=undef, large_nozzle=undef, l=undef, w=undef
 
 
 // Supports to prevent the long overhangs from drooping
-module top_supports(l=undef, h=undef, block_height=undef) {
+module top_supports(l, h, block_height) {
     
     assert(l!=undef);
     assert(h!=undef);
@@ -300,7 +300,7 @@ module top_supports(l=undef, h=undef, block_height=undef) {
 ///////////////////////////////
     
 // A complete Grove module negative space assembly. These are all the areas where you do _not_ want material in order to be able to place a real Grove module embedded within another part
-module grove(material=undef) {
+module grove() {
 
     translate([0, 0, _grove_y_shift]) {
         minkowski() {

@@ -105,7 +105,7 @@ strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, 
 // MODULES
 ///////////////////////////////////
 
-module strap_mount(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, panel_height_ratio=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, sockets=undef, knobs=undef, knob_height=undef, knob_vent_radius=undef, top_vents=undef, corner_bolt_holes=undef, block_height=undef) {
+module strap_mount(material, large_nozzle, cut_line, l, w, h, panel_height_ratio, side_holes, side_sheaths, end_holes, end_sheaths, sockets, knobs, knob_height, knob_vent_radius, top_vents, corner_bolt_holes, block_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -155,7 +155,7 @@ module strap_mount(material=undef, large_nozzle=undef, cut_line=undef, l=undef, 
 }
 
 
-module slot(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, block_height=undef) {
+module slot(material, large_nozzle, l, w, h, block_height) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
