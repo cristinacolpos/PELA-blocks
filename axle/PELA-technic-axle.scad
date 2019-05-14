@@ -24,22 +24,22 @@ use <../PELA-block.scad>
 /* [Technic Axle] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:0.5:5]
+_cut_line = 0; // [0:0.5:5]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
 
 // Axle length [blocks]
-l = 3; // [1:1:20]
+_l = 3; // [1:1:20]
 
 // An axle which fits loosely in a technic bearing hole [mm]
-axle_radius = 2.2; // [0.2:0.1:3.9]
+_axle_radius = 2.2; // [0.2:0.1:3.9]
 
 // Size of the hollow inside an axle [mm]
-center_radius = 1.1; // [0.0:0.1:3.8]
+_center_radius = 1.1; // [0.0:0.1:3.8]
 
 
 
@@ -47,7 +47,7 @@ center_radius = 1.1; // [0.0:0.1:3.8]
 // DISPLAY
 ///////////////////////////////
 
-axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, axle_radius=axle_radius, center_radius=center_radius);
+axle(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, axle_radius=_axle_radius, center_radius=_center_radius);
   
 
 
@@ -56,7 +56,14 @@ axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, axle_
 // MODULES
 /////////////////////////////////////
 
-module axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, axle_radius=axle_radius, center_radius=center_radius) {
+module axle(material, large_nozzle, cut_line, l, axle_radius, center_radius) {
+    
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(l!=undef);
+    assert(axle_radius!=undef);
+    assert(center_radius!=undef);
 
     axle_length = block_width(l);
 
@@ -69,7 +76,7 @@ module axle(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l
             }
 
             translate([-axle_radius, -axle_radius, 0]) {
-                cut_space(material=material, large_nozzle=large_nozzle, l=2, cut_line=cut_line, h=l, block_height=block_height, knob_height=knob_height);
+                cut_space(material=material, large_nozzle=large_nozzle, l=l, w=1, cut_line=cut_line, h=l, block_height=_block_height, knob_height=_knob_height);
             }
         }
     }

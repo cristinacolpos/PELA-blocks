@@ -22,44 +22,48 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <PELA-technic-pin.scad>
 
-/* [Technic Pin Array] */
+
+
+/* [Render] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
+
+
+/* [Technic Pin] */
 
 // An axle which fits loosely in a technic bearing hole
-axle_radius = 2.2; // [0.1:0.1:4]
+_axle_radius = 2.2; // [0.1:0.1:4]
 
 // Size of the hollow inside a pin
-pin_center_radius=axle_radius/3;
+_pin_center_radius= 0.7; // [0:0.1:4]
 
 // Size of the connector lock-in bump at the ends of a Pin
-pin_tip_length = 0.7; // [0.1:0.1:4]
+_pin_tip_length = 0.7; // [0.1:0.1:4]
 
 // Width of the long vertical flexture slots in the side of a pin
-pin_slot_thickness = 0.4; // [0.1:0.1:4]
-
-counterbore_holder_radius = counterbore_inset_radius - skin;
-
-counterbore_holder_height = counterbore_inset_depth * 2;
+_pin_slot_thickness = 0.4; // [0.1:0.1:4]
 
 
-/* [Technic Pin Array Options] */
+/* [Technic Pin Array] */
 
-array_count = 2; // The number of half-pins in an array supported by as base
+// The number of half-pins in an array supported by as base
+_array_count = 2; // [1:1:20]
 
-base_thickness = panel_height(block_height=block_height); // The thickness of the base below an array of half-pins
+ // The thickness of the base below an array of half-pins
+ _base_thickness = 4; // [0:0.1:20]
 
-array_spacing = block_width();
+// Distance between pins
+_array_spacing = 8;
 
 // Trim the base connecting a pin array to the minimum rounded shape
-minimum_base = true;
+_minimum_base = true;
 
 
 
@@ -67,4 +71,4 @@ minimum_base = true;
 // DISPLAY
 ///////////////////////////////
 
-pin_array(material=material, large_nozzle=large_nozzle, cut_line=cut_line,array_count=array_count, array_spacing=array_spacing, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, minimum_base=minimum_base,counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height, base_thickness=base_thickness, block_height=block_height);
+pin_array(material=_material, large_nozzle=_large_nozzle, array_count=_array_count, array_spacing=_array_spacing, base_thichness=_base_thickness, axle_radius=_axle_radius, pin_center_radius=_pin_center_radius, peg_length=_peg_length, pin_tip_length=_pin_tip_length, minimum_base=_minimum_base, base_thickness=_base_thickness, block_height=_block_height);

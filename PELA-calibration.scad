@@ -37,9 +37,6 @@ _flexible_material = false;
 
 /* [Calibration] */
 
-// Generate a calibration beam (vs a set of individual calibration blocks)
-_calibration_beam = true;
-
 // Number of blocks in the calibration beam
 _beam_length = 9; // [1:1:20]
 
@@ -72,7 +69,7 @@ _calibration_increment = 0.04;
 /* [Hidden] */
 
 // Depth of text labels on calibration blocks
-_text_depth = 0.4;
+_text_depth = 0.3;
 
 // Inset from block edge for text (vertical and horizontal)
 _vertical_text_margin = 3.8;
@@ -96,18 +93,14 @@ _font_size2 = 3.8 - (_block_height < 9.6 ? 0.5 : 0);
 // DISPLAY
 ///////////////////////////////
 
-if (_calibration_beam) {
-    PELA_calibration_beam(material=_material, large_nozzle=_large_nozzle, beam_length=_beam_length, l=_l, w=_w, h=_h, calibration_increment=_calibration_increment, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, block_height=_block_height, font_size=_font_size, font_size2=_font_size2, horizontal_text_margin=_horizontal_text_margin, vertical_text_margin=_vertical_text_margin, text_depth=_text_depth);
-} else {
-    PELA_calibration_set(material=_material, large_nozzle=_large_nozzle, l=_l, w=_w, h=_h, side_holes=_end_holes, calibration_increment=_calibration_increment, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, block_height=_block_height, horizontal_text_margin=_horizontal_text_margin, font_size=_font_size, font_size2=_font_size2, horizontal_text_margin=_horizontal_text_margin, vertical_text_margin=_vertical_text_margin, text_depth=_text_depth);
-}
+PELA_calibration_beam(material=_material, large_nozzle=_large_nozzle, beam_length=_beam_length, l=_l, w=_w, h=_h, calibration_increment=_calibration_increment, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, block_height=_block_height, font=_font, font_size=_font_size, font_size2=_font_size2, horizontal_text_margin=_horizontal_text_margin, vertical_text_margin=_vertical_text_margin, text_depth=_text_depth);
 
 
 ///////////////////////////////////
 // MODULES
 ///////////////////////////////////
 
-module PELA_calibration_beam(material, large_nozzle, beam_length, l, w, h, calibration_increment, knob_height, knob_vent_radius, block_height, horizontal_text_margin, text_depth, font_size, font_size2, horizontal_text_margin, vertical_text_margin, text_depth) {
+module PELA_calibration_beam(material, large_nozzle, beam_length, l, w, h, calibration_increment, knob_height, knob_vent_radius, block_height, horizontal_text_margin, text_depth, font, font_size, font_size2, horizontal_text_margin, vertical_text_margin, text_depth) {
 
     assert(beam_length > 1, "Beam length must be at least 2");
     assert(material!=undef);
@@ -119,6 +112,7 @@ module PELA_calibration_beam(material, large_nozzle, beam_length, l, w, h, calib
     assert(knob_height!=undef);
     assert(knob_vent_radius!=undef);
     assert(block_height!=undef);
+    assert(font!=undef);
     assert(font_size!=undef);
     assert(font_size2!=undef);
     assert(horizontal_text_margin!=undef);
@@ -135,14 +129,14 @@ module PELA_calibration_beam(material, large_nozzle, beam_length, l, w, h, calib
         
         translate([i*(block_width(l)-side_shell(large_nozzle)), 2*i, 0]) {
 
-            PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_vent_radius=knob_vent_radius, side_holes=2, block_height=block_height, font_size=font_size, font_size2=font_size2, horizontal_text_margin=horizontal_text_margin, vertical_text_margin=vertical_text_margin, text_depth=text_depth);
+            PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, knob_vent_radius=knob_vent_radius, side_holes=2, block_height=block_height, font=font, font_size=font_size, font_size2=font_size2, horizontal_text_margin=horizontal_text_margin, vertical_text_margin=vertical_text_margin, text_depth=text_depth);
         }
     }
 }
 
 
 // A block with the top and bottom connector tweak parameters etched on the side
-module PELA_calibration_block(material, large_nozzle, l, w, h, top_tweak, bottom_tweak, axle_hole_tweak, knob_height, knob_vent_radius, side_holes, block_height, font_size, font_size2, horizontal_text_margin, vertical_text_margin, text_depth) {
+module PELA_calibration_block(material, large_nozzle, l, w, h, top_tweak, bottom_tweak, axle_hole_tweak, knob_height, knob_vent_radius, side_holes, block_height, font, font_size, font_size2, horizontal_text_margin, vertical_text_margin, text_depth) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -156,6 +150,7 @@ module PELA_calibration_block(material, large_nozzle, l, w, h, top_tweak, bottom
     assert(knob_vent_radius!=undef);
     assert(side_holes!=undef);
     assert(block_height!=undef);
+    assert(font!=undef);
     assert(font_size!=undef);
     assert(font_size2!=undef);
     assert(horizontal_text_margin!=undef);
@@ -171,24 +166,24 @@ module PELA_calibration_block(material, large_nozzle, l, w, h, top_tweak, bottom
                 rotate([90 ,0, 0]) {
                     translate([0, -0.5, 0]) {
                         calibration_text(txt=material_name(material), halign="left", 
-                        valign="bottom", font_size=font_size2);
+                        valign="bottom", font=font, font_size=font_size2);
                     }
 
                     translate([0, -0.8, 0]) {
-                        calibration_text(txt=str(top_tweak), halign="left", valign="top", font_size=font_size);
+                        calibration_text(txt=str(top_tweak), halign="left", valign="top", font=font, font_size=font_size);
                     }
                 }
             }
             
-            translate([block_width(w)-skin-horizontal_text_margin, block_width(w)-text_text_depth-skin, skin+vertical_text_margin]) {
+            translate([block_width(w)-_skin-horizontal_text_margin, block_width(w)-text_depth-_skin, _skin+vertical_text_margin]) {
                 
                 rotate([90, 0, 180]) {
                     translate([0, 0.5, 0]) {
-                        calibration_text(txt=str(bottom_tweak), halign="left", valign="bottom", font_size=font_size, text_depth=text_depth);
+                        calibration_text(txt=str(bottom_tweak), halign="left", valign="bottom", font=font, font_size=font_size, text_depth=text_depth);
                     }
 
                     translate([0, 0, 0]) {
-                        calibration_text(txt=material_name(material), halign="left", valign="top", font_size=font_size2, text_depth=text_depth);
+                        calibration_text(txt=material_name(material), halign="left", valign="top", font=font, font_size=font_size2, text_depth=text_depth);
                     }
                 }
             }
@@ -198,7 +193,7 @@ module PELA_calibration_block(material, large_nozzle, l, w, h, top_tweak, bottom
 
 
 // Text for the front side of calibration block prints
-module calibration_text(txt, halign, valign, font_size, text_depth) {
+module calibration_text(txt, halign, valign, font, font_size, text_depth) {
     
     assert(txt!=undef);
     assert(halign!=undef);
@@ -207,47 +202,5 @@ module calibration_text(txt, halign, valign, font_size, text_depth) {
 
     linear_extrude(height=text_depth*2) {        
         text(text=txt, font=font, size=font_size, halign=halign, valign=valign);
-    }
-}
-
-
-module PELA_calibration_set(material, large_nozzle, l, w, h, side_holes, calibration_increment, knob_height, block_height) {
-    
-    assert(material!=undef);
-    assert(large_nozzle!=undef);
-    assert(l!=undef);
-    assert(w!=undef);
-    assert(h!=undef);
-    assert(side_holes!=undef);
-    assert(calibration_increment!=undef);
-    assert(knob_height!=undef);
-    assert(block_height!=undef);
-
-    // Tighter top, looser bottom
-    for (i = [0:5]) {
-        cal = i*calibration_increment;
-        
-        translate([i*block_width(l+0.5), 0, 0]) {
-            PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, side_holes=side_holes, block_height=block_height);
-        }
-    }
-    
-    // Tightest top, loosest bottom
-    for (i = [6:10]) {
-        cal = i*calibration_increment;
-        
-        translate([(i-5)*block_width(l+0.5), -block_width(w+0.5), 0]) {
-
-            PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, side_holes=side_holes, block_height=block_height);
-        }
-    }
-    
-    // Looser top, tighter bottom
-    for (i = [1:5]) {
-        cal = -i*calibration_increment;
-        
-        translate([i*block_width(l+0.5), block_width(w+0.5), 0]) {
-            PELA_calibration_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_tweak=cal, bottom_tweak=cal, axle_hole_tweak=cal, knob_height=knob_height, side_holes=side_holes, block_height=block_height);
-        }
     }
 }

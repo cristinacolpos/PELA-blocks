@@ -26,19 +26,19 @@ use <PELA-technic-axle.scad>
 _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
 
 // Axle length [blocks]
-l = 3; // [1:1:20]
+_l = 3; // [1:1:20]
 
 // Outside radius of an axle which fits loosely in a technic bearing hole [mm]
-axle_radius = 2.2; // [0.1:1:20]
+_axle_radius = 2.2; // [0.1:1:20]
 
 // Size of the axle solid center before rounding [mm]
-center_radius = (1/3)*axle_radius; // [0.1:1:4]
+_center_radius = 0.73; // [0.1:0.01:4]
 
 // Cross axle inside rounding radius [mm]
-axle_rounding = 0.63; // [0.2:0.01:4.0]
+_axle_rounding = 0.63; // [0.2:0.01:4.0]
 
 
 
@@ -47,7 +47,7 @@ axle_rounding = 0.63; // [0.2:0.01:4.0]
 ///////////////////////////////
 
 
-cross_axle(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+cross_axle(material=_material, large_nozzle=_large_nozzle, l=_l, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius);
     
 
 
@@ -57,13 +57,20 @@ cross_axle(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, axle_r
 // MODULES
 /////////////////////////////////////
 
-module cross_axle(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius) {
+module cross_axle(material, large_nozzle, l, axle_rounding, axle_radius, center_radius) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(axle_rounding!=undef);
+    assert(axle_radius!=undef);
+    assert(center_radius!=undef);
 
     axle_length = block_width(l);
 
     rotate([90, 45, 0]) {
         difference() {
-            axle(material=material, large_nozzle=large_nozzle, l=l, axle_radius=axle_radius, center_radius=0);
+            axle(material=material, cut_line=0, large_nozzle=large_nozzle, l=l, axle_radius=axle_radius, center_radius=0);
             
             axle_cross_negative_space(material=material, large_nozzle=large_nozzle, axle_length=axle_length, axle_rounding=axle_rounding, axle_radius=axle_radius);
         }
@@ -72,8 +79,14 @@ module cross_axle(material=material, large_nozzle=large_nozzle, cut_line=0, l=l,
 
 
 // That which is cut away four times from a solid to create a cross axle
-module axle_cross_negative_space(material=material, large_nozzle=large_nozzle, axle_length, axle_rounding=axle_rounding, axle_radius=axle_radius) {
+module axle_cross_negative_space(material, large_nozzle, axle_length, axle_rounding, axle_radius) {
     
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(axle_length!=undef);
+    assert(axle_rounding!=undef);
+    assert(axle_radius!=undef);
+
     for (rot=[0:90:270]) {
         rotate([0, 0, rot]) {
             hull() {
