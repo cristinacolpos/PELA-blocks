@@ -88,7 +88,7 @@ knob_panel(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l
 // MODULES
 ///////////////////////////////////
 
-module knob_panel(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, top_vents=undef, corner_bolt_holes=undef, bolt_hole_radius=undef, knobs=undef, knob_height=undef, sockets=undef, skip_edge_knobs=undef, block_height=undef, knob_vent_radius=undef, skin=undef) {
+module knob_panel(material, large_nozzle, cut_line, l, w, top_vents, corner_bolt_holes, bolt_hole_radius, knobs, knob_height, sockets, skip_edge_knobs, block_height, knob_vent_radius, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
