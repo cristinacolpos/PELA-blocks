@@ -45,10 +45,10 @@ _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
 
-// Length of the sign (PELA knob count)
+// Length of the sign (block count)
 l = 9; // [1:1:20]
 
-// Width of the sign (PELA knob count)
+// Width of the sign (block count)
 w = 1; // [1:1:20]
 
 // Height of the sign (PELA block layers)
