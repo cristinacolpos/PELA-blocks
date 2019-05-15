@@ -20,6 +20,7 @@ Open source design, Powered By Futurice. Come work with the best.
 include <../style.scad>
 include <../material.scad>
 use <../PELA-block.scad>
+use <PELA-technic-cross-axle.scad>
 
 
 /* [Render] */
@@ -34,16 +35,22 @@ _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 _large_nozzle = true;
 
 
-/* [Technic Axle] */
+/* [Technic Cross Axle Hub] */
 
 // Axle length [blocks]
-_l = 3; // [1:1:20]
+_l = 1; // [1:1:20]
 
-// An axle which fits loosely in a technic bearing hole [mm]
-_axle_radius = 2.2; // [0.2:0.1:3.9]
+// The cylinder surrounding the axle hole [mm]
+_hub_radius = 4; // [0.2:0.1:3.9]
 
-// Size of the hollow inside an axle [mm]
-_center_radius = 1.1; // [0.0:0.1:3.8]
+// Outside radius of an axle which fits loosely in a technic bearing hole [mm]
+_axle_radius = 2.2; // [0.1:1:20]
+
+// Size of the axle solid center before rounding [mm]
+_center_radius = 0.73; // [0.1:0.01:4]
+
+// Cross axle inside rounding radius [mm]
+_axle_rounding = 0.63; // [0.2:0.01:4.0]
 
 
 
@@ -51,7 +58,7 @@ _center_radius = 1.1; // [0.0:0.1:3.8]
 // DISPLAY
 ///////////////////////////////
 
-axle(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, axle_radius=_axle_radius, center_radius=_center_radius);
+hub(material=_material, large_nozzle=_large_nozzle, l=_l, hub_radius=_hub_radius, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius);
   
 
 
@@ -60,28 +67,26 @@ axle(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, a
 // MODULES
 /////////////////////////////////////
 
-module axle(material, large_nozzle, cut_line, l, axle_radius, center_radius) {
+module hub(material, large_nozzle, l, hub_radius, axle_rounding=_axle_rounding, axle_radius, center_radius) {
     
+    echo("hub_radius: ", hub_radius);
+
     assert(material!=undef);
     assert(large_nozzle!=undef);
-    assert(cut_line!=undef);
     assert(l!=undef);
+    assert(hub_radius!=undef);
     assert(axle_radius!=undef);
     assert(center_radius!=undef);
 
-    axle_length = block_width(l);
+    axle_length = block_width(l)-2*_skin;
 
     difference() {
-        cylinder(r=axle_radius, h=axle_length);
+        translate([0, 0, _skin]) {
+            cylinder(r=hub_radius, h=axle_length);
+        }
 
-        union() {
-            translate([0, 0, -_defeather]) {
-                cylinder(r=center_radius, h=axle_length + 2*_defeather);
-            }
-
-            translate([-axle_radius, -axle_radius, 0]) {
-                cut_space(material=material, large_nozzle=large_nozzle, l=l, w=1, cut_line=cut_line, h=l, block_height=_block_height, knob_height=_knob_height);
-            }
+        rotate([-90, 0, 0]) {
+            cross_axle(material=material, large_nozzle=large_nozzle, l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
         }
     }
 }
