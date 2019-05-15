@@ -28,109 +28,109 @@ use <../technic-mount/PELA-technic-box.scad>
 /* [Render] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
 
 // Model pieces to render
-render_modules = 0; // [0:top and bottom, 1:top, 2:bottom]
+_render_modules = 0; // [0:top and bottom, 1:top, 2:bottom]
 
 
 /* [Motor Enclosure] */
 
 // Add interior fill for first layer
-solid_first_layer = true;
+_solid_first_layer = true;
 
 // Add interior fill for upper layers
-solid_upper_layers = true;
+_solid_upper_layers = true;
 
 
 /* [Motor Enclosure Size] */
 
 // Length of the motor enclosure [blocks]
-l = 5; // [1:1:20]
+_l = 5; // [1:1:20]
 
 // Width of the motor enclosure [blocks]
-w = 4; // [1:1:20]
+_w = 4; // [1:1:20]
 
 // Height of the bottom part of the motor enclosure (block count, the top part is always 1/3)
-h = 4; // [1:1:20]
+_h = 4; // [1:1:20]
 
 // Distance from length ends of connector twist [blocks]
-twist_l = 1; // [1:18]
+_twist_l = 1; // [1:18]
 
 // Distance from width ends of connector twist [blocks]
-twist_w = 2; // [1:18]
+_twist_w = 2; // [1:18]
 
 // Interior fill style
-center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+_center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
 // Presence of sockets if center is "socket panel"
-center_sockets = true;
+_center_sockets = true;
 
 // Presence of knobs if center is "knob panel"
-center_knobs = true;
+_center_knobs = true;
 
 // Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
-knob_vent_radius = 0.0; // [0.0:0.1:3.9]
+_knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // Text label
-text = "Servo";
+_text = "Servo";
  
 // Depth of text etching into top surface
-text_depth = 0.5; // [0.0:0.1:2]
+_text_depth = 0.5; // [0.0:0.1:2]
 
 
 /* [Motor Options] */
 // Diameter of the rounded part of the motor body (if no rounding, set length as appropriate and this to 1/2 the motor width)
-motor_d = 24 + skin;
+_motor_d = 24.1;
 
 // Shaft-axis ditance of the rounded part of the motor body
-motor_length = 30 + 2*skin;
+_motor_length = 30.2;
 
 // Radius of the motor shaft cutout slot
-motor_shaft_radius = 1.9;
+_motor_shaft_radius = 1.9;
 
 // Heat ventilation holes in the sides
-side_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
+_side_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors]
 
 // Heat ventilation holes in the ends
-end_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors] 
+_end_holes = 2; // [0:disabled, 1:short air vents, 2:short connectors, 3:full width connectors] 
 
 // Heat ventilation holes in the top surface
-top_vents = true;
+_top_vents = true;
 
 // Open the upper surface of the top holder
-top_access = true;
+_top_access = true;
 
 // Motor offset on the X axis
-motor_x = 8; // [0.1:0.1:16]
+_motor_x = 8; // [0.1:0.1:16]
 
 // Motor shaft hole diameter
-shaft_d = 1.5; // [0.1:0.1:4]
+_shaft_d = 1.5; // [0.1:0.1:4]
 
 // Slot diameter for electrial cabling
-electric_d = 5.5; // [0.1:0.1:16]
+_electric_d = 5.5; // [0.1:0.1:16]
 
 // Vertial offset from shaft of two M2.5 mounting holes
-mount_hole_y = 8; // [0.1:0.1:16]
+_mount_hole_y = 8; // [0.1:0.1:16]
 
 // M2.5 mount hole diameter
-mount_hole_d = 2.7; // [0.1:0.1:8]
+_mount_hole_d = 2.7; // [0.1:0.1:8]
 
 
 /* [Hidden] */
 
 // Height of the top part of the motor enclosure (block count, the top part is always 1/3)
-top_h = h/2;
+_top_h = _h/2;
 
-bottom_h = h - top_h;
+_bottom_h = _h - _top_h;
 
-shaft_l = 10;
+_shaft_l = 10;
 
 
 
@@ -138,7 +138,7 @@ shaft_l = 10;
 // DISPLAY
 ///////////////////////////////
 
-motor_enclosure(material=material, large_nozzle=large_nozzle, cut_line=cut_line, render_modules=render_modules, l=l, w=w, h=h, top_h=top_h, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, top_vents=top_vents, knob_vent_radius=knob_vent_radius, side_holes=side_holes, end_holes=end_holes, corner_bolt_holes=corner_bolt_holes);
+motor_enclosure(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, render_modules=_render_modules, l=_l, w=_w, twist_l=_twist_l, twist_w=_twist_w, h=_h, top_h=_top_h, solid_first_layer=_solid_first_layer, solid_upper_layers=_solid_upper_layers, top_vents=_top_vents, knob_vent_radius=_knob_vent_radius, side_holes=_side_holes, end_holes=_end_holes, corner_bolt_holes=_corner_bolt_holes);
 
 ///////////////////////////////////
 // MODULES
@@ -175,7 +175,7 @@ module motor_enclosure_top(material=undef, large_nozzle=undef, cut_line=undef) {
 }
 */
 
-module motor_enclosure(material=undef, large_nozzle=undef, cut_line=undef, render_modules=undef, l=undef, w=undef, h=undef, top_h=undef, solid_first_layer=undef, solid_upper_layers=undef, top_vents=undef, knob_vent_radius=undef, side_holes=undef, end_holes=undef, corner_bolt_holes=undef) {
+module motor_enclosure(material, large_nozzle, cut_line, render_modules, l, w, h, twist_l, twist_w, top_h, solid_first_layer, solid_upper_layers, top_vents, knob_vent_radius, side_holes, end_holes, corner_bolt_holes) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -184,6 +184,8 @@ module motor_enclosure(material=undef, large_nozzle=undef, cut_line=undef, rende
     assert(l!=undef);
     assert(w!=undef);
     assert(h!=undef);
+    assert(twist_l!=undef);
+    assert(twist_w!=undef);
     assert(top_h!=undef);
     assert(solid_first_layer!=undef);
     assert(solid_upper_layers!=undef);
@@ -219,7 +221,7 @@ module motor_enclosure(material=undef, large_nozzle=undef, cut_line=undef, rende
 
 
 // Shape of the motor body
-module motor(material=undef, large_nozzle=undef, w=undef, motor_x=undef, motor_d=undef, motor_length=undef, shaft_d=undef, shaft_l=undef, mount_hole_d=undef, electric_d=undef) {
+module motor(material , large_nozzle , w , motor_x , motor_d , motor_length , shaft_d , shaft_l , mount_hole_d , electric_d ) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

@@ -34,78 +34,81 @@ use <../technic-beam/PELA-technic-twist-beam.scad>
 /* [Render] */
 
 // Show the inside structure [mm]
-cut_line = 0; // [0:1:100]
+_cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-large_nozzle = true;
+_large_nozzle = true;
 
 // Select parts to render
-render_modules = 2; // [0:technic box, 1:technic cover, 2:technic box and cover]
+_render_modules = 2; // [0:technic box, 1:technic cover, 2:technic box and cover]
 
 
 /* [Technic Box] */
 
 // Total length [blocks]
-l = 6; // [2:1:20]
+_l = 6; // [2:1:20]
 
 // Total width [blocks]
-w = 4; // [2:1:20]
+_w = 4; // [2:1:20]
 
 // Distance from length ends of connector twist [blocks]
-twist_l = 1; // [1:18]
+_twist_l = 1; // [1:18]
 
 // Distance from width ends of connector twist [blocks]
-twist_w = 2; // [1:18]
+_twist_w = 2; // [1:18]
 
 // Height of the enclosure [blocks]
-h = 2; // [1:1:20]
+_h = 2; // [1:1:20]
 
 // Interior fill style
-center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+_center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
 // Presence of sockets if center is "socket panel"
-center_sockets = true;
+_center_sockets = true;
 
 // Presence of knobs if center is "knob panel"
-center_knobs = true;
+_center_knobs = true;
+
+// How tall are top connectors [mm]
+_knob_height = 1.8; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 
 // Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
-knob_vent_radius = 0.0; // [0.0:0.1:3.9]
+_knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // Text label
-text = "Box";
+_text = "Box";
  
 // Depth of text etching into top surface
-text_depth = 0.5; // [0.0:0.1:2]
+_text_depth = 0.5; // [0.0:0.1:2]
 
 
 
 /* [Cover] */
 
 // Text label
-cover_text = "Cover";
+_cover_text = "Cover";
 
 // Interior fill style
-cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+_cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
 // Height of the cover [blocks]
-cover_h = 1; // [1:1:20]
+_cover_h = 1; // [1:1:20]
 
 // Presence of sockets if "cover center" is "socket panel"
-cover_sockets = true;
+_cover_sockets = true;
 
 // Presence of knobs if "cover center" is "knob panel"
-cover_knobs = true;
+_cover_knobs = true;
 
 
 
 /* [Hidden] */
 
 // Basic unit vertical size of each block
-block_height = 8; // [8:technic, 9.6:traditional blocks]
+_block_height = 8; // [8:technic, 9.6:traditional blocks]
 
 
 
@@ -113,9 +116,9 @@ block_height = 8; // [8:technic, 9.6:traditional blocks]
 // FUNCTIONS
 ///////////////////////////////////
 
-function first_l(twist_l=undef, l=undef) = min(twist_l, ceil(l/2));
+function first_l(twist_l, l) = min(twist_l, ceil(l/2));
 
-function mid_l(l=undef, l1=undef, l3=undef) = max(0, l - l1 - l3);
+function mid_l(l, l1, l3) = max(0, l - l1 - l3);
 
 
 
@@ -123,7 +126,7 @@ function mid_l(l=undef, l1=undef, l3=undef) = max(0, l - l1 - l3);
 // DISPLAY
 ///////////////////////////////
 
-technic_box_and_cover(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, cover_h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
+technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_modules=_render_modules, cut_line=_cut_line, l=_l, w=_w, h=_h, cover_h=_cover_h, twist_l=_twist_l, twist_w=_twist_w, sockets=_sockets, cover_sockets=_cover_sockets, knobs=_knobs, cover_knobs=_cover_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, solid_first_layer=_solid_first_layer, center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, block_height=_block_height);
 
 
 ///////////////////////////////////
@@ -131,21 +134,52 @@ technic_box_and_cover(material=material, large_nozzle=large_nozzle, cut_line=cut
 ///////////////////////////////////
 
 
-module technic_box_and_cover(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, cover_h=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
+module technic_box_and_cover(material, large_nozzle, cut_line, render_modules, l, w, h, cover_h, twist_l, twist_w, sockets, cover_sockets, cover_knobs, knobs, knob_height, knob_vent_radius, solid_first_layer, center, text, cover_text, text_depth, block_height) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(render_modules!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(h!=undef);
+    assert(cover_h!=undef);
+    assert(twist_l!=undef);
+    assert(twist_w!=undef);
+    assert(sockets!=undef);
+    assert(cover_sockets!=undef);
+    assert(cover_knobs!=undef);
+    assert(knobs!=undef);
+    assert(knob_vent_radius!=undef);
+    assert(solid_first_layer!=undef);
+    assert(center!=undef);
+    assert(text!=undef);
+    assert(cover_text!=undef);
+    assert(text_depth!=undef);
+    assert(block_height!=undef);
 
     if (render_modules != 0) {
         translate([0, -block_width(w + 1), 0]) {
-            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, block_height=block_height);
+            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=center, text=cover_text, text_depth=text_depth, block_height=block_height);
         }
     }
 
     if (render_modules != 1) {
-        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=center, text=text, text_depth=text_depth, block_height=block_height);
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=center, text=text, text_depth=text_depth, block_height=block_height);
     }
 }
 
-module technic_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, twist_l=undef, twist_w=undef, sockets=undef, knobs=undef, knob_vent_radius=undef, solid_first_layer=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
+module technic_box(material, large_nozzle, cut_line, l, w, h, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, solid_first_layer, center, text, text_depth, block_height) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(h!=undef);
+    assert(sockets!=undef);
+    assert(knobs!=undef);
+    assert(knob_height!=undef);
+    assert(knob_vent_radius!=undef);
+    assert(solid_first_layer!=undef);
     assert(w >= 2);
     assert(twist_w > 0);
     assert(twist_l > 0);
@@ -158,7 +192,7 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, 
 
     difference() {
         union() {
-            technic_only_box(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, center=center, text=text, text_depth=text_depth, block_height=block_height);
+            technic_only_box(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, knob_height=knob_height, center=center, text=text, text_depth=text_depth, block_height=block_height);
             
             lc = l - 2;
             wc = w - 2;
@@ -181,7 +215,7 @@ module technic_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, 
 }
 
 
-module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, twist_l=undef, twist_w=undef, center=undef, text=undef, text_depth=undef, block_height=undef) {
+module technic_only_box(material, large_nozzle, cut_line, l, w, h, twist_l, twist_w, knob_height, center, text, text_depth, block_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -191,6 +225,7 @@ module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=un
     assert(h!=undef);
     assert(twist_l!=undef);
     assert(twist_w!=undef);
+    assert(knob_height!=undef);
     assert(center!=undef);
     assert(text!=undef);
     assert(text_depth!=undef);
@@ -226,13 +261,20 @@ module technic_only_box(material=undef, large_nozzle=undef, cut_line=undef, l=un
         
         translate([block_width(-0.5), block_width(-0.5), 0]) {
             
-            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, block_height=block_height);
         }
     }
 }
 
 
-module edge_text(l=undef, w=undef, h=undef, text=undef, text_depth=undef) {
+module edge_text(l, w, h, text, text_depth, block_height) {
+
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(h!=undef);
+    assert(text!=undef);
+    assert(text_depth!=undef);
+    assert(block_height!=undef);
 
     translate([block_width((l-1)/2), block_width(w-1), block_height(h, block_height) - text_depth]) {
         font = "Liberation Sans";
@@ -244,8 +286,18 @@ module edge_text(l=undef, w=undef, h=undef, text=undef, text_depth=undef) {
 }
 
 
-module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef, l2=undef, l3=undef, w1=undef, w2=undef, w3=undef, text=undef, text_depth=undef, block_height=undef, etch_top_text=undef, etch_bottom_text=undef, h=undef) {
+module technic_rectangle(material, large_nozzle, l1, l2, l3, w1, w2, w3, text, text_depth, block_height, etch_top_text, etch_bottom_text, h) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l1!=undef);
+    assert(l2!=undef);
+    assert(l3!=undef);
+    assert(w1!=undef);
+    assert(w2!=undef);
+    assert(w3!=undef);
+    assert(text!=undef);
+    assert(text_depth!=undef);
     assert(l1 > 0, "increase first l section to 1");
     assert(l2 >= 0, "increase second l section to 0");
     assert(l3 > 0,"increase third l section to 1");
@@ -262,32 +314,32 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
 
     difference() {
         union() {
-            technic_twist_beam(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
+            technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, left=l1, center=l2, right=l3, h=h, side_holes=2, skin=_skin);
 
             rotate([0, 0, 90]) {
-                technic_twist_beam(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
+                technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, left=w1, center=w2, right=w3, h=h, side_holes=2, skin=_skin);
             }
 
             translate([0, block_width(ww-1), 0]) {
-                technic_twist_beam(material=material, large_nozzle=large_nozzle, left=l1, center=l2, right=l3);
+                technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, left=l1, center=l2, right=l3, h=h, side_holes=2, skin=_skin);
             }
 
             rotate([0, 0, 90]) {
                 translate([0, -block_width(ll-1), 0]) {
-                    technic_twist_beam(material=material, large_nozzle=large_nozzle, left=w1, center=w2, right=w3);
+                    technic_twist_beam(material=material, large_nozzle=large_nozzle, cut_line=0, left=w1, center=w2, right=w3, h=h, side_holes=2, skin=_skin);
                 }
             }
         }
         
         union() {
             if (etch_top_text) {
-                edge_text(l=ll, w=ww, h=1, text=text, text_depth=text_depth);
+                edge_text(l=ll, w=ww, h=1, text=text, text_depth=text_depth, block_height=block_height);
             }
             
             if (etch_bottom_text) {
                 translate([block_width(ll-1), 0, block_height(h, block_height)]) {
                     rotate([180, 0, 180]) {
-                        edge_text(l=ll, w=ww, h=h, text=text, text_depth=text_depth);
+                        edge_text(l=ll, w=ww, h=h, text=text, text_depth=text_depth, block_height=block_height);
                     }
                 }
             }
@@ -296,8 +348,15 @@ module technic_rectangle(material=material, large_nozzle=large_nozzle, l1=undef,
 }
 
 
-module cheese_holes(material=undef, large_nozzle=undef, center=undef, l=undef, w=undef, h=undef, l1=undef, l2=undef, w1=undef, w2=undef) {
+module cheese_holes(material, large_nozzle, center, l, w, h, l1, l2, w1, w2) {
 
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(h!=undef);
+    assert(l1!=undef);
+    assert(l2!=undef);
+    assert(w1!=undef);
+    assert(w2!=undef);
     assert(l >= l1+l2, "l must be at least l1+l2");
     assert(w >= w1+w2, "l must be at least l1+l2");
     assert(center >= 0, "center must be at least 0");
@@ -321,8 +380,16 @@ module cheese_holes(material=undef, large_nozzle=undef, center=undef, l=undef, w
 }
 
 
-module side_cheese_holes(material=undef, large_nozzle=undef, w=undef, l1=undef, l2=undef, h=undef, block_height=block_height) {
+module side_cheese_holes(material, large_nozzle, w, l1, l2, h, block_height) {
     
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(w!=undef);
+    assert(l1!=undef);
+    assert(l2!=undef);
+    assert(h!=undef);
+    assert(block_height!=undef);
+
     for (i = [0:l2-1]) {
         for (j = [0:h-1]) {
             translate([block_width(l1+i), block_width(-0.5), block_height(0.5+j, block_height=block_height)]) {
@@ -335,7 +402,16 @@ module side_cheese_holes(material=undef, large_nozzle=undef, w=undef, l1=undef, 
 }
 
 
-module end_cheese_holes(material=undef, large_nozzle=undef, l=undef, w1=undef, w2=undef, h=undef, block_width=undef, block_height=undef) {
+module end_cheese_holes(material, large_nozzle, l, w1, w2, h, block_width, block_height) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w1!=undef);
+    assert(w2!=undef);
+    assert(h!=undef);
+    assert(block_width!=undef);
+    assert(block_height!=undef);
 
     translate([block_width(l-1), 0, 0]) {
         rotate([0, 0, 90]) {
@@ -345,7 +421,15 @@ module end_cheese_holes(material=undef, large_nozzle=undef, l=undef, w1=undef, w
 }
 
 
-module bottom_cheese_holes(material=undef, large_nozzle=undef, w=undef, l=undef, h=undef, block_width=undef, block_height=undef) {
+module bottom_cheese_holes(material, large_nozzle, w, l, h, block_width, block_height) {
+    
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(w!=undef);
+    assert(l!=undef);
+    assert(h!=undef);
+    assert(block_width!=undef);
+    assert(block_height!=undef);
 
     for (i = [1:l-2]) {
         for (j = [1:w-2]) {
@@ -357,8 +441,16 @@ module bottom_cheese_holes(material=undef, large_nozzle=undef, w=undef, l=undef,
 }
 
 
-module top_cheese_holes(material=undef, large_nozzle=undef, w=undef, l=undef, h=undef, block_width=undef, block_height=undef) {
+module top_cheese_holes(material, large_nozzle, w, l, h, block_width, block_height) {
     
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(w!=undef);
+    assert(l!=undef);
+    assert(h!=undef);
+    assert(block_width!=undef);
+    assert(block_height!=undef);
+
     translate([block_width(0), block_width(w-1), block_height(h, block_height)]) {
         
         rotate([180, 0, 0]) {

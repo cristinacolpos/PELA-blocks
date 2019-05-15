@@ -78,7 +78,7 @@ technic_twist_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut
 // MODULES
 ///////////////////////////////////
 
-module technic_twist_beam(material=undef, large_nozzle=undef, cut_line=undef, left=undef, center=undef, right=undef, h=undef, side_holes=undef, skin=undef) {
+module technic_twist_beam(material, large_nozzle, cut_line, left, center, right, h, side_holes, skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -86,6 +86,9 @@ module technic_twist_beam(material=undef, large_nozzle=undef, cut_line=undef, le
     assert(left > 0, "Left side of twist beam must be at least 1");
     assert(center >= 0, "Center of twist beam must be at least 0");
     assert(right > 0, "Right side of twist beam must be at least 1");
+    assert(h!=undef);
+    assert(side_holes!=undef);
+    assert(skin!=undef);
 
     w=1;
 
@@ -127,7 +130,7 @@ module technic_twist_beam(material=undef, large_nozzle=undef, cut_line=undef, le
 }
 
 
-module square_end_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, side_holes=undef, skin=undef) {
+module square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -148,7 +151,7 @@ module square_end_beam(material=undef, large_nozzle=undef, cut_line=undef, l=und
 }
 
 
-module right_square_end_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, side_holes=undef, skin=undef) {
+module right_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
