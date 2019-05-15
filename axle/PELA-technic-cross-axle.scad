@@ -20,13 +20,17 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <PELA-technic-axle.scad>
 
-/* [Technic Cross Axle] */
+
+/* [Render] */
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
+
+
+/* [Technic Cross Axle] */
 
 // Axle length [blocks]
 _l = 3; // [1:1:20]
