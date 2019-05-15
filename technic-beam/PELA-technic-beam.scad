@@ -74,7 +74,7 @@ technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line,
 // MODULES
 ///////////////////////////////////
 
-module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, side_holes=undef, skin=undef) {
+module technic_beam(material, large_nozzle, cut_line, l, w, h, side_holes, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -94,7 +94,7 @@ module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef,
                 for (i=[0:1:w]) {
                     translate([0, block_width(i), 0]) {
                         rotate([90, 0, 0]) {
-                            PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l2, w=h, h=1, sockets=false, knobs=false, top_vents=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, side_holes=side_holes, side_sheaths=true, skin=skin, block_height=_block_height);
+                            PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l2, w=h, h=1, sockets=false, knobs=false, knob_height=_knob_height, knob_vent_radius=0, top_vents=false, corner_bolt_holes=false, solid_first_layer=true, end_holes=0, end_sheaths=true, side_holes=2, side_sheaths=true, skin=skin, block_height=_block_height);
                         }
                     }
                 }
@@ -119,7 +119,7 @@ module technic_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef,
 
 
 // The 2D profile of the beam (for rotations and other uses)
-module technic_beam_slice(material=undef, large_nozzle=undef, l=undef, skin=undef) {
+module technic_beam_slice(material, large_nozzle, l, skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -141,7 +141,7 @@ module technic_beam_slice(material=undef, large_nozzle=undef, l=undef, skin=unde
 
 
 // The 2D profile of the negative space of the beam (for rotations and other uses)
-module technic_beam_slice_negative(material=undef, large_nozzle=undef, l=undef, w=undef) {
+module technic_beam_slice_negative(material, large_nozzle, l, w) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

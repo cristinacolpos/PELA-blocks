@@ -41,7 +41,6 @@ _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 _large_nozzle = true;
 
 // Length of the first beam [blocks]
-<<<<<<< HEAD
 _l1 = 2; // [1:20]
 
 // Length of the second beam [blocks]
@@ -55,14 +54,6 @@ _h1 = 1; // [1:1:30]
 
 // Right beam height [blocks]
 _h2 = 1; // [1:1:30]
-=======
-l1 = 2; // [1:1:20]
-
-// Length of the second beam [blocks]
-l2 = 2; // [1:1:20]
-
-h = 1;; // [1:1:20]
->>>>>>> master
 
 // Angle between the two beams
 _angle = 90; // [0:180]
@@ -91,7 +82,7 @@ bent_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1
 // MODULES
 ///////////////////////////////////
 
-module bent_beam(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l2=undef, angle=undef, w=undef, h1=undef, h2=undef, side_holes=undef, skin=undef) {
+module bent_beam(material, large_nozzle, cut_line, l1, l2, angle, w, h1, h2, side_holes, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -139,7 +130,7 @@ module bent_beam(material=undef, large_nozzle=undef, cut_line=undef, l1=undef, l
                 }
             }
 
-#            translate([block_width(-0.5) - cos(angle)*block_width(h2+2), block_width(-0.5), 0]) {
+            translate([block_width(-0.5) - cos(angle)*block_width(h2+2), block_width(-0.5), 0]) {
                 cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l1+l2+h2, cut_line=cut_line, h=max(h1, h2), block_height=_block_height, knob_height=0);
             }
         }

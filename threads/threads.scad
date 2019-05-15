@@ -30,10 +30,10 @@ use <Yet_another_thread_library_for_OpenSCAD/quickthread.scad>
 extrusionNudge = 0.001;
 
 /*
-us_bolt_thread();
+us_bolt_thread(dInch=0.25, hInch=1, tpi=20);
 
 translate([10, 0]) {
-    us_nut_thread();
+    us_nut_thread(dInch=0.25, hInch=1, tpi=20);
 }
 */
 
@@ -41,12 +41,23 @@ translate([10, 0]) {
 // MODULES
 ///////////////////////////////////
 
-module us_bolt_thread(dInch=0.25, hInch=1, tpi=20) {
+module us_bolt_thread(dInch, hInch, tpi) {
+    
+    assert(dInch!=undef);
+    assert(hInch!=undef);
+    assert(tpi!=undef);
+    
     isoThread(dInch=dInch, hInch=hInch, tpi=tpi, internal=false);
 }
 
 
 // Negative space, the part to cutout to make a nut
 module us_nut_thread() {
-    isoThread(dInch=dInch, hInch=hInch, tpi=20, internal=true);
+    
+    assert(dInch!=undef);
+    assert(hInch!=undef);
+    assert(tpi!=undef);
+
+
+    isoThread(dInch, hInch, tpi, internal=true);
 }

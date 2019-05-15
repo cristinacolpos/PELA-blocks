@@ -169,7 +169,7 @@ module right_square_end_beam(material=undef, large_nozzle=undef, cut_line=undef,
 }
 
 
-module left_square_end_beam(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, side_holes=undef, skin=undef) {
+module left_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -187,7 +187,7 @@ module left_square_end_beam(material=undef, large_nozzle=undef, cut_line=undef, 
 }
 
 
-module beam_space(material=material, large_nozzle=large_nozzle, l=undef, w=undef, h=undef, skin=undef) {
+module beam_space(material, large_nozzle, l, w, h, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
