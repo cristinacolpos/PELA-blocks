@@ -81,7 +81,7 @@ technic_angle_connector(material=_material, large_nozzle=_large_nozzle, cut_line
 // MODULES
 ///////////////////////////////////
 
-module technic_angle_connector(material=undef, large_nozzle=undef, cut_line=undef,angle=undef, l=undef, w=undef, h_top=undef, h_bottom=undef, side_holes=undef, skin=undef) {
+module technic_angle_connector(material, large_nozzle, cut_line,angle, l, w, h_top, h_bottom, side_holes, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -124,7 +124,7 @@ module technic_angle_connector(material=undef, large_nozzle=undef, cut_line=unde
 
 
 // theta-degree spacer between the two segments
-module pie_slice(material=undef, large_nozzle=undef, theta=undef, increment=undef, l=undef, w=undef, h=undef, skin=undef) {
+module pie_slice(material, large_nozzle, theta, increment, l, w, h, skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
