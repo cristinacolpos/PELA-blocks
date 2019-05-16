@@ -204,7 +204,7 @@ module thumbscrew_head_hole(material, large_nozzle, block_height, l, w) {
 
     translate([_thumscrew_offset_from_edge, block_width(w/2), -0.5*panel_height(block_height=block_height)+_skin]) {
 
-        cylinder(d=_thumbscrew_border_d, h=panel_height(block_height=_block_height));
+        cylinder(d=_thumbscrew_border_d, h=panel_height(block_height=block_height));
     }
 }
 
