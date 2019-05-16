@@ -22,7 +22,7 @@ Open source design, Powered By Futurice. Come work with the best.
     https://www.futurice.com/
 
 Import this into other design files to set baseline constants:
-    include <threads.scad>
+    use <threads.scad>
 */
 
 use <Yet_another_thread_library_for_OpenSCAD/quickthread.scad>
