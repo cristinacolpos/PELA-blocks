@@ -37,8 +37,12 @@ _cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 _material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
+
+// Select if the top connections should be traditional knobs or technic holes
+_style = 0; // [0:Knobs, 1:Technic]
 
 
 
@@ -97,7 +101,7 @@ _side_sheaths = true;
 // DISPLAY
 ///////////////////////////////
 
-strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, panel_height_ratio=_panel_height_ratio, side_holes=_side_holes, end_holes=_end_holes, sockets=_sockets, knobs=_knobs, corner_bolt_holes=_corner_bolt_holes, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, block_height=_block_height, side_sheaths=_side_sheaths, end_sheaths=_end_sheaths);
+strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, style=_style, l=_l, w=_w, h=_h, panel_height_ratio=_panel_height_ratio, side_holes=_side_holes, end_holes=_end_holes, sockets=_sockets, knobs=_knobs, corner_bolt_holes=_corner_bolt_holes, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, block_height=_block_height, side_sheaths=_side_sheaths, end_sheaths=_end_sheaths);
 
 
 
@@ -105,11 +109,12 @@ strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, 
 // MODULES
 ///////////////////////////////////
 
-module strap_mount(material, large_nozzle, cut_line, l, w, h, panel_height_ratio, side_holes, side_sheaths, end_holes, end_sheaths, sockets, knobs, knob_height, knob_vent_radius, top_vents, corner_bolt_holes, block_height) {
+module strap_mount(material, large_nozzle, cut_line, style, l, w, h, panel_height_ratio, side_holes, side_sheaths, end_holes, end_sheaths, sockets, knobs, knob_height, knob_vent_radius, top_vents, corner_bolt_holes, block_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(cut_line!=undef);
+    assert(style!=undef);
     assert(l!=undef);
     assert(w!=undef);
     assert(h!=undef);
@@ -129,7 +134,25 @@ module strap_mount(material, large_nozzle, cut_line, l, w, h, panel_height_ratio
     difference() {
         union() {
             difference() {
-                PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, corner_bolt_holes=corner_bolt_holes, end_sheaths=end_sheaths, block_height=block_height, side_sheaths=side_sheaths);
+                if (style == 0) {
+                    PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, sockets=sockets, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, corner_bolt_holes=corner_bolt_holes, end_sheaths=end_sheaths, block_height=block_height, side_sheaths=side_sheaths);
+                } else {
+                    intersection() {
+                        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, side_holes=0, end_holes=0, sockets=sockets, knobs=false, knob_height=0, knob_vent_radius=knob_vent_radius, top_vents=top_vents, corner_bolt_holes=corner_bolt_holes, end_sheaths=end_sheaths, block_height=block_width(), side_sheaths=side_sheaths);
+                        
+                        union() {
+                            side_technic_bar(material=material, large_nozzle=large_nozzle, w=w, h=h, sockets=sockets, corner_bolt_holes=corner_bolt_holes, side_holes=side_holes, top_holes=end_holes, end_sheaths=end_sheaths, side_sheaths=side_sheaths);
+                            
+                            translate([block_width(l-1), 0, 0]) {
+                                side_technic_bar(material=material, large_nozzle=large_nozzle, w=w, h=h, sockets=sockets, corner_bolt_holes=corner_bolt_holes, top_holes=end_holes, end_sheaths=end_sheaths, side_holes=side_holes, side_sheaths=side_sheaths);
+                            }
+                            
+                            translate([block_width(), 0, 0]) {
+                                skinned_block(material=material, large_nozzle=large_nozzle, l=l-2, w=w, h=h, ridge_width=0, ridge_depth=0, block_height=_block_height, skin=0);
+                            }
+                        }
+                    }
+                }
 
                 slot(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
             }
@@ -152,6 +175,16 @@ module strap_mount(material, large_nozzle, cut_line, l, w, h, panel_height_ratio
         cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
 
     }
+}
+
+
+module side_technic_bar(material, large_nozzle, w, h, sockets, corner_bolt_holes, end_sheaths, top_holes, side_holes, side_sheaths) {
+    
+    translate([0, 0, block_width(h)]) {
+        rotate([0, 90, 0]) {
+            PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=h, w=w, h=1, side_holes=side_holes, end_holes=top_holes, sockets=sockets, knobs=false, knob_height=0, knob_vent_radius=0, top_vents=false, corner_bolt_holes=corner_bolt_holes, end_sheaths=end_sheaths, block_height=block_width(), side_sheaths=side_sheaths);
+        }
+    }    
 }
 
 
