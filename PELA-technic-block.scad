@@ -471,19 +471,22 @@ module side_connector_hole_set(material, large_nozzle, l, w, hole_type, block_he
     assert(block_height!=undef);
     assert(axle_hole_radius!=undef);
 
-    length = hole_type == 2 ? block_width(w) : block_width(1);
+    length = block_width();
+    count = hole_type==3 ? w : 1;
 
-    if (l == 1) {
-        translate([block_width(0.5) - _defeather, 0, block_height(1, block_height=block_height)-block_width(0.5)]) {
-            rotate([-90, 0, 0]) {
-                axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);
-            }
-        }        
-    } else {
-        for (i = [1:l-1]) {
-            translate([block_width(i), -_defeather, block_height(1, block_height=block_height)-block_width(0.5)]) {
-                rotate([-90, 0, 0]) {
+    for (j = [1:w]) {
+        if (l == 1) {
+            translate([block_width(0.5) - _defeather, block_width(j-1), block_height(1, block_height=block_height)-block_width(0.5)]) {
+                rotate([-90, 0, 0]) {                
                     axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);
+                }
+            }        
+        } else {
+            for (i = [1:l-1]) {
+                translate([block_width(i), block_width(j-1), block_height(1, block_height=block_height)-block_width(0.5)]) {
+                    rotate([-90, 0, 0]) {
+                        axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);
+                    }
                 }
             }
         }
@@ -504,7 +507,7 @@ module rotation_hole(material, large_nozzle, radius, length) {
 
 
 // The rotation and connector hole for a technic connector
-module axle_hole(material, large_nozzle, hole_type, radius, length=_counterbore_inset_depth+_peg_length) {
+module axle_hole(material, large_nozzle, hole_type, radius, length) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
