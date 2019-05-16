@@ -182,7 +182,7 @@ module left_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_hole
     assert(h!=undef);
     assert(skin!=undef);
 
-    translate([block_width(l-1), 0, block_height(1, block_height=_block_height)]) {
+    translate([block_width(l-1), 0, block_width()]) {
         rotate([0, 180, 0]) {
             right_square_end_beam(material=material, large_nozzle=large_nozzle,cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, skin=skin);
         }
