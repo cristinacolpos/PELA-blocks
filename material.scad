@@ -132,16 +132,16 @@ nylon_lm = ["Nylon", true, -0.02, 0.15, 0.06];
 tpu95 = 8; // Polymaker TPU95 and Ultimaker TPU95
 // TPU95, fine nozzle (< 0.5mm) calibration settings
 // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
-tpu95_m = ["TPU95", true, -0.06, -0.02, 0.06];
+tpu95_m = ["TPU95", true, -0.06, -0.02, -0.1];
 // TPU95, large nozzle (>= 0.5mm) calibration settings
-tpu95_lm = ["TPU95", true, -0.06, -0.02, 0.06];
+tpu95_lm = ["TPU95", true, -0.06, -0.02, -0.1];
 
 tpu85 = 9; // Ninjaflex and Innoflex TPU85
 // TPU85, fine nozzle (< 0.5mm) calibration settings
 // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
-tpu85_m = ["TPU85", true, 0.04, -0.02, 0.04];
+tpu85_m = ["TPU85", true, 0.04, -0.08, -0.2];
 // TPU85, large nozzle (>= 0.5mm) calibration settings
-tpu85_lm = ["TPU85", true, 0.04, -0.02, 0.04];
+tpu85_lm = ["TPU85", true, 0.04, -0.06, 0.15];
 
 materials = [pla_m, abs_m, pet_m, bio_silk_m, pro1_m, ngen_m, ngen_flex_m, nylon_m, tpu95_m, tpu85_m];
 large_nozzle_materials = [pla_lm, abs_lm, pet_lm, bio_silk_lm, pro1_lm, ngen_lm, ngen_flex_lm, nylon_lm, tpu95_lm, tpu85_lm];
