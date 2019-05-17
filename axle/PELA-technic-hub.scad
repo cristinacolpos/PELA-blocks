@@ -29,10 +29,10 @@ use <PELA-technic-cross-axle.scad>
 _cut_line = 0; // [0:0.5:5]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-_material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 9; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-_large_nozzle = true;
+_large_nozzle = false;
 
 
 /* [Technic Cross Axle Hub] */
@@ -44,13 +44,13 @@ _l = 1; // [1:1:20]
 _hub_radius = 4; // [0.2:0.1:3.9]
 
 // Outside radius of an axle which fits loosely in a technic bearing hole [mm]
-_axle_radius = 2.2; // [0.1:1:20]
+_axle_radius = 2.3; // [0.1:1:20]
 
 // Size of the axle solid center before rounding [mm]
-_center_radius = 0.73; // [0.1:0.01:4]
+_center_radius = 0.83; // [0.1:0.01:4]
 
 // Cross axle inside rounding radius [mm]
-_axle_rounding = 0.63; // [0.2:0.01:4.0]
+_axle_rounding = 0.73; // [0.2:0.01:4.0]
 
 
 
@@ -78,15 +78,15 @@ module hub(material, large_nozzle, l, hub_radius, axle_rounding=_axle_rounding, 
     assert(axle_radius!=undef);
     assert(center_radius!=undef);
 
-    axle_length = block_width(l)-2*_skin;
+    axle_length = block_width(l);
 
     difference() {
-        translate([0, 0, _skin]) {
-            cylinder(r=hub_radius, h=axle_length);
-        }
+        cylinder(r=hub_radius, h=axle_length-_defeather);
 
-        rotate([-90, 0, 0]) {
-            cross_axle(material=material, large_nozzle=large_nozzle, l=l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+        translate([0, 0, -_defeather]) {
+            rotate([-90, 0, 0]) {
+                cross_axle(material=material, large_nozzle=large_nozzle, l=2*l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+            }
         }
     }
 }

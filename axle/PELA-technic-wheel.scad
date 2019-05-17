@@ -30,22 +30,36 @@ use <PELA-technic-hub.scad>
 _cut_line = 0; // [0:0.5:5]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-_material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 9; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
-_large_nozzle = true;
+_large_nozzle = false;
+
+// Make the wheel, or make a disc plate which can fit on the same hub
+_render_part = 0; // [0:Wheel and hub, 1:Wheel plate]
 
 
-/* [Technic Wheel] */
-
-// The cylinder surrounding the axle hole [mm]
-_wheel_diameter = 55; // [0.2:0.1:200]
-
-// The cylinder surrounding the axle hole [mm]
-_wheel_width = 48; // [0.2:0.1:200]
+/* [Wheel Plate] */
 
 // The cylinder surrounding the axle hole [mm]
-_wheel_thickness = 5; // [0.2:0.1:200]
+_plate_diameter = 52; // [0.2:0.1:200]
+
+// The cylinder surrounding the axle hole [mm]
+_plate_thickness = 1; // [0.1:0.1:200]
+
+
+
+
+/* [Wheel] */
+
+// The cylinder surrounding the axle hole [mm]
+_wheel_diameter = 50; // [0.2:0.1:200]
+
+// The cylinder surrounding the axle hole [mm]
+_wheel_width = 28; // [0.2:0.1:200]
+
+// The cylinder surrounding the axle hole [mm]
+_wheel_thickness = 3; // [0.2:0.1:200]
 
 // The cylinder surrounding the axle hole [mm]
 _spoke_twist = 90; // [0:1:360]
@@ -54,7 +68,7 @@ _spoke_twist = 90; // [0:1:360]
 /* [Technic Hub] */
 
 // Axle length [blocks]
-_l = 3; // [1:1:20]
+_l = 1; // [1:1:20]
 
 // The cylinder surrounding the axle hole [mm]
 _hub_radius = 4; // [0.2:0.1:3.9]
@@ -62,13 +76,13 @@ _hub_radius = 4; // [0.2:0.1:3.9]
 _hub_width = 4; // [0.2:0.1:3.9]
 
 // Outside radius of an axle which fits loosely in a technic bearing hole [mm]
-_axle_radius = 2.2; // [0.1:1:20]
+_axle_radius = 2.3; // [0.1:1:20]
 
 // Size of the axle solid center before rounding [mm]
-_center_radius = 0.73; // [0.1:0.01:4]
+_center_radius = 0.83; // [0.1:0.01:4]
 
 // Cross axle inside rounding radius [mm]
-_axle_rounding = 0.63; // [0.2:0.01:4.0]
+_axle_rounding = 0.73; // [0.2:0.01:4.0]
 
 
 
@@ -76,7 +90,7 @@ _axle_rounding = 0.63; // [0.2:0.01:4.0]
 // DISPLAY
 ///////////////////////////////
 
-wheel_and_hub(material=_material, large_nozzle=_large_nozzle, l=_l, hub_radius=_hub_radius, hub_width=_hub_width, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius, spoke_twist=_spoke_twist, wheel_diameter=_wheel_diameter, wheel_width=_wheel_width, wheel_thickness=_wheel_thickness);
+wheel_and_hub(material=_material, large_nozzle=_large_nozzle, render_part=_render_part, l=_l, hub_radius=_hub_radius, hub_width=_hub_width, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius, spoke_twist=_spoke_twist, wheel_diameter=_wheel_diameter, wheel_width=_wheel_width, wheel_thickness=_wheel_thickness, plate_diameter=_plate_diameter, plate_thickness=_plate_thickness);
   
 
 
@@ -84,27 +98,44 @@ wheel_and_hub(material=_material, large_nozzle=_large_nozzle, l=_l, hub_radius=_
 // MODULES
 /////////////////////////////////////
 
-module wheel_and_hub(material, large_nozzle, l, hub_radius, hub_width, axle_rounding=_axle_rounding, axle_radius, center_radius, spoke_twist, wheel_diameter, wheel_width, wheel_thickness) {
+module wheel_and_hub(material, large_nozzle, render_part, l, hub_radius, hub_width, axle_rounding=_axle_rounding, axle_radius, center_radius, spoke_twist, wheel_diameter, wheel_width, wheel_thickness, plate_diameter, plate_thickness) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(l!=undef);
+    assert(render_part!=undef);
     assert(hub_radius!=undef);
     assert(axle_radius!=undef);
     assert(center_radius!=undef);
     assert(wheel_diameter!=undef);
     assert(wheel_width!=undef);
     assert(wheel_thickness!=undef);
+    assert(plate_diameter!=undef);
+    assert(plate_thickness!=undef);
 
-    difference() {
-        wheel(spoke_twist=spoke_twist, wheel_diameter=wheel_diameter, wheel_width=wheel_width, wheel_thickness=wheel_thickness, hub_width=hub_width, hub_l=l);
+    if (render_part == 0) {
+        difference() {
+            wheel(spoke_twist=spoke_twist, wheel_diameter=wheel_diameter, wheel_width=wheel_width, wheel_thickness=wheel_thickness, hub_width=hub_width, hub_l=l);
 
-        hull() {
-            hub(material=_material, large_nozzle=_large_nozzle, l=_l, hub_radius=_hub_radius, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius);
+            union () {
+                hull() {
+                    hub(material=material, large_nozzle=large_nozzle, l=l, hub_radius=hub_radius, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+                }
+                
+                rotate([-90, 0, 0]) {
+                    cross_axle(material=material, large_nozzle=large_nozzle, l=2*l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+                }
+            }
+        }
+    } else {
+        difference() {
+            cylinder(d=plate_diameter, h=plate_thickness, $fn=256);
+            
+            cylinder(r=hub_radius, h=plate_thickness*2);
         }
     }
 
-    hub(material=_material, large_nozzle=_large_nozzle, l=_l, hub_radius=_hub_radius, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius);
+    hub(material=material, large_nozzle=large_nozzle, l=l, hub_radius=hub_radius, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
 }
 
 
@@ -135,7 +166,7 @@ module wheel(spoke_twist, wheel_diameter, wheel_width, wheel_thickness, hub_widt
 
 module spoke_set(spoke_count, spoke_twist, spoke_diameter, spoke_width, wheel_width, hub_width, hub_l) {
 
-    count = 512;
+    count = 256;
     increment = 360/spoke_count;
 
     for (spoke_angle=[0:increment:360-increment]) {
