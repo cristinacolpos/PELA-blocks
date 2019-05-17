@@ -1,0 +1,30 @@
+{
+    "parameterSets": {
+        "Jee": {
+            "block_height": "8",
+            "center": "0",
+            "center_knobs": "true",
+            "center_sockets": "true",
+            "cover_center": "4",
+            "cover_h": "1",
+            "cover_knobs": "true",
+            "cover_sockets": "true",
+            "cover_text": "Jee!",
+            "cut_line": "0",
+            "h": "1",
+            "knob_vent_radius": "0",
+            "l": "14",
+            "large_nozzle": "true",
+            "material": "5",
+            "render_modules": "0",
+            "text": "B",
+            "text_depth": "0.5",
+            "twist_l": "6",
+            "twist_w": "2",
+            "w": "5"
+        }
+    },
+    "fileFormatVersion": "1",
+    "parameterSets": "",
+    "parameterSets": ""
+}
