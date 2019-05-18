@@ -391,7 +391,7 @@ module side_cheese_holes(material, large_nozzle, w, l1, l2, h, block_height) {
 }
 
 
-module end_cheese_holes(material, large_nozzle, l, w1, w2, h, block_width, block_height) {
+module end_cheese_holes(material, large_nozzle, l, w1, w2, h, block_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -399,7 +399,6 @@ module end_cheese_holes(material, large_nozzle, l, w1, w2, h, block_width, block
     assert(w1!=undef);
     assert(w2!=undef);
     assert(h!=undef);
-    assert(block_width!=undef);
     assert(block_height!=undef);
 
     translate([block_width(l-1), 0, 0]) {
