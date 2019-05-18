@@ -139,7 +139,7 @@ right_cutout_height = 8; // [0:0.1:200]
 /* [Front Cut] */
 
 // Distance of the left of front side hole [mm]
-front_cutout_x = 8; // [0:0.1:200]
+front_cutout_x = -4; // [-4:0.1:200]
 
 // Width of the front side hole [mm]
 front_cutout_width = 104; // [0:0.1:200]
