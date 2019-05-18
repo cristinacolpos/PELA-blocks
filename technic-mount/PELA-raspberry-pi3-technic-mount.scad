@@ -280,7 +280,16 @@ module pi3_technic_mount_and_cover(render_modules=undef, material=undef, large_n
             color("green") main_board(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, dome=dome);
 
             ethernet_cutout(material=material, large_nozzle=large_nozzle);
+            
+            camera_cable_cutout();
         }
+    }
+}
+
+
+module camera_cable_cutout() {
+    translate([block_width(-1), block_width(-7.5), 7.4]) {
+        cube([block_width(2), block_width(2), block_width()]);
     }
 }
 
