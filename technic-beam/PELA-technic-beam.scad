@@ -57,10 +57,6 @@ _side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:s
 _skin = 0.1; // [0:0.02:0.5]
 
 
-/* [Hidden] */
-
-_block_height = 8;
-
 
 ///////////////////////////////
 // DISPLAY
