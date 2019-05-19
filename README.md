@@ -268,9 +268,9 @@ ___
 
 ___
 
-[![PELA Servo Motor Enclosure](/motor/PELA-servo-motor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-servo-motor-enclosure.stl)
+[![PELA Round Motor Enclosure](/motor/PELA-round-motor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-round-motor-enclosure.stl)
 
-[PELA Servo Motor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-servo-motor-enclosure.stl) Add a round servo motor holder for 1:10 electric cars
+[PELA Round Motor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-round-motor-enclosure.stl) Add a round round motor holder for 1:10 electric cars
 
 ___
 
