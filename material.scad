@@ -111,9 +111,9 @@ pro1_lm = ["Pro1", false, -0.06, 0.08, 0.04];
 ngen = 5; // NGEN
 // NGEN, fine nozzle (< 0.5mm) calibration settings
 // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
-ngen_m = ["NGEN", false, -0.03, 0.08, 0.07];
+ngen_m = ["NGEN", false, -0.04, 0.08, 0.08];
 // NGEN, large nozzle (>= 0.5mm) calibration settings
-ngen_lm = ["NGEN", false, -0.03, 0.08, 0.07];
+ngen_lm = ["NGEN", false, -0.04, 0.08, 0.08];
 
 ngen_flex = 6; // NGEN Flex
 // NGEN FLEX, fine nozzle (< 0.5mm) calibration settings
