@@ -58,7 +58,7 @@ _style = 1; // [0:Knobs, 1:Technic]
 _l = 5; // [1:1:20]
 
 // Model width [blocks]
-_w = 7; // [1:1:20]
+_w = 6; // [1:1:20]
 
 // Model height [blocks]
 _h = 3; // [1:1:20]
@@ -112,13 +112,13 @@ _motor_length = 30.3;
 _motor_shaft_cutout_d = 3;
 
 // Motor offset on the Y axis
-_motor_y = 40; // [0.1:0.1:200]
+_motor_y = 36.9; // [0.1:0.1:200]
 
 // Motor offset on the Y axis
 _motor_z = 16; // [0.1:0.1:200]
 
 // Motor mount wall thickness
-_motor_wall_thickness = 2;
+_motor_wall_thickness = 4;
 
 // Motor mount hole spacing
 _motor_mount_hole_spacing = 16;
