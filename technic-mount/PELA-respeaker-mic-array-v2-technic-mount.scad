@@ -153,7 +153,7 @@ front_cutout_x = 20; // [0:0.1:200]
 // Width of the front side hole [mm]
 front_cutout_width = 32; // [0:0.1:200]
 
-// Depth of the depth side hole [mm]
+// Depth into the part of the front cut [mm]
 front_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
