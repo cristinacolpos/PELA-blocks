@@ -73,7 +73,7 @@ twist_w = 3; // [1:18]
 innercut = 1;
 
 // Step down from board bottom to give room board components [mm]
-undercut = 7.0; // [0:0.1:100]
+undercut = 3.0; // [0:0.1:100]
 
 // Presence of sockets if center is "socket panel"
 center_sockets = true;
@@ -180,7 +180,7 @@ back_cutout_height = 8; // [0:0.1:200]
 cover_text = "9685";
 
 // Interior fill style
-cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+cover_center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
 
 // Height of the cover [blocks]
 cover_h = 2; // [1:1:20]

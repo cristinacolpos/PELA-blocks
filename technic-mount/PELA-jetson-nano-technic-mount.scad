@@ -50,10 +50,10 @@ large_nozzle = true;
 /* [Jetson Nano] */
 
 // Board space length [mm]
-length = 100.5;
+length = 100.3;
 
 // Board space width [mm]
-width = 79.5;
+width = 79.3;
 
 // Board space thickness [mm]
 thickness = 20;
