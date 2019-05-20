@@ -112,6 +112,9 @@ left_cutout_y = 4; // [0:0.1:200]
 // Width of the left side hole [mm]
 left_cutout_width = 0; // [0:0.1:200]
 
+// Depth of the left side hole [mm]
+left_cutout_depth = 24; // [0:0.1:200]
+
 // Distance from bottom of the left side hole [mm]
 left_cutout_z = 4; // [0:0.1:200]
 
@@ -127,6 +130,9 @@ right_cutout_y = 4; // [0:0.1:200]
 
 // Width of the right side hole [mm]
 right_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the right side hole [mm]
+right_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the right side hole [mm]
 right_cutout_z = 4; // [0:0.1:200]
@@ -144,6 +150,9 @@ front_cutout_x = 4; // [0:0.1:200]
 // Width of the front side hole [mm]
 front_cutout_width = 0; // [0:0.1:200]
 
+// Depth into the part of the front cut [mm]
+front_cutout_depth = 24; // [0:0.1:200]
+
 // Distance from bottom of the front side hole [mm]
 front_cutout_z = 4; // [0:0.1:200]
 
@@ -159,6 +168,9 @@ back_cutout_x = 4; // [0:0.1:200]
 
 // Width of the back side hole [mm]
 back_cutout_width = 0; // [0:0.1:200]
+
+// Depth of the back side hole [mm]
+back_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
 back_cutout_z = 4; // [0:0.1:200]
