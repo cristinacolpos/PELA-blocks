@@ -32,6 +32,7 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../PELA-strap-mount.scad>
+use <../technic-beam/PELA-technic-beam.scad>
 
 
 
@@ -47,9 +48,7 @@ _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
 
-// Select if the top connections should be traditional knobs or technic holes
-_style = 1; // [0:Knobs, 1:Technic]
-
+_render = 1; // [0:Mount, 1:Wall Holder]
 
 
 /* [Strap Mount] */
@@ -109,7 +108,7 @@ _motor_d = 24.3;
 _motor_length = 30.3;
 
 // Width of the motor shaft cutout
-_motor_shaft_cutout_d = 3;
+_motor_shaft_cutout_d = 2;
 
 // Motor offset on the Y axis
 _motor_y = 36.9; // [0.1:0.1:200]
@@ -127,54 +126,139 @@ _motor_mount_hole_spacing = 16;
 _motor_mount_hole_d = 3;
 
 
+/* [Hidden] */
+// Select if the top connections should be traditional knobs or technic holes
+_style = 1; // [0:Knobs, 1:Technic]
+
+
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-difference() {
-    union() {
-        strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, style=_style, l=_l, w=_w, h=_h, panel_height_ratio=_panel_height_ratio, side_holes=_side_holes, end_holes=_end_holes, sockets=_sockets, knobs=_knobs, corner_bolt_holes=_corner_bolt_holes, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, block_height=_block_height, side_sheaths=_side_sheaths, end_sheaths=_end_sheaths);
+if (_render == 0) {
+    motor_mount();
+} else {
+    motor_v_holder();
+}
 
-        color("green") translate([block_width(), 0, panel_height()*_panel_height_ratio])
-            cube([block_width(_l-2), block_width(5), _motor_d/2]);
+module motor_mount() {
+    
+    difference() {
+        union() {
+            strap_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, style=_style, l=_l, w=_w, h=_h, panel_height_ratio=_panel_height_ratio, side_holes=_side_holes, end_holes=_end_holes, sockets=_sockets, knobs=_knobs, corner_bolt_holes=_corner_bolt_holes, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, block_height=_block_height, side_sheaths=_side_sheaths, end_sheaths=_end_sheaths);
 
-        color("yellow") translate([block_width(), _motor_y, 0])
-            cube([block_width(_l-2), _motor_wall_thickness, block_height(_h, _block_height)]);        
+            color("green") motor_back_holder();
+
+            color("yellow") motor_wall();
+        }
+
+        union() {
+            color("pink") translate([0, block_width(_w-2.5), block_height(1-_h, _block_height)])
+                cube([block_width(_l), block_width(_w), block_height(_h, _block_height)]);
+
+            color("white") motor_body_insert_space();
+
+            color("silver") motor_body_back_space();
+
+            color("orange") motor_wall_v_cut();
+
+            color("red") motor_mount_wall_bolt_holes();
+        }
     }
+}
 
-    union() {
-        color("pink") translate([0, block_width(_w-2.5), block_height(1-_h, _block_height)])
-            cube([block_width(_l), block_width(_w), block_height(_h, _block_height)]);
 
-        color("white") translate([block_width(_l/2), _motor_y, _motor_z])
-            rotate([90, 0, 0])
-                hull() {
-                    cylinder(d=_motor_d, h=_motor_length, $fn=128);
-
-                    translate([0, block_height(_h, _block_height), 0])
-                        cylinder(d=_motor_d, h=_motor_length, $fn=128);                    
-                }
-
-        color("silver") translate([block_width(_l/2), _motor_y, _motor_z])
-            rotate([90, 0, 0])
-                cylinder(d=_motor_d*0.9, h=2*_motor_length, $fn=128);
-
-#        color("orange") translate([block_width(_l/2), _motor_y, panel_height()*_panel_height_ratio + _motor_d/2])
+module motor_body_insert_space() {
+    translate([block_width(_l/2), _motor_y, _motor_z])
+        rotate([90, 0, 0])
             hull() {
-                rotate([-90, 0, 0])
-                    cylinder(d=_motor_shaft_cutout_d, h=_motor_wall_thickness);
-                    
-                translate([-_motor_d/2, 0, _motor_d/2 - 4.2])
-                    cube([_motor_d, _motor_wall_thickness, _defeather]);                    
+                cylinder(d=_motor_d, h=_motor_length, $fn=128);
+
+                translate([0, block_height(_h, _block_height), 0])
+                    cylinder(d=_motor_d, h=_motor_length, $fn=128);                    
             }
-        
-        color("red") translate([block_width(_l/2), _motor_y, panel_height()*_panel_height_ratio + _motor_d/2])
+}
+
+module motor_body_back_space() {
+    
+    translate([block_width(_l/2), _motor_y, _motor_z])
+        rotate([90, 0, 0])
+            cylinder(d=_motor_d*0.9, h=2*_motor_length, $fn=128);    
+}
+
+
+module motor_mount_wall_bolt_holes() {
+    
+    translate([block_width(_l/2), _motor_y-_defeather, panel_height()*_panel_height_ratio + _motor_d/2])
             rotate([-90, 0, 0]) {
                 translate([_motor_mount_hole_spacing/2, 0, 0])
                     cylinder(d=_motor_mount_hole_d, h=_motor_length);
 
                 translate([-_motor_mount_hole_spacing/2, 0, 0])
-                    cylinder(d=_motor_mount_hole_d, h=_motor_length);
-            }
+                        cylinder(d=_motor_mount_hole_d, h=_motor_length);
+                }    
+}
+
+
+module motor_back_holder() {
+    
+    translate([block_width(), 0, panel_height()*_panel_height_ratio])
+        cube([block_width(_l-2), block_width(5), _motor_d/2]);
+}
+
+
+module motor_wall() {
+    
+    translate([block_width(), _motor_y, 0])
+        cube([block_width(_l-2), _motor_wall_thickness, block_height(_h, _block_height)]);        
+}
+
+
+module motor_wall_v_cut() {
+    
+    hull() {
+        motor_shaft_cut();
+
+        translate([block_width(_l/2)-_motor_d/2, _motor_y, panel_height()*_panel_height_ratio + _motor_d/2 + block_width()])
+            cube([_motor_d, _motor_wall_thickness, _defeather]);
     }
+}
+
+
+module motor_shaft_cut() {
+    
+    translate([block_width(_l/2), _motor_y, panel_height()*_panel_height_ratio + _motor_d/2])
+        rotate([-90, 0, 0])
+            cylinder(d=_motor_shaft_cutout_d, h=_motor_wall_thickness);
+}
+
+
+module motor_v_holder() {
+    
+    difference() {
+        union() {
+            motor_wall_v_cut();
+
+            translate([block_width(0.5), block_width(_w-2), block_width(_h)])
+                motor_v_holder_end();
+
+            translate([block_width(_l-0.5), block_width(_w-2), block_width(_h)])
+                motor_v_holder_end();
+    
+            translate([block_width(_l/2), _motor_y, panel_height()*_panel_height_ratio + _motor_d/2])
+                hull() {
+
+                    translate([-_motor_d/2, 0, _motor_d/2 - 4.2])
+                        cube([_motor_d, _motor_wall_thickness, block_width()]);                    
+                }
+            }
+            
+            color("blue") motor_shaft_cut();
+        }
+}
+
+
+module motor_v_holder_end() {
+    
+    technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=0, l=1, w=2, h=1, side_holes=_side_holes, skin=0);
 }

@@ -38,7 +38,7 @@ _large_nozzle = false;
 /* [Technic Cross Axle Hub] */
 
 // Axle length [blocks]
-_l = 1; // [1:1:20]
+_hub_l = 1; // [1:1:20]
 
 // The cylinder surrounding the axle hole [mm]
 _hub_radius = 4; // [0.2:0.1:3.9]
@@ -58,7 +58,7 @@ _axle_rounding = 0.73; // [0.2:0.01:4.0]
 // DISPLAY
 ///////////////////////////////
 
-hub(material=_material, large_nozzle=_large_nozzle, l=_l, hub_radius=_hub_radius, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius);
+hub(material=_material, large_nozzle=_large_nozzle, hub_l=_hub_l, hub_radius=_hub_radius, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius);
   
 
 
@@ -67,13 +67,13 @@ hub(material=_material, large_nozzle=_large_nozzle, l=_l, hub_radius=_hub_radius
 // MODULES
 /////////////////////////////////////
 
-module hub(material, large_nozzle, l, hub_radius, axle_rounding=_axle_rounding, axle_radius, center_radius) {
+module hub(material, large_nozzle, hub_l, hub_radius, axle_rounding=_axle_rounding, axle_radius, center_radius) {
     
     echo("hub_radius: ", hub_radius);
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
-    assert(l!=undef);
+    assert(hub_l!=undef);
     assert(hub_radius!=undef);
     assert(axle_radius!=undef);
     assert(center_radius!=undef);
@@ -85,7 +85,7 @@ module hub(material, large_nozzle, l, hub_radius, axle_rounding=_axle_rounding, 
 
         translate([0, 0, -_defeather]) {
             rotate([-90, 0, 0]) {
-                cross_axle(material=material, large_nozzle=large_nozzle, l=2*l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+                cross_axle(material=material, large_nozzle=large_nozzle, l=2*hub_l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
             }
         }
     }
