@@ -57,7 +57,10 @@ _side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:s
 
 
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
-_skin = 0.1; // [0:0.02:0.5]
+_horizontal_skin = 0.1; // [0:0.02:0.5]
+
+// Vertical clearance space between two parts to be placed next to one another on a 8mm grid [mm]
+_vertical_skin = 0.1; // [0:0.02:0.5]
 
 
 /* [Hidden] */
@@ -70,7 +73,7 @@ _block_height = 8; // [8:technic, 9.6:traditional blocks]
 // DISPLAY
 ///////////////////////////////
 
-technic_twist_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, left=_left, center=_center, right=_right, h=_h, side_holes=_side_holes, skin=_skin);
+technic_twist_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, left=_left, center=_center, right=_right, h=_h, side_holes=_side_holes, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
 
 
 
@@ -78,7 +81,7 @@ technic_twist_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut
 // MODULES
 ///////////////////////////////////
 
-module technic_twist_beam(material, large_nozzle, cut_line, left, center, right, h, side_holes, skin) {
+module technic_twist_beam(material, large_nozzle, cut_line, left, center, right, h, side_holes, horizontal_skin, vertical_skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -88,36 +91,37 @@ module technic_twist_beam(material, large_nozzle, cut_line, left, center, right,
     assert(right > 0, "Right side of twist beam must be at least 1");
     assert(h!=undef);
     assert(side_holes!=undef);
-    assert(skin!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
 
     w=1;
 
     if (center == 0) {
-        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=left+right, side_holes=side_holes, w=w, h=h, skin=skin);
+        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=left+right, side_holes=side_holes, w=w, h=h, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
     } else {
         difference() {
             union() {
-                translate([0, 0, block_height(h-1, _block_height)]) {
-                    left_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=left, w=w, h=h, side_holes=side_holes, skin=skin);
+                translate([0, 0, block_height(h-1, _block_height)-2*vertical_skin]) {
+                    left_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=left, w=w, h=h, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
                 }
 
                 translate([block_width(left), 0, 0]) {
-                    intersection() {
-                        translate([block_width(-0.5), block_width(-0.5)+skin, skin]) {
-                            cube([block_width(center), block_width(w)-2*skin, block_height(h, _block_height)-2*skin]);
-                        }
+//                    intersection() {
+//                        translate([block_width(-0.5)+horizontal_skin, block_width(-0.5)+horizontal_skin, 0]) {
+//                            cube([block_width(center), block_width(w)-2*horizontal_skin, block_height(h, _block_height)-2*vertical_skin]);
+//                        }
                         
                         for (i=[0:1:h-1]) {
-                            translate([0, block_width(0.5), block_width(0.5+i)]) {
+                            translate([0, block_width(0.5)-horizontal_skin, block_width(0.5+i)-vertical_skin]) {
                                 rotate([90, 0, 0]) {
-                                    square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=center, w=w, h=1, side_holes=side_holes, skin=0);
+                                    square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=center, w=w, h=1, side_holes=side_holes, horizontal_skin=vertical_skin, vertical_skin=horizontal_skin);
                                 }
                             }
-                        }
+//                        }
                     }
 
                     translate([block_width(center), 0, 0]) {
-                        right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=right, w=w, h=h, side_holes=side_holes, skin=skin);
+                        right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=right, w=w, h=h, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
                     }
                 }
             }
@@ -130,7 +134,7 @@ module technic_twist_beam(material, large_nozzle, cut_line, left, center, right,
 }
 
 
-module square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, skin) {
+module square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -139,19 +143,20 @@ module square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, sk
     assert(w!=undef);
     assert(h!=undef);
     assert(side_holes!=undef);
-    assert(skin!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
 
     intersection() {
         translate([-block_width(1), 0, 0]) {
-            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l+2, w=w, h=h, side_holes=side_holes, skin=skin);
+            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l+2, w=w, h=h, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         }
 
-       beam_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin);
+       beam_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, horizontal_skin=0, vertical_skin=vertical_skin);
     }
 }
 
 
-module right_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, skin) {
+module right_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -160,19 +165,20 @@ module right_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_hol
     assert(w!=undef);
     assert(h!=undef);
     assert(side_holes!=undef);
-    assert(skin!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
 
     intersection() {
         translate([-block_width(1), 0, 0]) {
-            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l+1, w=w, h=h, side_holes=side_holes, skin=skin);
+            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l+1, w=w, h=h, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         }
 
-       beam_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin);
+       beam_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, horizontal_skin=0, vertical_skin=0);
     }
 }
 
 
-module left_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, skin) {
+module left_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -180,25 +186,27 @@ module left_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_hole
     assert(l!=undef);
     assert(w!=undef);
     assert(h!=undef);
-    assert(skin!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
 
     translate([block_width(l-1), 0, block_width()]) {
         rotate([0, 180, 0]) {
-            right_square_end_beam(material=material, large_nozzle=large_nozzle,cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, skin=skin);
+            right_square_end_beam(material=material, large_nozzle=large_nozzle,cut_line=cut_line, l=l, w=w, h=h, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         }
     }
 }
 
 
-module beam_space(material, large_nozzle, l, w, h, skin) {
+module beam_space(material, large_nozzle, l, w, h, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(l!=undef);
     assert(h!=undef);
-    assert(skin!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
 
-    translate([block_width(-0.5), block_width(-0.5)+skin, skin]) {
-        cube([block_width(l), block_width(w)-2*skin, block_width(h)-2*skin]);
+    translate([block_width(-0.5)+horizontal_skin, block_width(-0.5)+horizontal_skin, 0]) {
+        cube([block_width(l)-2*horizontal_skin, block_width(w)-2*horizontal_skin, block_width(h)-2*vertical_skin]);
     }
 }
