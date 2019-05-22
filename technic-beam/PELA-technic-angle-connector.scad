@@ -101,7 +101,7 @@ module technic_angle_connector(material, large_nozzle, cut_line,angle, l, w, h_t
 
     difference() {
         union() {
-            color("green") translate([0, 0, block_height(h_bottom)-2*vertical_skin]) {
+            translate([0, 0, block_height(h_bottom)-2*vertical_skin]) {
                 rotate([angle, 0, 0]) {
                     translate([0, block_width(0.5), 0]) {
                         technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h_top, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
@@ -109,7 +109,7 @@ module technic_angle_connector(material, large_nozzle, cut_line,angle, l, w, h_t
                 }
             }
 
-            color("orange") translate([0, block_width(0.5), 0]) {
+            translate([0, block_width(0.5), 0]) {
                     technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h_bottom, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
             }
 
