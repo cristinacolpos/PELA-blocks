@@ -108,13 +108,13 @@ module bent_beam(material, large_nozzle, cut_line, l1, l2, angle, w, h1, h2, sid
     rotate([90, 0, 0]) {
         difference() {
             union() {
-                color("green") translate([block_width(0.5), 0, 0]) {
+                translate([block_width(0.5), 0, 0]) {
                     right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, w=w, h=h1, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
                 }
 
                 rotate([0, 180-angle, 0]) {
                     translate([block_width(0.5), 0, block_height(-1, _block_height)]) {
-                        color("orange") translate([0, 0, block_width(-h2+1)+2*vertical_skin]) {
+                        translate([0, 0, block_width(-h2+1)+2*vertical_skin]) {
                             right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, w=w, h=h2, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
                         }
 
