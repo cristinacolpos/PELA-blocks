@@ -64,8 +64,12 @@ _angle = 90; // [0:180]
 // Add full width through holes spaced along the length for techic connectors
 _side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
+
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
-_skin = 0.1; // [0:0.02:0.5]
+_horizontal_skin = 0.1; // [0:0.02:0.5]
+
+// Vertical clearance space between two parts to be placed next to one another on a 8mm grid [mm]
+_vertical_skin = 0.1; // [0:0.02:0.5]
 
 
 /* [Hidden] */
@@ -76,7 +80,7 @@ _block_height=8;
 // DISPLAY
 ///////////////////////////////
 
-bent_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1=_l1, l2=_l2, angle=_angle, w=_w, h1=_h1, h2=_h2, side_holes=_side_holes, skin=_skin);
+bent_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1=_l1, l2=_l2, angle=_angle, w=_w, h1=_h1, h2=_h2, side_holes=_side_holes, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
 
 
 
@@ -85,7 +89,7 @@ bent_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1
 // MODULES
 ///////////////////////////////////
 
-module bent_beam(material, large_nozzle, cut_line, l1, l2, angle, w, h1, h2, side_holes, skin) {
+module bent_beam(material, large_nozzle, cut_line, l1, l2, angle, w, h1, h2, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -98,31 +102,32 @@ module bent_beam(material, large_nozzle, cut_line, l1, l2, angle, w, h1, h2, sid
     assert(h1!=undef);
     assert(h2!=undef);
     assert(side_holes!=undef);
-    assert(skin!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
     
     rotate([90, 0, 0]) {
         difference() {
             union() {
-                translate([block_width(0.5), 0, -skin]) {
-                    right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, w=w, h=h1, side_holes=side_holes, skin=skin);
+                color("green") translate([block_width(0.5), 0, 0]) {
+                    right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, w=w, h=h1, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
                 }
 
                 rotate([0, 180-angle, 0]) {
                     translate([block_width(0.5), 0, block_height(-1, _block_height)]) {
-                        translate([0, 0, block_width(-h2+1)+skin]) {
-                            right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, w=w, h=h2, side_holes=side_holes, skin=skin);
+                        color("orange") translate([0, 0, block_width(-h2+1)+2*vertical_skin]) {
+                            right_square_end_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, w=w, h=h2, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
                         }
 
-                        if (angle < 180) translate([block_width(-0.5), skin,  block_width(1)]) {
+                        if (angle < 180) translate([block_width(-0.5), horizontal_skin,  block_width(1)]) {
                             increment = 1;
                             for (n = [0:increment:angle]) {
                                 rotate([0, 90+n, 0]) {
                                     hull() {
                                         translate([0, block_width(-0.5), 0]) {
-                                            cube([block_width(1)-2*skin, block_width(w)-2*skin, _defeather]);
+                                            cube([block_width(1)-2*vertical_skin, block_width(w)-2*horizontal_skin, _defeather]);
 
                                             rotate([0, increment, 0]) {
-                                                cube([block_width(1)-2*skin, block_width(w)-2*skin, _defeather]);
+                                                cube([block_width(1)-2*vertical_skin, block_width(w)-2*horizontal_skin, _defeather]);
                                             }
                                         }
                                     }

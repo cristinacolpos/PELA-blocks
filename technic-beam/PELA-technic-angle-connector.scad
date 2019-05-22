@@ -61,7 +61,10 @@ _h_bottom = 1; // [1:1:30]
 _side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
-_skin = 0.1; // [0:0.02:0.5]
+_horizontal_skin = 0.1; // [0:0.02:0.5]
+
+// Vertical clearance space between two parts to be placed next to one another on a 8mm grid [mm]
+_vertical_skin = 0.1; // [0:0.02:0.5]
 
 
 /* [Hidden] */
@@ -73,7 +76,7 @@ _block_height = 8;
 // DISPLAY
 ///////////////////////////////
 
-technic_angle_connector(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, angle=_angle, l=_l, w=_w, h_top=_h_top, h_bottom=_h_bottom, side_holes=_side_holes, skin=_skin);
+technic_angle_connector(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, angle=_angle, l=_l, w=_w, h_top=_h_top, h_bottom=_h_bottom, side_holes=_side_holes, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
 
 
 
@@ -81,7 +84,7 @@ technic_angle_connector(material=_material, large_nozzle=_large_nozzle, cut_line
 // MODULES
 ///////////////////////////////////
 
-module technic_angle_connector(material, large_nozzle, cut_line,angle, l, w, h_top, h_bottom, side_holes, skin) {
+module technic_angle_connector(material, large_nozzle, cut_line,angle, l, w, h_top, h_bottom, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -93,25 +96,28 @@ module technic_angle_connector(material, large_nozzle, cut_line,angle, l, w, h_t
     assert(h_top!=undef);
     assert(h_bottom!=undef);
     assert(side_holes!=undef);
-    assert(skin!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
 
     difference() {
         union() {
-            translate([0, 0, block_height(h_bottom)]) {
+            color("green") translate([0, 0, block_height(h_bottom)-2*vertical_skin]) {
                 rotate([angle, 0, 0]) {
-                    translate([0, block_width(0.5), -skin]) {
-                        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h_top, side_holes=side_holes, skin=skin);
+                    translate([0, block_width(0.5), 0]) {
+                        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h_top, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
                     }
                 }
             }
 
-            translate([0, block_width(0.5), skin]) {
-                    technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h_bottom, side_holes=side_holes, skin=skin);
+            color("orange") translate([0, block_width(0.5), 0]) {
+                    technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h_bottom, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
             }
 
             increment = 1;
             for (theta = [0 : increment : angle]) {
-                pie_slice(material=material, large_nozzle=large_nozzle, theta=theta, increment=increment, l=l, w=w, h=h_bottom, skin=skin);
+                translate([0, 0, -2*vertical_skin]) {
+                    pie_slice(material=material, large_nozzle=large_nozzle, theta=theta, increment=increment, l=l, w=w, h=h_bottom, horizontal_skin=horizontal_skin);
+                }
             }
         }
 
@@ -124,7 +130,7 @@ module technic_angle_connector(material, large_nozzle, cut_line,angle, l, w, h_t
 
 
 // theta-degree spacer between the two segments
-module pie_slice(material, large_nozzle, theta, increment, l, w, h, skin) {
+module pie_slice(material, large_nozzle, theta, increment, l, w, h, horizontal_skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -133,16 +139,16 @@ module pie_slice(material, large_nozzle, theta, increment, l, w, h, skin) {
     assert(l!=undef);
     assert(w!=undef);
     assert(h!=undef);
-    assert(skin!=undef);
+    assert(horizontal_skin!=undef);
     
     translate([0, 0, block_width(h)]) {
         rotate([theta, 0 , 0]) {
             difference() {
                 hull() {
-                    technic_beam_slice(material=material, large_nozzle=large_nozzle, l=l, skin=skin);
+                    technic_beam_slice(material=material, large_nozzle=large_nozzle, l=l, horizontal_skin=horizontal_skin);
 
                     rotate([increment, 0, 0]) {
-                        technic_beam_slice(material=material, large_nozzle=large_nozzle, l=l, skin=skin);
+                        technic_beam_slice(material=material, large_nozzle=large_nozzle, l=l, horizontal_skin=horizontal_skin);
                     }
                 }
 
