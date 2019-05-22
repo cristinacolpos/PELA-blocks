@@ -48,7 +48,7 @@ _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
 
-_render = 1; // [0:Mount, 1:Wall Holder]
+_render = 0; // [0:Mount, 1:Wall Holder]
 
 
 /* [Strap Mount] */
@@ -102,13 +102,13 @@ _knob_vent_radius = 0; // [0.0:0.1:3.9]
 
 /* [Motor Options] */
 // Diameter of the hole for the rounded part of the motor body (if no rounding, set length as appropriate and this to 1/2 the motor width)
-_motor_d = 24.3;
+_motor_d = 25.4;
 
 // Motor body cutout space length
 _motor_length = 30.3;
 
 // Width of the motor shaft cutout
-_motor_shaft_cutout_d = 2;
+_motor_shaft_cutout_d = 10.2;
 
 // Motor offset on the Y axis
 _motor_y = 36.9; // [0.1:0.1:200]
@@ -189,14 +189,31 @@ module motor_body_back_space() {
 
 module motor_mount_wall_bolt_holes() {
     
-    translate([block_width(_l/2), _motor_y-_defeather, panel_height()*_panel_height_ratio + _motor_d/2])
+    translate([block_width(_l/2), _motor_y-_defeather, panel_height()*_panel_height_ratio + _motor_d/2]) {
             rotate([-90, 0, 0]) {
                 translate([_motor_mount_hole_spacing/2, 0, 0])
                     cylinder(d=_motor_mount_hole_d, h=_motor_length);
 
                 translate([-_motor_mount_hole_spacing/2, 0, 0])
                         cylinder(d=_motor_mount_hole_d, h=_motor_length);
-                }    
+                }
+
+            rotate([-90, 60, 0]) {
+                translate([_motor_mount_hole_spacing/2, 0, 0])
+                    cylinder(d=_motor_mount_hole_d, h=_motor_length);
+
+                translate([-_motor_mount_hole_spacing/2, 0, 0])
+                        cylinder(d=_motor_mount_hole_d, h=_motor_length);
+                }
+
+            rotate([-90, 120, 0]) {
+                translate([_motor_mount_hole_spacing/2, 0, 0])
+                    cylinder(d=_motor_mount_hole_d, h=_motor_length);
+
+                translate([-_motor_mount_hole_spacing/2, 0, 0])
+                        cylinder(d=_motor_mount_hole_d, h=_motor_length);
+                }
+            }
 }
 
 
@@ -248,12 +265,15 @@ module motor_v_holder() {
             translate([block_width(_l/2), _motor_y, panel_height()*_panel_height_ratio + _motor_d/2])
                 hull() {
 
-                    translate([-_motor_d/2, 0, _motor_d/2 - 4.2])
+                    translate([-_motor_d/2, 0, _motor_d/2 - 5.5])
                         cube([_motor_d, _motor_wall_thickness, block_width()]);                    
                 }
             }
             
-            color("blue") motor_shaft_cut();
+            union () {
+                color("blue") motor_shaft_cut();
+                color("red") motor_mount_wall_bolt_holes();
+            }
         }
 }
 
