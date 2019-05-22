@@ -52,13 +52,19 @@ _plate_thickness = 1; // [0.1:0.1:200]
 
 /* [Wheel] */
 
-// The cylinder surrounding the axle hole [mm]
+// Wheel side
+_wheel_side = 1; // [1:Right, -1:Left]
+
+// The wheel outside diameter [mm]
+_spoke_count=8; // [1:1:20]
+
+// The wheel outside diameter [mm]
 _wheel_diameter = 50; // [0.2:0.1:200]
 
-// The cylinder surrounding the axle hole [mm]
-_wheel_width = 28; // [0.2:0.1:200]
+// The wheel tread width [mm]
+_wheel_width = 38; // [0.2:0.1:200]
 
-// The cylinder surrounding the axle hole [mm]
+// The rim thickness [mm]
 _wheel_thickness = 3; // [0.2:0.1:200]
 
 // The cylinder surrounding the axle hole [mm]
@@ -68,7 +74,7 @@ _spoke_twist = 90; // [0:1:360]
 /* [Technic Hub] */
 
 // Axle length [blocks]
-_l = 1; // [1:1:20]
+_hub_l = 2; // [1:1:20]
 
 // The cylinder surrounding the axle hole [mm]
 _hub_radius = 4; // [0.2:0.1:3.9]
@@ -76,13 +82,13 @@ _hub_radius = 4; // [0.2:0.1:3.9]
 _hub_width = 4; // [0.2:0.1:3.9]
 
 // Outside radius of an axle which fits loosely in a technic bearing hole [mm]
-_axle_radius = 2.3; // [0.1:1:20]
+_axle_radius = 2.2; // [0.1:1:20]
 
 // Size of the axle solid center before rounding [mm]
-_center_radius = 0.83; // [0.1:0.01:4]
+_center_radius = 0.73; // [0.1:0.01:4]
 
 // Cross axle inside rounding radius [mm]
-_axle_rounding = 0.73; // [0.2:0.01:4.0]
+_axle_rounding = 0.63; // [0.2:0.01:4.0]
 
 
 
@@ -90,7 +96,7 @@ _axle_rounding = 0.73; // [0.2:0.01:4.0]
 // DISPLAY
 ///////////////////////////////
 
-wheel_and_hub(material=_material, large_nozzle=_large_nozzle, render_part=_render_part, l=_l, hub_radius=_hub_radius, hub_width=_hub_width, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius, spoke_twist=_spoke_twist, wheel_diameter=_wheel_diameter, wheel_width=_wheel_width, wheel_thickness=_wheel_thickness, plate_diameter=_plate_diameter, plate_thickness=_plate_thickness);
+wheel_and_hub(material=_material, large_nozzle=_large_nozzle, render_part=_render_part, hub_l=_hub_l, hub_radius=_hub_radius, hub_width=_hub_width, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius, wheel_side=_wheel_side, spoke_count=_spoke_count, spoke_twist=_spoke_twist, wheel_diameter=_wheel_diameter, wheel_width=_wheel_width, wheel_thickness=_wheel_thickness, plate_diameter=_plate_diameter, plate_thickness=_plate_thickness);
   
 
 
@@ -98,15 +104,17 @@ wheel_and_hub(material=_material, large_nozzle=_large_nozzle, render_part=_rende
 // MODULES
 /////////////////////////////////////
 
-module wheel_and_hub(material, large_nozzle, render_part, l, hub_radius, hub_width, axle_rounding=_axle_rounding, axle_radius, center_radius, spoke_twist, wheel_diameter, wheel_width, wheel_thickness, plate_diameter, plate_thickness) {
+module wheel_and_hub(material, large_nozzle, render_part, hub_l, hub_radius, hub_width, axle_rounding, axle_radius, center_radius, wheel_side, spoke_twist, wheel_side, spoke_count, wheel_diameter, wheel_width, wheel_thickness, plate_diameter, plate_thickness) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
-    assert(l!=undef);
+    assert(hub_l!=undef);
     assert(render_part!=undef);
     assert(hub_radius!=undef);
     assert(axle_radius!=undef);
     assert(center_radius!=undef);
+    assert(wheel_side!=undef);
+    assert(spoke_count!=undef);
     assert(wheel_diameter!=undef);
     assert(wheel_width!=undef);
     assert(wheel_thickness!=undef);
@@ -115,15 +123,15 @@ module wheel_and_hub(material, large_nozzle, render_part, l, hub_radius, hub_wid
 
     if (render_part == 0) {
         difference() {
-            wheel(spoke_twist=spoke_twist, wheel_diameter=wheel_diameter, wheel_width=wheel_width, wheel_thickness=wheel_thickness, hub_width=hub_width, hub_l=l);
+            wheel(wheel_side=wheel_side, spoke_count=spoke_count, spoke_twist=spoke_twist, wheel_diameter=wheel_diameter, wheel_width=wheel_width, wheel_thickness=wheel_thickness, hub_width=hub_width, hub_l=hub_l);
 
             union () {
                 hull() {
-                    hub(material=material, large_nozzle=large_nozzle, l=l, hub_radius=hub_radius, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+                    hub(material=material, large_nozzle=large_nozzle, hub_l=hub_l, hub_radius=hub_radius, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
                 }
                 
                 rotate([-90, 0, 0]) {
-                    cross_axle(material=material, large_nozzle=large_nozzle, l=2*l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+                    cross_axle(material=material, large_nozzle=large_nozzle, l=2*hub_l, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
                 }
             }
         }
@@ -135,12 +143,14 @@ module wheel_and_hub(material, large_nozzle, render_part, l, hub_radius, hub_wid
         }
     }
 
-    hub(material=material, large_nozzle=large_nozzle, l=l, hub_radius=hub_radius, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
+    hub(material=material, large_nozzle=large_nozzle, hub_l=hub_l, hub_radius=hub_radius, axle_rounding=axle_rounding, axle_radius=axle_radius, center_radius=center_radius);
 }
 
 
-module wheel(spoke_twist, wheel_diameter, wheel_width, wheel_thickness, hub_width, hub_l) {
+module wheel(wheel_side, spoke_count, spoke_twist, wheel_diameter, wheel_width, wheel_thickness, hub_width, hub_l) {
 
+    assert(wheel_side!=undef);
+    assert(spoke_count!=undef);
     assert(wheel_diameter!=undef);
     assert(wheel_width!=undef);
     assert(wheel_thickness!=undef);
@@ -158,25 +168,33 @@ module wheel(spoke_twist, wheel_diameter, wheel_width, wheel_thickness, hub_widt
         }
     }
 
-    spoke_count=5;
-
-    spoke_set(spoke_count, spoke_twist=spoke_twist, spoke_diameter=spoke_diameter, spoke_width=spoke_width, wheel_width=wheel_width, hub_width=hub_width, hub_l=hub_l);
+    spoke_set(wheel_side, spoke_count, spoke_twist=spoke_twist, spoke_diameter=spoke_diameter, spoke_width=spoke_width, wheel_width=wheel_width, hub_width=hub_width, hub_l=hub_l);
 }
 
 
-module spoke_set(spoke_count, spoke_twist, spoke_diameter, spoke_width, wheel_width, hub_width, hub_l) {
+module spoke_set(wheel_side, spoke_count, spoke_twist, spoke_diameter, spoke_width, wheel_width, hub_width, hub_l) {
+
+    assert(wheel_side!=undef);
+    assert(spoke_count!=undef);
+    assert(spoke_twist!=undef);
+    assert(spoke_diameter!=undef);
+    assert(spoke_width!=undef);
+    assert(wheel_width!=undef);
+    assert(hub_width!=undef);
+    assert(hub_l!=undef);
 
     count = 256;
     increment = 360/spoke_count;
 
     for (spoke_angle=[0:increment:360-increment]) {
-        spoke(count=count, spoke_angle=spoke_angle, spoke_twist=spoke_twist, spoke_diameter=spoke_diameter, spoke_width=spoke_width, wheel_width=wheel_width, hub_width=hub_width, hub_l=hub_l);
+        spoke(wheel_side=wheel_side, count=count, spoke_angle=spoke_angle, spoke_twist=spoke_twist, spoke_diameter=spoke_diameter, spoke_width=spoke_width, wheel_width=wheel_width, hub_width=hub_width, hub_l=hub_l);
     }
 }
 
 
-module spoke(count, spoke_angle, spoke_twist, spoke_diameter, spoke_width, wheel_width, hub_width, hub_l) {
+module spoke(wheel_side, count, spoke_angle, spoke_twist, spoke_diameter, spoke_width, wheel_width, hub_width, hub_l) {
 
+    assert(wheel_side!=undef);
     assert(count!=undef);
     assert(spoke_angle!=undef);
     assert(spoke_twist!=undef);
@@ -191,7 +209,7 @@ module spoke(count, spoke_angle, spoke_twist, spoke_diameter, spoke_width, wheel
     height_increment = (wheel_width-block_width(hub_l))/count;
 
     for (i=[0:count-1]) {
-        angle = spoke_angle + spoke_increment*i;
+        angle = spoke_angle + spoke_increment*i*wheel_side;
         x = diameter_increment*i;
         width = block_width(hub_l) + height_increment*i;
         rotate([0, 0, angle]) {

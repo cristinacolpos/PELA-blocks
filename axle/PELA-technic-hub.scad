@@ -78,7 +78,7 @@ module hub(material, large_nozzle, hub_l, hub_radius, axle_rounding=_axle_roundi
     assert(axle_radius!=undef);
     assert(center_radius!=undef);
 
-    axle_length = block_width(l);
+    axle_length = block_width(hub_l);
 
     difference() {
         cylinder(r=hub_radius, h=axle_length-_defeather);
