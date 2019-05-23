@@ -5,7 +5,7 @@
 
 ![ESP8266 d1 miniPro PELA Blocks enclosure](images/d1-miniPro-pela-blocks-enclosure.jpg)
 
-We measured the length, width and thickness of this board and used the customizer graphical interface to create this functional prototype enclosure with snap fit connectors. Now we can rapidly iterate our models in the field. The design took about 5 minutes plus 30 minutes for printing. This model is saved as a drop down preset of the `PELA Technic Mount` model.
+We measured the length, width and thickness of this board. Moving sliders in the customizer graphical interface of the  `PELA Technic Mount` created this functional prototype enclosure with nicely calibrated snap fit connectors. Now we can rapidly iterate our models in the field. 5 minutes plus 30 minutes for printing. This model is saved as a drop down preset of the `PELA Technic Mount` model.
 
 Now you can design models without coding and snap them together!
 
@@ -40,9 +40,7 @@ Test fit the top, bottom and sides to get something which is tight but not too t
 
 ## OpenSCAD Settings
 
-The software needed is also free and open source, [OpenSCAD](https://www.openscad.org/). Newer versions of [OpenSCAD](https://www.openscad.org/)  (currently PR4) make tailoring designs very easy, but you need to enable the Customizer. Enable `Edit | Preferences | Features | Customizer`.
-
-PELA models are quite large. To see them properly, `Edit | Preferences | Advanced | Turn off rendering at _1000000_`. Also turn off `OpenGL 1.0` compatability as that is mostly for very old computers. 
+The software needed is also free and open source, [OpenSCAD](https://www.openscad.org/). After install, `Edit | Preferences | Features | Customizer | Enable`. Also for large models and a fast machine, `Edit | Preferences | Advanced | Turn off rendering at _1000000_` and disable `OpenGL 1.0` compatability. 
 
 You can also configure slicing and printing directly from OpenSCAD. See their website for details.
 
@@ -339,7 +337,7 @@ ___
 [PELA Arduino Mega Knob Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/knob-mount/PELA-aruino-mega-knob-mount.stl) For holding an Arduino Mega within a PELA block
 
 ## FFF Printing Tips
-
+§
 * Use a 0.4mm or smaller nozzle if possible to avoid decimation of some socket details
 * If slicing with Simplify 3D with 0.5mm or larger nozzle, you may want to set Simplify 3D to `Advanced | External Thing Wall Type | Allow single extrusion walls`
 * Be aware that slicers may in some cases not be able to correct OpenSCAD STL export errors. These errors should be visible in layer preview as for example extra excursions back to origin. If this happens, open and clean the STL files first with for example Microsoft 3D Builder, Meshmixer or MeshLab. MeshLab command line examples can be found in `build.ps1`.
