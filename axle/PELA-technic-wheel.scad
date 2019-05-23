@@ -30,7 +30,7 @@ use <PELA-technic-hub.scad>
 _cut_line = 0; // [0:0.5:5]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-_material = 9; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = false;
@@ -53,7 +53,10 @@ _plate_thickness = 1; // [0.1:0.1:200]
 /* [Wheel] */
 
 // Wheel side
-_wheel_side = 1; // [1:Right, -1:Left]
+_wheel_side = -1; // [1:Right, -1:Left]
+
+// The number of facets to approximate a spoke curve
+_count=128; // [1:1:256]
 
 // The wheel outside diameter [mm]
 _spoke_count=8; // [1:1:20]
@@ -96,7 +99,7 @@ _axle_rounding = 0.63; // [0.2:0.01:4.0]
 // DISPLAY
 ///////////////////////////////
 
-wheel_and_hub(material=_material, large_nozzle=_large_nozzle, render_part=_render_part, hub_l=_hub_l, hub_radius=_hub_radius, hub_width=_hub_width, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius, wheel_side=_wheel_side, spoke_count=_spoke_count, spoke_twist=_spoke_twist, wheel_diameter=_wheel_diameter, wheel_width=_wheel_width, wheel_thickness=_wheel_thickness, plate_diameter=_plate_diameter, plate_thickness=_plate_thickness);
+wheel_and_hub(material=_material, large_nozzle=_large_nozzle, render_part=_render_part, hub_l=_hub_l, hub_radius=_hub_radius, hub_width=_hub_width, axle_rounding=_axle_rounding, axle_radius=_axle_radius, center_radius=_center_radius, wheel_side=_wheel_side, count=_count, spoke_count=_spoke_count, spoke_twist=_spoke_twist, wheel_diameter=_wheel_diameter, wheel_width=_wheel_width, wheel_thickness=_wheel_thickness, plate_diameter=_plate_diameter, plate_thickness=_plate_thickness);
   
 
 
@@ -104,7 +107,7 @@ wheel_and_hub(material=_material, large_nozzle=_large_nozzle, render_part=_rende
 // MODULES
 /////////////////////////////////////
 
-module wheel_and_hub(material, large_nozzle, render_part, hub_l, hub_radius, hub_width, axle_rounding, axle_radius, center_radius, wheel_side, spoke_twist, wheel_side, spoke_count, wheel_diameter, wheel_width, wheel_thickness, plate_diameter, plate_thickness) {
+module wheel_and_hub(material, large_nozzle, render_part, hub_l, hub_radius, hub_width, axle_rounding, axle_radius, center_radius, wheel_side, count, spoke_twist, wheel_side, spoke_count, wheel_diameter, wheel_width, wheel_thickness, plate_diameter, plate_thickness) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -114,6 +117,7 @@ module wheel_and_hub(material, large_nozzle, render_part, hub_l, hub_radius, hub
     assert(axle_radius!=undef);
     assert(center_radius!=undef);
     assert(wheel_side!=undef);
+    assert(count!=undef);
     assert(spoke_count!=undef);
     assert(wheel_diameter!=undef);
     assert(wheel_width!=undef);
@@ -123,7 +127,7 @@ module wheel_and_hub(material, large_nozzle, render_part, hub_l, hub_radius, hub
 
     if (render_part == 0) {
         difference() {
-            wheel(wheel_side=wheel_side, spoke_count=spoke_count, spoke_twist=spoke_twist, wheel_diameter=wheel_diameter, wheel_width=wheel_width, wheel_thickness=wheel_thickness, hub_width=hub_width, hub_l=hub_l);
+            wheel(wheel_side=wheel_side, count=count, spoke_count=spoke_count, spoke_twist=spoke_twist, wheel_diameter=wheel_diameter, wheel_width=wheel_width, wheel_thickness=wheel_thickness, hub_width=hub_width, hub_l=hub_l);
 
             union () {
                 hull() {
@@ -147,9 +151,10 @@ module wheel_and_hub(material, large_nozzle, render_part, hub_l, hub_radius, hub
 }
 
 
-module wheel(wheel_side, spoke_count, spoke_twist, wheel_diameter, wheel_width, wheel_thickness, hub_width, hub_l) {
+module wheel(wheel_side, count, spoke_count, spoke_twist, wheel_diameter, wheel_width, wheel_thickness, hub_width, hub_l) {
 
     assert(wheel_side!=undef);
+    assert(count!=undef);
     assert(spoke_count!=undef);
     assert(wheel_diameter!=undef);
     assert(wheel_width!=undef);
@@ -168,12 +173,13 @@ module wheel(wheel_side, spoke_count, spoke_twist, wheel_diameter, wheel_width, 
         }
     }
 
-    spoke_set(wheel_side, spoke_count, spoke_twist=spoke_twist, spoke_diameter=spoke_diameter, spoke_width=spoke_width, wheel_width=wheel_width, hub_width=hub_width, hub_l=hub_l);
+    spoke_set(wheel_side=wheel_side, count=count, spoke_count=spoke_count, spoke_twist=spoke_twist, spoke_diameter=spoke_diameter, spoke_width=spoke_width, wheel_width=wheel_width, hub_width=hub_width, hub_l=hub_l);
 }
 
 
-module spoke_set(wheel_side, spoke_count, spoke_twist, spoke_diameter, spoke_width, wheel_width, hub_width, hub_l) {
+module spoke_set(wheel_side, count, spoke_count, spoke_twist, spoke_diameter, spoke_width, wheel_width, hub_width, hub_l) {
 
+    assert(count!=undef);
     assert(wheel_side!=undef);
     assert(spoke_count!=undef);
     assert(spoke_twist!=undef);
@@ -183,7 +189,6 @@ module spoke_set(wheel_side, spoke_count, spoke_twist, spoke_diameter, spoke_wid
     assert(hub_width!=undef);
     assert(hub_l!=undef);
 
-    count = 256;
     increment = 360/spoke_count;
 
     for (spoke_angle=[0:increment:360-increment]) {
@@ -209,12 +214,23 @@ module spoke(wheel_side, count, spoke_angle, spoke_twist, spoke_diameter, spoke_
     height_increment = (wheel_width-block_width(hub_l))/count;
 
     for (i=[0:count-1]) {
-        angle = spoke_angle + spoke_increment*i*wheel_side;
-        x = diameter_increment*i;
-        width = block_width(hub_l) + height_increment*i;
-        rotate([0, 0, angle]) {
-            translate([x, 0 , _skin+_defeather]) {
-                cube([diameter_increment, spoke_width, width]);
+        j = i+1;
+        angle1 = spoke_angle + spoke_increment*i*wheel_side;
+        angle2 = spoke_angle + spoke_increment*j*wheel_side;
+        x1 = diameter_increment*i;
+        x2 = diameter_increment*j;
+        z1 = block_width(hub_l) + height_increment*i;
+        z2 = block_width(hub_l) + height_increment*j;
+        hull() {
+            rotate([0, 0, angle1]) {
+                translate([x1, 0 , 0]) {
+                    cube([_defeather, spoke_width, z1]);
+                }
+            }
+            rotate([0, 0, angle2]) {
+                translate([x2, 0 , 0]) {
+                    cube([_defeather, spoke_width, z2]);
+                }
             }
         }
     }
