@@ -280,5 +280,5 @@ module motor_v_holder() {
 
 module motor_v_holder_end() {
     
-    technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=0, l=1, w=2, h=1, side_holes=_side_holes, skin=0);
+    technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=0, l=1, w=2, h=1, side_holes=_side_holes, horizontal_skin=0, vertical_skin=0);
 }
