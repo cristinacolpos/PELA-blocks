@@ -130,7 +130,7 @@ top_edge_height = 2;
 dome = true;
 
 // Basic unit vertical size of each block
-block_height = 9.6; // [8:technic, 9.6:traditional blocks]
+block_height = 9.6; // [8:technic, 9.6:traditional knobs]
 
 
 

@@ -56,7 +56,7 @@ _knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 _knob_vent_radius = 0.0; // [0.0:0.1:4]
 
 // Basic unit vertical size of each block
-_block_height = 9.6; // [8:technic, 9.6:traditional blocks]
+_block_height = 9.6; // [8:technic, 9.6:traditional knobs]
 
 // Middle value of the calibration increment range
 _calibration_center = 0.0;

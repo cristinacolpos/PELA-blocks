@@ -49,7 +49,7 @@ _sockets = true;
 _solid_first_layer = false;
 
 // Basic unit vertical size of each block
-_block_height = 8; // [8:technic, 9.6:traditional blocks]
+_block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 
 ///////////////////////////////

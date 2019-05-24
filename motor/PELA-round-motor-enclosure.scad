@@ -124,7 +124,7 @@ _sockets = false;
 _knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 
 // Basic unit vertical size of each block
-_block_height = 8; // [8:technic, 9.6:traditional blocks]
+_block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 // Add holes in the top deck to improve airflow and reduce weight
 _top_vents = false;

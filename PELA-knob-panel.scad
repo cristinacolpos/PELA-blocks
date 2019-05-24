@@ -69,7 +69,7 @@ _sockets = true;
 _skip_edge_knobs = 0; // [0:1:20]
 
 // Basic unit vertical size of each block
-_block_height = 8; // [8:technic, 9.6:traditional blocks]
+_block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid
 _skin = 0.1;

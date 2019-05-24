@@ -58,6 +58,9 @@ _knob_top_thickness = 1.0;
 // Height of traditional connectors [mm] (taller gives a stronger hold)
 _knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 
+// Size of a hole in the top of each knob. Set 0 to disable for best flexture or enable for air circulation/aesthetics/drain resin
+_knob_vent_radius = 0.0; // [0.0:0.1:4]
+
 // Ease insertion by slightly widening the socket entry
 _bevel_socket = true;
 
@@ -87,9 +90,6 @@ _end_sheaths = true;
 // Add holes in the top deck to improve airflow and reduce weight
 _top_vents = false;
 
-// Size of a hole in the top of each knob. Set 0 to disable for best flexture or enable for air circulation/aesthetics/drain resin
-_knob_vent_radius = 0.0; // [0.0:0.1:4]
-
 
 /* [Shell] */
 
@@ -100,7 +100,7 @@ _top_shell = 1;
 /* [Advanced Block] */
 
 // Basic unit vertical size of each block
-_block_height = 8; // [8:technic, 9.6:traditional blocks]
+_block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
 _skin = 0.1; // [0:0.02:0.5]

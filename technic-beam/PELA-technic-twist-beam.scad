@@ -66,7 +66,7 @@ _vertical_skin = 0.1; // [0:0.02:0.5]
 /* [Hidden] */
 
 // Basic unit vertical size of each block
-_block_height = 8; // [8:technic, 9.6:traditional blocks]
+_block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 
 ///////////////////////////////
