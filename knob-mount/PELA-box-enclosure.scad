@@ -51,7 +51,7 @@ _w = 4; // [1:1:20]
 _h = 2; // [1:1:20]
 
 // Basic unit vertical size of each block
-_block_height = 9.6; // [8:technic, 9.6:traditional blocks]
+_block_height = 9.6; // [8:technic, 9.6:traditional knobs]
 
 // Create the left wall
 _left_wall_enabled = true;

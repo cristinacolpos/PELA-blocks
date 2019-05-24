@@ -100,7 +100,7 @@ _knobs = true;
 _knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 
 // Basic unit vertical size of each block
-_block_height = 9.6; // [8:technic, 9.6:traditional blocks]
+_block_height = 9.6; // [8:technic, 9.6:traditional knobs]
 
 // Add interior fill for first layer
 _solid_first_layer = true;

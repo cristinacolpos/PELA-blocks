@@ -75,7 +75,7 @@ _knobs = true;
 _knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 
 // Basic unit vertical size of each block
-_block_height = 9.6; // [8:technic, 9.6:traditional blocks]
+_block_height = 9.6; // [8:technic, 9.6:traditional knobs]
 
 
 /* [Grove Module] */
@@ -168,7 +168,7 @@ module bottom_piece(material, large_nozzle, cut_line, l, w, h, corner_bolt_holes
         union() {
             translate([(block_width(4)-_grove_width)/2, side_shell(large_nozzle), vertical_offset(block_height=block_height, h=h)]) {
                 rotate([0, -90, 270]) {
-                    grove(material=material);
+                    grove();
                 }
             }
 
@@ -228,7 +228,7 @@ module main_top_piece(material, large_nozzle, l, w, h, corner_bolt_holes, knobs,
         union() {
             translate([(block_width(l)-_grove_width)/2, 1.2, block_height(-h, block_height=block_height)+vertical_offset(block_height=block_height, h=h)]) {
                 rotate([0,-90,270]) {
-                    grove(material=material);
+                    grove();
                 }
             }
             
