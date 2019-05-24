@@ -77,6 +77,43 @@ _side_holes = 3; // [0:disabled, 1:short air vents, 2:short connectors, 3:full w
 // Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
 _side_sheaths = true;
 
+
+// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
+_corner_bolt_holes = false;
+
+
+
+/* [Motor Options] */
+// Diameter of the hole for the rounded part of the motor body (if no rounding, set length as appropriate and this to 1/2 the motor width) [mm]
+_motor_d = 24; // [0.0:0.1:200]
+
+// Motor body cutout space length [mm]
+_motor_length = 30.3; // [0.0:0.1:200]
+
+// Width of the motor shaft cutout [mm]
+_motor_shaft_cutout_d = 10.2; // [0.0:0.1:200]
+
+// Motor offset on the Y axis [mm]
+_motor_y = 36.9; // [0.1:0.1:200]
+
+// Motor offset on the Y axis [mm]
+_motor_z = 12; // [0.1:0.1:200]
+
+// Motor mount wall thickness [mm]
+_motor_wall_thickness = 4; // [0.0:0.1:200]
+
+// Motor mount hole spacing
+_motor_mount_hole_spacing = 16; // [0.0:0.1:200]
+
+// Diameter of the motor mount holes
+_motor_mount_hole_d = 3; // [0.0:0.1:20]
+
+_bolt_hole_angle = 0;  // [0:1:360]
+
+/* [Hidden] */
+// Select if the top connections should be traditional knobs or technic holes
+_style = 1; // [0:Knobs, 1:Technic]
+
 // Presence of top connector knobs
 _knobs = true;
 
@@ -89,46 +126,11 @@ _knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 // Basic unit vertical size of each block
 _block_height = 8; // [8:technic, 9.6:traditional blocks]
 
-// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-_corner_bolt_holes = false;
-
 // Add holes in the top deck to improve airflow and reduce weight
 _top_vents = false;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
 _knob_vent_radius = 0; // [0.0:0.1:3.9]
-
-
-
-/* [Motor Options] */
-// Diameter of the hole for the rounded part of the motor body (if no rounding, set length as appropriate and this to 1/2 the motor width)
-_motor_d = 25.4;
-
-// Motor body cutout space length
-_motor_length = 30.3;
-
-// Width of the motor shaft cutout
-_motor_shaft_cutout_d = 10.2;
-
-// Motor offset on the Y axis
-_motor_y = 36.9; // [0.1:0.1:200]
-
-// Motor offset on the Y axis
-_motor_z = 16; // [0.1:0.1:200]
-
-// Motor mount wall thickness
-_motor_wall_thickness = 4;
-
-// Motor mount hole spacing
-_motor_mount_hole_spacing = 16;
-
-// Diameter of the motor mount holes
-_motor_mount_hole_d = 3;
-
-
-/* [Hidden] */
-// Select if the top connections should be traditional knobs or technic holes
-_style = 1; // [0:Knobs, 1:Technic]
 
 
 ///////////////////////////////
@@ -158,11 +160,11 @@ module motor_mount() {
 
             color("white") motor_body_insert_space();
 
-            color("silver") motor_body_back_space();
+            color("red") translate([0, -block_width(5), 0]) motor_mount_wall_bolt_holes(angle=_bolt_hole_angle);
 
-            color("orange") motor_wall_v_cut();
+            color("orange") motor_wall_v_cut(thickness=_motor_wall_thickness);
 
-            color("red") motor_mount_wall_bolt_holes();
+            color("red") motor_mount_wall_bolt_holes(angle=_bolt_hole_angle);
         }
     }
 }
@@ -179,18 +181,13 @@ module motor_body_insert_space() {
             }
 }
 
-module motor_body_back_space() {
+
+module motor_mount_wall_bolt_holes(angle) {
     
-    translate([block_width(_l/2), _motor_y, _motor_z])
-        rotate([90, 0, 0])
-            cylinder(d=_motor_d*0.9, h=2*_motor_length, $fn=128);    
-}
-
-
-module motor_mount_wall_bolt_holes() {
+    assert(angle!=undef);
     
     translate([block_width(_l/2), _motor_y-_defeather, panel_height()*_panel_height_ratio + _motor_d/2]) {
-            rotate([-90, 0, 0]) {
+            rotate([-90, angle, 0]) {
                 translate([_motor_mount_hole_spacing/2, 0, 0])
                     cylinder(d=_motor_mount_hole_d, h=_motor_length);
 
@@ -198,7 +195,7 @@ module motor_mount_wall_bolt_holes() {
                         cylinder(d=_motor_mount_hole_d, h=_motor_length);
                 }
 
-            rotate([-90, 60, 0]) {
+            rotate([-90, 60+angle, 0]) {
                 translate([_motor_mount_hole_spacing/2, 0, 0])
                     cylinder(d=_motor_mount_hole_d, h=_motor_length);
 
@@ -206,7 +203,7 @@ module motor_mount_wall_bolt_holes() {
                         cylinder(d=_motor_mount_hole_d, h=_motor_length);
                 }
 
-            rotate([-90, 120, 0]) {
+            rotate([-90, 120+angle, 0]) {
                 translate([_motor_mount_hole_spacing/2, 0, 0])
                     cylinder(d=_motor_mount_hole_d, h=_motor_length);
 
@@ -219,8 +216,13 @@ module motor_mount_wall_bolt_holes() {
 
 module motor_back_holder() {
     
-    translate([block_width(), 0, panel_height()*_panel_height_ratio])
-        cube([block_width(_l-2), block_width(5), _motor_d/2]);
+    difference() {
+        translate([block_width(), 0, 0])
+            cube([block_width(_l-2), block_width(5), block_width(_h)]);
+        
+    translate([0, -block_width(5), 0])
+        motor_wall_v_cut(thickness=block_width(_l-2));
+    }
 }
 
 
@@ -231,22 +233,26 @@ module motor_wall() {
 }
 
 
-module motor_wall_v_cut() {
+module motor_wall_v_cut(thickness) {
+    
+    assert(thickness!=undef);
     
     hull() {
-        motor_shaft_cut();
+        motor_shaft_cut(thickness);
 
-        translate([block_width(_l/2)-_motor_d/2, _motor_y, panel_height()*_panel_height_ratio + _motor_d/2 + block_width()])
-            cube([_motor_d, _motor_wall_thickness, _defeather]);
+        translate([block_width(_l/2 + 0.5)-_motor_d/2, _motor_y, panel_height()*_panel_height_ratio + _motor_d/2 + block_width()])
+            cube([_motor_d - block_width(1), thickness, _defeather]);
     }
 }
 
 
-module motor_shaft_cut() {
+module motor_shaft_cut(thickness) {
     
+    assert(thickness!=undef);
+
     translate([block_width(_l/2), _motor_y, panel_height()*_panel_height_ratio + _motor_d/2])
         rotate([-90, 0, 0])
-            cylinder(d=_motor_shaft_cutout_d, h=_motor_wall_thickness);
+            cylinder(d=_motor_shaft_cutout_d, h=thickness);
 }
 
 
@@ -254,7 +260,7 @@ module motor_v_holder() {
     
     difference() {
         union() {
-            motor_wall_v_cut();
+            motor_wall_v_cut(thickness=_motor_wall_thickness);
 
             translate([block_width(0.5), block_width(_w-2), block_width(_h)])
                 motor_v_holder_end();
