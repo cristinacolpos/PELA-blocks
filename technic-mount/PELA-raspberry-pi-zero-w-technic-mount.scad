@@ -40,7 +40,7 @@ use <PELA-technic-mount.scad>
 cut_line = 0; // [0:1:100] 
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
@@ -208,6 +208,14 @@ difference() {
         translate([block_width(0.5), block_width(-w-0.5), -defeather]) {
             socket_panel(material=material, large_nozzle=large_nozzle, cut_line=0, l=l-2, w=w-3, sockets=sockets, solid_first_layer=false, skin=skin, block_height=block_width());
         }
+        
+        translate([block_width(0.5), block_width(-2.5), block_width(0.5)]) corner_tab(-90);
+        
+        translate([block_width(l-1.5), block_width(-2.5), block_width(0.5)]) corner_tab(180);
+        
+        translate([block_width(l-1.5), block_width(-w-0.5), block_width(0.5)]) corner_tab(90);
+        
+        translate([block_width(0.5), block_width(-w-0.5), block_width(0.5)]) corner_tab(0);
     }
 
     union() {
@@ -218,9 +226,16 @@ difference() {
         color("pink") translate([block_width(1), block_width(-8), -defeather]) {
             cube([block_width(l-3), block_width(1.5)+defeather, block_height(cover_h+2*defeather)]);
         }
-        
-//        color("black") translate([block_width(0.5), block_width(-3.5), -defeather]) {
-//            cube([block_width(l-2), block_width(1)+defeather, block_height(cover_h+2*defeather)]);
-//        }
+    }
+}
+
+
+module corner_tab(rotation) {
+    assert(rotation!=undef);
+    
+    s = block_width(0.5);
+    intersection() {
+        cylinder(h=s, r1=0, r2=s);
+        rotate([0, 0, rotation]) cube([s, s, s]);
     }
 }
