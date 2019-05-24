@@ -165,6 +165,10 @@ module motor_mount() {
             color("orange") motor_wall_v_cut(thickness=_motor_wall_thickness);
 
             color("red") motor_mount_wall_bolt_holes(angle=_bolt_hole_angle);
+            
+            translate([block_width((_w-1)/2), block_width(2), block_width(-1)])
+                cylinder(d=_motor_d-block_width(1), h=_motor_length);
+
         }
     }
 }
@@ -220,8 +224,8 @@ module motor_back_holder() {
         translate([block_width(), 0, 0])
             cube([block_width(_l-2), block_width(5), block_width(_h)]);
         
-    translate([0, -block_width(5), 0])
-        motor_wall_v_cut(thickness=block_width(_l-2));
+        translate([0, -block_width(5), 0])
+            motor_wall_v_cut(thickness=block_width(_l-2));
     }
 }
 
