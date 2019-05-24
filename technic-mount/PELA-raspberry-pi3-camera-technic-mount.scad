@@ -50,14 +50,16 @@ render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and co
 /* [Raspberry Pi3 Camera Mount] */
 
 // Board space length [mm]
-length = 25.4; // [0:1:300] 
+length = 25.4; // [0:0.1:200] 
 
 // Board space width [mm]
-width = 25.4; // [0:1:300]
+width = 25.4; // [0:0.1:200]
 
-l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+ // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+l_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
-w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+// Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+w_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Height of the enclosure [blocks]
 h = 1; // [1:20]
@@ -66,12 +68,12 @@ h = 1; // [1:20]
 twist_l = 2; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
-twist_w = 2; // [1:18]
+twist_w = 1; // [1:18]
 
 thickness = 1.8; // Board space height [mm]
 
 // Step in from board space edges to support the board [mm]
-innercut = 2;
+innercut = 2; // [0:0.1:100]
 
 // Step down from board bottom to give room board components [mm]
 undercut = 7.0; // [0:0.1:100]
@@ -86,7 +88,7 @@ center_knobs = true;
 center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]]
 
 // Text label
-text = "Pi Cam";
+text = "Pi";
 
 // Depth of text etching into top surface
 text_depth = 0.5; // [0.0:0.1:2]
@@ -99,10 +101,10 @@ dome = true;
 /* [Left Cut] */
 
 // Distance from the front of left side hole [mm]
-left_cutout_y = 4; // [0:0.1:200]
+left_cutout_y = 8; // [0:0.1:200]
 
 // Width of the left side hole [mm]
-left_cutout_width = 0; // [0:0.1:200]
+left_cutout_width = 16; // [0:0.1:200]
 
 // Depth of the left side hole [mm]
 left_cutout_depth = 24; // [0:0.1:200]
@@ -175,7 +177,7 @@ back_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-cover_text = "Pi Cam";
+cover_text = "Pi";
 
 // Interior fill style
 cover_center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
