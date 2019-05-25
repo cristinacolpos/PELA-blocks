@@ -89,7 +89,7 @@ bent_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1
 // MODULES
 ///////////////////////////////////
 
-module bent_beam(material, large_nozzle, cut_line, l1, l2, angle, w, h1, h2, side_holes, horizontal_skin, vertical_skin) {
+module bent_beam(material, large_nozzle, cut_line=_cut_line, l1, l2, angle, w, h1, h2, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

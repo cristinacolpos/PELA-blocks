@@ -75,7 +75,7 @@ _minimum_base = true;
 ///////////////////////////////
 technic_pin_array(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, pin_tip_length=_pin_tip_length, peg_length=_peg_length, array_count=_array_count, array_spacing=_array_spacing, base_thichness=_base_thickness, axle_radius=_axle_radius, pin_center_radius=_pin_center_radius, pin_slot_thickness=_pin_slot_thickness, minimum_base=_minimum_base, base_thickness=_base_thickness, block_height=_block_height);
 
-module technic_pin_array(material, large_nozzle, cut_line, pin_tip_length, peg_length, array_count, array_spacing, base_thichness, axle_radius, pin_center_radius, pin_slot_thickness, minimum_base, base_thickness, block_height) {
+module technic_pin_array(material, large_nozzle, cut_line=_cut_line, pin_tip_length, peg_length, array_count, array_spacing, base_thichness, axle_radius, pin_center_radius, pin_slot_thickness, minimum_base, base_thickness, block_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

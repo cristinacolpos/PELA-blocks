@@ -69,7 +69,7 @@ thumbscrew(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, t
 // MODULES
 ///////////////////////////////////
 
-module thumbscrew(material, large_nozzle, cut_line, thumbscrew_head_diameter, cut, tpi, head_thickness, diameter_in, height_in, block_height, knob_height) {
+module thumbscrew(material, large_nozzle, cut_line=_cut_line, thumbscrew_head_diameter, cut, tpi, head_thickness, diameter_in, height_in, block_height, knob_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

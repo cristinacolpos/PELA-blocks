@@ -85,7 +85,7 @@ square_servo_end_mount(material=_material, large_nozzle=_large_nozzle, cut_line=
 // MODULES
 ///////////////////////////////////
 
-module square_servo_end_mount(material, large_nozzle, cut_line, l, w, h, end_hole_count, side_holes, horizontal_skin, vertical_skin, length, width, height) {
+module square_servo_end_mount(material, large_nozzle, cut_line=_cut_line, l, w, h, end_hole_count, side_holes, horizontal_skin, vertical_skin, length, width, height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

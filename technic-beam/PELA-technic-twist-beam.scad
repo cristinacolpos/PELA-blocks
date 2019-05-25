@@ -81,7 +81,7 @@ technic_twist_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut
 // MODULES
 ///////////////////////////////////
 
-module technic_twist_beam(material, large_nozzle, cut_line, left, center, right, h, side_holes, horizontal_skin, vertical_skin) {
+module technic_twist_beam(material, large_nozzle, cut_line=_cut_line, left, center, right, h, side_holes, horizontal_skin, vertical_skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -134,7 +134,7 @@ module technic_twist_beam(material, large_nozzle, cut_line, left, center, right,
 }
 
 
-module square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
+module square_end_beam(material, large_nozzle, cut_line=_cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -156,7 +156,7 @@ module square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, ho
 }
 
 
-module right_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
+module right_square_end_beam(material, large_nozzle, cut_line=_cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -178,7 +178,7 @@ module right_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_hol
 }
 
 
-module left_square_end_beam(material, large_nozzle, cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
+module left_square_end_beam(material, large_nozzle, cut_line=_cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

@@ -122,7 +122,7 @@ PELA_panel_sign(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_li
 // MODULES
 ///////////////////////////////////
 
-module PELA_panel_sign(material, large_nozzle, cut_line, l, w, line_1, line_2, lang, extrude,  text_depth, f1, f2, fs1, fs2, left_margin, vertical_margin, top_vents, corner_bolt_holes, bolt_hole_radius, sockets, knobs, knob_height, knob_vent_radius, block_height, skin) {
+module PELA_panel_sign(material, large_nozzle, cut_line=_cut_line, l, w, line_1, line_2, lang, extrude,  text_depth, f1, f2, fs1, fs2, left_margin, vertical_margin, top_vents, corner_bolt_holes, bolt_hole_radius, sockets, knobs, knob_height, knob_vent_radius, block_height, skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);

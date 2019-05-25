@@ -138,7 +138,7 @@ function fit_mm_to_height_blocks(i=undef, padding=undef, block_height=undef) = c
 // MODULES
 ///////////////////////////////////
 
-module PELA_technic_block(material, large_nozzle, cut_line, l, w, h, knob_height, knob_flexture_height=_knob_flexture_height, sockets, socket_insert_bevel=_socket_insert_bevel, knobs, knob_vent_radius, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius, ridge_width=_ridge_width, ridge_depth=_ridge_depth, ridge_z_offset=_ridge_z_offset, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, solid_first_layer=_solid_first_layer, solid_upper_layers=_solid_upper_layers, block_height, bottom_tweak, top_tweak, axle_hole_tweak) {
+module PELA_technic_block(material, large_nozzle, cut_line=_cut_line, l, w, h, knob_height, knob_flexture_height=_knob_flexture_height, sockets, socket_insert_bevel=_socket_insert_bevel, knobs, knob_vent_radius, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius, ridge_width=_ridge_width, ridge_depth=_ridge_depth, ridge_z_offset=_ridge_z_offset, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, solid_first_layer=_solid_first_layer, solid_upper_layers=_solid_upper_layers, block_height, bottom_tweak, top_tweak, axle_hole_tweak) {
 
     assert(material != undef);
     assert(large_nozzle != undef);
@@ -178,7 +178,7 @@ module PELA_technic_block(material, large_nozzle, cut_line, l, w, h, knob_height
 }
 
 
-module visual_cut_technic_block(material, large_nozzle, cut_line, l, w, h, knob_height, knob_flexture_height, sockets, socket_insert_bevel, knobs, knob_vent_radius, skin, top_shell, bottom_stiffener_width, bottom_stiffener_height, corner_bolt_holes, bolt_hole_radius, ridge_width, ridge_depth, ridge_z_offset, solid_upper_layers, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, solid_first_layer, block_height, bottom_tweak, top_tweak, axle_hole_tweak) {
+module visual_cut_technic_block(material, large_nozzle, cut_line=_cut_line, l, w, h, knob_height, knob_flexture_height, sockets, socket_insert_bevel, knobs, knob_vent_radius, skin, top_shell, bottom_stiffener_width, bottom_stiffener_height, corner_bolt_holes, bolt_hole_radius, ridge_width, ridge_depth, ridge_z_offset, solid_upper_layers, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, solid_first_layer, block_height, bottom_tweak, top_tweak, axle_hole_tweak) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
