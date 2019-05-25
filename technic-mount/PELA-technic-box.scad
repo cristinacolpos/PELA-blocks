@@ -375,11 +375,11 @@ module cheese_holes(material, large_nozzle, center, l, w, h, l1, l2, w1, w2, hor
 
     if (center > 1) {
         if (l2 > 0 && center != 3) {
-            side_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l1=l1, l2=l2, h=h, block_height=block_width(), horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+            side_cheese_holes(material=material, large_nozzle=large_nozzle, w=w, l1=l1, l2=l2, h=h, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         }
         
         if (w2 > 0 && center != 3) {
-            end_cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w1=w1, w2=w2, h=h, block_height=block_width(), horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+            end_cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w1=w1, w2=w2, h=h, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         }
         
         if (w > 2 && l > 2 && center !=2) {
@@ -391,7 +391,7 @@ module cheese_holes(material, large_nozzle, center, l, w, h, l1, l2, w1, w2, hor
 }
 
 
-module side_cheese_holes(material, large_nozzle, w, l1, l2, h, block_height, horizontal_skin, vertical_skin) {
+module side_cheese_holes(material, large_nozzle, w, l1, l2, h, horizontal_skin, vertical_skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -399,12 +399,12 @@ module side_cheese_holes(material, large_nozzle, w, l1, l2, h, block_height, hor
     assert(l1!=undef);
     assert(l2!=undef);
     assert(h!=undef);
-    assert(block_height!=undef);
     assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
 
     for (i = [0:l2-1]) {
         for (j = [0:h-1]) {
-            translate([block_width(l1+i)+horizontal_skin, block_width(-0.5)+horizontal_skin, block_height(0.5+j, block_height=block_height)-vertical_skin]) {
+            translate([block_width(l1+i)+horizontal_skin, block_width(-0.5)+horizontal_skin, block_width(0.5+j)-vertical_skin]) {
                 rotate([-90, 0, 0]) {
                     axle_hole(material=material, large_nozzle=large_nozzle, hole_type=2, radius=material_axle_hole_radius(material=material, large_nozzle=large_nozzle), length=block_width(w));
                 }
@@ -414,7 +414,7 @@ module side_cheese_holes(material, large_nozzle, w, l1, l2, h, block_height, hor
 }
 
 
-module end_cheese_holes(material, large_nozzle, l, w1, w2, h, block_height, horizontal_skin, vertical_skin) {
+module end_cheese_holes(material, large_nozzle, l, w1, w2, h, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -422,12 +422,12 @@ module end_cheese_holes(material, large_nozzle, l, w1, w2, h, block_height, hori
     assert(w1!=undef);
     assert(w2!=undef);
     assert(h!=undef);
-    assert(block_height!=undef);
     assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
 
     translate([block_width(l-1), 0, 0]) {
         rotate([0, 0, 90]) {
-            side_cheese_holes(material=material, large_nozzle=large_nozzle, w=l, l1=w1, l2=w2, h=h, block_height=block_height, horizontal_skin=horizontal_skin);
+            side_cheese_holes(material=material, large_nozzle=large_nozzle, w=l, l1=w1, l2=w2, h=h, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         }
     }
 }
