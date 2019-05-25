@@ -122,79 +122,79 @@ _vertical_skin = 0.1; // [0:0.02:0.5]
 
 
 
-/* [Left Cut] */
+/* [Enclosure Left Cut] */
 
 // Distance of the front of left side hole [mm]
-_left_cutout_y = 4; // [0:0.1:200]
+_left_enclosure_cutout_y = 4; // [0:0.1:200]
 
 // Width of the left side hole [mm]
-_left_cutout_width = 0; // [0:0.1:200]
+_left_enclosure_cutout_width = 0; // [0:0.1:200]
 
 // Depth of the left side hole [mm]
-_left_cutout_depth = 24; // [0:0.1:200]
+_left_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-_left_cutout_z = 4; // [0:0.1:200]
+_left_enclosure_cutout_z = 4; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-_left_cutout_height = 8; // [0:0.1:200]
+_left_enclosure_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Right Cut] */
+/* [Enclosure Right Cut] */
 
 // Distance of the front of right side hole [mm]
-_right_cutout_y = 4; // [0:0.1:200]
+_right_enclosure_cutout_y = 4; // [0:0.1:200]
 
 // Width of the right side hole [mm]
-_right_cutout_width = 0; // [0:0.1:200]
+_right_enclosure_cutout_width = 0; // [0:0.1:200]
 
 // Depth of the right side hole [mm]
-_right_cutout_depth = 24; // [0:0.1:200]
+_right_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the right side hole [mm]
-_right_cutout_z = 4; // [0:0.1:200]
+_right_enclosure_cutout_z = 4; // [0:0.1:200]
 
 // Height of the right side hole [mm]
-_right_cutout_height = 8; // [0:0.1:200]
+_right_enclosure_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Front Cut] */
+/* [Enclosure Front Cut] */
 
 // Distance of the left of front side hole [mm]
-_front_cutout_x = 4; // [0:0.1:200]
+_front_enclosure_cutout_x = 4; // [0:0.1:200]
 
 // Width of the front side hole [mm]
-_front_cutout_width = 0; // [0:0.1:200]
+_front_enclosure_cutout_width = 0; // [0:0.1:200]
 
 // Depth into the part of the front cut [mm]
-_front_cutout_depth = 24; // [0:0.1:200]
+_front_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-_front_cutout_z = 4; // [0:0.1:200]
+_front_enclosure_cutout_z = 4; // [0:0.1:200]
 
 // Height of the front side hole [mm]
-_front_cutout_height = 8; // [0:0.1:200]
+_front_enclosure_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Back Cut] */
+/* [Enclosure Back Cut] */
 
 // Distance of the left of back side hole [mm]
-_back_cutout_x = 4; // [0:0.1:200]
+_back_enclosure_cutout_x = 4; // [0:0.1:200]
 
 // Width of the back side hole [mm]
-_back_cutout_width = 0; // [0:0.1:200]
+_back_enclosure_cutout_width = 0; // [0:0.1:200]
 
 // Depth of the back side hole [mm]
-_back_cutout_depth = 24; // [0:0.1:200]
+_back_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
-_back_cutout_z = 4; // [0:0.1:200]
+_back_enclosure_cutout_z = 4; // [0:0.1:200]
 
 // Height of the back side hole [mm]
-_back_cutout_height = 8; // [0:0.1:200]
+_back_enclosure_cutout_height = 8; // [0:0.1:200]
 
 
 
@@ -229,7 +229,7 @@ _block_height = 8; // This is not adjuestable due to twist beam technic hole rot
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, center_sockets=_center_sockets, center_knobs=_center_knobs, cover_sockets=_cover_sockets, cover_knobs=_cover_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, solid_first_layer=_solid_first_layer, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_cutout_y=_left_cutout_y, left_cutout_width=_left_cutout_width, left_cutout_depth=_left_cutout_depth, left_cutout_z=_left_cutout_z, left_cutout_height=_left_cutout_height, right_cutout_y=_right_cutout_y, right_cutout_width=_right_cutout_width, right_cutout_depth=_right_cutout_depth, right_cutout_z=_right_cutout_z, right_cutout_height=_right_cutout_height, front_cutout_x=_front_cutout_x, front_cutout_width=_front_cutout_width, front_cutout_depth=_front_cutout_depth, front_cutout_z=_front_cutout_z, front_cutout_height=_front_cutout_height, back_cutout_x=_back_cutout_x, back_cutout_width=_back_cutout_width, back_cutout_depth=_back_cutout_depth, back_cutout_z=_back_cutout_z, back_cutout_height=_back_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
+technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, center_sockets=_center_sockets, center_knobs=_center_knobs, cover_sockets=_cover_sockets, cover_knobs=_cover_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, solid_first_layer=_solid_first_layer, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
 
 
 
@@ -237,7 +237,7 @@ technic_mount_and_cover(render_modules=_render_modules, material=_material, larg
 // MODULES
 ///////////////////////////////////
 
-module technic_mount_and_cover(render_modules, material, large_nozzle, cut_line, length, width, thickness, h, cover_h, l_pad, w_pad, twist_l, twist_w, center_sockets, center_knobs, cover_sockets, cover_knobs, knob_height, knob_vent_radius, top_vents, solid_first_layer, innercut, undercut, center, cover_center, text, cover_text, text_depth, left_cutout_y, left_cutout_width, left_cutout_depth, left_cutout_z, left_cutout_height, right_cutout_y, right_cutout_width, right_cutout_depth, right_cutout_z, right_cutout_height, front_cutout_x, front_cutout_width, front_cutout_depth, front_cutout_z, front_cutout_height, back_cutout_x, back_cutout_width, back_cutout_depth, back_cutout_z, back_cutout_height, dome, horizontal_skin, vertical_skin) {
+module technic_mount_and_cover(render_modules, material, large_nozzle, cut_line, length, width, thickness, h, cover_h, l_pad, w_pad, twist_l, twist_w, center_sockets, center_knobs, cover_sockets, cover_knobs, knob_height, knob_vent_radius, top_vents, solid_first_layer, innercut, undercut, center, cover_center, text, cover_text, text_depth, left_enclosure_cutout_y, left_enclosure_cutout_width, left_enclosure_cutout_depth, left_enclosure_cutout_z, left_enclosure_cutout_height, right_enclosure_cutout_y, right_enclosure_cutout_width, right_enclosure_cutout_depth, right_enclosure_cutout_z, right_enclosure_cutout_height, front_enclosure_cutout_x, front_enclosure_cutout_width, front_enclosure_cutout_depth, front_enclosure_cutout_z, front_enclosure_cutout_height, back_enclosure_cutout_x, back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_z, back_enclosure_cutout_height, dome, horizontal_skin, vertical_skin) {
 
     assert(render_modules != undef);
     assert(material != undef);
@@ -267,26 +267,26 @@ module technic_mount_and_cover(render_modules, material, large_nozzle, cut_line,
     assert(text != undef);
     assert(cover_text != undef);
     assert(text_depth != undef);
-    assert(left_cutout_y != undef);
-    assert(left_cutout_width != undef);
-    assert(left_cutout_depth != undef);
-    assert(left_cutout_z != undef);
-    assert(left_cutout_height != undef);
-    assert(right_cutout_y != undef);
-    assert(right_cutout_width != undef);
-    assert(right_cutout_depth != undef);
-    assert(right_cutout_z != undef);
-    assert(right_cutout_height != undef);
-    assert(front_cutout_x != undef);
-    assert(front_cutout_width != undef);
-    assert(front_cutout_depth != undef);
-    assert(front_cutout_z != undef);
-    assert(front_cutout_height != undef);
-    assert(back_cutout_x != undef);
-    assert(back_cutout_width != undef);
-    assert(back_cutout_depth != undef);
-    assert(back_cutout_z != undef);
-    assert(back_cutout_height != undef);
+    assert(left_enclosure_cutout_y != undef);
+    assert(left_enclosure_cutout_width != undef);
+    assert(left_enclosure_cutout_depth != undef);
+    assert(left_enclosure_cutout_z != undef);
+    assert(left_enclosure_cutout_height != undef);
+    assert(right_enclosure_cutout_y != undef);
+    assert(right_enclosure_cutout_width != undef);
+    assert(right_enclosure_cutout_depth != undef);
+    assert(right_enclosure_cutout_z != undef);
+    assert(right_enclosure_cutout_height != undef);
+    assert(front_enclosure_cutout_x != undef);
+    assert(front_enclosure_cutout_width != undef);
+    assert(front_enclosure_cutout_depth != undef);
+    assert(front_enclosure_cutout_z != undef);
+    assert(front_enclosure_cutout_height != undef);
+    assert(back_enclosure_cutout_x != undef);
+    assert(back_enclosure_cutout_width != undef);
+    assert(back_enclosure_cutout_depth != undef);
+    assert(back_enclosure_cutout_z != undef);
+    assert(back_enclosure_cutout_height != undef);
     assert(dome != undef);
     assert(horizontal_skin != undef);
     assert(vertical_skin != undef);
@@ -301,12 +301,12 @@ module technic_mount_and_cover(render_modules, material, large_nozzle, cut_line,
     }
 
     if (render_modules == 0 || render_modules == 2) {
-        technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, l=l, w=w, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=center_sockets, knobs=center_knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, dome=dome, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+        technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, l=l, w=w, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=center_sockets, knobs=center_knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, left_enclosure_cutout_y=left_enclosure_cutout_y, left_enclosure_cutout_width=left_enclosure_cutout_width, left_enclosure_cutout_depth=left_enclosure_cutout_depth, left_enclosure_cutout_z=left_enclosure_cutout_z, left_enclosure_cutout_height=left_enclosure_cutout_height, right_enclosure_cutout_y=right_enclosure_cutout_y, right_enclosure_cutout_width=right_enclosure_cutout_width, right_enclosure_cutout_depth=right_enclosure_cutout_depth, right_enclosure_cutout_z=right_enclosure_cutout_z, right_enclosure_cutout_height=right_enclosure_cutout_height, front_enclosure_cutout_x=front_enclosure_cutout_x, front_enclosure_cutout_width=front_enclosure_cutout_width, front_enclosure_cutout_depth=front_enclosure_cutout_depth, front_enclosure_cutout_z=front_enclosure_cutout_z, front_enclosure_cutout_height=front_enclosure_cutout_height, back_enclosure_cutout_x=back_enclosure_cutout_x, back_enclosure_cutout_width=back_enclosure_cutout_width, back_enclosure_cutout_depth=back_enclosure_cutout_depth, back_enclosure_cutout_z=back_enclosure_cutout_z, back_enclosure_cutout_height=back_enclosure_cutout_height, dome=dome, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
     }
 }
 
 
-module technic_mount(material, large_nozzle, cut_line, length, width, thickness, l, w, h, l_pad, w_pad, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, top_vents, solid_first_layer, innercut, undercut, center, text, text_depth, left_cutout_y, left_cutout_width, left_cutout_depth, left_cutout_z, left_cutout_height, right_cutout_y, right_cutout_width, right_cutout_depth, right_cutout_z, right_cutout_height, front_cutout_x, front_cutout_width, front_cutout_depth, front_cutout_z, front_cutout_height, back_cutout_x, back_cutout_width, back_cutout_depth, back_cutout_z, back_cutout_height, dome, horizontal_skin, vertical_skin) {
+module technic_mount(material, large_nozzle, cut_line, length, width, thickness, l, w, h, l_pad, w_pad, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, top_vents, solid_first_layer, innercut, undercut, center, text, text_depth, left_enclosure_cutout_y, left_enclosure_cutout_width, left_enclosure_cutout_depth, left_enclosure_cutout_z, left_enclosure_cutout_height, right_enclosure_cutout_y, right_enclosure_cutout_width, right_enclosure_cutout_depth, right_enclosure_cutout_z, right_enclosure_cutout_height, front_enclosure_cutout_x, front_enclosure_cutout_width, front_enclosure_cutout_depth, front_enclosure_cutout_z, front_enclosure_cutout_height, back_enclosure_cutout_x, back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_z, back_enclosure_cutout_height, dome, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -332,26 +332,26 @@ module technic_mount(material, large_nozzle, cut_line, length, width, thickness,
     assert(center!=undef);
     assert(text!=undef);
     assert(text_depth!=undef);
-    assert(left_cutout_y!=undef);
-    assert(left_cutout_width!=undef);
-    assert(left_cutout_depth!=undef);
-    assert(left_cutout_z!=undef);
-    assert(left_cutout_height!=undef);
-    assert(right_cutout_y!=undef);
-    assert(right_cutout_width!=undef);
-    assert(right_cutout_depth!=undef);
-    assert(right_cutout_z!=undef);
-    assert(right_cutout_height!=undef);
-    assert(front_cutout_x!=undef);
-    assert(front_cutout_width!=undef);
-    assert(front_cutout_depth!=undef);
-    assert(front_cutout_z!=undef);
-    assert(front_cutout_height!=undef);
-    assert(back_cutout_x!=undef);
-    assert(back_cutout_width!=undef);
-    assert(back_cutout_depth!=undef);
-    assert(back_cutout_z!=undef);
-    assert(back_cutout_height!=undef);
+    assert(left_enclosure_cutout_y!=undef);
+    assert(left_enclosure_cutout_width!=undef);
+    assert(left_enclosure_cutout_depth!=undef);
+    assert(left_enclosure_cutout_z!=undef);
+    assert(left_enclosure_cutout_height!=undef);
+    assert(right_enclosure_cutout_y!=undef);
+    assert(right_enclosure_cutout_width!=undef);
+    assert(right_enclosure_cutout_depth!=undef);
+    assert(right_enclosure_cutout_z!=undef);
+    assert(right_enclosure_cutout_height!=undef);
+    assert(front_enclosure_cutout_x!=undef);
+    assert(front_enclosure_cutout_width!=undef);
+    assert(front_enclosure_cutout_depth!=undef);
+    assert(front_enclosure_cutout_z!=undef);
+    assert(front_enclosure_cutout_height!=undef);
+    assert(back_enclosure_cutout_x!=undef);
+    assert(back_enclosure_cutout_width!=undef);
+    assert(back_enclosure_cutout_depth!=undef);
+    assert(back_enclosure_cutout_z!=undef);
+    assert(back_enclosure_cutout_height!=undef);
     assert(dome!=undef);
     assert(horizontal_skin!=undef);
     assert(vertical_skin!=undef);
@@ -371,7 +371,7 @@ module technic_mount(material, large_nozzle, cut_line, length, width, thickness,
                 main_board_back(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, length=length, width=width, thickness=thickness, innercut=innercut, undercut=undercut);
             }
 
-            wall_cutouts(l=l, w=w, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height);
+            wall_cutouts(l=l, w=w, left_enclosure_cutout_y=left_enclosure_cutout_y, left_enclosure_cutout_width=left_enclosure_cutout_width, left_enclosure_cutout_depth=left_enclosure_cutout_depth, left_enclosure_cutout_z=left_enclosure_cutout_z, left_enclosure_cutout_height=left_enclosure_cutout_height, right_enclosure_cutout_y=right_enclosure_cutout_y, right_enclosure_cutout_width=right_enclosure_cutout_width, right_enclosure_cutout_depth=right_enclosure_cutout_depth, right_enclosure_cutout_z=right_enclosure_cutout_z, right_enclosure_cutout_height=right_enclosure_cutout_height, front_enclosure_cutout_x=front_enclosure_cutout_x, front_enclosure_cutout_width=front_enclosure_cutout_width, front_enclosure_cutout_depth=front_enclosure_cutout_depth, front_enclosure_cutout_z=front_enclosure_cutout_z, front_enclosure_cutout_height=front_enclosure_cutout_height, back_enclosure_cutout_x=back_enclosure_cutout_x, back_enclosure_cutout_width=back_enclosure_cutout_width, back_enclosure_cutout_depth=back_enclosure_cutout_depth, back_enclosure_cutout_z=back_enclosure_cutout_z, back_enclosure_cutout_height=back_enclosure_cutout_height);
 
             translate([block_width(-0.5), block_width(-0.5), 0]) {
                 

@@ -157,79 +157,79 @@ _bottom_vents = true;
 
 
 
-/* [Left Cut] */
+/* [Enclosure Left Cut] */
 
 // Distance of the front of left side hole [mm]
-_left_cutout_y = 4; // [0:0.1:200]
+_left_enclosure_cutout_y = 4; // [0:0.1:200]
 
 // Width of the left side hole [mm]
-_left_cutout_width = 0; // [0:0.1:200]
+_left_enclosure_cutout_width = 0; // [0:0.1:200]
 
 // Depth of the left side hole [mm]
-_left_cutout_depth = 24; // [0:0.1:200]
+_left_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-_left_cutout_z = 4; // [0:0.1:200]
+_left_enclosure_cutout_z = 4; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-_left_cutout_height = 8; // [0:0.1:200]
+_left_enclosure_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Right Cut] */
+/* [Enclosure Right Cut] */
 
 // Distance of the front of right side hole [mm]
-_right_cutout_y = 4; // [0:0.1:200]
+_right_enclosure_cutout_y = 4; // [0:0.1:200]
 
 // Width of the right side hole [mm]
-_right_cutout_width = 0; // [0:0.1:200]
+_right_enclosure_cutout_width = 0; // [0:0.1:200]
 
 // Depth of the right side hole [mm]
-_right_cutout_depth = 24; // [0:0.1:200]
+_right_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the right side hole [mm]
-_right_cutout_z = 4; // [0:0.1:200]
+_right_enclosure_cutout_z = 4; // [0:0.1:200]
 
 // Height of the right side hole [mm]
-_right_cutout_height = 8; // [0:0.1:200]
+_right_enclosure_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Front Cut] */
+/* [Enclosure Front Cut] */
 
 // Distance of the left of front side hole [mm]
-_front_cutout_x = 4; // [0:0.1:200]
+_front_enclosure_cutout_x = 4; // [0:0.1:200]
 
 // Width of the front side hole [mm]
-_front_cutout_width = 0; // [0:0.1:200]
+_front_enclosure_cutout_width = 0; // [0:0.1:200]
 
 // Depth into the part of the front cut [mm]
-_front_cutout_depth = 24; // [0:0.1:200]
+_front_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-_front_cutout_z = 4; // [0:0.1:200]
+_front_enclosure_cutout_z = 4; // [0:0.1:200]
 
 // Height of the front side hole [mm]
-_front_cutout_height = 8; // [0:0.1:200]
+_front_enclosure_cutout_height = 8; // [0:0.1:200]
 
 
 
-/* [Back Cut] */
+/* [Enclosure Back Cut] */
 
 // Distance of the left of back side hole [mm]
-_back_cutout_x = 4; // [0:0.1:200]
+_back_enclosure_cutout_x = 4; // [0:0.1:200]
 
 // Width of the back side hole [mm]
-_back_cutout_width = 0; // [0:0.1:200]
+_back_enclosure_cutout_width = 0; // [0:0.1:200]
 
 // Depth of the back side hole [mm]
-_back_cutout_depth = 24; // [0:0.1:200]
+_back_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
-_back_cutout_z = 4; // [0:0.1:200]
+_back_enclosure_cutout_z = 4; // [0:0.1:200]
 
 // Height of the back side hole [mm]
-_back_cutout_height = 8; // [0:0.1:200]
+_back_enclosure_cutout_height = 8; // [0:0.1:200]
 
 
 

@@ -91,7 +91,7 @@ _motor_d = 24; // [0.0:0.1:200]
 _motor_length = 30.3; // [0.0:0.1:200]
 
 // Width of the motor shaft cutout [mm]
-_motor_shaft_cutout_d = 10.2; // [0.0:0.1:200]
+_motor_shaft_enclosure_cutout_d = 10.2; // [0.0:0.1:200]
 
 // Motor offset on the Y axis [mm]
 _motor_y = 36.9; // [0.1:0.1:200]
@@ -256,7 +256,7 @@ module motor_shaft_cut(thickness) {
 
     translate([block_width(_l/2), _motor_y, panel_height()*_panel_height_ratio + _motor_d/2])
         rotate([-90, 0, 0])
-            cylinder(d=_motor_shaft_cutout_d, h=thickness);
+            cylinder(d=_motor_shaft_enclosure_cutout_d, h=thickness);
 }
 
 
