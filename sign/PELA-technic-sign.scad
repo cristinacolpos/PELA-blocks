@@ -147,7 +147,7 @@ PELA_technic_sign(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_
 // MODULES
 ///////////////////////////////////
 
-module PELA_technic_sign(material, large_nozzle, cut_line, l, w, h, twist_l, twist_w, center, line_1, line_2, lang, edge_text,  text_depth, f1, f2, fs1, fs2, left_margin, vertical_margin, top_vents, corner_bolt_holes, sockets, knobs, knob_height, block_height, horizontal_skin, vertical_skin) {
+module PELA_technic_sign(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l, twist_w, center, line_1, line_2, lang, edge_text,  text_depth, f1, f2, fs1, fs2, left_margin, vertical_margin, top_vents, corner_bolt_holes, sockets, knobs, knob_height, block_height, horizontal_skin, vertical_skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);

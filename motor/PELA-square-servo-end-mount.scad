@@ -104,7 +104,7 @@ square_servo_end_mount(material=_material, large_nozzle=_large_nozzle, cut_line=
 // MODULES
 ///////////////////////////////////
 
-module square_servo_end_mount(material, large_nozzle, cut_line, l, w, h, end_hole_count, side_holes, skin, servo_body_length, servo_length_including_ears, servo_body_width, servo_body_height, servo_ear_thickness, servo_ear_plus_center_ridge_thickness, servo_ear_center_ridge_width, servo_top_to_ear_top, end_piece_spacing) {
+module square_servo_end_mount(material, large_nozzle, cut_line=_cut_line, l, w, h, end_hole_count, side_holes, skin, servo_body_length, servo_length_including_ears, servo_body_width, servo_body_height, servo_ear_thickness, servo_ear_plus_center_ridge_thickness, servo_ear_center_ridge_width, servo_top_to_ear_top, end_piece_spacing) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -137,7 +137,7 @@ module square_servo_end_mount(material, large_nozzle, cut_line, l, w, h, end_hol
 }
 
 
-module square_servo_end_beam(material, large_nozzle, cut_line, l, w, h, end_hole_count, side_holes, skin) {
+module square_servo_end_beam(material, large_nozzle, cut_line=_cut_line, l, w, h, end_hole_count, side_holes, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

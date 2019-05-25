@@ -80,7 +80,7 @@ technic_corner(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_lin
 // MODULES
 ///////////////////////////////////
 
-module technic_corner(material, large_nozzle, cut_line, l1, l2, w, h, angle, horizontal_skin, vertical_skin) {
+module technic_corner(material, large_nozzle, cut_line=_cut_line, l1, l2, w, h, angle, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

@@ -87,7 +87,7 @@ PELA_block(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l
 // MODULES
 /////////////////////////////////////
 
-module PELA_block(material, large_nozzle, cut_line, l, w, h, knob_height, knob_flexture_height, sockets, knobs, knob_vent_radius, skin, top_shell, bottom_stiffener_width, bottom_stiffener_height, corner_bolt_holes, bolt_hole_radius, ridge_width, ridge_depth, ridge_z_offset, solid_upper_layers, solid_first_layer, block_height, socket_insert_bevel, bottom_tweak, top_tweak) {
+module PELA_block(material, large_nozzle, cut_line=_cut_line, l, w, h, knob_height, knob_flexture_height, sockets, knobs, knob_vent_radius, skin, top_shell, bottom_stiffener_width, bottom_stiffener_height, corner_bolt_holes, bolt_hole_radius, ridge_width, ridge_depth, ridge_z_offset, solid_upper_layers, solid_first_layer, block_height, socket_insert_bevel, bottom_tweak, top_tweak) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -123,7 +123,7 @@ module PELA_block(material, large_nozzle, cut_line, l, w, h, knob_height, knob_f
 
 
 // Negative space used to display the interior of a model
-module cut_space(material, large_nozzle, cut_line, l, w, h, block_height, knob_height) {
+module cut_space(material, large_nozzle, cut_line=_cut_line, l, w, h, block_height, knob_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

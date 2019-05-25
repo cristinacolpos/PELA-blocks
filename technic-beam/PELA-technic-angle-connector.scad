@@ -84,7 +84,7 @@ technic_angle_connector(material=_material, large_nozzle=_large_nozzle, cut_line
 // MODULES
 ///////////////////////////////////
 
-module technic_angle_connector(material, large_nozzle, cut_line,angle, l, w, h_top, h_bottom, side_holes, horizontal_skin, vertical_skin) {
+module technic_angle_connector(material, large_nozzle, cut_line=_cut_line,angle, l, w, h_top, h_bottom, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

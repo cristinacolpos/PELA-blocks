@@ -73,7 +73,7 @@ technic_beam(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line,
 // MODULES
 ///////////////////////////////////
 
-module technic_beam(material, large_nozzle, cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
+module technic_beam(material, large_nozzle, cut_line=_cut_line, l, w, h, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

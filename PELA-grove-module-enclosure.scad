@@ -129,7 +129,7 @@ _print_supports = true;
 grove_module_enclosure(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, knobs=_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, sockets=_sockets, corner_bolt_holes=_corner_bolt_holes, block_height=_block_height, show_bottom_piece=_show_bottom_piece, show_top_piece=_show_top_piece);
 
 
-module grove_module_enclosure(material, large_nozzle, cut_line, l, w, h, knobs, knob_height, knob_vent_radius, sockets, corner_bolt_holes, block_height, show_bottom_piece, show_top_piece) {
+module grove_module_enclosure(material, large_nozzle, cut_line=_cut_line, l, w, h, knobs, knob_height, knob_vent_radius, sockets, corner_bolt_holes, block_height, show_bottom_piece, show_top_piece) {
 
     axle_hole_radius=material_axle_hole_radius(material=material, large_nozzle=large_nozzle);
 
@@ -156,7 +156,7 @@ function vertical_offset(block_height, h)=(block_height(2*h, block_height=block_
 // MODULES
 /////////////////////////////////////
 
-module bottom_piece(material, large_nozzle, cut_line, l, w, h, corner_bolt_holes, knobs,knob_height, knob_vent_radius, sockets, block_height, axle_hole_radius) {
+module bottom_piece(material, large_nozzle, cut_line=_cut_line, l, w, h, corner_bolt_holes, knobs,knob_height, knob_vent_radius, sockets, block_height, axle_hole_radius) {
 
     difference() {
         union() {
@@ -185,7 +185,7 @@ module bottom_piece(material, large_nozzle, cut_line, l, w, h, corner_bolt_holes
 
 
 // Top piece
-module top_piece(material, large_nozzle, cut_line, l, w, h, corner_bolt_holes, knobs, knob_height, knob_vent_radius, sockets, block_height, axle_hole_radius) {
+module top_piece(material, large_nozzle, cut_line=_cut_line, l, w, h, corner_bolt_holes, knobs, knob_height, knob_vent_radius, sockets, block_height, axle_hole_radius) {
 
     translate([0, block_width(w + 0.5), 0]) {
         main_top_piece(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, corner_bolt_holes=corner_bolt_holes, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, sockets=sockets, block_height=block_height, axle_hole_radius=axle_hole_radius);

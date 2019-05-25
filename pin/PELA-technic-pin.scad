@@ -70,7 +70,7 @@ function cb_holder_radius(counterbore_inset_radius, skin) = counterbore_inset_ra
 //////////////////
 
 // A connector pin between two sockets
-module pin(material, large_nozzle, cut_line, axle_radius, pin_center_radius, peg_length, pin_tip_length, pin_slot_thickness) {
+module pin(material, large_nozzle, cut_line=_cut_line, axle_radius, pin_center_radius, peg_length, pin_tip_length, pin_slot_thickness) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -233,7 +233,7 @@ module rounded_slot(material, large_nozzle, thickness, slot_length) {
 
 
 // A set of half-pins connected by at the base
-module pin_array(material, large_nozzle, cut_line, array_count, array_spacing, base_thichness, axle_radius, pin_center_radius, peg_length, pin_tip_length, pin_slot_thickness, minimum_base, base_thickness, block_height, counterbore_holder_radius, counterbore_holder_height) {
+module pin_array(material, large_nozzle, cut_line=_cut_line, array_count, array_spacing, base_thichness, axle_radius, pin_center_radius, peg_length, pin_tip_length, pin_slot_thickness, minimum_base, base_thickness, block_height, counterbore_holder_radius, counterbore_holder_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

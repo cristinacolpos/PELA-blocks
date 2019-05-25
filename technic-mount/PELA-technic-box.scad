@@ -128,7 +128,7 @@ function mid_l(l, l1, l3) = max(0, l - l1 - l3);
 // DISPLAY
 ///////////////////////////////
 
-technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_modules=_render_modules, cut_line=_cut_line, l=_l, w=_w, h=_h, cover_h=_cover_h, twist_l=_twist_l, twist_w=_twist_w, sockets=_sockets, cover_sockets=_cover_sockets, knobs=_knobs, cover_knobs=_cover_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, solid_first_layer=_solid_first_layer, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
+technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_modules=_render_modules, cut_line=_cut_line, l=_l, w=_w, h=_h, cover_h=_cover_h, twist_l=_twist_l, twist_w=_twist_w, sockets=_sockets, cover_sockets=_cover_sockets, knobs=_knobs, cover_knobs=_cover_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
 
 
 ///////////////////////////////////
@@ -136,7 +136,7 @@ technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_mod
 ///////////////////////////////////
 
 
-module technic_box_and_cover(material, large_nozzle, cut_line, render_modules, l, w, h, cover_h, twist_l, twist_w, sockets, cover_sockets, cover_knobs, knobs, knob_height, knob_vent_radius, top_vents, solid_first_layer, center, cover_center, text, cover_text, text_depth, horizontal_skin, vertical_skin) {
+module technic_box_and_cover(material, large_nozzle, cut_line=_cut_line, render_modules, l, w, h, cover_h, twist_l, twist_w, sockets, cover_sockets, cover_knobs, knobs, knob_height, knob_vent_radius, top_vents, center, cover_center, text, cover_text, text_depth, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -154,7 +154,6 @@ module technic_box_and_cover(material, large_nozzle, cut_line, render_modules, l
     assert(knobs!=undef);
     assert(knob_vent_radius!=undef);
     assert(top_vents!=undef);
-    assert(solid_first_layer!=undef);
     assert(center!=undef);
     assert(cover_center!=undef);
     assert(text!=undef);
@@ -165,16 +164,16 @@ module technic_box_and_cover(material, large_nozzle, cut_line, render_modules, l
 
     if (render_modules != 0) {
         translate([0, -block_width(w + 1), 0]) {
-            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=cover_center, text=cover_text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         }
     }
 
     if (render_modules != 1) {
-        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, solid_first_layer=solid_first_layer, center=center, text=text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=center, text=text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
     }
 }
 
-module technic_box(material, large_nozzle, cut_line, l, w, h, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, top_vents, solid_first_layer, center, text, text_depth, horizontal_skin, vertical_skin) {
+module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, top_vents, center, text, text_depth, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -185,7 +184,6 @@ module technic_box(material, large_nozzle, cut_line, l, w, h, twist_l, twist_w, 
     assert(knob_height!=undef);
     assert(knob_vent_radius!=undef);
     assert(top_vents!=undef);
-    assert(solid_first_layer!=undef);
     assert(w >= 2);
     assert(twist_w > 0);
     assert(twist_l > 0);
@@ -206,7 +204,7 @@ module technic_box(material, large_nozzle, cut_line, l, w, h, twist_l, twist_w, 
 
             if (center == 5 && lc > 0 && wc > 0) {
                 translate([block_width(0.5), block_width(0.5), 0]) {
-                    socket_panel(material=material, large_nozzle=large_nozzle, l=lc, w=wc, skin=-horizontal_skin, block_height=block_width(), sockets=sockets, solid_first_layer=solid_first_layer);
+                    socket_panel(material=material, large_nozzle=large_nozzle, l=lc, w=wc, skin=-horizontal_skin, block_height=block_width(), sockets=sockets);
                 }
             } else if (center == 6 && lc > 0 && wc > 0) {
                 translate([block_width(0.5), block_width(0.5), 0]) {
@@ -222,7 +220,7 @@ module technic_box(material, large_nozzle, cut_line, l, w, h, twist_l, twist_w, 
 }
 
 
-module technic_only_box(material, large_nozzle, cut_line, l, w, h, twist_l, twist_w, knob_height, center, text, text_depth, horizontal_skin, vertical_skin) {
+module technic_only_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l, twist_w, knob_height, center, text, text_depth, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);

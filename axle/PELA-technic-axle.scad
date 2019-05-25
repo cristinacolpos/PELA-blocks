@@ -60,7 +60,7 @@ axle(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, a
 // MODULES
 /////////////////////////////////////
 
-module axle(material, large_nozzle, cut_line, l, axle_radius, center_radius) {
+module axle(material, large_nozzle, cut_line=_cut_line, l, axle_radius, center_radius) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
