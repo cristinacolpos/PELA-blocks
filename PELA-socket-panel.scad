@@ -31,7 +31,7 @@ use <PELA-technic-block.scad>
 _cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-_material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
@@ -58,7 +58,7 @@ _block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 _solid_first_layer = false;
 
-_skin=-1;
+_skin=-0.5;
 
 
 ///////////////////////////////
@@ -111,12 +111,12 @@ module socket_panel_one_sided(material, large_nozzle, l, w, sockets, skin, block
     assert(skin!=undef);
     assert(block_height!=undef);
     
+    denom = half_height ? 2 : 1;
+            
     intersection() {
         PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=1, top_vents=false, solid_first_layer=_solid_first_layer, corner_bolt_holes=false, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height, sockets=sockets, side_sheaths=false, end_sheaths=false, knob_height=0, knob_vent_radius=0);
 
-            denom = half_height ? 2 : 1;
-            
-            cube([block_width(l), block_width(w), panel_height(block_height=block_height)/denom]);
+        cube([block_width(l), block_width(w), panel_height(block_height=block_height)/denom]);
     }
 }
 

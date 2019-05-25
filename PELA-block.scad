@@ -34,7 +34,6 @@ that may be hidden by the sensible default values. This is an evolving art.
 include <style.scad>
 include <material.scad>
 
-_skin=-1;
 
 /* [Render] */
 
