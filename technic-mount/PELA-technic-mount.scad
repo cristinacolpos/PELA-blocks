@@ -102,6 +102,9 @@ _knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
 // Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
 _knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
+// Add holes in the top deck to improve airflow and reduce weight
+_top_vents = false;
+
 // Text label
 _text = "Mount";
 
@@ -110,6 +113,12 @@ _text_depth = 0.5; // [0.0:0.1:2]
 
 // Bevel the outside edges above the board space inward to make upper structures like knobs more printable
 _dome = true;
+
+// Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
+_horizontal_skin = 0.1; // [0:0.02:0.5]
+
+// Vertical clearance space between two parts to be placed next to one another on a 8mm grid [mm]
+_vertical_skin = 0.1; // [0:0.02:0.5]
 
 
 
@@ -220,7 +229,7 @@ _block_height = 8; // This is not adjuestable due to twist beam technic hole rot
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, center_sockets=_center_sockets, center_knobs=_center_knobs, cover_sockets=_cover_sockets, cover_knobs=_cover_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, solid_first_layer=_solid_first_layer, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_cutout_y=_left_cutout_y, left_cutout_width=_left_cutout_width, left_cutout_depth=_left_cutout_depth, left_cutout_z=_left_cutout_z, left_cutout_height=_left_cutout_height, right_cutout_y=_right_cutout_y, right_cutout_width=_right_cutout_width, right_cutout_depth=_right_cutout_depth, right_cutout_z=_right_cutout_z, right_cutout_height=_right_cutout_height, front_cutout_x=_front_cutout_x, front_cutout_width=_front_cutout_width, front_cutout_depth=_front_cutout_depth, front_cutout_z=_front_cutout_z, front_cutout_height=_front_cutout_height, back_cutout_x=_back_cutout_x, back_cutout_width=_back_cutout_width, back_cutout_depth=_back_cutout_depth, back_cutout_z=_back_cutout_z, back_cutout_height=_back_cutout_height, dome=_dome);
+technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, center_sockets=_center_sockets, center_knobs=_center_knobs, cover_sockets=_cover_sockets, cover_knobs=_cover_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, solid_first_layer=_solid_first_layer, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_cutout_y=_left_cutout_y, left_cutout_width=_left_cutout_width, left_cutout_depth=_left_cutout_depth, left_cutout_z=_left_cutout_z, left_cutout_height=_left_cutout_height, right_cutout_y=_right_cutout_y, right_cutout_width=_right_cutout_width, right_cutout_depth=_right_cutout_depth, right_cutout_z=_right_cutout_z, right_cutout_height=_right_cutout_height, front_cutout_x=_front_cutout_x, front_cutout_width=_front_cutout_width, front_cutout_depth=_front_cutout_depth, front_cutout_z=_front_cutout_z, front_cutout_height=_front_cutout_height, back_cutout_x=_back_cutout_x, back_cutout_width=_back_cutout_width, back_cutout_depth=_back_cutout_depth, back_cutout_z=_back_cutout_z, back_cutout_height=_back_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
 
 
 
@@ -228,7 +237,7 @@ technic_mount_and_cover(render_modules=_render_modules, material=_material, larg
 // MODULES
 ///////////////////////////////////
 
-module technic_mount_and_cover(render_modules, material, large_nozzle, cut_line, length, width, thickness, h, cover_h, l_pad, w_pad, twist_l, twist_w, center_sockets, center_knobs, cover_sockets, cover_knobs, knob_height, knob_vent_radius, solid_first_layer, innercut, undercut, center, cover_center, text, cover_text, text_depth, left_cutout_y, left_cutout_width, left_cutout_depth, left_cutout_z, left_cutout_height, right_cutout_y, right_cutout_width, right_cutout_depth, right_cutout_z, right_cutout_height, front_cutout_x, front_cutout_width, front_cutout_depth, front_cutout_z, front_cutout_height, back_cutout_x, back_cutout_width, back_cutout_depth, back_cutout_z, back_cutout_height, dome) {
+module technic_mount_and_cover(render_modules, material, large_nozzle, cut_line, length, width, thickness, h, cover_h, l_pad, w_pad, twist_l, twist_w, center_sockets, center_knobs, cover_sockets, cover_knobs, knob_height, knob_vent_radius, top_vents, solid_first_layer, innercut, undercut, center, cover_center, text, cover_text, text_depth, left_cutout_y, left_cutout_width, left_cutout_depth, left_cutout_z, left_cutout_height, right_cutout_y, right_cutout_width, right_cutout_depth, right_cutout_z, right_cutout_height, front_cutout_x, front_cutout_width, front_cutout_depth, front_cutout_z, front_cutout_height, back_cutout_x, back_cutout_width, back_cutout_depth, back_cutout_z, back_cutout_height, dome, horizontal_skin, vertical_skin) {
 
     assert(render_modules != undef);
     assert(material != undef);
@@ -240,16 +249,7 @@ module technic_mount_and_cover(render_modules, material, large_nozzle, cut_line,
     assert(h != undef);
     assert(cover_h != undef);
     assert(render_modules != undef);
-    assert(render_modules != undef);
-    assert(render_modules != undef);
-    assert(render_modules != undef);
-    assert(render_modules != undef);
-    assert(l_pad == floor(l_pad), "l_pad must be an integer");
-    assert(l_pad >= 0);
-    assert(l_pad <= 2);
-    assert(w_pad == floor(w_pad), "w_pad must be an integer");
-    assert(w_pad >= 0);
-    assert(w_pad <= 2);
+    assert(l_pad!=undef);
     assert(text != undef);
     assert(text_depth != undef);
     assert(center_sockets != undef);
@@ -258,6 +258,7 @@ module technic_mount_and_cover(render_modules, material, large_nozzle, cut_line,
     assert(cover_knobs != undef);
     assert(knob_height != undef);
     assert(knob_vent_radius != undef);
+    assert(top_vents != undef);
     assert(solid_first_layer != undef);
     assert(innercut != undef);
     assert(undercut != undef);
@@ -287,23 +288,25 @@ module technic_mount_and_cover(render_modules, material, large_nozzle, cut_line,
     assert(back_cutout_z != undef);
     assert(back_cutout_height != undef);
     assert(dome != undef);
+    assert(horizontal_skin != undef);
+    assert(vertical_skin != undef);
 
     l = max(fit_mm_to_blocks(length, l_pad));
     w = max(2, fit_mm_to_blocks(width, w_pad));
 
     if (render_modules == 1 || render_modules == 2) {
         translate([0, -block_width(w + 1), 0]) {
-            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth);
+            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, solid_first_layer=solid_first_layer, center=cover_center, text=cover_text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         }
     }
 
     if (render_modules == 0 || render_modules == 2) {
-        technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, l=l, w=w, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=center_sockets, knobs=center_knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, dome=dome);
+        technic_mount(material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, l=l, w=w, h=h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, sockets=center_sockets, knobs=center_knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, text=text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, dome=dome, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
     }
 }
 
 
-module technic_mount(material, large_nozzle, cut_line, length, width, thickness, l, w, h, l_pad, w_pad, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, solid_first_layer, innercut, undercut, center, text, text_depth, left_cutout_y, left_cutout_width, left_cutout_depth, left_cutout_z, left_cutout_height, right_cutout_y, right_cutout_width, right_cutout_depth, right_cutout_z, right_cutout_height, front_cutout_x, front_cutout_width, front_cutout_depth, front_cutout_z, front_cutout_height, back_cutout_x, back_cutout_width, back_cutout_depth, back_cutout_z, back_cutout_height, dome) {
+module technic_mount(material, large_nozzle, cut_line, length, width, thickness, l, w, h, l_pad, w_pad, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, top_vents, solid_first_layer, innercut, undercut, center, text, text_depth, left_cutout_y, left_cutout_width, left_cutout_depth, left_cutout_z, left_cutout_height, right_cutout_y, right_cutout_width, right_cutout_depth, right_cutout_z, right_cutout_height, front_cutout_x, front_cutout_width, front_cutout_depth, front_cutout_z, front_cutout_height, back_cutout_x, back_cutout_width, back_cutout_depth, back_cutout_z, back_cutout_height, dome, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -322,6 +325,7 @@ module technic_mount(material, large_nozzle, cut_line, length, width, thickness,
     assert(knobs!=undef);
     assert(knob_height!=undef);
     assert(knob_vent_radius!=undef);
+    assert(top_vents!=undef);
     assert(solid_first_layer!=undef);
     assert(innercut!=undef);
     assert(undercut!=undef);
@@ -349,12 +353,14 @@ module technic_mount(material, large_nozzle, cut_line, length, width, thickness,
     assert(back_cutout_z!=undef);
     assert(back_cutout_height!=undef);
     assert(dome!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
 
     difference() {
         echo("l", l);
         echo("w", l);
 
-        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, center=center, text=text, text_depth=text_depth);
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, solid_first_layer=solid_first_layer, center=center, text=text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         
         union() {
             if (thickness > 0) {
@@ -369,7 +375,7 @@ module technic_mount(material, large_nozzle, cut_line, length, width, thickness,
 
             translate([block_width(-0.5), block_width(-0.5), 0]) {
                 
-                cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_height=block_height, knob_height=knob_height);
+                cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_height=block_width(), knob_height=knob_height);
             }
         }
     }
@@ -381,7 +387,7 @@ module technic_mount(material, large_nozzle, cut_line, length, width, thickness,
 
         translate([block_width(-0.5), block_width(-0.5), 0]) {
                 
-            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, cut_line=cut_line, block_height=block_width(), knob_height=knob_height);
         }
     }
 }
@@ -404,7 +410,7 @@ module main_board(material, large_nozzle, l, w, h, length, width, thickness, dom
     hl = l2/2 - length/2;
     hw = w2/2 - width/2;
 
-    translate([hl, hw, block_height(h, block_height) - thickness]) {
+    translate([hl, hw, block_width(h) - thickness]) {
         dome(dome=dome, length=length, width=width, thickness=thickness+_defeather);
     }
 }
@@ -428,7 +434,7 @@ module main_board_back(material, large_nozzle, l, w, h, length, width, thickness
     hl = l2/2 - length/2 - innercut;
     hw = w2/2 - width/2 - innercut;
 
-    translate([hl+innercut, hw+innercut, block_height(h, block_height) - thickness - undercut]) {
+    translate([hl+innercut, hw+innercut, block_width(h) - thickness - undercut]) {
         
         cube ([length-2*innercut, width-2*innercut, undercut + 2*_defeather]);
     }
