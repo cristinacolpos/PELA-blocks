@@ -40,7 +40,7 @@ use <PELA-technic-mount.scad>
 cut_line = 0; // [0:1:100] 
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-_material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
@@ -109,7 +109,7 @@ left_cutout_width = 16; // [0:0.1:200]
 left_cutout_depth = 10; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-left_cutout_z = -defeather; // [0:0.1:200]
+left_cutout_z = 0; // [0:0.1:200]
 
 // Height of the left side hole [mm]
 left_cutout_height = 9; // [0:0.1:200]
@@ -203,11 +203,19 @@ w = fit_mm_to_blocks(width, w_pad);
 
 difference() {
     union() {
-        technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, knob_vent_radius=knob_vent_radius, solid_first_layer=solid_first_layer, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, dome=dome);
+        technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, center_sockets=center_sockets, center_knobs=center_knobs, cover_sockets=cover_sockets, cover_knobs=cover_knobs, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_cutout_y=left_cutout_y, left_cutout_width=left_cutout_width, left_cutout_depth=left_cutout_depth, left_cutout_z=left_cutout_z, left_cutout_height=left_cutout_height, right_cutout_y=right_cutout_y, right_cutout_width=right_cutout_width, right_cutout_depth=right_cutout_depth, right_cutout_z=right_cutout_z, right_cutout_height=right_cutout_height, front_cutout_x=front_cutout_x, front_cutout_width=front_cutout_width, front_cutout_depth=front_cutout_depth, front_cutout_z=front_cutout_z, front_cutout_height=front_cutout_height, back_cutout_x=back_cutout_x, back_cutout_width=back_cutout_width, back_cutout_depth=back_cutout_depth, back_cutout_z=back_cutout_z, back_cutout_height=back_cutout_height, dome=dome);
 
         translate([block_width(0.5), block_width(-w-0.5), -defeather]) {
             socket_panel(material=material, large_nozzle=large_nozzle, cut_line=0, l=l-2, w=w-3, sockets=sockets, solid_first_layer=false, skin=skin, block_height=block_width());
         }
+        
+        translate([block_width(0.5), block_width(-2.5), block_width(0.5)]) corner_tab(-90);
+        
+        translate([block_width(l-1.5), block_width(-2.5), block_width(0.5)]) corner_tab(180);
+        
+        translate([block_width(l-1.5), block_width(-w-0.5), block_width(0.5)]) corner_tab(90);
+        
+        translate([block_width(0.5), block_width(-w-0.5), block_width(0.5)]) corner_tab(0);
     }
 
     union() {
@@ -218,9 +226,16 @@ difference() {
         color("pink") translate([block_width(1), block_width(-8), -defeather]) {
             cube([block_width(l-3), block_width(1.5)+defeather, block_height(cover_h+2*defeather)]);
         }
-        
-//        color("black") translate([block_width(0.5), block_width(-3.5), -defeather]) {
-//            cube([block_width(l-2), block_width(1)+defeather, block_height(cover_h+2*defeather)]);
-//        }
+    }
+}
+
+
+module corner_tab(rotation) {
+    assert(rotation!=undef);
+    
+    s = block_width(0.5);
+    intersection() {
+        cylinder(h=s, r1=0, r2=s);
+        rotate([0, 0, rotation]) cube([s, s, s]);
     }
 }
