@@ -107,6 +107,8 @@ _top_vents = false;
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
 _knob_vent_radius = 0; // [0.0:0.1:3.9]
 
+_skin=-10;
+
 
 /////////////////////////////////////
 // DISPLAY
@@ -173,7 +175,7 @@ module PELA_technic_block(material, large_nozzle, cut_line=_cut_line, l, w, h, k
     difference() {
         visual_cut_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, socket_insert_bevel=socket_insert_bevel, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, solid_first_layer=solid_first_layer, block_height=block_height, bottom_tweak=bottom_tweak, top_tweak=top_tweak, axle_hole_tweak=axle_hole_tweak);
 
-        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height, skin=skin);
     }
 }
 
@@ -245,7 +247,7 @@ module visual_cut_technic_block(material, large_nozzle, cut_line=_cut_line, l, w
 
             bottom_connector_negative_space(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, side_holes=side_holes, end_holes=end_holes, hole_type=side_holes, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, sockets=sockets, skin=skin, block_height=block_height, axle_hole_radius=ahr);
             
-            skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height);
+//            skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height);
         }
     }
 }
@@ -270,13 +272,13 @@ module bottom_connector_negative_space(material, large_nozzle, l, w, h, side_hol
     assert(axle_hole_radius!=undef);
 
     for (i = [1:h]) {
-        translate([0, 0, block_height(i-1)]) {
+        translate([0, 0, block_height(i-1, block_height)]) {
             if (side_holes > 0) {
-                double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=side_holes, block_height=block_height, axle_hole_radius=axle_hole_radius);
+                double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=side_holes, block_height=block_height, axle_hole_radius=axle_hole_radius, skin=skin);
             }
             
             if (end_holes > 0) {
-                double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=end_holes, axle_hole_radius=axle_hole_radius, block_height=block_height);
+                double_end_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=end_holes, axle_hole_radius=axle_hole_radius, block_height=block_height, skin=skin);
             }
         }
     }
@@ -419,7 +421,7 @@ module sheath(material, large_nozzle, sheath_radius, sheath_length, skin) {
 
 
 // For use by extension routines
-module double_end_connector_hole_set(material, large_nozzle, l, w, hole_type, axle_hole_radius, block_height) {
+module double_end_connector_hole_set(material, large_nozzle, l, w, hole_type, axle_hole_radius, block_height, skin) {
  
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -428,17 +430,18 @@ module double_end_connector_hole_set(material, large_nozzle, l, w, hole_type, ax
     assert(hole_type!=undef);
     assert(axle_hole_radius!=undef);
     assert(block_height!=undef);
+    assert(skin!=undef);
 
     translate([block_width(l), 0, 0]) {
         rotate([0, 0, 90]) {
-            double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=w, w=l, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
+            double_side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=w, w=l, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius, skin=skin);
         }
     }
 }
 
 
 // For use by extension routines
-module double_side_connector_hole_set(material, large_nozzle, l, w, hole_type, block_height, axle_hole_radius) {
+module double_side_connector_hole_set(material, large_nozzle, l, w, hole_type, block_height, axle_hole_radius, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -447,20 +450,21 @@ module double_side_connector_hole_set(material, large_nozzle, l, w, hole_type, b
     assert(hole_type!=undef);
     assert(block_height!=undef);
     assert(axle_hole_radius!=undef);
+    assert(skin!=undef);
 
-    side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
+    side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius, skin=skin);
     
     translate([block_width(l), block_width(w)]) {
 
         rotate([0, 0, 180]) {
-            side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius);
+            side_connector_hole_set(material=material, large_nozzle=large_nozzle, l=l, w=w, hole_type=hole_type, block_height=block_height, axle_hole_radius=axle_hole_radius, skin=skin);
         }
     }
 }
 
 
 // A row of knob-size holes around the sides of row 1
-module side_connector_hole_set(material, large_nozzle, l, w, hole_type, block_height, axle_hole_radius) {
+module side_connector_hole_set(material, large_nozzle, l, w, hole_type, block_height, axle_hole_radius, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -469,20 +473,21 @@ module side_connector_hole_set(material, large_nozzle, l, w, hole_type, block_he
     assert(hole_type!=undef);
     assert(block_height!=undef);
     assert(axle_hole_radius!=undef);
+    assert(skin!=undef);
 
     length = block_width();
     count = hole_type==3 ? w : 1;
 
     for (j = [1:w]) {
         if (l == 1) {
-            translate([block_width(0.5) - _defeather, block_width(j-1), block_height(1, block_height=block_height)-block_width(0.5)]) {
+            translate([block_width(0.5) - skin, block_width(j-1), block_height(1, block_height=block_height)-block_width(0.5)]) {
                 rotate([-90, 0, 0]) {                
                     axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);
                 }
             }        
         } else {
             for (i = [1:l-1]) {
-                translate([block_width(i), block_width(j-1), block_height(1, block_height=block_height)-block_width(0.5)]) {
+                translate([block_width(i), block_width(j-1) - skin, block_height(1, block_height=block_height)-block_width(0.5)]) {
                     rotate([-90, 0, 0]) {
                         axle_hole(material=material, large_nozzle=large_nozzle, hole_type=hole_type, radius=axle_hole_radius, length=length);
                     }

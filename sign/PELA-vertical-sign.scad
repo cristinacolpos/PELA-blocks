@@ -168,7 +168,7 @@ module PELA_vertical_sign(material=material, large_nozzle=large_nozzle, cut_line
         }
 
         translate([0, -text_depth, 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height, skin=skin);
         }
     }
 }

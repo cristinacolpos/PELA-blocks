@@ -58,6 +58,7 @@ _block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 _solid_first_layer = false;
 
+_skin=-1;
 
 
 ///////////////////////////////
@@ -86,7 +87,7 @@ module socket_panel(material, large_nozzle, cut_line=_cut_line, l, w, sockets, s
 
     difference() {
         union() {
-            socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, knob_height=_knob_height, skin=skin, block_height=block_height, half_height=true);
+            socket_panel_one_sided(material=material, large_nozzle=large_nozzle, l=l, w=w, sockets=sockets, skin=skin, block_height=block_height, half_height=true);
 
             translate([0, block_width(w), panel_height(block_height=block_height)]) {
                 rotate([180, 0, 0]) {
@@ -95,12 +96,20 @@ module socket_panel(material, large_nozzle, cut_line=_cut_line, l, w, sockets, s
             }
         }
 
-        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=1, block_height=block_height, knob_height=0);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=1, block_height=block_height, knob_height=0, skin=skin);
     }
 }
 
 
-module socket_panel_one_sided(material, large_nozzle, l, w, sockets, knob_height, skin, block_height, half_height=false) {
+module socket_panel_one_sided(material, large_nozzle, l, w, sockets, skin, block_height, half_height=false) {
+    
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(sockets!=undef);
+    assert(skin!=undef);
+    assert(block_height!=undef);
     
     intersection() {
         PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=1, top_vents=false, solid_first_layer=_solid_first_layer, corner_bolt_holes=false, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height, sockets=sockets, side_sheaths=false, end_sheaths=false, knob_height=0, knob_vent_radius=0);

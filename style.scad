@@ -198,25 +198,25 @@ $fs = 0.5;
 function block_width(i=1) = i*_block_width;
 
 // Vertical size [mm]
-function block_height(h=1, block_height=_block_height) = h*block_height;
+function block_height(h=1, block_height) = h*block_height;
 
 // Test if this is a corner block
 function is_corner(x, y, l, w) = (x==0 || x==l-1) && (y==0 || y==w-1);
 
 // Ratio of a flat panel thickness to a regular block thickness (1/2 for PELA 8mm tall blocks, 1/3 for LEGO 9.6mm block_height blocks)
-function panel_height_ratio(block_height=_block_height) = block_height < 9.6 ? 1/2 : 1/3;
+function panel_height_ratio(block_height) = block_height < 9.6 ? 1/2 : 1/3;
 
 // Thickness of a flat panel [mm]
-function panel_height(block_height=_block_height) = block_height(1, block_height=_block_height)*panel_height_ratio(block_height=_block_height);
+function panel_height(block_height) = block_height(1, block_height=_block_height)*panel_height_ratio(block_height=_block_height);
 
 // Bottom connector additional distance from outside lock and connector rings which small flexture-fit rims protrude inwards to grab the base of knobs for asymmetric side pressure to assist with snap fit [mm]
-function side_lock_thickness(material=undef) = is_flexible(_material) ? 0.06 : 0.02;
+function side_lock_thickness(material) = is_flexible(_material) ? 0.06 : 0.02;
 
 // Horizontal width of each side of a support triangle [mm]
-function support_line_width(large_nozzle=undef) = large_nozzle ? 0.7 : 0.5;
+function support_line_width(large_nozzle) = large_nozzle ? 0.7 : 0.5;
 
 // Force the cut visual line for seeing inside parts to be between 0 and 1mm short of the part width [mm]
-function visual_cut(cut_line=undef, w=undef) = max(min(cut_line, block_width(w)), 0);
+function visual_cut(cut_line, w) = max(min(cut_line, block_width(w)), 0);
 
 // Thickness of the solid outside surface of the block [mm]
-function side_shell(large_nozzle=undef) = large_nozzle ? 1.2 : 1.0;
+function side_shell(large_nozzle) = large_nozzle ? 1.2 : 1.0;

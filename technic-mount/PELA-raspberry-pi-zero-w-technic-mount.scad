@@ -286,14 +286,6 @@ module raspberry_pi_zero_w(render_modules, material, large_nozzle, cut_line=_cut
                     socket_panel(material=material, large_nozzle=large_nozzle, cut_line=0, l=l-2, w=w-3, sockets=cover_sockets, skin=horizontal_skin, block_height=block_width());
                 }
             }
-            
-            translate([block_width(0.5), block_width(-2.5), block_width(0.5)]) corner_tab(-90);
-            
-            translate([block_width(l-1.5), block_width(-2.5), block_width(0.5)]) corner_tab(180);
-            
-            translate([block_width(l-1.5), block_width(-w-0.5), block_width(0.5)]) corner_tab(90);
-            
-            translate([block_width(0.5), block_width(-w-0.5), block_width(0.5)]) corner_tab(0);
         }
 
         union() {
@@ -305,16 +297,5 @@ module raspberry_pi_zero_w(render_modules, material, large_nozzle, cut_line=_cut
                 cube([block_width(l-3), block_width(1.5)+_defeather, block_height(cover_h+2*_defeather)]);
             }
         }
-    }
-}
-
-
-module corner_tab(rotation) {
-    assert(rotation!=undef);
-    
-    s = block_width(0.5);
-    intersection() {
-        cylinder(h=s, r1=0, r2=s);
-        rotate([0, 0, rotation]) cube([s, s, s]);
     }
 }
