@@ -34,7 +34,7 @@ that may be hidden by the sensible default values. This is an evolving art.
 include <style.scad>
 include <material.scad>
 
-
+_skin=-1;
 
 /* [Render] */
 
@@ -117,13 +117,13 @@ module PELA_block(material, large_nozzle, cut_line=_cut_line, l, w, h, knob_heig
     difference() {
         block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, socket_insert_bevel=socket_insert_bevel, bottom_tweak=bottom_tweak, top_tweak=top_tweak);
 
-        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height);
+        cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height, skin=skin);
     }
 }
 
 
 // Negative space used to display the interior of a model
-module cut_space(material, large_nozzle, cut_line=_cut_line, l, w, h, block_height, knob_height) {
+module cut_space(material, large_nozzle, cut_line=_cut_line, l, w, h, block_height, knob_height, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -133,6 +133,7 @@ module cut_space(material, large_nozzle, cut_line=_cut_line, l, w, h, block_heig
     assert(h!=undef);
     assert(block_height!=undef);
     assert(knob_height!=undef);
+    assert(skin!=undef);
 
     vc = visual_cut(cut_line=cut_line, w=w);
     
@@ -140,8 +141,8 @@ module cut_space(material, large_nozzle, cut_line=_cut_line, l, w, h, block_heig
         cw = block_width(l) ;
         ch = block_height(h, block_height) + knob_height;
     
-        color("red") translate([-_defeather, -_defeather, -_defeather]) {
-            cube([cw + 2*_defeather, vc + _defeather, ch + 2*_defeather]);
+        color("red") translate([skin-_defeather, skin-_defeather, -_defeather]) {
+            cube([cw - 2*skin + 2*_defeather, vc - 2*skin + _defeather, ch + 2*_defeather]);
         }
     }
 }
@@ -177,7 +178,7 @@ module block(material, large_nozzle, l, w, h, knob_height, knob_flexture_height,
     
     difference() {
         union() {
-            outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_shell=top_shell, block_height=block_height);
+            outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_shell=top_shell, block_height=block_height, skin=skin);
 
             if (knobs) {
                 top_knob_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, block_height=block_height, top_tweak=top_tweak);
@@ -411,7 +412,7 @@ module knob_flexture(material, large_nozzle, knob_height, knob_flexture_height, 
 
 
 // That solid outer skin of a block set
-module outer_side_shell(material, large_nozzle, l, w, h, top_shell, block_height) {
+module outer_side_shell(material, large_nozzle, l, w, h, top_shell, block_height, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -420,14 +421,17 @@ module outer_side_shell(material, large_nozzle, l, w, h, top_shell, block_height
     assert(h!=undef);
     assert(top_shell!=undef);
     assert(block_height!=undef);
+    assert(skin!=undef);
 
     ss = side_shell(large_nozzle);
 
     difference() {
-        cube([block_width(l), block_width(w), block_height(h, block_height)]);
+        translate([skin, skin, 0]) {
+            cube([block_width(l)-2*skin, block_width(w)-2*skin, block_height(h, block_height)]);
+        }
 
-        translate([ss, ss, -top_shell]) {
-            cube([block_width(l) - 2*ss, block_width(w) - 2*ss, block_height(h, block_height)]);
+        translate([ss+skin, ss+skin, -top_shell]) {
+            cube([block_width(l)-2*skin - 2*ss, block_width(w)-2*skin - 2*ss, block_height(h, block_height)]);
         }
     }
 }
@@ -448,7 +452,7 @@ module skinned_block(material, large_nozzle, l, w, h, ridge_width, ridge_depth, 
 
     difference() {
         hull() {
-            outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_shell=1, block_height=block_height);
+            outer_side_shell(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, top_shell=1, block_height=block_height, skin=skin);
         }
 
         skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, block_height=block_height);

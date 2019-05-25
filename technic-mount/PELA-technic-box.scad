@@ -170,6 +170,8 @@ module technic_box_and_cover(material, large_nozzle, cut_line=_cut_line, render_
 
     if (render_modules != 1) {
         technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=center, text=text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+        
+        corner_tabs(l=l, w=w, cover_h=cover_h, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
     }
 }
 
@@ -466,5 +468,37 @@ module top_cheese_holes(material, large_nozzle, w, l, h, horizontal_skin, vertic
         rotate([180, 0, 0]) {
             bottom_cheese_holes(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
         }
+    }
+}
+
+
+module corner_tabs(l, w, cover_h, horizontal_skin, vertical_skin) {
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(cover_h!=undef);
+    assert(horizontal_skin!=undef);
+    assert(vertical_skin!=undef);
+
+    translate([block_width(0.5)-horizontal_skin, block_width(-2.5)-horizontal_skin, block_width(cover_h-0.5)-2*vertical_skin])
+        corner_tab(-90);
+            
+    translate([block_width(l-1.5)+horizontal_skin, block_width(-2.5)+horizontal_skin, block_width(cover_h-0.5)-2*vertical_skin])
+        corner_tab(180);
+            
+    translate([block_width(l-1.5)+horizontal_skin, block_width(-w-0.5)-horizontal_skin, block_width(cover_h-0.5)-2*vertical_skin])
+        corner_tab(90);
+            
+    translate([block_width(0.5)-horizontal_skin, block_width(-w-0.5)-horizontal_skin, block_width(cover_h-0.5)-2*vertical_skin])
+        corner_tab(0);
+}
+
+
+module corner_tab(rotation) {
+    assert(rotation!=undef);
+    
+    s = block_width(0.5);
+    intersection() {
+        cylinder(h=s, r1=0, r2=s);
+        rotate([0, 0, rotation]) cube([s, s, s]);
     }
 }
