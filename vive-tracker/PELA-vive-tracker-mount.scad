@@ -280,7 +280,7 @@ module vive_connector(material, l, w) {
     difference() {
         channel(material=material);
         union () {
-            vive_cutout_array(material=material);
+            vive_enclosure_cutout_array(material=material);
             
             translate([0, (_channel_l-5*_pin_spacing)/2, 0]) {
                 hull() {
@@ -309,7 +309,7 @@ module vive_pin_array(material, large_nozzle, count=6) {
 
 
 // A set of negative space for pins
-module vive_cutout_array(material, large_nozzle, count=6) {
+module vive_enclosure_cutout_array(material, large_nozzle, count=6) {
 
     for (i=[0:_pin_spacing:_pin_spacing*(count-1)]) {
         translate([0, i + (_channel_l-(count-1)*_pin_spacing)/2, _pin_vertical_offset]) {

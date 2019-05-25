@@ -108,11 +108,11 @@ board_x_offset = -2; // [-8:0.1:8]
 // Shift the PCB board relative to the enclosure on the Y axis [mm]
 board_y_offset = 0; // [-8:0.1:8]
 
-sd_card_cutout_width = block_width(3);
+sd_card_enclosure_cutout_width = block_width(3);
 
-sd_card_cutout_depth = 3.8;
+sd_card_enclosure_cutout_depth = 3.8;
 
-sd_card_cutout_offset = -block_width(1/2);
+sd_card_enclosure_cutout_offset = -block_width(1/2);
 
 top_edge_height = 2;
 
