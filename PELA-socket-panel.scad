@@ -58,7 +58,6 @@ _block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 _solid_first_layer = false;
 
-_skin=0;
 
 
 ///////////////////////////////
@@ -116,7 +115,8 @@ module socket_panel_one_sided(material, large_nozzle, l, w, sockets, skin, block
     intersection() {
         PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=1, top_vents=false, solid_first_layer=_solid_first_layer, corner_bolt_holes=false, side_holes=0, end_holes=0, skin=skin, knobs=false, block_height=block_height, sockets=sockets, side_sheaths=false, end_sheaths=false, knob_height=0, knob_vent_radius=0);
 
-        cube([block_width(l), block_width(w), panel_height(block_height=block_height)/denom]);
+        translate([skin, skin, 0])
+            cube([block_width(l)-2*skin, block_width(w)-2*skin, panel_height(block_height=block_height)/denom]);
     }
 }
 

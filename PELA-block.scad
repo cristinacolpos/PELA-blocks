@@ -187,7 +187,7 @@ module block(material, large_nozzle, l, w, h, knob_height, knob_flexture_height,
 
             if (h >= block_height(2/3, block_height=block_height)) {
                 translate([0, 0, block_height(h-1, block_height=block_height)])
-                    bottom_stiffener_beam_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=beam_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
+                    bottom_stiffener_beam_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=beam_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height, skin=skin);
             }
 
             if (sockets) {
@@ -210,7 +210,7 @@ module block(material, large_nozzle, l, w, h, knob_height, knob_flexture_height,
             if (solid_first_layer || !sockets) {
                 fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height, skin=skin);
             } else if (h>1) {
-                bottom_stiffener_beam_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=beam_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
+                bottom_stiffener_beam_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=beam_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height, skin=skin);
             }
             
             if (h>1 && solid_upper_layers) {
@@ -464,7 +464,7 @@ module skinned_block(material, large_nozzle, l, w, h, ridge_width, ridge_depth, 
 
 
 // Bars layed below a horizontal surface to make it stronger
-module bottom_stiffener_beam_set(material, large_nozzle, l, w, h, start_l, end_l, start_w, end_w, bottom_stiffener_width, bottom_stiffener_height, block_height) {
+module bottom_stiffener_beam_set(material, large_nozzle, l, w, h, start_l, end_l, start_w, end_w, bottom_stiffener_width, bottom_stiffener_height, block_height, skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -478,17 +478,18 @@ module bottom_stiffener_beam_set(material, large_nozzle, l, w, h, start_l, end_l
     assert(bottom_stiffener_width!=undef);
     assert(bottom_stiffener_height!=undef);
     assert(block_height!=undef);
+    assert(skin!=undef);
 
     cut_width = bottom_stiffener_width/6;
     translate([0, 0, block_height(h, block_height)-bottom_stiffener_height]) {
         if (end_l >= start_l) {
             for (i = [start_l:end_l]) {            
-                translate([block_width(i)-(bottom_stiffener_width)/2, 0, 0]) {
+                translate([block_width(i)-(bottom_stiffener_width)/2, skin, 0]) {
                     difference() {
-                        cube([bottom_stiffener_width, block_width(w), bottom_stiffener_height]);
+                        cube([bottom_stiffener_width, block_width(w)-2*skin, bottom_stiffener_height]);
                     
                         translate([(bottom_stiffener_width-cut_width)/2, 0, -_defeather]) {
-                            cube([cut_width, block_width(w), bottom_stiffener_height+_defeather]);
+                            cube([cut_width, block_width(w)-2*skin, bottom_stiffener_height+_defeather]);
                         }
                     }
                 }
@@ -497,12 +498,12 @@ module bottom_stiffener_beam_set(material, large_nozzle, l, w, h, start_l, end_l
         
         if (end_w >= start_w) {
             for (j = [start_w:end_w]) {
-                translate([0, block_width(j)-(bottom_stiffener_width)/2, 0]) {
+                translate([skin, block_width(j)-(bottom_stiffener_width)/2, 0]) {
                     difference() {
-                        cube([block_width(l), bottom_stiffener_width, bottom_stiffener_height]);
+                        cube([block_width(l)-2*skin, bottom_stiffener_width, bottom_stiffener_height]);
                     
                         translate([0, (bottom_stiffener_width-cut_width)/2, -_defeather]) {
-                            cube([block_width(l), cut_width, bottom_stiffener_height+_defeather]);
+                            cube([block_width(l)-2*skin, cut_width, bottom_stiffener_height+_defeather]);
                         }
                     }
                 }
