@@ -41,7 +41,7 @@ include <material.scad>
 _cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-_material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
 
@@ -208,13 +208,13 @@ module block(material, large_nozzle, l, w, h, knob_height, knob_flexture_height,
             }
 
             if (solid_first_layer || !sockets) {
-                fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
+                fill_first_layer(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height, skin=skin);
             } else if (h>1) {
                 bottom_stiffener_beam_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=beam_h, start_l=1, end_l=l-1, start_w=1, end_w=w-1, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, block_height=block_height);
             }
             
             if (h>1 && solid_upper_layers) {
-                fill_upper_layers(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height);
+                fill_upper_layers(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, block_height=block_height, skin=skin);
             }
         }
 
@@ -270,7 +270,7 @@ module double_socket_hole_set(material, large_nozzle, l, w, sockets, alternate_l
 
 
 // Make the bottom layer be solid instead of mostly open space
-module fill_first_layer(material, large_nozzle, l, w, h, block_height) {
+module fill_first_layer(material, large_nozzle, l, w, h, block_height, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -278,15 +278,18 @@ module fill_first_layer(material, large_nozzle, l, w, h, block_height) {
     assert(w!=undef);
     assert(h!=undef);
     assert(block_height!=undef);
+    assert(skin!=undef);
 
     fill_height = block_height(min(1, h), block_height=block_height);
 
-    cube([block_width(l), block_width(w), fill_height]);
+    translate([skin, skin, 0]) {
+        cube([block_width(l)-2*skin, block_width(w)-2*skin, fill_height]);
+    }
 }
 
 
 // Make layers above the bottom layer be solid instead of mostly open space
-module fill_upper_layers(material, large_nozzle, l, w, h, block_height) {
+module fill_upper_layers(material, large_nozzle, l, w, h, block_height, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -294,9 +297,10 @@ module fill_upper_layers(material, large_nozzle, l, w, h, block_height) {
     assert(w!=undef);
     assert(h!=undef);
     assert(block_height!=undef);
+    assert(skin!=undef);
 
-    translate([0, 0, block_height(1, block_height=block_height)]) {
-        cube([block_width(l), block_width(w), block_height(h-1, block_height=block_height)]);
+    translate([skin, skin, block_height(1, block_height=block_height)]) {
+        cube([block_width(l)-2*skin, block_width(w)-2*skin, block_height(h-1, block_height=block_height)]);
     }
 }
 

@@ -58,7 +58,7 @@ _block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 _solid_first_layer = false;
 
-_skin=-0.5;
+_skin=0;
 
 
 ///////////////////////////////
