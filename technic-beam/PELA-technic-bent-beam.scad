@@ -36,7 +36,7 @@ use <../technic-beam/PELA-technic-twist-beam.scad>
 _cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-_material = 1; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
 
@@ -139,7 +139,7 @@ module bent_beam(material, large_nozzle, cut_line=_cut_line, l1, l2, angle, w, h
             }
 
             translate([block_width(-0.5) - cos(angle)*block_width(h2+2), block_width(-0.5), 0]) {
-                cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l1+l2+h2, cut_line=cut_line, h=max(h1, h2), block_height=_block_height, knob_height=0);
+                cut_space(material=material, large_nozzle=large_nozzle, w=w, l=l1+l2+h2, cut_line=cut_line, h=max(h1, h2), block_height=_block_height, knob_height=0, skin=horizontal_skin);
             }
         }
     }

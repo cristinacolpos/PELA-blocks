@@ -216,7 +216,7 @@ module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l,
         }
 
         translate([-block_width(0.5), -block_width(0.5), 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_width(), knob_height=knob_height);
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_width(), knob_height=knob_height, skin=horizontal_skin);
         }
     }
 }
@@ -270,7 +270,7 @@ module technic_only_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twi
         
         translate([block_width(-0.5), block_width(-0.5), 0]) {
             
-            cut_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, block_height=block_width());
+            cut_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, knob_height=knob_height, block_height=block_width(), skin=horizontal_skin);
         }
     }
 }
