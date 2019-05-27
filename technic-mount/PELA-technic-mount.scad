@@ -396,7 +396,7 @@ module technic_mount(material, large_nozzle, cut_line=_cut_line, length, width, 
 }
 
 
-module main_board(material, large_nozzle, l, w, h, length, width, thickness, dome) {
+module main_board(material, large_nozzle, l, w, h, length, width, thickness, dome, horizontal_skin, vertical_skin) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
