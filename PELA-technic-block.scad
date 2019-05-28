@@ -385,7 +385,7 @@ module end_connector_sheath_set(material, large_nozzle, l, w, end_holes, peg_len
     sheath_length = end_holes == 2 ? block_width(l) : block_width(1);
 
     if (w == 1) {
-        translate([0, block_width(0.5), block_height(1)-block_width(0.5)]) {
+        translate([0, block_width(0.5), block_height(1, block_height)-block_width(0.5)]) {
 
             rotate([0, 90, 0]) {
                 sheath(material=material, large_nozzle=large_nozzle, sheath_radius=sheath_radius, sheath_length=sheath_length, skin=skin);
