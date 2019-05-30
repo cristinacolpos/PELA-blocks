@@ -73,7 +73,7 @@ _h = 4; // [1:20]
 _twist_l = 6; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
-_twist_w = 1; // [1:18]
+_twist_w = 2; // [1:18]
 
 // Step in from board space edges to support the board [mm]
 _innercut = 4;
