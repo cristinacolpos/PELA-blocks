@@ -49,13 +49,20 @@ _angle = 30; // [0:180]
 _l = 7; // [1:1:20]
 
 // Width of the beam [blocks]
-_w = 1; // [1:1:20]
+_w_top = 1; // [1:1:20]
+
+// Width of the beam [blocks]
+_w_bottom = 2; // [1:1:20]
 
 // Top beam height [blocks]
 _h_top = 1; // [1:1:30]
 
 // Bottom beam height [blocks]
 _h_bottom = 1; // [1:1:30]
+
+
+
+/* [Advanced] */
 
 // Add full width through holes spaced along the length for techic connectors
 _side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
@@ -67,16 +74,12 @@ _horizontal_skin = 0.1; // [0:0.02:0.5]
 _vertical_skin = 0.1; // [0:0.02:0.5]
 
 
-/* [Hidden] */
-
-_block_height = 8;
-
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-technic_angle_connector(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, angle=_angle, l=_l, w=_w, h_top=_h_top, h_bottom=_h_bottom, side_holes=_side_holes, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
+technic_angle_connector(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, angle=_angle, l=_l, w_top=_w_top, w_bottom=_w_bottom, h_top=_h_top, h_bottom=_h_bottom, side_holes=_side_holes, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
 
 
 
@@ -84,7 +87,7 @@ technic_angle_connector(material=_material, large_nozzle=_large_nozzle, cut_line
 // MODULES
 ///////////////////////////////////
 
-module technic_angle_connector(material, large_nozzle, cut_line=_cut_line,angle, l, w, h_top, h_bottom, side_holes, horizontal_skin, vertical_skin) {
+module technic_angle_connector(material, large_nozzle, cut_line=_cut_line,angle, l, w_top, w_bottom, h_top, h_bottom, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -92,7 +95,8 @@ module technic_angle_connector(material, large_nozzle, cut_line=_cut_line,angle,
     assert(angle >= 0, "Angle connector must be 0-180 degrees")
     assert(angle <= 180, "Angle connector must be 0-180 degrees")
     assert(l!=undef);
-    assert(w!=undef);
+    assert(w_top!=undef);
+    assert(w_bottom!=undef);
     assert(h_top!=undef);
     assert(h_bottom!=undef);
     assert(side_holes!=undef);
@@ -104,25 +108,25 @@ module technic_angle_connector(material, large_nozzle, cut_line=_cut_line,angle,
             translate([0, 0, block_width(h_bottom)-2*vertical_skin]) {
                 rotate([angle, 0, 0]) {
                     translate([0, block_width(0.5), 0]) {
-                        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h_top, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                        technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w_top, h=h_top, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
                     }
                 }
             }
 
             translate([0, block_width(0.5), 0]) {
-                    technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h_bottom, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                    technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w_bottom, h=h_bottom, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
             }
 
             increment = 1;
             for (theta = [0 : increment : angle]) {
                 translate([0, 0, -2*vertical_skin]) {
-                    pie_slice(material=material, large_nozzle=large_nozzle, theta=theta, increment=increment, l=l, w=w, h=h_bottom, horizontal_skin=horizontal_skin);
+                    pie_slice(material=material, large_nozzle=large_nozzle, theta=theta, increment=increment, l=l, w=1, h=h_bottom, horizontal_skin=horizontal_skin);
                 }
             }
         }
 
         translate([block_width(-0.5), -sin(angle)*block_width(h_top+1), 0]) {
-           cut_space(material=material, large_nozzle=large_nozzle, w=l, l=w, cut_line=cut_line, h=h_bottom+1, block_height=_block_height, knob_height=_knob_height, skin=horizontal_skin);
+           cut_space(material=material, large_nozzle=large_nozzle, w=l, l=max(w_top, w_bottom), cut_line=cut_line, h=h_bottom+1, block_height=_block_height, knob_height=_knob_height, skin=horizontal_skin);
         }
     }
 }

@@ -35,6 +35,7 @@ _cut_line = 0; // [0:1:16]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
 
@@ -49,6 +50,9 @@ _w = 2; // [1:1:30]
 
 // Beam height [blocks]
 _h = 1; // [1:1:30]
+
+
+/* [Advanced] */
 
 // Add full width through holes spaced along the length for techic connectors
 _side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]

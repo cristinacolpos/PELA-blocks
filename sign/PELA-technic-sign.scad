@@ -64,7 +64,7 @@ _twist_l = 1; // [1:18]
 _twist_w = 2; // [1:18]
 
 // Interior fill style
-_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // The first line of text
 _edge_text = "Hki";
@@ -82,7 +82,7 @@ _text_depth = 1; // [0.0:0.1:2]
 _knobs = false;
 
 // Height of traditional connectors [mm] (taller gives a stronger hold)
-_knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
+_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
 
 // Size of a hole in the top of each knob. Set 0 to disable for best flexture or enable for air circulation/aesthetics/drain resin
 _knob_vent_radius = 0.0; // [0.0:0.1:4]

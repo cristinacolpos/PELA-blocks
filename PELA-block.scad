@@ -68,7 +68,7 @@ _solid_upper_layers = false;
 _knobs = true;
 
 // How tall are top connectors [mm]
-_knob_height = 1.8; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
+_knob_height = 1.8; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
 
 // Add connectors to the bottom of the block
 _sockets = true;
@@ -349,18 +349,20 @@ module knob(material, large_nozzle, knob_height, top_tweak) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
-    assert(knob_height!=undef);
+    assert(knob_height>=0);
 
-    bevel = knob_bevel(material=material);
-    knob_radius = override_knob_radius(material=material, large_nozzle=large_nozzle, top_tweak=top_tweak);
+    if (knob_height > 0) {
+        bevel = knob_bevel(material=material);
+        knob_radius = override_knob_radius(material=material, large_nozzle=large_nozzle, top_tweak=top_tweak);
 
-    cylinder(r=knob_radius, h=knob_height-bevel);
+        cylinder(r=knob_radius, h=knob_height-bevel);
 
-    if (bevel > 0) {
-        translate([0, 0, knob_height-bevel]) {
-            intersection() {
-                cylinder(r=knob_radius, h=bevel);
-                cylinder(r1=knob_radius, r2=0, h=1.5*(knob_radius));
+        if (bevel > 0) {
+            translate([0, 0, knob_height-bevel]) {
+                intersection() {
+                    cylinder(r=knob_radius, h=bevel);
+                    cylinder(r1=knob_radius, r2=0, h=1.5*(knob_radius));
+                }
             }
         }
     }

@@ -52,9 +52,11 @@ _right = 2; // [1:20]
 // Model height [blocks]
 _h = 1; // [1:1:30]
 
+
+/* [Advanced] */
+
 // Add full width through holes spaced along the length for techic connectors
 _side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
-
 
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
 _horizontal_skin = 0.1; // [0:0.02:0.5]
@@ -62,11 +64,6 @@ _horizontal_skin = 0.1; // [0:0.02:0.5]
 // Vertical clearance space between two parts to be placed next to one another on a 8mm grid [mm]
 _vertical_skin = 0.1; // [0:0.02:0.5]
 
-
-/* [Hidden] */
-
-// Basic unit vertical size of each block
-_block_height = 8; // [8:technic, 9.6:traditional knobs]
 
 
 ///////////////////////////////
