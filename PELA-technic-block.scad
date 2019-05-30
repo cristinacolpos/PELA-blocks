@@ -515,15 +515,16 @@ module axle_hole(material, large_nozzle, hole_type, radius, length) {
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(hole_type!=undef);
-    assert(radius!=undef);
-    assert(length!=undef);
+    assert(radius>=0);
+    assert(length>=0);
 
     rotation_hole(material=material, large_nozzle=large_nozzle, radius=radius, length=length);
 
     if (hole_type>1) {
         counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius);
 
-        depth=2*(block_width()-length);
+        //depth=2*(block_width()-length);
+        depth=_counterbore_inset_depth;
         inset_radius=_counterbore_inset_radius-_bearing_sheath_thickness/2;
             
         translate([0, 0, length]) {
@@ -534,12 +535,12 @@ module axle_hole(material, large_nozzle, hole_type, radius, length) {
 
 
 // The connector inset for a technic side connector
-module counterbore_inset(material, large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius) {
+module counterbore_inset(material, large_nozzle, counterbore_inset_depth, counterbore_inset_radius) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
-    assert(counterbore_inset_depth!=undef);
-    assert(counterbore_inset_radius!=undef);
+    assert(counterbore_inset_depth>=0);
+    assert(counterbore_inset_radius>=0);
 
     translate([0, 0, -_defeather]) {
         cylinder(r=counterbore_inset_radius, h=counterbore_inset_depth + 2*_defeather);
