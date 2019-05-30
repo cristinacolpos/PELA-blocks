@@ -85,7 +85,7 @@ _cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes
 _cover_h = 1; // [1:1:20]
 
 // Include quarter-round corner hold-downs in the cover
-_board_corner_tabs = true;
+_cover_corner_tabs = true;
 
 
 /* [Advanced] */
@@ -121,7 +121,7 @@ function mid_l(l, l1, l3) = max(0, l - l1 - l3);
 // DISPLAY
 ///////////////////////////////
 
-technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_modules=_render_modules, cut_line=_cut_line, l=_l, w=_w, h=_h, cover_h=_cover_h, twist_l=_twist_l, twist_w=_twist_w, sockets=_sockets, knobs=_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, board_corner_tabs=_board_corner_tabs);
+technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_modules=_render_modules, cut_line=_cut_line, l=_l, w=_w, h=_h, cover_h=_cover_h, twist_l=_twist_l, twist_w=_twist_w, sockets=_sockets, knobs=_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, cover_corner_tabs=_cover_corner_tabs);
 
 
 ///////////////////////////////////
@@ -129,7 +129,7 @@ technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_mod
 ///////////////////////////////////
 
 
-module technic_box_and_cover(material, large_nozzle, cut_line, render_modules, l, w, h, cover_h, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, top_vents, center, cover_center, text, cover_text, text_depth, horizontal_skin, vertical_skin, board_corner_tabs) {
+module technic_box_and_cover(material, large_nozzle, cut_line, render_modules, l, w, h, cover_h, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, top_vents, center, cover_center, text, cover_text, text_depth, horizontal_skin, vertical_skin, cover_corner_tabs) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -152,20 +152,20 @@ module technic_box_and_cover(material, large_nozzle, cut_line, render_modules, l
     assert(text_depth!=undef);
     assert(horizontal_skin!=undef);
     assert(vertical_skin!=undef);
-    assert(board_corner_tabs!=undef);
+    assert(cover_corner_tabs!=undef);
 
     if (render_modules != 0) {
         translate([0, -block_width(w + 1), 0]) {
-            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=cover_center, text=cover_text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, board_corner_tabs=board_corner_tabs);
+            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=cover_center, text=cover_text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, cover_corner_tabs=cover_corner_tabs);
         }
     }
 
     if (render_modules != 1) {
-        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=center, text=text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, board_corner_tabs=false);
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=center, text=text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, cover_corner_tabs=false);
     }
 }
 
-module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l, twist_w, knob_height, knob_vent_radius, top_vents, center, text, text_depth, horizontal_skin, vertical_skin, board_corner_tabs) {
+module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l, twist_w, knob_height, knob_vent_radius, top_vents, center, text, text_depth, horizontal_skin, vertical_skin, cover_corner_tabs) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -184,7 +184,7 @@ module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l,
     assert(text_depth != undef);
     assert(horizontal_skin!=undef);
     assert(vertical_skin!=undef);
-    assert(board_corner_tabs!=undef);
+    assert(cover_corner_tabs!=undef);
 
     difference() {
         union() {
@@ -204,7 +204,7 @@ module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l,
                 }
             }
                                 
-            if (board_corner_tabs) {
+            if (cover_corner_tabs) {
                 corner_tabs(l=l, w=w, cover_h=h, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
             }
         }
