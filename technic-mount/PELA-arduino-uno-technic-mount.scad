@@ -33,7 +33,8 @@ use <../technic-beam/PELA-technic-twist-beam.scad>
 include <PELA-technic-mount.scad>
 
 
-/* [Arduino Uno Mount] */
+
+/* [Render] */
 
 // Show the inside structure [mm]
 _cut_line = 0; // [0:1:100] 
@@ -47,6 +48,9 @@ _large_nozzle = true;
 // Select parts to render
 _render_modules = 2; // [0:mount, 1:cover, 2:mount and cover]
 
+
+/* [Board] */
+
 // Board space length [mm]
 _length = 69; // [0:1:300] 
 
@@ -55,6 +59,9 @@ _width = 54; // [0:1:300]
 
 // Board space thickness [mm]
 _thickness = 12.9; // [0:1:300]
+
+
+/* [Enclosure] */
 
 _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
@@ -69,19 +76,11 @@ _twist_l = 2; // [1:18]
 // How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
 _twist_w = 2; // [1:18]
 
-
-
 // Step in from board space edges to support the board [mm]
 _innercut = 1.4;
 
 // Step down from board bottom to give room board components [mm]
 _undercut = 7.0; // [0:0.1:100]
-
-// Presence of sockets if center is "socket panel"
-_center_sockets = true;
-
-// Presence of knobs if center is "knob panel"
-_center_knobs = true;
 
 // How tall are top connectors [mm]
 _knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
@@ -97,19 +96,6 @@ _center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:al
 
 // Text label
 _text = "Uno";
-
-// Depth of text etching into top surface
-_text_depth = 0.5; // [0.0:0.1:2]
-
-// Bevel the outside edges above the board space inward to make upper structures like knobs more printable
-_dome = true;
-
-// Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
-_horizontal_skin = 0.1; // [0:0.02:0.5]
-
-// Vertical clearance space between two parts to be placed next to one another on a 8mm grid [mm]
-_vertical_skin = 0.1; // [0:0.02:0.5]
-
 
 
 /* [Enclosure Left Cut] */
@@ -187,7 +173,6 @@ _back_enclosure_cutout_z = 4; // [0:0.1:200]
 _back_enclosure_cutout_height = 8; // [0:0.1:200]
 
 
-
 /* [Cover] */
 
 // Text label
@@ -199,14 +184,23 @@ _cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes
 // Height of the cover [blocks]
 _cover_h = 2; // [1:1:20]
 
-// Presence of sockets if "cover center" is "socket panel"
-_cover_sockets = true;
-
-// Presence of knobs if "cover center" is "knob panel"
-_cover_knobs = true;
-
 // Include quarter-round corner hold-downs in the cover
 _cover_corner_tabs = true;
+
+
+/* [Advanced] */
+
+// Depth of text etching into top surface
+_text_depth = 0.5; // [0.0:0.1:2]
+
+// Bevel the outside edges above the board space inward to make upper structures like knobs more printable
+_dome = true;
+
+// Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
+_horizontal_skin = 0.1; // [0:0.02:0.5]
+
+// Vertical clearance space between two parts to be placed next to one another on a 8mm grid [mm]
+_vertical_skin = 0.1; // [0:0.02:0.5]
 
 
 
@@ -214,4 +208,4 @@ _cover_corner_tabs = true;
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, center_sockets=_center_sockets, center_knobs=_center_knobs, cover_sockets=_cover_sockets, cover_knobs=_cover_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, solid_first_layer=_solid_first_layer, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, cover_corner_tabs=_cover_corner_tabs);
+technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, cover_corner_tabs=_cover_corner_tabs);
