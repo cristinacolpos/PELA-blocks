@@ -44,6 +44,7 @@ _cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
 _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 _large_nozzle = true;
 
@@ -54,10 +55,10 @@ _large_nozzle = true;
 _l = 4; // [1:1:30]
 
 // Model width [blocks]
-_w = 4; // [1:1:30]
+_w = 2; // [1:1:30]
 
 // Model height [blocks]
-_h = 2; // [1:1:30]
+_h = 1; // [1:1:30]
 
 
 /* [Block Features] */
@@ -68,11 +69,20 @@ _sockets = true;
 // Presence of top connector knobs
 _knobs = true;
 
-// How tall are top connectors [mm]
-_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
-
 // Basic unit vertical size of each block
 _block_height = 8; // [8:technic, 9.6:traditional knobs]
+
+// Add full width through holes spaced along the length for techic connectors
+_side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+
+// Add short end holes spaced along the width for techic connectors
+_end_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
+
+
+/* [Advanced] */
+
+// How tall are top connectors [mm]
+_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
 
 // Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
 _corner_bolt_holes = false;
@@ -80,23 +90,8 @@ _corner_bolt_holes = false;
 // Size of corner holes for M3 mountings bolts
 _bolt_hole_radius = 1.6; // [0.0:0.1:2.0]
 
-// Add interior fill for upper layers
-_solid_upper_layers = true;
-
-// Add interior fill for the base layer
-_solid_first_layer = false;
-
-
-/* [Technic Features] */
-
-// Add full width through holes spaced along the length for techic connectors
-_side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
-
 // Add a wrapper around side holes (disable for extra ventilation but loose lock notches)
 _side_sheaths = true;
-
-// Add short end holes spaced along the width for techic connectors
-_end_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Add a wrapper around end holes (disable for extra ventilation but loose lock notches)
 _end_sheaths = true;
@@ -106,6 +101,12 @@ _top_vents = false;
 
 // Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
 _knob_vent_radius = 0; // [0.0:0.1:3.9]
+
+// Add interior fill for upper layers
+_solid_upper_layers = true;
+
+// Add interior fill for the base layer
+_solid_first_layer = false;
 
 
 /////////////////////////////////////
@@ -138,7 +139,7 @@ function fit_mm_to_height_blocks(i=undef, padding=undef, block_height=undef) = c
 // MODULES
 ///////////////////////////////////
 
-module PELA_technic_block(material, large_nozzle, cut_line=_cut_line, l, w, h, knob_height, knob_flexture_height=_knob_flexture_height, sockets, socket_insert_bevel=_socket_insert_bevel, knobs, knob_vent_radius, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius, ridge_width=_ridge_width, ridge_depth=_ridge_depth, ridge_z_offset=_ridge_z_offset, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, solid_first_layer=_solid_first_layer, solid_upper_layers=_solid_upper_layers, block_height, bottom_tweak, top_tweak, axle_hole_tweak) {
+module PELA_technic_block(material, large_nozzle, cut_line, l, w, h, knob_height, knob_flexture_height=_knob_flexture_height, sockets, socket_insert_bevel=_socket_insert_bevel, knobs, knob_vent_radius, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius, ridge_width=_ridge_width, ridge_depth=_ridge_depth, ridge_z_offset=_ridge_z_offset, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, solid_first_layer=_solid_first_layer, solid_upper_layers=_solid_upper_layers, block_height, bottom_tweak, top_tweak, axle_hole_tweak) {
 
     assert(material != undef);
     assert(large_nozzle != undef);

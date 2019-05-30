@@ -44,7 +44,7 @@ _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 large_nozzle = true;
 
 // Select parts to render
-render_modules = 2; // [0:technic mount, 1:technic cover, 2:technic mount and cover]
+render_modules = 2; // [0:mount, 1:cover, 2:mount and cover]
 
 
 
