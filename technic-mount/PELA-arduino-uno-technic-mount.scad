@@ -202,6 +202,12 @@ _horizontal_skin = 0.1; // [0:0.02:0.5]
 // Vertical clearance space between two parts to be placed next to one another on a 8mm grid [mm]
 _vertical_skin = 0.1; // [0:0.02:0.5]
 
+// How tall are top connectors [mm]
+_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
+
+// Add holes in the top deck to improve airflow and reduce weight
+_top_vents = false;
+
 
 
 ///////////////////////////////

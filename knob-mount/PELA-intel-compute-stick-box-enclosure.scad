@@ -86,7 +86,7 @@ _h = 2; // [1:1:20]
 // Use sockets for the lid base
 _sockets = true;
 
-_knob_height=2;
+_knob_height=2.9;
 
 _bottom_vents = false;
 
