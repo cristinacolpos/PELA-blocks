@@ -80,7 +80,7 @@ w_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 h = 2; // [1:1:20]
 
 // Interior fill style
-center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Step in from board space edges to support the board [mm]
 innercut = 4; // [0:0.1:100]
@@ -189,7 +189,7 @@ back_enclosure_cutout_height = 8; // [0:0.1:200]
 cover_text = "Futurice";
 
 // Interior fill style
-cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Height of the cover [blocks]
 cover_h = 1; // [1:1:20]

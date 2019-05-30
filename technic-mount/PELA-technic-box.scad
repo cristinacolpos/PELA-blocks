@@ -46,7 +46,7 @@ _large_nozzle = true;
 _render_modules = 2; // [0:technic box, 1:technic cover, 2:technic box and cover]
 
 
-/* [Technic Box] */
+/* [Box] */
 
 // Total length [blocks]
 _l = 6; // [2:1:20]
@@ -64,25 +64,31 @@ _twist_w = 2; // [1:18]
 _h = 2; // [1:1:20]
 
 // Interior fill style
-_center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
-
-// Presence of sockets if center is "socket panel"
-_center_sockets = true;
-
-// Presence of knobs if center is "knob panel"
-_center_knobs = true;
-
-// How tall are top connectors [mm]
-_knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
-
-// Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
-_knob_vent_radius = 0.0; // [0.0:0.1:3.9]
+_center = 6; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Add holes in the top deck to improve airflow and reduce weight
 _top_vents = false;
 
 // Text label
 _text = "Box";
+
+
+/* [Cover] */
+
+// Text label
+_cover_text = "Cover";
+
+// Interior fill style
+_cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
+
+// Height of the cover [blocks]
+_cover_h = 1; // [1:1:20]
+
+// Include quarter-round corner hold-downs in the cover
+_board_corner_tabs = true;
+
+
+/* [Advanced] */
  
 // Depth of text etching into top surface
 _text_depth = 0.5; // [0.0:0.1:2]
@@ -93,26 +99,11 @@ _horizontal_skin = 0.1; // [0:0.02:0.5]
 // Vertical clearance space between two parts to be placed next to one another on a 8mm grid [mm]
 _vertical_skin = 0.1; // [0:0.02:0.5]
 
+// How tall are top connectors [mm]
+_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
 
-/* [Cover] */
-
-// Text label
-_cover_text = "Cover";
-
-// Interior fill style
-_cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
-
-// Height of the cover [blocks]
-_cover_h = 1; // [1:1:20]
-
-// Presence of sockets if "cover center" is "socket panel"
-_cover_sockets = true;
-
-// Presence of knobs if "cover center" is "knob panel"
-_cover_knobs = true;
-
-// Include quarter-round corner hold-downs in the cover
-_board_corner_tabs = true;
+// Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
+_knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 
 
@@ -130,7 +121,7 @@ function mid_l(l, l1, l3) = max(0, l - l1 - l3);
 // DISPLAY
 ///////////////////////////////
 
-technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_modules=_render_modules, cut_line=_cut_line, l=_l, w=_w, h=_h, cover_h=_cover_h, twist_l=_twist_l, twist_w=_twist_w, sockets=_sockets, cover_sockets=_cover_sockets, knobs=_knobs, cover_knobs=_cover_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, board_corner_tabs=_board_corner_tabs);
+technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_modules=_render_modules, cut_line=_cut_line, l=_l, w=_w, h=_h, cover_h=_cover_h, twist_l=_twist_l, twist_w=_twist_w, sockets=_sockets, knobs=_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, board_corner_tabs=_board_corner_tabs);
 
 
 ///////////////////////////////////
@@ -138,7 +129,7 @@ technic_box_and_cover(material=_material, large_nozzle=_large_nozzle, render_mod
 ///////////////////////////////////
 
 
-module technic_box_and_cover(material, large_nozzle, cut_line=_cut_line, render_modules, l, w, h, cover_h, twist_l, twist_w, sockets, cover_sockets, cover_knobs, knobs, knob_height, knob_vent_radius, top_vents, center, cover_center, text, cover_text, text_depth, horizontal_skin, vertical_skin, board_corner_tabs) {
+module technic_box_and_cover(material, large_nozzle, cut_line, render_modules, l, w, h, cover_h, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, top_vents, center, cover_center, text, cover_text, text_depth, horizontal_skin, vertical_skin, board_corner_tabs) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -151,8 +142,6 @@ module technic_box_and_cover(material, large_nozzle, cut_line=_cut_line, render_
     assert(twist_l!=undef);
     assert(twist_w!=undef);
     assert(sockets!=undef);
-    assert(cover_sockets!=undef);
-    assert(cover_knobs!=undef);
     assert(knobs!=undef);
     assert(knob_vent_radius!=undef);
     assert(top_vents!=undef);
@@ -167,23 +156,21 @@ module technic_box_and_cover(material, large_nozzle, cut_line=_cut_line, render_
 
     if (render_modules != 0) {
         translate([0, -block_width(w + 1), 0]) {
-            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, sockets=cover_sockets, knobs=cover_knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=cover_center, text=cover_text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, board_corner_tabs=board_corner_tabs);
+            technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=cover_h, twist_l=twist_l, twist_w=twist_w, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=cover_center, text=cover_text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, board_corner_tabs=board_corner_tabs);
         }
     }
 
     if (render_modules != 1) {
-        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, sockets=sockets, knobs=knobs, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=center, text=text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, board_corner_tabs=false);
+        technic_box(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, twist_l=twist_l, twist_w=twist_w, knob_height=_knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, center=center, text=text, text_depth=text_depth, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, board_corner_tabs=false);
     }
 }
 
-module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l, twist_w, sockets, knobs, knob_height, knob_vent_radius, top_vents, center, text, text_depth, horizontal_skin, vertical_skin, board_corner_tabs) {
+module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l, twist_w, knob_height, knob_vent_radius, top_vents, center, text, text_depth, horizontal_skin, vertical_skin, board_corner_tabs) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(cut_line!=undef);
     assert(h!=undef);
-    assert(sockets!=undef);
-    assert(knobs!=undef);
     assert(knob_height!=undef);
     assert(knob_vent_radius!=undef);
     assert(top_vents!=undef);
@@ -192,7 +179,7 @@ module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l,
     assert(twist_l > 0);
     assert(l >= twist_w + twist_l);
     assert(center >= 0);
-    assert(center <= 6);
+    assert(center <= 7);
     assert(text != undef);
     assert(text_depth != undef);
     assert(horizontal_skin!=undef);
@@ -208,11 +195,12 @@ module technic_box(material, large_nozzle, cut_line=_cut_line, l, w, h, twist_l,
 
             if (center == 5 && lc > 0 && wc > 0) {
                 translate([block_width(0.5), block_width(0.5), 0]) {
-                    socket_panel(material=material, large_nozzle=large_nozzle, l=lc, w=wc, skin=-horizontal_skin, block_height=block_width(), sockets=sockets);
+                    socket_panel(material=material, large_nozzle=large_nozzle, l=lc, w=wc, skin=-horizontal_skin, block_height=block_width(), sockets=true);
                 }
-            } else if (center == 6 && lc > 0 && wc > 0) {
+            } else if (center >= 6 && lc > 0 && wc > 0) {
+                knobs = center == 6;
                 translate([block_width(0.5), block_width(0.5), 0]) {
-                    knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=lc, w=wc, top_vents=top_vents, corner_bolt_holes=false, knobs=knobs, knob_height=knob_height, sockets=sockets, skip_edge_knobs=0, block_height=block_width(), knob_vent_radius=knob_vent_radius, skin=-horizontal_skin, bolt_hole_radius=0);
+                    knob_panel(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=lc, w=wc, top_vents=top_vents, corner_bolt_holes=false, knobs=knobs, knob_height=knob_height, sockets=knobs, skip_edge_knobs=0, block_height=block_width(), knob_vent_radius=knob_vent_radius, skin=-horizontal_skin, bolt_hole_radius=0);
                 }
             }
                                 

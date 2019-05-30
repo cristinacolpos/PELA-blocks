@@ -60,7 +60,7 @@ _extrude = true;
 _knobs = false;
 
 // How tall are top connectors [mm]
-_knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
+_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
 
 // Size of a hole in the top of each knob to keep the cutout as part of the outside surface (slicer-friendly if knob_slice_count=0). Use a larger number for air circulation or to drain resin from the cutout, or 0 to disable.
 _knob_vent_radius = 0.0; // [0.0:0.1:3.9]

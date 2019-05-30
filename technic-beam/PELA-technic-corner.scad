@@ -47,11 +47,26 @@ _l1 = 3; // [1:1:30]
 // Length of the second beam [blocks]
 _l2 = 3; // [1:1:30]
 
-// Length of the beams [blocks]
-_h = 1; // [1:1:30]
+// Height of the first beam [blocks]
+_h1 = 1; // [1:1:30]
+
+// Height of the second beam [blocks]
+_h2 = 2; // [1:1:30]
+
+// Width of the first beam [blocks]
+_w1 = 1; // [1:1:30]
+
+// Width of the second beam [blocks]
+_w2 = 1; // [1:1:30]
 
 // Angle between the two beams
-_angle = 90; // [65:1:295]
+_angle = 120; // [0:1:365]
+
+
+/* [Advanced] */
+
+// Add full width through holes spaced along the length for techic connectors
+_side_holes = 2; // [0:disabled, 1:short air vents, 2:full width connectors, 3:short connectors]
 
 // Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
 _horizontal_skin = 0.1; // [0:0.02:0.5]
@@ -60,18 +75,13 @@ _horizontal_skin = 0.1; // [0:0.02:0.5]
 _vertical_skin = 0.1; // [0:0.02:0.5]
 
 
-/* [Hidden] */
-
-// Width of the beams [blocks]
-_w = 1; // [1:1:30]
-
 
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-technic_corner(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1=_l1, l2=_l2, w=_w, h=_h, angle=_angle, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
+technic_corner(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l1=_l1, l2=_l2, w1=_w1, w2=_w2, h1=_h1, h2=_h2, angle=_angle, side_holes=_side_holes, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin);
 
 
 
@@ -80,31 +90,34 @@ technic_corner(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_lin
 // MODULES
 ///////////////////////////////////
 
-module technic_corner(material, large_nozzle, cut_line=_cut_line, l1, l2, w, h, angle, horizontal_skin, vertical_skin) {
+module technic_corner(material, large_nozzle, cut_line, l1, l2, w1, w2, h1, h2, angle, side_holes, horizontal_skin, vertical_skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(cut_line!=undef);
     assert(l1!=undef);
     assert(l2!=undef);
-    assert(w!=undef);
+    assert(w1!=undef);
+    assert(w2!=undef);
+    assert(h1!=undef);
+    assert(h2!=undef);
     assert(angle >= 65, "Angle must be at least 65 degrees");
     assert(angle <= 295, "Angle must be at least 65 degrees");
-    assert(h!=undef);
+    assert(side_holes!=undef);
     assert(horizontal_skin!=undef);
     assert(vertical_skin!=undef);
 
     difference() {
         union() {
-            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, w=w, h=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+            technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l1, w=w1, h=h1, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
 
             rotate([0, 0, angle]) {
-                technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, w=w, h=h, side_holes=2, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l2, w=w2, h=h2, side_holes=side_holes, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
             }
         }
 
         translate([block_width(-0.5) + cos(angle)*block_width(l1), block_width(-0.5), 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=h, block_height=_block_height, knob_height=0, skin=horizontal_skin);
+            cut_space(material=material, large_nozzle=large_nozzle, w=l1+l2, l=l1+l2+2, cut_line=cut_line, h=max(h1, h2), block_height=_block_height, knob_height=0, skin=horizontal_skin);
         }
     }
 }

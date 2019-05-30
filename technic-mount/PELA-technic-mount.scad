@@ -82,7 +82,7 @@ _w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 _h = 1; // [1:1:20]
 
 // Interior fill style
-_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Step in from board space edges to support the board [mm]
 _innercut = 1.0; // [0:0.1:100]
@@ -97,7 +97,7 @@ _center_sockets = true;
 _center_knobs = true;
 
 // How tall are top connectors [mm]
-_knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
+_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
 
 // Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
 _knob_vent_radius = 0.0; // [0.0:0.1:3.9]
@@ -206,7 +206,7 @@ _back_enclosure_cutout_height = 8; // [0:0.1:200]
 _cover_text = "Cover";
 
 // Interior fill style
-_cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel]
+_cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Height of the cover [blocks]
 _cover_h = 1; // [1:1:20]

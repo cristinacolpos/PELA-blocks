@@ -57,7 +57,7 @@ _bolt_hole_radius = 1.6; // [0.0:0.1:3.0]
 _knobs = true;
 
 // Height of traditional connectors [mm] (taller gives a stronger hold)
-_knob_height = 2.9; // [1.8:traditional blocks, 2.9:PELA 3D print tall]
+_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
 
 // Size of a hole in the top of each knob. Set 0 to disable for best flexture or enable for air circulation/aesthetics/drain resin
 _knob_vent_radius = 0.0; // [0.0:0.1:3.9]
