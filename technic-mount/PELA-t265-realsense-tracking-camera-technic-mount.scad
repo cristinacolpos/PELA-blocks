@@ -30,7 +30,7 @@ use <../knob-mount/PELA-box-enclosure.scad>
 use <../knob-mount/PELA-knob-mount.scad>
 use <../technic-beam/PELA-technic-beam.scad>
 use <../technic-beam/PELA-technic-twist-beam.scad>
-include <PELA-technic-mount.scad>
+use <PELA-technic-mount.scad>
 
 
 /* [Render] */
@@ -79,10 +79,10 @@ _twist_w = 2; // [1:18]
 _innercut = 4;
 
 // Step down from board bottom to give room board components [mm]
-_undercut = 7.0; // [0:0.1:100]
+_undercut = 0.0; // [0:0.1:100]
 
 // Interior fill style
-_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
+_center = 4; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
 
 // Text label
 _text = "Intel T265";
@@ -101,7 +101,7 @@ _left_enclosure_cutout_width = 12; // [0:0.1:200]
 _left_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-_left_enclosure_cutout_z = 8; // [0:0.1:200]
+_left_enclosure_cutout_z = 8.9; // [0:0.1:200]
 
 // Height of the left side hole [mm]
 _left_enclosure_cutout_height = 48; // [0:0.1:200]
@@ -139,7 +139,7 @@ _front_enclosure_cutout_width = 130; // [0:0.1:200]
 _front_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-_front_enclosure_cutout_z = 8; // [0:0.1:200]
+_front_enclosure_cutout_z = 8.9; // [0:0.1:200]
 
 // Height of the front side hole [mm]
 _front_enclosure_cutout_height = 48; // [0:0.1:200]
@@ -173,13 +173,13 @@ _back_enclosure_cutout_height = 8; // [0:0.1:200]
 _cover_text = "Intel T265";
 
 // Interior fill style
-_cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
+_cover_center = 4; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Height of the cover [blocks]
 _cover_h = 1; // [1:1:20]
 
 // Include quarter-round corner hold-downs in the cover
-_cover_corner_tabs = true;
+_cover_corner_tabs = false;
 
 
 /* [Advanced] */
@@ -211,4 +211,29 @@ _dome = false;
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, knob_vent_radius=_knob_vent_radius, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, knob_height=_knob_height, top_vents=_top_vents, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, cover_corner_tabs=_cover_corner_tabs);
+difference() {
+    positive_space();
+
+    color("pink") union() {
+        front_face = 0.9;
+        
+        front_face_cut(front_face=front_face);
+        
+        translate([0, block_width(-5), 0])
+            front_face_cut(front_face=front_face);
+    }
+}
+
+
+module positive_space() {
+    technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, knob_vent_radius=_knob_vent_radius, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, knob_height=_knob_height, top_vents=_top_vents, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, cover_corner_tabs=_cover_corner_tabs);
+}
+
+
+module front_face_cut(front_face) {
+
+    assert(front_face!=undef);
+    
+    translate([block_width(-0.5), block_width(-1.5+front_face), -_defeather])
+        cube([block_width(30), block_width(1), block_width(2)]);    
+}
