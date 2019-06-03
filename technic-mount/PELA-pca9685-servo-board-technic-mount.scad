@@ -61,16 +61,16 @@ _thickness = 1.8; // [0:0.1:100]
 _h = 1; // [1:1:20]
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-_l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+_l_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-_w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+_w_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // 90 degree rotation from length ends [blocks]
-_twist_l = 4; // [1:18]
+_twist_l = 3; // [1:18]
 
 // 90 degree rotation from width ends [blocks]
-_twist_w = 3; // [1:18]
+_twist_w = 1; // [1:18]
 
 // Step in from board space edges to support the board [mm]
 _innercut = 1;
@@ -227,12 +227,12 @@ module pca_9685_mount_and_cover(render_modules=_render_modules, material=_materi
             }
         }
 
-        color("orange") translate([block_width(-0.5), block_width(-w+4), block_width(cover_h-1)]) {
+        color("orange") translate([block_width(-0.5), block_width(-w+4.5), block_width(cover_h-1)]) {
         
-            cube([block_width(l+1), block_width(w-7), block_width(2)]);
+            cube([block_width(l+1), block_width(1), block_width(2)]);
             
-            translate([block_width(twist_l), block_width(-w), 0]) {
-                cube([block_width(2), block_width(w), block_width(2)]);
+            translate([block_width(4), block_width(-w), 0]) {
+                cube([block_width(1), block_width(w), block_width(2)]);
             }
         }    
     }
