@@ -108,7 +108,7 @@ _motor_mount_hole_spacing = 16; // [0.0:0.1:200]
 // Diameter of the motor mount holes
 _motor_mount_hole_d = 3; // [0.0:0.1:20]
 
-_bolt_hole_angle = 0;  // [0:1:360]
+_bolt_hole_angle = 20;  // [0:1:360]
 
 /* [Hidden] */
 // Select if the top connections should be traditional knobs or technic holes
