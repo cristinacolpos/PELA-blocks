@@ -213,17 +213,12 @@ _back_enclosure_cutout_height = 8; // [0:0.1:200]
 _skin = 0.1; // [0:0.02:0.5]
 
 
-/* [Hidden] */
-
-_ridge_z_offset=0;
-
-
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-box_enclosure(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, bottom_type=_bottom_type, sockets=_sockets, bottom_vents=_bottom_vents, top_vents=_top_vents, side_holes=_side_holes, side_sheaths=_side_sheaths, end_holes=_end_holes, end_sheaths=_end_sheaths, skin=_skin, knob_height=_knob_height, bottom_knobs=_bottom_knobs, skip_edge_knobs=_skip_edge_knobs, left_wall_enabled=_left_wall_enabled, right_wall_enabled=_right_wall_enabled, front_wall_enabled=_front_wall_enabled, back_wall_enabled=_back_wall_enabled, left_wall_knobs=_left_wall_knobs, right_wall_knobs=_right_wall_knobs, front_wall_knobs=_front_wall_knobs, back_wall_knobs=_back_wall_knobs, solid_first_layer=_solid_first_layer, solid_upper_layers=_solid_upper_layers, ridge_z_offset=_ridge_z_offset, center_type=_center_type, block_height=_block_height, knob_vent_radius=_knob_vent_radius, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius);
+box_enclosure(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, bottom_type=_bottom_type, sockets=_sockets, bottom_vents=_bottom_vents, top_vents=_top_vents, side_holes=_side_holes, side_sheaths=_side_sheaths, end_holes=_end_holes, end_sheaths=_end_sheaths, skin=_skin, knob_height=_knob_height, bottom_knobs=_bottom_knobs, skip_edge_knobs=_skip_edge_knobs, left_wall_enabled=_left_wall_enabled, right_wall_enabled=_right_wall_enabled, front_wall_enabled=_front_wall_enabled, back_wall_enabled=_back_wall_enabled, left_wall_knobs=_left_wall_knobs, right_wall_knobs=_right_wall_knobs, front_wall_knobs=_front_wall_knobs, back_wall_knobs=_back_wall_knobs, solid_first_layer=_solid_first_layer, solid_upper_layers=_solid_upper_layers, center_type=_center_type, block_height=_block_height, knob_vent_radius=_knob_vent_radius, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius);
 
 
 
@@ -231,7 +226,7 @@ box_enclosure(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line
 // MODULES
 ///////////////////////////////////
 
-module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, bottom_type=undef, sockets=undef, top_vents=undef, bottom_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, knob_height=undef, bottom_knobs=undef, skip_edge_knobs=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, ridge_z_offset=undef, center_type=undef, block_height=undef, knob_vent_radius=undef, left_enclosure_cutout_y=undef, left_enclosure_cutout_width=undef, left_enclosure_cutout_depth=undef, left_enclosure_cutout_z=undef, left_enclosure_cutout_height=undef, right_enclosure_cutout_y=undef, right_enclosure_cutout_width=undef, right_enclosure_cutout_depth=undef, right_enclosure_cutout_z=undef, right_enclosure_cutout_height=undef, front_enclosure_cutout_x=undef, front_enclosure_cutout_width=undef, front_enclosure_cutout_depth=undef, front_enclosure_cutout_z=undef, front_enclosure_cutout_height=undef, back_enclosure_cutout_x=undef, back_enclosure_cutout_width=undef, back_enclosure_cutout_depth=undef, back_enclosure_cutout_z=undef, back_enclosure_cutout_height=undef, corner_bolt_holes=undef, bolt_hole_radius=undef) {
+module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, bottom_type=undef, sockets=undef, top_vents=undef, bottom_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, knob_height=undef, bottom_knobs=undef, skip_edge_knobs=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, center_type=undef, block_height=undef, knob_vent_radius=undef, left_enclosure_cutout_y=undef, left_enclosure_cutout_width=undef, left_enclosure_cutout_depth=undef, left_enclosure_cutout_z=undef, left_enclosure_cutout_height=undef, right_enclosure_cutout_y=undef, right_enclosure_cutout_width=undef, right_enclosure_cutout_depth=undef, right_enclosure_cutout_z=undef, right_enclosure_cutout_height=undef, front_enclosure_cutout_x=undef, front_enclosure_cutout_width=undef, front_enclosure_cutout_depth=undef, front_enclosure_cutout_z=undef, front_enclosure_cutout_height=undef, back_enclosure_cutout_x=undef, back_enclosure_cutout_width=undef, back_enclosure_cutout_depth=undef, back_enclosure_cutout_z=undef, back_enclosure_cutout_height=undef, corner_bolt_holes=undef, bolt_hole_radius=undef) {
 
     assert(material != undef);
     assert(large_nozzle != undef);
@@ -261,7 +256,6 @@ module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef
     assert(back_wall_knobs != undef);
     assert(solid_first_layer != undef);
     assert(solid_upper_layers != undef);
-    assert(ridge_z_offset != undef);
     assert(center_type != undef);
     assert(block_height != undef);
     assert(knob_vent_radius != undef);
@@ -269,7 +263,7 @@ module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef
     assert(bolt_hole_radius != undef);
 
     difference() {
-        box_enclosure_positive_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, bottom_vents=bottom_vents, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, bottom_knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius);
+        box_enclosure_positive_space(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, bottom_type=bottom_type, bottom_vents=bottom_vents, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, bottom_knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius);
 
         union() {
             axle_hole_radius = material_axle_hole_radius(material=material, large_nozzle=large_nozzle);
@@ -286,7 +280,7 @@ module box_enclosure(material=undef, large_nozzle=undef, cut_line=undef, l=undef
 }
 
 
-module box_enclosure_positive_space(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, bottom_type=undef, bottom_vents=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, bottom_knobs=undef, skip_edge_knobs=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, ridge_z_offset=undef, center_type=undef, block_height=undef, knob_vent_radius=undef, knob_height=undef, corner_bolt_holes=undef, bolt_hole_radius=undef) {
+module box_enclosure_positive_space(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, bottom_type=undef, bottom_vents=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, bottom_knobs=undef, skip_edge_knobs=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, center_type=undef, block_height=undef, knob_vent_radius=undef, knob_height=undef, corner_bolt_holes=undef, bolt_hole_radius=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -315,7 +309,6 @@ module box_enclosure_positive_space(material=undef, large_nozzle=undef, cut_line
     assert(back_wall_knobs!=undef);
     assert(solid_first_layer!=undef);
     assert(solid_upper_layers!=undef);
-    assert(ridge_z_offset!=undef);
     assert(center_type!=undef);
     assert(block_height!=undef);
     assert(knob_vent_radius!=undef);
@@ -323,7 +316,7 @@ module box_enclosure_positive_space(material=undef, large_nozzle=undef, cut_line
     assert(corner_bolt_holes!=undef);
     assert(bolt_hole_radius!=undef);
 
-    walls(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, bottom_vents=bottom_vents, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
+    walls(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, bottom_type=bottom_type, bottom_vents=bottom_vents, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, left_wall_knobs=left_wall_knobs, right_wall_knobs=right_wall_knobs, front_wall_knobs=front_wall_knobs, back_wall_knobs=back_wall_knobs, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, center_type=center_type, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
 
     enclosure_bottom(material=material, large_nozzle=large_nozzle, l=l, w=w, bottom_type=bottom_type, bottom_vents=bottom_vents, sockets=sockets, skin=skin, knobs=bottom_knobs, skip_edge_knobs=skip_edge_knobs, solid_first_layer=solid_first_layer, block_height=block_height, knob_height=knob_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius);
 
@@ -331,7 +324,7 @@ module box_enclosure_positive_space(material=undef, large_nozzle=undef, cut_line
 }
 
 
-module walls(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, bottom_type=undef, bottom_vents=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, ridge_z_offset=undef, center_type=undef, block_height=undef, knob_vent_radius=undef, knob_height=undef) {
+module walls(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, bottom_type=undef, bottom_vents=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, end_holes=undef, end_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, front_wall_enabled=undef, back_wall_enabled=undef, left_wall_knobs=undef, right_wall_knobs=undef, front_wall_knobs=undef, back_wall_knobs=undef, solid_first_layer=undef, solid_upper_layers=undef, center_type=undef, block_height=undef, knob_vent_radius=undef, knob_height=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -357,7 +350,6 @@ module walls(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, bott
     assert(back_wall_knobs!=undef);
     assert(solid_first_layer!=undef);
     assert(solid_upper_layers!=undef);
-    assert(ridge_z_offset!=undef);
     assert(center_type!=undef);
     assert(block_height!=undef);
     assert(knob_vent_radius!=undef);
@@ -366,19 +358,19 @@ module walls(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, bott
     difference() {
         union() {
             if (left_wall_enabled) {
-                left_wall(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=left_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
+                left_wall(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=left_wall_knobs, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
             }
 
             if (right_wall_enabled) {
-                right_wall(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=right_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
+                right_wall(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=front_wall_enabled, back_wall_enabled=back_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=right_wall_knobs, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
             }
 
             if (front_wall_enabled) {
-                front_wall(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=front_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
+                front_wall(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=front_wall_knobs, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
             }
 
             if (back_wall_enabled) {
-                back_wall(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=back_wall_knobs, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
+                back_wall(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=left_wall_enabled, right_wall_enabled=right_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=back_wall_knobs, block_height=block_height, knob_vent_radius=knob_vent_radius, knob_height=knob_height);
             }
         }
 
@@ -390,7 +382,7 @@ module walls(material=undef, large_nozzle=undef, l=undef, w=undef, h=undef, bott
 
 
 // Left side of the box with corner cuts
-module left_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, end_holes=undef, end_sheaths=undef, skin=undef, front_wall_enabled=undef, back_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, ridge_z_offset=undef, block_height=undef, knob_vent_radius=undef) {
+module left_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, end_holes=undef, end_sheaths=undef, skin=undef, front_wall_enabled=undef, back_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, block_height=undef, knob_vent_radius=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -409,12 +401,11 @@ module left_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=
     assert(solid_upper_layers!=undef);
     assert(knobs!=undef);
     assert(knob_height!=undef);
-    assert(ridge_z_offset!=undef);
     assert(block_height!=undef);
     assert(knob_vent_radius!=undef);
 
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=1, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=0, side_sheaths=0, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, knobs=knobs, knob_height=knob_height, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=1, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=0, side_sheaths=0, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, knobs=knobs, knob_height=knob_height, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height, knob_vent_radius=knob_vent_radius);
 
         union() {
             if (front_wall_enabled) {
@@ -449,7 +440,7 @@ module corner_cut(material=undef, large_nozzle=undef, angle=undef, h=undef, bloc
 
 
 // Mirror image of the left side
-module right_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, end_holes=undef, end_sheaths=undef, skin=undef, front_wall_enabled=undef, back_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, ridge_z_offset=undef, block_height=undef, knob_vent_radius=undef) {
+module right_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, end_holes=undef, end_sheaths=undef, skin=undef, front_wall_enabled=undef, back_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, block_height=undef, knob_vent_radius=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -468,20 +459,19 @@ module right_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w
     assert(solid_upper_layers!=undef);
     assert(knobs!=undef);
     assert(knob_height!=undef);
-    assert(ridge_z_offset!=undef);
     assert(block_height!=undef);
     assert(knob_vent_radius!=undef);
 
     translate([block_width(l), block_width(w), 0]) {
         rotate([0, 0, 180]) {
-            left_wall(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=back_wall_enabled, back_wall_enabled=front_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, knob_height=knob_height, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+            left_wall(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, end_holes=end_holes, end_sheaths=end_sheaths, skin=skin, front_wall_enabled=back_wall_enabled, back_wall_enabled=front_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, knob_height=knob_height, block_height=block_height, knob_vent_radius=knob_vent_radius);
         }
     }
 }
 
 
 // Front side of the box with corner cuts
-module front_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, ridge_z_offset=undef, block_height=undef, knob_vent_radius=undef) {
+module front_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, block_height=undef, knob_vent_radius=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -500,12 +490,11 @@ module front_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w
     assert(solid_upper_layers!=undef);
     assert(knobs!=undef);
     assert(knob_height!=undef);
-    assert(ridge_z_offset!=undef);
     assert(block_height!=undef);
     assert(knob_vent_radius!=undef);
 
     difference() {
-        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=1, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=0, end_sheaths=0, skin=skin, knobs=knobs, knob_height=knob_height, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+        PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=1, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=0, end_sheaths=0, skin=skin, knobs=knobs, knob_height=knob_height, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, block_height=block_height, knob_vent_radius=knob_vent_radius);
 
         union() {
             if (left_wall_enabled) {
@@ -523,7 +512,7 @@ module front_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w
 
 
 // Mirror image of the front wall
-module back_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, ridge_z_offset=undef, block_height=undef, knob_vent_radius=undef) {
+module back_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=undef, h=undef, sockets=undef, top_vents=undef, side_holes=undef, side_sheaths=undef, skin=undef, left_wall_enabled=undef, right_wall_enabled=undef, solid_first_layer=undef, solid_upper_layers=undef, knobs=undef, knob_height=undef, block_height=undef, knob_vent_radius=undef) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -542,13 +531,12 @@ module back_wall(material=undef, large_nozzle=undef, cut_line=undef, l=undef, w=
     assert(solid_upper_layers!=undef);
     assert(knobs!=undef);
     assert(knob_height!=undef);
-    assert(ridge_z_offset!=undef);
     assert(block_height!=undef);
     assert(knob_vent_radius!=undef);
 
     translate([block_width(l), block_width(w), 0]) {
         rotate([0, 0, 180]) {
-            front_wall(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=right_wall_enabled, right_wall_enabled=left_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, knob_height=knob_height, ridge_z_offset=ridge_z_offset, block_height=block_height, knob_vent_radius=knob_vent_radius);
+            front_wall(material=material, large_nozzle=large_nozzle, cut_line=cut_line, l=l, w=w, h=h, sockets=sockets, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, skin=skin, left_wall_enabled=right_wall_enabled, right_wall_enabled=left_wall_enabled, solid_first_layer=solid_first_layer, solid_upper_layers=solid_upper_layers, knobs=knobs, knob_height=knob_height, block_height=block_height, knob_vent_radius=knob_vent_radius);
         }
     }
 }

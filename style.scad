@@ -171,9 +171,6 @@ _block_width = 8; // [8:technic and traditional blocks]
 // Height of the connectors commercial blocks use [mm]
 _official_knob_height = 1.8; // [1.8:traditional blocks]
 
-// How far up or down for artistic purposes to move the ridge which marks each layer [mm]
-_ridge_z_offset = 0;
-
 // Slight visual offset to work around prevent goldfeather rendering bugs in OpenSCAD (visual, not affecting final print geometry) [mm]
 _defeather = 0.01;
 
