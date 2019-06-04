@@ -78,7 +78,7 @@ _sockets = true;
 // PELA display
 /////////////////////////////////////
 
-PELA_block(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, knob_height=_knob_height, knob_flexture_height=_knob_flexture_height, sockets=_sockets, knobs=_knobs, knob_vent_radius=_knob_vent_radius, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius, ridge_width=_ridge_width, ridge_depth=_ridge_depth, ridge_z_offset=_ridge_z_offset, solid_upper_layers=_solid_upper_layers, solid_first_layer=_solid_first_layer, block_height=_block_height, socket_insert_bevel=_socket_insert_bevel);
+PELA_block(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, knob_height=_knob_height, knob_flexture_height=_knob_flexture_height, sockets=_sockets, knobs=_knobs, knob_vent_radius=_knob_vent_radius, skin=_skin, top_shell=_top_shell, bottom_stiffener_width=_bottom_stiffener_width, bottom_stiffener_height=_bottom_stiffener_height, corner_bolt_holes=_corner_bolt_holes, bolt_hole_radius=_bolt_hole_radius, ridge_width=_ridge_width, ridge_depth=_ridge_depth, solid_upper_layers=_solid_upper_layers, solid_first_layer=_solid_first_layer, block_height=_block_height, socket_insert_bevel=_socket_insert_bevel);
 
 
 
@@ -86,7 +86,7 @@ PELA_block(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l
 // MODULES
 /////////////////////////////////////
 
-module PELA_block(material, large_nozzle, cut_line=_cut_line, l, w, h, knob_height, knob_flexture_height, sockets, knobs, knob_vent_radius, skin, top_shell, bottom_stiffener_width, bottom_stiffener_height, corner_bolt_holes, bolt_hole_radius, ridge_width, ridge_depth, ridge_z_offset, solid_upper_layers, solid_first_layer, block_height, socket_insert_bevel, bottom_tweak, top_tweak) {
+module PELA_block(material, large_nozzle, cut_line=_cut_line, l, w, h, knob_height, knob_flexture_height, sockets, knobs, knob_vent_radius, skin, top_shell, bottom_stiffener_width, bottom_stiffener_height, corner_bolt_holes, bolt_hole_radius, ridge_width, ridge_depth, solid_upper_layers, solid_first_layer, block_height, socket_insert_bevel, bottom_tweak, top_tweak) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -107,14 +107,13 @@ module PELA_block(material, large_nozzle, cut_line=_cut_line, l, w, h, knob_heig
     assert(bolt_hole_radius!=undef);
     assert(ridge_width!=undef);
     assert(ridge_depth!=undef);
-    assert(ridge_z_offset!=undef);
     assert(solid_upper_layers!=undef);
     assert(solid_first_layer!=undef);
     assert(block_height!=undef);
     assert(socket_insert_bevel!=undef);
     
     difference() {
-        block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, socket_insert_bevel=socket_insert_bevel, bottom_tweak=bottom_tweak, top_tweak=top_tweak);
+        block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, sockets=sockets, knobs=knobs, knob_vent_radius=knob_vent_radius, skin=skin, top_shell=top_shell, bottom_stiffener_width=bottom_stiffener_width, bottom_stiffener_height=bottom_stiffener_height, corner_bolt_holes=corner_bolt_holes, bolt_hole_radius=bolt_hole_radius, ridge_width=ridge_width, ridge_depth=ridge_depth, solid_upper_layers=solid_upper_layers, solid_first_layer=solid_first_layer, block_height=block_height, socket_insert_bevel=socket_insert_bevel, bottom_tweak=bottom_tweak, top_tweak=top_tweak);
 
         cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height, skin=skin);
     }
@@ -147,7 +146,7 @@ module cut_space(material, large_nozzle, cut_line=_cut_line, l, w, h, block_heig
 }
 
 
-module block(material, large_nozzle, l, w, h, knob_height, knob_flexture_height, sockets, knobs, knob_vent_radius, skin, top_shell, bottom_stiffener_width, bottom_stiffener_height, corner_bolt_holes, bolt_hole_radius, ridge_width, ridge_depth, ridge_z_offset, solid_upper_layers, solid_first_layer, block_height, socket_insert_bevel, bottom_tweak, top_tweak) {
+module block(material, large_nozzle, l, w, h, knob_height, knob_flexture_height, sockets, knobs, knob_vent_radius, skin, top_shell, bottom_stiffener_width, bottom_stiffener_height, corner_bolt_holes, bolt_hole_radius, ridge_width, ridge_depth, solid_upper_layers, solid_first_layer, block_height, socket_insert_bevel, bottom_tweak, top_tweak) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -167,7 +166,6 @@ module block(material, large_nozzle, l, w, h, knob_height, knob_flexture_height,
     assert(bolt_hole_radius!=undef);
     assert(ridge_width!=undef);
     assert(ridge_depth!=undef);
-    assert(ridge_z_offset!=undef);
     assert(solid_upper_layers!=undef);
     assert(solid_first_layer!=undef);
     assert(block_height!=undef);
@@ -219,7 +217,7 @@ module block(material, large_nozzle, l, w, h, knob_height, knob_flexture_height,
         }
 
         union() {
-            skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth, ridge_z_offset=ridge_z_offset,block_height=block_height);
+            skin(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, skin=skin, ridge_width=ridge_width, ridge_depth=ridge_depth,block_height=block_height);
             
             if (knobs) {
                 knob_flexture_set(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, knob_height=knob_height, knob_flexture_height=knob_flexture_height, knob_vent_radius=knob_vent_radius, corner_bolt_holes=corner_bolt_holes, block_height=block_height);
@@ -241,11 +239,11 @@ module double_socket_hole_set(material, large_nozzle, l, w, sockets, alternate_l
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
-    assert(l!=undef);
-    assert(w!=undef);
+    assert(l>=1);
+    assert(w>=1);
     assert(sockets!=undef);
-    assert(alternate_length!=undef);
-    assert(length!=undef);
+    assert(alternate_length>=_official_knob_height/2);
+    assert(length>=_official_knob_height/2);
     assert(bevel_socket!=undef);
     assert(socket_insert_bevel!=undef);
     assert(bottom_tweak!=undef);
@@ -258,8 +256,10 @@ module double_socket_hole_set(material, large_nozzle, l, w, sockets, alternate_l
         alternating_fn = _axle_hole_fn;
         alternating_length = alternate_length+2*_defeather;
 
-        translate([block_width(), block_width(), -_defeather]) {
-            socket_hole_set(material=material, large_nozzle=large_nozzle, sockets=sockets, is_socket=false, l=l-1, w=w-1, radius=alternating_radius, length=alternating_length, bevel_socket=bevel_socket, ring_fn=alternating_fn, socket_insert_bevel=socket_insert_bevel);
+        if (l > 1 && w > 1) {
+            translate([block_width(), block_width(), -_defeather]) {
+                socket_hole_set(material=material, large_nozzle=large_nozzle, sockets=sockets, is_socket=false, l=l-1, w=w-1, radius=alternating_radius, length=alternating_length, bevel_socket=bevel_socket, ring_fn=alternating_fn, socket_insert_bevel=socket_insert_bevel);
+            }
         }
 
         translate([block_width(0.5), block_width(0.5), -_defeather]) {
@@ -561,10 +561,10 @@ module socket_hole_set(material, large_nozzle, sockets, is_socket=true, l, w, ra
     assert(large_nozzle!=undef);
     assert(sockets!=undef);
     assert(is_socket!=undef);
-    assert(l!=undef);
-    assert(w!=undef);
+    assert(l>=1);
+    assert(w>=1);
     assert(radius!=undef);
-    assert(length!=undef);
+    assert(length>=_official_knob_height/2);
     assert(bevel_socket!=undef);
     assert(socket_insert_bevel!=undef);
     assert(ring_fn!=undef);
@@ -588,30 +588,32 @@ module socket_hole(material, large_nozzle, is_socket=true, radius, length, bevel
     assert(large_nozzle!=undef);
     assert(is_socket!=undef);
     assert(radius!=undef);
-    assert(length!=undef);
+    assert(length>=_official_knob_height/2);
     assert(bevel_socket!=undef);
     assert(ring_fn!=undef);
     assert(socket_insert_bevel!=undef);
 
     h2 = is_socket ? _official_knob_height/2 : 0;
+    h3 = h2 + 2*_defeather + socket_insert_bevel;
+    h4 = length - h2 + 2*_defeather;
     bevel_h = bevel_socket ? socket_insert_bevel : 0;
 
     rotate([0, 0, 180/ring_fn]) {
         cylinder(r=radius, h=bevel_h + _defeather, $fn=ring_fn);
 
         translate([0, 0, bevel_h - _defeather]) {
-            cylinder(r=radius - side_lock_thickness(material=material), h=h2 + 2*_defeather + socket_insert_bevel, $fn=ring_fn);
+            cylinder(r=radius - side_lock_thickness(material=material), h=h3, $fn=ring_fn);
         }
 
-        translate([0, 0, h2 + socket_insert_bevel]) {
-            cylinder(r=radius, h=length - h2 - socket_insert_bevel + 2*_defeather, $fn=ring_fn);
+        translate([0, 0, h2]) {
+            cylinder(r=radius, h=h4, $fn=ring_fn);
         }
     }
 }
 
 
 // The thin negative space surrounding a PELA block so that two blocks can fit next to each other easily in a tight grid
-module skin(material, large_nozzle, l, w, h, skin, ridge_width, ridge_depth, ridge_z_offset=_ridge_z_offset, block_height) {
+module skin(material, large_nozzle, l, w, h, skin, ridge_width, ridge_depth, block_height) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -621,7 +623,6 @@ module skin(material, large_nozzle, l, w, h, skin, ridge_width, ridge_depth, rid
     assert(skin!=undef);
     assert(ridge_width!=undef);
     assert(ridge_depth!=undef);
-    assert(ridge_z_offset!=undef);
     assert(block_height!=undef);
 
     if (skin > 0) {
