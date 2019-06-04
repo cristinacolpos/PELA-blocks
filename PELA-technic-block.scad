@@ -108,6 +108,13 @@ _solid_upper_layers = true;
 // Add interior fill for the base layer
 _solid_first_layer = false;
 
+// Width of a line etched in the side of multi-layer block sets (0 to disable)
+_ridge_width = 0.15; // [0.1:0.05:4]
+
+// Depth of a line etched in the side of multi-layer block sets
+_ridge_depth = 0.3; // [0.1:0.05:4]
+
+
 
 /////////////////////////////////////
 // DISPLAY
