@@ -528,12 +528,10 @@ module axle_hole(material, large_nozzle, hole_type, radius, length) {
     if (hole_type>1) {
         counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius);
 
-        //depth=2*(block_width()-length);
-        depth=_counterbore_inset_depth;
-        inset_radius=_counterbore_inset_radius-_bearing_sheath_thickness/2;
-            
         translate([0, 0, length]) {
-            counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=depth, counterbore_inset_radius=inset_radius);
+            rotate([180, 0, 0]) {
+                counterbore_inset(material=material, large_nozzle=large_nozzle, counterbore_inset_depth=_counterbore_inset_depth, counterbore_inset_radius=_counterbore_inset_radius);
+            }
         }
     }
 }
