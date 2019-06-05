@@ -74,9 +74,6 @@ _horizontal_skin = 0.1; // [0:0.02:0.5]
 _vertical_skin = 0.1; // [0:0.02:0.5]
 
 
-/* [Hidden] */
-
-_block_height=8;
 
 ///////////////////////////////
 // DISPLAY
