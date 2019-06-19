@@ -158,6 +158,12 @@ ___
 
 ___
 
+[![PELA Technic Rail](/technic-mount/PELA-technic-rail.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-technic-rail.stl)
+
+[PELA Technic Rail](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-technic-rail.stl) A variable length ladder-like technic rail.
+
+___
+
 [![PELA Raspberry Pi 3B Technic Mount](/technic-mount/PELA-raspberry-pi3-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-technic-mount.stl)
 
 [PELA Raspberry Pi 3B Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi3-technic-mount.stl) A Raspberry Pi 2/3 holder.
