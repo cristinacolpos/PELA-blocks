@@ -146,14 +146,21 @@ tpu85_m = ["TPU85", true, 0.04, -0.08, -0.2];
 // TPU85, large nozzle (>= 0.5mm) calibration settings
 tpu85_lm = ["TPU85", true, 0.04, -0.06, 0.15];
 
-materials = [pla_m, abs_m, pet_m, bio_silk_m, pro1_m, ngen_m, ngen_flex_m, nylon_m, tpu95_m, tpu85_m];
-large_nozzle_materials = [pla_lm, abs_lm, pet_lm, bio_silk_lm, pro1_lm, ngen_lm, ngen_flex_lm, nylon_lm, tpu95_lm, tpu85_lm];
+pc = 10; // Polycarbonite
+// PC, fine nozzle (< 0.5mm) calibration settings
+// [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
+pc_m = ["PC", true, -0.08, 0.12, 0.14];
+// TPU85, large nozzle (>= 0.5mm) calibration settings
+pc_lm = ["PC", true, -0.08, 0.12, 0.14];
+
+materials = [pla_m, abs_m, pet_m, bio_silk_m, pro1_m, ngen_m, ngen_flex_m, nylon_m, tpu95_m, tpu85_m, pc_m];
+large_nozzle_materials = [pla_lm, abs_lm, pet_lm, bio_silk_lm, pro1_lm, ngen_lm, ngen_flex_lm, nylon_lm, tpu95_lm, tpu85_lm, pc_lm];
 
 // Show the inside structure [mm]
 cut_line = 0; // [0:1:100]
 
 // Printing material (set to select calibrated knob, socket and axle hole fit)
-_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex]
+_material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN FLEX, 7:Bridge Nylon, 8:TPU95, 9:TPU85/NinjaFlex, 10:Polycarbonite]
 
 // Is the printer nozzle >= 0.5mm? If so, some features are enlarged to make printing easier
 large_nozzle = true;
