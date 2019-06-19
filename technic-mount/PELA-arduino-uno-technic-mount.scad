@@ -26,8 +26,8 @@ include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../pin/PELA-technic-pin.scad>
-use <../knob-mount/PELA-box-enclosure.scad>
-use <../knob-mount/PELA-knob-mount.scad>
+use <../PELA-box-enclosure.scad>
+use <../PELA-knob-mount.scad>
 use <../technic-beam/PELA-technic-beam.scad>
 use <../technic-beam/PELA-technic-twist-beam.scad>
 include <PELA-technic-mount.scad>
@@ -82,14 +82,8 @@ _innercut = 1.4;
 // Step down from board bottom to give room board components [mm]
 _undercut = 7.0; // [0:0.1:100]
 
-// How tall are top connectors [mm]
-_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
-
 // Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
 _knob_vent_radius = 0.0; // [0.0:0.1:3.9]
-
-// Add holes in the top deck to improve airflow and reduce weight
-_top_vents = false;
 
 // Interior fill style
 _center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
