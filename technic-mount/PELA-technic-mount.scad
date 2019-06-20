@@ -67,10 +67,10 @@ _thickness = 1.8; // [0:0.1:300]
 /* [Enclosure] */
 
 // Distance from length ends of connector twist [blocks]
-_twist_l = 1; // [1:18]
+_twist_l = 1; // [1:30]
 
 // Distance from width ends of connector twist [blocks]
-_twist_w = 2; // [1:18]
+_twist_w = 2; // [1:30]
 
 // Closeness of board fit lengthwise [blocks]
 _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
