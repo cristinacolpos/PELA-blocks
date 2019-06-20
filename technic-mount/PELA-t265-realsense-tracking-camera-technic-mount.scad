@@ -51,7 +51,7 @@ _render_modules = 2; // [0:mount, 1:cover, 2:mount and cover]
 /* [Board] */
 
 // Board space length [mm]
-_length = 109; // [0:1:300] 
+_length = 107.6; // [0:1:300] 
 
 // Board space width [mm]
 _width = 13; // [0:1:300]
