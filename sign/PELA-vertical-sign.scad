@@ -70,9 +70,6 @@ _line_2 = "PELAblocks.org";
 // Extruded text pushs outward, vs text extched into the block
 _extrude = true;
 
-// Place the text on both sides
-_copy_to_back = true;
-
 // Language of the text
 _lang = "en";
 
@@ -97,6 +94,15 @@ _left_margin = 1.2;
 // Top and bottom text margin (mm)
 _vertical_margin = 1;
 
+// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
+_corner_bolt_holes = false;
+
+
+/* [Advanced] */
+
+// Place the text on both sides
+_copy_to_back = true;
+
 // Add a wrapper around side holes (disable for extra ventilation but loose lock notches)
 _side_sheaths = true;
 
@@ -109,10 +115,20 @@ _end_sheaths = true;
 // Add holes in the top deck to improve airflow and reduce weight
 _top_vents = true;
 
-// Place holes in the corners for mountings screws (0=>no holes, 1=>holes)
-_corner_bolt_holes = false;
+// How tall are top connectors [mm]
+_knob_height = 2.9; // [0:disabled, 1.8:traditional, 2.9:PELA 3D print tall]
 
+// Size of a hole in the top of each knob. 0 to disable or use for air circulation/aesthetics/drain resin from the cutout, but larger holes change flexture such that knobs may not hold as well
+_knob_vent_radius = 0; // [0.0:0.1:3.9]
 
+// Presence of bottom connector sockets
+_sockets = true;
+
+// Basic unit vertical size of each block
+_block_height = 9.6; // [8:technic, 9.6:traditional knobs]
+
+// Horizontal clearance space removed from the outer horizontal surface to allow two parts to be placed next to one another on a 8mm grid [mm]
+_horizontal_skin = 0.1; // [0:0.02:0.5]
 
 
 
@@ -121,7 +137,7 @@ _corner_bolt_holes = false;
 // DISPLAY
 ///////////////////////////////
 
-PELA_vertical_sign(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, line_1=_line_1, line_2=_line_2, lang=_lang, extrude=_extrude,  text_depth=_text_depth, f1=_f1, f2=_f2, fs1=_fs1, fs2=_fs2, left_margin=_left_margin, vertical_margin=_vertical_margin, top_vents=_top_vents, end_holes=_end_holes, end_sheaths=_end_sheaths, corner_bolt_holes=_corner_bolt_holes, knobs=_knobs);
+PELA_vertical_sign(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, l=_l, w=_w, h=_h, line_1=_line_1, line_2=_line_2, lang=_lang, extrude=_extrude,  text_depth=_text_depth, f1=_f1, f2=_f2, fs1=_fs1, fs2=_fs2, left_margin=_left_margin, vertical_margin=_vertical_margin, top_vents=_top_vents, end_holes=_end_holes, end_sheaths=_end_sheaths, corner_bolt_holes=_corner_bolt_holes, knobs=_knobs, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, sockets=_sockets, block_height=_block_height, horizontal_skin=_horizontal_skin, copy_to_back=_copy_to_back);
 
 
 
@@ -129,7 +145,7 @@ PELA_vertical_sign(material=_material, large_nozzle=_large_nozzle, cut_line=_cut
 // MODULES
 ///////////////////////////////////
 
-module PELA_vertical_sign(material, large_nozzle, cut_line, l, w, h, line_1, line_2, lang, extrude,  text_depth, f1, f2, fs1, fs2, left_margin, vertical_margin, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, corner_bolt_holes, knobs, knob_height) {
+module PELA_vertical_sign(material, large_nozzle, cut_line, l, w, h, line_1, line_2, lang, extrude,  text_depth, f1, f2, fs1, fs2, left_margin, vertical_margin, top_vents, side_holes, side_sheaths, end_holes, end_sheaths, corner_bolt_holes, knobs, knob_height, knob_vent_radius, sockets, block_height, horizontal_skin, copy_to_back) {
     
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -154,19 +170,24 @@ module PELA_vertical_sign(material, large_nozzle, cut_line, l, w, h, line_1, lin
     assert(corner_bolt_holes!=undef);
     assert(knobs!=undef);
     assert(knob_height!=undef);
+    assert(knob_vent_radius!=undef);
+    assert(sockets!=undef);
+    assert(block_height!=undef);
+    assert(horizontal_skin!=undef);
+    assert(copy_to_back!=undef);
 
     difference() {
         if (extrude) {
-            PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, ridge_width=0, ridge_depth=0, top_vents=top_vents, side_holes=false, side_sheaths=0, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes, knobs=knobs, knob_height=knob_height);
+            PELA_technic_block(material=material, large_nozzle=large_nozzle, cut_line=0, l=l, w=w, h=h, ridge_width=0, ridge_depth=0, top_vents=top_vents, side_holes=false, side_sheaths=0, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes, knobs=knobs, knob_height=knob_height, knob_vent_radius=knob_vent_radius, sockets=sockets, block_height=block_height, skin=horizontal_skin);
             
-            color("green") translate([skin, skin, 0]) {
-                PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, text_depth=text_depth, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
+            color("green") translate([horizontal_skin, horizontal_skin, 0]) {
+                PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, text_depth=text_depth, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, block_height=block_height);
             }
 
             if (copy_to_back) {
-                color("green") translate([block_width(l), block_width(w)-skin, 0]) {
+                color("green") translate([block_width(l), block_width(w)-horizontal_skin, 0]) {
                     rotate([0, 0, 180]) {
-                        PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, text_depth=text_depth, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
+                        PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, text_depth=text_depth, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin, block_height=block_height);
                     }
                 }
             }
@@ -175,13 +196,13 @@ module PELA_vertical_sign(material, large_nozzle, cut_line, l, w, h, line_1, lin
                 PELA_technic_block(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, ridge_width=ridge_width, ridge_depth=ridge_depth, top_vents=top_vents, side_holes=side_holes, side_sheaths=side_sheaths, end_holes=end_holes, end_sheaths=end_sheaths, corner_bolt_holes=corner_bolt_holes);
                 
                 color("green") union() {
-                    translate([skin, 0, 0])
-                        PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, text_depth=text_depth+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
+                    translate([horizontal_skin, 0, 0])
+                        PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, text_depth=text_depth+horizontal_skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
 
                     if (copy_to_back) {
-                        translate([block_width(l)-skin, block_width(w)-skin, 0]) {
+                        translate([block_width(l)-horizontal_skin, block_width(w)-horizontal_skin, 0]) {
                             rotate([0, 0, 180]) {
-                                PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, text_depth=text_depth+skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
+                                PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, text_depth=text_depth+horizontal_skin, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin);
                             }
                         }
                     }
@@ -190,28 +211,61 @@ module PELA_vertical_sign(material, large_nozzle, cut_line, l, w, h, line_1, lin
         }
 
         translate([0, -text_depth, 0]) {
-            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height, skin=skin);
+            cut_space(material=material, large_nozzle=large_nozzle, l=l, w=w, cut_line=cut_line, h=h, block_height=block_height, knob_height=knob_height, skin=horizontal_skin);
         }
     }
 }
 
 
 // Two lines of text extruded out from the surface
-module PELA_sign_extruded_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang, text_depth=text_depth, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
+module PELA_sign_extruded_text(material, large_nozzle, l, w, h, line_1, line_2, lang, text_depth, f1, f2, fs1, fs2, left_margin, vertical_margin, block_height) {
     
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(h!=undef);
+    assert(line_1!=undef);
+    assert(line_2!=undef);
+    assert(lang!=undef);
+    assert(text_depth!=undef);
+    assert(f1!=undef);
+    assert(f2!=undef);
+    assert(fs1!=undef);
+    assert(fs2!=undef);
+    assert(left_margin!=undef);
+    assert(vertical_margin!=undef);
+    assert(block_height!=undef);
+
     translate([left_margin, 0, block_height(h, block_height)-vertical_margin]) {
-        PELA_text(material=material, large_nozzle=large_nozzle, text=line_1, lang=lang, font=f1, font_size=fs1, vertical_alignment="top");
+        PELA_text(material=material, large_nozzle=large_nozzle, text=line_1, lang=lang, font=f1, font_size=fs1, text_depth=text_depth, vertical_alignment="top");
     }
     
     translate([left_margin, 0, vertical_margin]) {
-        PELA_text(material=material, large_nozzle=large_nozzle, text=line_2, lang=lang, font=f2, font_size=fs2, vertical_alignment="bottom");
+        PELA_text(material=material, large_nozzle=large_nozzle, text=line_2, lang=lang, font=f2, font_size=fs2, text_depth=text_depth, vertical_alignment="bottom");
     }
 }
 
 
 // Two lines of text etched into the surface
-module PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, w=w, h=h, line_1=line_1, line_2=line_2, lang=lang,  text_depth=text_depth, f1=f1, f2=f2, fs1=fs1, fs2=fs2, left_margin=left_margin, vertical_margin=vertical_margin) {
+module PELA_sign_etched_text(material, large_nozzle, l, w, h, line_1, line_2, lang,  text_depth, f1, f2, fs1, fs2, left_margin, vertical_margin) {
     
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(l!=undef);
+    assert(w!=undef);
+    assert(h!=undef);
+    assert(line_1!=undef);
+    assert(line_2!=undef);
+    assert(lang!=undef);
+    assert(text_depth!=undef);
+    assert(f1!=undef);
+    assert(f2!=undef);
+    assert(fs1!=undef);
+    assert(fs2!=undef);
+    assert(left_margin!=undef);
+    assert(vertical_margin!=undef);
+
     translate([left_margin, text_depth, block_height(h, block_height)-vertical_margin]) {
         PELA_text(material=material, large_nozzle=large_nozzle, text=line_1, lang=lang, text_depth=text_depth, font=f1, font_size=fs1, vertical_alignment="top");
     }
@@ -223,7 +277,17 @@ module PELA_sign_etched_text(material=material, large_nozzle=large_nozzle, l=l, 
 
 
 // Text for the side of blocks
-module PELA_text(material=material, large_nozzle=large_nozzle, text=line_1, lang=lang, text_depth=text_depth, font=f1, font_size=fs1, vertical_alignment="bottom") {
+module PELA_text(material, large_nozzle, text, lang, text_depth, font, font_size, vertical_alignment) {
+
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(text!=undef);
+    assert(lang!=undef);
+    assert(text_depth!=undef);
+    assert(font!=undef);
+    assert(font_size!=undef);
+    assert(vertical_alignment!=undef);
+
     rotate([90,0,0]) {
         linear_extrude(height=text_depth) {
             text(text=text, language=lang, font=font, size=font_size, halign="left", valign=vertical_alignment);
