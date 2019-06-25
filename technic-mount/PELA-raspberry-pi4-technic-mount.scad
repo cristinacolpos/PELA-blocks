@@ -76,7 +76,7 @@ _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 _w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // How many blocks in from length ends do the technic holes rotate 90 degrees
-_twist_l = 3; // [1:18]
+_twist_l = 5; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees
 _twist_w = 4; // [1:18]
@@ -86,7 +86,7 @@ _center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:al
 
 
 // Text label
-_text = "Pi 3B+";
+_text = "Pi 4";
 
 
 
@@ -169,7 +169,7 @@ _back_enclosure_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-_cover_text = "Pi 3B+";
+_cover_text = "Pi 4";
 
 // Interior fill style
 _cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]

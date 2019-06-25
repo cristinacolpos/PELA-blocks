@@ -71,16 +71,16 @@ _w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widt
 _h = 2; // [1:20]
 
 // How many blocks in from length ends do the technic holes rotate 90 degrees [blocks]
-_twist_l = 2; // [1:18]
+_twist_l = 4; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
-_twist_w = 2; // [1:18]
+_twist_w = 3; // [1:18]
 
 // Step in from board space edges to support the board [mm]
 _innercut = 1.4;
 
 // Step down from board bottom to give room board components [mm]
-_undercut = 7.0; // [0:0.1:100]
+_undercut = 1.5; // [0:0.1:100]
 
 // Size of hole in the center of knobs if "center" or "cover center" is "knob panel"
 _knob_vent_radius = 0.0; // [0.0:0.1:3.9]

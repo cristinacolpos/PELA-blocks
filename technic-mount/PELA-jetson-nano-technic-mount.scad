@@ -71,7 +71,7 @@ _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 _w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // 90 degree rotation from length ends [blocks]
-_twist_l = 4; // [1:18]
+_twist_l = 5; // [1:18]
 
 // 90 degree rotation from width ends [blocks]
 _twist_w = 4; // [1:18]
@@ -264,23 +264,23 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
 
     edge_thickness = 1.4;
         
-    heatsink_cut_length = block_width(9);
+    heatsink_cut_length = block_width(9) + horizontal_skin;
     heatsink_cut_width = block_width(6);
         
-    heatsink_x = block_width(2.5);
-    heatsink_y = block_width(-2.5) - heatsink_cut_width;
+    heatsink_x = block_width(2.5) + horizontal_skin;
+    heatsink_y = block_width(-2.5) - heatsink_cut_width + horizontal_skin;
 
     ribbon_cable_cut_length = block_width(2) + _defeather;
     ribbon_cable_cut_width = block_width(8);
         
-    ribbon_cable_x = block_width(w-0.5) - _defeather;
-    ribbon_cable_y = block_width(-2.5) - ribbon_cable_cut_width;
+    ribbon_cable_x = block_width(w-0.5) + 2*horizontal_skin;
+    ribbon_cable_y = block_width(-2.5) - ribbon_cable_cut_width + horizontal_skin;
 
     antenna_cable_cut_length = block_width(1);
     antenna_cable_cut_width = block_width(3);
         
-    antenna_cable_x = block_width(0.5);
-    antenna_cable_y = block_width(2.5) - ribbon_cable_cut_width;
+    antenna_cable_x = block_width(0.5) - horizontal_skin;
+    antenna_cable_y = block_width(-2.5) - antenna_cable_cut_width + horizontal_skin;
 
     video_x = 20;
     video_y = block_width(-1.5 - w);
@@ -297,14 +297,14 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
                 }    
 
                 if (ribbon_cable_cut_length > 0 && ribbon_cable_cut_width) {
-                    color("pink") translate([ribbon_cable_x - edge_thickness, ribbon_cable_y - edge_thickness, -0]) {
-                        cube([ribbon_cable_cut_length + 2*edge_thickness, ribbon_cable_cut_width + edge_thickness, 1+panel_height(block_width())]);
+                    color("pink") translate([ribbon_cable_x - edge_thickness, ribbon_cable_y - edge_thickness, 0]) {
+                        cube([ribbon_cable_cut_length + edge_thickness, ribbon_cable_cut_width + edge_thickness, 1+panel_height(block_width())]);
                     }
                 }    
                 
                 if (antenna_cable_cut_length > 0 && antenna_cable_cut_width) {
-                    color("yellow") translate([antenna_cable_x - edge_thickness, antenna_cable_y - edge_thickness, -0]) {
-                        cube([antenna_cable_cut_length + 2*edge_thickness, antenna_cable_cut_width + edge_thickness, 1+panel_height(block_width())]);
+                    color("yellow") translate([antenna_cable_x, antenna_cable_y - edge_thickness, -0]) {
+                        cube([antenna_cable_cut_length + edge_thickness, antenna_cable_cut_width + edge_thickness, 1+panel_height(block_width())]);
                     }
                 }    
             }        
