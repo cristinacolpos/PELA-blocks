@@ -50,10 +50,10 @@ _large_nozzle = true;
 /* [Jetson Nano] */
 
 // Board space length [mm]
-_length = 100.3;
+_length = 100.7;
 
 // Board space width [mm]
-_width = 79.3;
+_width = 80.1;
 
 // Board space thickness [mm]
 _thickness = 20;
@@ -68,7 +68,7 @@ _h = 4; // [1:1:20]
 _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Closeness of board fit widthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
-_w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+_w_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // 90 degree rotation from length ends [blocks]
 _twist_l = 5; // [1:18]
@@ -86,7 +86,7 @@ _undercut = 7.0; // [0:0.1:100]
 _center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
 
 // Text label
-_text = "Jetson Nano";
+_text = "Jetson  Nano";
 
 
 /* [Enclosure Left Cut] */
@@ -136,7 +136,7 @@ _front_enclosure_cutout_x = 6.2; // [0:0.1:200]
 _front_enclosure_cutout_width = 100; // [0:0.1:200]
 
 // Depth into the part of the front cut [mm]
-_front_enclosure_cutout_depth = 9; // [0:0.1:200]
+_front_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
 _front_enclosure_cutout_z = 13; // [0:0.1:200]
@@ -149,25 +149,25 @@ _front_enclosure_cutout_height = 32; // [0:0.1:200]
 /* [Enclosure Back Cut] */
 
 // Distance from the left of back side hole [mm]
-_back_enclosure_cutout_x = 4; // [0:0.1:200]
+_back_enclosure_cutout_x = 36; // [0:0.1:200]
 
 // Width of the back side hole [mm]
-_back_enclosure_cutout_width = 0; // [0:0.1:200]
+_back_enclosure_cutout_width = 24; // [0:0.1:200]
 
 // Depth of the back side hole [mm]
-_back_enclosure_cutout_depth = 24; // [0:0.1:200]
+_back_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
-_back_enclosure_cutout_z = 4; // [0:0.1:200]
+_back_enclosure_cutout_z = 16; // [0:0.1:200]
 
 // Height of the back side hole [mm]
-_back_enclosure_cutout_height = 8; // [0:0.1:200]
+_back_enclosure_cutout_height = 36; // [0:0.1:200]
 
 
 /* [Cover] */
 
 // Text label
-_cover_text = "Jetson Nano";
+_cover_text = "Jetson  Nano";
 
 // Interior fill style
 _cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
@@ -317,7 +317,7 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
             color("orange") translate([heatsink_x, heatsink_y, -_defeather])
                 cube([heatsink_cut_length, heatsink_cut_width, block_width(2)]);
 
-            color("pink") translate([ribbon_cable_x, ribbon_cable_y, -vertical_skin])
+            color("pink") translate([ribbon_cable_x - _defeather, ribbon_cable_y - _defeather, -vertical_skin])
                 cube([ribbon_cable_cut_length, ribbon_cable_cut_width, block_width(2)]);
 
             color("yellow") translate([antenna_cable_x, antenna_cable_y, -vertical_skin])

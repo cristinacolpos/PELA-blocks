@@ -746,7 +746,7 @@ module back_cutout(l, w, back_enclosure_cutout_x, back_enclosure_cutout_width, b
     assert(back_enclosure_cutout_height!=undef);
 
     if (back_enclosure_cutout_width > 0 && back_enclosure_cutout_depth > 0 && back_enclosure_cutout_height > 0) {
-        translate([back_enclosure_cutout_x, block_width(l - 0.5) - back_enclosure_cutout_depth + _defeather, back_enclosure_cutout_z-_defeather]) {
+        translate([back_enclosure_cutout_x, block_width(w - 0.5) - back_enclosure_cutout_depth + _defeather, back_enclosure_cutout_z-_defeather]) {
             cube([back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_height]);
         }
     }
