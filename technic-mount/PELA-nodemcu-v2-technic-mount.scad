@@ -62,16 +62,16 @@ _thickness = 1.8; // [0:0.1:300]
 /* [Enclosure] */
 
 // Distance from length ends of connector twist [blocks]
-_twist_l = 1; // [1:18]
+_twist_l = 2; // [1:18]
 
 // Distance from width ends of connector twist [blocks]
-_twist_w = 2; // [1:18]
+_twist_w = 1; // [1:18]
 
 // Closeness of board fit lengthwise [blocks]
-_l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+_l_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Closeness of board fit widthwise [blocks]
-_w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
+_w_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks]
 
 // Height of the enclosure [blocks]
 _h = 1; // [1:1:20]
@@ -83,16 +83,16 @@ _center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:al
 _innercut = 1.0; // [0:0.1:100]
 
 // Step down from board bottom to give room board components [mm]
-_undercut = 1.0; // [0:0.1:100]
+_undercut = 3.0; // [0:0.1:100]
 
 // Text label
-_text = "Node MCU v2";
+_text = "Node MCU";
 
 
 /* [Enclosure Left Cut] */
 
 // Distance from the front of left side hole [mm]
-_left_enclosure_cutout_y = 12; // [0:0.1:200]
+_left_enclosure_cutout_y = 8; // [0:0.1:200]
 
 // Width of the left side hole [mm]
 _left_enclosure_cutout_width = 16; // [0:0.1:200]
@@ -168,7 +168,7 @@ _back_enclosure_cutout_height = 8; // [0:0.1:200]
 /* [Cover] */
 
 // Text label
-_cover_text = "MCU v2 Cover";
+_cover_text = "Node MCU";
 
 // Interior fill style
 _cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
