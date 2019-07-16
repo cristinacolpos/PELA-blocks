@@ -86,7 +86,7 @@ _undercut = 7.0; // [0:0.1:100]
 _center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
 
 // Text label
-_text = "Jetson  Nano";
+_text = "Jetson   Nano";
 
 
 /* [Enclosure Left Cut] */

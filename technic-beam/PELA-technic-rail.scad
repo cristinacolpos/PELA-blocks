@@ -27,9 +27,9 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../PELA-socket-panel.scad>
 use <../PELA-knob-panel.scad>
-use <../technic-beam/PELA-technic-beam.scad>
-use <../technic-beam/PELA-technic-twist-beam.scad>
-use <PELA-technic-box.scad>
+use <PELA-technic-beam.scad>
+use <PELA-technic-twist-beam.scad>
+use <../technic-mount/PELA-technic-box.scad>
 
 
 /* [Render] */
@@ -47,7 +47,7 @@ _large_nozzle = true;
 /* [Box] */
 
 // Number of cells in a ladder
-_step_count = 1; // [1:1:20]
+_step_count = 4; // [1:1:20]
 
 // Total length [blocks]
 _l = 6; // [2:1:20]
