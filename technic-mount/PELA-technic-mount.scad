@@ -29,7 +29,7 @@ use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
 use <../PELA-knob-mount.scad>
 use <../PELA-box-enclosure.scad>
-use <../pin/PELA-technic-pin.scad>
+use <../peg/PELA-technic-peg.scad>
 use <../technic-beam/PELA-technic-beam.scad>
 use <../technic-beam/PELA-technic-twist-beam.scad>
 use <PELA-technic-box.scad>

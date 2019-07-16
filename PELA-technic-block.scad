@@ -257,7 +257,7 @@ module visual_cut_technic_block(material, large_nozzle, cut_line=_cut_line, l, w
 }
 
 
-// Holes cut into the sides for the block on layer 1 to allow technic pins and axles to be inserted
+// Holes cut into the sides for the block on layer 1 to allow technic pegs and axles to be inserted
 module bottom_connector_negative_space(material, large_nozzle, l, w, h, side_holes, end_holes, hole_type, corner_bolt_holes, bolt_hole_radius, sockets, skin, block_height, axle_hole_radius) {
     
     assert(material!=undef);

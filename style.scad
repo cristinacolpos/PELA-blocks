@@ -123,7 +123,7 @@ _counterbore_inset_radius = 3.1; // [0.1:0.1:4]
 // Technic connector hole inset depth
 _counterbore_inset_depth = 0.95; // [0.1:0.1:4]
 
-// Contact length of axle to block (not including inset length and end snap fit flexture in pin connectors)
+// Contact length of axle to block (not including inset length and end snap fit flexture in peg connectors)
 _peg_length = 6.5; // [0.1:0.1:16]
 
 // Size of the cylinder wrapped around the technic holes

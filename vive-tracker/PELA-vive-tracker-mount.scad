@@ -49,7 +49,7 @@ _large_nozzle = true;
 _l = 6; // [1:1:20]
 
 // Distance between Vive connector pins
-_pin_spacing = 3.5;
+_peg_spacing = 3.5;
 
 
 
@@ -281,10 +281,10 @@ module vive_connector(material, l, w) {
         union () {
             vive_enclosure_cutout_array(material=material);
             
-            translate([0, (_channel_l-5*_pin_spacing)/2, 0]) {
+            translate([0, (_channel_l-5*_peg_spacing)/2, 0]) {
                 hull() {
                     cylinder(d=_cd2c, h=2*_connector_holder_center_lift);
-                    translate([0, _channel_l-_pin_spacing/2, 0]) {
+                    translate([0, _channel_l-_peg_spacing/2, 0]) {
                         cylinder(d=_cd2c, h=2*_connector_holder_center_lift);
                     }
                 }
@@ -297,8 +297,8 @@ module vive_connector(material, l, w) {
 // A set of pins
 module vive_pin_array(material, large_nozzle, count=6) {
 
-    for (i=[0:_pin_spacing:_pin_spacing*(count-1)]) {
-        translate([0, i + (_channel_l-(count-1)*_pin_spacing)/2, _pin_vertical_offset]) {
+    for (i=[0:_peg_spacing:_peg_spacing*(count-1)]) {
+        translate([0, i + (_channel_l-(count-1)*_peg_spacing)/2, _pin_vertical_offset]) {
             rotate([180, 0, 0]) {
                 vive_pin(material=material);
             }
@@ -310,8 +310,8 @@ module vive_pin_array(material, large_nozzle, count=6) {
 // A set of negative space for pins
 module vive_enclosure_cutout_array(material, large_nozzle, count=6) {
 
-    for (i=[0:_pin_spacing:_pin_spacing*(count-1)]) {
-        translate([0, i + (_channel_l-(count-1)*_pin_spacing)/2, _pin_vertical_offset]) {
+    for (i=[0:_peg_spacing:_peg_spacing*(count-1)]) {
+        translate([0, i + (_channel_l-(count-1)*_peg_spacing)/2, _pin_vertical_offset]) {
             rotate([180, 0, 0]) {
                 vive_cutout(material=material);
             }

@@ -146,19 +146,19 @@ ___
 
 ___
 
-[![PELA Simplified Technic Peg](/pin/PELA-simplified-technic-peg.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/pin/PELA-simplified-technic-peg.stl)
+[![PELA Simplified Technic Peg](/peg/PELA-simplified-technic-peg.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-simplified-technic-peg.stl)
 
 [PELA Simplified Technic Peg](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-simplified-technic-peg.stl) An easier-to-print version of a technic peg. This works best with a smaller nozzle and slightly flexible materials.
 
 ___
 
-[![PELA Technic Peg](/pin/PELA-technic-peg.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/pin/PELA-technic-peg.stl)
+[![PELA Technic Peg](/peg/PELA-technic-peg.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg.stl)
 
 [PELA Technic Peg](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg.stl) This is difficult to print with some material, but useful you run short and don't want to wait for mail order. It works best with slightly flexible materials.
 
 ___
 
-[![PELA Technic Peg Array](/pin/PELA-technic-peg-array.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg-array.stl)
+[![PELA Technic Peg Array](/peg/PELA-technic-peg-array.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg-array.stl)
 
 [PELA Technic Peg Array](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg-array.stl) A set of technic pegs.
 

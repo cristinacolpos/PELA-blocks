@@ -25,7 +25,7 @@ include <../style.scad>
 include <../material.scad>
 use <../PELA-block.scad>
 use <../PELA-technic-block.scad>
-use <../pin/PELA-technic-pin.scad>
+use <../peg/PELA-technic-peg.scad>
 use <../PELA-box-enclosure.scad>
 use <../PELA-knob-mount.scad>
 use <../technic-beam/PELA-technic-beam.scad>

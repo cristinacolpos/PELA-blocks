@@ -1,5 +1,5 @@
 /*
-PELA Parametric LEGO-compatible Technic Connector Pin
+PELA Parametric LEGO-compatible Technic Connector Peg
 
 PELA Parametric Blocks - 3D Printed LEGO-compatible parametric blocks
 
