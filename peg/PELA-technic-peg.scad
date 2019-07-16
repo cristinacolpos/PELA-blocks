@@ -109,7 +109,9 @@ module pin(material, large_nozzle, cut_line=_cut_line, axle_radius, pin_center_r
                     
                     union() {
                         translate([0, 0, -_defeather]) {
-                            cylinder(r=pin_center_radius, h=length+2*_defeather);
+                            if (pin_center_radius>0) {
+                                cylinder(r=pin_center_radius, h=length+2*_defeather);
+                            }
                         }
 
                         translate([0, 0, pin_slot_thickness]) {
@@ -202,31 +204,33 @@ module rounded_slot(material, large_nozzle, thickness, slot_length) {
 
     width = 10;
     
-    hull() {
+    if (thickness>0) { 
+        hull() {
+            translate([-width/2, 0, slot_length/2 - thickness]) {
+                rotate([0, 90, 0]) {
+                    cylinder(r=thickness/2, h=width);
+                }
+            }
+            
+            translate([-width/2, 0, -slot_length/2 + thickness]) {
+                rotate([0, 90, 0]) {
+                    cylinder(r=thickness/2, h=width);
+                }
+            }
+        }
+    
+        circle_to_slot_ratio = 1.1;
+    
         translate([-width/2, 0, slot_length/2 - thickness]) {
             rotate([0, 90, 0]) {
-                cylinder(r=thickness/2, h=width);
+                cylinder(r=thickness/circle_to_slot_ratio, h=width);
             }
         }
             
         translate([-width/2, 0, -slot_length/2 + thickness]) {
             rotate([0, 90, 0]) {
-                cylinder(r=thickness/2, h=width);
+                cylinder(r=thickness/circle_to_slot_ratio, h=width);
             }
-        }
-    }
-    
-    circle_to_slot_ratio = 1.1;
-    
-    translate([-width/2, 0, slot_length/2 - thickness]) {
-        rotate([0, 90, 0]) {
-            cylinder(r=thickness/circle_to_slot_ratio, h=width);
-        }
-    }
-            
-    translate([-width/2, 0, -slot_length/2 + thickness]) {
-        rotate([0, 90, 0]) {
-            cylinder(r=thickness/circle_to_slot_ratio, h=width);
         }
     }
 }
