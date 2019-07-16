@@ -82,7 +82,7 @@ _mount_h = block_width(3) - 2;
 _board_mount_pin = false;
 
 // Diameter for board mount centering pin [mm]
-_mount_pin_d = 2.4; // [0.0:0.1:3]
+_mount_peg_d = 2.4; // [0.0:0.1:3]
 
 _top_height = 4;
 
@@ -393,7 +393,7 @@ module knob_holder(material=material, large_nozzle=large_nozzle, x, y, h, rot, p
             
             if (pin && board_mount_pin) {
                 rotate([180, 0, 0]){
-                    cylinder(d=mount_pin_d, h=thickness - 0.1);
+                    cylinder(d=mount_peg_d, h=thickness - 0.1);
                 }
             }
         }

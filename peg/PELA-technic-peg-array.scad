@@ -42,13 +42,13 @@ _large_nozzle = true;
 _axle_radius = 2.2; // [0.1:0.1:4]
 
 // Size of the hollow inside a pin
-_pin_center_radius= 0.7; // [0:0.1:4]
+_peg_center_radius= 0.7; // [0:0.1:4]
 
 // Size of the connector lock-in bump at the ends of a Pin
-_pin_tip_length = 0.7; // [0.1:0.1:4]
+_peg_tip_length = 0.7; // [0.1:0.1:4]
 
 // Width of the long vertical flexture slots in the side of a pin
-_pin_slot_thickness = 0.4; // [0.1:0.1:4]
+_peg_slot_thickness = 0.4; // [0.1:0.1:4]
 
 
 /* [Technic Pin Array] */
@@ -73,21 +73,21 @@ _skin = 0.1;
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
-technic_pin_array(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, pin_tip_length=_pin_tip_length, peg_length=_peg_length, array_count=_array_count, array_spacing=_array_spacing, base_thichness=_base_thickness, axle_radius=_axle_radius, pin_center_radius=_pin_center_radius, pin_slot_thickness=_pin_slot_thickness, minimum_base=_minimum_base, base_thickness=_base_thickness, block_height=_block_height, skin=_skin);
+technic_peg_array(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, peg_tip_length=_peg_tip_length, peg_length=_peg_length, array_count=_array_count, array_spacing=_array_spacing, base_thichness=_base_thickness, axle_radius=_axle_radius, peg_center_radius=_peg_center_radius, peg_slot_thickness=_peg_slot_thickness, minimum_base=_minimum_base, base_thickness=_base_thickness, block_height=_block_height, skin=_skin);
 
-module technic_pin_array(material, large_nozzle, cut_line=_cut_line, pin_tip_length, peg_length, array_count, array_spacing, base_thichness, axle_radius, pin_center_radius, pin_slot_thickness, minimum_base, base_thickness, block_height, skin) {
+module technic_peg_array(material, large_nozzle, cut_line=_cut_line, peg_tip_length, peg_length, array_count, array_spacing, base_thichness, axle_radius, peg_center_radius, peg_slot_thickness, minimum_base, base_thickness, block_height, skin) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
     assert(cut_line!=undef);
-    assert(pin_tip_length!=undef);
+    assert(peg_tip_length!=undef);
     assert(peg_length!=undef);
     assert(array_count!=undef);
     assert(array_spacing!=undef);
     assert(base_thichness!=undef);
     assert(axle_radius!=undef);
-    assert(pin_center_radius!=undef);
-    assert(pin_slot_thickness!=undef);
+    assert(peg_center_radius!=undef);
+    assert(peg_slot_thickness!=undef);
     assert(minimum_base!=undef);
     assert(base_thickness!=undef);
     assert(block_height!=undef);
@@ -97,6 +97,6 @@ module technic_pin_array(material, large_nozzle, cut_line=_cut_line, pin_tip_len
 
     counterbore_holder_radius = cb_holder_radius(_counterbore_inset_radius, _skin);
 
-    pin_array(material=material, large_nozzle=large_nozzle, cut_line=cut_line, array_count=array_count, array_spacing=_array_spacing, base_thichness=base_thickness, axle_radius=axle_radius, pin_center_radius=pin_center_radius, peg_length=peg_length, pin_tip_length=pin_tip_length, pin_slot_thickness=pin_slot_thickness, minimum_base=minimum_base, base_thickness=base_thickness, block_height=block_height, counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height, skin=skin);    
+    peg_array(material=material, large_nozzle=large_nozzle, cut_line=cut_line, array_count=array_count, array_spacing=_array_spacing, base_thichness=base_thickness, axle_radius=axle_radius, peg_center_radius=peg_center_radius, peg_length=peg_length, peg_tip_length=peg_tip_length, peg_slot_thickness=peg_slot_thickness, minimum_base=minimum_base, base_thickness=base_thickness, block_height=block_height, counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height, skin=skin);    
 }
 

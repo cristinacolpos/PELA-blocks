@@ -69,25 +69,25 @@ _h2_3 = 0.5;
 _h3 = 0.5;
 _d4 = 0.95;
 _h4 = 2.75;
-_pin_height=_h1+_h1_2+_h2+_h2_3+_h3+_h4;
-_pin_vertical_offset=_h1+_h1_2+_h2+_h2_3+_h3;
-_pin_holder_height=_h1+_h1_2+_h2+_h2_3;
+_peg_height=_h1+_h1_2+_h2+_h2_3+_h3+_h4;
+_peg_vertical_offset=_h1+_h1_2+_h2+_h2_3+_h3;
+_peg_holder_height=_h1+_h1_2+_h2+_h2_3;
 
 // Vive cutout dimensions
-_pin_skin=0.15;
-_cd1 = 3.2+_pin_skin;
+_peg_skin=0.15;
+_cd1 = 3.2+_peg_skin;
 _ch1 = 0.5;
 _ch1_2 = 0.5;
-_cd2 = 1.75+_pin_skin;
+_cd2 = 1.75+_peg_skin;
 _ch2 = 1.35;
-_cd3 = 2.55+_pin_skin;
+_cd3 = 2.55+_peg_skin;
 _ch2_3 = 0.5;
 _ch3 = 0.5;
-_cd4 = 0.95+_pin_skin;
+_cd4 = 0.95+_peg_skin;
 _ch4 = 2.75;
-_cd2b = 2.4+_pin_skin;
-_cd2c = _cd2b+2.3+_pin_skin;
-_cd2d = _cd2c-0.5+_pin_skin;
+_cd2b = 2.4+_peg_skin;
+_cd2c = _cd2b+2.3+_peg_skin;
+_cd2d = _cd2c-0.5+_peg_skin;
 _slice_width = 0.6;
 
 
@@ -102,9 +102,9 @@ _connector_holder_center_lift = 0.15;
 _thumscrew_offset_from_edge = block_width()+17.4;
 _thumbscrew_hole_d=7;
 _thumbscrew_border_d=11;
-_alignment_pin_h = 5.5;
-_alignment_pin_d = 4.8;
-_alignment_pin_offset_from_screwhole = 13.9;
+_alignment_peg_h = 5.5;
+_alignment_peg_d = 4.8;
+_alignment_peg_offset_from_screwhole = 13.9;
 _cut = 0.8;
 
 _skin = 0.1;
@@ -230,8 +230,8 @@ module alignment_pin(material, large_nozzle, block_height, large_nozzle, l, w) {
     assert(l!=undef);
     assert(w!=undef);
 
-    translate([_thumscrew_offset_from_edge+_alignment_pin_offset_from_screwhole, block_width(w/2), panel_height(0.5)]) {
-        cylinder(d=_alignment_pin_d, h=panel_height(0.5) + _alignment_pin_h);
+    translate([_thumscrew_offset_from_edge+_alignment_peg_offset_from_screwhole, block_width(w/2), panel_height(0.5)]) {
+        cylinder(d=_alignment_peg_d, h=panel_height(0.5) + _alignment_peg_h);
     }
 
     translate([block_width(5), block_width(3), 0.5*panel_height(block_height=block_height)]) {
@@ -253,7 +253,7 @@ module vive_connector_left(material) {
         }
     }
     
-%    vive_pin_array(material=material);    
+%    vive_peg_array(material=material);    
 }
 
 // For display of interenal function and pin position
@@ -266,7 +266,7 @@ module vive_connector_right(material, l, w) {
         }
     }
     
-%    vive_pin_array(material=material, l=l, w=w);    
+%    vive_peg_array(material=material, l=l, w=w);    
 }
 
 
@@ -295,10 +295,10 @@ module vive_connector(material, l, w) {
 
 
 // A set of pins
-module vive_pin_array(material, large_nozzle, count=6) {
+module vive_peg_array(material, large_nozzle, count=6) {
 
     for (i=[0:_peg_spacing:_peg_spacing*(count-1)]) {
-        translate([0, i + (_channel_l-(count-1)*_peg_spacing)/2, _pin_vertical_offset]) {
+        translate([0, i + (_channel_l-(count-1)*_peg_spacing)/2, _peg_vertical_offset]) {
             rotate([180, 0, 0]) {
                 vive_pin(material=material);
             }
@@ -311,7 +311,7 @@ module vive_pin_array(material, large_nozzle, count=6) {
 module vive_enclosure_cutout_array(material, large_nozzle, count=6) {
 
     for (i=[0:_peg_spacing:_peg_spacing*(count-1)]) {
-        translate([0, i + (_channel_l-(count-1)*_peg_spacing)/2, _pin_vertical_offset]) {
+        translate([0, i + (_channel_l-(count-1)*_peg_spacing)/2, _peg_vertical_offset]) {
             rotate([180, 0, 0]) {
                 vive_cutout(material=material);
             }
@@ -351,7 +351,7 @@ module vive_cutout(material) {
     slice(material=material);
     translate([0, 0, _ch1]) {
         cylinder(d1=_cd1, d2=_cd2, h=_ch1_2);
-        cylinder(d=_cd2b, h=_pin_height);
+        cylinder(d=_cd2b, h=_peg_height);
         
         translate([0, 0, _ch1_2]) {
             cylinder(d=_cd2, h=_ch2);
@@ -373,7 +373,7 @@ module vive_cutout(material) {
 module slice(material) {
     
     translate([-_cd2d/2, -_slice_width/2]) {
-        cube([_cd2d, _slice_width, _pin_height]);
+        cube([_cd2d, _slice_width, _peg_height]);
     }
 }
 
@@ -390,7 +390,7 @@ module channel(material) {
         }
             
         translate([-_channel_d/2, -_channel_d/2, 0]) {
-            cube([_channel_d, _channel_l+_channel_d, _pin_holder_height]);
+            cube([_channel_d, _channel_l+_channel_d, _peg_holder_height]);
         }
     }
 }
