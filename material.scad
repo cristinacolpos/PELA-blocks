@@ -172,7 +172,7 @@ function material_property(material, large_nozzle, property) = large_nozzle ? la
 function material_name(material) = materials[material][name_index];
 
 // Return true if this material is flexible
-function is_flexible(material) = materials[material][name_index];
+function is_flexible(material) = materials[material][flex_index];
 
 // Return the bottom tweak from the material
 function material_bottom_tweak(material, large_nozzle) = material_property(material=material, large_nozzle=large_nozzle, property=bottom_tweak_index);

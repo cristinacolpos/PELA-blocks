@@ -152,6 +152,12 @@ ___
 
 ___
 
+[![PELA Simplified Technic Peg for Flex Materials](/peg/PELA-simplified-technic-peg-flexmaterial.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-simplified-technic-peg-flexmaterial.stl)
+
+[PELA Simplified Technic Peg for Flex Materials](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-simplified-technic-peg-flexmaterial.stl) An easier-to-print version of a technic peg for TPU95, TPU85/Ninjaflex and similar flexible materials.
+
+___
+
 [![PELA Technic Peg](/peg/PELA-technic-peg.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg.stl)
 
 [PELA Technic Peg](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg.stl) This is difficult to print with some material, but useful you run short and don't want to wait for mail order. It works best with slightly flexible materials.
