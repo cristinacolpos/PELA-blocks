@@ -33,16 +33,19 @@ _material = 0; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 _large_nozzle = true;
 
 // An axle which fits loosely in a technic bearing hole
-_axle_radius = 2.2; // [0.1:0.01:4]
+_axle_radius = 2.19; // [0.1:0.1:4]
 
 // Size of the hollow inside a pin
-_peg_center_radius=0.0; // [0.1:0.1:4]
+_peg_center_radius=0.7; // [0.1:0.1:4]
 
 // Size of the connector lock-in bump at the ends of a Pin
 _peg_tip_length = 0.7; // [0.1:0.1:4]
 
 // Width of the long vertical flexture slots in the side of a pin
 _peg_slot_thickness = 0.0; // [0.1:0.1:4]
+
+
+/* [Simplified Peg] */
 
 // Size of the flat bottom cut to make the pin more easily printable
 _bottom_flatness = 0.2; // [0.0:0.1:5]
@@ -68,14 +71,27 @@ simplified_peg(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_lin
 
 module simplified_peg(material, large_nozzle, cut_line, axle_radius, peg_center_radius, peg_length, peg_tip_length, peg_slot_thickness, bottom_flatness, end_cut_length) {
 
-    intersection() {
-        translate([0, 0, axle_radius - bottom_flatness]) {
-            rotate([0, 90, 0]) {
-                peg(material=material, large_nozzle=large_nozzle, cut_line=cut_line, axle_radius=axle_radius, peg_center_radius=peg_center_radius, peg_length=peg_length, peg_tip_length=peg_tip_length, peg_slot_thickness=peg_slot_thickness);
+    assert(material!=undef);
+    assert(large_nozzle!=undef);
+    assert(cut_line!=undef);
+    assert(axle_radius!=undef);
+    assert(peg_center_radius!=undef);
+    assert(peg_length!=undef);
+    assert(peg_tip_length!=undef);
+    assert(peg_slot_thickness!=undef);
+    assert(bottom_flatness!=undef);
+    assert(end_cut_length!=undef);
+
+    translate([0, 0, -axle_radius+bottom_flatness]) {
+        intersection() {
+            translate([0, 0, axle_radius - bottom_flatness]) {
+                rotate([0, 90, 0]) {
+                    peg(material=material, large_nozzle=large_nozzle, cut_line=cut_line, axle_radius=axle_radius, peg_center_radius=peg_center_radius, peg_length=peg_length, peg_tip_length=peg_tip_length, peg_slot_thickness=peg_slot_thickness);
+                }
             }
+            
+            simplified_peg_cut(material=material, peg_length=peg_length, end_cut_length=end_cut_length, axle_radius=axle_radius);
         }
-        
-        simplified_peg_cut(material=material, peg_length=peg_length, end_cut_length=end_cut_length, axle_radius=axle_radius);
     }
 }
 

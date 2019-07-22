@@ -36,10 +36,10 @@ _material = 8; // [0:PLA, 1:ABS, 2:PET, 3:Biofila Silk, 4:Pro1, 5:NGEN, 6:NGEN F
 _large_nozzle = true;
 
 // An axle which fits loosely in a technic bearing hole
-_axle_radius = 2.2; // [0.1:0.01:4]
+_axle_radius = 2.19; // [0.1:0.1:4]
 
 // Size of the hollow inside a pin
-_peg_center_radius=0.0; // [0.1:0.1:4]
+_peg_center_radius=0.7; // [0.1:0.1:4]
 
 // Size of the connector lock-in bump at the ends of a Pin
 _peg_tip_length = 0.7; // [0.1:0.1:4]

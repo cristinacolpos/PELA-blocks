@@ -61,16 +61,17 @@ peg(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, axle_rad
 
 function technic_peg_length(peg_tip_length, peg_length, counterbore_holder_height) = (peg_length + peg_tip_length)*2 + counterbore_holder_height;
 
-function cb_holder_height(counterbore_inset_depth) = counterbore_inset_depth*2;
+function cb_holder_height(counterbore_inset_depth, skin) = (counterbore_inset_depth-skin)*2;
 
 function cb_holder_radius(counterbore_inset_radius, skin) = counterbore_inset_radius - skin;
+
 
 //////////////////
 // MODULES
 //////////////////
 
 // A connector pin between two sockets
-module peg(material, large_nozzle, cut_line=_cut_line, axle_radius, peg_center_radius, peg_length, peg_tip_length, peg_slot_thickness) {
+module peg(material, large_nozzle, cut_line, axle_radius, peg_center_radius, peg_length, peg_tip_length, peg_slot_thickness) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -81,7 +82,7 @@ module peg(material, large_nozzle, cut_line=_cut_line, axle_radius, peg_center_r
     assert(peg_tip_length!=undef);
     assert(peg_slot_thickness!=undef);
     
-    counterbore_holder_height = cb_holder_height(_counterbore_inset_depth);
+    counterbore_holder_height = cb_holder_height(_counterbore_inset_depth, _skin);
 
     counterbore_holder_radius = cb_holder_radius(_counterbore_inset_radius, _skin);
 
@@ -236,89 +237,7 @@ module rounded_slot(material, large_nozzle, thickness, slot_length) {
 }
 
 
-// A set of half-pins connected by at the base
-module peg_array(material, large_nozzle, cut_line=_cut_line, array_count, array_spacing, base_thichness, axle_radius, peg_center_radius, peg_length, peg_tip_length, peg_slot_thickness, minimum_base, base_thickness, block_height, counterbore_holder_radius, counterbore_holder_height, skin) {
-
-    assert(material!=undef);
-    assert(large_nozzle!=undef);
-    assert(cut_line!=undef);
-    assert(array_count!=undef);
-    assert(array_spacing!=undef);
-    assert(base_thichness!=undef);
-    assert(axle_radius!=undef);
-    assert(peg_center_radius!=undef);
-    assert(peg_length!=undef);
-    assert(peg_tip_length!=undef);
-    assert(peg_slot_thickness!=undef);
-    assert(minimum_base!=undef);
-    assert(base_thickness!=undef);
-    assert(block_height!=undef);
-    assert(counterbore_holder_radius!=undef);
-    assert(counterbore_holder_height!=undef);
-    assert(skin!=undef);
-
-    length = technic_peg_length(peg_tip_length=peg_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
-    assert(length!=undef);
-
-    difference() {
-        intersection() {
-            translate([block_width(1/2), block_width(1/2), base_thickness]) {
-                difference() {
-                    for (i = [0 : array_count-1]) {
-                        translate([i*array_spacing, 0, 0]) {
-                            pin(material=material, large_nozzle=large_nozzle, cut_line=cut_line, axle_radius=axle_radius, peg_center_radius=peg_center_radius, peg_length=peg_length, peg_tip_length=peg_tip_length, peg_slot_thickness=peg_slot_thickness);
-                        }
-                    }
-                    
-                    translate([-block_width(), -block_width(), -block_height(1, block_height=block_height)-skin]) {
-                        cube([block_width(array_count+1), block_width(2), block_height(1, block_height=block_height)]);
-                    }
-                }
-                
-                peg_base(material=material, large_nozzle=large_nozzle, length=length, array_count=array_count, array_spacing=array_spacing, base_thickness=base_thickness, minimum_base=minimum_base, peg_length=peg_length, peg_slot_thickness=peg_slot_thickness, skin=skin);
-            }
-
-            if (minimum_base) {
-                translate([0, block_width(1/2), 0]) {
-                    peg_array_envelope(material=material, large_nozzle=large_nozzle, length=length, array_count=array_count, array_spacing=array_spacing, peg_length=peg_length, peg_tip_length=peg_tip_length, counterbore_holder_radius=counterbore_holder_radius, counterbore_holder_height=counterbore_holder_height);
-                }
-            } else {
-                cube([block_width(array_count), block_width(), length]);
-            }
-        }
-
-        cut_space(material=material, large_nozzle=large_nozzle, l=4, w=1, cut_line=cut_line, h=2, block_height=block_height, knob_height=_knob_height, skin=skin);
-    }
-}
-
-
-// The default connector between base pins
-module peg_base(material, large_nozzle, length, array_count, array_spacing, base_thickness, minimum_base, peg_length, peg_slot_thickness, skin) {
-    
-    assert(material!=undef);
-    assert(large_nozzle!=undef);
-    assert(length!=undef);
-    assert(array_count!=undef);
-    assert(array_spacing!=undef);
-    assert(base_thickness!=undef);
-    assert(minimum_base!=undef);
-    assert(peg_length!=undef);
-    assert(peg_slot_thickness!=undef);
-    assert(skin!=undef);
-    
-    translate([-block_width(1/2), -block_width(1/2), -base_thickness-skin]) {
-        difference() {
-            cube([array_count*array_spacing, block_width(1), base_thickness]);
-        
-            translate([0, block_width(1/2)- peg_slot_thickness/2, 0]) {
-                cube([array_count*array_spacing, peg_slot_thickness, base_thickness]);
-            }
-        }
-    }
-}
-
-
-// The cylindrical space which fully encloses one pin
+// The cylindrical space which fully encloses one peg
 module peg_envelope(material, large_nozzle, length, counterbore_holder_radius) {
 
     assert(material!=undef);
@@ -327,31 +246,4 @@ module peg_envelope(material, large_nozzle, length, counterbore_holder_radius) {
     assert(counterbore_holder_radius>=0);
 
     cylinder(r=counterbore_holder_radius, h=length);
-}
-
-
-// The rounded space which just encloses the pin array but not the rest of the array base
-module peg_array_envelope(material, large_nozzle, length, array_count, array_spacing, peg_length, peg_tip_length, counterbore_holder_radius, counterbore_holder_height) {
-
-    assert(material!=undef);
-    assert(large_nozzle!=undef);
-    assert(length!=undef);
-    assert(array_count!=undef);
-    assert(array_spacing!=undef);
-    assert(peg_length!=undef);
-    assert(peg_tip_length!=undef);
-    assert(counterbore_holder_radius!=undef);
-    assert(counterbore_holder_height!=undef);
-
-    length = technic_peg_length(peg_tip_length=peg_tip_length, peg_length=peg_length, counterbore_holder_height=counterbore_holder_height);
-
-    translate([block_width(0.5), 0, 0]) {
-        hull() {
-            peg_envelope(material=material, large_nozzle=large_nozzle, length=length, counterbore_holder_radius=counterbore_holder_radius);
-
-            translate([(array_count-1)*array_spacing, 0, 0]) {
-                peg_envelope(material=material, large_nozzle=large_nozzle, length=length, counterbore_holder_radius=counterbore_holder_radius);
-            }
-        }
-    }
 }
