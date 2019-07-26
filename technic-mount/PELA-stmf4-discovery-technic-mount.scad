@@ -49,7 +49,7 @@ _render_modules = 2; // [0:mount, 1:cover, 2:mount and cover]
 /* [Board] */
 
 // Board space length [mm]
-_length = 97.3; // [0:1:300] 
+_length = 97.7; // [0:1:300] 
 
 // Board space width [mm]
 _width = 66.3; // [0:1:300]
@@ -60,24 +60,24 @@ _thickness = 1.8; // [0:0.1:8]
 
 /* [Enclosure] */
 
-_l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+_l_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit lengthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
-_w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
+_w_pad = 0; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widthwise inside a ring of blocks [ratio - increase to make outer box slightly larger]
 
 // Height of the enclosure [blocks]
-_h = 1; // [1:20]
+_h = 2; // [1:20]
 
 // How many blocks in from length ends do the technic holes rotate 90 degrees [blocks]
-_twist_l = 4; // [1:18]
+_twist_l = 3; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
-_twist_w = 4; // [1:18]
+_twist_w = 5; // [1:18]
 
 // Step in from board space edges to support the board [mm]
 _innercut = 2;
 
 // Step down from board bottom to give room board components [mm]
-_undercut = 7.0; // [0:0.1:100]
+_undercut = 20.0; // [0:0.1:100]
 
 // Interior fill style
 _center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
