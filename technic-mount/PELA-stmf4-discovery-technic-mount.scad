@@ -28,7 +28,7 @@ use <../PELA-technic-block.scad>
 use <../peg/PELA-technic-peg.scad>
 use <../technic-beam/PELA-technic-beam.scad>
 use <../technic-beam/PELA-technic-twist-beam.scad>
-include <PELA-technic-mount.scad>
+use <PELA-technic-mount.scad>
 
 
 /* [Render] */
@@ -90,38 +90,38 @@ _text = "STMF4 Discovery";
 /* [Enclosure Left Cut] */
 
 // Distance from the front of left side hole [mm]
-_left_enclosure_cutout_y = 4; // [0:0.1:200]
+_left_enclosure_cutout_y = 28; // [0:0.1:200]
 
 // Width of the left side hole [mm]
-_left_enclosure_cutout_width = 0; // [0:0.1:200]
+_left_enclosure_cutout_width = 16; // [0:0.1:200]
 
 // Depth of the left side hole [mm]
 _left_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-_left_enclosure_cutout_z = 4; // [0:0.1:200]
+_left_enclosure_cutout_z = 8; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-_left_enclosure_cutout_height = 8; // [0:0.1:200]
+_left_enclosure_cutout_height = 10; // [0:0.1:200]
 
 
 
 /* [Enclosure Right Cut] */
 
 // Distance from the front of right side hole [mm]
-_right_enclosure_cutout_y = 4; // [0:0.1:200]
+_right_enclosure_cutout_y = 32; // [0:0.1:200]
 
 // Width of the right side hole [mm]
-_right_enclosure_cutout_width = 0; // [0:0.1:200]
+_right_enclosure_cutout_width = 16; // [0:0.1:200]
 
 // Depth of the right side hole [mm]
 _right_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the right side hole [mm]
-_right_enclosure_cutout_z = 4; // [0:0.1:200]
+_right_enclosure_cutout_z = 8; // [0:0.1:200]
 
 // Height of the right side hole [mm]
-_right_enclosure_cutout_height = 8; // [0:0.1:200]
+_right_enclosure_cutout_height = 10; // [0:0.1:200]
 
 
 
@@ -207,4 +207,17 @@ _dome = false;
 // DISPLAY
 ///////////////////////////////
 
-technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, knob_vent_radius=_knob_vent_radius, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, knob_height=_knob_height, top_vents=_top_vents, cover_corner_tabs=_cover_corner_tabs);
+difference() {
+    technic_mount_and_cover(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, knob_vent_radius=_knob_vent_radius, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, knob_height=_knob_height, top_vents=_top_vents, cover_corner_tabs=_cover_corner_tabs);
+    
+    union() {
+        translate([block_width(-1), block_width(-8), block_width(1)])
+            cube([block_width(2), block_width(3), block_width(2)]);
+        
+        translate([block_width(2), block_width(-6), -_skin])
+            cube([block_width(20), block_width(2), block_width(3)]);
+        
+        translate([block_width(2), block_width(-8), block_width(1)])
+            cube([block_width(20), block_width(3), block_width(2)]);
+    }
+}
