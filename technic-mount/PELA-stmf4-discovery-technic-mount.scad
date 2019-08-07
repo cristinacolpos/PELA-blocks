@@ -74,7 +74,7 @@ _twist_l = 3; // [1:18]
 _twist_w = 5; // [1:18]
 
 // Step in from board space edges to support the board [mm]
-_innercut = 2;
+_innercut = 1.2;
 
 // Step down from board bottom to give room board components [mm]
 _undercut = 20.0; // [0:0.1:100]
@@ -169,7 +169,7 @@ _back_enclosure_cutout_height = 8; // [0:0.1:200]
 _cover_text = "STMF4 Discovery";
 
 // Interior fill style
-_cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
+_cover_center = 0; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Height of the cover [blocks]
 _cover_h = 2; // [1:1:20]
