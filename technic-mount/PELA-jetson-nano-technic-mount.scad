@@ -92,7 +92,7 @@ _text = "Jetson   Nano";
 /* [Enclosure Left Cut] */
 
 // Distance from the front of left side hole [mm]
-_left_enclosure_cutout_y = 42; // [0:0.1:200]
+_left_enclosure_cutout_y = 40; // [0:0.1:200]
 
 // Width of the left side hole [mm]
 _left_enclosure_cutout_width = 20; // [0:0.1:200]
@@ -101,7 +101,7 @@ _left_enclosure_cutout_width = 20; // [0:0.1:200]
 _left_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-_left_enclosure_cutout_z = 23; // [0:0.1:200]
+_left_enclosure_cutout_z = 31.4; // [0:0.1:200]
 
 // Height of the left side hole [mm]
 _left_enclosure_cutout_height = 24; // [0:0.1:200]
@@ -158,10 +158,10 @@ _back_enclosure_cutout_width = 24; // [0:0.1:200]
 _back_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
-_back_enclosure_cutout_z = 16; // [0:0.1:200]
+_back_enclosure_cutout_z = 8; // [0:0.1:200]
 
 // Height of the back side hole [mm]
-_back_enclosure_cutout_height = 36; // [0:0.1:200]
+_back_enclosure_cutout_height = 37; // [0:0.1:200]
 
 
 /* [Cover] */
@@ -324,4 +324,27 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
                 cube([antenna_cable_cut_length, antenna_cable_cut_width, block_width(2)]);
         }
     }
+    
+    color("red") back_tabs(w=w, l=l, h=h, thickness=thickness, board_h=1.8, vertical_skin=vertical_skin, horizontal_skin=horizontal_skin);
+}
+
+
+module back_tabs(w, l, h, thickness, board_h, vertical_skin, horizontal_skin) {
+    assert(w!=undef);
+    assert(l!=undef);
+    assert(h!=undef);
+    assert(thickness!=undef);
+    assert(board_h!=undef);
+    assert(vertical_skin!=undef);
+    assert(horizontal_skin!=undef);
+
+    tab_h = block_width(h+0.5) - thickness + board_h;
+
+    translate([block_width(1.2), block_width(w-1.5)+horizontal_skin, tab_h])
+        rotate([180, 0, 0])
+            half_tab(90);
+            
+    translate([block_width(l-3)+horizontal_skin, block_width(w-1.5)+horizontal_skin, tab_h])
+        rotate([180, 0, 0])
+            half_tab(90);
 }

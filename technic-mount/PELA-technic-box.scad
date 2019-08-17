@@ -489,12 +489,28 @@ module corner_tabs(l, w, cover_h, horizontal_skin, vertical_skin) {
 }
 
 
+// A quarter round part sticking out from the side wall to hold down the board
 module corner_tab(rotation) {
     assert(rotation!=undef);
     
     s = block_width(0.5);
     intersection() {
         cylinder(h=s, r1=0, r2=s);
-        rotate([0, 0, rotation]) cube([s, s, s]);
+        rotate([0, 0, rotation])
+            cube([s, s, s]);
+    }
+}
+
+
+// A half round part sticking out from the side wall to hold down the board
+module half_tab(rotation) {
+    assert(rotation!=undef);
+    
+    s = block_width(0.5);
+    intersection() {
+        cylinder(h=s, r1=0, r2=s);
+        rotate([0, 0, rotation])
+            translate([0, -s, 0])
+                cube([s, 2*s, s]);
     }
 }
