@@ -76,9 +76,9 @@ axle_hole_tweak_index = 4;
 pla = 0; // Polymaker Polylite
 // PLA, fine nozzle (< 0.5mm) calibration settings
 // [name, flexible_material, top_tweak, bottom_tweak, axle_hole_tweak]
-pla_m = ["PLA", false, -0.08, 0.04, 0.06];
+pla_m = ["PLA", false, -0.08, 0.04, 0.07];
 // PLA, large nozzle (>= 0.5mm) calibration settings
-pla_lm = ["PLA", false, -0.08, 0.04, 0.06];
+pla_lm = ["PLA", false, -0.08, 0.04, 0.07];
 
 abs = 1; // Polymaker ABS
 // ABS, fine nozzle (< 0.5mm) calibration settings

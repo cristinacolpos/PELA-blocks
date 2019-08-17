@@ -62,7 +62,7 @@ _thickness = 20;
 /* [Enclosure] */
 
 // Height of the enclosure [blocks]
-_h = 4; // [1:1:20]
+_h = 3; // [1:1:20]
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
@@ -80,7 +80,7 @@ _twist_w = 4; // [1:18]
 _innercut = 2;
 
 // Step down from board bottom to give room board components [mm]
-_undercut = 7.0; // [0:0.1:100]
+_undercut = 2.0; // [0:0.1:100]
 
 // Interior fill style
 _center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
@@ -101,7 +101,7 @@ _left_enclosure_cutout_width = 20; // [0:0.1:200]
 _left_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-_left_enclosure_cutout_z = 31.4; // [0:0.1:200]
+_left_enclosure_cutout_z = 23.4; // [0:0.1:200]
 
 // Height of the left side hole [mm]
 _left_enclosure_cutout_height = 24; // [0:0.1:200]
@@ -120,7 +120,7 @@ _right_enclosure_cutout_width = 32; // [0:0.1:200]
 _right_enclosure_cutout_depth = 24; // [0:0.1:200]
 
 // Distance from bottom of the right side hole [mm]
-_right_enclosure_cutout_z = 16; // [0:0.1:200]
+_right_enclosure_cutout_z = 8; // [0:0.1:200]
 
 // Height of the right side hole [mm]
 _right_enclosure_cutout_height = 24; // [0:0.1:200]
@@ -139,7 +139,7 @@ _front_enclosure_cutout_width = 100; // [0:0.1:200]
 _front_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-_front_enclosure_cutout_z = 13; // [0:0.1:200]
+_front_enclosure_cutout_z = 5; // [0:0.1:200]
 
 // Height of the front side hole [mm]
 _front_enclosure_cutout_height = 32; // [0:0.1:200]
@@ -158,7 +158,7 @@ _back_enclosure_cutout_width = 24; // [0:0.1:200]
 _back_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
-_back_enclosure_cutout_z = 8; // [0:0.1:200]
+_back_enclosure_cutout_z = 3; // [0:0.1:200]
 
 // Height of the back side hole [mm]
 _back_enclosure_cutout_height = 37; // [0:0.1:200]
