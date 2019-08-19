@@ -50,7 +50,7 @@ _large_nozzle = true;
 /* [Jetson Nano] */
 
 // Board space length [mm]
-_length = 100.7;
+_length = 100.9;
 
 // Board space width [mm]
 _width = 80.1;
@@ -139,7 +139,7 @@ _front_enclosure_cutout_width = 100; // [0:0.1:200]
 _front_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-_front_enclosure_cutout_z = 5; // [0:0.1:200]
+_front_enclosure_cutout_z = 6; // [0:0.1:200]
 
 // Height of the front side hole [mm]
 _front_enclosure_cutout_height = 32; // [0:0.1:200]
@@ -158,7 +158,7 @@ _back_enclosure_cutout_width = 24; // [0:0.1:200]
 _back_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
-_back_enclosure_cutout_z = 3; // [0:0.1:200]
+_back_enclosure_cutout_z = 6; // [0:0.1:200]
 
 // Height of the back side hole [mm]
 _back_enclosure_cutout_height = 37; // [0:0.1:200]
@@ -282,37 +282,39 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
     antenna_cable_x = block_width(0.5) - horizontal_skin;
     antenna_cable_y = block_width(-2.5) - antenna_cable_cut_width + horizontal_skin;
 
-    video_x = 20;
+    video_x = block_width(2);
     video_y = block_width(-1.5 - w);
+    video_cut_length = block_width(3);
+    video_cut_depth = block_width(3);
+
+    cover_wall_height = 1+panel_height(block_width());
 
     difference() {
         union() {
             technic_mount_and_cover(render_modules=render_modules, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_enclosure_cutout_y=left_enclosure_cutout_y, left_enclosure_cutout_width=left_enclosure_cutout_width, left_enclosure_cutout_depth=left_enclosure_cutout_depth, left_enclosure_cutout_z=left_enclosure_cutout_z, left_enclosure_cutout_height=left_enclosure_cutout_height, right_enclosure_cutout_y=right_enclosure_cutout_y, right_enclosure_cutout_width=right_enclosure_cutout_width, right_enclosure_cutout_depth=right_enclosure_cutout_depth, right_enclosure_cutout_z=right_enclosure_cutout_z, right_enclosure_cutout_height=right_enclosure_cutout_height, front_enclosure_cutout_x=front_enclosure_cutout_x, front_enclosure_cutout_width=front_enclosure_cutout_width, front_enclosure_cutout_depth=front_enclosure_cutout_depth, front_enclosure_cutout_z=front_enclosure_cutout_z, front_enclosure_cutout_height=front_enclosure_cutout_height, back_enclosure_cutout_x=back_enclosure_cutout_x, back_enclosure_cutout_width=back_enclosure_cutout_width, back_enclosure_cutout_depth=back_enclosure_cutout_depth, back_enclosure_cutout_z=back_enclosure_cutout_z, back_enclosure_cutout_height=back_enclosure_cutout_height, dome=dome, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, cover_corner_tabs=_cover_corner_tabs);
      
             if (render_modules > 0) {
-                if (heatsink_cut_length > 0 && heatsink_cut_width) {
-                    color("orange") translate([heatsink_x - edge_thickness, heatsink_y - edge_thickness, 0]) {
-                        cube([heatsink_cut_length + 2*edge_thickness, heatsink_cut_width + edge_thickness, 1+panel_height(block_width())]);
-                    }
-                }    
+                if (heatsink_cut_length > 0 && heatsink_cut_width)
+                    color("orange") translate([heatsink_x - edge_thickness, heatsink_y - edge_thickness, 0])
+                        cube([heatsink_cut_length + 2*edge_thickness, heatsink_cut_width + edge_thickness, cover_wall_height]);
 
-                if (ribbon_cable_cut_length > 0 && ribbon_cable_cut_width) {
-                    color("pink") translate([ribbon_cable_x - edge_thickness, ribbon_cable_y - edge_thickness, 0]) {
-                        cube([ribbon_cable_cut_length + edge_thickness, ribbon_cable_cut_width + edge_thickness, 1+panel_height(block_width())]);
-                    }
-                }    
+                if (ribbon_cable_cut_length > 0 && ribbon_cable_cut_width)
+                    color("pink") translate([ribbon_cable_x - edge_thickness, ribbon_cable_y - edge_thickness, 0])
+                        cube([ribbon_cable_cut_length + edge_thickness, ribbon_cable_cut_width + edge_thickness, cover_wall_height]);
                 
-                if (antenna_cable_cut_length > 0 && antenna_cable_cut_width) {
-                    color("yellow") translate([antenna_cable_x, antenna_cable_y - edge_thickness, -0]) {
-                        cube([antenna_cable_cut_length + edge_thickness, antenna_cable_cut_width + edge_thickness, 1+panel_height(block_width())]);
-                    }
-                }    
+                if (antenna_cable_cut_length > 0 && antenna_cable_cut_width)
+                    color("yellow") translate([antenna_cable_x, antenna_cable_y - edge_thickness, 0])
+                        cube([antenna_cable_cut_length + edge_thickness, antenna_cable_cut_width + edge_thickness, cover_wall_height]);
+
+                if (video_cut_length > 0)
+                    color("blue") translate([video_x - edge_thickness, video_y + block_width(), 0])
+                        cube([video_cut_length + 2*edge_thickness, video_cut_depth + edge_thickness - block_width(), cover_wall_height]);
             }        
         }
         
         union() {
             color("blue") translate([video_x, video_y, -_defeather])
-                cube([block_width(3), block_width(1), block_width(2)]);
+                cube([video_cut_length, video_cut_depth, block_width(2)]);
 
             color("orange") translate([heatsink_x, heatsink_y, -_defeather])
                 cube([heatsink_cut_length, heatsink_cut_width, block_width(2)]);
