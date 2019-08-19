@@ -130,16 +130,16 @@ _right_enclosure_cutout_height = 24; // [0:0.1:200]
 /* [Enclosure Front Cut] */
 
 // Distance from the left of front side hole [mm]
-_front_enclosure_cutout_x = 6.2; // [0:0.1:200]
+_front_enclosure_cutout_x = 6.1; // [0:0.1:200]
 
 // Width of the front side hole [mm]
-_front_enclosure_cutout_width = 100; // [0:0.1:200]
+_front_enclosure_cutout_width = 100.2; // [0:0.1:200]
 
 // Depth into the part of the front cut [mm]
 _front_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-_front_enclosure_cutout_z = 6; // [0:0.1:200]
+_front_enclosure_cutout_z = 5.5; // [0:0.1:200]
 
 // Height of the front side hole [mm]
 _front_enclosure_cutout_height = 32; // [0:0.1:200]
@@ -158,7 +158,7 @@ _back_enclosure_cutout_width = 24; // [0:0.1:200]
 _back_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the back side hole [mm]
-_back_enclosure_cutout_z = 6; // [0:0.1:200]
+_back_enclosure_cutout_z = 7.1; // [0:0.1:200]
 
 // Height of the back side hole [mm]
 _back_enclosure_cutout_height = 37; // [0:0.1:200]
@@ -202,14 +202,17 @@ _knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 // Add holes in the top deck to improve airflow and reduce weight
 _top_vents = false;
 
+// Add two hard points to mount wifi antennas on the back wall
+_antenna_mounts = true;
+
 
 ///////////////////////////////
 // DISPLAY
 ///////////////////////////////
 
-jetson_nano_technic_mount(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, cover_corner_tabs=_cover_corner_tabs);
+jetson_nano_technic_mount(render_modules=_render_modules, material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, cover_corner_tabs=_cover_corner_tabs, antenna_mounts=_antenna_mounts);
 
-module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_line, length, width, thickness, h, cover_h, l_pad, w_pad, twist_l, twist_w, knob_height, knob_vent_radius, top_vents, innercut, undercut, center, cover_center, text, cover_text, text_depth, left_enclosure_cutout_y, left_enclosure_cutout_width, left_enclosure_cutout_depth, left_enclosure_cutout_z, left_enclosure_cutout_height, right_enclosure_cutout_y, right_enclosure_cutout_width, right_enclosure_cutout_depth, right_enclosure_cutout_z, right_enclosure_cutout_height, front_enclosure_cutout_x, front_enclosure_cutout_width, front_enclosure_cutout_depth, front_enclosure_cutout_z, front_enclosure_cutout_height, back_enclosure_cutout_x, back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_z, back_enclosure_cutout_height, dome, horizontal_skin, vertical_skin, cover_corner_tabs) {
+module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_line, length, width, thickness, h, cover_h, l_pad, w_pad, twist_l, twist_w, knob_height, knob_vent_radius, top_vents, innercut, undercut, center, cover_center, text, cover_text, text_depth, left_enclosure_cutout_y, left_enclosure_cutout_width, left_enclosure_cutout_depth, left_enclosure_cutout_z, left_enclosure_cutout_height, right_enclosure_cutout_y, right_enclosure_cutout_width, right_enclosure_cutout_depth, right_enclosure_cutout_z, right_enclosure_cutout_height, front_enclosure_cutout_x, front_enclosure_cutout_width, front_enclosure_cutout_depth, front_enclosure_cutout_z, front_enclosure_cutout_height, back_enclosure_cutout_x, back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_z, back_enclosure_cutout_height, dome, horizontal_skin, vertical_skin, cover_corner_tabs, antenna_mounts) {
 
     assert(render_modules!=undef);
     assert(material!=undef);
@@ -258,6 +261,7 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
     assert(horizontal_skin!=undef);
     assert(vertical_skin!=undef);
     assert(cover_corner_tabs!=undef);
+    assert(antenna_mounts!=undef);
 
     l = fit_mm_to_blocks(length, l_pad);
     w = fit_mm_to_blocks(width, w_pad);    
@@ -309,7 +313,14 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
                 if (video_cut_length > 0)
                     color("blue") translate([video_x - edge_thickness, video_y + block_width(), 0])
                         cube([video_cut_length + 2*edge_thickness, video_cut_depth + edge_thickness - block_width(), cover_wall_height]);
-            }        
+            }
+         
+            if (render_modules == 0 || render_modules == 2) {
+                color("red") back_tabs(w=w, l=l, h=h, thickness=thickness, board_h=1.8, vertical_skin=vertical_skin, horizontal_skin=horizontal_skin);
+
+                if (antenna_mounts)
+                    antenna_mount_solids(horizontal_skin);
+            }
         }
         
         union() {
@@ -324,10 +335,12 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
 
             color("yellow") translate([antenna_cable_x, antenna_cable_y, -vertical_skin])
                 cube([antenna_cable_cut_length, antenna_cable_cut_width, block_width(2)]);
+
+            if (antenna_mounts) {
+                antenna_mount_holes();
+            }
         }
     }
-    
-    color("red") back_tabs(w=w, l=l, h=h, thickness=thickness, board_h=1.8, vertical_skin=vertical_skin, horizontal_skin=horizontal_skin);
 }
 
 
@@ -349,4 +362,43 @@ module back_tabs(w, l, h, thickness, board_h, vertical_skin, horizontal_skin) {
     translate([block_width(l-3)+horizontal_skin, block_width(w-1.5)+horizontal_skin, tab_h])
         rotate([180, 0, 0])
             half_tab(90);
+}
+
+
+module antenna_mount_holes() {
+    translate([block_width(1), block_width(9.5), block_width()]) 
+        antenna_mount_hole();
+
+    translate([block_width(11.5), block_width(9.5), block_width()]) 
+        antenna_mount_hole();
+}
+
+
+module antenna_mount_hole() {
+    translate([block_width(0.5), -_skin, block_width(0.5)]) {
+        rotate([-90, 0, 0]) {
+            cylinder(d=6.5, h=block_width(3));
+            cylinder(d=9.3, h=block_width(1.5), $fn=6);
+        }
+    }
+}
+
+
+module antenna_mount_solids(horizontal_skin) {
+
+    assert(horizontal_skin!=undef);
+    
+    translate([block_width(0.5), block_width(10.5), block_width()]) 
+        antenna_mount_solid(horizontal_skin);
+
+    translate([block_width(11), block_width(10.5), block_width()]) 
+        antenna_mount_solid(horizontal_skin);
+}
+
+
+module antenna_mount_solid(horizontal_skin) {
+    assert(horizontal_skin!=undef);
+    
+    color("black") translate([0, horizontal_skin, 0])
+        cube([block_width(2), block_width()-2*horizontal_skin, block_width()]);
 }
