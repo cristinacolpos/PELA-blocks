@@ -200,6 +200,12 @@ ___
 
 ___
 
+[![PELA Jetson Nano Battle Cap](/technic-mount/PELA-jetson-nano-battle-cap.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-battle-cap.stl)
+
+[PELA Jetson Nano Battle Cap](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-battle-cap.stl) An NVIDEA Jetson Nano intrusion cover. This is useful to protect robots and self-driving cars from cooling fan impact damage which could break the PCB.
+
+___
+
 [![PELA Intel T265 Realsense Tracking Camera Technic Mount](/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.stl)
 
 [PELA Intel T265 Realsense Tracking Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.stl) An enclosure for an [Intel T265](https://www.intelrealsense.com/tracking-camera-t265/) AI SLAM camera.
