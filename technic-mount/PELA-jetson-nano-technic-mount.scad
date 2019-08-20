@@ -313,6 +313,13 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
                 if (video_cut_length > 0)
                     color("blue") translate([video_x - edge_thickness, video_y + block_width(), 0])
                         cube([video_cut_length + 2*edge_thickness, video_cut_depth + edge_thickness - block_width(), cover_wall_height]);
+                
+                color("purple") translate([block_width(4), block_width(-w)-horizontal_skin, 0]) {
+                    translate([0, block_width(-0.5), 0])
+                        cube([block_width(l-5), horizontal_skin, block_width()-2*vertical_skin]);
+                    
+                    technic_beam(material=material, large_nozzle=large_nozzle, cut_line=0, l=l-4, w=1, h=cover_h, side_holes=1, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin);
+                }
             }
          
             if (render_modules == 0 || render_modules == 2) {
@@ -338,6 +345,10 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
 
             if (antenna_mounts) {
                 antenna_mount_holes();
+            }
+            
+            translate([block_width(4.5), block_width(-w-1.5), -_defeather]) {
+                cube([block_width(l-8)+horizontal_skin, block_width(), block_width()]);
             }
         }
     }
