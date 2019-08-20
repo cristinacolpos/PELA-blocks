@@ -59,7 +59,7 @@ _thickness = 20;
 /* [Enclosure] */
 
 // Height of the enclosure [blocks]
-_h = 3; // [1:1:20]
+_h = 4; // [1:1:20]
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
@@ -101,7 +101,7 @@ _left_enclosure_cutout_depth = 240; // [0:0.1:200]
 _left_enclosure_cutout_z =16; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-_left_enclosure_cutout_height = 16; // [0:0.1:200]
+_left_enclosure_cutout_height = 24; // [0:0.1:200]
 
 
 
@@ -133,7 +133,7 @@ _front_enclosure_cutout_x = 20; // [0:0.1:200]
 _front_enclosure_cutout_width = 72; // [0:0.1:200]
 
 // Depth into the part of the front cut [mm]
-_front_enclosure_cutout_depth = 160; // [0:0.1:200]
+_front_enclosure_cutout_depth = 20; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
 _front_enclosure_cutout_z = 16; // [0:0.1:200]
@@ -161,21 +161,6 @@ _back_enclosure_cutout_z = 6; // [0:0.1:200]
 _back_enclosure_cutout_height = 37; // [0:0.1:200]
 
 
-/* [Cover] */
-
-// Text label
-_cover_text = "Jetson  Nano";
-
-// Interior fill style
-_cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
-
-// Height of the cover [blocks]
-_cover_h = 1; // [1:1:20]
-
-// Include quarter-round corner hold-downs in the cover
-_cover_corner_tabs = false;
-
-
 /* [Advanced] */
 
 // Depth of text etching into top surface
@@ -198,6 +183,21 @@ _knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 
 // Add holes in the top deck to improve airflow and reduce weight
 _top_vents = false;
+
+
+/* [Hidden] */
+
+// Text label
+_cover_text = "Jetson  Nano";
+
+// Interior fill style
+_cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
+
+// Height of the cover [blocks]
+_cover_h = 1; // [1:1:20]
+
+// Include quarter-round corner hold-downs in the cover
+_cover_corner_tabs = false;
 
 
 ///////////////////////////////
