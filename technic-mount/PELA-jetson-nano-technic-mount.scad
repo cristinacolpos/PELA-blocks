@@ -50,10 +50,10 @@ _large_nozzle = true;
 /* [Jetson Nano] */
 
 // Board space length [mm]
-_length = 100.9;
+_length = 101;
 
 // Board space width [mm]
-_width = 80.1;
+_width = 80.5;
 
 // Board space thickness [mm]
 _thickness = 20;
@@ -377,10 +377,10 @@ module back_tabs(w, l, h, thickness, board_h, vertical_skin, horizontal_skin) {
 
 
 module antenna_mount_holes() {
-    translate([block_width(1), block_width(9.5), block_width()]) 
+    translate([block_width(1), block_width(9.5), block_width(1.5)]) 
         antenna_mount_hole();
 
-    translate([block_width(11.5), block_width(9.5), block_width()]) 
+    translate([block_width(11.5), block_width(9.5), block_width(1.5)]) 
         antenna_mount_hole();
 }
 
@@ -388,8 +388,8 @@ module antenna_mount_holes() {
 module antenna_mount_hole() {
     translate([block_width(0.5), -_skin, block_width(0.5)]) {
         rotate([-90, 0, 0]) {
-            cylinder(d=6.5, h=block_width(3));
-            cylinder(d=9.3, h=block_width(1.5), $fn=6);
+            cylinder(d=6.6, h=block_width(3));
+            cylinder(d=9.35, h=block_width(1.5), $fn=6);
         }
     }
 }
