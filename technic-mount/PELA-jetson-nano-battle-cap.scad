@@ -30,6 +30,7 @@ use <../technic-beam/PELA-technic-beam.scad>
 use <../technic-beam/PELA-technic-twist-beam.scad>
 use <PELA-technic-box.scad>
 use <PELA-technic-mount.scad>
+use <PELA-jetson-nano-technic-mount.scad>
 
 
 /* [Render] */
@@ -47,19 +48,19 @@ _large_nozzle = true;
 /* [Jetson Nano] */
 
 // Board space length [mm]
-_length = 100.9;
+_length = 101;
 
 // Board space width [mm]
-_width = 80.1;
+_width = 80.5;
 
 // Board space thickness [mm]
-_thickness = 20;
+_thickness = 0;
 
 
 /* [Enclosure] */
 
 // Height of the enclosure [blocks]
-_h = 4; // [1:1:20]
+_h = 3; // [1:1:20]
 
 // Closeness of board fit lengthwise inside a ring of blocks [ratio] (increase to make outer box slightly larger)
 _l_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks]
@@ -98,10 +99,10 @@ _left_enclosure_cutout_width = 48; // [0:0.1:200]
 _left_enclosure_cutout_depth = 240; // [0:0.1:200]
 
 // Distance from bottom of the left side hole [mm]
-_left_enclosure_cutout_z =16; // [0:0.1:200]
+_left_enclosure_cutout_z = 8; // [0:0.1:200]
 
 // Height of the left side hole [mm]
-_left_enclosure_cutout_height = 24; // [0:0.1:200]
+_left_enclosure_cutout_height = 32; // [0:0.1:200]
 
 
 
@@ -130,13 +131,13 @@ _right_enclosure_cutout_height = 24; // [0:0.1:200]
 _front_enclosure_cutout_x = 20; // [0:0.1:200]
 
 // Width of the front side hole [mm]
-_front_enclosure_cutout_width = 72; // [0:0.1:200]
+_front_enclosure_cutout_width = 76; // [0:0.1:200]
 
 // Depth into the part of the front cut [mm]
 _front_enclosure_cutout_depth = 20; // [0:0.1:200]
 
 // Distance from bottom of the front side hole [mm]
-_front_enclosure_cutout_z = 16; // [0:0.1:200]
+_front_enclosure_cutout_z = 8; // [0:0.1:200]
 
 // Height of the front side hole [mm]
 _front_enclosure_cutout_height = 32; // [0:0.1:200]
@@ -184,6 +185,12 @@ _knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 // Add holes in the top deck to improve airflow and reduce weight
 _top_vents = false;
 
+// Add two hard points to mount wifi antennas on the back wall
+_antenna_mounts = true;
+
+// Make space for the heatsink fan
+_heatsink_fan_cutout = true;
+
 
 /* [Hidden] */
 
@@ -204,9 +211,9 @@ _cover_corner_tabs = false;
 // DISPLAY
 ///////////////////////////////
 
-jetson_nano_technic_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, cover_corner_tabs=_cover_corner_tabs);
+jetson_nano_technic_mount(material=_material, large_nozzle=_large_nozzle, cut_line=_cut_line, length=_length, width=_width, thickness=_thickness, h=_h, cover_h=_cover_h, l_pad=_l_pad, w_pad=_w_pad, twist_l=_twist_l, twist_w=_twist_w, knob_height=_knob_height, knob_vent_radius=_knob_vent_radius, top_vents=_top_vents, innercut=_innercut, undercut=_undercut, center=_center, cover_center=_cover_center, text=_text, cover_text=_cover_text, text_depth=_text_depth, left_enclosure_cutout_y=_left_enclosure_cutout_y, left_enclosure_cutout_width=_left_enclosure_cutout_width, left_enclosure_cutout_depth=_left_enclosure_cutout_depth, left_enclosure_cutout_z=_left_enclosure_cutout_z, left_enclosure_cutout_height=_left_enclosure_cutout_height, right_enclosure_cutout_y=_right_enclosure_cutout_y, right_enclosure_cutout_width=_right_enclosure_cutout_width, right_enclosure_cutout_depth=_right_enclosure_cutout_depth, right_enclosure_cutout_z=_right_enclosure_cutout_z, right_enclosure_cutout_height=_right_enclosure_cutout_height, front_enclosure_cutout_x=_front_enclosure_cutout_x, front_enclosure_cutout_width=_front_enclosure_cutout_width, front_enclosure_cutout_depth=_front_enclosure_cutout_depth, front_enclosure_cutout_z=_front_enclosure_cutout_z, front_enclosure_cutout_height=_front_enclosure_cutout_height, back_enclosure_cutout_x=_back_enclosure_cutout_x, back_enclosure_cutout_width=_back_enclosure_cutout_width, back_enclosure_cutout_depth=_back_enclosure_cutout_depth, back_enclosure_cutout_z=_back_enclosure_cutout_z, back_enclosure_cutout_height=_back_enclosure_cutout_height, dome=_dome, horizontal_skin=_horizontal_skin, vertical_skin=_vertical_skin, cover_corner_tabs=_cover_corner_tabs, antenna_mounts=_antenna_mounts, heatsink_fan_cutout=_heatsink_fan_cutout);
 
-module jetson_nano_technic_mount(material, large_nozzle, cut_line, length, width, thickness, h, cover_h, l_pad, w_pad, twist_l, twist_w, knob_height, knob_vent_radius, top_vents, innercut, undercut, center, cover_center, text, cover_text, text_depth, left_enclosure_cutout_y, left_enclosure_cutout_width, left_enclosure_cutout_depth, left_enclosure_cutout_z, left_enclosure_cutout_height, right_enclosure_cutout_y, right_enclosure_cutout_width, right_enclosure_cutout_depth, right_enclosure_cutout_z, right_enclosure_cutout_height, front_enclosure_cutout_x, front_enclosure_cutout_width, front_enclosure_cutout_depth, front_enclosure_cutout_z, front_enclosure_cutout_height, back_enclosure_cutout_x, back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_z, back_enclosure_cutout_height, dome, horizontal_skin, vertical_skin, cover_corner_tabs) {
+module jetson_nano_technic_mount(material, large_nozzle, cut_line, length, width, thickness, h, cover_h, l_pad, w_pad, twist_l, twist_w, knob_height, knob_vent_radius, top_vents, innercut, undercut, center, cover_center, text, cover_text, text_depth, left_enclosure_cutout_y, left_enclosure_cutout_width, left_enclosure_cutout_depth, left_enclosure_cutout_z, left_enclosure_cutout_height, right_enclosure_cutout_y, right_enclosure_cutout_width, right_enclosure_cutout_depth, right_enclosure_cutout_z, right_enclosure_cutout_height, front_enclosure_cutout_x, front_enclosure_cutout_width, front_enclosure_cutout_depth, front_enclosure_cutout_z, front_enclosure_cutout_height, back_enclosure_cutout_x, back_enclosure_cutout_width, back_enclosure_cutout_depth, back_enclosure_cutout_z, back_enclosure_cutout_height, dome, horizontal_skin, vertical_skin, cover_corner_tabs, antenna_mounts, heatsink_fan_cutout) {
 
     assert(material!=undef);
     assert(large_nozzle!=undef);
@@ -254,9 +261,78 @@ module jetson_nano_technic_mount(material, large_nozzle, cut_line, length, width
     assert(horizontal_skin!=undef);
     assert(vertical_skin!=undef);
     assert(cover_corner_tabs!=undef);
+    assert(antenna_mounts!=undef);
+    assert(heatsink_fan_cutout!=undef);
 
     l = fit_mm_to_blocks(length, l_pad);
     w = fit_mm_to_blocks(width, w_pad);    
 
-    technic_mount_and_cover(render_modules=0, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_enclosure_cutout_y=left_enclosure_cutout_y, left_enclosure_cutout_width=left_enclosure_cutout_width, left_enclosure_cutout_depth=left_enclosure_cutout_depth, left_enclosure_cutout_z=left_enclosure_cutout_z, left_enclosure_cutout_height=left_enclosure_cutout_height, right_enclosure_cutout_y=right_enclosure_cutout_y, right_enclosure_cutout_width=right_enclosure_cutout_width, right_enclosure_cutout_depth=right_enclosure_cutout_depth, right_enclosure_cutout_z=right_enclosure_cutout_z, right_enclosure_cutout_height=right_enclosure_cutout_height, front_enclosure_cutout_x=front_enclosure_cutout_x, front_enclosure_cutout_width=front_enclosure_cutout_width, front_enclosure_cutout_depth=front_enclosure_cutout_depth, front_enclosure_cutout_z=front_enclosure_cutout_z, front_enclosure_cutout_height=front_enclosure_cutout_height, back_enclosure_cutout_x=back_enclosure_cutout_x, back_enclosure_cutout_width=back_enclosure_cutout_width, back_enclosure_cutout_depth=back_enclosure_cutout_depth, back_enclosure_cutout_z=back_enclosure_cutout_z, back_enclosure_cutout_height=back_enclosure_cutout_height, dome=dome, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, cover_corner_tabs=_cover_corner_tabs);
+    difference() {
+        union() {
+            translate([block_width(l-1), block_width(w-1), 0])
+                rotate([0,0,180])
+                    technic_mount_and_cover(render_modules=0, material=material, large_nozzle=large_nozzle, cut_line=cut_line, length=length, width=width, thickness=thickness, h=h, cover_h=cover_h, l_pad=l_pad, w_pad=w_pad, twist_l=twist_l, twist_w=twist_w, knob_height=knob_height, knob_vent_radius=knob_vent_radius, top_vents=top_vents, innercut=innercut, undercut=undercut, center=center, cover_center=cover_center, text=text, cover_text=cover_text, text_depth=text_depth, left_enclosure_cutout_y=left_enclosure_cutout_y, left_enclosure_cutout_width=left_enclosure_cutout_width, left_enclosure_cutout_depth=left_enclosure_cutout_depth, left_enclosure_cutout_z=left_enclosure_cutout_z, left_enclosure_cutout_height=left_enclosure_cutout_height, right_enclosure_cutout_y=right_enclosure_cutout_y, right_enclosure_cutout_width=right_enclosure_cutout_width, right_enclosure_cutout_depth=right_enclosure_cutout_depth, right_enclosure_cutout_z=right_enclosure_cutout_z, right_enclosure_cutout_height=right_enclosure_cutout_height, front_enclosure_cutout_x=front_enclosure_cutout_x, front_enclosure_cutout_width=front_enclosure_cutout_width, front_enclosure_cutout_depth=front_enclosure_cutout_depth, front_enclosure_cutout_z=front_enclosure_cutout_z, front_enclosure_cutout_height=front_enclosure_cutout_height, back_enclosure_cutout_x=back_enclosure_cutout_x, back_enclosure_cutout_width=back_enclosure_cutout_width, back_enclosure_cutout_depth=back_enclosure_cutout_depth, back_enclosure_cutout_z=back_enclosure_cutout_z, back_enclosure_cutout_height=back_enclosure_cutout_height, dome=dome, horizontal_skin=horizontal_skin, vertical_skin=vertical_skin, cover_corner_tabs=_cover_corner_tabs);
+
+            if (antenna_mounts) {
+                antenna_mount_solids(horizontal_skin);
+            }
+            
+            if (heatsink_fan_cutout) {
+                heatsink_fan_cutout_brim(horizontal_skin);
+            }
+        }
+
+        union() {
+            if (antenna_mounts) {
+                antenna_holes();
+            }
+            
+            if (heatsink_fan_cutout) {
+                heatsink_fan_hole(horizontal_skin);
+            }
+        }
+    }
+}
+
+
+module antenna_mount_solids(horizontal_skin) {
+    translate([block_width(0), block_width(10.5), block_width(0.6)]) 
+        antenna_mount_solid(horizontal_skin);
+
+    translate([block_width(11.75), block_width(-0.5), block_width(0.6)]) 
+        antenna_mount_solid(horizontal_skin);
+
+    translate([block_width(11.75), block_width(10.5), block_width(0.6)])
+        antenna_mount_solid(horizontal_skin);
+}
+
+
+module antenna_holes() {
+    translate([block_width(0.75), block_width(9.5), block_width(0.6)]) 
+        antenna_mount_hole();
+
+    translate([block_width(13.25), block_width(1.5), block_width(0.6)])
+        rotate([0,0,180])
+            antenna_mount_hole();
+
+    translate([block_width(12.25), block_width(9.5), block_width(0.6)]) 
+        antenna_mount_hole();
+}
+
+
+fan_size = 5.5;
+
+
+module heatsink_fan_hole(horizontal_skin) {
+    color("black") translate([block_width(4.5), block_width(0.5)-horizontal_skin, 0])
+        cube([block_width(fan_size), block_width(fan_size), block_width(1)]);
+}
+
+
+module heatsink_fan_cutout_brim(horizontal_skin) {
+    cover_wall_height = 1+panel_height(block_width());
+    edge_thickness = 1.4;
+    
+    color("black") translate([block_width(4.5)-edge_thickness, block_width(0.5)-horizontal_skin, 0])
+        cube([block_width(fan_size)+2*edge_thickness, block_width(fan_size)+edge_thickness, cover_wall_height]);    
 }

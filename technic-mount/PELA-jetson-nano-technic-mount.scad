@@ -123,7 +123,7 @@ _right_enclosure_cutout_depth = 24; // [0:0.1:200]
 _right_enclosure_cutout_z = 8; // [0:0.1:200]
 
 // Height of the right side hole [mm]
-_right_enclosure_cutout_height = 24; // [0:0.1:200]
+_right_enclosure_cutout_height = 0; // [0:0.1:200]
 
 
 
