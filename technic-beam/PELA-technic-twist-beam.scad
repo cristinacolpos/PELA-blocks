@@ -42,13 +42,13 @@ _large_nozzle = true;
 /* [Technic Twist Beam] */
 
 // Beam width, left end [blocks]
-_w_left = 2; // [1:1:30]
+_w_left = 1; // [1:1:30]
 
 // Beam width, center [blocks]
-_w_center = 2; // [1:1:30]
+_w_center = 1; // [1:1:30]
 
 // Beam width, right end [blocks]
-_w_right = 2; // [1:1:30]
+_w_right = 1; // [1:1:30]
 
 // Left side length of upward facing connectors [blocks]
 _l_left = 2; // [1:20]
@@ -60,13 +60,13 @@ _l_center = 4; // [0:20]
 _l_right = 2; // [1:20]
 
 // Beam height, left end [blocks]
-_h_left = 2; // [0:1:30]
+_h_left = 1; // [0:1:30]
 
 // Beam height, center [blocks]
-_h_center = 2; // [1:1:30]
+_h_center = 1; // [1:1:30]
 
 // Beam height, right end [blocks]
-_h_right = 2; // [0:1:30]
+_h_right = 1; // [0:1:30]
 
 
 /* [Advanced] */

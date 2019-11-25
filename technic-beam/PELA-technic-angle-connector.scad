@@ -52,7 +52,7 @@ _l = 7; // [1:1:20]
 _w_top = 1; // [1:1:20]
 
 // Width of the beam [blocks]
-_w_bottom = 2; // [1:1:20]
+_w_bottom = 1; // [1:1:20]
 
 // Top beam height [blocks]
 _h_top = 1; // [1:1:30]

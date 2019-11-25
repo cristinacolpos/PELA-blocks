@@ -44,10 +44,10 @@ _large_nozzle = true;
 /* [Technic Corner] */
 
 // Length of the first beam [blocks]
-_l1 = 2; // [1:20]
+_l1 = 4; // [1:20]
 
 // Length of the second beam [blocks]
-_l2 = 2; // [1:20]
+_l2 = 6; // [1:20]
 
 // Beam width [blocks]
 _w = 1; // [1:1:30]
@@ -59,7 +59,7 @@ _h1 = 1; // [1:1:30]
 _h2 = 1; // [1:1:30]
 
 // Angle between the two beams
-_angle = 90; // [0:180]
+_angle = 30; // [0:180]
 
 
 /* [Advanced] */

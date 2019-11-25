@@ -42,16 +42,16 @@ _large_nozzle = true;
 /* [Technic Corner] */
 
 // Length of the first beam [blocks]
-_l1 = 3; // [1:1:30]
+_l1 = 4; // [1:1:30]
 
 // Length of the second beam [blocks]
-_l2 = 3; // [1:1:30]
+_l2 = 6; // [1:1:30]
 
 // Height of the first beam [blocks]
 _h1 = 1; // [1:1:30]
 
 // Height of the second beam [blocks]
-_h2 = 2; // [1:1:30]
+_h2 = 1; // [1:1:30]
 
 // Width of the first beam [blocks]
 _w1 = 1; // [1:1:30]

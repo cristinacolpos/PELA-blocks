@@ -172,7 +172,7 @@ ___
 
 ___
 
-[![PELA Technic Rail](/technic-beam/PELA-technic-rail.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-technic-rail.stl)
+[![PELA Technic Rail](/technic-beam/PELA-technic-rail.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-rail.stl)
 
 [PELA Technic Rail](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-rail.stl) A variable length ladder-like mounting rail to bolt to a project board for clean, flexible layouts.
 
