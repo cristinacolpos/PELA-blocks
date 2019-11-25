@@ -1,5 +1,7 @@
 [![PELA Drift Car](/images/driftcar-banner.jpg)](https://driftcar.pelablocks.org)
 
+The fastest way to get support on designing and 3D printing your custom part is on [Discord PELA Blocks](https://discord.gg/Yy2srz)
+
 
 # PELA Blocks
 
