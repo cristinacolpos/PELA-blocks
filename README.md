@@ -238,7 +238,7 @@ ___
 
 ___
 
-[![PELA Technic NodeMCU v2 Mount](/technic-mount/PELA-nodemcu-v2-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-nodemcu-v2-technic-knob-mount.stl)
+[![PELA Technic NodeMCU v2 Mount](/technic-mount/PELA-nodemcu-v2-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-nodemcu-v2-technic-mount.stl)
 
 [PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-nodemcu-v2-technic-mount.stl) A technic mount for NodeMCU v2.
 
