@@ -46,7 +46,7 @@ _large_nozzle = true;
 _l = 15; // [1:1:30]
 
 // Beam width [blocks]
-_w = 2; // [1:1:30]
+_w = 1; // [1:1:30]
 
 // Beam height [blocks]
 _h = 1; // [1:1:30]
