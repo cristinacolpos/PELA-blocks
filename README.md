@@ -348,6 +348,9 @@ These open source designs are brought to you by [Futurice](https://futurice.com)
 
 PELA has been used to create a self-driving car: [![3D Printed LEGO-compatible Parametric 1:10 Scale RC Drift Car Based On PELA Blocks](https://driftcar.pelablocks.org/images/pela-drift-car.jpg)](https://driftcar.pelablocks.org)
 
+[![PELA Technic Rails]()](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-rail.stl) and enclosures are a great way to make bigger IOT projects without the duct tape: 
+![IOT Rail Mounting Solution Based On PELA Blocks](images/PELA-rail-mount-example.jpg)
+
 PELA is also used to create robot parts: [![3D Printed LEGO-compatible Parametric Robot Hand](https://robothand.pelablocks.org/PELA-robot-hand.png)](https://robothand.pelablocks.org)
 
 The generated 3D models displayed here are hosted in a separate GitHub project to minimize the size of pulling changes in this repo: [PELA-parametric-blocks](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks)
