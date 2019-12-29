@@ -53,7 +53,7 @@ _large_nozzle = true;
 _length = 101;
 
 // Board space width [mm]
-_width = 80.5;
+_width = 80.6;
 
 // Board space thickness [mm]
 _thickness = 20;
@@ -111,29 +111,29 @@ _left_enclosure_cutout_height = 24; // [0:0.1:200]
 /* [Enclosure Right Cut] */
 
 // Distance from the front of right side hole [mm]
-_right_enclosure_cutout_y = 28; // [0:0.1:200]
+_right_enclosure_cutout_y = 4; // [0:0.1:200]
 
 // Width of the right side hole [mm]
-_right_enclosure_cutout_width = 32; // [0:0.1:200]
+_right_enclosure_cutout_width = 80.2; // [0:0.1:200]
 
 // Depth of the right side hole [mm]
-_right_enclosure_cutout_depth = 24; // [0:0.1:200]
+_right_enclosure_cutout_depth = 16; // [0:0.1:200]
 
 // Distance from bottom of the right side hole [mm]
 _right_enclosure_cutout_z = 8; // [0:0.1:200]
 
 // Height of the right side hole [mm]
-_right_enclosure_cutout_height = 0; // [0:0.1:200]
+_right_enclosure_cutout_height = 32; // [0:0.1:200]
 
 
 
 /* [Enclosure Front Cut] */
 
 // Distance from the left of front side hole [mm]
-_front_enclosure_cutout_x = 6.1; // [0:0.1:200]
+_front_enclosure_cutout_x = 5.6; // [0:0.1:200]
 
 // Width of the front side hole [mm]
-_front_enclosure_cutout_width = 100.2; // [0:0.1:200]
+_front_enclosure_cutout_width = 102; // [0:0.1:200]
 
 // Depth into the part of the front cut [mm]
 _front_enclosure_cutout_depth = 16; // [0:0.1:200]
@@ -269,7 +269,7 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
     edge_thickness = 1.4;
         
     heatsink_cut_length = block_width(9) + horizontal_skin;
-    heatsink_cut_width = block_width(6);
+    heatsink_cut_width = block_width(5.95);
         
     heatsink_x = block_width(2.5) + horizontal_skin;
     heatsink_y = block_width(-2.5) - heatsink_cut_width + horizontal_skin;
@@ -289,7 +289,7 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
     video_x = block_width(2);
     video_y = block_width(-1.5 - w);
     video_cut_length = block_width(3);
-    video_cut_depth = block_width(3);
+    video_cut_depth = block_width(2.9);
 
     cover_wall_height = 1+panel_height(block_width());
 
@@ -345,7 +345,7 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
 
     translate([block_width(4), block_width(-w)-horizontal_skin, 0])
             color("purple") translate([0, block_width(-0.5), 0])            cut_space(material=material, large_nozzle=large_nozzle, cut_line=0, l=l-4, w=1, h=cover_h, block_height=block_width(), knob_height=0, skin=horizontal_skin);
-            
+
             if (antenna_mounts) {
                 antenna_mount_holes();
             }
@@ -402,7 +402,7 @@ module antenna_mount_solids(horizontal_skin) {
 
     assert(horizontal_skin!=undef);
     
-    translate([block_width(0.5), block_width(10.6), block_width(0.9)]) 
+    translate([block_width(0.5), block_width(10.6), block_width(1.5)]) 
         antenna_mount_solid(horizontal_skin);
 
     translate([block_width(11), block_width(10.6), block_width(0.9)]) 
@@ -414,5 +414,5 @@ module antenna_mount_solid(horizontal_skin) {
     assert(horizontal_skin!=undef);
     
     color("black") translate([0, horizontal_skin, 0])
-        cube([block_width(2), block_width()-2*horizontal_skin, block_width()]);
+        cube([block_width(2), block_width(0.8), block_width()]);
 }
