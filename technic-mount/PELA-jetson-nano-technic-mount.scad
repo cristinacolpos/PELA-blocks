@@ -299,18 +299,18 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
      
             if (render_modules > 0) {
                 if (heatsink_cut_length > 0 && heatsink_cut_width)
-                    color("orange") translate([heatsink_x - edge_thickness, heatsink_y - edge_thickness, 0])
+                    color("orange") translate([heatsink_x - edge_thickness, heatsink_y - edge_thickness - horizontal_skin, 0])
                         cube([heatsink_cut_length + 2*edge_thickness, heatsink_cut_width + edge_thickness, cover_wall_height]);
 
                 if (ribbon_cable_cut_length > 0 && ribbon_cable_cut_width)
                     color("pink") translate([ribbon_cable_x - edge_thickness, ribbon_cable_y - edge_thickness, 0])
-                        cube([ribbon_cable_cut_length + edge_thickness, ribbon_cable_cut_width + edge_thickness, cover_wall_height]);
+                        cube([ribbon_cable_cut_length + edge_thickness - horizontal_skin, ribbon_cable_cut_width + edge_thickness, cover_wall_height]);
                 
                 if (antenna_cable_cut_length > 0 && antenna_cable_cut_width)
                     color("yellow") translate([antenna_cable_x, antenna_cable_y - edge_thickness, 0])
                         cube([antenna_cable_cut_length + edge_thickness, antenna_cable_cut_width + edge_thickness, cover_wall_height]);
 
-                if (video_cut_length > 0)
+                if (video_cut_length > 0 && (cover_center >= 1 && cover_center >= 4))
                     color("blue") translate([video_x - edge_thickness, video_y + block_width(), 0])
                         cube([video_cut_length + 2*edge_thickness, video_cut_depth + edge_thickness - block_width(), cover_wall_height]);
                 
@@ -343,6 +343,9 @@ module jetson_nano_technic_mount(render_modules, material, large_nozzle, cut_lin
             color("yellow") translate([antenna_cable_x, antenna_cable_y, -vertical_skin])
                 cube([antenna_cable_cut_length, antenna_cable_cut_width, block_width(2)]);
 
+    translate([block_width(4), block_width(-w)-horizontal_skin, 0])
+            color("purple") translate([0, block_width(-0.5), 0])            cut_space(material=material, large_nozzle=large_nozzle, cut_line=0, l=l-4, w=1, h=cover_h, block_height=block_width(), knob_height=0, skin=horizontal_skin);
+            
             if (antenna_mounts) {
                 antenna_mount_holes();
             }
@@ -366,11 +369,11 @@ module back_tabs(w, l, h, thickness, board_h, vertical_skin, horizontal_skin) {
 
     tab_h = block_width(h+0.5) - thickness + board_h;
 
-    translate([block_width(1.2), block_width(w-1.5)+horizontal_skin, tab_h])
+    translate([block_width(0.8), block_width(w-1.4)+horizontal_skin, tab_h])
         rotate([180, 0, 0])
             half_tab(90);
             
-    translate([block_width(l-3)+horizontal_skin, block_width(w-1.5)+horizontal_skin, tab_h])
+    translate([block_width(l-3)+horizontal_skin, block_width(w-1.4)+horizontal_skin, tab_h])
         rotate([180, 0, 0])
             half_tab(90);
 }
@@ -399,10 +402,10 @@ module antenna_mount_solids(horizontal_skin) {
 
     assert(horizontal_skin!=undef);
     
-    translate([block_width(0.5), block_width(10.5), block_width()]) 
+    translate([block_width(0.5), block_width(10.6), block_width(0.9)]) 
         antenna_mount_solid(horizontal_skin);
 
-    translate([block_width(11), block_width(10.5), block_width()]) 
+    translate([block_width(11), block_width(10.6), block_width(0.9)]) 
         antenna_mount_solid(horizontal_skin);
 }
 
