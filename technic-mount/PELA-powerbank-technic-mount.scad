@@ -49,13 +49,13 @@ _render_modules = 2; // [0:mount, 1:cover, 2:mount and cover]
 /* [Board] */
 
 // Board space length [mm]
-_length = 104; // [0:1:300] 
+_length = 104; // [0:0.1:300] 
 
 // Board space width [mm]
-_width = 62.5; // [0:1:300]
+_width = 62.5; // [0:0.1:300]
 
 // Board space thickness [mm]
-_thickness = 22.2; // [0:0.1:8]
+_thickness = 22.2; // [0:0.1:100]
 
 
 /* [Enclosure] */
