@@ -78,7 +78,7 @@ _twist_l = 2; // [1:18]
 _twist_w = 4; // [1:18]
 
 // Step in from board space edges to support the board [mm]
-_innercut = 1.5;
+_innercut = 1.5; // [0:0.1:100]
 
 // Step down from board bottom to give room board components [mm]
 _undercut = 4.0; // [0:0.1:100]
@@ -99,7 +99,7 @@ _knob_vent_radius = 0.0; // [0.0:0.1:3.9]
 _top_vents = false;
 
 // Interior fill style
-_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
+_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Text label
 _text = "Pi Zero W";

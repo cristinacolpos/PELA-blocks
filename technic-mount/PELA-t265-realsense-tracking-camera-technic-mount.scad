@@ -76,13 +76,13 @@ _twist_l = 6; // [1:18]
 _twist_w = 2; // [1:18]
 
 // Step in from board space edges to support the board [mm]
-_innercut = 4;
+_innercut = 4; // [0:0.1:100]
 
 // Step down from board bottom to give room board components [mm]
 _undercut = 0.0; // [0:0.1:100]
 
 // Interior fill style
-_center = 4; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
+_center = 4; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Text label
 _text = "Intel T265";

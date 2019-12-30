@@ -50,13 +50,13 @@ _large_nozzle = true;
 /* [Board] */
 
 // Board space length [mm]
-_length = 20.1;
+_length = 20.1; // [0:0.1:300]
 
 // Board space width [mm]
-_width = 20.1;
+_width = 20.1; // [0:0.1:300]
 
 // Board space thickness [mm]
-_thickness = 1.8;
+_thickness = 1.8; // [0:0.1:300]
 
 
 /* [Enclosure] */
@@ -77,13 +77,13 @@ _twist_l = 1; // [1:18]
 _twist_w = 2; // [1:18]
 
 // Step in from board space edges to support the board [mm]
-_innercut = 2;
+_innercut = 2; // [0:0.1:100]
 
 // Step down from board bottom to give room board components [mm]
 _undercut = 7.0; // [0:0.1:100]
 
 // Interior fill style
-_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
+_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Text label
 _text = "PIR";

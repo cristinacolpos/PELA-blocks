@@ -48,13 +48,13 @@ _large_nozzle = true;
 /* [Jetson Nano] */
 
 // Board space length [mm]
-_length = 101;
+_length = 101; // [0:0.1:300]
 
 // Board space width [mm]
-_width = 80.5;
+_width = 80.5; // [0:0.1:300]
 
 // Board space thickness [mm]
-_thickness = 0;
+_thickness = 0; // [0:0.1:300]
 
 
 /* [Enclosure] */
@@ -75,7 +75,7 @@ _twist_l = 5; // [1:18]
 _twist_w = 4; // [1:18]
 
 // Step in from board space edges to support the board [mm]
-_innercut = 2;
+_innercut = 2; // [0:0.1:100]
 
 // Step down from board bottom to give room board components [mm]
 _undercut = 0; // [0:0.1:100]

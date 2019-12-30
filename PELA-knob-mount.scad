@@ -106,7 +106,7 @@ _sockets = true;
 _undercut = 7; // [0:0.1:20]
 
 // How far in from the outside edges the board support can extend without hitting board bottom surface parts
-_innercut = 0.8;
+_innercut = 0.8; // [0:0.1:100]
 
 // Add holes in the top deck to improve airflow and reduce weight
 _top_vents = false;

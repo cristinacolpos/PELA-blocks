@@ -68,19 +68,19 @@ _w_pad = 1; // [0:tight, 1:+1 block, 2:+2 blocks] // Closeness of board fit widt
 _h = 3; // [1:20]
 
 // How many blocks in from length ends do the technic holes rotate 90 degrees [blocks]
-_twist_l = 8; // [1:18]
+_twist_l = 6; // [1:18]
 
 // How many blocks in from width ends do the technic holes rotate 90 degrees [blocks]
-_twist_w = 5; // [1:18]
+_twist_w = 4; // [1:18]
 
 // Step in from board space edges to support the board [mm]
-_innercut = 8;
+_innercut = 12; // [0:0.1:100]
 
 // Step down from board bottom to give room board components [mm]
 _undercut = 7.0; // [0:0.1:100]
 
 // Interior fill style
-_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]]
+_center = 2; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
 
 // Text label
 _text = "";
@@ -174,7 +174,7 @@ _cover_center = 5; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes
 _cover_h = 1; // [1:1:20]
 
 // Include quarter-round corner hold-downs in the cover
-_cover_corner_tabs = true;
+_cover_corner_tabs = false;
 
 
 /* [Advanced] */
