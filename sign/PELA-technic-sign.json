@@ -1,6 +1,6 @@
 {
     "parameterSets": {
-        "design default values": {
+        "N of 1": {
             "_center": "2",
             "_cut_line": "0",
             "_edge_text": "",
@@ -10,7 +10,7 @@
             "_fs2": "5",
             "_h": "1",
             "_horizontal_skin": "0.1",
-            "_l": "4",
+            "_l": "7",
             "_lang": "en",
             "_large_nozzle": "true",
             "_left_margin": "1.8",
@@ -25,5 +25,7 @@
             "_w": "3"
         }
     },
-    "fileFormatVersion": "1"
+    "fileFormatVersion": "1",
+    "parameterSets": "",
+    "parameterSets": ""
 }
