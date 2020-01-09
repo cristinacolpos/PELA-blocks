@@ -49,19 +49,19 @@ _render_modules = 2; // [0:technic box, 1:technic cover, 2:technic box and cover
 /* [Box] */
 
 // Total length [blocks]
-_l = 6; // [2:1:20]
+_l = 6; // [2:1:30]
 
 // Total width [blocks]
-_w = 4; // [2:1:20]
+_w = 4; // [2:1:30]
 
 // Distance from length ends of connector twist [blocks]
-_twist_l = 1; // [1:18]
+_twist_l = 1; // [1:15]
 
 // Distance from width ends of connector twist [blocks]
-_twist_w = 2; // [1:18]
+_twist_w = 2; // [1:15]
 
 // Height of the enclosure [blocks]
-_h = 2; // [1:1:20]
+_h = 2; // [1:1:30]
 
 // Interior fill style
 _center = 6; // [0:empty, 1:solid, 2:edge cheese holes, 3:top cheese holes, 4:all cheese holes, 5:socket panel, 6:knob panel, 7:flat planel]
