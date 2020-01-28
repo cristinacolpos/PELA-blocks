@@ -1,5 +1,5 @@
 Render image motor/PELA-n20-gearmotor-enclosure.scad
-motor/PELA-n20-gearmotor-enclosure.png preview image error: ERROR: Parser error in file "/home/paul/github/PELA-drift-car/PELA-parametric-blocks/motor/PELA-n20-gearmotor-enclosure.scad", line 34: syntax error
+motor/PELA-n20-gearmotor-enclosure.png preview image error: ERROR: Parser error in file "/home/paul/github/PELA-drift-car/PELA-blocks/motor/PELA-n20-gearmotor-enclosure.scad", line 34: syntax error
 
 Can't parse file 'motor/PELA-n20-gearmotor-enclosure.scad'!
 
@@ -74,7 +74,7 @@ TRACE: called by 'difference', in file PELA-sparkfun-pro-micro-knob-mount.scad, 
 TRACE: called by 'PELA_sparkfun_pro_micro_knob_mount', in file PELA-sparkfun-pro-micro-knob-mount.scad, line 126.
 Current top level object is empty.
 
-motor/PELA-n20-gearmotor-enclosure.scad model build error: ERROR: Parser error in file "/home/paul/github/PELA-drift-car/PELA-parametric-blocks/motor/PELA-n20-gearmotor-enclosure.scad", line 34: syntax error
+motor/PELA-n20-gearmotor-enclosure.scad model build error: ERROR: Parser error in file "/home/paul/github/PELA-drift-car/PELA-blocks/motor/PELA-n20-gearmotor-enclosure.scad", line 34: syntax error
 
 Can't parse file 'motor/PELA-n20-gearmotor-enclosure.scad'!
 

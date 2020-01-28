@@ -10,7 +10,7 @@ Instructions are for Windows, however Linux and OSX are esssentially the same bu
 
 Copy your calibration files and any .json parameter adjustment files you have created to another directory before update to a newer version of PELA-blocks, you might overwrite your calibration customizations. 
 
-1. `cd PELA-parametric-blocks`
+1. `cd PELA-blocks`
 1. `cp material.scad ..`
 1. `cp *.json ..`
 

@@ -23,7 +23,7 @@ The name PELA comes from the Finnish "pelataan" meaning "let's play". This [blog
 
 **The STL files shown are not calibrated for your printer.** To get a good snap fit with your 3D printer and different material, you need to fine tune the size of knobs, sockets and technic holes. Some starting values are 
 
-1. **[DOWNLOAD](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the latest designs, or `git clone git@github.com:LEGO-Prototypes/PELA-parametric-blocks.git --recurse-submodules`, then `git lfs install` in each git module
+1. **[DOWNLOAD](https://github.com/LEGO-compatible-gadgets/PELA-blocks/archive/master.zip)** the latest designs, or `git clone git@github.com:LEGO-Prototypes/PELA-blocks.git --recurse-submodules`, then `git lfs install` in each git module
 1. **[Calibrate](#calibrate)** the PELA Block models for your material and printer
 
 See [Advanced Setup](ADVANCED-SETUP.md) for additional tricks.
@@ -34,7 +34,7 @@ See the [Slicer Recommendations](SLICER.md) for information about different prin
 
 **TL;DR** *: To get a nice snap fit for your printer, slicer settings and material, print a calibration beam and test fit commercial bricks to the top knobs, bottom sockets and side technic holes. Update the best `top_tweak` and `bottom_tweak` into [`material.scad`](material.scad). Now open any model in OpenSCAD, press `F6` to generate the model then `F7` to export an STL.*
 
-[![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master//PELA-calibration.stl)
+[![PELA Example fit of a calibration block](images/PELA-calibration-test-fit-with-LEGO.jpg)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master//PELA-calibration.stl)
 
 There are several possible calibration beams. Most users will want the one linked below unless they are printing with flexible filament.
 
@@ -50,9 +50,9 @@ You can also configure slicing and printing directly from OpenSCAD. See their we
 
 ___
 
-[![PELA Calibration Beam, Normal Filament](/PELA-calibration.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-calibration.stl)
+[![PELA Calibration Beam, Normal Filament](/PELA-calibration.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-calibration.stl)
 
-[PELA Calibration Beam, Normal Filament](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-calibration.stl) PELA Calibration Beam for standard filament (non-flexible).
+[PELA Calibration Beam, Normal Filament](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-calibration.stl) PELA Calibration Beam for standard filament (non-flexible).
 
 ### Calibration Instructions
 
@@ -76,243 +76,243 @@ An alternative set of individual calibration blocks are available, and if you ha
 
 Edit `material.scad` and `style.scad` to adapt these models before printing them. **The example models below are not yet calibrated for your slicer and printer. Calibrate and then make the tuned model from the .scad file.**
 
-[![PELA Block](/PELA-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-block.stl)
+[![PELA Block](/PELA-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-block.stl)
 
-[PELA Block](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-block.stl)
-
-___
-
-[![PELA Technic Block](/PELA-technic-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl)
-
-[PELA Technic Block](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-technic-block.stl) A blending of traditional and technic features which extends the basic block. All other models are extensions and variants of this.
+[PELA Block](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-block.stl)
 
 ___
 
-[![PELA Technic Beam](/technic-beam/PELA-technic-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-beam.stl)
+[![PELA Technic Block](/PELA-technic-block.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-technic-block.stl)
 
-[PELA Technic Beam](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-beam.stl) A minimalist technic beam.
-
-___
-
-[![PELA Technic Twist Beam](/technic-beam/PELA-technic-twist-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl)
-
-[PELA Technic Twist Beam](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl) A technic beam with a center section of holes rotated 90 degrees.
+[PELA Technic Block](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-technic-block.stl) A blending of traditional and technic features which extends the basic block. All other models are extensions and variants of this.
 
 ___
 
-[![PELA Technic Corner](/technic-beam/PELA-technic-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-corner.stl)
+[![PELA Technic Beam](/technic-beam/PELA-technic-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-beam.stl)
 
-[PELA Technic Corner](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-corner.stl) Two beams joined at an angle co-axial to the technic holes.
-
-___
-
-[![PELA Technic Bent Beam](/technic-beam/PELA-technic-bent-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-bent-beam.stl)
-
-[PELA Technic Bent Beam](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-bent-beam.stl) Two beams joined at an angle normal to the technic holes.
+[PELA Technic Beam](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-beam.stl) A minimalist technic beam.
 
 ___
 
-[![PELA Technic Angle Connector](/technic-beam/PELA-technic-angle-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-angle-connector.stl)
+[![PELA Technic Twist Beam](/technic-beam/PELA-technic-twist-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl)
 
-[PELA Technic Angle Connector](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-angle-connector.stl) Two beams joined lengthwise at an angle.
-
-___
-
-[![PELA Technic Axle](/axle/PELA-technic-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-axle.stl)
-
-[PELA Technic Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-axle.stl) Rigid and flexible material shafts of adjustable length for attaching to other 3D printed designs such as wheels which you want to rotate freely.
+[PELA Technic Twist Beam](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-twist-beam.stl) A technic beam with a center section of holes rotated 90 degrees.
 
 ___
 
-[![PELA Technic Cross Axle](/axle/PELA-technic-cross-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-cross-axle.stl)
+[![PELA Technic Corner](/technic-beam/PELA-technic-corner.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-corner.stl)
 
-[PELA Technic Cross Axle](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-cross-axle.stl) Rigid and flexible material torque drive shafts for adjustable length for attaching to other 3D printed designs.
-
-___
-
-[![PELA Technic Wheel](/axle/PELA-technic-wheel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-wheel.stl)
-
-[PELA Technic Wheel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/axle/PELA-technic-wheel.stl) A spoked wheel that connects to a cross axle hub. Consider using flexible materials and tuning the wheel hardness as a simple shock absorber.
+[PELA Technic Corner](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-corner.stl) Two beams joined at an angle co-axial to the technic holes.
 
 ___
 
-[![PELA Socket Panel](/PELA-socket-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-socket-panel.stl)
+[![PELA Technic Bent Beam](/technic-beam/PELA-technic-bent-beam.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-bent-beam.stl)
 
-[PELA Socket Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-socket-panel.stl) Insert knobs from both the top and bottom. Zoom in to see the subtle flexure ridges for enhanced "snap" fit.
-
-___
-
-[![PELA Knob Panel](/PELA-knob-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-knob-panel.stl)
-
-[PELA Knob Panel](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-knob-panel.stl) Optional corner holes for M3 bolts can be enabled
+[PELA Technic Bent Beam](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-bent-beam.stl) Two beams joined at an angle normal to the technic holes.
 
 ___
 
-[![PELA Simplified Technic Peg](/peg/PELA-simplified-technic-peg.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-simplified-technic-peg.stl)
+[![PELA Technic Angle Connector](/technic-beam/PELA-technic-angle-connector.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-angle-connector.stl)
 
-[PELA Simplified Technic Peg](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-simplified-technic-peg.stl) An easier-to-print version of a technic peg. This works best with a smaller nozzle and slightly flexible materials.
-
-___
-
-[![PELA Simplified Technic Peg for Flex Materials](/peg/PELA-simplified-technic-peg-flexmaterial.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-simplified-technic-peg-flexmaterial.stl)
-
-[PELA Simplified Technic Peg for Flex Materials](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-simplified-technic-peg-flexmaterial.stl) An easier-to-print version of a technic peg for TPU95, TPU85/Ninjaflex and similar flexible materials.
+[PELA Technic Angle Connector](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-angle-connector.stl) Two beams joined lengthwise at an angle.
 
 ___
 
-[![PELA Technic Peg](/peg/PELA-technic-peg.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg.stl)
+[![PELA Technic Axle](/axle/PELA-technic-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/axle/PELA-technic-axle.stl)
 
-[PELA Technic Peg](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg.stl) This is difficult to print with some material, but useful you run short and don't want to wait for mail order. It works best with slightly flexible materials.
-
-___
-
-[![PELA Technic Peg Array](/peg/PELA-technic-peg-array.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg-array.stl)
-
-[PELA Technic Peg Array](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/peg/PELA-technic-peg-array.stl) A set of technic pegs.
+[PELA Technic Axle](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/axle/PELA-technic-axle.stl) Rigid and flexible material shafts of adjustable length for attaching to other 3D printed designs such as wheels which you want to rotate freely.
 
 ___
 
-[![PELA Technic Rail](/technic-beam/PELA-technic-rail.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-rail.stl)
+[![PELA Technic Cross Axle](/axle/PELA-technic-cross-axle.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/axle/PELA-technic-cross-axle.stl)
 
-[PELA Technic Rail](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-rail.stl) A variable length ladder-like mounting rail to bolt to a project board for clean, flexible layouts.
-
-___
-
-[![PELA Raspberry Pi 4 Technic Mount](/technic-mount/PELA-raspberry-pi4-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi4-technic-mount.stl)
-
-[PELA Raspberry Pi 4 Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi4-technic-mount.stl) A Raspberry Pi 2/3B+/4 enclosure.
+[PELA Technic Cross Axle](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/axle/PELA-technic-cross-axle.stl) Rigid and flexible material torque drive shafts for adjustable length for attaching to other 3D printed designs.
 
 ___
 
-[![PELA Raspberry Pi Zero W Technic Mount](/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.stl)
+[![PELA Technic Wheel](/axle/PELA-technic-wheel.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/axle/PELA-technic-wheel.stl)
 
-[PELA Raspberry Pi Zero W Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.stl) A Raspberry Pi Zero W holder.
-
-___
-
-[![PELA Raspberry Pi Camera Technic Mount](/technic-mount/PELA-raspberry-pi-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi-camera-technic-mount.stl)
-
-[PELA Raspberry Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-raspberry-pi-camera-technic-mount.stl) A Raspberry Pi camera holder.
+[PELA Technic Wheel](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/axle/PELA-technic-wheel.stl) A spoked wheel that connects to a cross axle hub. Consider using flexible materials and tuning the wheel hardness as a simple shock absorber.
 
 ___
 
-[![PELA Jetson Nano Technic Mount](/technic-mount/PELA-jetson-nano-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-technic-mount.stl)
+[![PELA Socket Panel](/PELA-socket-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-socket-panel.stl)
 
-[PELA Jetson Nano Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-technic-mount.stl) An NVIDEA Jetson Nano enclousure.
-
-___
-
-[![PELA Jetson Nano Battle Cap](/technic-mount/PELA-jetson-nano-battle-cap.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-battle-cap.stl)
-
-[PELA Jetson Nano Battle Cap](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-jetson-nano-battle-cap.stl) An NVIDEA Jetson Nano intrusion cover. This is useful to protect robots and self-driving cars from cooling fan impact damage which could break the PCB.
+[PELA Socket Panel](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-socket-panel.stl) Insert knobs from both the top and bottom. Zoom in to see the subtle flexure ridges for enhanced "snap" fit.
 
 ___
 
-[![PELA Intel T265 Realsense Tracking Camera Technic Mount](/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.stl)
+[![PELA Knob Panel](/PELA-knob-panel.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-knob-panel.stl)
 
-[PELA Intel T265 Realsense Tracking Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.stl) An enclosure for an [Intel T265](https://www.intelrealsense.com/tracking-camera-t265/) AI SLAM camera.
-
-___
-
-[![PELA STMF4 Discovery Technic Mount](/technic-mount/PELA-stmf4-discovery-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-stmf4-discovery-technic-mount.stl)
-
-[PELA STMF4 Discovery Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-stmf4-discovery-technic-mount.stl) Enclosure for the [STMF4 Discovery](https://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
+[PELA Knob Panel](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-knob-panel.stl) Optional corner holes for M3 bolts can be enabled
 
 ___
 
-[![PELA Powerbank Technic Mount](/technic-mount/PELA-powerbank-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-powerbank-technic-mount.stl)
+[![PELA Simplified Technic Peg](/peg/PELA-simplified-technic-peg.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/peg/PELA-simplified-technic-peg.stl)
 
-[PELA Powerbank Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-powerbank-technic-mount.stl) A container for a Clas Ohlson 38-3456 USB battery.
-
-___
-
-[![PELA Sparkfun BigEasyDriver Technic Mount](/technic-mount/PELA-sparkfun-bigeasydriver-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-sparkfun-bigeasydriver-technic-mount.stl)
-
-[PELA Sparkfun BigEasyDriver Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-sparkfun-bigeasydriver-technic-mount.stl) A pulsed infra-red motion sensor holder.
+[PELA Simplified Technic Peg](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/peg/PELA-simplified-technic-peg.stl) An easier-to-print version of a technic peg. This works best with a smaller nozzle and slightly flexible materials.
 
 ___
 
-[![PELA Technic PIR Motion Sensor Mount](/technic-mount/PELA-pir-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pir-technic-mount.stl)
+[![PELA Simplified Technic Peg for Flex Materials](/peg/PELA-simplified-technic-peg-flexmaterial.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/peg/PELA-simplified-technic-peg-flexmaterial.stl)
 
-[PELA PIR Motion Sensor Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pir-technic-mount.stl) A pulsed infra-red motion sensor holder.
-
-___
-
-[![PELA Technic NodeMCU v2 Mount](/technic-mount/PELA-nodemcu-v2-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-nodemcu-v2-technic-mount.stl)
-
-[PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-nodemcu-v2-technic-mount.stl) A technic mount for NodeMCU v2.
+[PELA Simplified Technic Peg for Flex Materials](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/peg/PELA-simplified-technic-peg-flexmaterial.stl) An easier-to-print version of a technic peg for TPU95, TPU85/Ninjaflex and similar flexible materials.
 
 ___
 
-[![PELA Arduino Uno Technic Mount](/technic-mount/PELA-arduino-uno-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl)
+[![PELA Technic Peg](/peg/PELA-technic-peg.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/peg/PELA-technic-peg.stl)
 
-[PELA Arduino Uno Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl) For holding an Arduino Uno microcontroller board within a PELA block
-
-___
-
-[![PELA Technic Seeed Respeaker Core v2 Mount](/technic-mount/PELA-respeaker-core-v2-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-respeaker-core-v2-mount.stl)
-
-[PELA Technic Seeed Respeaker Core v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-respeaker-core-v2-mount.stl) A technic mount for the Respeaker Core v2 microphone array.
+[PELA Technic Peg](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/peg/PELA-technic-peg.stl) This is difficult to print with some material, but useful you run short and don't want to wait for mail order. It works best with slightly flexible materials.
 
 ___
 
-[![PELA Vertical Sign](/sign/PELA-vertical-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-vertical-sign.stl)
+[![PELA Technic Peg Array](/peg/PELA-technic-peg-array.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/peg/PELA-technic-peg-array.stl)
 
-[PELA Vertical Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-vertical-sign.stl) Change the text to label your designs. Options include front and back text with either etched for raised text.
-
-___
-
-[![PELA Panel Sign](/sign/PELA-panel-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl)
-
-[PELA Panel Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-panel-sign.stl) Change the text to label your design either etched for raised text.
+[PELA Technic Peg Array](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/peg/PELA-technic-peg-array.stl) A set of technic pegs.
 
 ___
 
-[![PELA Technic Sign](/sign/PELA-technic-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-technic-sign.stl)
+[![PELA Technic Rail](/technic-beam/PELA-technic-rail.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-rail.stl)
 
-[PELA Technic Sign](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/sign/PELA-technic-sign.stl) Change the text to label your design.
-
-___
-
-[![PELA Box Enclosure](/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-box-enclosure.stl)
-
-[PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
+[PELA Technic Rail](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-rail.stl) A variable length ladder-like mounting rail to bolt to a project board for clean, flexible layouts.
 
 ___
 
-[![PELA Round Motor Enclosure](/motor/PELA-round-motor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-round-motor-enclosure.stl)
+[![PELA Raspberry Pi 4 Technic Mount](/technic-mount/PELA-raspberry-pi4-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-raspberry-pi4-technic-mount.stl)
 
-[PELA Round Motor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-round-motor-enclosure.stl) Add a round round motor holder for 1:10 electric cars
-
-___
-
-[![PELA N20 Gearmotor Enclosure](/motor/PELA-n20-gearmotor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-n20-gearmotor-enclosure.stl)
-
-[PELA N20 Gearmotor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/motor/PELA-n20-gearmotor-enclosure.stl) Add a commonly available small gear motor to your design. Adjust the model parameters to fit other motor sizes.
+[PELA Raspberry Pi 4 Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-raspberry-pi4-technic-mount.stl) A Raspberry Pi 2/3B+/4 enclosure.
 
 ___
 
-[![PELA HTC Vive Tracker Mount](/vive-tracker/PELA-vive-tracker-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/vive-tracker/PELA-vive-tracker-mount.stl)
+[![PELA Raspberry Pi Zero W Technic Mount](/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.stl)
 
-[PELA HTC Vive Tracker Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/vive-tracker/PELA-vive-tracker-mount.stl) [HTC Vive Tracker](https://www.vive.com/) attachment to your designs becomes easy to remove.
-
-___
-
-[![PELA Camera Mount Screw](/vive-tracker/PELA-camera-mount-screw.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/vive-tracker/PELA-camera-mount-screw.stl)
-
-[PELA Camera Mount Screw](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/vive-tracker/PELA-camera-mount-screw.stl) You can use this quarter inch standard camera mount screw for flush mounting the HTC Vive to the Vive Tracker Mount. The printed version works better than you might expect.
+[PELA Raspberry Pi Zero W Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-raspberry-pi-zero-w-technic-mount.stl) A Raspberry Pi Zero W holder.
 
 ___
 
-[![PELA Strap Mount](/PELA-strap-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-strap-mount.stl)
+[![PELA Raspberry Pi Camera Technic Mount](/technic-mount/PELA-raspberry-pi-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-raspberry-pi-camera-technic-mount.stl)
 
-[PELA Strap Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/PELA-strap-mount.stl) For attaching using strap or similar straps through the bottom slot. For example use this with velcro straps to mount Vive trackers on your shoes..
+[PELA Raspberry Pi Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-raspberry-pi-camera-technic-mount.stl) A Raspberry Pi camera holder.
 
 ___
 
-[![PELA PCA9685 16 Channel Servo Board Technic Mount](/technic-mount/PELA-pca9685-servo-board-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pca9685-servo-board-technic-mount.stl)
+[![PELA Jetson Nano Technic Mount](/technic-mount/PELA-jetson-nano-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-jetson-nano-technic-mount.stl)
 
-[PELA PCA9685 16 Channel Servo Board Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-mount/PELA-pca9685-servo-board-technic-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](https://www.donkeycar.com/).
+[PELA Jetson Nano Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-jetson-nano-technic-mount.stl) An NVIDEA Jetson Nano enclousure.
+
+___
+
+[![PELA Jetson Nano Battle Cap](/technic-mount/PELA-jetson-nano-battle-cap.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-jetson-nano-battle-cap.stl)
+
+[PELA Jetson Nano Battle Cap](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-jetson-nano-battle-cap.stl) An NVIDEA Jetson Nano intrusion cover. This is useful to protect robots and self-driving cars from cooling fan impact damage which could break the PCB.
+
+___
+
+[![PELA Intel T265 Realsense Tracking Camera Technic Mount](/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.stl)
+
+[PELA Intel T265 Realsense Tracking Camera Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-t265-realsense-tracking-camera-technic-mount.stl) An enclosure for an [Intel T265](https://www.intelrealsense.com/tracking-camera-t265/) AI SLAM camera.
+
+___
+
+[![PELA STMF4 Discovery Technic Mount](/technic-mount/PELA-stmf4-discovery-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-stmf4-discovery-technic-mount.stl)
+
+[PELA STMF4 Discovery Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-stmf4-discovery-technic-mount.stl) Enclosure for the [STMF4 Discovery](https://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
+
+___
+
+[![PELA Powerbank Technic Mount](/technic-mount/PELA-powerbank-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-powerbank-technic-mount.stl)
+
+[PELA Powerbank Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-powerbank-technic-mount.stl) A container for a Clas Ohlson 38-3456 USB battery.
+
+___
+
+[![PELA Sparkfun BigEasyDriver Technic Mount](/technic-mount/PELA-sparkfun-bigeasydriver-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-sparkfun-bigeasydriver-technic-mount.stl)
+
+[PELA Sparkfun BigEasyDriver Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-sparkfun-bigeasydriver-technic-mount.stl) A pulsed infra-red motion sensor holder.
+
+___
+
+[![PELA Technic PIR Motion Sensor Mount](/technic-mount/PELA-pir-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-pir-technic-mount.stl)
+
+[PELA PIR Motion Sensor Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-pir-technic-mount.stl) A pulsed infra-red motion sensor holder.
+
+___
+
+[![PELA Technic NodeMCU v2 Mount](/technic-mount/PELA-nodemcu-v2-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-nodemcu-v2-technic-mount.stl)
+
+[PELA Technic NodeMCU v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-nodemcu-v2-technic-mount.stl) A technic mount for NodeMCU v2.
+
+___
+
+[![PELA Arduino Uno Technic Mount](/technic-mount/PELA-arduino-uno-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl)
+
+[PELA Arduino Uno Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-arduino-uno-technic-mount.stl) For holding an Arduino Uno microcontroller board within a PELA block
+
+___
+
+[![PELA Technic Seeed Respeaker Core v2 Mount](/technic-mount/PELA-respeaker-core-v2-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-respeaker-core-v2-mount.stl)
+
+[PELA Technic Seeed Respeaker Core v2 Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-respeaker-core-v2-mount.stl) A technic mount for the Respeaker Core v2 microphone array.
+
+___
+
+[![PELA Vertical Sign](/sign/PELA-vertical-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/sign/PELA-vertical-sign.stl)
+
+[PELA Vertical Sign](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/sign/PELA-vertical-sign.stl) Change the text to label your designs. Options include front and back text with either etched for raised text.
+
+___
+
+[![PELA Panel Sign](/sign/PELA-panel-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/sign/PELA-panel-sign.stl)
+
+[PELA Panel Sign](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/sign/PELA-panel-sign.stl) Change the text to label your design either etched for raised text.
+
+___
+
+[![PELA Technic Sign](/sign/PELA-technic-sign.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/sign/PELA-technic-sign.stl)
+
+[PELA Technic Sign](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/sign/PELA-technic-sign.stl) Change the text to label your design.
+
+___
+
+[![PELA Box Enclosure](/PELA-box-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-box-enclosure.stl)
+
+[PELA Box Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-box-enclosure.stl) A generic enclosure for mounting boards inside protective side walls.
+
+___
+
+[![PELA Round Motor Enclosure](/motor/PELA-round-motor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/motor/PELA-round-motor-enclosure.stl)
+
+[PELA Round Motor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/motor/PELA-round-motor-enclosure.stl) Add a round round motor holder for 1:10 electric cars
+
+___
+
+[![PELA N20 Gearmotor Enclosure](/motor/PELA-n20-gearmotor-enclosure.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/motor/PELA-n20-gearmotor-enclosure.stl)
+
+[PELA N20 Gearmotor Enclosure](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/motor/PELA-n20-gearmotor-enclosure.stl) Add a commonly available small gear motor to your design. Adjust the model parameters to fit other motor sizes.
+
+___
+
+[![PELA HTC Vive Tracker Mount](/vive-tracker/PELA-vive-tracker-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/vive-tracker/PELA-vive-tracker-mount.stl)
+
+[PELA HTC Vive Tracker Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/vive-tracker/PELA-vive-tracker-mount.stl) [HTC Vive Tracker](https://www.vive.com/) attachment to your designs becomes easy to remove.
+
+___
+
+[![PELA Camera Mount Screw](/vive-tracker/PELA-camera-mount-screw.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/vive-tracker/PELA-camera-mount-screw.stl)
+
+[PELA Camera Mount Screw](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/vive-tracker/PELA-camera-mount-screw.stl) You can use this quarter inch standard camera mount screw for flush mounting the HTC Vive to the Vive Tracker Mount. The printed version works better than you might expect.
+
+___
+
+[![PELA Strap Mount](/PELA-strap-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-strap-mount.stl)
+
+[PELA Strap Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/PELA-strap-mount.stl) For attaching using strap or similar straps through the bottom slot. For example use this with velcro straps to mount Vive trackers on your shoes..
+
+___
+
+[![PELA PCA9685 16 Channel Servo Board Technic Mount](/technic-mount/PELA-pca9685-servo-board-technic-mount.png)](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-pca9685-servo-board-technic-mount.stl)
+
+[PELA PCA9685 16 Channel Servo Board Technic Mount](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-mount/PELA-pca9685-servo-board-technic-mount.stl) For holding a servo board within a PELA block with connectors exposed at one end. We use these with 1:10 RC drift cars and Rasperry Pi for a [PELA drift car](https://driftcar.pelablocks.org/) in the [Markku Invitational](https://markku.ai/) contest based on [Donkeycar](https://www.donkeycar.com/).
 
 
 ## FFF Printing Tips
@@ -348,12 +348,12 @@ These open source designs are brought to you by [Futurice](https://futurice.com)
 
 PELA has been used to create a self-driving car: [![3D Printed LEGO-compatible Parametric 1:10 Scale RC Drift Car Based On PELA Blocks](https://driftcar.pelablocks.org/images/pela-drift-car.jpg)](https://driftcar.pelablocks.org)
 
-[![PELA Technic Rails]()](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/blob/master/technic-beam/PELA-technic-rail.stl) and enclosures are a great way to make bigger IOT projects without the duct tape: 
+[![PELA Technic Rails]()](https://github.com/LEGO-compatible-gadgets/PELA-blocks/blob/master/technic-beam/PELA-technic-rail.stl) and enclosures are a great way to make bigger IOT projects without the duct tape: 
 ![IOT Rail Mounting Solution Based On PELA Blocks](images/PELA-rail-mount-example.jpg)
 
 PELA is also used to create robot parts: [![3D Printed LEGO-compatible Parametric Robot Hand](https://robothand.pelablocks.org/PELA-robot-hand.png)](https://robothand.pelablocks.org)
 
-The generated 3D models displayed here are hosted in a separate GitHub project to minimize the size of pulling changes in this repo: [PELA-parametric-blocks](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks)
+The generated 3D models displayed here are hosted in a separate GitHub project to minimize the size of pulling changes in this repo: [PELA-blocks](https://github.com/LEGO-compatible-gadgets/PELA-blocks)
 
 ## Alternative 3D Block Designs
 
@@ -363,11 +363,11 @@ If you don't find what you need, consider adding it, contact us or check out the
 
 [Yeggi search for LEGO](https://www.yeggi.com/q/lego/)
 
-[Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) is an alternate source for these block designs. These designs don't work with the online customizer (speed and complexity, multiple files), so the best path is still to install the newest [OpenSCAD](https://www.openscad.org/) and **[download](https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks/archive/master.zip)** the models.
+[Thingiverse Parametric LEGO Group](https://www.thingiverse.com/groups/parametric-lego) is an alternate source for these block designs. These designs don't work with the online customizer (speed and complexity, multiple files), so the best path is still to install the newest [OpenSCAD](https://www.openscad.org/) and **[download](https://github.com/LEGO-compatible-gadgets/PELA-blocks/archive/master.zip)** the models.
 
 ## Contact
 
-New models, collaboration and pull requests are welcome. You have the tools- now create something cool and share with the world : https://github.com/LEGO-compatible-gadgets/PELA-parametric-blocks
+New models, collaboration and pull requests are welcome. You have the tools- now create something cool and share with the world : https://github.com/LEGO-compatible-gadgets/PELA-blocks
 
 paul.houghton@futurice.com ( **[Blog](https://medium.com/@paulhoughton)** - **[Twitter](https://twitter.com/mobile_rat)**)
 
