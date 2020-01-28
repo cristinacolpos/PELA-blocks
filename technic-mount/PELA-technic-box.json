@@ -34,17 +34,17 @@
             "_horizontal_skin": "0.1",
             "_knob_height": "2.9",
             "_knob_vent_radius": "0",
-            "_l": "25",
+            "_l": "22",
             "_large_nozzle": "true",
             "_material": "10",
             "_render_modules": "1",
             "_text": "Box",
             "_text_depth": "0.5",
             "_top_vents": "false",
-            "_twist_l": "10",
-            "_twist_w": "10",
+            "_twist_l": "9",
+            "_twist_w": "9",
             "_vertical_skin": "0.1",
-            "_w": "25"
+            "_w": "22"
         }
     },
     "fileFormatVersion": "1",
